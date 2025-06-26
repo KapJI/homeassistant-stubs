@@ -4,8 +4,8 @@ from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from abc import abstractmethod
-from aiounifi.interfaces.api_handlers import APIHandler, CallbackType, ItemEvent, UnsubscribeType
-from aiounifi.models.api import ApiItemT as ApiItemT
+from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, CallbackType, ItemEvent, UnsubscribeType
+from aiounifi.models.api import ApiItem as ApiItem
 from aiounifi.models.event import Event as Event, EventKey as EventKey
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -13,11 +13,8 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from typing import Generic, TypeVar
 
-HandlerT = TypeVar('HandlerT', bound=APIHandler)
-SubscriptionT = Callable[[CallbackType, ItemEvent], UnsubscribeType]
-
+type SubscriptionType = Callable[[CallbackType, ItemEvent], UnsubscribeType]
 @callback
 def async_device_available_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 @callback
@@ -30,7 +27,7 @@ def async_wlan_device_info_fn(hub: UnifiHub, obj_id: str) -> DeviceInfo: ...
 def async_client_device_info_fn(hub: UnifiHub, obj_id: str) -> DeviceInfo: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiEntityDescription(EntityDescription, Generic[HandlerT, ApiItemT]):
+class UnifiEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](EntityDescription):
     api_handler_fn: Callable[[aiounifi.Controller], HandlerT]
     device_info_fn: Callable[[UnifiHub, str], DeviceInfo | None]
     object_fn: Callable[[aiounifi.Controller, str], ApiItemT]
@@ -44,7 +41,7 @@ class UnifiEntityDescription(EntityDescription, Generic[HandlerT, ApiItemT]):
     event_to_subscribe: tuple[EventKey, ...] | None = ...
     should_poll: bool = ...
 
-class UnifiEntity(Entity, Generic[HandlerT, ApiItemT], metaclass=abc.ABCMeta):
+class UnifiEntity[HandlerT: APIHandler, ApiItemT: ApiItem](Entity, metaclass=abc.ABCMeta):
     entity_description: UnifiEntityDescription[HandlerT, ApiItemT]
     _attr_unique_id: str
     _obj_id: Incomplete

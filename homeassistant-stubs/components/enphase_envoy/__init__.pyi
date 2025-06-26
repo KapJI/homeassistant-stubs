@@ -1,11 +1,11 @@
-from .const import DOMAIN as DOMAIN, OPTION_DISABLE_KEEP_ALIVE as OPTION_DISABLE_KEEP_ALIVE, OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE as OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE, PLATFORMS as PLATFORMS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 
 async def async_setup_entry(hass: HomeAssistant, entry: EnphaseConfigEntry) -> bool: ...
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...

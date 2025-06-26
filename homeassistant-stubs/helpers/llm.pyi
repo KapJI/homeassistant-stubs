@@ -41,7 +41,6 @@ def async_get_apis(hass: HomeAssistant) -> list[API]: ...
 class LLMContext:
     platform: str
     context: Context | None
-    user_prompt: str | None
     language: str | None
     assistant: str | None
     device_id: str | None

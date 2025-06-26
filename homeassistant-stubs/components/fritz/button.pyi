@@ -1,6 +1,8 @@
 from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, MeshRoles as MeshRoles
-from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData, FritzDevice as FritzDevice, _is_tracked as _is_tracked
+from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .entity import FritzDeviceBase as FritzDeviceBase
+from .helpers import _is_tracked as _is_tracked
+from .models import FritzDevice as FritzDevice
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

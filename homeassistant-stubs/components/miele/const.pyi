@@ -125,3 +125,27 @@ ROBOT_VACUUM_CLEANER_PROGRAM_ID: dict[int, str]
 COFFEE_SYSTEM_PROGRAM_ID: dict[int, str]
 STEAM_OVEN_MICRO_PROGRAM_ID: dict[int, str]
 STATE_PROGRAM_ID: dict[int, dict[int, str]]
+
+class PlatePowerStep(MieleEnum):
+    plate_step_0: int
+    plate_step_warming: Incomplete
+    plate_step_1: int
+    plate_step_2: int
+    plate_step_3: int
+    plate_step_4: int
+    plate_step_5: int
+    plate_step_6: int
+    plate_step_7: int
+    plate_step_8: int
+    plate_step_9: int
+    plate_step_10: int
+    plate_step_11: int
+    plate_step_12: int
+    plate_step_13: int
+    plate_step_14: int
+    plate_step_15: int
+    plate_step_16: int
+    plate_step_17: int
+    plate_step_18: int
+    plate_step_boost: Incomplete
+    missing2none: int

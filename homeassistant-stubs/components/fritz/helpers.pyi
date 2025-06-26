@@ -1,0 +1,9 @@
+from .models import FritzDevice as FritzDevice
+from _typeshed import Incomplete
+from collections.abc import ValuesView
+
+_LOGGER: Incomplete
+
+def _is_tracked(mac: str, current_devices: ValuesView[set[str]]) -> bool: ...
+def device_filter_out_from_trackers(mac: str, device: FritzDevice, current_devices: ValuesView[set[str]]) -> bool: ...
+def _ha_is_stopping(activity: str) -> None: ...

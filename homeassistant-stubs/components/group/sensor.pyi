@@ -1,4 +1,4 @@
-from .const import CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC
+from .const import CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC, DOMAIN as DOMAIN
 from .entity import GroupEntity as GroupEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

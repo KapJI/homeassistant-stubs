@@ -8,8 +8,9 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
+type LaMetricConfigEntry = ConfigEntry[LaMetricDataUpdateCoordinator]
 class LaMetricDataUpdateCoordinator(DataUpdateCoordinator[Device]):
-    config_entry: ConfigEntry
+    config_entry: LaMetricConfigEntry
     lametric: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: LaMetricConfigEntry) -> None: ...
     async def _async_update_data(self) -> Device: ...

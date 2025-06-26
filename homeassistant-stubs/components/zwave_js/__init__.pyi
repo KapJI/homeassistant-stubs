@@ -5,7 +5,7 @@ from .const import ATTR_ACKNOWLEDGED_FRAMES as ATTR_ACKNOWLEDGED_FRAMES, ATTR_CO
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, async_discover_node_values as async_discover_node_values, async_discover_single_value as async_discover_single_value
 from .helpers import async_disable_server_logging_if_needed as async_disable_server_logging_if_needed, async_enable_server_logging_if_needed as async_enable_server_logging_if_needed, async_enable_statistics as async_enable_statistics, get_device_id as get_device_id, get_device_id_ext as get_device_id_ext, get_network_identifier_for_notification as get_network_identifier_for_notification, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
 from .migrate import async_migrate_discovered_value as async_migrate_discovered_value
-from .services import ZWaveServices as ZWaveServices
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.components.persistent_notification import async_create as async_create

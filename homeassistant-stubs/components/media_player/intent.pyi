@@ -1,5 +1,5 @@
 from . import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, DOMAIN as DOMAIN, MediaPlayerDeviceClass as MediaPlayerDeviceClass, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA, SERVICE_SEARCH_MEDIA as SERVICE_SEARCH_MEDIA, SearchMedia as SearchMedia
-from .const import MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
+from .const import ATTR_MEDIA_FILTER_CLASSES as ATTR_MEDIA_FILTER_CLASSES, MediaClass as MediaClass, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from dataclasses import dataclass, field

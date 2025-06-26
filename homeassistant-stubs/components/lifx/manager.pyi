@@ -1,5 +1,5 @@
-from .const import ATTR_THEME as ATTR_THEME, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, _ATTR_COLOR_TEMP as _ATTR_COLOR_TEMP
-from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .const import ATTR_THEME as ATTR_THEME, DOMAIN as DOMAIN, _ATTR_COLOR_TEMP as _ATTR_COLOR_TEMP
+from .coordinator import LIFXConfigEntry as LIFXConfigEntry, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .util import convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk
 from _typeshed import Incomplete
 from aiolifx.aiolifx import Light as Light

@@ -1,5 +1,5 @@
 import abc
-from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, RADIO_DEVICE as RADIO_DEVICE, ZHA_DOMAIN as ZHA_DOMAIN, ZHA_HW_DISCOVERY_DATA as ZHA_HW_DISCOVERY_DATA
+from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, NABU_CASA_FIRMWARE_RELEASES_URL as NABU_CASA_FIRMWARE_RELEASES_URL, RADIO_DEVICE as RADIO_DEVICE, ZHA_DOMAIN as ZHA_DOMAIN, ZHA_HW_DISCOVERY_DATA as ZHA_HW_DISCOVERY_DATA
 from .hardware import BOARD_NAME as BOARD_NAME
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
@@ -7,15 +7,22 @@ from homeassistant.components.hassio import HassioAPIError as HassioAPIError, as
 from homeassistant.components.homeassistant_hardware.firmware_config_flow import BaseFirmwareConfigFlow as BaseFirmwareConfigFlow, BaseFirmwareOptionsFlow as BaseFirmwareOptionsFlow
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import OptionsFlowHandler as MultiprotocolOptionsFlowHandler, SerialPortSettings as MultiprotocolSerialPortSettings
 from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HARDWARE as SOURCE_HARDWARE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HARDWARE as SOURCE_HARDWARE
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow, selector as selector
-from typing import Any, final
+from typing import Any, Protocol, final
 
 _LOGGER: Incomplete
 STEP_HW_SETTINGS_SCHEMA: Incomplete
 
-class HomeAssistantYellowConfigFlow(BaseFirmwareConfigFlow, domain=DOMAIN):
+class FirmwareInstallFlowProtocol(Protocol):
+    async def _install_firmware_step(self, fw_update_url: str, fw_type: str, firmware_name: str, expected_installed_firmware_type: ApplicationType, step_id: str, next_step_id: str) -> ConfigFlowResult: ...
+
+class YellowFirmwareMixin(ConfigEntryBaseFlow, FirmwareInstallFlowProtocol, metaclass=abc.ABCMeta):
+    async def async_step_install_zigbee_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_install_thread_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+
+class HomeAssistantYellowConfigFlow(YellowFirmwareMixin, BaseFirmwareConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     _device: Incomplete
@@ -50,7 +57,7 @@ class HomeAssistantYellowMultiPanOptionsFlowHandler(BaseHomeAssistantYellowOptio
     def _hardware_name(self) -> str: ...
     async def async_step_flashing_complete(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class HomeAssistantYellowOptionsFlowHandler(BaseHomeAssistantYellowOptionsFlow, BaseFirmwareOptionsFlow):
+class HomeAssistantYellowOptionsFlowHandler(YellowFirmwareMixin, BaseHomeAssistantYellowOptionsFlow, BaseFirmwareOptionsFlow):
     _hardware_name: Incomplete
     _device: Incomplete
     _probed_firmware_info: Incomplete

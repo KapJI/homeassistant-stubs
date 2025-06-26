@@ -1,11 +1,11 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
 from .const import DOMAIN as DOMAIN
-from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
+from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
-from aiounifi.interfaces.api_handlers import ItemEvent
-from aiounifi.models.api import ApiItemT
+from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent
+from aiounifi.models.api import ApiItem as ApiItem
 from aiounifi.models.event import Event, EventKey
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
@@ -36,7 +36,7 @@ def async_client_is_connected_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 def async_device_heartbeat_timedelta_fn(hub: UnifiHub, obj_id: str) -> timedelta: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiTrackerEntityDescription(UnifiEntityDescription[HandlerT, ApiItemT], ScannerEntityDescription):
+class UnifiTrackerEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntityDescription[HandlerT, ApiItemT], ScannerEntityDescription):
     heartbeat_timedelta_fn: Callable[[UnifiHub, str], timedelta]
     ip_address_fn: Callable[[aiounifi.Controller, str], str | None]
     is_connected_fn: Callable[[UnifiHub, str], bool]
@@ -48,7 +48,7 @@ ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class UnifiScannerEntity(UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
+class UnifiScannerEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], ScannerEntity):
     entity_description: UnifiTrackerEntityDescription
     _event_is_on: set[EventKey]
     _ignore_events: bool

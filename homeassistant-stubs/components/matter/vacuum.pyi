@@ -12,10 +12,10 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import Any
 
 class OperationalState(IntEnum):
-    NO_ERROR = 0
-    UNABLE_TO_START_OR_RESUME = 1
-    UNABLE_TO_COMPLETE_OPERATION = 2
-    COMMAND_INVALID_IN_STATE = 3
+    STOPPED = 0
+    RUNNING = 1
+    PAUSED = 2
+    ERROR = 3
     SEEKING_CHARGER = 64
     CHARGING = 65
     DOCKED = 66

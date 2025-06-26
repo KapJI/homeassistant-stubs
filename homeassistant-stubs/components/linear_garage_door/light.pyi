@@ -1,9 +1,7 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import LinearUpdateCoordinator as LinearUpdateCoordinator
+from .coordinator import LinearConfigEntry as LinearConfigEntry
 from .entity import LinearEntity as LinearEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from linear_garage_door import Linear as Linear
@@ -11,7 +9,7 @@ from typing import Any
 
 SUPPORTED_SUBDEVICES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LinearConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LinearLightEntity(LinearEntity, LightEntity):
     _attr_color_mode: Incomplete

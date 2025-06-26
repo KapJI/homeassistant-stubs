@@ -1,6 +1,8 @@
 from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles
+from .helpers import _ha_is_stopping as _ha_is_stopping
+from .models import ConnectionInfo as ConnectionInfo, Device as Device, FritzDevice as FritzDevice, HostAttributes as HostAttributes, HostInfo as HostInfo, Interface as Interface
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Mapping, ValuesView
+from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass, field
 from datetime import datetime
 from fritzconnection import FritzConnection
@@ -22,37 +24,14 @@ _LOGGER: Incomplete
 FRITZ_DATA_KEY: HassKey[FritzData]
 type FritzConfigEntry = ConfigEntry[AvmWrapper]
 
-def _is_tracked(mac: str, current_devices: ValuesView[set[str]]) -> bool: ...
-def device_filter_out_from_trackers(mac: str, device: FritzDevice, current_devices: ValuesView[set[str]]) -> bool: ...
-def _ha_is_stopping(activity: str) -> None: ...
+@dataclass
+class FritzData:
+    tracked: dict[str, set[str]] = field(default_factory=dict)
+    profile_switches: dict[str, set[str]] = field(default_factory=dict)
+    wol_buttons: dict[str, set[str]] = field(default_factory=dict)
 
 class ClassSetupMissing(Exception):
     def __init__(self) -> None: ...
-
-@dataclass
-class Device:
-    connected: bool
-    connected_to: str
-    connection_type: str
-    ip_address: str
-    name: str
-    ssid: str | None
-    wan_access: bool | None = ...
-
-class Interface(TypedDict):
-    device: str
-    mac: str
-    op_mode: str
-    ssid: str | None
-    type: str
-
-HostAttributes = TypedDict('HostAttributes', {'Index': int, 'IPAddress': str, 'MACAddress': str, 'Active': bool, 'HostName': str, 'InterfaceType': str, 'X_AVM-DE_Port': int, 'X_AVM-DE_Speed': int, 'X_AVM-DE_UpdateAvailable': bool, 'X_AVM-DE_UpdateSuccessful': str, 'X_AVM-DE_InfoURL': str | None, 'X_AVM-DE_MACAddressList': str | None, 'X_AVM-DE_Model': str | None, 'X_AVM-DE_URL': str | None, 'X_AVM-DE_Guest': bool, 'X_AVM-DE_RequestClient': str, 'X_AVM-DE_VPN': bool, 'X_AVM-DE_WANAccess': str, 'X_AVM-DE_Disallow': bool, 'X_AVM-DE_IsMeshable': str, 'X_AVM-DE_Priority': str, 'X_AVM-DE_FriendlyName': str, 'X_AVM-DE_FriendlyNameIsWriteable': str})
-
-class HostInfo(TypedDict):
-    mac: str
-    name: str
-    ip: str
-    status: bool
 
 class UpdateCoordinatorDataType(TypedDict):
     call_deflections: dict[int, dict]
@@ -140,56 +119,3 @@ class AvmWrapper(FritzBoxTools):
     async def async_add_port_mapping(self, con_type: str, port_mapping: Any) -> dict[str, Any]: ...
     async def async_set_allow_wan_access(self, ip_address: str, turn_on: bool) -> dict[str, Any]: ...
     async def async_wake_on_lan(self, mac_address: str) -> dict[str, Any]: ...
-
-@dataclass
-class FritzData:
-    tracked: dict[str, set[str]] = field(default_factory=dict)
-    profile_switches: dict[str, set[str]] = field(default_factory=dict)
-    wol_buttons: dict[str, set[str]] = field(default_factory=dict)
-
-class FritzDevice:
-    _connected: bool
-    _connected_to: str | None
-    _connection_type: str | None
-    _ip_address: str | None
-    _last_activity: datetime | None
-    _mac: Incomplete
-    _name: Incomplete
-    _ssid: str | None
-    _wan_access: bool | None
-    def __init__(self, mac: str, name: str) -> None: ...
-    def update(self, dev_info: Device, consider_home: float) -> None: ...
-    @property
-    def connected_to(self) -> str | None: ...
-    @property
-    def connection_type(self) -> str | None: ...
-    @property
-    def is_connected(self) -> bool: ...
-    @property
-    def mac_address(self) -> str: ...
-    @property
-    def hostname(self) -> str: ...
-    @property
-    def ip_address(self) -> str | None: ...
-    @property
-    def last_activity(self) -> datetime | None: ...
-    @property
-    def ssid(self) -> str | None: ...
-    @property
-    def wan_access(self) -> bool | None: ...
-
-class SwitchInfo(TypedDict):
-    description: str
-    friendly_name: str
-    icon: str
-    type: str
-    callback_update: Callable
-    callback_switch: Callable
-    init_state: bool
-
-@dataclass
-class ConnectionInfo:
-    connection: str
-    mesh_role: MeshRoles
-    wan_enabled: bool
-    ipv6_active: bool

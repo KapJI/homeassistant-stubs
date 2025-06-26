@@ -7,6 +7,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from laundrify_aio import LaundrifyAPI as LaundrifyAPI, LaundrifyDevice
 
 _LOGGER: Incomplete
+type LaundrifyConfigEntry = ConfigEntry[LaundrifyUpdateCoordinator]
 
 class LaundrifyUpdateCoordinator(DataUpdateCoordinator[dict[str, LaundrifyDevice]]):
     config_entry: ConfigEntry

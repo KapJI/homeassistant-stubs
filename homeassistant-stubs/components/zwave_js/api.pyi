@@ -17,8 +17,8 @@ from typing import Any, Concatenate, Literal
 from zwave_js_server.client import Client as Client
 from zwave_js_server.const import InclusionStrategy
 from zwave_js_server.model.controller import ControllerStatistics as ControllerStatistics
-from zwave_js_server.model.controller.firmware import ControllerFirmwareUpdateProgress as ControllerFirmwareUpdateProgress, ControllerFirmwareUpdateResult as ControllerFirmwareUpdateResult
 from zwave_js_server.model.driver import Driver as Driver
+from zwave_js_server.model.driver.firmware import DriverFirmwareUpdateProgress as DriverFirmwareUpdateProgress, DriverFirmwareUpdateResult as DriverFirmwareUpdateResult
 from zwave_js_server.model.endpoint import Endpoint as Endpoint
 from zwave_js_server.model.log_message import LogMessage as LogMessage
 from zwave_js_server.model.node import Node as Node, NodeStatistics as NodeStatistics
@@ -279,7 +279,7 @@ async def websocket_abort_firmware_update(hass: HomeAssistant, connection: Activ
 @async_get_node
 async def websocket_is_node_firmware_update_in_progress(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
 def _get_node_firmware_update_progress_dict(progress: NodeFirmwareUpdateProgress) -> dict[str, int | float]: ...
-def _get_controller_firmware_update_progress_dict(progress: ControllerFirmwareUpdateProgress) -> dict[str, int | float]: ...
+def _get_driver_firmware_update_progress_dict(progress: DriverFirmwareUpdateProgress) -> dict[str, int | float]: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @async_get_node

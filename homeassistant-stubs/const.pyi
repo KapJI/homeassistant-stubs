@@ -20,6 +20,7 @@ REQUIRED_NEXT_PYTHON_HA_RELEASE: Final[str]
 PLATFORM_FORMAT: Final[str]
 
 class Platform(StrEnum):
+    AI_TASK = 'ai_task'
     AIR_QUALITY = 'air_quality'
     ALARM_CONTROL_PANEL = 'alarm_control_panel'
     ASSIST_SATELLITE = 'assist_satellite'

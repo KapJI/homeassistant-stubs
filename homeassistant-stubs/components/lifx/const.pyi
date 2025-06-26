@@ -1,6 +1,9 @@
+from .manager import LIFXManager as LIFXManager
 from _typeshed import Incomplete
+from homeassistant.util.hass_dict import HassKey as HassKey
 
 DOMAIN: str
+DATA_LIFX_MANAGER: HassKey[LIFXManager]
 TARGET_ANY: str
 DISCOVERY_INTERVAL: int
 MESSAGE_TIMEOUT: int
@@ -26,7 +29,6 @@ ATTR_THEME: str
 HEV_CYCLE_STATE: str
 INFRARED_BRIGHTNESS: str
 INFRARED_BRIGHTNESS_VALUES_MAP: Incomplete
-DATA_LIFX_MANAGER: str
 LIFX_CEILING_PRODUCT_IDS: Incomplete
 _LOGGER: Incomplete
 _ATTR_COLOR_TEMP: str

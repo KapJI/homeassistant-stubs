@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .media_player import OnkyoMediaPlayer as OnkyoMediaPlayer
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.util.hass_dict import HassKey as HassKey
 
 DATA_MP_ENTITIES: HassKey[dict[str, dict[str, OnkyoMediaPlayer]]]
@@ -11,4 +11,5 @@ ACCEPTED_VALUES: Incomplete
 ONKYO_SELECT_OUTPUT_SCHEMA: Incomplete
 SERVICE_SELECT_HDMI_OUTPUT: str
 
-async def async_register_services(hass: HomeAssistant) -> None: ...
+@callback
+def async_setup_services(hass: HomeAssistant) -> None: ...

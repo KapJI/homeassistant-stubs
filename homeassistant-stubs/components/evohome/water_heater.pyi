@@ -21,6 +21,7 @@ class EvoDHW(EvoChild, WaterHeaterEntity):
     _attr_name: str
     _attr_icon: str
     _attr_operation_list: Incomplete
+    _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
     _evo_device: evo.HotWater
     _evo_id_attr: str
@@ -28,7 +29,6 @@ class EvoDHW(EvoChild, WaterHeaterEntity):
     _evo_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_precision: Incomplete
-    _attr_supported_features: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.HotWater) -> None: ...
     @property
     def current_operation(self) -> str | None: ...

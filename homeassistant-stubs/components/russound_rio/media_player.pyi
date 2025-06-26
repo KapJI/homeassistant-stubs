@@ -4,7 +4,6 @@ from .entity import RussoundBaseEntity as RussoundBaseEntity, command as command
 from _typeshed import Incomplete
 from aiorussound import Controller as Controller
 from aiorussound.models import Source as Source
-from aiorussound.rio import ZoneControlSurface as ZoneControlSurface
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -18,13 +17,10 @@ class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
     _attr_media_content_type: Incomplete
     _attr_supported_features: Incomplete
-    _zone_id: Incomplete
-    _sources: Incomplete
     _attr_name: Incomplete
+    _sources: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, controller: Controller, zone_id: int, sources: dict[int, Source]) -> None: ...
-    @property
-    def _zone(self) -> ZoneControlSurface: ...
     @property
     def _source(self) -> Source: ...
     @property

@@ -1,9 +1,7 @@
 from . import LD2410BLE as LD2410BLE, LD2410BLECoordinator as LD2410BLECoordinator
-from .const import DOMAIN as DOMAIN
-from .models import LD2410BLEData as LD2410BLEData
+from .models import LD2410BLEConfigEntry as LD2410BLEConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -11,7 +9,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LD2410BLEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LD2410BLEBinarySensor(CoordinatorEntity[LD2410BLECoordinator], BinarySensorEntity):
     _attr_has_entity_name: bool

@@ -1,15 +1,13 @@
 from .coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from .helpers import async_register_firmware_info_callback as async_register_firmware_info_callback
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, guess_firmware_info as guess_firmware_info, probe_silabs_firmware_info as probe_silabs_firmware_info
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, async_flash_silabs_firmware as async_flash_silabs_firmware
 from _typeshed import Incomplete
-from collections.abc import AsyncIterator, Callable
-from contextlib import asynccontextmanager
+from collections.abc import Callable
 from dataclasses import dataclass
 from ha_silabs_firmware_client import FirmwareManifest, FirmwareMetadata as FirmwareMetadata
 from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
@@ -62,7 +60,5 @@ class BaseFirmwareUpdateEntity(CoordinatorEntity[FirmwareUpdateCoordinator], Upd
     def _handle_coordinator_update(self) -> None: ...
     _attr_update_percentage: Incomplete
     def _update_progress(self, offset: int, total_size: int) -> None: ...
-    @asynccontextmanager
-    async def _temporarily_stop_hardware_owners(self, device: str) -> AsyncIterator[None]: ...
     _attr_in_progress: bool
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

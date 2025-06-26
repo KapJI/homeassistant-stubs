@@ -1,6 +1,6 @@
 from . import const as const, decorators as decorators, messages as messages
 from .connection import ActiveConnection as ActiveConnection
-from .messages import construct_result_message as construct_result_message
+from .messages import construct_event_message as construct_event_message, construct_result_message as construct_result_message
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from functools import lru_cache
@@ -15,13 +15,13 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA, convert_include_exclude_filter as convert_include_exclude_filter
 from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result
 from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
-from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integration_descriptions as async_get_integration_descriptions, async_get_integrations as async_get_integrations
 from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations, async_get_setup_timings as async_get_setup_timings, async_wait_component as async_wait_component
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any
 
 ALL_SERVICE_DESCRIPTIONS_JSON_CACHE: str
+ALL_TRIGGER_DESCRIPTIONS_JSON_CACHE: str
 _LOGGER: Incomplete
 
 @callback
@@ -49,9 +49,12 @@ def _forward_entity_changes(send_message: Callable[[str | bytes | dict[str, Any]
 @callback
 def handle_subscribe_entities(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 def _send_handle_entities_init_response(connection: ActiveConnection, message_id_as_bytes: bytes, serialized_states: list[bytes]) -> None: ...
-async def _async_get_all_descriptions_json(hass: HomeAssistant) -> bytes: ...
+async def _async_get_all_service_descriptions_json(hass: HomeAssistant) -> bytes: ...
 @decorators.async_response
 async def handle_get_services(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+async def _async_get_all_trigger_descriptions_json(hass: HomeAssistant) -> bytes: ...
+@decorators.async_response
+async def handle_subscribe_trigger_platforms(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @callback
 def handle_get_config(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @decorators.async_response

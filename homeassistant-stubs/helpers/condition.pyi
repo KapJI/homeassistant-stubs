@@ -1,3 +1,4 @@
+import abc
 import logging
 from .template import Template as Template, render_complex as render_complex
 from .trace import TraceElement as TraceElement, trace_append_element as trace_append_element, trace_path as trace_path, trace_path_get as trace_path_get, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top
@@ -17,12 +18,19 @@ from typing import Any, Protocol
 ASYNC_FROM_CONFIG_FORMAT: str
 FROM_CONFIG_FORMAT: str
 VALIDATE_CONFIG_FORMAT: str
-_PLATFORM_ALIASES: Incomplete
+_PLATFORM_ALIASES: dict[str | None, str | None]
 INPUT_ENTITY_ID: Incomplete
 
+class Condition(abc.ABC, metaclass=abc.ABCMeta):
+    def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
+    @classmethod
+    @abc.abstractmethod
+    async def async_validate_condition_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
+    @abc.abstractmethod
+    async def async_condition_from_config(self) -> ConditionCheckerType: ...
+
 class ConditionProtocol(Protocol):
-    async def async_validate_condition_config(self, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
-    def async_condition_from_config(self, hass: HomeAssistant, config: ConfigType) -> ConditionCheckerType: ...
+    async def async_get_conditions(self, hass: HomeAssistant) -> dict[str, type[Condition]]: ...
 type ConditionCheckerType = Callable[[HomeAssistant, TemplateVarsType], bool | None]
 
 def condition_trace_append(variables: TemplateVarsType, path: str) -> TraceElement: ...

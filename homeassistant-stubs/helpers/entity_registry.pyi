@@ -125,19 +125,29 @@ class DeletedRegistryEntry:
     entity_id: str
     unique_id: str
     platform: str
+    aliases: set[str]
+    area_id: str | None
+    categories: dict[str, str]
     config_entry_id: str | None
     config_subentry_id: str | None
     created_at: datetime
+    device_class: str | None
+    disabled_by: RegistryEntryDisabler | None
     domain: str
+    hidden_by: RegistryEntryHider | None
+    icon: str | None
     id: str
+    labels: set[str]
     modified_at: datetime
+    name: str | None
+    options: ReadOnlyEntityOptionsType
     orphaned_timestamp: float | None
     _cache: dict[str, Any]
     @domain.default
     def _domain_default(self) -> str: ...
     @under_cached_property
     def as_storage_fragment(self) -> json_fragment: ...
-    def __init__(self, entity_id, unique_id, platform, config_entry_id, config_subentry_id, created_at, domain, id, modified_at, orphaned_timestamp, cache) -> None: ...
+    def __init__(self, entity_id, unique_id, platform, aliases, area_id, categories, config_entry_id, config_subentry_id, created_at, device_class, disabled_by, domain, hidden_by, icon, id, labels, modified_at, name, options, orphaned_timestamp, cache) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...

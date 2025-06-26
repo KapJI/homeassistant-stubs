@@ -9,5 +9,7 @@ from reolink_aio.api import Chime as Chime
 
 ATTR_RINGTONE: str
 
+@raise_translated_error
+async def _async_play_chime(service_call: ServiceCall) -> None: ...
 @callback
 def async_setup_services(hass: HomeAssistant) -> None: ...

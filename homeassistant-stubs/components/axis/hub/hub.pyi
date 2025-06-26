@@ -1,6 +1,6 @@
 import axis
 from .. import AxisConfigEntry as AxisConfigEntry
-from ..const import ATTR_MANUFACTURER as ATTR_MANUFACTURER
+from ..const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
 from .config import AxisConfig as AxisConfig
 from .entity_loader import AxisEntityLoader as AxisEntityLoader
 from .event_source import AxisEventSource as AxisEventSource

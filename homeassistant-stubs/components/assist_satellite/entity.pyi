@@ -5,8 +5,9 @@ from .errors import AssistSatelliteError as AssistSatelliteError, SatelliteBusyE
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import AsyncIterable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
+from hassil.expression import Expression as Expression
 from homeassistant.components import conversation as conversation, media_source as media_source, stt as stt, tts as tts
 from homeassistant.components.assist_pipeline import AudioSettings as AudioSettings, OPTION_PREFERRED as OPTION_PREFERRED, PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineStage as PipelineStage, async_get_pipeline as async_get_pipeline, async_get_pipelines as async_get_pipelines, async_pipeline_from_audio_stream as async_pipeline_from_audio_stream, vad as vad
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
@@ -47,6 +48,12 @@ class AssistSatelliteAnnouncement:
     media_id_source: Literal['url', 'media_id', 'tts']
     preannounce_media_id: str | None = ...
 
+@dataclass
+class AssistSatelliteAnswer:
+    id: str | None
+    sentence: str
+    slots: dict[str, Any] = field(default_factory=dict)
+
 class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     entity_description: AssistSatelliteEntityDescription
     _attr_should_poll: bool
@@ -60,6 +67,7 @@ class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     _wake_word_intercept_future: asyncio.Future[str | None] | None
     _attr_tts_options: dict[str, Any] | None
     _pipeline_task: asyncio.Task | None
+    _ask_question_future: asyncio.Future[str | None] | None
     __assist_satellite_state: Incomplete
     @final
     @property
@@ -80,6 +88,8 @@ class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     async def async_announce(self, announcement: AssistSatelliteAnnouncement) -> None: ...
     async def async_internal_start_conversation(self, start_message: str | None = None, start_media_id: str | None = None, extra_system_prompt: str | None = None, preannounce: bool = True, preannounce_media_id: str = ...) -> None: ...
     async def async_start_conversation(self, start_announcement: AssistSatelliteAnnouncement) -> None: ...
+    async def async_internal_ask_question(self, question: str | None = None, question_media_id: str | None = None, preannounce: bool = True, preannounce_media_id: str = ..., answers: list[dict[str, Any]] | None = None) -> AssistSatelliteAnswer | None: ...
+    def _question_response_to_answer(self, response_text: str, answers: list[dict[str, Any]]) -> AssistSatelliteAnswer: ...
     async def async_accept_pipeline_from_satellite(self, audio_stream: AsyncIterable[bytes], start_stage: PipelineStage = ..., end_stage: PipelineStage = ..., wake_word_phrase: str | None = None) -> None: ...
     async def _cancel_running_pipeline(self) -> None: ...
     @abstractmethod
@@ -95,3 +105,5 @@ class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     @callback
     def _resolve_vad_sensitivity(self) -> float: ...
     async def _resolve_announcement_media_id(self, message: str, media_id: str | None, preannounce_media_id: str | None = None) -> AssistSatelliteAnnouncement: ...
+
+def _collect_list_references(expression: Expression, list_names: set[str]) -> None: ...

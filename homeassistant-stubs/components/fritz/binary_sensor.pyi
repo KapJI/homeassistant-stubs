@@ -1,5 +1,6 @@
-from .coordinator import ConnectionInfo as ConnectionInfo, FritzConfigEntry as FritzConfigEntry
+from .coordinator import FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
+from .models import ConnectionInfo as ConnectionInfo
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

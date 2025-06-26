@@ -1,4 +1,4 @@
-from .const import MieleAppliance as MieleAppliance, STATE_PROGRAM_ID as STATE_PROGRAM_ID, STATE_PROGRAM_PHASE as STATE_PROGRAM_PHASE, STATE_STATUS_TAGS as STATE_STATUS_TAGS, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
+from .const import MieleAppliance as MieleAppliance, PlatePowerStep as PlatePowerStep, STATE_PROGRAM_ID as STATE_PROGRAM_ID, STATE_PROGRAM_PHASE as STATE_PROGRAM_PHASE, STATE_STATUS_TAGS as STATE_STATUS_TAGS, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
 from .coordinator import MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
 from .entity import MieleEntity as MieleEntity
 from _typeshed import Incomplete
@@ -15,7 +15,6 @@ from typing import Final
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 DISABLED_TEMPERATURE: int
-PLATE_POWERS: Incomplete
 DEFAULT_PLATE_COUNT: int
 PLATE_COUNT: Incomplete
 

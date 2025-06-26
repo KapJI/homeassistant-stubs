@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import LaMetricDataUpdateCoordinator as LaMetricDataUpdateCoordinator
+from .coordinator import LaMetricConfigEntry as LaMetricConfigEntry, LaMetricDataUpdateCoordinator as LaMetricDataUpdateCoordinator
 from .entity import LaMetricEntity as LaMetricEntity
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

@@ -3,7 +3,7 @@ from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_MAX_TOKENS as CONF_M
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable
 from homeassistant.components import assist_pipeline as assist_pipeline, conversation as conversation
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigSubentry as ConfigSubentry
 from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API, MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -21,14 +21,14 @@ def _convert_content_to_param(content: conversation.Content) -> ResponseInputPar
 async def _transform_stream(chat_log: conversation.ChatLog, result: AsyncStream[ResponseStreamEvent], messages: ResponseInputParam) -> AsyncGenerator[conversation.AssistantContentDeltaDict]: ...
 
 class OpenAIConversationEntity(conversation.ConversationEntity, conversation.AbstractConversationAgent):
-    _attr_has_entity_name: bool
-    _attr_name: Incomplete
     _attr_supports_streaming: bool
     entry: Incomplete
+    subentry: Incomplete
+    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, entry: OpenAIConfigEntry) -> None: ...
+    def __init__(self, entry: OpenAIConfigEntry, subentry: ConfigSubentry) -> None: ...
     @property
     def supported_languages(self) -> list[str] | Literal['*']: ...
     async def async_added_to_hass(self) -> None: ...

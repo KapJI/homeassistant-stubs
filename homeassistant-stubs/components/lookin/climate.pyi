@@ -1,12 +1,11 @@
-from .const import DOMAIN as DOMAIN, TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
+from .const import TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
 from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator
 from .entity import LookinCoordinatorEntity as LookinCoordinatorEntity
-from .models import LookinData as LookinData
+from .models import LookinConfigEntry as LookinConfigEntry, LookinData as LookinData
 from _typeshed import Incomplete
 from aiolookin import Climate, MeteoSensor as MeteoSensor, Remote as Remote
 from aiolookin.models import UDPEvent as UDPEvent
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MIDDLE as FAN_MIDDLE, HVACMode as HVACMode, SWING_BOTH as SWING_BOTH, SWING_OFF as SWING_OFF
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -22,7 +21,7 @@ MIN_TEMP: Final[int]
 MAX_TEMP: Final[int]
 LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LookinConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ConditionerEntity(LookinCoordinatorEntity, ClimateEntity):
     _attr_current_humidity: float | None

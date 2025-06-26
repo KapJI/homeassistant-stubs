@@ -3,13 +3,13 @@ from .coordinator import QbusConfigEntry as QbusConfigEntry
 from .entity import QbusEntity as QbusEntity, add_new_outputs as add_new_outputs
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
-from homeassistant.components.mqtt import ReceiveMessage as ReceiveMessage
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttOutput as QbusMqttOutput
+from qbusmqttapi.state import QbusMqttThermoState
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -19,6 +19,7 @@ _LOGGER: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: QbusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class QbusClimate(QbusEntity, ClimateEntity):
+    _state_cls = QbusMqttThermoState
     _attr_name: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_supported_features: Incomplete
@@ -37,6 +38,6 @@ class QbusClimate(QbusEntity, ClimateEntity):
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
-    async def _state_received(self, msg: ReceiveMessage) -> None: ...
+    async def _handle_state_received(self, state: QbusMqttThermoState) -> None: ...
     def _set_hvac_action(self) -> None: ...
     async def _async_request_state(self) -> None: ...

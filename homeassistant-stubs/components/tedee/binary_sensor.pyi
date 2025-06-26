@@ -13,6 +13,8 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class TedeeBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[TedeeLock], bool | None]
+    supported_fn: Callable[[TedeeLock], bool] = ...
+    available_fn: Callable[[TedeeLock], bool] = ...
 
 ENTITIES: tuple[TedeeBinarySensorEntityDescription, ...]
 
@@ -22,3 +24,5 @@ class TedeeBinarySensorEntity(TedeeDescriptionEntity, BinarySensorEntity):
     entity_description: TedeeBinarySensorEntityDescription
     @property
     def is_on(self) -> bool | None: ...
+    @property
+    def available(self) -> bool: ...

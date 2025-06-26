@@ -7,7 +7,6 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from propcache.api import cached_property
@@ -24,7 +23,6 @@ DEFAULT_MAX_TEMP: int
 DEFAULT_MIN_HUMIDITY: int
 DEFAULT_MAX_HUMIDITY: int
 CONVERTIBLE_ATTRIBUTE: Incomplete
-CHECK_TURN_ON_OFF_FEATURE_FLAG: Incomplete
 SET_TEMPERATURE_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

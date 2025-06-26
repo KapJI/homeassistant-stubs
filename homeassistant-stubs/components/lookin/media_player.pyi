@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN, TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
+from .const import TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
 from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator
 from .entity import LookinPowerPushRemoteEntity as LookinPowerPushRemoteEntity
-from .models import LookinData as LookinData
+from .models import LookinConfigEntry as LookinConfigEntry, LookinData as LookinData
 from _typeshed import Incomplete
 from aiolookin import Remote as Remote
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -14,7 +13,7 @@ LOGGER: Incomplete
 _TYPE_TO_DEVICE_CLASS: Incomplete
 _FUNCTION_NAME_TO_FEATURE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LookinConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LookinMedia(LookinPowerPushRemoteEntity, MediaPlayerEntity):
     _attr_should_poll: bool

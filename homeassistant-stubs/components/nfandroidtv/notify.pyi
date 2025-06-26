@@ -3,10 +3,10 @@ from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TITLE as ATTR_TITLE, ATTR_TITLE_DEFAULT as ATTR_TITLE_DEFAULT, BaseNotificationService as BaseNotificationService
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from io import BufferedReader
-from notifications_android_tv import Notifications
+from notifications_android_tv.notifications import Notifications
 from typing import Any
 
 _LOGGER: Incomplete
@@ -14,8 +14,9 @@ _LOGGER: Incomplete
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> NFAndroidTVNotificationService | None: ...
 
 class NFAndroidTVNotificationService(BaseNotificationService):
-    notify: Incomplete
+    host: Incomplete
     is_allowed_path: Incomplete
-    def __init__(self, notify: Notifications, is_allowed_path: Any) -> None: ...
+    notify: Notifications | None
+    def __init__(self, host: str, is_allowed_path: Any) -> None: ...
     def send_message(self, message: str, **kwargs: Any) -> None: ...
     def load_file(self, url: str | None = None, local_path: str | None = None, username: str | None = None, password: str | None = None, auth: str | None = None) -> BufferedReader | bytes | None: ...

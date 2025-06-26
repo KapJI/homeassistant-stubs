@@ -2,10 +2,10 @@ from . import Eq3ConfigEntry as Eq3ConfigEntry
 from .const import ENTITY_KEY_COMFORT as ENTITY_KEY_COMFORT, ENTITY_KEY_ECO as ENTITY_KEY_ECO, ENTITY_KEY_OFFSET as ENTITY_KEY_OFFSET, ENTITY_KEY_WINDOW_OPEN_TEMPERATURE as ENTITY_KEY_WINDOW_OPEN_TEMPERATURE, ENTITY_KEY_WINDOW_OPEN_TIMEOUT as ENTITY_KEY_WINDOW_OPEN_TIMEOUT, EQ3BT_STEP as EQ3BT_STEP
 from .entity import Eq3Entity as Eq3Entity
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from eq3btsmart import Thermostat as Thermostat
-from eq3btsmart.models import Presets as Presets
+from eq3btsmart.models import Presets as Presets, Status as Status
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -14,7 +14,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 @dataclass(frozen=True, kw_only=True)
 class Eq3NumberEntityDescription(NumberEntityDescription):
     value_func: Callable[[Presets], float]
-    value_set_func: Callable[[Thermostat], Callable[[float], Awaitable[None]]]
+    value_set_func: Callable[[Thermostat], Callable[[float], Coroutine[None, None, Status]]]
     mode: NumberMode = ...
     entity_category: EntityCategory | None = ...
 

@@ -1,5 +1,5 @@
-from . import NtfyConfigEntry as NtfyConfigEntry
 from .const import CONF_TOPIC as CONF_TOPIC, DOMAIN as DOMAIN
+from .coordinator import NtfyConfigEntry as NtfyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityDescription as NotifyEntityDescription, NotifyEntityFeature as NotifyEntityFeature
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry

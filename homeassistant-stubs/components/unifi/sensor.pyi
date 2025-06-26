@@ -1,10 +1,10 @@
 from . import UnifiConfigEntry as UnifiConfigEntry
 from .const import DEVICE_STATES as DEVICE_STATES
-from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
-from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
-from aiounifi.models.api import ApiItemT
+from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent as ItemEvent
+from aiounifi.models.api import ApiItem as ApiItem
 from aiounifi.models.client import Client
 from aiounifi.models.device import Device, TypedDeviceTemperature as TypedDeviceTemperature, TypedDeviceUptimeStatsWanMonitor as TypedDeviceUptimeStatsWanMonitor
 from aiounifi.models.wlan import Wlan
@@ -66,7 +66,7 @@ def _device_temperature(temperature_name: str, temperatures: list[TypedDeviceTem
 def make_device_temperatur_sensors() -> tuple[UnifiSensorEntityDescription, ...]: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiSensorEntityDescription(SensorEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
+class UnifiSensorEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](SensorEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
     value_fn: Callable[[UnifiHub, ApiItemT], datetime | float | str | None]
     is_connected_fn: Callable[[UnifiHub, str], bool] | None = ...
     value_changed_fn: Callable[[StateType | date | datetime | Decimal, datetime | float | str | None], bool] = ...
@@ -75,7 +75,7 @@ ENTITY_DESCRIPTIONS: tuple[UnifiSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class UnifiSensorEntity(UnifiEntity[HandlerT, ApiItemT], SensorEntity):
+class UnifiSensorEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], SensorEntity):
     entity_description: UnifiSensorEntityDescription[HandlerT, ApiItemT]
     _attr_available: bool
     @callback

@@ -302,11 +302,12 @@ class LocationSelector(Selector[LocationSelectorConfig]):
     def __init__(self, config: LocationSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
 
-class MediaSelectorConfig(BaseSelectorConfig): ...
+class MediaSelectorConfig(BaseSelectorConfig, total=False):
+    accept: list[str]
 
 class MediaSelector(Selector[MediaSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     DATA_SCHEMA: Incomplete
     def __init__(self, config: MediaSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
@@ -330,11 +331,21 @@ class NumberSelector(Selector[NumberSelectorConfig]):
     def __init__(self, config: NumberSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> float: ...
 
-class ObjectSelectorConfig(BaseSelectorConfig): ...
+class ObjectSelectorField(TypedDict):
+    label: str
+    required: bool
+    selector: dict[str, Any]
+
+class ObjectSelectorConfig(BaseSelectorConfig):
+    fields: dict[str, ObjectSelectorField]
+    multiple: bool
+    label_field: str
+    description_field: bool
+    translation_key: str
 
 class ObjectSelector(Selector[ObjectSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ObjectSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -361,6 +372,15 @@ class SelectSelector(Selector[SelectSelectorConfig]):
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: SelectSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
+
+class StatisticSelectorConfig(BaseSelectorConfig, total=False):
+    multiple: bool
+
+class StatisticSelector(Selector[StatisticSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: StatisticSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> str | list[str]: ...
 
 class TargetSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]

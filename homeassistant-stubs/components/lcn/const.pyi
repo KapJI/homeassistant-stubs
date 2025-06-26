@@ -3,11 +3,7 @@ from homeassistant.const import Platform as Platform
 
 PLATFORMS: Incomplete
 DOMAIN: str
-DATA_LCN: str
 DEFAULT_NAME: str
-ADD_ENTITIES_CALLBACKS: str
-CONNECTION: str
-DEVICE_CONNECTIONS: str
 CONF_HARDWARE_SERIAL: str
 CONF_SOFTWARE_SERIAL: str
 CONF_HARDWARE_TYPE: str

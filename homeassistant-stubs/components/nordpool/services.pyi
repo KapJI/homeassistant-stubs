@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DATE as ATTR_DATE
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySelector
 from homeassistant.util.json import JsonValueType as JsonValueType
@@ -16,4 +16,5 @@ SERVICE_GET_PRICES_FOR_DATE: str
 SERVICE_GET_PRICES_SCHEMA: Incomplete
 
 def get_config_entry(hass: HomeAssistant, entry_id: str) -> NordPoolConfigEntry: ...
+@callback
 def async_setup_services(hass: HomeAssistant) -> None: ...

@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import StateType as StateType
 
 ENTITY_ID_SENSOR_FORMAT: Incomplete
@@ -36,3 +37,4 @@ class SunSensor(SensorEntity):
     @property
     def native_value(self) -> StateType | datetime: ...
     async def async_added_to_hass(self) -> None: ...
+    async def async_will_remove_from_hass(self) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+PLATFORMS: Incomplete
 CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 

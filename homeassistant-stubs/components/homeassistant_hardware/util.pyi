@@ -2,13 +2,14 @@ from . import DATA_COMPONENT as DATA_COMPONENT
 from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
 from .silabs_multiprotocol_addon import WaitingAddonManager as WaitingAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager
 from _typeshed import Incomplete
-from collections.abc import AsyncIterator, Iterable
+from collections.abc import AsyncIterator, Callable as Callable, Iterable
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.singleton import singleton as singleton
 from universal_silabs_flasher.const import ApplicationType as FlasherApplicationType
@@ -59,3 +60,4 @@ async def guess_hardware_owners(hass: HomeAssistant, device_path: str) -> list[F
 async def guess_firmware_info(hass: HomeAssistant, device_path: str) -> FirmwareInfo: ...
 async def probe_silabs_firmware_info(device: str, *, probe_methods: Iterable[ApplicationType] | None = None) -> FirmwareInfo | None: ...
 async def probe_silabs_firmware_type(device: str, *, probe_methods: Iterable[ApplicationType] | None = None) -> ApplicationType | None: ...
+async def async_flash_silabs_firmware(hass: HomeAssistant, device: str, fw_data: bytes, expected_installed_firmware_type: ApplicationType, bootloader_reset_type: str | None = None, progress_callback: Callable[[int, int], None] | None = None) -> FirmwareInfo: ...

@@ -1,14 +1,13 @@
-from . import LD2410BLE as LD2410BLE, LD2410BLECoordinator as LD2410BLECoordinator
-from .const import DOMAIN as DOMAIN
-from .models import LD2410BLEData as LD2410BLEData
+from .coordinator import LD2410BLECoordinator as LD2410BLECoordinator
+from .models import LD2410BLEConfigEntry as LD2410BLEConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from ld2410_ble import LD2410BLE as LD2410BLE
 
 MOVING_TARGET_DISTANCE_DESCRIPTION: Incomplete
 STATIC_TARGET_DISTANCE_DESCRIPTION: Incomplete
@@ -21,7 +20,7 @@ MOTION_ENERGY_GATES: Incomplete
 STATIC_ENERGY_GATES: Incomplete
 SENSOR_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LD2410BLEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LD2410BLESensor(CoordinatorEntity[LD2410BLECoordinator], SensorEntity):
     _attr_has_entity_name: bool

@@ -1,4 +1,5 @@
-from .const import DOMAIN as DOMAIN, FORMAT_HTML as FORMAT_HTML, FORMAT_TEXT as FORMAT_TEXT, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
+from .const import ATTR_FORMAT as ATTR_FORMAT, ATTR_IMAGES as ATTR_IMAGES, CONF_ROOMS_REGEX as CONF_ROOMS_REGEX, DOMAIN as DOMAIN, FORMAT_HTML as FORMAT_HTML
+from .services import register_services as register_services
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TARGET as ATTR_TARGET
@@ -20,13 +21,8 @@ CONF_COMMANDS: Final[str]
 CONF_WORD: Final[str]
 CONF_EXPRESSION: Final[str]
 CONF_USERNAME_REGEX: str
-CONF_ROOMS_REGEX: str
 EVENT_MATRIX_COMMAND: str
 DEFAULT_CONTENT_TYPE: str
-MESSAGE_FORMATS: Incomplete
-DEFAULT_MESSAGE_FORMAT = FORMAT_TEXT
-ATTR_FORMAT: str
-ATTR_IMAGES: str
 WordCommand: Incomplete
 ExpressionCommand: Incomplete
 RoomAlias: Incomplete
@@ -41,7 +37,6 @@ class ConfigCommand(TypedDict, total=False):
 
 COMMAND_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
-SERVICE_SCHEMA_SEND_MESSAGE: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 

@@ -1,4 +1,4 @@
-from .const import BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL as BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
+from .const import BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL as BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL, CONF_BC_ONLY as CONF_BC_ONLY, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkException as ReolinkException, UserNotAdmin as UserNotAdmin
 from .host import ReolinkHost as ReolinkHost
 from .services import async_setup_services as async_setup_services

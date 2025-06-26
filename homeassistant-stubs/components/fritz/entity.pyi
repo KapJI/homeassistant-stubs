@@ -1,5 +1,6 @@
 from .const import DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME, DOMAIN as DOMAIN
-from .coordinator import AvmWrapper as AvmWrapper, FritzDevice as FritzDevice
+from .coordinator import AvmWrapper as AvmWrapper
+from .models import FritzDevice as FritzDevice
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

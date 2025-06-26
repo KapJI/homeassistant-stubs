@@ -19,6 +19,7 @@ REQUEST_REFRESH_DELAY: float
 LIFX_IDENTIFY_DELAY: float
 ZONES_PER_COLOR_UPDATE_REQUEST: int
 RSSI_DBM_FW: Incomplete
+type LIFXConfigEntry = ConfigEntry[LIFXUpdateCoordinator]
 
 class FirmwareEffect(IntEnum):
     OFF = 0
@@ -33,7 +34,7 @@ class SkyType(IntEnum):
     CLOUDS = 2
 
 class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: LIFXConfigEntry
     connection: Incomplete
     device: Light
     lock: Incomplete
@@ -41,7 +42,7 @@ class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     _update_rssi: bool
     _rssi: int
     last_used_theme: str
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, connection: LIFXConnection) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: LIFXConfigEntry, connection: LIFXConnection) -> None: ...
     @callback
     def async_setup(self) -> None: ...
     @property

@@ -1,6 +1,6 @@
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
-from .const import CONF_EXPIRE_AFTER as CONF_EXPIRE_AFTER, CONF_LAST_RESET_VALUE_TEMPLATE as CONF_LAST_RESET_VALUE_TEMPLATE, CONF_OPTIONS as CONF_OPTIONS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_SUGGESTED_DISPLAY_PRECISION as CONF_SUGGESTED_DISPLAY_PRECISION, DOMAIN as DOMAIN, PAYLOAD_NONE as PAYLOAD_NONE
+from .const import CONF_EXPIRE_AFTER as CONF_EXPIRE_AFTER, CONF_LAST_RESET_VALUE_TEMPLATE as CONF_LAST_RESET_VALUE_TEMPLATE, CONF_OPTIONS as CONF_OPTIONS, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_SUGGESTED_DISPLAY_PRECISION as CONF_SUGGESTED_DISPLAY_PRECISION, PAYLOAD_NONE as PAYLOAD_NONE
 from .entity import MqttAvailabilityMixin as MqttAvailabilityMixin, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttValueTemplate as MqttValueTemplate, PayloadSentinel as PayloadSentinel, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -15,7 +15,6 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_FOR
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 
@@ -44,8 +43,6 @@ class MqttSensor(MqttEntity, RestoreSensor):
     _expired: bool | None
     _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType] | None
     _last_reset_template: Callable[[ReceivePayloadType], ReceivePayloadType] | None
-    @callback
-    def async_check_uom(self) -> None: ...
     _attr_native_value: Incomplete
     async def mqtt_async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

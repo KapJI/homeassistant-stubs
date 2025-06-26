@@ -10,16 +10,14 @@ from dataclasses import dataclass
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, TypeVar
+from typing import Any
 
 LOGGER: Incomplete
-_DataT = TypeVar('_DataT', bound=Device)
-_HandlerT = TypeVar('_HandlerT', bound=Devices)
 
 async def async_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiUpdateEntityDescription(UpdateEntityDescription, UnifiEntityDescription[_HandlerT, _DataT]):
+class UnifiUpdateEntityDescription[_HandlerT: Devices, _DataT: Device](UpdateEntityDescription, UnifiEntityDescription[_HandlerT, _DataT]):
     control_fn: Callable[[aiounifi.Controller, str], Coroutine[Any, Any, None]]
     state_fn: Callable[[aiounifi.Controller, _DataT], bool]
 
@@ -27,7 +25,7 @@ ENTITY_DESCRIPTIONS: tuple[UnifiUpdateEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class UnifiDeviceUpdateEntity(UnifiEntity[_HandlerT, _DataT], UpdateEntity):
+class UnifiDeviceUpdateEntity[_HandlerT: Devices, _DataT: Device](UnifiEntity[_HandlerT, _DataT], UpdateEntity):
     entity_description: UnifiUpdateEntityDescription[_HandlerT, _DataT]
     _attr_supported_features: Incomplete
     @callback

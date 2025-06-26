@@ -1,9 +1,8 @@
-from .const import READ_MODE_BOOL as READ_MODE_BOOL, READ_MODE_INT as READ_MODE_INT
+from .const import READ_MODE_INT as READ_MODE_INT
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from homeassistant.helpers.typing import StateType as StateType
 from pyownet import protocol
 from typing import Any
 
@@ -20,7 +19,7 @@ class OneWireEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _device_file: Incomplete
-    _state: StateType
+    _state: int | float | None
     _value_raw: float | None
     _owproxy: Incomplete
     def __init__(self, description: OneWireEntityDescription, device_id: str, device_info: DeviceInfo, device_file: str, owproxy: protocol._Proxy) -> None: ...

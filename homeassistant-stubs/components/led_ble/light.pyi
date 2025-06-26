@@ -1,8 +1,7 @@
-from .const import DEFAULT_EFFECT_SPEED as DEFAULT_EFFECT_SPEED, DOMAIN as DOMAIN
-from .models import LEDBLEData as LEDBLEData
+from .const import DEFAULT_EFFECT_SPEED as DEFAULT_EFFECT_SPEED
+from .models import LEDBLEConfigEntry as LEDBLEConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_WHITE as ATTR_WHITE, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -10,7 +9,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from led_ble import LEDBLE as LEDBLE
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LEDBLEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LEDBLEEntity(CoordinatorEntity[DataUpdateCoordinator[None]], LightEntity):
     _attr_supported_color_modes: Incomplete

@@ -1,4 +1,5 @@
-from .const import DESCRIPTION as DESCRIPTION, DEVICE as DEVICE, DOCS_WEB_FLASHER_URL as DOCS_WEB_FLASHER_URL, DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, HardwareVariant as HardwareVariant, MANUFACTURER as MANUFACTURER, PID as PID, PRODUCT as PRODUCT, SERIAL_NUMBER as SERIAL_NUMBER, VID as VID
+import abc
+from .const import DESCRIPTION as DESCRIPTION, DEVICE as DEVICE, DOCS_WEB_FLASHER_URL as DOCS_WEB_FLASHER_URL, DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, HardwareVariant as HardwareVariant, MANUFACTURER as MANUFACTURER, NABU_CASA_FIRMWARE_RELEASES_URL as NABU_CASA_FIRMWARE_RELEASES_URL, PID as PID, PRODUCT as PRODUCT, SERIAL_NUMBER as SERIAL_NUMBER, VID as VID
 from .util import get_hardware_variant as get_hardware_variant, get_usb_service_info as get_usb_service_info
 from _typeshed import Incomplete
 from homeassistant.components import usb as usb
@@ -11,14 +12,17 @@ from typing import Any, Protocol
 
 _LOGGER: Incomplete
 
-class TranslationPlaceholderProtocol(Protocol):
+class FirmwareInstallFlowProtocol(Protocol):
     def _get_translation_placeholders(self) -> dict[str, str]: ...
+    async def _install_firmware_step(self, fw_update_url: str, fw_type: str, firmware_name: str, expected_installed_firmware_type: ApplicationType, step_id: str, next_step_id: str) -> ConfigFlowResult: ...
 
-class SkyConnectTranslationMixin(ConfigEntryBaseFlow, TranslationPlaceholderProtocol):
+class SkyConnectFirmwareMixin(ConfigEntryBaseFlow, FirmwareInstallFlowProtocol, metaclass=abc.ABCMeta):
     context: ConfigFlowContext
     def _get_translation_placeholders(self) -> dict[str, str]: ...
+    async def async_step_install_zigbee_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_install_thread_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class HomeAssistantSkyConnectConfigFlow(SkyConnectTranslationMixin, firmware_config_flow.BaseFirmwareConfigFlow, domain=DOMAIN):
+class HomeAssistantSkyConnectConfigFlow(SkyConnectFirmwareMixin, firmware_config_flow.BaseFirmwareConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     _usb_info: UsbServiceInfo | None
@@ -41,7 +45,7 @@ class HomeAssistantSkyConnectMultiPanOptionsFlowHandler(silabs_multiprotocol_add
     def _hardware_name(self) -> str: ...
     async def async_step_flashing_complete(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class HomeAssistantSkyConnectOptionsFlowHandler(SkyConnectTranslationMixin, firmware_config_flow.BaseFirmwareOptionsFlow):
+class HomeAssistantSkyConnectOptionsFlowHandler(SkyConnectFirmwareMixin, firmware_config_flow.BaseFirmwareOptionsFlow):
     _usb_info: Incomplete
     _hw_variant: Incomplete
     _hardware_name: Incomplete

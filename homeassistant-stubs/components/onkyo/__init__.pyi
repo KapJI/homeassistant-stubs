@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, InputSource as InputSource, ListeningMode as ListeningMode, OPTION_INPUT_SOURCES as OPTION_INPUT_SOURCES, OPTION_LISTENING_MODES as OPTION_LISTENING_MODES
 from .receiver import Receiver as Receiver, async_interview as async_interview
-from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES, async_register_services as async_register_services
+from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES, async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

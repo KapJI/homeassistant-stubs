@@ -10,16 +10,15 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Generic, TypeVar, override
+from typing import override
 
 PARALLEL_UPDATES: int
-_DeviceT_co = TypeVar('_DeviceT_co', bound=EheimDigitalDevice, covariant=True)
 
 @dataclass(frozen=True, kw_only=True)
-class EheimDigitalNumberDescription(NumberEntityDescription, Generic[_DeviceT_co]):
-    value_fn: Callable[[_DeviceT_co], float | None]
-    set_value_fn: Callable[[_DeviceT_co, float], Awaitable[None]]
-    uom_fn: Callable[[_DeviceT_co], str] | None = ...
+class EheimDigitalNumberDescription[_DeviceT: EheimDigitalDevice](NumberEntityDescription):
+    value_fn: Callable[[_DeviceT], float | None]
+    set_value_fn: Callable[[_DeviceT, float], Awaitable[None]]
+    uom_fn: Callable[[_DeviceT], str] | None = ...
 
 CLASSICVARIO_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalClassicVario], ...]
 HEATER_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalHeater], ...]
@@ -27,10 +26,10 @@ GENERAL_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalDevice], .
 
 async def async_setup_entry(hass: HomeAssistant, entry: EheimDigitalConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class EheimDigitalNumber(EheimDigitalEntity[_DeviceT_co], NumberEntity, Generic[_DeviceT_co]):
-    entity_description: EheimDigitalNumberDescription[_DeviceT_co]
+class EheimDigitalNumber[_DeviceT: EheimDigitalDevice](EheimDigitalEntity[_DeviceT], NumberEntity):
+    entity_description: EheimDigitalNumberDescription[_DeviceT]
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: _DeviceT_co, description: EheimDigitalNumberDescription[_DeviceT_co]) -> None: ...
+    def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: _DeviceT, description: EheimDigitalNumberDescription[_DeviceT]) -> None: ...
     @override
     @exception_handler
     async def async_set_native_value(self, value: float) -> None: ...

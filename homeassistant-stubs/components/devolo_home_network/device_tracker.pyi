@@ -14,9 +14,11 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DevoloScannerEntity(CoordinatorEntity[DevoloDataUpdateCoordinator[list[ConnectedStationInfo]]], ScannerEntity):
+    _attr_has_entity_name: bool
     _attr_translation_key: str
     _device: Incomplete
     _attr_mac_address: Incomplete
+    _attr_name: Incomplete
     def __init__(self, coordinator: DevoloDataUpdateCoordinator[list[ConnectedStationInfo]], device: Device, mac: str) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...

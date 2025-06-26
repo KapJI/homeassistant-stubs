@@ -1,8 +1,7 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import LaundrifyUpdateCoordinator as LaundrifyUpdateCoordinator
+from .coordinator import LaundrifyConfigEntry as LaundrifyConfigEntry, LaundrifyUpdateCoordinator as LaundrifyUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -12,7 +11,7 @@ from laundrify_aio import LaundrifyDevice as LaundrifyDevice
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LaundrifyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LaundrifyBaseSensor(SensorEntity):
     _attr_has_entity_name: bool

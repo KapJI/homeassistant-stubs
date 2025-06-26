@@ -5,7 +5,7 @@ from datetime import datetime
 from homeassistant.components import hassio as hassio
 from homeassistant.components.api import ATTR_INSTALLATION_TYPE as ATTR_INSTALLATION_TYPE
 from homeassistant.config_entries import SOURCE_IGNORE as SOURCE_IGNORE
-from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN
+from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, BASE_PLATFORMS as BASE_PLATFORMS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -45,3 +45,5 @@ class Analytics:
     async def send_analytics(self, _: datetime | None = None) -> None: ...
     @callback
     def _async_should_report_integration(self, integration: Integration, yaml_domains: set[str], entity_registry_platforms: set[str]) -> bool: ...
+
+def _domains_from_yaml_config(yaml_configuration: dict[str, Any]) -> set[str]: ...

@@ -14,7 +14,8 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AmazonBinarySensorEntityDescription(BinarySensorEntityDescription):
-    is_on_fn: Callable[[AmazonDevice], bool]
+    is_on_fn: Callable[[AmazonDevice, str], bool]
+    is_supported: Callable[[AmazonDevice, str], bool] = ...
 
 BINARY_SENSORS: Final[Incomplete]
 

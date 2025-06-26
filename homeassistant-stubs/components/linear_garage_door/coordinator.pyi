@@ -10,6 +10,7 @@ from linear_garage_door import Linear
 from typing import Any
 
 _LOGGER: Incomplete
+type LinearConfigEntry = ConfigEntry[LinearUpdateCoordinator]
 
 @dataclass
 class LinearDevice:
@@ -18,8 +19,8 @@ class LinearDevice:
 
 class LinearUpdateCoordinator(DataUpdateCoordinator[dict[str, LinearDevice]]):
     _devices: list[dict[str, Any]] | None
-    config_entry: ConfigEntry
+    config_entry: LinearConfigEntry
     site_id: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: LinearConfigEntry) -> None: ...
     async def _async_update_data(self) -> dict[str, LinearDevice]: ...
     async def execute[_T](self, func: Callable[[Linear], Awaitable[_T]]) -> _T: ...

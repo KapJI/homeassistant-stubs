@@ -6,13 +6,14 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import Literal
 
 DEFAULT_RETRIES: int
 MAX_RESULTS: int
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 
-def sort_ips(ips: list, querytype: str) -> list: ...
+def sort_ips(ips: list, querytype: Literal['A', 'AAAA']) -> list: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WanIpSensor(SensorEntity):
@@ -23,7 +24,7 @@ class WanIpSensor(SensorEntity):
     _attr_unique_id: Incomplete
     hostname: Incomplete
     resolver: Incomplete
-    querytype: Incomplete
+    querytype: Literal['A', 'AAAA']
     _retries: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete

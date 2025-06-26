@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, EVENT_KEY as EVENT_KEY, JSON_PAYLOAD as JSON_PAYLOAD, LOGGER as LOGGER, REGISTERED_NOTIFICATIONS as REGISTERED_NOTIFICATIONS
 from .coordinator import OverseerrConfigEntry as OverseerrConfigEntry, OverseerrCoordinator as OverseerrCoordinator
-from .services import setup_services as setup_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from aiohttp.web_request import Request as Request
 from aiohttp.web_response import Response as Response

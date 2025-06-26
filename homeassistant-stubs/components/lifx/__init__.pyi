@@ -1,5 +1,5 @@
 from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, TARGET_ANY as TARGET_ANY, _LOGGER as _LOGGER
-from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .coordinator import LIFXConfigEntry as LIFXConfigEntry, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .discovery import async_discover_devices as async_discover_devices, async_trigger_discovery as async_trigger_discovery
 from .manager import LIFXManager as LIFXManager
 from .migration import async_migrate_entities_devices as async_migrate_entities_devices, async_migrate_legacy_entries as async_migrate_legacy_entries
@@ -7,7 +7,6 @@ from .util import async_entry_is_legacy as async_entry_is_legacy, async_get_lega
 from _typeshed import Incomplete
 from aiolifx.aiolifx import Light as Light
 from collections.abc import Iterable
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
@@ -24,7 +23,7 @@ DISCOVERY_INTERVAL: Incomplete
 MIGRATION_INTERVAL: Incomplete
 DISCOVERY_COOLDOWN: int
 
-async def async_legacy_migration(hass: HomeAssistant, legacy_entry: ConfigEntry, discovered_devices: Iterable[Light]) -> bool: ...
+async def async_legacy_migration(hass: HomeAssistant, legacy_entry: LIFXConfigEntry, discovered_devices: Iterable[Light]) -> bool: ...
 
 class LIFXDiscoveryManager:
     hass: Incomplete
@@ -37,5 +36,5 @@ class LIFXDiscoveryManager:
     async def async_discovery(self, *_: Any) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LIFXConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: LIFXConfigEntry) -> bool: ...

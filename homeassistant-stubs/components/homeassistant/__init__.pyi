@@ -5,8 +5,8 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant import core_config as core_config
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
 from homeassistant.components import persistent_notification as persistent_notification
-from homeassistant.const import ATTR_ELEVATION as ATTR_ELEVATION, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, RESTART_EXIT_CODE as RESTART_EXIT_CODE, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_SAVE_PERSISTENT_STATES as SERVICE_SAVE_PERSISTENT_STATES, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_ELEVATION as ATTR_ELEVATION, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, RESTART_EXIT_CODE as RESTART_EXIT_CODE, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_SAVE_PERSISTENT_STATES as SERVICE_SAVE_PERSISTENT_STATES, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.helpers import recorder as recorder, restore_state as restore_state
 from homeassistant.helpers.entity_component import async_update_entity as async_update_entity
@@ -35,7 +35,6 @@ SHUTDOWN_SERVICES: Incomplete
 DEPRECATION_URL: str
 
 def _is_32_bit() -> bool: ...
-async def _get_arch() -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def _async_stop(hass: HomeAssistant, restart: bool) -> None: ...
 @callback

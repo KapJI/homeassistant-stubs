@@ -10,10 +10,8 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pypaperless import Paperless as Paperless
 from pypaperless.models import Statistic, Status
-from typing import TypeVar
 
 type PaperlessConfigEntry = ConfigEntry[PaperlessData]
-TData = TypeVar('TData')
 UPDATE_INTERVAL_STATISTICS: Incomplete
 UPDATE_INTERVAL_STATUS: Incomplete
 
@@ -22,13 +20,13 @@ class PaperlessData:
     statistics: PaperlessStatisticCoordinator
     status: PaperlessStatusCoordinator
 
-class PaperlessCoordinator(DataUpdateCoordinator[TData], metaclass=abc.ABCMeta):
+class PaperlessCoordinator[DataT](DataUpdateCoordinator[DataT], metaclass=abc.ABCMeta):
     config_entry: PaperlessConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: PaperlessConfigEntry, api: Paperless, name: str, update_interval: timedelta) -> None: ...
-    async def _async_update_data(self) -> TData: ...
+    async def _async_update_data(self) -> DataT: ...
     @abstractmethod
-    async def _async_update_data_internal(self) -> TData: ...
+    async def _async_update_data_internal(self) -> DataT: ...
 
 class PaperlessStatisticCoordinator(PaperlessCoordinator[Statistic]):
     def __init__(self, hass: HomeAssistant, entry: PaperlessConfigEntry, api: Paperless) -> None: ...

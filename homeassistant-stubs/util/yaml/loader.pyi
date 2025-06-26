@@ -1,11 +1,13 @@
 import os
 import yaml
-from annotatedyaml import YamlTypeError as YamlTypeError
 from annotatedyaml.loader import HAS_C_LOADER as HAS_C_LOADER, JSON_TYPE as JSON_TYPE, LoaderType, Secrets as Secrets, add_constructor as add_constructor
+from homeassistant.exceptions import HomeAssistantError
 from io import StringIO
 from typing import TextIO
 
 __all__ = ['HAS_C_LOADER', 'JSON_TYPE', 'Secrets', 'YamlTypeError', 'add_constructor', 'load_yaml', 'load_yaml_dict', 'parse_yaml', 'secret_yaml']
+
+class YamlTypeError(HomeAssistantError): ...
 
 def load_yaml(fname: str | os.PathLike[str], secrets: Secrets | None = None) -> JSON_TYPE | None: ...
 def load_yaml_dict(fname: str | os.PathLike[str], secrets: Secrets | None = None) -> dict: ...

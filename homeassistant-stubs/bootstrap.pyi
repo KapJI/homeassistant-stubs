@@ -5,7 +5,7 @@ from .components import http as http
 from .const import BASE_PLATFORMS as BASE_PLATFORMS, FORMAT_DATETIME as FORMAT_DATETIME, REQUIRED_NEXT_PYTHON_HA_RELEASE as REQUIRED_NEXT_PYTHON_HA_RELEASE, REQUIRED_NEXT_PYTHON_VER as REQUIRED_NEXT_PYTHON_VER, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
 from .core_config import async_process_ha_core_config as async_process_ha_core_config
 from .exceptions import HomeAssistantError as HomeAssistantError
-from .helpers import area_registry as area_registry, backup as backup, category_registry as category_registry, device_registry as device_registry, entity as entity, entity_registry as entity_registry, floor_registry as floor_registry, frame as frame, issue_registry as issue_registry, label_registry as label_registry, recorder as recorder, restore_state as restore_state, template as template, translation as translation
+from .helpers import area_registry as area_registry, backup as backup, category_registry as category_registry, device_registry as device_registry, entity as entity, entity_registry as entity_registry, floor_registry as floor_registry, frame as frame, issue_registry as issue_registry, label_registry as label_registry, recorder as recorder, restore_state as restore_state, template as template, translation as translation, trigger as trigger
 from .helpers.dispatcher import async_dispatcher_send_internal as async_dispatcher_send_internal
 from .helpers.storage import get_internal_store_manager as get_internal_store_manager
 from .helpers.system_info import async_get_system_info as async_get_system_info

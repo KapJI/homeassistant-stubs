@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aioimmich import Immich as Immich
-from aioimmich.server.models import ImmichServerAbout as ImmichServerAbout, ImmichServerStatistics as ImmichServerStatistics, ImmichServerStorage as ImmichServerStorage
+from aioimmich.server.models import ImmichServerAbout as ImmichServerAbout, ImmichServerStatistics as ImmichServerStatistics, ImmichServerStorage as ImmichServerStorage, ImmichServerVersionCheck as ImmichServerVersionCheck
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL
@@ -16,6 +16,7 @@ class ImmichData:
     server_about: ImmichServerAbout
     server_storage: ImmichServerStorage
     server_usage: ImmichServerStatistics | None
+    server_version_check: ImmichServerVersionCheck | None
 type ImmichConfigEntry = ConfigEntry[ImmichDataUpdateCoordinator]
 
 class ImmichDataUpdateCoordinator(DataUpdateCoordinator[ImmichData]):

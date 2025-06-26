@@ -7,6 +7,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from lacrosse_view import LaCrosse as LaCrosse, Sensor
 
 _LOGGER: Incomplete
+type LaCrosseConfigEntry = ConfigEntry[LaCrosseUpdateCoordinator]
 
 class LaCrosseUpdateCoordinator(DataUpdateCoordinator[list[Sensor]]):
     username: str
@@ -15,8 +16,8 @@ class LaCrosseUpdateCoordinator(DataUpdateCoordinator[list[Sensor]]):
     id: str
     hass: HomeAssistant
     devices: list[Sensor] | None
-    config_entry: ConfigEntry
+    config_entry: LaCrosseConfigEntry
     api: Incomplete
     last_update: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: LaCrosse) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: LaCrosseConfigEntry, api: LaCrosse) -> None: ...
     async def _async_update_data(self) -> list[Sensor]: ...

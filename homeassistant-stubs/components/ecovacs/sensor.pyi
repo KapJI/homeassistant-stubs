@@ -1,6 +1,6 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
 from .const import LEGACY_SUPPORTED_LIFESPANS as LEGACY_SUPPORTED_LIFESPANS, SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
-from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity, EcovacsLegacyEntity as EcovacsLegacyEntity, EventT as EventT
+from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity, EcovacsLegacyEntity as EcovacsLegacyEntity
 from .util import get_name_key as get_name_key, get_options as get_options, get_supported_entities as get_supported_entities
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -14,10 +14,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from sucks import VacBot as VacBot
-from typing import Any, Generic
+from typing import Any
 
 @dataclass(kw_only=True, frozen=True)
-class EcovacsSensorEntityDescription(EcovacsCapabilityEntityDescription, SensorEntityDescription, Generic[EventT]):
+class EcovacsSensorEntityDescription[EventT: Event](EcovacsCapabilityEntityDescription, SensorEntityDescription):
     value_fn: Callable[[EventT], StateType]
     native_unit_of_measurement_fn: Callable[[DeviceType], str | None] | None = ...
 

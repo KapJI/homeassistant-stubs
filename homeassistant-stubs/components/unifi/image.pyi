@@ -1,9 +1,9 @@
 from . import UnifiConfigEntry as UnifiConfigEntry
-from .entity import HandlerT as HandlerT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
-from aiounifi.interfaces.api_handlers import ItemEvent as ItemEvent
-from aiounifi.models.api import ApiItemT
+from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent as ItemEvent
+from aiounifi.models.api import ApiItem as ApiItem
 from aiounifi.models.wlan import Wlan
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -16,7 +16,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 def async_wlan_qr_code_image_fn(hub: UnifiHub, wlan: Wlan) -> bytes: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiImageEntityDescription(ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
+class UnifiImageEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](ImageEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
     image_fn: Callable[[UnifiHub, ApiItemT], bytes]
     value_fn: Callable[[ApiItemT], str | None]
 
@@ -24,7 +24,7 @@ ENTITY_DESCRIPTIONS: tuple[UnifiImageEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class UnifiImageEntity(UnifiEntity[HandlerT, ApiItemT], ImageEntity):
+class UnifiImageEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], ImageEntity):
     entity_description: UnifiImageEntityDescription[HandlerT, ApiItemT]
     _attr_content_type: str
     current_image: bytes | None

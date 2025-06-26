@@ -1,17 +1,16 @@
-from .const import DOMAIN as DOMAIN, HEV_CYCLE_STATE as HEV_CYCLE_STATE
-from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .const import HEV_CYCLE_STATE as HEV_CYCLE_STATE
+from .coordinator import LIFXConfigEntry as LIFXConfigEntry, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .entity import LIFXEntity as LIFXEntity
 from .util import lifx_features as lifx_features
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 HEV_CYCLE_STATE_SENSOR: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LIFXConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LIFXHevCycleBinarySensorEntity(LIFXEntity, BinarySensorEntity):
     entity_description: Incomplete

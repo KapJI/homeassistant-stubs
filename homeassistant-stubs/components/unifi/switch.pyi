@@ -1,11 +1,11 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
-from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER
-from .entity import HandlerT as HandlerT, SubscriptionT as SubscriptionT, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
+from .entity import SubscriptionType as SubscriptionType, UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
-from aiounifi.interfaces.api_handlers import ItemEvent
-from aiounifi.models.api import ApiItemT
+from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent
+from aiounifi.models.api import ApiItem as ApiItem
 from aiounifi.models.dpi_restriction_group import DPIRestrictionGroup
 from aiounifi.models.event import Event as Event
 from collections.abc import Callable as Callable, Coroutine
@@ -43,10 +43,10 @@ async def async_traffic_route_control_fn(hub: UnifiHub, obj_id: str, target: boo
 async def async_wlan_control_fn(hub: UnifiHub, obj_id: str, target: bool) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
-class UnifiSwitchEntityDescription(SwitchEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
+class UnifiSwitchEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](SwitchEntityDescription, UnifiEntityDescription[HandlerT, ApiItemT]):
     control_fn: Callable[[UnifiHub, str, bool], Coroutine[Any, Any, None]]
     is_on_fn: Callable[[UnifiHub, ApiItemT], bool]
-    custom_subscribe: Callable[[aiounifi.Controller], SubscriptionT] | None = ...
+    custom_subscribe: Callable[[aiounifi.Controller], SubscriptionType] | None = ...
     only_event_for_state_change: bool = ...
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSwitchEntityDescription, ...]
@@ -55,7 +55,7 @@ ENTITY_DESCRIPTIONS: tuple[UnifiSwitchEntityDescription, ...]
 def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class UnifiSwitchEntity(UnifiEntity[HandlerT, ApiItemT], SwitchEntity):
+class UnifiSwitchEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], SwitchEntity):
     entity_description: UnifiSwitchEntityDescription[HandlerT, ApiItemT]
     @callback
     def async_initiate_state(self) -> None: ...

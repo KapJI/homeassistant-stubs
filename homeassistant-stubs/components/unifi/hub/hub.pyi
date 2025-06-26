@@ -1,6 +1,6 @@
 import aiounifi
 from .. import UnifiConfigEntry as UnifiConfigEntry
-from ..const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, CONF_SITE_ID as CONF_SITE_ID, PLATFORMS as PLATFORMS
+from ..const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, CONF_SITE_ID as CONF_SITE_ID, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .config import UnifiConfig as UnifiConfig
 from .entity_helper import UnifiEntityHelper as UnifiEntityHelper
 from .entity_loader import UnifiEntityLoader as UnifiEntityLoader

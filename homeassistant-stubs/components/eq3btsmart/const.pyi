@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from enum import Enum
-from eq3btsmart.const import OperationMode
+from eq3btsmart.const import Eq3OperationMode
 from homeassistant.components.climate import HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
 
 DOMAIN: str
@@ -20,7 +20,7 @@ ENTITY_KEY_WINDOW_OPEN_TIMEOUT: str
 ENTITY_KEY_VALVE: str
 ENTITY_KEY_AWAY_UNTIL: str
 GET_DEVICE_TIMEOUT: int
-EQ_TO_HA_HVAC: dict[OperationMode, HVACMode]
+EQ_TO_HA_HVAC: dict[Eq3OperationMode, HVACMode]
 HA_TO_EQ_HVAC: Incomplete
 
 class Preset(str, Enum):
@@ -47,6 +47,7 @@ class TargetTemperatureSelector(str, Enum):
 DEFAULT_CURRENT_TEMP_SELECTOR: Incomplete
 DEFAULT_TARGET_TEMP_SELECTOR: Incomplete
 DEFAULT_SCAN_INTERVAL: int
+DEFAULT_AWAY_HOURS: Incomplete
 SIGNAL_THERMOSTAT_DISCONNECTED: Incomplete
 SIGNAL_THERMOSTAT_CONNECTED: Incomplete
 EQ3BT_STEP: float

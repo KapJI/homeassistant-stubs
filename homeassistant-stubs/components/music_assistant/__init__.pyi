@@ -2,7 +2,8 @@ import asyncio
 from .actions import get_music_assistant_client as get_music_assistant_client, register_actions as register_actions
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from dataclasses import dataclass
+from collections.abc import Callable
+from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
@@ -19,11 +20,14 @@ CONNECT_TIMEOUT: int
 LISTEN_READY_TIMEOUT: int
 CONFIG_SCHEMA: Incomplete
 type MusicAssistantConfigEntry = ConfigEntry[MusicAssistantEntryData]
+type PlayerAddCallback = Callable[[str], None]
 
 @dataclass
 class MusicAssistantEntryData:
     mass: MusicAssistantClient
     listen_task: asyncio.Task
+    discovered_players: set[str] = field(default_factory=set)
+    platform_handlers: dict[Platform, PlayerAddCallback] = field(default_factory=dict)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: MusicAssistantConfigEntry) -> bool: ...

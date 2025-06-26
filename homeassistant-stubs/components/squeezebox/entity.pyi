@@ -10,6 +10,8 @@ class SqueezeboxEntity(CoordinatorEntity[SqueezeBoxPlayerUpdateCoordinator]):
     _player: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator) -> None: ...
+    @property
+    def available(self) -> bool: ...
 
 class LMSStatusEntity(CoordinatorEntity[LMSStatusDataUpdateCoordinator]):
     _attr_has_entity_name: bool

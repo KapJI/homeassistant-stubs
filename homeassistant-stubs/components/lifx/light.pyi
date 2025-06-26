@@ -1,12 +1,11 @@
 import aiolifx_effects as aiolifx_effects_module
 from .const import ATTR_DURATION as ATTR_DURATION, ATTR_INFRARED as ATTR_INFRARED, ATTR_POWER as ATTR_POWER, ATTR_ZONES as ATTR_ZONES, DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, INFRARED_BRIGHTNESS as INFRARED_BRIGHTNESS, LIFX_CEILING_PRODUCT_IDS as LIFX_CEILING_PRODUCT_IDS, _LOGGER as _LOGGER
-from .coordinator import FirmwareEffect as FirmwareEffect, LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .coordinator import FirmwareEffect as FirmwareEffect, LIFXConfigEntry as LIFXConfigEntry, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .entity import LIFXEntity as LIFXEntity
 from .manager import LIFXManager as LIFXManager, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_FLAME as SERVICE_EFFECT_FLAME, SERVICE_EFFECT_MORPH as SERVICE_EFFECT_MORPH, SERVICE_EFFECT_MOVE as SERVICE_EFFECT_MOVE, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_SKY as SERVICE_EFFECT_SKY, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP
 from .util import convert_16_to_8 as convert_16_to_8, convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk, lifx_features as lifx_features, merge_hsbk as merge_hsbk
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_EFFECT as ATTR_EFFECT, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LIGHT_TURN_ON_SCHEMA as LIGHT_TURN_ON_SCHEMA, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -26,7 +25,7 @@ HSBK_SATURATION: int
 HSBK_BRIGHTNESS: int
 HSBK_KELVIN: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: LIFXConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LIFXLight(LIFXEntity, LightEntity):
     _attr_supported_features: Incomplete
@@ -42,7 +41,7 @@ class LIFXLight(LIFXEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_effect: Incomplete
-    def __init__(self, coordinator: LIFXUpdateCoordinator, manager: LIFXManager, entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: LIFXUpdateCoordinator, manager: LIFXManager, entry: LIFXConfigEntry) -> None: ...
     @property
     def brightness(self) -> int: ...
     @property

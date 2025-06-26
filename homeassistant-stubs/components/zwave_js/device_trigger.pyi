@@ -1,5 +1,4 @@
 import voluptuous as vol
-from . import trigger as trigger
 from .config_validation import VALUE_SCHEMA as VALUE_SCHEMA
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_DATA_TYPE as ATTR_DATA_TYPE, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_EVENT as ATTR_EVENT, ATTR_EVENT_LABEL as ATTR_EVENT_LABEL, ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_LABEL as ATTR_LABEL, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, ATTR_TYPE as ATTR_TYPE, ATTR_VALUE as ATTR_VALUE, ATTR_VALUE_RAW as ATTR_VALUE_RAW, DOMAIN as DOMAIN, ZWAVE_JS_NOTIFICATION_EVENT as ZWAVE_JS_NOTIFICATION_EVENT, ZWAVE_JS_VALUE_NOTIFICATION_EVENT as ZWAVE_JS_VALUE_NOTIFICATION_EVENT
 from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, NODE_STATUSES as NODE_STATUSES, async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation, generate_config_parameter_subtype as generate_config_parameter_subtype

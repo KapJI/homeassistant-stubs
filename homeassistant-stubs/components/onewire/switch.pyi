@@ -1,4 +1,4 @@
-from .const import DEVICE_KEYS_0_3 as DEVICE_KEYS_0_3, DEVICE_KEYS_0_7 as DEVICE_KEYS_0_7, DEVICE_KEYS_A_B as DEVICE_KEYS_A_B, READ_MODE_BOOL as READ_MODE_BOOL
+from .const import DEVICE_KEYS_0_3 as DEVICE_KEYS_0_3, DEVICE_KEYS_0_7 as DEVICE_KEYS_0_7, DEVICE_KEYS_A_B as DEVICE_KEYS_A_B, READ_MODE_INT as READ_MODE_INT
 from .entity import OneWireEntity as OneWireEntity, OneWireEntityDescription as OneWireEntityDescription
 from .onewirehub import OWDeviceDescription as OWDeviceDescription, OneWireConfigEntry as OneWireConfigEntry, OneWireHub as OneWireHub, SIGNAL_NEW_DEVICE_CONNECTED as SIGNAL_NEW_DEVICE_CONNECTED
 from _typeshed import Incomplete
@@ -14,7 +14,8 @@ PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
 
 @dataclass(frozen=True)
-class OneWireSwitchEntityDescription(OneWireEntityDescription, SwitchEntityDescription): ...
+class OneWireSwitchEntityDescription(OneWireEntityDescription, SwitchEntityDescription):
+    read_mode = READ_MODE_INT
 
 DEVICE_SWITCHES: dict[str, tuple[OneWireEntityDescription, ...]]
 HOBBYBOARD_EF: dict[str, tuple[OneWireEntityDescription, ...]]

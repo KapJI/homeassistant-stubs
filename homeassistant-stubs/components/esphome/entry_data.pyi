@@ -21,6 +21,8 @@ SAVE_DELAY: int
 _LOGGER: Incomplete
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], Platform]
 
+def build_device_unique_id(mac: str, entity_info: EntityInfo) -> str: ...
+
 class StoreData(TypedDict, total=False):
     device_info: dict[str, Any]
     services: list[dict[str, Any]]
@@ -60,6 +62,7 @@ class RuntimeEntryData:
     media_player_formats: dict[str, list[MediaPlayerSupportedFormat]] = field(default_factory=Incomplete)
     assist_satellite_config_update_callbacks: list[Callable[[AssistSatelliteConfiguration], None]] = field(default_factory=list)
     assist_satellite_set_wake_word_callbacks: list[Callable[[str], None]] = field(default_factory=list)
+    device_id_to_name: dict[int, str] = field(default_factory=dict)
     @property
     def name(self) -> str: ...
     @property

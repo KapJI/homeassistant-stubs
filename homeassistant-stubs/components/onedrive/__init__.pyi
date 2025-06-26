@@ -1,6 +1,6 @@
 from .const import CONF_FOLDER_ID as CONF_FOLDER_ID, CONF_FOLDER_NAME as CONF_FOLDER_NAME, DATA_BACKUP_AGENT_LISTENERS as DATA_BACKUP_AGENT_LISTENERS, DOMAIN as DOMAIN
 from .coordinator import OneDriveConfigEntry as OneDriveConfigEntry, OneDriveRuntimeData as OneDriveRuntimeData, OneDriveUpdateCoordinator as OneDriveUpdateCoordinator
-from .services import async_register_services as async_register_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, Platform as Platform

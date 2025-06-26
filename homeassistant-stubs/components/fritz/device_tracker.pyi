@@ -1,6 +1,8 @@
 import datetime
-from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData, FritzDevice as FritzDevice, device_filter_out_from_trackers as device_filter_out_from_trackers
+from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .entity import FritzDeviceBase as FritzDeviceBase
+from .helpers import device_filter_out_from_trackers as device_filter_out_from_trackers
+from .models import FritzDevice as FritzDevice
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

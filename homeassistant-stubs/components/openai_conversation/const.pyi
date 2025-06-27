@@ -3,6 +3,7 @@ import logging
 DOMAIN: str
 LOGGER: logging.Logger
 DEFAULT_CONVERSATION_NAME: str
+DEFAULT_NAME: str
 CONF_CHAT_MODEL: str
 CONF_FILENAMES: str
 CONF_MAX_TOKENS: str

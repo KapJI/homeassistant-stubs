@@ -11,7 +11,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: MusicAssistantConfigEntr
 
 class MusicAssistantFavoriteButton(MusicAssistantEntity, ButtonEntity):
     entity_description: Incomplete
-    @property
-    def available(self) -> bool: ...
     @catch_musicassistant_error
     async def async_press(self) -> None: ...

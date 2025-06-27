@@ -29,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 
 class MatterVacuum(MatterEntity, StateVacuumEntity):
     _last_accepted_commands: list[int] | None
-    _supported_run_modes: dict[int, clusters.RvcCleanMode.Structs.ModeOptionStruct] | None
+    _supported_run_modes: dict[int, clusters.RvcRunMode.Structs.ModeOptionStruct] | None
     entity_description: StateVacuumEntityDescription
     _platform_translation_key: str
     async def async_stop(self, **kwargs: Any) -> None: ...

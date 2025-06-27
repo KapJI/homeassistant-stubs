@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_API_KEY as CONF_API_KEY, CONF_PLATFORM as CONF_PLATFORM, CONF_SOURCE as CONF_SOURCE, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from telegram import Bot as Bot
 from types import ModuleType

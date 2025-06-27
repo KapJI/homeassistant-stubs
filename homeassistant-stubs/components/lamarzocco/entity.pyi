@@ -15,9 +15,12 @@ class LaMarzoccoEntityDescription(EntityDescription):
 
 class LaMarzoccoBaseEntity(CoordinatorEntity[LaMarzoccoUpdateCoordinator]):
     _attr_has_entity_name: bool
+    _unavailable_when_machine_off: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, key: str) -> None: ...
+    @property
+    def available(self) -> bool: ...
 
 class LaMarzoccoEntity(LaMarzoccoBaseEntity):
     entity_description: LaMarzoccoEntityDescription

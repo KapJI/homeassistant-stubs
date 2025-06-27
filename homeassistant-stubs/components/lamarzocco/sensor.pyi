@@ -28,5 +28,6 @@ class LaMarzoccoSensorEntity(LaMarzoccoEntity, SensorEntity):
     def native_value(self) -> StateType | datetime | None: ...
 
 class LaMarzoccoStatisticSensorEntity(LaMarzoccoSensorEntity):
+    _unavailable_when_machine_off: bool
     @property
     def native_value(self) -> StateType | datetime | None: ...

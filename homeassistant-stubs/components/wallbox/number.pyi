@@ -1,5 +1,5 @@
 from .const import BIDIRECTIONAL_MODEL_PREFIXES as BIDIRECTIONAL_MODEL_PREFIXES, CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_ENERGY_PRICE_KEY as CHARGER_ENERGY_PRICE_KEY, CHARGER_MAX_AVAILABLE_POWER_KEY as CHARGER_MAX_AVAILABLE_POWER_KEY, CHARGER_MAX_CHARGING_CURRENT_KEY as CHARGER_MAX_CHARGING_CURRENT_KEY, CHARGER_MAX_ICP_CURRENT_KEY as CHARGER_MAX_ICP_CURRENT_KEY, CHARGER_PART_NUMBER_KEY as CHARGER_PART_NUMBER_KEY, CHARGER_SERIAL_NUMBER_KEY as CHARGER_SERIAL_NUMBER_KEY, DOMAIN as DOMAIN
-from .coordinator import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator
+from .coordinator import WallboxCoordinator as WallboxCoordinator
 from .entity import WallboxEntity as WallboxEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 def min_charging_current_value(coordinator: WallboxCoordinator) -> float: ...

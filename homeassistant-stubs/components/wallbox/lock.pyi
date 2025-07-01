@@ -1,11 +1,10 @@
 from .const import CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_LOCKED_UNLOCKED_KEY as CHARGER_LOCKED_UNLOCKED_KEY, CHARGER_SERIAL_NUMBER_KEY as CHARGER_SERIAL_NUMBER_KEY, DOMAIN as DOMAIN
-from .coordinator import InvalidAuth as InvalidAuth, WallboxCoordinator as WallboxCoordinator
+from .coordinator import WallboxCoordinator as WallboxCoordinator
 from .entity import WallboxEntity as WallboxEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 

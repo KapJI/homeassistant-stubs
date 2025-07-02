@@ -18,6 +18,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None: ...
 
 class OpenAIConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @classmethod
     @callback

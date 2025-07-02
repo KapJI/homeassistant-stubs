@@ -18,12 +18,13 @@ _STATE_CLASSES: EsphomeEnumMapper[EsphomeSensorStateClass, SensorStateClass | No
 class EsphomeSensor(EsphomeEntity[SensorInfo, SensorState], SensorEntity):
     _attr_force_update: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    _attr_suggested_display_precision: Incomplete
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     @callback
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
-    def native_value(self) -> datetime | str | None: ...
+    def native_value(self) -> datetime | int | float | None: ...
 
 class EsphomeTextSensor(EsphomeEntity[TextSensorInfo, TextSensorState], SensorEntity):
     _attr_device_class: Incomplete

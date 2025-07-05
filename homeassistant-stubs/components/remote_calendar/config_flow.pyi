@@ -1,3 +1,4 @@
+from .client import get_calendar as get_calendar
 from .const import CONF_CALENDAR_NAME as CONF_CALENDAR_NAME, DOMAIN as DOMAIN
 from .ics import InvalidIcsException as InvalidIcsException, parse_calendar as parse_calendar
 from _typeshed import Incomplete

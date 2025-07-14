@@ -1,8 +1,8 @@
-from .const import API_DEFAULT_RETRY_AFTER as API_DEFAULT_RETRY_AFTER, APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, DOMAIN as DOMAIN
+from .const import API_DEFAULT_RETRY_AFTER as API_DEFAULT_RETRY_AFTER, APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPERATION_STATE_PAUSE as BSH_OPERATION_STATE_PAUSE, DOMAIN as DOMAIN
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
 from aiohomeconnect.client import Client as HomeConnectClient
-from aiohomeconnect.model import CommandKey as CommandKey, Event, EventKey, EventMessage as EventMessage, GetSetting, HomeAppliance as HomeAppliance, OptionKey as OptionKey, ProgramKey, SettingKey, Status, StatusKey
+from aiohomeconnect.model import CommandKey, Event, EventKey, EventMessage as EventMessage, GetSetting, HomeAppliance as HomeAppliance, OptionKey as OptionKey, ProgramKey, SettingKey, Status, StatusKey
 from aiohomeconnect.model.program import EnumerateProgram as EnumerateProgram, ProgramDefinitionOption as ProgramDefinitionOption
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

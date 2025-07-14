@@ -41,7 +41,6 @@ class _SetupNonEntityHelperCallbackProtocol(Protocol):
 def async_setup_non_entity_entry_helper(hass: HomeAssistant, domain: str, async_setup: _SetupNonEntityHelperCallbackProtocol, discovery_schema: vol.Schema) -> None: ...
 @callback
 def async_setup_entity_entry_helper(hass: HomeAssistant, entry: ConfigEntry, entity_class: type[MqttEntity] | None, domain: str, async_add_entities: AddConfigEntryEntitiesCallback, discovery_schema: VolSchemaType, platform_schema_modern: VolSchemaType, schema_class_mapping: dict[str, type[MqttEntity]] | None = None) -> None: ...
-def init_entity_id_from_config(hass: HomeAssistant, entity: Entity, config: ConfigType, entity_id_format: str) -> None: ...
 
 class MqttAttributesMixin(Entity):
     _attributes_extra_blocked: frozenset[str]
@@ -154,6 +153,7 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
     _attr_should_poll: bool
     _default_name: str | None
     _entity_id_format: str
+    _update_registry_entity_id: str | None
     hass: Incomplete
     _config: ConfigType
     _attr_unique_id: Incomplete
@@ -161,6 +161,7 @@ class MqttEntity(MqttAttributesMixin, MqttAvailabilityMixin, MqttDiscoveryUpdate
     _discovery: Incomplete
     _subscriptions: dict[str, dict[str, Any]]
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
+    entity_id: Incomplete
     def _init_entity_id(self) -> None: ...
     @final
     async def async_added_to_hass(self) -> None: ...

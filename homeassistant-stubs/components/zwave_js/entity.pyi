@@ -15,8 +15,6 @@ from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import SetValueResult as SetValueResult, Value as ZwaveValue
 
 EVENT_VALUE_REMOVED: str
-EVENT_DEAD: str
-EVENT_ALIVE: str
 
 class ZWaveBaseEntity(Entity):
     _attr_should_poll: bool
@@ -40,8 +38,6 @@ class ZWaveBaseEntity(Entity):
     def generate_name(self, include_value_name: bool = False, alternate_value_name: str | None = None, additional_info: Sequence[str | None] | None = None, name_prefix: str | None = None) -> str: ...
     @property
     def available(self) -> bool: ...
-    @callback
-    def _node_status_alive_or_dead(self, event_data: dict) -> None: ...
     @callback
     def _value_changed(self, event_data: dict) -> None: ...
     @callback

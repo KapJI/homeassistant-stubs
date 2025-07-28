@@ -36,12 +36,14 @@ class PushBot(BaseTelegramBot):
 
 class PushBotView(HomeAssistantView):
     requires_auth: bool
-    url = TELEGRAM_WEBHOOK_URL
     name: str
     hass: Incomplete
     bot: Incomplete
     application: Incomplete
     trusted_networks: Incomplete
     secret_token: Incomplete
+    url: Incomplete
     def __init__(self, hass: HomeAssistant, bot: Bot, application: Application, trusted_networks: list[IPv4Network], secret_token: str) -> None: ...
     async def post(self, request: HomeAssistantRequest) -> Response | None: ...
+
+def _get_webhook_url(bot: Bot) -> str: ...

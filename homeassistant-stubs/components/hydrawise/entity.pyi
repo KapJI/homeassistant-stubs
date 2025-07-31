@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODEL_ZONE as MODEL_ZONE
 from .coordinator import HydrawiseDataUpdateCoordinator as HydrawiseDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback

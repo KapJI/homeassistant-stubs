@@ -1,7 +1,7 @@
 from .const import DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEVICE_SUPPORT_OPTIONS as DEVICE_SUPPORT_OPTIONS, DOMAIN as DOMAIN, INPUT_ENTRY_CLEAR_OPTIONS as INPUT_ENTRY_CLEAR_OPTIONS, INPUT_ENTRY_DEVICE_SELECTION as INPUT_ENTRY_DEVICE_SELECTION, OPTION_ENTRY_DEVICE_OPTIONS as OPTION_ENTRY_DEVICE_OPTIONS, OPTION_ENTRY_SENSOR_PRECISION as OPTION_ENTRY_SENSOR_PRECISION, PRECISION_MAPPING_FAMILY_28 as PRECISION_MAPPING_FAMILY_28
 from .onewirehub import OneWireConfigEntry as OneWireConfigEntry
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
@@ -25,7 +25,7 @@ class OneWireFlowHandler(ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(config_entry: OneWireConfigEntry) -> OnewireOptionsFlowHandler: ...
 
-class OnewireOptionsFlowHandler(OptionsFlow):
+class OnewireOptionsFlowHandler(OptionsFlowWithReload):
     configurable_devices: dict[str, str]
     devices_to_configure: dict[str, str]
     current_device: str

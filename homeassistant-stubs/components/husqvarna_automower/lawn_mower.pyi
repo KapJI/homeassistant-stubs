@@ -1,7 +1,7 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .const import DOMAIN as DOMAIN, ERROR_STATES as ERROR_STATES
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
-from .entity import AutomowerAvailableEntity as AutomowerAvailableEntity, handle_sending_exception as handle_sending_exception
+from .entity import AutomowerBaseEntity as AutomowerBaseEntity, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete
 from aioautomower.model import WorkArea as WorkArea
 from datetime import timedelta
@@ -23,7 +23,7 @@ OVERRIDE_MODES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class AutomowerLawnMowerEntity(AutomowerAvailableEntity, LawnMowerEntity):
+class AutomowerLawnMowerEntity(AutomowerBaseEntity, LawnMowerEntity):
     _attr_name: Incomplete
     _attr_supported_features = SUPPORT_STATE_SERVICES
     _attr_unique_id: Incomplete

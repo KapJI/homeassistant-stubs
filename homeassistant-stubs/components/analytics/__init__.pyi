@@ -1,5 +1,6 @@
 from .analytics import Analytics as Analytics
 from .const import ATTR_ONBOARDED as ATTR_ONBOARDED, ATTR_PREFERENCES as ATTR_PREFERENCES, DOMAIN as DOMAIN, INTERVAL as INTERVAL, PREFERENCE_SCHEMA as PREFERENCE_SCHEMA
+from .http import AnalyticsDevicesView as AnalyticsDevicesView
 from _typeshed import Incomplete
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED

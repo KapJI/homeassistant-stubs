@@ -9,6 +9,8 @@ from pymiele import MieleAction as MieleAction, MieleDevice as MieleDevice
 
 class MieleEntity(CoordinatorEntity[MieleDataUpdateCoordinator]):
     _attr_has_entity_name: bool
+    @staticmethod
+    def get_unique_id(device_id: str, description: EntityDescription) -> str: ...
     _device_id: Incomplete
     entity_description: Incomplete
     _attr_unique_id: Incomplete

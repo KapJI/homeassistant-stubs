@@ -1,10 +1,10 @@
 import amberelectric
 from .const import LOGGER as LOGGER
+from .helpers import normalize_descriptor as normalize_descriptor
 from _typeshed import Incomplete
 from amberelectric.models.actual_interval import ActualInterval as ActualInterval
 from amberelectric.models.current_interval import CurrentInterval
 from amberelectric.models.forecast_interval import ForecastInterval
-from amberelectric.models.price_descriptor import PriceDescriptor as PriceDescriptor
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -16,7 +16,6 @@ def is_forecast(interval: ActualInterval | CurrentInterval | ForecastInterval) -
 def is_general(interval: ActualInterval | CurrentInterval | ForecastInterval) -> bool: ...
 def is_controlled_load(interval: ActualInterval | CurrentInterval | ForecastInterval) -> bool: ...
 def is_feed_in(interval: ActualInterval | CurrentInterval | ForecastInterval) -> bool: ...
-def normalize_descriptor(descriptor: PriceDescriptor | None) -> str | None: ...
 
 class AmberUpdateCoordinator(DataUpdateCoordinator):
     config_entry: AmberConfigEntry

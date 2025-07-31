@@ -24,4 +24,6 @@ OPTIONS_FLOW: Incomplete
 class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
+    VERSION: int
+    MINOR_VERSION: int
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

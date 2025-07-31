@@ -5,7 +5,7 @@ from .prefs import CloudPreferences as CloudPreferences
 from _typeshed import Incomplete
 from hass_nabucasa import Cloud as Cloud
 from hass_nabucasa.voice import Gender
-from homeassistant.components.tts import ATTR_AUDIO_OUTPUT as ATTR_AUDIO_OUTPUT, ATTR_VOICE as ATTR_VOICE, CONF_LANG as CONF_LANG, Provider as Provider, TextToSpeechEntity as TextToSpeechEntity, TtsAudioType as TtsAudioType, Voice as Voice
+from homeassistant.components.tts import ATTR_AUDIO_OUTPUT as ATTR_AUDIO_OUTPUT, ATTR_VOICE as ATTR_VOICE, CONF_LANG as CONF_LANG, Provider as Provider, TTSAudioRequest as TTSAudioRequest, TTSAudioResponse as TTSAudioResponse, TextToSpeechEntity as TextToSpeechEntity, TtsAudioType as TtsAudioType, Voice as Voice
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
@@ -49,6 +49,7 @@ class CloudTTSEntity(TextToSpeechEntity):
     @callback
     def async_get_supported_voices(self, language: str) -> list[Voice] | None: ...
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...
+    async def async_stream_tts_audio(self, request: TTSAudioRequest) -> TTSAudioResponse: ...
 
 class CloudProvider(Provider):
     has_entity: bool

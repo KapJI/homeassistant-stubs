@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.media_player import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, SupportsResponse as SupportsResponse
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.typing import VolDictType as VolDictType, VolSchemaType as VolSchemaType
@@ -15,7 +15,8 @@ _LOGGER: Incomplete
 HEOS_SIGN_IN_SCHEMA: Incomplete
 HEOS_SIGN_OUT_SCHEMA: Incomplete
 
-def register(hass: HomeAssistant) -> None: ...
+@callback
+def async_setup_services(hass: HomeAssistant) -> None: ...
 
 @dataclass(frozen=True)
 class EntityServiceDescription:

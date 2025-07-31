@@ -1,9 +1,9 @@
-from .const import ATTR_AUTO_RELOCK_TIME as ATTR_AUTO_RELOCK_TIME, ATTR_BLOCK_TO_BLOCK as ATTR_BLOCK_TO_BLOCK, ATTR_HOLD_AND_RELEASE_TIME as ATTR_HOLD_AND_RELEASE_TIME, ATTR_LOCK_TIMEOUT as ATTR_LOCK_TIMEOUT, ATTR_OPERATION_TYPE as ATTR_OPERATION_TYPE, ATTR_TWIST_ASSIST as ATTR_TWIST_ASSIST, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_CLEAR_LOCK_USERCODE as SERVICE_CLEAR_LOCK_USERCODE, SERVICE_SET_LOCK_CONFIGURATION as SERVICE_SET_LOCK_CONFIGURATION, SERVICE_SET_LOCK_USERCODE as SERVICE_SET_LOCK_USERCODE
+from .const import ATTR_AUTO_RELOCK_TIME as ATTR_AUTO_RELOCK_TIME, ATTR_BLOCK_TO_BLOCK as ATTR_BLOCK_TO_BLOCK, ATTR_HOLD_AND_RELEASE_TIME as ATTR_HOLD_AND_RELEASE_TIME, ATTR_LOCK_TIMEOUT as ATTR_LOCK_TIMEOUT, ATTR_OPERATION_TYPE as ATTR_OPERATION_TYPE, ATTR_TWIST_ASSIST as ATTR_TWIST_ASSIST, DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_CLEAR_LOCK_USERCODE as SERVICE_CLEAR_LOCK_USERCODE, SERVICE_SET_LOCK_CONFIGURATION as SERVICE_SET_LOCK_CONFIGURATION, SERVICE_SET_LOCK_USERCODE as SERVICE_SET_LOCK_USERCODE
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockState as LockState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -16,7 +16,7 @@ PARALLEL_UPDATES: int
 STATE_TO_ZWAVE_MAP: dict[int, dict[str, int | bool]]
 UNIT16_SCHEMA: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZWaveLock(ZWaveBaseEntity, LockEntity):
     @property

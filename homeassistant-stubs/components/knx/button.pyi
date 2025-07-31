@@ -1,6 +1,6 @@
-from . import KNXModule as KNXModule
 from .const import CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxYamlEntity as KnxYamlEntity
+from .knx_module import KNXModule as KNXModule
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.button import ButtonEntity as ButtonEntity

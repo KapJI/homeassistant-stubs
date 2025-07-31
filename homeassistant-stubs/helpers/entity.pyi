@@ -3,7 +3,7 @@ import dataclasses
 import time
 from . import device_registry as dr, entity_registry as er, singleton as singleton
 from .device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
-from .entity_platform import EntityPlatform as EntityPlatform
+from .entity_platform import EntityPlatform as EntityPlatform, PlatformData as PlatformData
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from .frame import report_non_thread_safe_operation as report_non_thread_safe_operation
 from .typing import StateType as StateType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
@@ -54,6 +54,7 @@ class StateInfo(TypedDict):
 
 class EntityPlatformState(Enum):
     NOT_ADDED = ...
+    ADDING = ...
     ADDED = ...
     REMOVED = ...
 
@@ -91,6 +92,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     entity_id: str
     hass: HomeAssistant
     platform: EntityPlatform
+    platform_data: PlatformData
     entity_description: EntityDescription
     _slow_reported: bool
     _deprecated_supported_features_reported: bool

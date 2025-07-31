@@ -12,13 +12,13 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-class LMSStatusDataUpdateCoordinator(DataUpdateCoordinator):
+class LMSStatusDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: SqueezeboxConfigEntry
     lms: Incomplete
     can_server_restart: bool
     def __init__(self, hass: HomeAssistant, config_entry: SqueezeboxConfigEntry, lms: Server) -> None: ...
     async def _async_setup(self) -> None: ...
-    async def _async_update_data(self) -> dict: ...
+    async def _async_update_data(self) -> dict[str, Any]: ...
 
 class SqueezeBoxPlayerUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: SqueezeboxConfigEntry

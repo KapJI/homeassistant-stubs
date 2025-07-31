@@ -2,8 +2,12 @@ import voluptuous as vol
 from ..validation import ga_validator as ga_validator, maybe_ga_validator as maybe_ga_validator
 from .const import CONF_DPT as CONF_DPT, CONF_GA_PASSIVE as CONF_GA_PASSIVE, CONF_GA_STATE as CONF_GA_STATE, CONF_GA_WRITE as CONF_GA_WRITE
 from _typeshed import Incomplete
+from collections.abc import Hashable, Iterable
 from enum import Enum
 from typing import Any
+
+class GroupSelect(vol.Any):
+    def _exec(self, funcs: Iterable, v: Any, path: list[Hashable] | None = None) -> Any: ...
 
 class GASelector:
     schema: vol.Schema

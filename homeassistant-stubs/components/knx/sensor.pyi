@@ -1,6 +1,6 @@
-from . import KNXModule as KNXModule
 from .const import ATTR_SOURCE as ATTR_SOURCE, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxYamlEntity as KnxYamlEntity
+from .knx_module import KNXModule as KNXModule
 from .schema import SensorSchema as SensorSchema
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

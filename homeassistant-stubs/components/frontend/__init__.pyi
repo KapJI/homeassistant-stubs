@@ -10,6 +10,7 @@ from homeassistant.components.websocket_api import ActiveConnection as ActiveCon
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_PANELS_UPDATED as EVENT_PANELS_UPDATED, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import service as service
 from homeassistant.helpers.icon import async_get_icons as async_get_icons
 from homeassistant.helpers.json import json_dumps_sorted as json_dumps_sorted

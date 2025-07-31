@@ -7,8 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FRIENDLY_NAME as CONF_FRIENDLY_NAME, CONF_SENSORS as CONF_SENSORS, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import device_registry as dr
-from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
+from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity import generate_entity_id as generate_entity_id
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
@@ -42,9 +41,9 @@ class SensorTrend(BinarySensorEntity, RestoreEntity):
     _attr_name: Incomplete
     _attr_device_class: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
+    device_entry: Incomplete
     entity_id: Incomplete
-    def __init__(self, name: str, entity_id: str, attribute: str | None, invert: bool, sample_duration: int, min_gradient: float, min_samples: int, max_samples: int, unique_id: str | None = None, device_class: BinarySensorDeviceClass | None = None, sensor_entity_id: str | None = None, device_info: dr.DeviceInfo | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, name: str, entity_id: str, attribute: str | None, invert: bool, sample_duration: int, min_gradient: float, min_samples: int, max_samples: int, unique_id: str | None = None, device_class: BinarySensorDeviceClass | None = None, sensor_entity_id: str | None = None) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     _attr_available: bool

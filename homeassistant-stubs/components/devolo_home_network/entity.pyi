@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-type _DataType = LogicalNetwork | DataRate | list[ConnectedStationInfo] | list[NeighborAPInfo] | WifiGuestAccessGet | bool | int
+type _DataType = LogicalNetwork | DataRate | dict[str, ConnectedStationInfo] | list[NeighborAPInfo] | WifiGuestAccessGet | bool | int
 class DevoloEntity(Entity):
     _attr_has_entity_name: bool
     device: Incomplete

@@ -1,6 +1,6 @@
-from . import services as services
 from .const import DOMAIN as DOMAIN
 from .coordinator import HeosConfigEntry as HeosConfigEntry, HeosCoordinator as HeosCoordinator
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

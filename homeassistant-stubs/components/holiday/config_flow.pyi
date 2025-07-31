@@ -1,7 +1,7 @@
 import voluptuous as vol
 from .const import CONF_CATEGORIES as CONF_CATEGORIES, CONF_PROVINCE as CONF_PROVINCE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import CountrySelector as CountrySelector, CountrySelectorConfig as CountrySelectorConfig, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
@@ -25,5 +25,5 @@ class HolidayConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class HolidayOptionsFlowHandler(OptionsFlow):
+class HolidayOptionsFlowHandler(OptionsFlowWithReload):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

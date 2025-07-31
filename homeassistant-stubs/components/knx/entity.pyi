@@ -1,5 +1,5 @@
-from . import KNXModule as KNXModule
 from .const import DOMAIN as DOMAIN
+from .knx_module import KNXModule as KNXModule
 from .storage.config_store import PlatformControllerBase as PlatformControllerBase
 from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
 from _typeshed import Incomplete

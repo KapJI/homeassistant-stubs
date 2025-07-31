@@ -5,8 +5,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -28,7 +27,7 @@ class ThresholdSensor(BinarySensorEntity):
     _unrecorded_attributes: Incomplete
     _preview_callback: Callable[[str, Mapping[str, Any]], None] | None
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
+    device_entry: Incomplete
     _entity_id: Incomplete
     _attr_name: Incomplete
     _threshold_lower: Incomplete
@@ -38,7 +37,7 @@ class ThresholdSensor(BinarySensorEntity):
     _attr_device_class: Incomplete
     _state_position: Incomplete
     sensor_value: float | None
-    def __init__(self, entity_id: str, name: str, lower: float | None, upper: float | None, hysteresis: float, device_class: BinarySensorDeviceClass | None, unique_id: str | None, device_info: DeviceInfo | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, entity_id: str, name: str, lower: float | None, upper: float | None, hysteresis: float, device_class: BinarySensorDeviceClass | None, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_setup_sensor(self) -> None: ...

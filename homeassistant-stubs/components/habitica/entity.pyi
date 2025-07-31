@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, NAME as NAME
 from .coordinator import HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
+from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

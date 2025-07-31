@@ -5,8 +5,7 @@ from .entity import RestEntity as RestEntity
 from .schema import RESOURCE_SCHEMA as RESOURCE_SCHEMA, SENSOR_SCHEMA as SENSOR_SCHEMA
 from .util import parse_json_attributes as parse_json_attributes
 from _typeshed import Incomplete
-from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass
-from homeassistant.components.sensor.helpers import async_parse_date_datetime as async_parse_date_datetime
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_FORCE_UPDATE as CONF_FORCE_UPDATE, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_RESOURCE as CONF_RESOURCE, CONF_RESOURCE_TEMPLATE as CONF_RESOURCE_TEMPLATE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -33,5 +32,4 @@ class RestSensor(ManualTriggerSensorEntity, RestEntity):
     def available(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
-    _attr_native_value: Incomplete
     def _update_from_rest_data(self) -> None: ...

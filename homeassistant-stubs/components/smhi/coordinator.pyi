@@ -13,9 +13,12 @@ type SMHIConfigEntry = ConfigEntry[SMHIDataUpdateCoordinator]
 class SMHIForecastData:
     daily: list[SMHIForecast]
     hourly: list[SMHIForecast]
+    twice_daily: list[SMHIForecast]
 
 class SMHIDataUpdateCoordinator(DataUpdateCoordinator[SMHIForecastData]):
     config_entry: SMHIConfigEntry
     _smhi_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SMHIConfigEntry) -> None: ...
     async def _async_update_data(self) -> SMHIForecastData: ...
+    @property
+    def current(self) -> SMHIForecast: ...

@@ -3,7 +3,8 @@ from .entity import Entity as Entity
 from .template import Template as Template, TemplateStateFromEntityId as TemplateStateFromEntityId, _SENTINEL as _SENTINEL, _render_with_context as _render_with_context, render_complex as render_complex, result_as_boolean as result_as_boolean
 from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
-from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorEntity as SensorEntity
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
+from homeassistant.components.sensor.helpers import async_parse_date_datetime as async_parse_date_datetime
 from homeassistant.const import ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
@@ -74,3 +75,6 @@ class ManualTriggerSensorEntity(ManualTriggerEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
+    _attr_native_value: Incomplete
+    @callback
+    def _set_native_value_with_possible_timestamp(self, value: Any) -> None: ...

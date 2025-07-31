@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATU
 from homeassistant.core import CoreState as CoreState, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError
 from homeassistant.helpers import condition as condition
-from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
+from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
@@ -36,7 +36,7 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_name: Incomplete
     heater_entity_id: Incomplete
     sensor_entity_id: Incomplete
-    _attr_device_info: Incomplete
+    device_entry: Incomplete
     ac_mode: Incomplete
     min_cycle_duration: Incomplete
     _cold_tolerance: Incomplete
@@ -60,7 +60,7 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_preset_modes: Incomplete
     _presets: Incomplete
     _presets_inv: Incomplete
-    def __init__(self, hass: HomeAssistant, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def precision(self) -> float: ...

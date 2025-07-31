@@ -1,10 +1,10 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -46,12 +46,12 @@ BOOLEAN_SENSOR_MAPPINGS: dict[tuple[int, int | str], BinarySensorEntityDescripti
 
 @callback
 def is_valid_notification_binary_sensor(info: ZwaveDiscoveryInfo) -> bool | NotificationZWaveJSEntityDescription: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZWaveBooleanBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _attr_name: Incomplete
     entity_description: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
 
@@ -60,18 +60,18 @@ class ZWaveNotificationBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     entity_description: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, state_key: str, description: NotificationZWaveJSEntityDescription | None = None) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, state_key: str, description: NotificationZWaveJSEntityDescription | None = None) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
 
 class ZWavePropertyBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     entity_description: PropertyZWaveJSEntityDescription
     _attr_name: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: PropertyZWaveJSEntityDescription) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: PropertyZWaveJSEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
 
 class ZWaveConfigParameterBinarySensor(ZWaveBooleanBinarySensor):
     _attr_entity_category: Incomplete
     _attr_name: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...

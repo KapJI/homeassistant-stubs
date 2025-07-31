@@ -1,5 +1,5 @@
-from . import KNXModule as KNXModule
 from .const import DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .knx_module import KNXModule as KNXModule
 from .storage.config_store import ConfigStoreException as ConfigStoreException
 from .storage.const import CONF_DATA as CONF_DATA
 from .storage.entity_store_schema import CREATE_ENTITY_BASE_SCHEMA as CREATE_ENTITY_BASE_SCHEMA, UPDATE_ENTITY_BASE_SCHEMA as UPDATE_ENTITY_BASE_SCHEMA

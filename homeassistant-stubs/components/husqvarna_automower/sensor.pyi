@@ -19,9 +19,12 @@ PARALLEL_UPDATES: int
 ATTR_WORK_AREA_ID_ASSIGNMENT: str
 ERROR_KEYS: Incomplete
 ERROR_KEY_LIST: Incomplete
+INACTIVE_REASONS: list
 RESTRICTED_REASONS: list
 STATE_NO_WORK_AREA_ACTIVE: str
 
+@callback
+def _get_restricted_reason(data: MowerAttributes) -> str: ...
 @callback
 def _get_work_area_names(data: MowerAttributes) -> list[str]: ...
 @callback
@@ -61,6 +64,8 @@ class AutomowerSensorEntity(AutomowerBaseEntity, SensorEntity):
     def options(self) -> list[str] | None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
+    @property
+    def available(self) -> bool: ...
 
 class WorkAreaSensorEntity(WorkAreaAvailableEntity, SensorEntity):
     entity_description: WorkAreaSensorEntityDescription

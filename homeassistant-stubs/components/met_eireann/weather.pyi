@@ -1,5 +1,5 @@
-from . import MetEireannWeatherData as MetEireannWeatherData
 from .const import CONDITION_MAP as CONDITION_MAP, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, FORECAST_MAP as FORECAST_MAP
+from .coordinator import MetEireannWeatherData as MetEireannWeatherData
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_TIME as ATTR_FORECAST_TIME, Forecast as Forecast, SingleCoordinatorWeatherEntity as SingleCoordinatorWeatherEntity, WeatherEntityFeature as WeatherEntityFeature
@@ -10,8 +10,6 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
-
-_LOGGER: Incomplete
 
 def format_condition(condition: str | None) -> str | None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

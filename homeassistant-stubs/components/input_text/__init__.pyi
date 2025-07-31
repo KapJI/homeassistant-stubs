@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_MODE as ATTR_MODE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_MODE as ATTR_MODE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent

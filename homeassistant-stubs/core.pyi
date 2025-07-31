@@ -50,12 +50,14 @@ class ConfigSource(enum.StrEnum, deprecated={'DEFAULT': ('core_config.ConfigSour
 
 class EventStateEventData(TypedDict):
     entity_id: str
-    new_state: State | None
 
 class EventStateChangedData(EventStateEventData):
+    new_state: State | None
     old_state: State | None
 
 class EventStateReportedData(EventStateEventData):
+    last_reported: datetime.datetime
+    new_state: State
     old_last_reported: datetime.datetime
 
 def _deprecated_core_config() -> Any: ...
@@ -328,15 +330,17 @@ class CompressedState(TypedDict):
     lu: NotRequired[float]
 
 class State:
+    entity_id: str
+    domain: str
+    object_id: str
+    state: str
+    attributes: ReadOnlyDict[str, Any]
+    last_changed: datetime.datetime
+    last_reported: datetime.datetime
+    last_updated: datetime.datetime
+    context: Context
     __slots__: Incomplete
     _cache: dict[str, Any]
-    entity_id: Incomplete
-    state: Incomplete
-    attributes: Incomplete
-    last_reported: Incomplete
-    last_updated: Incomplete
-    last_changed: Incomplete
-    context: Incomplete
     state_info: Incomplete
     last_updated_timestamp: Incomplete
     def __init__(self, entity_id: str, state: str, attributes: Mapping[str, Any] | None = None, last_changed: datetime.datetime | None = None, last_reported: datetime.datetime | None = None, last_updated: datetime.datetime | None = None, context: Context | None = None, validate_entity_id: bool | None = True, state_info: StateInfo | None = None, last_updated_timestamp: float | None = None) -> None: ...

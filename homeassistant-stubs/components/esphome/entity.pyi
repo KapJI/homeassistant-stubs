@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData, build_device_unique_id as build_device_unique_id
+from .entry_data import DeviceEntityKey as DeviceEntityKey, ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData, build_device_unique_id as build_device_unique_id
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState
@@ -48,6 +48,8 @@ class EsphomeEntity(EsphomeBaseEntity, Generic[_InfoT, _StateT]):
     entity_id: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, domain: str, entity_info: EntityInfo, state_type: type[_StateT]) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _on_removal_signal(self) -> None: ...
     _attr_unique_id: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _attr_name: Incomplete

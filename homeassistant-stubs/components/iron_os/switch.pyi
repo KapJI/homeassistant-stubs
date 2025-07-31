@@ -1,4 +1,5 @@
 from . import IronOSConfigEntry as IronOSConfigEntry
+from .const import MIN_BOOST_TEMP as MIN_BOOST_TEMP, MIN_BOOST_TEMP_F as MIN_BOOST_TEMP_F
 from .coordinator import IronOSCoordinators as IronOSCoordinators
 from .entity import IronOSBaseEntity as IronOSBaseEntity
 from _typeshed import Incomplete
@@ -27,6 +28,7 @@ class IronOSSwitch(StrEnum):
     INVERT_BUTTONS = 'invert_buttons'
     DISPLAY_INVERT = 'display_invert'
     CALIBRATE_CJC = 'calibrate_cjc'
+    BOOST = 'boost'
 
 SWITCH_DESCRIPTIONS: tuple[IronOSSwitchEntityDescription, ...]
 

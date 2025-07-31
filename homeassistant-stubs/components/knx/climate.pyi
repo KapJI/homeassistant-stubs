@@ -1,6 +1,6 @@
-from . import KNXModule as KNXModule
 from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxYamlEntity as KnxYamlEntity
+from .knx_module import KNXModule as KNXModule
 from .schema import ClimateSchema as ClimateSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries

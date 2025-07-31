@@ -10,6 +10,7 @@ from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 DEVICE_CLASS_NONE: str
+CONF_ABSOLUTE_HUMIDITY: str
 CONF_APPARENT_POWER: str
 CONF_AQI: str
 CONF_AREA: str

@@ -26,7 +26,7 @@ class Selector[_T: Mapping[str, Any]]:
 @cache
 def _entity_feature_flag(domain: str, enum_name: str, feature_name: str) -> int: ...
 def _validate_supported_feature(supported_feature: str) -> int: ...
-def _validate_supported_features(supported_features: int | list[str]) -> int: ...
+def _validate_supported_features(supported_features: list[str]) -> int: ...
 
 BASE_SELECTOR_CONFIG_SCHEMA: Incomplete
 
@@ -34,6 +34,7 @@ class BaseSelectorConfig(TypedDict, total=False):
     read_only: bool
 
 ENTITY_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
+LEGACY_ENTITY_SELECTOR_CONFIG_SCHEMA: Incomplete
 
 class EntityFilterSelectorConfig(TypedDict, total=False):
     integration: str
@@ -42,6 +43,7 @@ class EntityFilterSelectorConfig(TypedDict, total=False):
     supported_features: list[str]
 
 DEVICE_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
+LEGACY_DEVICE_SELECTOR_CONFIG_SCHEMA: Incomplete
 
 class DeviceFilterSelectorConfig(TypedDict, total=False):
     integration: str
@@ -165,23 +167,6 @@ class ConstantSelector(Selector[ConstantSelectorConfig]):
     def __init__(self, config: ConstantSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class QrErrorCorrectionLevel(StrEnum):
-    LOW = 'low'
-    MEDIUM = 'medium'
-    QUARTILE = 'quartile'
-    HIGH = 'high'
-
-class QrCodeSelectorConfig(BaseSelectorConfig, total=False):
-    data: str
-    scale: int
-    error_correction_level: QrErrorCorrectionLevel
-
-class QrCodeSelector(Selector[QrCodeSelectorConfig]):
-    selector_type: str
-    CONFIG_SCHEMA: Incomplete
-    def __init__(self, config: QrCodeSelectorConfig) -> None: ...
-    def __call__(self, data: Any) -> Any: ...
-
 class ConversationAgentSelectorConfig(BaseSelectorConfig, total=False):
     language: str
 
@@ -243,6 +228,7 @@ class EntitySelectorConfig(BaseSelectorConfig, EntityFilterSelectorConfig, total
     exclude_entities: list[str]
     include_entities: list[str]
     multiple: bool
+    reorder: bool
     filter: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
 
 class EntitySelector(Selector[EntitySelectorConfig]):
@@ -250,6 +236,15 @@ class EntitySelector(Selector[EntitySelectorConfig]):
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: EntitySelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
+
+class FileSelectorConfig(BaseSelectorConfig):
+    accept: str
+
+class FileSelector(Selector[FileSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: FileSelectorConfig) -> None: ...
+    def __call__(self, data: Any) -> str: ...
 
 class FloorSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
@@ -310,7 +305,7 @@ class MediaSelector(Selector[MediaSelectorConfig]):
     CONFIG_SCHEMA: Incomplete
     DATA_SCHEMA: Incomplete
     def __init__(self, config: MediaSelectorConfig | None = None) -> None: ...
-    def __call__(self, data: Any) -> dict[str, float]: ...
+    def __call__(self, data: Any) -> dict[str, str]: ...
 
 class NumberSelectorConfig(BaseSelectorConfig, total=False):
     min: float
@@ -318,6 +313,7 @@ class NumberSelectorConfig(BaseSelectorConfig, total=False):
     step: float | Literal['any']
     unit_of_measurement: str
     mode: NumberSelectorMode
+    translation_key: str
 
 class NumberSelectorMode(StrEnum):
     BOX = 'box'
@@ -349,6 +345,23 @@ class ObjectSelector(Selector[ObjectSelectorConfig]):
     def __init__(self, config: ObjectSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
+class QrErrorCorrectionLevel(StrEnum):
+    LOW = 'low'
+    MEDIUM = 'medium'
+    QUARTILE = 'quartile'
+    HIGH = 'high'
+
+class QrCodeSelectorConfig(BaseSelectorConfig, total=False):
+    data: str
+    scale: int
+    error_correction_level: QrErrorCorrectionLevel
+
+class QrCodeSelector(Selector[QrCodeSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: QrCodeSelectorConfig) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 select_option: Incomplete
 
 class SelectOptionDict(TypedDict):
@@ -373,6 +386,16 @@ class SelectSelector(Selector[SelectSelectorConfig]):
     def __init__(self, config: SelectSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
+class StateSelectorConfig(BaseSelectorConfig, total=False):
+    entity_id: str
+    hide_states: list[str]
+
+class StateSelector(Selector[StateSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: StateSelectorConfig) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+
 class StatisticSelectorConfig(BaseSelectorConfig, total=False):
     multiple: bool
 
@@ -385,15 +408,6 @@ class StatisticSelector(Selector[StatisticSelectorConfig]):
 class TargetSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
-
-class StateSelectorConfig(BaseSelectorConfig, total=False):
-    entity_id: Required[str]
-
-class StateSelector(Selector[StateSelectorConfig]):
-    selector_type: str
-    CONFIG_SCHEMA: Incomplete
-    def __init__(self, config: StateSelectorConfig) -> None: ...
-    def __call__(self, data: Any) -> str: ...
 
 class TargetSelector(Selector[TargetSelectorConfig]):
     selector_type: str
@@ -462,12 +476,3 @@ class TriggerSelector(Selector[TriggerSelectorConfig]):
     CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
     def __init__(self, config: TriggerSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
-
-class FileSelectorConfig(BaseSelectorConfig):
-    accept: str
-
-class FileSelector(Selector[FileSelectorConfig]):
-    selector_type: str
-    CONFIG_SCHEMA: Incomplete
-    def __init__(self, config: FileSelectorConfig) -> None: ...
-    def __call__(self, data: Any) -> str: ...

@@ -1,6 +1,7 @@
 import abc
 from ..const import DOMAIN as DOMAIN
 from .const import CONF_DATA as CONF_DATA
+from .migration import migrate_1_to_2 as migrate_1_to_2
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -25,6 +26,9 @@ class PlatformControllerBase(ABC, metaclass=abc.ABCMeta):
     async def create_entity(self, unique_id: str, config: dict[str, Any]) -> None: ...
     @abstractmethod
     async def update_entity(self, entity_entry: er.RegistryEntry, config: dict[str, Any]) -> None: ...
+
+class _KNXConfigStoreStorage(Store[KNXConfigStoreModel]):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class KNXConfigStore:
     hass: Incomplete

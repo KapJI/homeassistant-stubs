@@ -5,7 +5,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
+from homeassistant.helpers.target import TargetSelectorData as TargetSelectorData, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from typing import Any

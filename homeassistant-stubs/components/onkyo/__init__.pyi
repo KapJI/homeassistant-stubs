@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, InputSource as InputSource, ListeningMode as ListeningMode, OPTION_INPUT_SOURCES as OPTION_INPUT_SOURCES, OPTION_LISTENING_MODES as OPTION_LISTENING_MODES
-from .receiver import Receiver as Receiver, async_interview as async_interview
+from .receiver import ReceiverManager as ReceiverManager, async_interview as async_interview
 from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES, async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -15,7 +15,7 @@ CONFIG_SCHEMA: Incomplete
 
 @dataclass
 class OnkyoData:
-    receiver: Receiver
+    manager: ReceiverManager
     sources: dict[InputSource, str]
     sound_modes: dict[ListeningMode, str]
 type OnkyoConfigEntry = ConfigEntry[OnkyoData]
@@ -23,4 +23,3 @@ type OnkyoConfigEntry = ConfigEntry[OnkyoData]
 async def async_setup(hass: HomeAssistant, _: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: OnkyoConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: OnkyoConfigEntry) -> bool: ...
-async def update_listener(hass: HomeAssistant, entry: OnkyoConfigEntry) -> None: ...

@@ -2,7 +2,7 @@ import threading
 from _typeshed import Incomplete
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.util.loop import raise_for_blocking_call as raise_for_blocking_call
-from sqlalchemy.pool import ConnectionPoolEntry as ConnectionPoolEntry, NullPool, SingletonThreadPool, StaticPool
+from sqlalchemy.pool import ConnectionPoolEntry as ConnectionPoolEntry, NullPool, PoolProxiedConnection as PoolProxiedConnection, SingletonThreadPool, StaticPool
 from typing import Any
 
 _LOGGER: Incomplete
@@ -20,6 +20,7 @@ class RecorderPool(SingletonThreadPool, NullPool):
     def dispose(self) -> None: ...
     def _do_get(self) -> ConnectionPoolEntry: ...
     def _do_get_db_connection_protected(self) -> ConnectionPoolEntry: ...
+    def connect(self) -> PoolProxiedConnection: ...
 
 class MutexPool(StaticPool):
     _reference_counter: int

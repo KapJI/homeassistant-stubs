@@ -26,8 +26,8 @@ class MatterSelectEntityDescription(SelectEntityDescription, MatterEntityDescrip
 
 @dataclass(frozen=True, kw_only=True)
 class MatterMapSelectEntityDescription(MatterSelectEntityDescription):
-    measurement_to_ha: Callable[[int], str | None]
-    ha_to_native_value: Callable[[str], int | None]
+    device_to_ha: Callable[[int], str | None]
+    ha_to_device: Callable[[str], int | None]
     list_attribute: type[ClusterAttributeDescriptor]
 
 @dataclass(frozen=True, kw_only=True)

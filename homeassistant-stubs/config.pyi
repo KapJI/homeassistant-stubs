@@ -18,8 +18,6 @@ from enum import StrEnum
 from typing import Any
 
 _LOGGER: Incomplete
-RE_YAML_ERROR: Incomplete
-RE_ASCII: Incomplete
 YAML_CONFIG_FILE: str
 VERSION_FILE: str
 CONFIG_DIR_NAME: str

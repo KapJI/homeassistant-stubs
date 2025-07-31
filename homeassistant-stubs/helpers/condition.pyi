@@ -1,25 +1,43 @@
 import abc
 import logging
+from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from .template import Template as Template, render_complex as render_complex
 from .trace import TraceElement as TraceElement, trace_append_element as trace_append_element, trace_path as trace_path, trace_path_get as trace_path_get, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
-from collections.abc import Callable, Container, Generator
+from collections.abc import Callable, Container, Coroutine, Generator, Iterable
 from contextlib import contextmanager
 from datetime import time as dt_time, timedelta
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_STATE as CONF_STATE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, CONF_ZONE as CONF_ZONE, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_STATE as CONF_STATE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, ConditionErrorMessage as ConditionErrorMessage, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
-from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
+from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
+from homeassistant.util.hass_dict import HassKey as HassKey
+from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
+from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from typing import Any, Protocol
 
 ASYNC_FROM_CONFIG_FORMAT: str
 FROM_CONFIG_FORMAT: str
 VALIDATE_CONFIG_FORMAT: str
+_LOGGER: Incomplete
 _PLATFORM_ALIASES: dict[str | None, str | None]
 INPUT_ENTITY_ID: Incomplete
+CONDITION_DESCRIPTION_CACHE: HassKey[dict[str, dict[str, Any] | None]]
+CONDITION_PLATFORM_SUBSCRIPTIONS: HassKey[list[Callable[[set[str]], Coroutine[Any, Any, None]]]]
+CONDITIONS: HassKey[dict[str, str]]
+_FIELD_SCHEMA: Incomplete
+_CONDITION_SCHEMA: Incomplete
+
+def starts_with_dot(key: str) -> str: ...
+
+_CONDITIONS_SCHEMA: Incomplete
+
+async def async_setup(hass: HomeAssistant) -> None: ...
+@callback
+def async_subscribe_platform_events(hass: HomeAssistant, on_event: Callable[[set[str]], Coroutine[Any, Any, None]]) -> Callable[[], None]: ...
+async def _register_condition_platform(hass: HomeAssistant, integration_domain: str, platform: ConditionProtocol) -> None: ...
 
 class Condition(abc.ABC, metaclass=abc.ABCMeta):
     def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
@@ -54,8 +72,6 @@ def async_template(hass: HomeAssistant, value_template: Template, variables: Tem
 def async_template_from_config(config: ConfigType) -> ConditionCheckerType: ...
 def time(hass: HomeAssistant, before: dt_time | str | None = None, after: dt_time | str | None = None, weekday: str | Container[str] | None = None) -> bool: ...
 def time_from_config(config: ConfigType) -> ConditionCheckerType: ...
-def zone(hass: HomeAssistant, zone_ent: str | State | None, entity: str | State | None) -> bool: ...
-def zone_from_config(config: ConfigType) -> ConditionCheckerType: ...
 async def async_trigger_from_config(hass: HomeAssistant, config: ConfigType) -> ConditionCheckerType: ...
 def numeric_state_validate_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
 def state_validate_config(hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
@@ -66,3 +82,6 @@ async def async_conditions_from_config(hass: HomeAssistant, condition_configs: l
 def async_extract_entities(config: ConfigType | Template) -> set[str]: ...
 @callback
 def async_extract_devices(config: ConfigType | Template) -> set[str]: ...
+def _load_conditions_file(hass: HomeAssistant, integration: Integration) -> JSON_TYPE: ...
+def _load_conditions_files(hass: HomeAssistant, integrations: Iterable[Integration]) -> dict[str, JSON_TYPE]: ...
+async def async_get_all_descriptions(hass: HomeAssistant) -> dict[str, dict[str, Any] | None]: ...

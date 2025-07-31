@@ -10,6 +10,8 @@ URL: str
 API_TIMEOUT: Final[int]
 ATTR_C6H6: Final[str]
 ATTR_CO: Final[str]
+ATTR_NO: Final[str]
+ATTR_NOX: Final[str]
 ATTR_NO2: Final[str]
 ATTR_O3: Final[str]
 ATTR_PM10: Final[str]

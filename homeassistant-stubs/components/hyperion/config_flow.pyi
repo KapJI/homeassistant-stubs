@@ -3,7 +3,7 @@ from . import create_hyperion_client as create_hyperion_client
 from .const import CONF_AUTH_ID as CONF_AUTH_ID, CONF_CREATE_TOKEN as CONF_CREATE_TOKEN, CONF_EFFECT_HIDE_LIST as CONF_EFFECT_HIDE_LIST, CONF_EFFECT_SHOW_LIST as CONF_EFFECT_SHOW_LIST, CONF_PRIORITY as CONF_PRIORITY, DEFAULT_ORIGIN as DEFAULT_ORIGIN, DEFAULT_PRIORITY as DEFAULT_PRIORITY, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_BASE as CONF_BASE, CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_PORT as CONF_PORT, CONF_SOURCE as CONF_SOURCE, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import callback as callback
 from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_SERIAL as ATTR_UPNP_SERIAL, SsdpServiceInfo as SsdpServiceInfo
@@ -40,6 +40,6 @@ class HyperionConfigFlow(ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> HyperionOptionsFlow: ...
 
-class HyperionOptionsFlow(OptionsFlow):
+class HyperionOptionsFlow(OptionsFlowWithReload):
     def _create_client(self) -> client.HyperionClient: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

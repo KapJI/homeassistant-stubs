@@ -8,8 +8,10 @@ from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
 from typing import Any
 
+BRIGHTNESS_SCALE: Incomplete
 PARALLEL_UPDATES: int
 
 def add_lcn_entities(config_entry: LcnConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, entity_configs: Iterable[ConfigType]) -> None: ...
@@ -22,7 +24,6 @@ class LcnOutputLight(LcnEntity, LightEntity):
     output: Incomplete
     _transition: Incomplete
     dimmable: Incomplete
-    _is_dimming_to_zero: bool
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...

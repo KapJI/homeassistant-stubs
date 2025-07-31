@@ -12,6 +12,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DESCRIPTION as CONF_DESCRIPTION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import StateType as StateType
 from sucks import VacBot as VacBot
 from typing import Any
@@ -60,6 +61,18 @@ class EcovacsErrorSensor(EcovacsEntity[CapabilityEvent[ErrorEvent]], SensorEntit
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
     async def async_added_to_hass(self) -> None: ...
+
+class EcovacsLegacyBatterySensor(EcovacsLegacyEntity, SensorEntity):
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_device_class: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, device: VacBot) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    @property
+    def native_value(self) -> StateType: ...
+    @property
+    def icon(self) -> str | None: ...
 
 class EcovacsLegacyLifespanSensor(EcovacsLegacyEntity, SensorEntity):
     entity_description: EcovacsLegacyLifespanSensorEntityDescription

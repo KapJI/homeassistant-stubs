@@ -4,4 +4,8 @@ MODEL: str
 OHM: str
 DISCOVERY_SVC_UUID: str
 MAX_TEMP: int
+MAX_TEMP_F: int
 MIN_TEMP: int
+MIN_TEMP_F: int
+MIN_BOOST_TEMP: int
+MIN_BOOST_TEMP_F: int

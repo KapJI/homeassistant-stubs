@@ -14,8 +14,6 @@ ERROR_ACTIVITIES: Incomplete
 ERROR_STATES: Incomplete
 
 @callback
-def _check_error_free(mower_attributes: MowerAttributes) -> bool: ...
-@callback
 def _work_area_translation_key(work_area_id: int, key: str) -> str: ...
 type _FuncType[_T, **_P, _R] = Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]
 def handle_sending_exception[_Entity: AutomowerBaseEntity, **_P](poll_after_sending: bool = False) -> Callable[[_FuncType[_Entity, _P, Any]], _FuncType[_Entity, _P, None]]: ...
@@ -27,16 +25,14 @@ class AutomowerBaseEntity(CoordinatorEntity[AutomowerDataUpdateCoordinator]):
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator) -> None: ...
     @property
     def mower_attributes(self) -> MowerAttributes: ...
-
-class AutomowerAvailableEntity(AutomowerBaseEntity):
     @property
     def available(self) -> bool: ...
 
-class AutomowerControlEntity(AutomowerAvailableEntity):
+class AutomowerControlEntity(AutomowerBaseEntity):
     @property
     def available(self) -> bool: ...
 
-class WorkAreaAvailableEntity(AutomowerAvailableEntity):
+class WorkAreaAvailableEntity(AutomowerControlEntity):
     work_area_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, work_area_id: int) -> None: ...
     @property

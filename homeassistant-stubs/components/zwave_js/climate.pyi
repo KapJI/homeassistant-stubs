@@ -1,11 +1,11 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import DynamicCurrentTempClimateDataTemplate as DynamicCurrentTempClimateDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_value_of_zwave_value as get_value_of_zwave_value
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -22,7 +22,7 @@ ZW_HVAC_MODE_MAP: dict[int, HVACMode]
 HVAC_CURRENT_MAP: dict[int, HVACAction]
 ATTR_FAN_STATE: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     _attr_precision = PRECISION_TENTHS
@@ -38,7 +38,7 @@ class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
     _current_humidity: Incomplete
     _fan_mode: Incomplete
     _fan_state: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     def _setpoint_value_or_raise(self, setpoint_type: ThermostatSetpointType) -> ZwaveValue: ...
     def _setpoint_temperature(self, setpoint_type: ThermostatSetpointType) -> float | None: ...
     def _set_modes_and_presets(self) -> None: ...
@@ -85,6 +85,6 @@ class ZWaveClimate(ZWaveBaseEntity, ClimateEntity):
 
 class DynamicCurrentTempClimate(ZWaveClimate):
     data_template: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def current_temperature(self) -> float | None: ...

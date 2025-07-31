@@ -1,7 +1,7 @@
-from .const import CONF_HTTPS as CONF_HTTPS, DISCOVERY_INTERVAL as DISCOVERY_INTERVAL, DISCOVERY_TASK as DISCOVERY_TASK, DOMAIN as DOMAIN, KNOWN_PLAYERS as KNOWN_PLAYERS, KNOWN_SERVERS as KNOWN_SERVERS, MANUFACTURER as MANUFACTURER, SERVER_MODEL as SERVER_MODEL, SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED, SIGNAL_PLAYER_REDISCOVERED as SIGNAL_PLAYER_REDISCOVERED, STATUS_API_TIMEOUT as STATUS_API_TIMEOUT, STATUS_QUERY_LIBRARYNAME as STATUS_QUERY_LIBRARYNAME, STATUS_QUERY_MAC as STATUS_QUERY_MAC, STATUS_QUERY_UUID as STATUS_QUERY_UUID, STATUS_QUERY_VERSION as STATUS_QUERY_VERSION
+from .const import CONF_HTTPS as CONF_HTTPS, DISCOVERY_INTERVAL as DISCOVERY_INTERVAL, DISCOVERY_TASK as DISCOVERY_TASK, DOMAIN as DOMAIN, SERVER_MANUFACTURER as SERVER_MANUFACTURER, SERVER_MODEL as SERVER_MODEL, SERVER_MODEL_ID as SERVER_MODEL_ID, SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED, SIGNAL_PLAYER_REDISCOVERED as SIGNAL_PLAYER_REDISCOVERED, STATUS_API_TIMEOUT as STATUS_API_TIMEOUT, STATUS_QUERY_LIBRARYNAME as STATUS_QUERY_LIBRARYNAME, STATUS_QUERY_MAC as STATUS_QUERY_MAC, STATUS_QUERY_UUID as STATUS_QUERY_UUID, STATUS_QUERY_VERSION as STATUS_QUERY_VERSION
 from .coordinator import LMSStatusDataUpdateCoordinator as LMSStatusDataUpdateCoordinator, SqueezeBoxPlayerUpdateCoordinator as SqueezeBoxPlayerUpdateCoordinator
 from _typeshed import Incomplete
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -19,6 +19,7 @@ PLATFORMS: Incomplete
 class SqueezeboxData:
     coordinator: LMSStatusDataUpdateCoordinator
     server: Server
+    known_player_ids: set[str] = field(default_factory=set)
 type SqueezeboxConfigEntry = ConfigEntry[SqueezeboxData]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry) -> bool: ...

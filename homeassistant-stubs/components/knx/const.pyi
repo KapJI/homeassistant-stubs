@@ -1,4 +1,4 @@
-from . import KNXModule as KNXModule
+from .knx_module import KNXModule as KNXModule
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
 from enum import Enum, StrEnum

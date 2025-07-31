@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pydrawise import HydrawiseBase as HydrawiseBase, Zone as Zone
+from pydrawise import Controller as Controller, HydrawiseBase as HydrawiseBase, Zone as Zone
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)

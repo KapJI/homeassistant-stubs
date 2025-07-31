@@ -14,7 +14,6 @@ from enum import StrEnum
 from homeassistant.backup_restore import RESTORE_BACKUP_FILE as RESTORE_BACKUP_FILE, RESTORE_BACKUP_RESULT_FILE as RESTORE_BACKUP_RESULT_FILE, password_to_key as password_to_key
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import frame as frame, instance_id as instance_id, integration_platform as integration_platform, start as start
-from homeassistant.helpers.backup import DATA_BACKUP as DATA_BACKUP
 from homeassistant.helpers.json import json_bytes as json_bytes
 from pathlib import Path
 from typing import Any, Protocol, TypedDict
@@ -178,8 +177,8 @@ class BackupManager:
     remove_next_delete_event: Callable[[], None] | None
     last_event: ManagerStateEvent
     last_action_event: ManagerStateEvent | None
-    _backup_event_subscriptions: Incomplete
-    _backup_platform_event_subscriptions: Incomplete
+    _backup_event_subscriptions: list[Callable[[ManagerStateEvent], None]]
+    _backup_platform_event_subscriptions: list[Callable[[BackupPlatformEvent], None]]
     def __init__(self, hass: HomeAssistant, reader_writer: BackupReaderWriter) -> None: ...
     async def async_setup(self) -> None: ...
     @property
@@ -211,6 +210,10 @@ class BackupManager:
     async def _async_restore_backup(self, backup_id: str, *, agent_id: str, password: str | None, restore_addons: list[str] | None, restore_database: bool, restore_folders: list[Folder] | None, restore_homeassistant: bool) -> None: ...
     @callback
     def async_on_backup_event(self, event: ManagerStateEvent) -> None: ...
+    @callback
+    def async_subscribe_events(self, on_event: Callable[[ManagerStateEvent], None]) -> Callable[[], None]: ...
+    @callback
+    def async_subscribe_platform_events(self, on_event: Callable[[BackupPlatformEvent], None]) -> Callable[[], None]: ...
     def _create_automatic_backup_failed_issue(self, translation_key: str, translation_placeholders: dict[str, str] | None) -> None: ...
     def _update_issue_backup_failed(self) -> None: ...
     def _update_issue_after_agent_upload(self, written_backup: WrittenBackup, agent_errors: dict[str, Exception], unavailable_agents: list[str]) -> None: ...

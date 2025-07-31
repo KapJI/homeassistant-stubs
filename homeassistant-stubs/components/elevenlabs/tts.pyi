@@ -1,5 +1,5 @@
 from . import ElevenLabsConfigEntry as ElevenLabsConfigEntry
-from .const import ATTR_MODEL as ATTR_MODEL, CONF_OPTIMIZE_LATENCY as CONF_OPTIMIZE_LATENCY, CONF_SIMILARITY as CONF_SIMILARITY, CONF_STABILITY as CONF_STABILITY, CONF_STYLE as CONF_STYLE, CONF_USE_SPEAKER_BOOST as CONF_USE_SPEAKER_BOOST, CONF_VOICE as CONF_VOICE, DEFAULT_OPTIMIZE_LATENCY as DEFAULT_OPTIMIZE_LATENCY, DEFAULT_SIMILARITY as DEFAULT_SIMILARITY, DEFAULT_STABILITY as DEFAULT_STABILITY, DEFAULT_STYLE as DEFAULT_STYLE, DEFAULT_USE_SPEAKER_BOOST as DEFAULT_USE_SPEAKER_BOOST, DOMAIN as DOMAIN
+from .const import ATTR_MODEL as ATTR_MODEL, CONF_SIMILARITY as CONF_SIMILARITY, CONF_STABILITY as CONF_STABILITY, CONF_STYLE as CONF_STYLE, CONF_USE_SPEAKER_BOOST as CONF_USE_SPEAKER_BOOST, CONF_VOICE as CONF_VOICE, DEFAULT_SIMILARITY as DEFAULT_SIMILARITY, DEFAULT_STABILITY as DEFAULT_STABILITY, DEFAULT_STYLE as DEFAULT_STYLE, DEFAULT_USE_SPEAKER_BOOST as DEFAULT_USE_SPEAKER_BOOST, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from elevenlabs import AsyncElevenLabs as AsyncElevenLabs
@@ -26,12 +26,11 @@ class ElevenLabsTTSEntity(TextToSpeechEntity):
     _default_voice_id: Incomplete
     _voices: Incomplete
     _voice_settings: Incomplete
-    _latency: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_device_info: Incomplete
     _attr_supported_languages: Incomplete
     _attr_default_language: Incomplete
-    def __init__(self, client: AsyncElevenLabs, model: Model, voices: list[ElevenLabsVoice], default_voice_id: str, entry_id: str, title: str, voice_settings: VoiceSettings, latency: int = 0) -> None: ...
+    def __init__(self, client: AsyncElevenLabs, model: Model, voices: list[ElevenLabsVoice], default_voice_id: str, entry_id: str, title: str, voice_settings: VoiceSettings) -> None: ...
     def async_get_supported_voices(self, language: str) -> list[Voice]: ...
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...

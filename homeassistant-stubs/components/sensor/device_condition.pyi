@@ -10,6 +10,7 @@ from homeassistant.helpers.entity import get_capability as get_capability, get_d
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 DEVICE_CLASS_NONE: str
+CONF_IS_ABSOLUTE_HUMIDITY: str
 CONF_IS_APPARENT_POWER: str
 CONF_IS_AQI: str
 CONF_IS_AREA: str

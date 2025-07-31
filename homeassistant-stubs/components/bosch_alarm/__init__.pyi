@@ -1,5 +1,5 @@
 from .const import CONF_INSTALLER_CODE as CONF_INSTALLER_CODE, CONF_USER_CODE as CONF_USER_CODE, DOMAIN as DOMAIN
-from .services import setup_services as setup_services
+from .services import async_setup_services as async_setup_services
 from .types import BoschAlarmConfigEntry as BoschAlarmConfigEntry
 from _typeshed import Incomplete
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, Platform as Platform

@@ -1,4 +1,4 @@
-from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_C6H6 as ATTR_C6H6, ATTR_CO as ATTR_CO, ATTR_NO2 as ATTR_NO2, ATTR_O3 as ATTR_O3, ATTR_PM10 as ATTR_PM10, ATTR_PM25 as ATTR_PM25, ATTR_SO2 as ATTR_SO2, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, URL as URL
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_C6H6 as ATTR_C6H6, ATTR_CO as ATTR_CO, ATTR_NO as ATTR_NO, ATTR_NO2 as ATTR_NO2, ATTR_NOX as ATTR_NOX, ATTR_O3 as ATTR_O3, ATTR_PM10 as ATTR_PM10, ATTR_PM25 as ATTR_PM25, ATTR_SO2 as ATTR_SO2, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, URL as URL
 from .coordinator import GiosConfigEntry as GiosConfigEntry, GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

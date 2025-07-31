@@ -1,11 +1,10 @@
 from .const import CHARGER_DATA_KEY as CHARGER_DATA_KEY, CHARGER_ECO_SMART_KEY as CHARGER_ECO_SMART_KEY, CHARGER_FEATURES_KEY as CHARGER_FEATURES_KEY, CHARGER_PLAN_KEY as CHARGER_PLAN_KEY, CHARGER_POWER_BOOST_KEY as CHARGER_POWER_BOOST_KEY, CHARGER_SERIAL_NUMBER_KEY as CHARGER_SERIAL_NUMBER_KEY, DOMAIN as DOMAIN, EcoSmartMode as EcoSmartMode
-from .coordinator import WallboxCoordinator as WallboxCoordinator
+from .coordinator import WallboxConfigEntry as WallboxConfigEntry, WallboxCoordinator as WallboxCoordinator
 from .entity import WallboxEntity as WallboxEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -18,7 +17,9 @@ class WallboxSelectEntityDescription(SelectEntityDescription):
 
 SELECT_TYPES: dict[str, WallboxSelectEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WallboxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+PARALLEL_UPDATES: int
 
 class WallboxSelect(WallboxEntity, SelectEntity):
     entity_description: WallboxSelectEntityDescription

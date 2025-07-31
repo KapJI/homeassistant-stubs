@@ -13,6 +13,7 @@ async def get_extended_options_schema(handler: SchemaCommonFlowHandler) -> vol.S
 CONFIG_SCHEMA: Incomplete
 
 class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
+    MINOR_VERSION: int
     config_flow: Incomplete
     options_flow: Incomplete
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

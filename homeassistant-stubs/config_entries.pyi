@@ -481,6 +481,9 @@ class OptionsFlowWithConfigEntry(OptionsFlow):
     @property
     def options(self) -> dict[str, Any]: ...
 
+class OptionsFlowWithReload(OptionsFlow):
+    automatic_reload: bool
+
 class EntityRegistryDisabledHandler:
     hass: Incomplete
     registry: er.EntityRegistry | None

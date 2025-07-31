@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.backup import async_subscribe_events as async_subscribe_events, async_subscribe_platform_events as async_subscribe_platform_events
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 type BackupConfigEntry = ConfigEntry[BackupDataUpdateCoordinator]

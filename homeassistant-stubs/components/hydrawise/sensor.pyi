@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pydrawise.schema import ControllerWaterUseSummary as ControllerWaterUseSummary
+from pydrawise.schema import Controller as Controller, ControllerWaterUseSummary, Zone as Zone
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)

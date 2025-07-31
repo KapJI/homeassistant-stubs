@@ -1,10 +1,10 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.humidifier import DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityDescription as HumidifierEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -24,7 +24,7 @@ class ZwaveHumidifierEntityDescription(HumidifierEntityDescription):
 HUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 DEHUMIDIFIER_ENTITY_DESCRIPTION: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZWaveHumidifier(ZWaveBaseEntity, HumidifierEntity):
     entity_description: ZwaveHumidifierEntityDescription
@@ -32,7 +32,7 @@ class ZWaveHumidifier(ZWaveBaseEntity, HumidifierEntity):
     _setpoint: ZwaveValue | None
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: ZwaveHumidifierEntityDescription) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: ZwaveHumidifierEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
     def _supports_inverse_mode(self) -> bool: ...

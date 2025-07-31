@@ -1,14 +1,14 @@
-import dataclasses
-from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, floor_registry as floor_registry, label_registry as label_registry, template as template, translation as translation
+import logging
+from . import device_registry as device_registry, entity_registry as entity_registry, selector as selector, target as target_helpers, template as template, translation as translation
+from .deprecation import deprecated_class as deprecated_class, deprecated_function as deprecated_function
 from .entity import Entity as Entity
-from .group import expand_entity_ids as expand_entity_ids
 from .selector import TargetSelector as TargetSelector
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Iterable
 from functools import cache
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
-from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SELECTOR as CONF_SELECTOR, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
 from homeassistant.core import Context as Context, EntityServiceResponse as EntityServiceResponse, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotSupported as ServiceNotSupported, TemplateError as TemplateError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
@@ -17,7 +17,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from types import ModuleType
-from typing import Any, TypeGuard, TypedDict
+from typing import Any, TypedDict, override
 
 CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
@@ -44,28 +44,12 @@ class ServiceParams(TypedDict):
     service_data: dict[str, Any]
     target: dict | None
 
-class ServiceTargetSelector:
-    __slots__: Incomplete
-    entity_ids: Incomplete
-    device_ids: Incomplete
-    area_ids: Incomplete
-    floor_ids: Incomplete
-    label_ids: Incomplete
+class ServiceTargetSelector(target_helpers.TargetSelectorData):
     def __init__(self, service_call: ServiceCall) -> None: ...
-    @property
-    def has_any_selector(self) -> bool: ...
 
-@dataclasses.dataclass(slots=True)
-class SelectedEntities:
-    referenced: set[str] = dataclasses.field(default_factory=set)
-    indirectly_referenced: set[str] = dataclasses.field(default_factory=set)
-    missing_devices: set[str] = dataclasses.field(default_factory=set)
-    missing_areas: set[str] = dataclasses.field(default_factory=set)
-    missing_floors: set[str] = dataclasses.field(default_factory=set)
-    missing_labels: set[str] = dataclasses.field(default_factory=set)
-    referenced_devices: set[str] = dataclasses.field(default_factory=set)
-    referenced_areas: set[str] = dataclasses.field(default_factory=set)
-    def log_missing(self, missing_entities: set[str]) -> None: ...
+class SelectedEntities(target_helpers.SelectedEntities):
+    @override
+    def log_missing(self, missing_entities: set[str], logger: logging.Logger | None = None) -> None: ...
 
 @bind_hass
 def call_from_config(hass: HomeAssistant, config: ConfigType, blocking: bool = False, variables: TemplateVarsType = None, validate_config: bool = True) -> None: ...
@@ -80,7 +64,6 @@ def extract_entity_ids(hass: HomeAssistant, service_call: ServiceCall, expand_gr
 async def async_extract_entities[_EntityT: Entity](hass: HomeAssistant, entities: Iterable[_EntityT], service_call: ServiceCall, expand_group: bool = True) -> list[_EntityT]: ...
 @bind_hass
 async def async_extract_entity_ids(hass: HomeAssistant, service_call: ServiceCall, expand_group: bool = True) -> set[str]: ...
-def _has_match(ids: str | list[str] | None) -> TypeGuard[str | list[str]]: ...
 @bind_hass
 def async_extract_referenced_entity_ids(hass: HomeAssistant, service_call: ServiceCall, expand_group: bool = True) -> SelectedEntities: ...
 @bind_hass

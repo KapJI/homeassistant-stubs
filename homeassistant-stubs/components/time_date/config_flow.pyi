@@ -4,10 +4,9 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
+from homeassistant.helpers.entity_platform import PlatformData as PlatformData
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from typing import Any
 
 _LOGGER: Incomplete

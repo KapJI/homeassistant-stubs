@@ -1,0 +1,6 @@
+from amberelectric.models.price_descriptor import PriceDescriptor
+
+DESCRIPTOR_MAP: dict[str, str]
+
+def normalize_descriptor(descriptor: PriceDescriptor | None) -> str | None: ...
+def format_cents_to_dollars(cents: float) -> float: ...

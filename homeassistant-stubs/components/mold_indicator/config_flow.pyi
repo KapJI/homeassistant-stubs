@@ -22,6 +22,8 @@ OPTIONS_FLOW: Incomplete
 class MoldIndicatorConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
+    VERSION: int
+    MINOR_VERSION: int
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     @staticmethod
     async def async_setup_preview(hass: HomeAssistant) -> None: ...

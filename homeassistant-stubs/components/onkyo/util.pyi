@@ -1,0 +1,3 @@
+from .const import InputSource as InputSource, ListeningMode as ListeningMode
+
+def get_meaning(param: InputSource | ListeningMode) -> str: ...

@@ -1,13 +1,15 @@
 import abc
 import voluptuous as vol
+from . import selector as selector
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
+from .selector import TargetSelector as TargetSelector
 from .template import Template as Template
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections import defaultdict
 from collections.abc import Callable, Coroutine, Iterable
 from dataclasses import dataclass, field
-from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_PLATFORM as CONF_PLATFORM, CONF_VARIABLES as CONF_VARIABLES
+from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_VARIABLES as CONF_VARIABLES
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations

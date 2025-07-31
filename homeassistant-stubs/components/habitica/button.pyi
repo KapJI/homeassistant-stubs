@@ -1,13 +1,12 @@
 from .const import ASSETS_URL as ASSETS_URL, DOMAIN as DOMAIN
-from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaData as HabiticaData, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaData as HabiticaData
 from .entity import HabiticaBase as HabiticaBase
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
-from habiticalib import HabiticaClass
+from habiticalib import Habitica as Habitica, HabiticaClass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -15,7 +14,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(kw_only=True, frozen=True)
 class HabiticaButtonEntityDescription(ButtonEntityDescription):
-    press_fn: Callable[[HabiticaDataUpdateCoordinator], Any]
+    press_fn: Callable[[Habitica], Any]
     available_fn: Callable[[HabiticaData], bool]
     class_needed: HabiticaClass | None = ...
     entity_picture: str | None = ...

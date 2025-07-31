@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from here_routing import RoutingMode as RoutingMode
+from here_routing import RoutingMode as RoutingMode, TrafficMode as TrafficMode
 from typing import TypedDict
 
 class HERETravelTimeData(TypedDict):
@@ -21,3 +21,4 @@ class HERETravelTimeAPIParams:
     route_mode: RoutingMode
     arrival: datetime | None
     departure: datetime | None
+    traffic_mode: TrafficMode

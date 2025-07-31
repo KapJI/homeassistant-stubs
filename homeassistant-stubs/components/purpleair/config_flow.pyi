@@ -5,7 +5,7 @@ from aiopurpleair import API
 from aiopurpleair.endpoints.sensors import NearbySensorResult as NearbySensorResult
 from collections.abc import Mapping
 from dataclasses import dataclass, field
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
@@ -54,7 +54,7 @@ class PurpleAirConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class PurpleAirOptionsFlowHandler(OptionsFlow):
+class PurpleAirOptionsFlowHandler(OptionsFlowWithReload):
     _flow_data: dict[str, Any]
     def __init__(self) -> None: ...
     @property

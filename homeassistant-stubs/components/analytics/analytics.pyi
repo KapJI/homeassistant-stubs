@@ -16,6 +16,8 @@ from homeassistant.loader import Integration as Integration, IntegrationNotFound
 from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations
 from typing import Any
 
+def gen_uuid() -> str: ...
+
 @dataclass
 class AnalyticsData:
     onboarded: bool
@@ -47,3 +49,4 @@ class Analytics:
     def _async_should_report_integration(self, integration: Integration, yaml_domains: set[str], entity_registry_platforms: set[str]) -> bool: ...
 
 def _domains_from_yaml_config(yaml_configuration: dict[str, Any]) -> set[str]: ...
+async def async_devices_payload(hass: HomeAssistant) -> dict: ...

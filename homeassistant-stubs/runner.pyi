@@ -4,6 +4,7 @@ from . import bootstrap as bootstrap
 from .core import callback as callback
 from .helpers.frame import warn_use as warn_use
 from .util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
+from .util.resource import set_open_file_descriptor_limit as set_open_file_descriptor_limit
 from .util.thread import deadlock_safe_shutdown as deadlock_safe_shutdown
 from _typeshed import Incomplete
 from typing import Any

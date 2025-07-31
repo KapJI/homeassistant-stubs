@@ -1,9 +1,9 @@
-from .const import DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -17,7 +17,7 @@ MULTI_COLOR_MAP: Incomplete
 MIN_MIREDS: int
 MAX_MIREDS: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def byte_to_zwave_brightness(value: int) -> int: ...
 
 class ZwaveLight(ZWaveBaseEntity, LightEntity):
@@ -41,7 +41,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     supports_brightness_transition: Incomplete
     supports_color_transition: Incomplete
     _set_optimistic_state: bool
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @callback
     def on_value_update(self) -> None: ...
     @property
@@ -73,8 +73,18 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
 class ZwaveColorOnOffLight(ZwaveLight):
     _last_on_color: dict[ColorComponent, int] | None
     _last_brightness: int | None
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def brightness(self) -> int | None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class ZWA2LEDColorLight(ZwaveColorOnOffLight):
+    _attr_has_entity_name: bool
+    _attr_name: str
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+
+class ZWA2LEDOnOffLight(ZwaveLight):
+    _attr_has_entity_name: bool
+    _attr_name: str
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...

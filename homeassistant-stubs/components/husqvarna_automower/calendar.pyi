@@ -1,4 +1,5 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
+from .const import DOMAIN as DOMAIN
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerBaseEntity as AutomowerBaseEntity
 from _typeshed import Incomplete
@@ -17,6 +18,8 @@ class AutomowerCalendarEntity(AutomowerBaseEntity, CalendarEntity):
     _attr_unique_id: Incomplete
     _event: CalendarEvent | None
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator) -> None: ...
+    @property
+    def device_name(self) -> str: ...
     @property
     def event(self) -> CalendarEvent | None: ...
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...

@@ -8,7 +8,7 @@ from homeassistant.components.sensor import DEVICE_CLASS_STATE_CLASSES as DEVICE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
-from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
+from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_state_change_event as async_track_state_change_event, async_track_state_report_event as async_track_state_report_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
@@ -119,7 +119,7 @@ class StatisticsSensor(SensorEntity):
     _attr_name: str
     _attr_unique_id: str | None
     _source_entity_id: str
-    _attr_device_info: Incomplete
+    device_entry: Incomplete
     is_binary: bool
     _state_characteristic: str
     _samples_max_buffer_size: int | None
@@ -134,16 +134,16 @@ class StatisticsSensor(SensorEntity):
     _state_characteristic_fn: Callable[[deque[bool | float], deque[float], int], float | int | datetime | None]
     _update_listener: CALLBACK_TYPE | None
     _preview_callback: Callable[[str, Mapping[str, Any]], None] | None
-    def __init__(self, hass: HomeAssistant, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, samples_keep_last: bool, precision: int, percentile: int) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, samples_keep_last: bool, precision: int, percentile: int) -> None: ...
     async def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
-    def _async_handle_new_state(self, reported_state: State | None) -> None: ...
+    def _async_handle_new_state(self, reported_state: State, timestamp: float) -> None: ...
     @callback
     def _async_stats_sensor_state_change_listener(self, event: Event[EventStateChangedData]) -> None: ...
     @callback
     def _async_stats_sensor_state_report_listener(self, event: Event[EventStateReportedData]) -> None: ...
     async def _async_stats_sensor_startup(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...
-    def _add_state_to_queue(self, new_state: State) -> None: ...
+    def _add_state_to_queue(self, new_state: State, last_reported_timestamp: float) -> None: ...
     _attr_native_unit_of_measurement: Incomplete
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete

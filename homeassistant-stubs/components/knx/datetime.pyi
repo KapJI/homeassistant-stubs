@@ -1,6 +1,6 @@
-from . import KNXModule as KNXModule
 from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxYamlEntity as KnxYamlEntity
+from .knx_module import KNXModule as KNXModule
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant import config_entries as config_entries

@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from pydrawise import Zone as Zone
+from pydrawise import Controller as Controller, Zone as Zone
 
 @dataclass(frozen=True, kw_only=True)
 class HydrawiseBinarySensorEntityDescription(BinarySensorEntityDescription):

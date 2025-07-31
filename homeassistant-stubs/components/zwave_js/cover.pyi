@@ -1,10 +1,10 @@
-from .const import COVER_POSITION_PROPERTY_KEYS as COVER_POSITION_PROPERTY_KEYS, COVER_TILT_PROPERTY_KEYS as COVER_TILT_PROPERTY_KEYS, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from .const import COVER_POSITION_PROPERTY_KEYS as COVER_POSITION_PROPERTY_KEYS, COVER_TILT_PROPERTY_KEYS as COVER_TILT_PROPERTY_KEYS, DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from .discovery_data_template import CoverTiltDataTemplate as CoverTiltDataTemplate
 from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -14,7 +14,7 @@ from zwave_js_server.model.value import Value as ZwaveValue
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class CoverPositionMixin(ZWaveBaseEntity, CoverEntity):
     _current_position_value: ZwaveValue | None
@@ -62,17 +62,17 @@ class CoverTiltMixin(ZWaveBaseEntity, CoverEntity):
 
 class ZWaveMultilevelSwitchCover(CoverPositionMixin):
     _attr_device_class: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
 
 class ZWaveTiltCover(ZWaveMultilevelSwitchCover, CoverTiltMixin):
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
 
 class ZWaveWindowCovering(CoverPositionMixin, CoverTiltMixin):
     _up_value: Incomplete
     _down_value: Incomplete
     _attr_name: Incomplete
     _attr_device_class: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def _fully_open_tilt(self) -> int: ...
     @property
@@ -87,7 +87,7 @@ class ZwaveMotorizedBarrier(ZWaveBaseEntity, CoverEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     _target_state: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
     def is_opening(self) -> bool | None: ...
     @property

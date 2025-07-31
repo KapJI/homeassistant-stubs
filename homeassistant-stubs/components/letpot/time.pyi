@@ -17,7 +17,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class LetPotTimeEntityDescription(TimeEntityDescription):
     value_fn: Callable[[LetPotDeviceStatus], time | None]
-    set_value_fn: Callable[[LetPotDeviceClient, time], Coroutine[Any, Any, None]]
+    set_value_fn: Callable[[LetPotDeviceClient, str, time], Coroutine[Any, Any, None]]
 
 TIME_SENSORS: tuple[LetPotTimeEntityDescription, ...]
 

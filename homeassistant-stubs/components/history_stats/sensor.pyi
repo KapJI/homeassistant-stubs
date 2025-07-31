@@ -6,11 +6,12 @@ from .data import HistoryStats as HistoryStats
 from .helpers import pretty_ratio as pretty_ratio
 from _typeshed import Incomplete
 from abc import abstractmethod
+from collections.abc import Callable as Callable, Mapping
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
-from homeassistant.helpers.device import async_device_info_to_link_from_entity as async_device_info_to_link_from_entity
+from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.template import Template as Template
@@ -40,13 +41,15 @@ class HistoryStatsSensorBase(CoordinatorEntity[HistoryStatsUpdateCoordinator], S
 
 class HistoryStatsSensor(HistoryStatsSensorBase):
     _attr_state_class: Incomplete
+    _preview_callback: Callable[[Exception | None, str, Mapping[str, Any]], None] | None
     _attr_native_unit_of_measurement: Incomplete
     _type: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
+    device_entry: Incomplete
     _attr_device_class: Incomplete
     _attr_suggested_display_precision: int
-    def __init__(self, hass: HomeAssistant, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, source_entity_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, source_entity_id: str) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def _process_update(self) -> None: ...
+    async def async_start_preview(self, preview_callback: Callable[[Exception | None, str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...

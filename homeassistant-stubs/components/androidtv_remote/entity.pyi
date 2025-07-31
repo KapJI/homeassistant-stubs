@@ -1,7 +1,7 @@
 from .const import CONF_APPS as CONF_APPS, DOMAIN as DOMAIN
+from .helpers import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
 from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -20,7 +20,7 @@ class AndroidTVRemoteBaseEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, api: AndroidTVRemote, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, api: AndroidTVRemote, config_entry: AndroidTVRemoteConfigEntry) -> None: ...
     _attr_available: Incomplete
     @callback
     def _is_available_updated(self, is_available: bool) -> None: ...

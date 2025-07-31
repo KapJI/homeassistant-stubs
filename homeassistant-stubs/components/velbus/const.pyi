@@ -4,7 +4,6 @@ from typing import Final
 
 DOMAIN: Final[str]
 CONF_CONFIG_ENTRY: Final[str]
-CONF_INTERFACE: Final[str]
 CONF_MEMO_TEXT: Final[str]
 CONF_TLS: Final[str]
 SERVICE_SCAN: Final[str]

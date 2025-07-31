@@ -1,7 +1,8 @@
-from . import KNXModule as KNXModule
 from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_PASSIVE as CONF_GA_PASSIVE, CONF_GA_SENSOR as CONF_GA_SENSOR, CONF_GA_STATE as CONF_GA_STATE
+from .knx_module import KNXModule as KNXModule
+from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SENSOR as CONF_GA_SENSOR
+from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity

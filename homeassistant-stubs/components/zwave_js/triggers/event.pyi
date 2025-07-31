@@ -1,4 +1,4 @@
-from ..const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, ATTR_EVENT as ATTR_EVENT, ATTR_EVENT_DATA as ATTR_EVENT_DATA, ATTR_EVENT_SOURCE as ATTR_EVENT_SOURCE, ATTR_NODE_ID as ATTR_NODE_ID, ATTR_PARTIAL_DICT_MATCH as ATTR_PARTIAL_DICT_MATCH, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN
+from ..const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, ATTR_EVENT as ATTR_EVENT, ATTR_EVENT_DATA as ATTR_EVENT_DATA, ATTR_EVENT_SOURCE as ATTR_EVENT_SOURCE, ATTR_NODE_ID as ATTR_NODE_ID, ATTR_PARTIAL_DICT_MATCH as ATTR_PARTIAL_DICT_MATCH, DOMAIN as DOMAIN
 from ..helpers import async_get_nodes_from_targets as async_get_nodes_from_targets, get_device_id as get_device_id, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry
 from .trigger_helpers import async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation
 from _typeshed import Incomplete
@@ -8,7 +8,6 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from zwave_js_server.client import Client as Client
 from zwave_js_server.model.driver import Driver as Driver
 
 PLATFORM_TYPE: Incomplete

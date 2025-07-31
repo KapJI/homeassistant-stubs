@@ -8,6 +8,7 @@ from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEnti
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -32,6 +33,7 @@ class MatterVacuum(MatterEntity, StateVacuumEntity):
     _supported_run_modes: dict[int, clusters.RvcRunMode.Structs.ModeOptionStruct] | None
     entity_description: StateVacuumEntityDescription
     _platform_translation_key: str
+    def _get_run_mode_by_tag(self, tag: ModeTag) -> clusters.RvcRunMode.Structs.ModeOptionStruct | None: ...
     async def async_stop(self, **kwargs: Any) -> None: ...
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
     async def async_locate(self, **kwargs: Any) -> None: ...

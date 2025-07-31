@@ -1,6 +1,5 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
@@ -8,6 +7,5 @@ from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 
 async def async_setup_entry(hass: HomeAssistant, entry: EnphaseConfigEntry) -> bool: ...
-async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: EnphaseConfigEntry) -> bool: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: EnphaseConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...

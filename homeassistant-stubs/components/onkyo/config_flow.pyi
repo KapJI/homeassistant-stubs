@@ -1,7 +1,10 @@
+from . import OnkyoConfigEntry as OnkyoConfigEntry
 from .const import DOMAIN as DOMAIN, InputSource as InputSource, ListeningMode as ListeningMode, OPTION_INPUT_SOURCES as OPTION_INPUT_SOURCES, OPTION_LISTENING_MODES as OPTION_LISTENING_MODES, OPTION_MAX_VOLUME as OPTION_MAX_VOLUME, OPTION_MAX_VOLUME_DEFAULT as OPTION_MAX_VOLUME_DEFAULT, OPTION_VOLUME_RESOLUTION as OPTION_VOLUME_RESOLUTION, OPTION_VOLUME_RESOLUTION_DEFAULT as OPTION_VOLUME_RESOLUTION_DEFAULT, VOLUME_RESOLUTION_ALLOWED as VOLUME_RESOLUTION_ALLOWED
-from .receiver import ReceiverInfo as ReceiverInfo, async_discover as async_discover, async_interview as async_interview
+from .receiver import async_discover as async_discover, async_interview as async_interview
+from .util import get_meaning as get_meaning
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
+from aioonkyo import ReceiverInfo as ReceiverInfo
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import section as section
@@ -11,8 +14,8 @@ from typing import Any
 
 _LOGGER: Incomplete
 CONF_DEVICE: str
-INPUT_SOURCES_DEFAULT: dict[str, str]
-LISTENING_MODES_DEFAULT: dict[str, str]
+INPUT_SOURCES_DEFAULT: list[InputSource]
+LISTENING_MODES_DEFAULT: list[ListeningMode]
 INPUT_SOURCES_ALL_MEANINGS: Incomplete
 LISTENING_MODES_ALL_MEANINGS: Incomplete
 STEP_MANUAL_SCHEMA: Incomplete
@@ -30,11 +33,11 @@ class OnkyoConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
+    def async_get_options_flow(config_entry: OnkyoConfigEntry) -> OptionsFlowWithReload: ...
 
 OPTIONS_STEP_INIT_SCHEMA: Incomplete
 
-class OnkyoOptionsFlowHandler(OptionsFlow):
+class OnkyoOptionsFlowHandler(OptionsFlowWithReload):
     _data: dict[str, Any]
     _input_sources: dict[InputSource, str]
     _listening_modes: dict[ListeningMode, str]

@@ -2,7 +2,7 @@ import asyncio
 from .const import DOMAIN as DOMAIN
 from .dashboard import async_get_dashboard as async_get_dashboard
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo as EntityInfo, EntityState as EntityState, MediaPlayerSupportedFormat as MediaPlayerSupportedFormat, UserService
+from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo, EntityState, MediaPlayerSupportedFormat as MediaPlayerSupportedFormat, UserService
 from bleak_esphome.backend.device import ESPHomeBluetoothDevice as ESPHomeBluetoothDevice
 from collections import defaultdict
 from collections.abc import Callable as Callable, Iterable
@@ -15,6 +15,9 @@ from homeassistant.helpers.storage import Store as Store
 from typing import Any, Final, TypedDict
 
 type ESPHomeConfigEntry = ConfigEntry[RuntimeEntryData]
+type EntityStateKey = tuple[type[EntityState], int, int]
+type EntityInfoKey = tuple[type[EntityInfo], int, int]
+type DeviceEntityKey = tuple[int, int]
 INFO_TO_COMPONENT_TYPE: Final[Incomplete]
 _SENTINEL: Incomplete
 SAVE_DELAY: int
@@ -37,8 +40,8 @@ class RuntimeEntryData:
     client: APIClient
     store: ESPHomeStorage
     state: defaultdict[type[EntityState], dict[int, EntityState]] = field(default_factory=Incomplete)
-    stale_state: set[tuple[type[EntityState], int]] = field(default_factory=set)
-    info: dict[type[EntityInfo], dict[int, EntityInfo]] = field(default_factory=dict)
+    stale_state: set[EntityStateKey] = field(default_factory=set)
+    info: dict[type[EntityInfo], dict[DeviceEntityKey, EntityInfo]] = field(default_factory=dict)
     services: dict[int, UserService] = field(default_factory=dict)
     available: bool = ...
     expected_disconnect: bool = ...
@@ -47,7 +50,7 @@ class RuntimeEntryData:
     api_version: APIVersion = field(default_factory=APIVersion)
     cleanup_callbacks: list[CALLBACK_TYPE] = field(default_factory=list)
     disconnect_callbacks: set[CALLBACK_TYPE] = field(default_factory=set)
-    state_subscriptions: dict[tuple[type[EntityState], int], CALLBACK_TYPE] = field(default_factory=dict)
+    state_subscriptions: dict[EntityStateKey, CALLBACK_TYPE] = field(default_factory=dict)
     device_update_subscriptions: set[CALLBACK_TYPE] = field(default_factory=set)
     static_info_update_subscriptions: set[Callable[[list[EntityInfo]], None]] = field(default_factory=set)
     loaded_platforms: set[Platform] = field(default_factory=set)
@@ -57,12 +60,13 @@ class RuntimeEntryData:
     assist_pipeline_update_callbacks: list[CALLBACK_TYPE] = field(default_factory=list)
     assist_pipeline_state: bool = ...
     entity_info_callbacks: dict[type[EntityInfo], list[Callable[[list[EntityInfo]], None]]] = field(default_factory=dict)
-    entity_info_key_updated_callbacks: dict[tuple[type[EntityInfo], int], list[Callable[[EntityInfo], None]]] = field(default_factory=dict)
+    entity_info_key_updated_callbacks: dict[EntityInfoKey, list[Callable[[EntityInfo], None]]] = field(default_factory=dict)
     original_options: dict[str, Any] = field(default_factory=dict)
     media_player_formats: dict[str, list[MediaPlayerSupportedFormat]] = field(default_factory=Incomplete)
     assist_satellite_config_update_callbacks: list[Callable[[AssistSatelliteConfiguration], None]] = field(default_factory=list)
     assist_satellite_set_wake_word_callbacks: list[Callable[[str], None]] = field(default_factory=list)
     device_id_to_name: dict[int, str] = field(default_factory=dict)
+    entity_removal_callbacks: dict[EntityInfoKey, list[CALLBACK_TYPE]] = field(default_factory=dict)
     @property
     def name(self) -> str: ...
     @property
@@ -86,7 +90,7 @@ class RuntimeEntryData:
     @callback
     def async_subscribe_static_info_updated(self, callback_: Callable[[list[EntityInfo]], None]) -> CALLBACK_TYPE: ...
     @callback
-    def async_subscribe_state_update(self, state_type: type[EntityState], state_key: int, entity_callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
+    def async_subscribe_state_update(self, device_id: int, state_type: type[EntityState], state_key: int, entity_callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
     @callback
     def async_update_state(self, state: EntityState) -> None: ...
     @callback
@@ -107,3 +111,7 @@ class RuntimeEntryData:
     def async_register_assist_satellite_set_wake_word_callback(self, callback_: Callable[[str], None]) -> CALLBACK_TYPE: ...
     @callback
     def async_assist_satellite_set_wake_word(self, wake_word_id: str) -> None: ...
+    @callback
+    def async_register_entity_removal_callback(self, info_type: type[EntityInfo], device_id: int, key: int, callback_: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
+    @callback
+    def async_signal_entity_removal(self, info_type: type[EntityInfo], device_id: int, key: int) -> None: ...

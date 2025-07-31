@@ -1,12 +1,13 @@
-from .const import ACTUATOR as ACTUATOR, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, FOOT_WARMING_TIMER as FOOT_WARMING_TIMER, ICON_OCCUPIED as ICON_OCCUPIED
+from .const import ACTUATOR as ACTUATOR, CORE_CLIMATE_TIMER as CORE_CLIMATE_TIMER, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, FOOT_WARMING_TIMER as FOOT_WARMING_TIMER, ICON_OCCUPIED as ICON_OCCUPIED
 from .coordinator import SleepIQData as SleepIQData, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator
 from .entity import SleepIQBedEntity as SleepIQBedEntity, sleeper_for_side as sleeper_for_side
 from _typeshed import Incomplete
-from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQFootWarmer as SleepIQFootWarmer, SleepIQSleeper as SleepIQSleeper
+from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQCoreClimate, SleepIQFootWarmer as SleepIQFootWarmer, SleepIQSleeper as SleepIQSleeper
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
-from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
+from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
@@ -27,6 +28,9 @@ def _get_sleeper_unique_id(bed: SleepIQBed, sleeper: SleepIQSleeper) -> str: ...
 async def _async_set_foot_warmer_time(foot_warmer: SleepIQFootWarmer, time: int) -> None: ...
 def _get_foot_warming_name(bed: SleepIQBed, foot_warmer: SleepIQFootWarmer) -> str: ...
 def _get_foot_warming_unique_id(bed: SleepIQBed, foot_warmer: SleepIQFootWarmer) -> str: ...
+async def _async_set_core_climate_time(core_climate: SleepIQCoreClimate, time: int) -> None: ...
+def _get_core_climate_name(bed: SleepIQBed, core_climate: SleepIQCoreClimate) -> str: ...
+def _get_core_climate_unique_id(bed: SleepIQBed, core_climate: SleepIQCoreClimate) -> str: ...
 
 NUMBER_DESCRIPTIONS: dict[str, SleepIQNumberEntityDescription]
 

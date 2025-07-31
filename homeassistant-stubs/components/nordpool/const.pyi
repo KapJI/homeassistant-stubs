@@ -7,3 +7,4 @@ DOMAIN: str
 PLATFORMS: Incomplete
 DEFAULT_NAME: str
 CONF_AREAS: str
+ATTR_RESOLUTION: str

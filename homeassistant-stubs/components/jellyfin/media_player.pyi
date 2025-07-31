@@ -1,14 +1,16 @@
-from .browse_media import build_item_response as build_item_response, build_root_response as build_root_response
+from .browse_media import build_item_response as build_item_response, build_root_response as build_root_response, search_items as search_items
 from .client_wrapper import get_artwork_url as get_artwork_url
 from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, LOGGER as LOGGER, MAX_IMAGE_WIDTH as MAX_IMAGE_WIDTH
 from .coordinator import JellyfinConfigEntry as JellyfinConfigEntry, JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoordinator
 from .entity import JellyfinClientEntity as JellyfinClientEntity
 from _typeshed import Incomplete
-from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
+from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from typing import Any
+
+_LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: JellyfinConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -51,3 +53,4 @@ class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
     def set_volume_level(self, volume: float) -> None: ...
     def mute_volume(self, mute: bool) -> None: ...
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
+    async def async_search_media(self, query: SearchMediaQuery) -> SearchMedia: ...

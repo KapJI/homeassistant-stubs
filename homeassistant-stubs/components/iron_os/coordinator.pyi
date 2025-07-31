@@ -9,7 +9,7 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pynecil import CharSetting as CharSetting, DeviceInfoResponse, IronOSUpdate as IronOSUpdate, LatestRelease, LiveDataResponse, Pynecil as Pynecil, SettingsDataResponse
+from pynecil import CharSetting, DeviceInfoResponse, IronOSUpdate as IronOSUpdate, LatestRelease, LiveDataResponse, Pynecil as Pynecil, SettingsDataResponse
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete

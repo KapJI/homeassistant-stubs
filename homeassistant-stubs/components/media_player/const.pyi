@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, EnumWithDeprecatedMembers as EnumWithDeprecatedMembers, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 
 CONTENT_AUTH_EXPIRY_TIME: Incomplete
 ATTR_APP_ID: str
@@ -38,7 +38,7 @@ ATTR_SOUND_MODE: str
 ATTR_SOUND_MODE_LIST: str
 DOMAIN: str
 
-class MediaPlayerState(StrEnum):
+class MediaPlayerState(StrEnum, deprecated={'STANDBY': ('MediaPlayerState.OFF or MediaPlayerState.IDLE', '2026.8.0')}, metaclass=EnumWithDeprecatedMembers):
     OFF = 'off'
     ON = 'on'
     IDLE = 'idle'

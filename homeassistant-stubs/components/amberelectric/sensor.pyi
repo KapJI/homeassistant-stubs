@@ -1,5 +1,6 @@
 from .const import ATTRIBUTION as ATTRIBUTION
-from .coordinator import AmberConfigEntry as AmberConfigEntry, AmberUpdateCoordinator as AmberUpdateCoordinator, normalize_descriptor as normalize_descriptor
+from .coordinator import AmberConfigEntry as AmberConfigEntry, AmberUpdateCoordinator as AmberUpdateCoordinator
+from .helpers import format_cents_to_dollars as format_cents_to_dollars, normalize_descriptor as normalize_descriptor
 from _typeshed import Incomplete
 from amberelectric.models.current_interval import CurrentInterval as CurrentInterval
 from amberelectric.models.forecast_interval import ForecastInterval as ForecastInterval
@@ -12,7 +13,6 @@ from typing import Any
 
 UNIT: Incomplete
 
-def format_cents_to_dollars(cents: float) -> float: ...
 def friendly_channel_type(channel_type: str) -> str: ...
 
 class AmberSensor(CoordinatorEntity[AmberUpdateCoordinator], SensorEntity):

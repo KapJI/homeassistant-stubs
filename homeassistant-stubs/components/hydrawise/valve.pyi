@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pydrawise.schema import Zone as Zone
+from pydrawise.schema import Controller as Controller, Zone as Zone
 from typing import Any
 
 VALVE_TYPES: tuple[ValveEntityDescription, ...]

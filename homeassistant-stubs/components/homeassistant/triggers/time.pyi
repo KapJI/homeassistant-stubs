@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import sensor as sensor
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_AT as CONF_AT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_AT as CONF_AT, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HassJob as HassJob, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import template as template
@@ -10,6 +10,7 @@ from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, NamedTuple
 
+CONF_WEEKDAY: str
 _TIME_TRIGGER_ENTITY: Incomplete
 _TIME_AT_SCHEMA: Incomplete
 _TIME_TRIGGER_ENTITY_WITH_OFFSET: Incomplete

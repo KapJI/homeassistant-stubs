@@ -4,7 +4,7 @@ from .const import CONF_PHONEBOOK as CONF_PHONEBOOK, CONF_PREFIXES as CONF_PREFI
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import StrEnum
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from typing import Any
@@ -45,7 +45,7 @@ class FritzBoxCallMonitorConfigFlow(ConfigFlow, domain=DOMAIN):
     def _show_setup_form_reauth_confirm(self, user_input: dict[str, Any], errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class FritzBoxCallMonitorOptionsFlowHandler(OptionsFlow):
+class FritzBoxCallMonitorOptionsFlowHandler(OptionsFlowWithReload):
     @classmethod
     def _are_prefixes_valid(cls, prefixes: str | None) -> bool: ...
     @classmethod

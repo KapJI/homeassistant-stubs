@@ -1,4 +1,4 @@
-from . import BackupManager as BackupManager, Folder as Folder, IncorrectPasswordError as IncorrectPasswordError, http as backup_http
+from . import BackupManager as BackupManager, Folder as Folder, IncorrectPasswordError as IncorrectPasswordError, async_get_manager as async_get_manager, http as backup_http
 from aiohttp import web
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.http import KEY_HASS as KEY_HASS

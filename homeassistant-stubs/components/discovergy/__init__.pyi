@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import DiscovergyConfigEntry as DiscovergyConfigEntry, DiscovergyUpdateCoordinator as DiscovergyUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD, Platform as Platform

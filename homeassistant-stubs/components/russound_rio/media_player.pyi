@@ -1,17 +1,21 @@
 import datetime as dt
 from . import RussoundConfigEntry as RussoundConfigEntry
+from .const import DOMAIN as DOMAIN, RUSSOUND_MEDIA_TYPE_PRESET as RUSSOUND_MEDIA_TYPE_PRESET, SELECT_SOURCE_DELAY as SELECT_SOURCE_DELAY
 from .entity import RussoundBaseEntity as RussoundBaseEntity, command as command
 from _typeshed import Incomplete
 from aiorussound import Controller as Controller
 from aiorussound.models import Source as Source
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import Any
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: RussoundConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+def _parse_preset_source_id(media_id: str) -> tuple[int | None, int]: ...
 
 class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
@@ -63,3 +67,5 @@ class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
     async def async_mute_volume(self, mute: bool) -> None: ...
     @command
     async def async_media_seek(self, position: float) -> None: ...
+    @command
+    async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...

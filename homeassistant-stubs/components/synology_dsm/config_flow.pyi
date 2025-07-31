@@ -3,7 +3,7 @@ from .const import CONF_BACKUP_PATH as CONF_BACKUP_PATH, CONF_BACKUP_SHARE as CO
 from .coordinator import SynologyDSMConfigEntry as SynologyDSMConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_DISKS as CONF_DISKS, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -51,7 +51,7 @@ class SynologyDSMFlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_backup_share(self, user_input: dict[str, Any], errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     def _async_get_existing_entry(self, discovered_mac: str) -> ConfigEntry | None: ...
 
-class SynologyDSMOptionsFlowHandler(OptionsFlow):
+class SynologyDSMOptionsFlowHandler(OptionsFlowWithReload):
     config_entry: SynologyDSMConfigEntry
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

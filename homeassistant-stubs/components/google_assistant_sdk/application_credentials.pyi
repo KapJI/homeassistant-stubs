@@ -1,5 +1,6 @@
 from homeassistant.components.application_credentials import AuthorizationServer as AuthorizationServer
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.config_entry_oauth2_flow import AUTH_CALLBACK_PATH as AUTH_CALLBACK_PATH, MY_AUTH_CALLBACK_PATH as MY_AUTH_CALLBACK_PATH
 
 async def async_get_authorization_server(hass: HomeAssistant) -> AuthorizationServer: ...
 async def async_get_description_placeholders(hass: HomeAssistant) -> dict[str, str]: ...

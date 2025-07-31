@@ -1,6 +1,6 @@
 from .const import CONF_LOCALE as CONF_LOCALE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .renault_hub import RenaultHub as RenaultHub
-from .services import setup_services as setup_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME

@@ -1,14 +1,16 @@
-from .const import DOMAIN as DOMAIN, URI_SCHEME as URI_SCHEME, URI_SCHEME_REGEX as URI_SCHEME_REGEX
+from .const import MEDIA_SOURCE_DATA as MEDIA_SOURCE_DATA, URI_SCHEME as URI_SCHEME, URI_SCHEME_REGEX as URI_SCHEME_REGEX
 from _typeshed import Incomplete
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from pathlib import Path
 from typing import Any
 
 @dataclass(slots=True)
 class PlayMedia:
     url: str
     mime_type: str
+    path: Path | None = field(kw_only=True, default=None)
 
 class BrowseMediaSource(BrowseMedia):
     domain: Incomplete
@@ -21,6 +23,8 @@ class MediaSourceItem:
     domain: str | None
     identifier: str
     target_media_player: str | None
+    @property
+    def media_source_id(self) -> str: ...
     async def async_browse(self) -> BrowseMediaSource: ...
     async def async_resolve(self) -> PlayMedia: ...
     @callback

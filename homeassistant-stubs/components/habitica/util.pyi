@@ -2,10 +2,11 @@ import datetime
 from _typeshed import Incomplete
 from dateutil.rrule import rrule
 from habiticalib import ContentData as ContentData, TaskData as TaskData, UserData as UserData
+from typing import Literal
 
 def next_due_date(task: TaskData, today: datetime.datetime) -> datetime.date | None: ...
 
-FREQUENCY_MAP: Incomplete
+FREQUENCY_MAP: dict[str, Literal[0, 1, 2, 3]]
 WEEKDAY_MAP: Incomplete
 
 def build_rrule(task: TaskData) -> rrule: ...

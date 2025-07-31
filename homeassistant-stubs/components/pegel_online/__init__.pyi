@@ -1,4 +1,4 @@
-from .const import CONF_STATION as CONF_STATION
+from .const import CONF_STATION as CONF_STATION, DOMAIN as DOMAIN
 from .coordinator import PegelOnlineConfigEntry as PegelOnlineConfigEntry, PegelOnlineDataUpdateCoordinator as PegelOnlineDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform

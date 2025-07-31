@@ -28,10 +28,7 @@ class StateDemoVacuum(StateVacuumEntity):
     _attr_activity: Incomplete
     _fan_speed: Incomplete
     _cleaned_area: float
-    _battery_level: int
     def __init__(self, name: str, supported_features: VacuumEntityFeature) -> None: ...
-    @property
-    def battery_level(self) -> int: ...
     @property
     def fan_speed(self) -> str: ...
     @property

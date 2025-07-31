@@ -6,14 +6,13 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from deebot_client.capabilities import Capabilities
 from deebot_client.device import Device as Device
-from deebot_client.events import BatteryEvent as BatteryEvent, FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
+from deebot_client.events import FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
 from deebot_client.models import CleanAction, Room as Room
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.util import slugify as slugify
 from typing import Any
 
@@ -32,10 +31,6 @@ class EcovacsLegacyVacuum(EcovacsLegacyEntity, StateVacuumEntity):
     def on_error(self, error: str) -> None: ...
     @property
     def activity(self) -> VacuumActivity | None: ...
-    @property
-    def battery_level(self) -> int | None: ...
-    @property
-    def battery_icon(self) -> str: ...
     @property
     def fan_speed(self) -> str | None: ...
     @property
@@ -59,7 +54,6 @@ class EcovacsVacuum(EcovacsEntity[Capabilities], StateVacuumEntity):
     _rooms: list[Room]
     _attr_fan_speed_list: Incomplete
     def __init__(self, device: Device) -> None: ...
-    _attr_battery_level: Incomplete
     _attr_activity: Incomplete
     _attr_fan_speed: Incomplete
     async def async_added_to_hass(self) -> None: ...

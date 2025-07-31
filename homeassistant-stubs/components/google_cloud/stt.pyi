@@ -1,4 +1,4 @@
-from .const import CONF_SERVICE_ACCOUNT_INFO as CONF_SERVICE_ACCOUNT_INFO, CONF_STT_MODEL as CONF_STT_MODEL, DEFAULT_STT_MODEL as DEFAULT_STT_MODEL, DOMAIN as DOMAIN, STT_LANGUAGES as STT_LANGUAGES
+from .const import CONF_SERVICE_ACCOUNT_INFO as CONF_SERVICE_ACCOUNT_INFO, CONF_STT_MODEL as CONF_STT_MODEL, DEFAULT_STT_MODEL as DEFAULT_STT_MODEL, DOMAIN as DOMAIN, HA_TO_GOOGLE_STT_LANG_MAP as HA_TO_GOOGLE_STT_LANG_MAP, STT_LANGUAGES as STT_LANGUAGES
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable
 from google.cloud import speech_v1
@@ -6,6 +6,7 @@ from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioCh
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from propcache.api import cached_property
 
 _LOGGER: Incomplete
 
@@ -19,7 +20,7 @@ class GoogleCloudSpeechToTextEntity(SpeechToTextEntity):
     _client: Incomplete
     _model: Incomplete
     def __init__(self, entry: ConfigEntry, client: speech_v1.SpeechAsyncClient) -> None: ...
-    @property
+    @cached_property
     def supported_languages(self) -> list[str]: ...
     @property
     def supported_formats(self) -> list[AudioFormats]: ...

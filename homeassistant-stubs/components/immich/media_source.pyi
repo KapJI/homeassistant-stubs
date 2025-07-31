@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import ImmichConfigEntry as ImmichConfigEntry
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, Response, StreamResponse
+from aioimmich.assets.models import ImmichAsset as ImmichAsset
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player import MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseError as BrowseError, BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable

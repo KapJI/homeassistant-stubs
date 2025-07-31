@@ -1,7 +1,8 @@
 from .bluetooth import async_connect_scanner as async_connect_scanner
-from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_BLUETOOTH_MAC_ADDRESS as CONF_BLUETOOTH_MAC_ADDRESS, CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_SUBSCRIBE_LOGS as CONF_SUBSCRIBE_LOGS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN, PROJECT_URLS as PROJECT_URLS, STABLE_BLE_VERSION as STABLE_BLE_VERSION, STABLE_BLE_VERSION_STR as STABLE_BLE_VERSION_STR
+from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_BLUETOOTH_MAC_ADDRESS as CONF_BLUETOOTH_MAC_ADDRESS, CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_NOISE_PSK as CONF_NOISE_PSK, CONF_SUBSCRIBE_LOGS as CONF_SUBSCRIBE_LOGS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_URL as DEFAULT_URL, DOMAIN as DOMAIN, PROJECT_URLS as PROJECT_URLS, STABLE_BLE_VERSION as STABLE_BLE_VERSION, STABLE_BLE_VERSION_STR as STABLE_BLE_VERSION_STR
 from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
+from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService
@@ -66,6 +67,7 @@ class ESPHomeManager:
     async def _on_connect(self) -> None: ...
     async def on_disconnect(self, expected_disconnect: bool) -> None: ...
     async def on_connect_error(self, err: Exception) -> None: ...
+    async def _handle_dynamic_encryption_key(self, device_info: EsphomeDeviceInfo) -> None: ...
     @callback
     def _async_handle_logging_changed(self, _event: Event) -> None: ...
     @callback

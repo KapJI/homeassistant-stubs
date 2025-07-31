@@ -15,7 +15,7 @@ SENSORS: dict[str, SensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirthingsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class AirthingsHeaterEnergySensor(CoordinatorEntity[AirthingsDataUpdateCoordinator], SensorEntity):
+class AirthingsDeviceSensor(CoordinatorEntity[AirthingsDataUpdateCoordinator], SensorEntity):
     _attr_state_class: Incomplete
     _attr_has_entity_name: bool
     entity_description: Incomplete

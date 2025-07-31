@@ -68,15 +68,20 @@ DEVICE_INFO_TYPES: Incomplete
 DEVICE_INFO_KEYS: Incomplete
 LOW_PRIO_CONFIG_ENTRY_DOMAINS: Incomplete
 
-class _EventDeviceRegistryUpdatedData_CreateRemove(TypedDict):
-    action: Literal['create', 'remove']
+class _EventDeviceRegistryUpdatedData_Create(TypedDict):
+    action: Literal['create']
     device_id: str
+
+class _EventDeviceRegistryUpdatedData_Remove(TypedDict):
+    action: Literal['remove']
+    device_id: str
+    device: DeviceEntry
 
 class _EventDeviceRegistryUpdatedData_Update(TypedDict):
     action: Literal['update']
     device_id: str
     changes: dict[str, Any]
-type EventDeviceRegistryUpdatedData = _EventDeviceRegistryUpdatedData_CreateRemove | _EventDeviceRegistryUpdatedData_Update
+type EventDeviceRegistryUpdatedData = _EventDeviceRegistryUpdatedData_Create | _EventDeviceRegistryUpdatedData_Remove | _EventDeviceRegistryUpdatedData_Update
 
 class DeviceEntryType(StrEnum):
     SERVICE = 'service'
@@ -99,6 +104,9 @@ def _validate_device_info(config_entry: ConfigEntry, device_info: DeviceInfo) ->
 _cached_parse_url: Incomplete
 
 def _validate_configuration_url(value: Any) -> str | None: ...
+def format_mac(mac: str) -> str: ...
+def _normalize_connections(connections: Iterable[tuple[str, str]]) -> set[tuple[str, str]]: ...
+def _normalize_connections_validator(instance: Any, attribute: Any, connections: Iterable[tuple[str, str]]) -> None: ...
 
 class DeviceEntry:
     area_id: str | None
@@ -162,8 +170,6 @@ class DeletedDeviceEntry:
     def __le__(self, other): ...
     def __gt__(self, other): ...
     def __ge__(self, other): ...
-
-def format_mac(mac: str) -> str: ...
 
 class DeviceRegistryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> dict[str, Any]: ...
@@ -239,4 +245,3 @@ def async_config_entry_disabled_by_changed(registry: DeviceRegistry, config_entr
 def async_cleanup(hass: HomeAssistant, dev_reg: DeviceRegistry, ent_reg: entity_registry.EntityRegistry) -> None: ...
 @callback
 def async_setup_cleanup(hass: HomeAssistant, dev_reg: DeviceRegistry) -> None: ...
-def _normalize_connections(connections: set[tuple[str, str]]) -> set[tuple[str, str]]: ...

@@ -1,4 +1,4 @@
-from .const import API_CO2 as API_CO2, API_DUST as API_DUST, API_HUMID as API_HUMID, API_LUX as API_LUX, API_PM10 as API_PM10, API_PM25 as API_PM25, API_SCORE as API_SCORE, API_SPL_A as API_SPL_A, API_TEMP as API_TEMP, API_VOC as API_VOC, ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
+from .const import API_CO2 as API_CO2, API_DEW_POINT as API_DEW_POINT, API_DUST as API_DUST, API_HUMID as API_HUMID, API_LUX as API_LUX, API_PM10 as API_PM10, API_PM25 as API_PM25, API_SCORE as API_SCORE, API_SPL_A as API_SPL_A, API_TEMP as API_TEMP, API_VOC as API_VOC, ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import AwairConfigEntry as AwairConfigEntry, AwairDataUpdateCoordinator as AwairDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass

@@ -1,11 +1,11 @@
-from .const import API_KEY_FIRMWARE_UPDATE_SERVICE as API_KEY_FIRMWARE_UPDATE_SERVICE, DATA_CLIENT as DATA_CLIENT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import API_KEY_FIRMWARE_UPDATE_SERVICE as API_KEY_FIRMWARE_UPDATE_SERVICE, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from homeassistant.components.update import ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.components.update import ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -15,55 +15,65 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
 from typing import Any, Final
 from zwave_js_server.model.driver import Driver as Driver
+from zwave_js_server.model.firmware import FirmwareUpdateInfo, FirmwareUpdateProgress as FirmwareUpdateProgress, FirmwareUpdateResult as FirmwareUpdateResult
 from zwave_js_server.model.node import Node as ZwaveNode
-from zwave_js_server.model.node.firmware import NodeFirmwareUpdateInfo, NodeFirmwareUpdateProgress as NodeFirmwareUpdateProgress, NodeFirmwareUpdateResult as NodeFirmwareUpdateResult
 
 PARALLEL_UPDATES: int
 UPDATE_DELAY_STRING: str
 UPDATE_DELAY_INTERVAL: int
 ATTR_LATEST_VERSION_FIRMWARE: str
 
+@dataclass(frozen=True, kw_only=True)
+class ZWaveUpdateEntityDescription(UpdateEntityDescription):
+    install_method: Callable[[ZWaveFirmwareUpdateEntity, FirmwareUpdateInfo], Awaitable[FirmwareUpdateResult]]
+    progress_method: Callable[[ZWaveFirmwareUpdateEntity], Callable[[], None]]
+    finished_method: Callable[[ZWaveFirmwareUpdateEntity], Callable[[], None]]
+
+CONTROLLER_UPDATE_ENTITY_DESCRIPTION: Incomplete
+NODE_UPDATE_ENTITY_DESCRIPTION: Incomplete
+
 @dataclass
-class ZWaveNodeFirmwareUpdateExtraStoredData(ExtraStoredData):
-    latest_version_firmware: NodeFirmwareUpdateInfo | None
+class ZWaveFirmwareUpdateExtraStoredData(ExtraStoredData):
+    latest_version_firmware: FirmwareUpdateInfo | None
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
-    def from_dict(cls, data: dict[str, Any]) -> ZWaveNodeFirmwareUpdateExtraStoredData: ...
+    def from_dict(cls, data: dict[str, Any]) -> ZWaveFirmwareUpdateExtraStoredData: ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ZWaveNodeFirmwareUpdate(UpdateEntity):
+class ZWaveFirmwareUpdateEntity(UpdateEntity):
+    driver: Driver
+    entity_description: ZWaveUpdateEntityDescription
+    node: ZwaveNode
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _attr_should_poll: bool
-    driver: Incomplete
-    node: Incomplete
-    _latest_version_firmware: NodeFirmwareUpdateInfo | None
+    _latest_version_firmware: FirmwareUpdateInfo | None
     _status_unsub: Callable[[], None] | None
     _poll_unsub: Callable[[], None] | None
     _progress_unsub: Callable[[], None] | None
     _finished_unsub: Callable[[], None] | None
     _finished_event: Incomplete
-    _result: NodeFirmwareUpdateResult | None
+    _result: FirmwareUpdateResult | None
     _delay: Final[timedelta]
     _attr_name: str
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_installed_version: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, driver: Driver, node: ZwaveNode, delay: timedelta) -> None: ...
+    def __init__(self, driver: Driver, node: ZwaveNode, delay: timedelta, entity_description: ZWaveUpdateEntityDescription) -> None: ...
     @property
-    def extra_restore_state_data(self) -> ZWaveNodeFirmwareUpdateExtraStoredData: ...
+    def extra_restore_state_data(self) -> ZWaveFirmwareUpdateExtraStoredData: ...
     @callback
     def _update_on_status_change(self, _: dict[str, Any]) -> None: ...
     _attr_in_progress: bool
     _attr_update_percentage: Incomplete
     @callback
-    def _update_progress(self, event: dict[str, Any]) -> None: ...
+    def update_progress(self, event: dict[str, Any]) -> None: ...
     @callback
-    def _update_finished(self, event: dict[str, Any]) -> None: ...
+    def update_finished(self, event: dict[str, Any]) -> None: ...
     @callback
     def _unsub_firmware_events_and_reset_progress(self, write_state: bool = True) -> None: ...
     _attr_latest_version: Incomplete

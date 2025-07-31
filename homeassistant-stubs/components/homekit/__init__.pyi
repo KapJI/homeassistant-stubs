@@ -24,8 +24,9 @@ from homeassistant.helpers import device_registry as dr, entity_registry as er, 
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entityfilter import BASE_FILTER_SCHEMA as BASE_FILTER_SCHEMA, EntityFilter as EntityFilter, FILTER_SCHEMA as FILTER_SCHEMA
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
-from homeassistant.helpers.service import async_extract_referenced_entity_ids as async_extract_referenced_entity_ids, async_register_admin_service as async_register_admin_service
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.start import async_at_started as async_at_started
+from homeassistant.helpers.target import TargetSelectorData as TargetSelectorData, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from homeassistant.util.async_ import create_eager_task as create_eager_task

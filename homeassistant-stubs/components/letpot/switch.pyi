@@ -16,7 +16,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class LetPotSwitchEntityDescription(LetPotEntityDescription, SwitchEntityDescription):
     value_fn: Callable[[LetPotDeviceStatus], bool | None]
-    set_value_fn: Callable[[LetPotDeviceClient, bool], Coroutine[Any, Any, None]]
+    set_value_fn: Callable[[LetPotDeviceClient, str, bool], Coroutine[Any, Any, None]]
 
 SWITCHES: tuple[LetPotSwitchEntityDescription, ...]
 

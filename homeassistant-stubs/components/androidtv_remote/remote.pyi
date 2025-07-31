@@ -1,6 +1,6 @@
-from . import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
 from .const import CONF_APP_NAME as CONF_APP_NAME
 from .entity import AndroidTVRemoteBaseEntity as AndroidTVRemoteBaseEntity
+from .helpers import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_ACTIVITY as ATTR_ACTIVITY, ATTR_DELAY_SECS as ATTR_DELAY_SECS, ATTR_HOLD_SECS as ATTR_HOLD_SECS, ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, DEFAULT_DELAY_SECS as DEFAULT_DELAY_SECS, DEFAULT_HOLD_SECS as DEFAULT_HOLD_SECS, DEFAULT_NUM_REPEATS as DEFAULT_NUM_REPEATS, RemoteEntity as RemoteEntity, RemoteEntityFeature as RemoteEntityFeature

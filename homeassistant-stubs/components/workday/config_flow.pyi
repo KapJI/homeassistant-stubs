@@ -1,7 +1,7 @@
 import voluptuous as vol
 from .const import ALLOWED_DAYS as ALLOWED_DAYS, CONF_ADD_HOLIDAYS as CONF_ADD_HOLIDAYS, CONF_CATEGORY as CONF_CATEGORY, CONF_EXCLUDES as CONF_EXCLUDES, CONF_OFFSET as CONF_OFFSET, CONF_PROVINCE as CONF_PROVINCE, CONF_REMOVE_HOLIDAYS as CONF_REMOVE_HOLIDAYS, CONF_WORKDAYS as CONF_WORKDAYS, DEFAULT_EXCLUDES as DEFAULT_EXCLUDES, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_OFFSET as DEFAULT_OFFSET, DEFAULT_WORKDAYS as DEFAULT_WORKDAYS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_COUNTRY as CONF_COUNTRY, CONF_LANGUAGE as CONF_LANGUAGE, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
@@ -24,7 +24,7 @@ class WorkdayConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class WorkdayOptionsFlowHandler(OptionsFlow):
+class WorkdayOptionsFlowHandler(OptionsFlowWithReload):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class AddDatesError(HomeAssistantError): ...

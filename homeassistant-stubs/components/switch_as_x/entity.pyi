@@ -3,7 +3,6 @@ from _typeshed import Incomplete
 from homeassistant.components.homeassistant import exposed_entities as exposed_entities
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, ToggleEntity as ToggleEntity
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from typing import Any
@@ -11,8 +10,7 @@ from typing import Any
 class BaseEntity(Entity):
     _attr_should_poll: bool
     _is_new_entity: bool
-    _device_id: Incomplete
-    _attr_device_info: Incomplete
+    device_entry: Incomplete
     _attr_entity_category: Incomplete
     _attr_has_entity_name: Incomplete
     _attr_name: Incomplete

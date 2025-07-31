@@ -18,7 +18,7 @@ from typing import Any
 PARALLEL_UPDATES: int
 
 def _last_restart(runtime: int) -> datetime: ...
-type _CoordinatorDataType = LogicalNetwork | DataRate | list[ConnectedStationInfo] | list[NeighborAPInfo] | int
+type _CoordinatorDataType = LogicalNetwork | DataRate | dict[str, ConnectedStationInfo] | list[NeighborAPInfo] | int
 type _SensorDataType = int | float | datetime
 
 class DataRateDirection(StrEnum):

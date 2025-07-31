@@ -3,6 +3,8 @@ from _typeshed import Incomplete
 DATA_SLEEPIQ: str
 DOMAIN: str
 ACTUATOR: str
+CORE_CLIMATE_TIMER: str
+CORE_CLIMATE: str
 BED: str
 FIRMNESS: str
 ICON_EMPTY: str

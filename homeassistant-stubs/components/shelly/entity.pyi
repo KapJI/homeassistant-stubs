@@ -7,6 +7,7 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine, Mapping
 from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
@@ -161,3 +162,5 @@ class ShellySleepingRpcAttributeEntity(ShellyRpcAttributeEntity):
     async def async_update(self) -> None: ...
 
 def get_entity_class(sensor_class: Callable, description: RpcEntityDescription) -> Callable: ...
+def get_entity_block_device_info(coordinator: ShellyBlockCoordinator, block: Block | None = None) -> DeviceInfo: ...
+def get_entity_rpc_device_info(coordinator: ShellyRpcCoordinator, key: str | None = None, emeter_phase: str | None = None) -> DeviceInfo: ...

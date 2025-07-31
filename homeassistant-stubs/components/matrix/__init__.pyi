@@ -1,5 +1,5 @@
 from .const import ATTR_FORMAT as ATTR_FORMAT, ATTR_IMAGES as ATTR_IMAGES, CONF_ROOMS_REGEX as CONF_ROOMS_REGEX, DOMAIN as DOMAIN, FORMAT_HTML as FORMAT_HTML
-from .services import register_services as register_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TARGET as ATTR_TARGET

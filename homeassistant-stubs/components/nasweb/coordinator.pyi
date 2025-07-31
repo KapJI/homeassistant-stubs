@@ -1,4 +1,4 @@
-from .const import STATUS_UPDATE_MAX_TIME_INTERVAL as STATUS_UPDATE_MAX_TIME_INTERVAL
+from .const import KEY_TEMP_SENSOR as KEY_TEMP_SENSOR, STATUS_UPDATE_MAX_TIME_INTERVAL as STATUS_UPDATE_MAX_TIME_INTERVAL
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, Response
 from collections.abc import Callable as Callable
@@ -10,6 +10,8 @@ from typing import Any
 from webio_api import WebioAPI as WebioAPI
 
 _LOGGER: Incomplete
+KEY_INPUTS: str
+KEY_OUTPUTS: str
 
 class NotificationCoordinator:
     _coordinators: dict[str, NASwebCoordinator]

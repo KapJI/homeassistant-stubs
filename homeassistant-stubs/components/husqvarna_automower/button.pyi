@@ -1,6 +1,6 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
-from .entity import AutomowerAvailableEntity as AutomowerAvailableEntity, _check_error_free as _check_error_free, handle_sending_exception as handle_sending_exception
+from .entity import AutomowerControlEntity as AutomowerControlEntity, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete
 from aioautomower.model import MowerAttributes as MowerAttributes
 from aioautomower.session import AutomowerSession as AutomowerSession
@@ -24,7 +24,7 @@ MOWER_BUTTON_TYPES: tuple[AutomowerButtonEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class AutomowerButtonEntity(AutomowerAvailableEntity, ButtonEntity):
+class AutomowerButtonEntity(AutomowerControlEntity, ButtonEntity):
     entity_description: AutomowerButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, description: AutomowerButtonEntityDescription) -> None: ...

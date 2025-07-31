@@ -4,7 +4,7 @@ from .host import ReolinkHost as ReolinkHost
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, is_connected as is_connected
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
@@ -18,7 +18,7 @@ DEFAULT_PROTOCOL: str
 DEFAULT_OPTIONS: Incomplete
 API_STARTUP_TIME: int
 
-class ReolinkOptionsFlowHandler(OptionsFlow):
+class ReolinkOptionsFlowHandler(OptionsFlowWithReload):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class ReolinkFlowHandler(ConfigFlow, domain=DOMAIN):

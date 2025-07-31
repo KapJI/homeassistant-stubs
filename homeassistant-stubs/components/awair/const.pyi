@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 
 API_CO2: str
+API_DEW_POINT: str
 API_DUST: str
 API_HUMID: str
 API_LUX: str

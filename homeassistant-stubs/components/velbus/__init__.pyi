@@ -1,6 +1,6 @@
 import asyncio
 from .const import DOMAIN as DOMAIN
-from .services import setup_services as setup_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

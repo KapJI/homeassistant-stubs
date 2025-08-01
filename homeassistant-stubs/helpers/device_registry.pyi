@@ -75,7 +75,7 @@ class _EventDeviceRegistryUpdatedData_Create(TypedDict):
 class _EventDeviceRegistryUpdatedData_Remove(TypedDict):
     action: Literal['remove']
     device_id: str
-    device: DeviceEntry
+    device: dict[str, Any]
 
 class _EventDeviceRegistryUpdatedData_Update(TypedDict):
     action: Literal['update']

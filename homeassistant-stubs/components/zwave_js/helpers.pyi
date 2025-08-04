@@ -2,7 +2,7 @@ import logging
 import voluptuous as vol
 from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, DOMAIN as DOMAIN, LIB_LOGGER as LIB_LOGGER, LOGGER as LOGGER
 from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_TYPE as CONF_TYPE
@@ -20,6 +20,7 @@ from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import Value as ZwaveValue, ValueDataType as ValueDataType
 from zwave_js_server.version import VersionInfo as VersionInfo
 
+DRIVER_READY_EVENT_TIMEOUT: int
 SERVER_VERSION_TIMEOUT: int
 
 @dataclass
@@ -69,5 +70,7 @@ def get_value_state_schema(value: ZwaveValue) -> VolSchemaType | vol.Coerce | vo
 def get_device_info(driver: Driver, node: ZwaveNode) -> DeviceInfo: ...
 def get_network_identifier_for_notification(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, controller: Controller) -> str: ...
 async def async_get_version_info(hass: HomeAssistant, ws_address: str) -> VersionInfo: ...
+@callback
+def async_wait_for_driver_ready_event(config_entry: ZwaveJSConfigEntry, driver: Driver) -> Callable[[], Coroutine[Any, Any, None]]: ...
 
 class CannotConnect(HomeAssistantError): ...

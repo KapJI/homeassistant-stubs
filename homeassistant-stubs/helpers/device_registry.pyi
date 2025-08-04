@@ -1,5 +1,6 @@
 from . import entity_registry as entity_registry, storage as storage, translation as translation
 from .debounce import Debouncer as Debouncer
+from .deprecation import deprecated_function as deprecated_function
 from .frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
 from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems, RegistryIndexType as RegistryIndexType
@@ -129,7 +130,7 @@ class DeviceEntry:
     name: str | None
     primary_config_entry: str | None
     serial_number: str | None
-    suggested_area: str | None
+    _suggested_area: str | None
     sw_version: str | None
     via_device_id: str | None
     is_new: bool
@@ -142,6 +143,8 @@ class DeviceEntry:
     def json_repr(self) -> bytes | None: ...
     @under_cached_property
     def as_storage_fragment(self) -> json_fragment: ...
+    @property
+    def suggested_area(self) -> str | None: ...
     def __init__(self, area_id, config_entries, config_entries_subentries, configuration_url, connections, created_at, disabled_by, entry_type, hw_version, id, identifiers, labels, manufacturer, model, model_id, modified_at, name_by_user, name, primary_config_entry, serial_number, suggested_area, sw_version, via_device_id, is_new, cache) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
@@ -209,7 +212,7 @@ class DeviceRegistry(BaseRegistry[dict[str, list[dict[str, Any]]]]):
     @callback
     def async_get_or_create(self, *, config_entry_id: str, config_subentry_id: str | None | UndefinedType = ..., configuration_url: str | URL | None | UndefinedType = ..., connections: set[tuple[str, str]] | None | UndefinedType = ..., created_at: str | datetime | UndefinedType = ..., default_manufacturer: str | None | UndefinedType = ..., default_model: str | None | UndefinedType = ..., default_name: str | None | UndefinedType = ..., disabled_by: DeviceEntryDisabler | None | UndefinedType = ..., entry_type: DeviceEntryType | None | UndefinedType = ..., hw_version: str | None | UndefinedType = ..., identifiers: set[tuple[str, str]] | None | UndefinedType = ..., manufacturer: str | None | UndefinedType = ..., model: str | None | UndefinedType = ..., model_id: str | None | UndefinedType = ..., modified_at: str | datetime | UndefinedType = ..., name: str | None | UndefinedType = ..., serial_number: str | None | UndefinedType = ..., suggested_area: str | None | UndefinedType = ..., sw_version: str | None | UndefinedType = ..., translation_key: str | None = None, translation_placeholders: Mapping[str, str] | None = None, via_device: tuple[str, str] | None | UndefinedType = ...) -> DeviceEntry: ...
     @callback
-    def async_update_device(self, device_id: str, *, add_config_entry_id: str | UndefinedType = ..., add_config_subentry_id: str | None | UndefinedType = ..., allow_collisions: bool = False, area_id: str | None | UndefinedType = ..., configuration_url: str | URL | None | UndefinedType = ..., device_info_type: str | UndefinedType = ..., disabled_by: DeviceEntryDisabler | None | UndefinedType = ..., entry_type: DeviceEntryType | None | UndefinedType = ..., hw_version: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., manufacturer: str | None | UndefinedType = ..., merge_connections: set[tuple[str, str]] | UndefinedType = ..., merge_identifiers: set[tuple[str, str]] | UndefinedType = ..., model: str | None | UndefinedType = ..., model_id: str | None | UndefinedType = ..., name_by_user: str | None | UndefinedType = ..., name: str | None | UndefinedType = ..., new_connections: set[tuple[str, str]] | UndefinedType = ..., new_identifiers: set[tuple[str, str]] | UndefinedType = ..., remove_config_entry_id: str | UndefinedType = ..., remove_config_subentry_id: str | None | UndefinedType = ..., serial_number: str | None | UndefinedType = ..., suggested_area: str | None | UndefinedType = ..., sw_version: str | None | UndefinedType = ..., via_device_id: str | None | UndefinedType = ...) -> DeviceEntry | None: ...
+    def async_update_device(self, device_id: str, *, add_config_entry_id: str | UndefinedType = ..., add_config_subentry_id: str | None | UndefinedType = ..., allow_collisions: bool = False, area_id: str | None | UndefinedType = ..., configuration_url: str | URL | None | UndefinedType = ..., device_info_type: str | UndefinedType = ..., disabled_by: DeviceEntryDisabler | None | UndefinedType = ..., entry_type: DeviceEntryType | None | UndefinedType = ..., hw_version: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., manufacturer: str | None | UndefinedType = ..., merge_connections: set[tuple[str, str]] | UndefinedType = ..., merge_identifiers: set[tuple[str, str]] | UndefinedType = ..., model: str | None | UndefinedType = ..., model_id: str | None | UndefinedType = ..., name_by_user: str | None | UndefinedType = ..., name: str | None | UndefinedType = ..., new_connections: set[tuple[str, str]] | UndefinedType = ..., new_identifiers: set[tuple[str, str]] | UndefinedType = ..., remove_config_entry_id: str | UndefinedType = ..., remove_config_subentry_id: str | None | UndefinedType = ..., serial_number: str | None | UndefinedType = ..., _suggested_area: str | None | UndefinedType = ..., suggested_area: str | None | UndefinedType = ..., sw_version: str | None | UndefinedType = ..., via_device_id: str | None | UndefinedType = ...) -> DeviceEntry | None: ...
     @callback
     def _validate_connections(self, device_id: str, connections: set[tuple[str, str]], allow_collisions: bool) -> set[tuple[str, str]]: ...
     @callback

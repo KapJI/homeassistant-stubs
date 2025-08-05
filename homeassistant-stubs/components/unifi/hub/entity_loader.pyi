@@ -1,3 +1,4 @@
+from .. import UnifiConfigEntry as UnifiConfigEntry
 from ..const import LOGGER as LOGGER, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
 from ..entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription
 from .hub import UnifiHub as UnifiHub
@@ -18,11 +19,11 @@ class UnifiEntityLoader:
     api_updaters: Incomplete
     polling_api_updaters: Incomplete
     wireless_clients: Incomplete
-    _dataUpdateCoordinator: Incomplete
+    _data_update_coordinator: Incomplete
     _update_listener: Incomplete
     platforms: list[tuple[AddEntitiesCallback, type[UnifiEntity], tuple[UnifiEntityDescription, ...], bool]]
     known_objects: set[tuple[str, str]]
-    def __init__(self, hub: UnifiHub) -> None: ...
+    def __init__(self, hub: UnifiHub, config_entry: UnifiConfigEntry) -> None: ...
     async def initialize(self) -> None: ...
     async def _refresh_data(self, updaters: Sequence[Callable[[], Coroutine[Any, Any, None]]]) -> None: ...
     async def _update_pollable_api_data(self) -> None: ...

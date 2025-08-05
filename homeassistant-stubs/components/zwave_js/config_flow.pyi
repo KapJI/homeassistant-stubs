@@ -32,6 +32,7 @@ ON_SUPERVISOR_SCHEMA: Incomplete
 MIN_MIGRATION_SDK_VERSION: Incomplete
 NETWORK_TYPE_NEW: str
 NETWORK_TYPE_EXISTING: str
+ZWAVE_JS_UI_MIGRATION_INSTRUCTIONS: str
 
 def get_manual_schema(user_input: dict[str, Any]) -> vol.Schema: ...
 def get_on_supervisor_schema(user_input: dict[str, Any]) -> vol.Schema: ...

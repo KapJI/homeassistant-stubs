@@ -1,10 +1,10 @@
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
-from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
-from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
+from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DOMAIN as DOMAIN
+from .entity import IssueSeverity as IssueSeverity, MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
-from .util import valid_publish_topic as valid_publish_topic
+from .util import learn_more_url as learn_more_url, valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from homeassistant.components import vacuum as vacuum
 from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
@@ -80,6 +80,7 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     _attr_supported_features: Incomplete
     _attr_fan_speed_list: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
+    async def mqtt_async_added_to_hass(self) -> None: ...
     _attr_fan_speed: Incomplete
     _attr_battery_level: Incomplete
     def _update_state_attributes(self, payload: dict[str, Any]) -> None: ...

@@ -41,6 +41,7 @@ SERVICE_STOP: str
 DEFAULT_NAME: str
 _DEPRECATED_STATE_IDLE: Incomplete
 _DEPRECATED_STATE_PAUSED: Incomplete
+_BATTERY_DEPRECATION_IGNORED_PLATFORMS: Incomplete
 
 class VacuumEntityFeature(IntFlag):
     TURN_ON = 1

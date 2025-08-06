@@ -1,4 +1,4 @@
-from .const import CONF_TOTP_SECRET as CONF_TOTP_SECRET, CONF_UTILITY as CONF_UTILITY, DOMAIN as DOMAIN
+from .const import CONF_LOGIN_DATA as CONF_LOGIN_DATA, CONF_TOTP_SECRET as CONF_TOTP_SECRET, CONF_UTILITY as CONF_UTILITY, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData

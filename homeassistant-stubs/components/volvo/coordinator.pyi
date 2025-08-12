@@ -19,6 +19,8 @@ _LOGGER: Incomplete
 type VolvoConfigEntry = ConfigEntry[tuple[VolvoBaseCoordinator, ...]]
 type CoordinatorData = dict[str, VolvoCarsApiBaseModel | None]
 
+def _is_invalid_api_field(field: VolvoCarsApiBaseModel | None) -> bool: ...
+
 class VolvoBaseCoordinator(DataUpdateCoordinator[CoordinatorData], metaclass=abc.ABCMeta):
     config_entry: VolvoConfigEntry
     api: Incomplete

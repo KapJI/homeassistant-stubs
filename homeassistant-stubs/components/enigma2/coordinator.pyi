@@ -10,6 +10,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from openwebif.api import OpenWebIfDevice, OpenWebIfStatus
 
 LOGGER: Incomplete
+SETUP_TIMEOUT: int
 type Enigma2ConfigEntry = ConfigEntry[Enigma2UpdateCoordinator]
 
 class Enigma2UpdateCoordinator(DataUpdateCoordinator[OpenWebIfStatus]):

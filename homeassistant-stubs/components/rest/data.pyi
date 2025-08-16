@@ -16,6 +16,7 @@ class RestData:
     _method: Incomplete
     _resource: Incomplete
     _encoding: Incomplete
+    _force_use_set_encoding: bool
     _auth: aiohttp.BasicAuth | aiohttp.DigestAuthMiddleware | None
     _headers: Incomplete
     _params: Incomplete

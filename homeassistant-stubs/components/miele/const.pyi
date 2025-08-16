@@ -148,4 +148,5 @@ class PlatePowerStep(MieleEnum):
     plate_step_17: int
     plate_step_18: int
     plate_step_boost: Incomplete
+    plate_step_boost_2: int
     missing2none: int

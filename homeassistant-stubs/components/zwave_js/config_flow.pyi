@@ -12,6 +12,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import selector as selector
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
@@ -28,6 +29,7 @@ TITLE: str
 ADDON_SETUP_TIMEOUT: int
 ADDON_SETUP_TIMEOUT_ROUNDS: int
 ADDON_USER_INPUT_MAP: Incomplete
+CONF_ADDON_RF_REGION: str
 EXAMPLE_SERVER_URL: str
 ON_SUPERVISOR_SCHEMA: Incomplete
 MIN_MIGRATION_SDK_VERSION: Incomplete
@@ -35,6 +37,7 @@ NETWORK_TYPE_NEW: str
 NETWORK_TYPE_EXISTING: str
 ZWAVE_JS_SERVER_INSTRUCTIONS: str
 ZWAVE_JS_UI_MIGRATION_INSTRUCTIONS: str
+RF_REGIONS: Incomplete
 
 def get_manual_schema(user_input: dict[str, Any]) -> vol.Schema: ...
 def get_on_supervisor_schema(user_input: dict[str, Any]) -> vol.Schema: ...
@@ -64,10 +67,12 @@ class ZWaveJSConfigFlow(ConfigFlow, domain=DOMAIN):
     backup_data: bytes | None
     backup_filepath: Path | None
     use_addon: bool
+    _addon_config_updates: dict[str, Any]
     _migrating: bool
     _reconfigure_config_entry: ZwaveJSConfigEntry | None
     _usb_discovery: bool
     _recommended_install: bool
+    _rf_region: str | None
     def __init__(self) -> None: ...
     async def async_step_install_addon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_install_failed(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -92,6 +97,7 @@ class ZWaveJSConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_hassio_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_intent_recommended(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_intent_custom(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_rf_region(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_on_supervisor(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_configure_addon_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_network_type(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

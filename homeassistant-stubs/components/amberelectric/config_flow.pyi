@@ -1,4 +1,4 @@
-from .const import CONF_SITE_ID as CONF_SITE_ID, CONF_SITE_NAME as CONF_SITE_NAME, DOMAIN as DOMAIN
+from .const import CONF_SITE_ID as CONF_SITE_ID, CONF_SITE_NAME as CONF_SITE_NAME, DOMAIN as DOMAIN, REQUEST_TIMEOUT as REQUEST_TIMEOUT
 from amberelectric.models.site import Site as Site
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN

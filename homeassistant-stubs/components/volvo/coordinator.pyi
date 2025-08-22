@@ -10,7 +10,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any
 from volvocarsapi.api import VolvoCarsApi as VolvoCarsApi
-from volvocarsapi.models import VolvoCarsApiBaseModel, VolvoCarsVehicle as VolvoCarsVehicle
+from volvocarsapi.models import VolvoCarsApiBaseModel, VolvoCarsValueStatusField, VolvoCarsVehicle as VolvoCarsVehicle
 
 VERY_SLOW_INTERVAL: int
 SLOW_INTERVAL: int
@@ -44,5 +44,7 @@ class VolvoSlowIntervalCoordinator(VolvoBaseCoordinator):
     async def _async_determine_api_calls(self) -> list[Callable[[], Coroutine[Any, Any, Any]]]: ...
 
 class VolvoMediumIntervalCoordinator(VolvoBaseCoordinator):
+    _supported_capabilities: list[str]
     def __init__(self, hass: HomeAssistant, entry: VolvoConfigEntry, api: VolvoCarsApi, vehicle: VolvoCarsVehicle) -> None: ...
     async def _async_determine_api_calls(self) -> list[Callable[[], Coroutine[Any, Any, Any]]]: ...
+    async def _async_get_energy_state(self) -> dict[str, VolvoCarsValueStatusField | None]: ...

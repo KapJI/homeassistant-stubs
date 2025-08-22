@@ -19,10 +19,10 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
 from typing import Any
 from zwave_js_server.model.controller import Controller
-from zwave_js_server.model.controller.statistics import ControllerStatistics as ControllerStatistics
+from zwave_js_server.model.controller.statistics import ControllerStatistics
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
-from zwave_js_server.model.node.statistics import NodeStatistics as NodeStatistics
+from zwave_js_server.model.node.statistics import NodeStatistics
 
 PARALLEL_UPDATES: int
 ENTITY_DESCRIPTION_KEY_UNIT_MAP: dict[tuple[str, str], SensorEntityDescription]
@@ -128,9 +128,12 @@ class ZWaveStatisticsSensor(SensorEntity):
     _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, statistics_src: ZwaveNode | Controller, description: ZWaveJSStatisticsSensorEntityDescription) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, statistics_src: Controller | ZwaveNode, description: ZWaveJSStatisticsSensorEntityDescription) -> None: ...
     async def async_poll_value(self, _: bool) -> None: ...
-    _attr_native_value: Incomplete
     @callback
-    def statistics_updated(self, event_data: dict) -> None: ...
+    def _statistics_updated(self, event_data: dict) -> None: ...
+    _attr_native_value: Incomplete
+    _attr_available: bool
+    @callback
+    def _set_statistics(self, statistics: ControllerStatistics | NodeStatistics) -> None: ...
     async def async_added_to_hass(self) -> None: ...

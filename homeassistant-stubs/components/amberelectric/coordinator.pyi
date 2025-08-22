@@ -1,5 +1,5 @@
 import amberelectric
-from .const import LOGGER as LOGGER
+from .const import LOGGER as LOGGER, REQUEST_TIMEOUT as REQUEST_TIMEOUT
 from .helpers import normalize_descriptor as normalize_descriptor
 from _typeshed import Incomplete
 from amberelectric.models.actual_interval import ActualInterval as ActualInterval

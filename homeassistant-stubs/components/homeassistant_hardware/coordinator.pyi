@@ -9,7 +9,6 @@ _LOGGER: Incomplete
 FIRMWARE_REFRESH_INTERVAL: Incomplete
 
 class FirmwareUpdateCoordinator(DataUpdateCoordinator[FirmwareManifest]):
-    hass: Incomplete
     session: Incomplete
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, session: ClientSession, url: str) -> None: ...

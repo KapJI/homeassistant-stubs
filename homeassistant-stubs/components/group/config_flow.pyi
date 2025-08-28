@@ -38,6 +38,8 @@ SENSOR_CONFIG_SCHEMA: Incomplete
 
 async def light_switch_options_schema(domain: str, handler: SchemaCommonFlowHandler | None) -> vol.Schema: ...
 
+LIGHT_CONFIG_SCHEMA: Incomplete
+SWITCH_CONFIG_SCHEMA: Incomplete
 GROUP_TYPES: Incomplete
 
 async def choose_options_step(options: dict[str, Any]) -> str: ...

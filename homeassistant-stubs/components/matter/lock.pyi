@@ -9,8 +9,10 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from matter_server.common.models import EventType, MatterNodeEvent as MatterNodeEvent
 from typing import Any
 
+DOOR_LOCK_OPERATION_SOURCE: Incomplete
 DoorLockFeature: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -19,6 +21,10 @@ class MatterLock(MatterEntity, LockEntity):
     _feature_map: int | None
     _optimistic_timer: asyncio.TimerHandle | None
     _platform_translation_key: str
+    _attr_changed_by: str
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _on_matter_node_event(self, event: EventType, node_event: MatterNodeEvent) -> None: ...
     @property
     def code_format(self) -> str | None: ...
     _attr_is_locking: bool

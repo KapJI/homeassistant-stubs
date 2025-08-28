@@ -341,6 +341,7 @@ ATTR_SERVICE_DATA: Final[str]
 ATTR_ID: Final[str]
 ATTR_NAME: Final[str]
 ATTR_ENTITY_ID: Final[str]
+ATTR_CONFIG_ENTRY_ID: Final[str]
 ATTR_AREA_ID: Final[str]
 ATTR_DEVICE_ID: Final[str]
 ATTR_FLOOR_ID: Final[str]
@@ -392,6 +393,7 @@ ATTR_TEMPERATURE: Final[str]
 ATTR_PERSONS: Final[str]
 
 class UnitOfApparentPower(StrEnum):
+    MILLIVOLT_AMPERE = 'mVA'
     VOLT_AMPERE = 'VA'
 
 class UnitOfPower(StrEnum):
@@ -404,6 +406,7 @@ class UnitOfPower(StrEnum):
     BTU_PER_HOUR = 'BTU/h'
 
 class UnitOfReactivePower(StrEnum):
+    MILLIVOLT_AMPERE_REACTIVE = 'mvar'
     VOLT_AMPERE_REACTIVE = 'var'
     KILO_VOLT_AMPERE_REACTIVE = 'kvar'
 
@@ -440,7 +443,7 @@ class UnitOfElectricCurrent(StrEnum):
     AMPERE = 'A'
 
 class UnitOfElectricPotential(StrEnum):
-    MICROVOLT = 'µV'
+    MICROVOLT = 'μV'
     MILLIVOLT = 'mV'
     VOLT = 'V'
     KILOVOLT = 'kV'
@@ -510,6 +513,7 @@ class UnitOfVolume(StrEnum):
 
 class UnitOfVolumeFlowRate(StrEnum):
     CUBIC_METERS_PER_HOUR = 'm³/h'
+    CUBIC_METERS_PER_MINUTE = 'm³/min'
     CUBIC_METERS_PER_SECOND = 'm³/s'
     CUBIC_FEET_PER_MINUTE = 'ft³/min'
     LITERS_PER_HOUR = 'L/h'
@@ -536,17 +540,17 @@ class UnitOfMass(StrEnum):
     GRAMS = 'g'
     KILOGRAMS = 'kg'
     MILLIGRAMS = 'mg'
-    MICROGRAMS = 'µg'
+    MICROGRAMS = 'μg'
     OUNCES = 'oz'
     POUNDS = 'lb'
     STONES = 'st'
 
 class UnitOfConductivity(StrEnum, deprecated={'SIEMENS': ('UnitOfConductivity.SIEMENS_PER_CM', '2025.11.0'), 'MICROSIEMENS': ('UnitOfConductivity.MICROSIEMENS_PER_CM', '2025.11.0'), 'MILLISIEMENS': ('UnitOfConductivity.MILLISIEMENS_PER_CM', '2025.11.0')}, metaclass=EnumWithDeprecatedMembers):
     SIEMENS_PER_CM = 'S/cm'
-    MICROSIEMENS_PER_CM = 'µS/cm'
+    MICROSIEMENS_PER_CM = 'μS/cm'
     MILLISIEMENS_PER_CM = 'mS/cm'
     SIEMENS = 'S/cm'
-    MICROSIEMENS = 'µS/cm'
+    MICROSIEMENS = 'μS/cm'
     MILLISIEMENS = 'mS/cm'
 
 _DEPRECATED_CONDUCTIVITY: Final[Incomplete]
@@ -571,8 +575,8 @@ class UnitOfPrecipitationDepth(StrEnum):
     CENTIMETERS = 'cm'
 
 CONCENTRATION_GRAMS_PER_CUBIC_METER: Final[str]
-CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Final[str]
+CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[str]
 CONCENTRATION_PARTS_PER_CUBIC_METER: Final[str]
 CONCENTRATION_PARTS_PER_MILLION: Final[str]

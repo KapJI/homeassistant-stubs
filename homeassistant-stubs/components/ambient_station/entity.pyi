@@ -2,7 +2,7 @@ from . import AmbientStation as AmbientStation
 from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, DOMAIN as DOMAIN, TYPE_SOLARRADIATION as TYPE_SOLARRADIATION, TYPE_SOLARRADIATION_LX as TYPE_SOLARRADIATION_LX
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 

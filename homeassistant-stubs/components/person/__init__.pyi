@@ -4,6 +4,7 @@ from collections.abc import Callable as Callable
 from homeassistant.auth import EVENT_USER_REMOVED as EVENT_USER_REMOVED
 from homeassistant.components import persistent_notification as persistent_notification, websocket_api as websocket_api
 from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, SourceType as SourceType
+from homeassistant.components.zone import ENTITY_ID_HOME as ENTITY_ID_HOME
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_ID as ATTR_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, SERVICE_RELOAD as SERVICE_RELOAD, STATE_HOME as STATE_HOME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import collection as collection, entity_registry as er, service as service
@@ -95,7 +96,7 @@ class Person(collection.CollectionEntity, RestoreEntity):
     @callback
     def _update_state(self) -> None: ...
     @callback
-    def _parse_source_state(self, state: State) -> None: ...
+    def _parse_source_state(self, state: State, coordinates: State) -> None: ...
     _attr_extra_state_attributes: Incomplete
     @callback
     def _update_extra_state_attributes(self) -> None: ...

@@ -51,7 +51,6 @@ class ZWaveFirmwareUpdateEntity(UpdateEntity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _latest_version_firmware: FirmwareUpdateInfo | None
-    _status_unsub: Callable[[], None] | None
     _poll_unsub: Callable[[], None] | None
     _progress_unsub: Callable[[], None] | None
     _finished_unsub: Callable[[], None] | None
@@ -66,8 +65,6 @@ class ZWaveFirmwareUpdateEntity(UpdateEntity):
     def __init__(self, driver: Driver, node: ZwaveNode, delay: timedelta, entity_description: ZWaveUpdateEntityDescription) -> None: ...
     @property
     def extra_restore_state_data(self) -> ZWaveFirmwareUpdateExtraStoredData: ...
-    @callback
-    def _update_on_status_change(self, _: dict[str, Any]) -> None: ...
     _attr_in_progress: bool
     _attr_update_percentage: Incomplete
     @callback

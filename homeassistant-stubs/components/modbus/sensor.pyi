@@ -1,5 +1,5 @@
 from . import get_hub as get_hub
-from .const import CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT
+from .const import CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, _LOGGER as _LOGGER
 from .entity import BaseStructPlatform as BaseStructPlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
@@ -11,7 +11,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
@@ -26,7 +25,6 @@ class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
-    _cancel_call: Incomplete
     _attr_available: bool
     async def _async_update(self) -> None: ...
 

@@ -6,3 +6,4 @@ NAME: str
 OAUTH2_AUTHORIZE: str
 OAUTH2_TOKEN: str
 ERROR_STATES: Incomplete
+ERROR_KEYS: Incomplete

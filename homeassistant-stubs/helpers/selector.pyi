@@ -389,12 +389,13 @@ class SelectSelector(Selector[SelectSelectorConfig]):
 class StateSelectorConfig(BaseSelectorConfig, total=False):
     entity_id: str
     hide_states: list[str]
+    multiple: bool
 
 class StateSelector(Selector[StateSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: StateSelectorConfig) -> None: ...
-    def __call__(self, data: Any) -> str: ...
+    def __call__(self, data: Any) -> str | list[str]: ...
 
 class StatisticSelectorConfig(BaseSelectorConfig, total=False):
     multiple: bool

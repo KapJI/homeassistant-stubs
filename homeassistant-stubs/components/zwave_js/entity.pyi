@@ -1,20 +1,29 @@
 from .const import DOMAIN as DOMAIN, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
-from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
+from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .models import PlatformZwaveDiscoveryInfo as PlatformZwaveDiscoveryInfo, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
 from _typeshed import Incomplete
 from collections.abc import Sequence
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import SetValueResult as SetValueResult, Value as ZwaveValue
 
 EVENT_VALUE_REMOVED: str
+
+@dataclass(kw_only=True)
+class NewZwaveDiscoveryInfo(PlatformZwaveDiscoveryInfo):
+    entity_class: type[ZWaveBaseEntity]
+    entity_description: EntityDescription
+    platform_data: Any = ...
+    platform_data_template: BaseDiscoverySchemaDataTemplate | None = ...
 
 class ZWaveBaseEntity(Entity):
     _attr_should_poll: bool
@@ -25,11 +34,12 @@ class ZWaveBaseEntity(Entity):
     watched_value_ids: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    _attr_entity_registry_enabled_default: bool
+    entity_description: Incomplete
+    _attr_entity_registry_enabled_default: Incomplete
     _attr_entity_category: Incomplete
-    _attr_assumed_state: bool
+    _attr_assumed_state: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo) -> None: ...
     @callback
     def on_value_update(self) -> None: ...
     async def _async_poll_value(self, value_or_id: str | ZwaveValue) -> None: ...

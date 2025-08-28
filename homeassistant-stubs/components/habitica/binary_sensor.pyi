@@ -1,11 +1,13 @@
+from . import HABITICA_KEY as HABITICA_KEY
 from .const import ASSETS_URL as ASSETS_URL
-from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
-from .entity import HabiticaBase as HabiticaBase
+from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaPartyCoordinator as HabiticaPartyCoordinator
+from .entity import HabiticaBase as HabiticaBase, HabiticaPartyBase as HabiticaPartyBase
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
-from habiticalib import UserData as UserData
-from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
+from habiticalib import ContentData as ContentData, UserData as UserData
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
@@ -18,6 +20,7 @@ class HabiticaBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 class HabiticaBinarySensor(StrEnum):
     PENDING_QUEST = 'pending_quest'
+    QUEST_RUNNING = 'quest_running'
 
 def get_scroll_image_for_pending_quest_invitation(user: UserData) -> str | None: ...
 
@@ -31,3 +34,9 @@ class HabiticaBinarySensorEntity(HabiticaBase, BinarySensorEntity):
     def is_on(self) -> bool | None: ...
     @property
     def entity_picture(self) -> str | None: ...
+
+class HabiticaPartyBinarySensorEntity(HabiticaPartyBase, BinarySensorEntity):
+    entity_description: Incomplete
+    def __init__(self, coordinator: HabiticaPartyCoordinator, config_entry: HabiticaConfigEntry, content: ContentData) -> None: ...
+    @property
+    def is_on(self) -> bool | None: ...

@@ -1,5 +1,5 @@
 import abc
-from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_REGISTER_INPUT as CALL_TYPE_REGISTER_INPUT, CALL_TYPE_WRITE_COIL as CALL_TYPE_WRITE_COIL, CALL_TYPE_WRITE_COILS as CALL_TYPE_WRITE_COILS, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CALL_TYPE_X_COILS as CALL_TYPE_X_COILS, CALL_TYPE_X_REGISTER_HOLDINGS as CALL_TYPE_X_REGISTER_HOLDINGS, CONF_DATA_TYPE as CONF_DATA_TYPE, CONF_DEVICE_ADDRESS as CONF_DEVICE_ADDRESS, CONF_INPUT_TYPE as CONF_INPUT_TYPE, CONF_MAX_VALUE as CONF_MAX_VALUE, CONF_MIN_VALUE as CONF_MIN_VALUE, CONF_NAN_VALUE as CONF_NAN_VALUE, CONF_PRECISION as CONF_PRECISION, CONF_SCALE as CONF_SCALE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_STATE_OFF as CONF_STATE_OFF, CONF_STATE_ON as CONF_STATE_ON, CONF_SWAP as CONF_SWAP, CONF_SWAP_BYTE as CONF_SWAP_BYTE, CONF_SWAP_WORD as CONF_SWAP_WORD, CONF_SWAP_WORD_BYTE as CONF_SWAP_WORD_BYTE, CONF_VERIFY as CONF_VERIFY, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, CONF_WRITE_TYPE as CONF_WRITE_TYPE, CONF_ZERO_SUPPRESS as CONF_ZERO_SUPPRESS, DataType as DataType, SIGNAL_START_ENTITY as SIGNAL_START_ENTITY, SIGNAL_STOP_ENTITY as SIGNAL_STOP_ENTITY
+from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_REGISTER_INPUT as CALL_TYPE_REGISTER_INPUT, CALL_TYPE_WRITE_COIL as CALL_TYPE_WRITE_COIL, CALL_TYPE_WRITE_COILS as CALL_TYPE_WRITE_COILS, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CALL_TYPE_WRITE_REGISTERS as CALL_TYPE_WRITE_REGISTERS, CALL_TYPE_X_COILS as CALL_TYPE_X_COILS, CALL_TYPE_X_REGISTER_HOLDINGS as CALL_TYPE_X_REGISTER_HOLDINGS, CONF_DATA_TYPE as CONF_DATA_TYPE, CONF_DEVICE_ADDRESS as CONF_DEVICE_ADDRESS, CONF_INPUT_TYPE as CONF_INPUT_TYPE, CONF_MAX_VALUE as CONF_MAX_VALUE, CONF_MIN_VALUE as CONF_MIN_VALUE, CONF_NAN_VALUE as CONF_NAN_VALUE, CONF_PRECISION as CONF_PRECISION, CONF_SCALE as CONF_SCALE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_STATE_OFF as CONF_STATE_OFF, CONF_STATE_ON as CONF_STATE_ON, CONF_SWAP as CONF_SWAP, CONF_SWAP_BYTE as CONF_SWAP_BYTE, CONF_SWAP_WORD as CONF_SWAP_WORD, CONF_SWAP_WORD_BYTE as CONF_SWAP_WORD_BYTE, CONF_VERIFY as CONF_VERIFY, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, CONF_WRITE_TYPE as CONF_WRITE_TYPE, CONF_ZERO_SUPPRESS as CONF_ZERO_SUPPRESS, DataType as DataType, SIGNAL_START_ENTITY as SIGNAL_START_ENTITY, SIGNAL_STOP_ENTITY as SIGNAL_STOP_ENTITY, _LOGGER as _LOGGER
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -9,11 +9,9 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND_OFF a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity, ToggleEntity as ToggleEntity
-from homeassistant.helpers.event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
+from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any
-
-_LOGGER: Incomplete
 
 class BasePlatform(Entity, metaclass=abc.ABCMeta):
     _value: str | None
@@ -25,7 +23,6 @@ class BasePlatform(Entity, metaclass=abc.ABCMeta):
     _address: Incomplete
     _input_type: Incomplete
     _scan_interval: Incomplete
-    _cancel_timer: Callable[[], None] | None
     _cancel_call: Callable[[], None] | None
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
@@ -34,11 +31,14 @@ class BasePlatform(Entity, metaclass=abc.ABCMeta):
     _max_value: Incomplete
     _nan_value: Incomplete
     _zero_suppress: Incomplete
-    _update_lock: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, entry: dict[str, Any]) -> None: ...
     @abstractmethod
     async def _async_update(self) -> None: ...
-    async def async_update(self, now: datetime | None = None) -> None: ...
+    async def async_update(self) -> None: ...
+    async def async_local_update(self, now: datetime | None = None) -> None: ...
+    async def async_will_remove_from_hass(self) -> None: ...
+    @callback
+    def async_hold(self) -> None: ...
     async def _async_update_write_state(self) -> None: ...
     async def _async_update_if_not_in_progress(self, now: datetime | None = None) -> None: ...
     @callback
@@ -47,9 +47,7 @@ class BasePlatform(Entity, metaclass=abc.ABCMeta):
     def _async_schedule_future_update(self, delay: float) -> None: ...
     @callback
     def _async_cancel_future_pending_update(self) -> None: ...
-    def _async_cancel_update_polling(self) -> None: ...
-    @callback
-    def async_hold(self) -> None: ...
+    async def async_await_connection(self, _now: Any) -> None: ...
     async def async_base_added_to_hass(self) -> None: ...
 
 class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):

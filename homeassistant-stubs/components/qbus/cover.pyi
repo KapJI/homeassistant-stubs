@@ -1,5 +1,5 @@
 from .coordinator import QbusConfigEntry as QbusConfigEntry
-from .entity import QbusEntity as QbusEntity, add_new_outputs as add_new_outputs
+from .entity import QbusEntity as QbusEntity, create_new_entities as create_new_entities
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -1,5 +1,5 @@
 from . import get_hub as get_hub
-from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT
+from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, _LOGGER as _LOGGER
 from .entity import BasePlatform as BasePlatform
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
@@ -12,7 +12,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

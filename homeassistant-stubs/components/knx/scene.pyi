@@ -4,19 +4,20 @@ from .knx_module import KNXModule as KNXModule
 from .schema import SceneSchema as SceneSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
-from homeassistant.components.scene import Scene as Scene
+from homeassistant.components.scene import BaseScene as BaseScene
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
-from xknx.devices import Scene as XknxScene
+from xknx.devices import Device as XknxDevice, Scene as XknxScene
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class KNXScene(KnxYamlEntity, Scene):
+class KNXScene(KnxYamlEntity, BaseScene):
     _device: XknxScene
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
-    async def async_activate(self, **kwargs: Any) -> None: ...
+    async def _async_activate(self, **kwargs: Any) -> None: ...
+    def after_update_callback(self, device: XknxDevice) -> None: ...

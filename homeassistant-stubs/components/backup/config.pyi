@@ -90,13 +90,11 @@ class AgentRetentionConfig(BaseRetentionConfig): ...
 class StoredBackupSchedule(TypedDict):
     days: list[Day]
     recurrence: ScheduleRecurrence
-    state: ScheduleState
     time: str | None
 
 class ScheduleParametersDict(TypedDict, total=False):
     days: list[Day]
     recurrence: ScheduleRecurrence
-    state: ScheduleState
     time: dt.time | None
 
 class Day(StrEnum):
@@ -113,22 +111,10 @@ class ScheduleRecurrence(StrEnum):
     DAILY = 'daily'
     CUSTOM_DAYS = 'custom_days'
 
-class ScheduleState(StrEnum):
-    NEVER = 'never'
-    DAILY = 'daily'
-    MONDAY = 'mon'
-    TUESDAY = 'tue'
-    WEDNESDAY = 'wed'
-    THURSDAY = 'thu'
-    FRIDAY = 'fri'
-    SATURDAY = 'sat'
-    SUNDAY = 'sun'
-
 @dataclass(kw_only=True)
 class BackupSchedule:
     days: list[Day] = field(default_factory=list)
     recurrence: ScheduleRecurrence = ...
-    state: ScheduleState = ...
     time: dt.time | None = ...
     cron_event: CronSim | None = field(init=False, default=None)
     next_automatic_backup: datetime | None = field(init=False, default=None)

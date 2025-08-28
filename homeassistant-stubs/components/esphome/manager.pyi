@@ -5,7 +5,7 @@ from .domain_data import DomainData as DomainData
 from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, EntityInfo as EntityInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService
 from aioesphomeapi.api_pb2 import SubscribeLogsResponse as SubscribeLogsResponse
 from homeassistant.components import bluetooth as bluetooth, tag as tag, zeroconf as zeroconf
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
@@ -17,7 +17,6 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
-from homeassistant.util.async_ import create_eager_task as create_eager_task
 from typing import Any, NamedTuple
 
 DEVICE_CONFLICT_ISSUE_FORMAT: str

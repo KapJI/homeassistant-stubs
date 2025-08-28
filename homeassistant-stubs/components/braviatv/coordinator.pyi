@@ -25,6 +25,7 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     use_psk: Incomplete
     client_id: Incomplete
     nickname: Incomplete
+    system_info: dict[str, str]
     source: str | None
     source_list: list[str]
     source_map: dict[str, dict]

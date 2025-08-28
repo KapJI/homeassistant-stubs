@@ -1,6 +1,6 @@
 from .api import VolvoAuth as VolvoAuth
 from .const import CONF_VIN as CONF_VIN, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
-from .coordinator import VolvoConfigEntry as VolvoConfigEntry, VolvoMediumIntervalCoordinator as VolvoMediumIntervalCoordinator, VolvoSlowIntervalCoordinator as VolvoSlowIntervalCoordinator, VolvoVerySlowIntervalCoordinator as VolvoVerySlowIntervalCoordinator
+from .coordinator import VolvoConfigEntry as VolvoConfigEntry, VolvoFastIntervalCoordinator as VolvoFastIntervalCoordinator, VolvoMediumIntervalCoordinator as VolvoMediumIntervalCoordinator, VolvoSlowIntervalCoordinator as VolvoSlowIntervalCoordinator, VolvoVerySlowIntervalCoordinator as VolvoVerySlowIntervalCoordinator
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady

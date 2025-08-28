@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import QbusConfigEntry as QbusConfigEntry
-from .entity import QbusEntity as QbusEntity, add_new_outputs as add_new_outputs
+from .entity import QbusEntity as QbusEntity, create_new_entities as create_new_entities
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature

@@ -129,6 +129,7 @@ class ConfigFlowContext(FlowContext, total=False):
 class ConfigFlowResult(FlowResult[ConfigFlowContext, str], total=False):
     minor_version: int
     options: Mapping[str, Any]
+    result: ConfigEntry
     subentries: Iterable[ConfigSubentryData]
     version: int
 
@@ -444,7 +445,11 @@ class ConfigSubentryFlow(data_entry_flow.FlowHandler[SubentryFlowContext, Subent
     @callback
     def async_create_entry(self, *, title: str | None = None, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, unique_id: str | None = None) -> SubentryFlowResult: ...
     @callback
+    def _async_update(self, entry: ConfigEntry, subentry: ConfigSubentry, *, unique_id: str | None | UndefinedType = ..., title: str | UndefinedType = ..., data: Mapping[str, Any] | UndefinedType = ..., data_updates: Mapping[str, Any] | UndefinedType = ...) -> bool: ...
+    @callback
     def async_update_and_abort(self, entry: ConfigEntry, subentry: ConfigSubentry, *, unique_id: str | None | UndefinedType = ..., title: str | UndefinedType = ..., data: Mapping[str, Any] | UndefinedType = ..., data_updates: Mapping[str, Any] | UndefinedType = ...) -> SubentryFlowResult: ...
+    @callback
+    def async_update_reload_and_abort(self, entry: ConfigEntry, subentry: ConfigSubentry, *, unique_id: str | None | UndefinedType = ..., title: str | UndefinedType = ..., data: Mapping[str, Any] | UndefinedType = ..., data_updates: Mapping[str, Any] | UndefinedType = ..., reload_even_if_entry_is_unchanged: bool = True) -> SubentryFlowResult: ...
     @property
     def _entry_id(self) -> str: ...
     @property

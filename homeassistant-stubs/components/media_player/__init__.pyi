@@ -39,6 +39,7 @@ CACHE_MAXSIZE: Final[str]
 CACHE_LOCK: Final[str]
 CACHE_URL: Final[str]
 CACHE_CONTENT: Final[str]
+ATTR_MEDIA: str
 
 class MediaPlayerEnqueue(StrEnum):
     ADD = 'add'
@@ -56,6 +57,9 @@ _DEPRECATED_DEVICE_CLASS_TV: Incomplete
 _DEPRECATED_DEVICE_CLASS_SPEAKER: Incomplete
 _DEPRECATED_DEVICE_CLASS_RECEIVER: Incomplete
 DEVICE_CLASSES: Incomplete
+
+def _promote_media_fields(data: dict[str, Any]) -> dict[str, Any]: ...
+
 MEDIA_PLAYER_PLAY_MEDIA_SCHEMA: Incomplete
 MEDIA_PLAYER_BROWSE_MEDIA_SCHEMA: Incomplete
 ATTR_TO_PROPERTY: Incomplete

@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyenphase import EnvoyEncharge as EnvoyEncharge, EnvoyEnpower as EnvoyEnpower
+from pyenphase import EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnpower as EnvoyEnpower
 
 PARALLEL_UPDATES: int
 
@@ -24,6 +24,18 @@ class EnvoyEnpowerBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyEnpower], bool]
 
 ENPOWER_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyCollarBinarySensorEntityDescription(BinarySensorEntityDescription):
+    value_fn: Callable[[EnvoyCollar], bool]
+
+COLLAR_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyC6CCBinarySensorEntityDescription(BinarySensorEntityDescription):
+    value_fn: Callable[[EnvoyC6CC], bool]
+
+C6CC_SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -43,5 +55,21 @@ class EnvoyEnpowerBinarySensorEntity(EnvoyBaseBinarySensorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnpowerBinarySensorEntityDescription) -> None: ...
+    @property
+    def is_on(self) -> bool: ...
+
+class EnvoyCollarBinarySensorEntity(EnvoyBaseBinarySensorEntity):
+    entity_description: EnvoyCollarBinarySensorEntityDescription
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyCollarBinarySensorEntityDescription) -> None: ...
+    @property
+    def is_on(self) -> bool: ...
+
+class EnvoyC6CCBinarySensorEntity(EnvoyBaseBinarySensorEntity):
+    entity_description: EnvoyC6CCBinarySensorEntityDescription
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyC6CCBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...

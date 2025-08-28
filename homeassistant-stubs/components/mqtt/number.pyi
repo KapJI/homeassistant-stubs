@@ -8,6 +8,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import number as number
 from homeassistant.components.number import DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, NumberDeviceClass as NumberDeviceClass, NumberMode as NumberMode, RestoreNumber as RestoreNumber
+from homeassistant.components.sensor import AMBIGUOUS_UNITS as AMBIGUOUS_UNITS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

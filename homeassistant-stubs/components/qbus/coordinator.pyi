@@ -5,16 +5,17 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util.hass_dict import HassKey as HassKey
-from qbusmqttapi.discovery import QbusDiscovery as QbusDiscovery, QbusMqttDevice as QbusMqttDevice, QbusMqttOutput
+from qbusmqttapi.discovery import QbusDiscovery as QbusDiscovery, QbusMqttDevice
 
 _LOGGER: Incomplete
 type QbusConfigEntry = ConfigEntry[QbusControllerCoordinator]
 QBUS_KEY: HassKey[QbusConfigCoordinator]
 
-class QbusControllerCoordinator(DataUpdateCoordinator[list[QbusMqttOutput]]):
+class QbusControllerCoordinator(DataUpdateCoordinator[QbusMqttDevice | None]):
     _STATE_REQUEST_DELAY: int
     config_entry: QbusConfigEntry
     _message_factory: Incomplete
@@ -23,7 +24,7 @@ class QbusControllerCoordinator(DataUpdateCoordinator[list[QbusMqttOutput]]):
     _subscribed_to_controller_state: bool
     _controller: QbusMqttDevice | None
     def __init__(self, hass: HomeAssistant, entry: QbusConfigEntry) -> None: ...
-    async def _async_update_data(self) -> list[QbusMqttOutput]: ...
+    async def _async_update_data(self) -> QbusMqttDevice | None: ...
     def shutdown(self, event: Event | None = None) -> None: ...
     async def async_update_controller_config(self, config: QbusDiscovery) -> None: ...
     def _update_device_info(self) -> None: ...

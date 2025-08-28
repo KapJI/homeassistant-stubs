@@ -16,7 +16,9 @@ class AuthFlowContext(FlowContext, total=False):
     credential_only: bool
     ip_address: IPv4Address | IPv6Address
     redirect_uri: str
-AuthFlowResult = FlowResult[AuthFlowContext, tuple[str, str]]
+
+class AuthFlowResult(FlowResult[AuthFlowContext, tuple[str, str]], total=False):
+    result: Credentials
 
 class Group:
     name: str | None

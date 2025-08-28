@@ -1,5 +1,5 @@
 from .const import ENTITY_DESC_KEY_BATTERY_LEVEL as ENTITY_DESC_KEY_BATTERY_LEVEL, ENTITY_DESC_KEY_BATTERY_LIST_STATE as ENTITY_DESC_KEY_BATTERY_LIST_STATE, ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY as ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY, ENTITY_DESC_KEY_BATTERY_TEMPERATURE as ENTITY_DESC_KEY_BATTERY_TEMPERATURE, ENTITY_DESC_KEY_CO as ENTITY_DESC_KEY_CO, ENTITY_DESC_KEY_CO2 as ENTITY_DESC_KEY_CO2, ENTITY_DESC_KEY_CURRENT as ENTITY_DESC_KEY_CURRENT, ENTITY_DESC_KEY_ENERGY_MEASUREMENT as ENTITY_DESC_KEY_ENERGY_MEASUREMENT, ENTITY_DESC_KEY_ENERGY_PRODUCTION_POWER as ENTITY_DESC_KEY_ENERGY_PRODUCTION_POWER, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL, ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING as ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING, ENTITY_DESC_KEY_HUMIDITY as ENTITY_DESC_KEY_HUMIDITY, ENTITY_DESC_KEY_ILLUMINANCE as ENTITY_DESC_KEY_ILLUMINANCE, ENTITY_DESC_KEY_MEASUREMENT as ENTITY_DESC_KEY_MEASUREMENT, ENTITY_DESC_KEY_POWER as ENTITY_DESC_KEY_POWER, ENTITY_DESC_KEY_POWER_FACTOR as ENTITY_DESC_KEY_POWER_FACTOR, ENTITY_DESC_KEY_PRESSURE as ENTITY_DESC_KEY_PRESSURE, ENTITY_DESC_KEY_SIGNAL_STRENGTH as ENTITY_DESC_KEY_SIGNAL_STRENGTH, ENTITY_DESC_KEY_TARGET_TEMPERATURE as ENTITY_DESC_KEY_TARGET_TEMPERATURE, ENTITY_DESC_KEY_TEMPERATURE as ENTITY_DESC_KEY_TEMPERATURE, ENTITY_DESC_KEY_TOTAL_INCREASING as ENTITY_DESC_KEY_TOTAL_INCREASING, ENTITY_DESC_KEY_UV_INDEX as ENTITY_DESC_KEY_UV_INDEX, ENTITY_DESC_KEY_VOLTAGE as ENTITY_DESC_KEY_VOLTAGE
-from .helpers import ZwaveValueID as ZwaveValueID
+from .models import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate, ZwaveValueID as ZwaveValueID
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
@@ -9,7 +9,6 @@ from typing import Any
 from zwave_js_server.const.command_class.energy_production import EnergyProductionParameter, EnergyProductionScaleType as EnergyProductionScaleType
 from zwave_js_server.const.command_class.meter import MeterScaleType as MeterScaleType
 from zwave_js_server.const.command_class.multilevel_sensor import MultilevelSensorScaleType as MultilevelSensorScaleType, MultilevelSensorType
-from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import ConfigurationValue as ZwaveConfigurationValue, Value as ZwaveValue
 
 ENERGY_PRODUCTION_DEVICE_CLASS_MAP: dict[str, list[EnergyProductionParameter]]
@@ -19,15 +18,6 @@ ENERGY_PRODUCTION_UNIT_MAP: dict[str, list[EnergyProductionScaleType]]
 METER_UNIT_MAP: dict[str, list[MeterScaleType]]
 MULTILEVEL_SENSOR_UNIT_MAP: dict[str, list[MultilevelSensorScaleType]]
 _LOGGER: Incomplete
-
-@dataclass
-class BaseDiscoverySchemaDataTemplate:
-    static_data: Any | None = ...
-    def resolve_data(self, value: ZwaveValue) -> Any: ...
-    def values_to_watch(self, resolved_data: Any) -> Iterable[ZwaveValue | None]: ...
-    def value_ids_to_watch(self, resolved_data: Any) -> set[str]: ...
-    @staticmethod
-    def _get_value_from_id(node: ZwaveNode, value_id_obj: ZwaveValueID) -> ZwaveValue | ZwaveConfigurationValue | None: ...
 
 @dataclass
 class DynamicCurrentTempClimateDataTemplate(BaseDiscoverySchemaDataTemplate):

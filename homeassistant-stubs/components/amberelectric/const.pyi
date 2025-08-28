@@ -5,7 +5,6 @@ from typing import Final
 DOMAIN: Final[str]
 CONF_SITE_NAME: str
 CONF_SITE_ID: str
-ATTR_CONFIG_ENTRY_ID: str
 ATTR_CHANNEL_TYPE: str
 ATTRIBUTION: str
 LOGGER: Incomplete

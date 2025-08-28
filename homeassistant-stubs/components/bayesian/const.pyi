@@ -1,3 +1,8 @@
+from _typeshed import Incomplete
+from homeassistant.const import Platform as Platform
+
+DOMAIN: str
+PLATFORMS: Incomplete
 ATTR_OBSERVATIONS: str
 ATTR_OCCURRED_OBSERVATION_ENTITIES: str
 ATTR_PROBABILITY: str

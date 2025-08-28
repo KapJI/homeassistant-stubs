@@ -1,7 +1,7 @@
 from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import CO2SignalConfigEntry as CO2SignalConfigEntry, CO2SignalCoordinator as CO2SignalCoordinator
 from _typeshed import Incomplete
-from aioelectricitymaps.models import CarbonIntensityResponse as CarbonIntensityResponse
+from aioelectricitymaps import HomeAssistantCarbonIntensityResponse as HomeAssistantCarbonIntensityResponse
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -14,8 +14,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 @dataclass(frozen=True, kw_only=True)
 class CO2SensorEntityDescription(SensorEntityDescription):
     unique_id: str | None = ...
-    unit_of_measurement_fn: Callable[[CarbonIntensityResponse], str | None] | None = ...
-    value_fn: Callable[[CarbonIntensityResponse], float | None]
+    unit_of_measurement_fn: Callable[[HomeAssistantCarbonIntensityResponse], str | None] | None = ...
+    value_fn: Callable[[HomeAssistantCarbonIntensityResponse], float | None]
 
 SENSORS: Incomplete
 

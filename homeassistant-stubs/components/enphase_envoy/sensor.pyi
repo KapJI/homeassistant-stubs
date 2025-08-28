@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyenphase import EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
+from pyenphase import EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
 from pyenphase.models.meters import CtMeterStatus, CtState as CtState, CtStatusFlags as CtStatusFlags, CtType, EnvoyMeterData as EnvoyMeterData
 
 _LOGGER: Incomplete
@@ -74,6 +74,18 @@ class EnvoyEnpowerSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyEnpower], datetime.datetime | int | float]
 
 ENPOWER_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyCollarSensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[EnvoyCollar], datetime.datetime | int | float | str]
+
+COLLAR_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyC6CCSensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[EnvoyC6CC], datetime.datetime]
+
+C6CC_SENSORS: Incomplete
 
 @dataclass(frozen=True)
 class EnvoyEnchargeAggregateRequiredKeysMixin: ...
@@ -221,3 +233,20 @@ class AggregateBatteryEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyAggregateBatterySensorEntityDescription
     @property
     def native_value(self) -> int: ...
+
+class EnvoyCollarEntity(EnvoySensorBaseEntity):
+    entity_description: EnvoyCollarSensorEntityDescription
+    _serial_number: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyCollarSensorEntityDescription) -> None: ...
+    @property
+    def native_value(self) -> datetime.datetime | int | float | str: ...
+
+class EnvoyC6CCEntity(EnvoySensorBaseEntity):
+    entity_description: EnvoyC6CCSensorEntityDescription
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyC6CCSensorEntityDescription) -> None: ...
+    @property
+    def native_value(self) -> datetime.datetime: ...

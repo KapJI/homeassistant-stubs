@@ -123,6 +123,7 @@ OVEN_PROGRAM_ID: dict[int, str]
 DISH_WARMER_PROGRAM_ID: dict[int, str]
 ROBOT_VACUUM_CLEANER_PROGRAM_ID: dict[int, str]
 COFFEE_SYSTEM_PROGRAM_ID: dict[int, str]
+COFFEE_SYSTEM_PROFILE: dict[range, str]
 STEAM_OVEN_MICRO_PROGRAM_ID: dict[int, str]
 STATE_PROGRAM_ID: dict[int, dict[int, str]]
 

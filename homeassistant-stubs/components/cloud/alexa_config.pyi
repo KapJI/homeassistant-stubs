@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
 from hass_nabucasa import Cloud as Cloud
+from hass_nabucasa.alexa_api import AlexaAccessTokenDetails as AlexaAccessTokenDetails
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.components.alexa import config as alexa_config
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
@@ -36,7 +37,7 @@ class CloudAlexaConfig(alexa_config.AbstractConfig):
     _cloud_user: Incomplete
     _prefs: Incomplete
     _cloud: Incomplete
-    _token: Incomplete
+    _token: str | None
     _token_valid: datetime | None
     _cur_entity_prefs: Incomplete
     _alexa_sync_unsub: Callable[[], None] | None

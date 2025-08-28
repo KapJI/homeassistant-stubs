@@ -1,5 +1,5 @@
-from .const import DATA_BATTERY_CAPACITY as DATA_BATTERY_CAPACITY
-from .coordinator import VolvoBaseCoordinator as VolvoBaseCoordinator, VolvoConfigEntry as VolvoConfigEntry
+from .const import API_NONE_VALUE as API_NONE_VALUE, DATA_BATTERY_CAPACITY as DATA_BATTERY_CAPACITY
+from .coordinator import VolvoConfigEntry as VolvoConfigEntry
 from .entity import VolvoEntity as VolvoEntity, VolvoEntityDescription as VolvoEntityDescription, value_to_translation_key as value_to_translation_key
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

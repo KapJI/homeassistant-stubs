@@ -46,7 +46,6 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     fritz_guest_wifi: FritzGuestWLAN
     fritz_hosts: FritzHosts
     fritz_status: FritzStatus
-    hass: Incomplete
     host: Incomplete
     mesh_role: Incomplete
     mesh_wifi_uplink: bool

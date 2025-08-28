@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from datetime import datetime
+from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -108,6 +109,7 @@ class DemoTVShowPlayer(AbstractDemoPlayer):
 
 class DemoBrowsePlayer(AbstractDemoPlayer):
     _attr_supported_features = BROWSE_PLAYER_SUPPORT
+    async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
 
 class DemoGroupPlayer(AbstractDemoPlayer):
     _attr_supported_features: Incomplete

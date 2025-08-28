@@ -1,11 +1,10 @@
-from .api import AsyncConfigEntryAuth as AsyncConfigEntryAuth
 from .const import DEVICE_TYPE_TAGS as DEVICE_TYPE_TAGS, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MieleAppliance as MieleAppliance, StateStatus as StateStatus
 from .coordinator import MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from pymiele import MieleAction as MieleAction, MieleDevice as MieleDevice
+from pymiele import MieleAPI as MieleAPI, MieleAction as MieleAction, MieleDevice as MieleDevice
 
 class MieleEntity(CoordinatorEntity[MieleDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -21,6 +20,6 @@ class MieleEntity(CoordinatorEntity[MieleDataUpdateCoordinator]):
     @property
     def action(self) -> MieleAction: ...
     @property
-    def api(self) -> AsyncConfigEntryAuth: ...
+    def api(self) -> MieleAPI: ...
     @property
     def available(self) -> bool: ...

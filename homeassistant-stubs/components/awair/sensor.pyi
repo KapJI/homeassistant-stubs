@@ -1,10 +1,10 @@
-from .const import API_CO2 as API_CO2, API_DEW_POINT as API_DEW_POINT, API_DUST as API_DUST, API_HUMID as API_HUMID, API_LUX as API_LUX, API_PM10 as API_PM10, API_PM25 as API_PM25, API_SCORE as API_SCORE, API_SPL_A as API_SPL_A, API_TEMP as API_TEMP, API_VOC as API_VOC, ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
+from .const import API_ABS_HUMID as API_ABS_HUMID, API_CO2 as API_CO2, API_DEW_POINT as API_DEW_POINT, API_DUST as API_DUST, API_HUMID as API_HUMID, API_LUX as API_LUX, API_PM10 as API_PM10, API_PM25 as API_PM25, API_SCORE as API_SCORE, API_SPL_A as API_SPL_A, API_TEMP as API_TEMP, API_VOC as API_VOC, ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import AwairConfigEntry as AwairConfigEntry, AwairDataUpdateCoordinator as AwairDataUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_SW_VERSION as ATTR_SW_VERSION, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_SW_VERSION as ATTR_SW_VERSION, CONCENTRATION_GRAMS_PER_CUBIC_METER as CONCENTRATION_GRAMS_PER_CUBIC_METER, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

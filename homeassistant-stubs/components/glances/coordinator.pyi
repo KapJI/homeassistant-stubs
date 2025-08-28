@@ -14,7 +14,6 @@ type GlancesConfigEntry = ConfigEntry[GlancesDataUpdateCoordinator]
 
 class GlancesDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: GlancesConfigEntry
-    hass: Incomplete
     host: str
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: GlancesConfigEntry, api: Glances) -> None: ...

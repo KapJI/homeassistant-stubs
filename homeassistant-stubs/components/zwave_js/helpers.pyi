@@ -24,13 +24,6 @@ DRIVER_READY_EVENT_TIMEOUT: int
 SERVER_VERSION_TIMEOUT: int
 
 @dataclass
-class ZwaveValueID:
-    property_: str | int
-    command_class: int
-    endpoint: int | None = ...
-    property_key: str | int | None = ...
-
-@dataclass
 class ZwaveValueMatcher:
     property_: str | int | None = ...
     command_class: int | None = ...

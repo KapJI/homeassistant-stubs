@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from homeassistant.const import CONF_HEADERS as CONF_HEADERS, CONF_METHOD as CONF_METHOD, CONF_PASSWORD as CONF_PASSWORD, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.const import CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF_HEADERS as CONF_HEADERS, CONF_METHOD as CONF_METHOD, CONF_PASSWORD as CONF_PASSWORD, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, HTTP_BASIC_AUTHENTICATION as HTTP_BASIC_AUTHENTICATION, HTTP_DIGEST_AUTHENTICATION as HTTP_DIGEST_AUTHENTICATION, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

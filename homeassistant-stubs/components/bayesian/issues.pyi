@@ -1,4 +1,4 @@
-from . import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .helpers import Observation as Observation
 from homeassistant.core import HomeAssistant as HomeAssistant
 

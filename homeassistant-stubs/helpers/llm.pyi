@@ -50,6 +50,7 @@ class ToolInput:
     tool_name: str
     tool_args: dict[str, Any]
     id: str = dc_field(default_factory=Incomplete)
+    external: bool = ...
 
 class Tool(metaclass=abc.ABCMeta):
     name: str

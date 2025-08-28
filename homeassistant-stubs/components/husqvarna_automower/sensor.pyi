@@ -1,5 +1,5 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
-from .const import ERROR_STATES as ERROR_STATES
+from .const import ERROR_KEYS as ERROR_KEYS, ERROR_STATES as ERROR_STATES
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerBaseEntity as AutomowerBaseEntity, WorkAreaAvailableEntity as WorkAreaAvailableEntity, _work_area_translation_key as _work_area_translation_key
 from _typeshed import Incomplete
@@ -17,7 +17,6 @@ from typing import Any
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 ATTR_WORK_AREA_ID_ASSIGNMENT: str
-ERROR_KEYS: Incomplete
 ERROR_KEY_LIST: Incomplete
 INACTIVE_REASONS: list
 RESTRICTED_REASONS: list

@@ -2,7 +2,6 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 LOGGER: Incomplete
-ATTR_CONFIG_ENTRY_ID: str
 ATTR_START_DATE: str
 ATTR_END_DATE: str
 ATTR_RECIPE_ID: str

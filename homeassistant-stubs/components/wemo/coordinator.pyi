@@ -29,7 +29,6 @@ class Options:
 class DeviceCoordinator(DataUpdateCoordinator[None]):
     config_entry: ConfigEntry
     options: Options | None
-    hass: Incomplete
     wemo: Incomplete
     device_id: str | None
     device_info: Incomplete

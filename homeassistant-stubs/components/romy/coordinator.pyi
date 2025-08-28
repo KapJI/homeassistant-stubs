@@ -7,7 +7,6 @@ from romy import RomyRobot as RomyRobot
 
 class RomyVacuumCoordinator(DataUpdateCoordinator[None]):
     config_entry: ConfigEntry
-    hass: Incomplete
     romy: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, romy: RomyRobot) -> None: ...
     async def _async_update_data(self) -> None: ...

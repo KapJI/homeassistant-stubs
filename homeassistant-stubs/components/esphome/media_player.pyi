@@ -11,6 +11,7 @@ from typing import Any
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 _STATES: EsphomeEnumMapper[EspMediaPlayerState, MediaPlayerState]
+_FEATURES: Incomplete
 ATTR_BYPASS_PROXY: str
 
 class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState], MediaPlayerEntity):
@@ -42,6 +43,10 @@ class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState],
     async def async_media_stop(self) -> None: ...
     @convert_api_error_ha_error
     async def async_mute_volume(self, mute: bool) -> None: ...
+    @convert_api_error_ha_error
+    async def async_turn_on(self) -> None: ...
+    @convert_api_error_ha_error
+    async def async_turn_off(self) -> None: ...
 
 def _is_url(url: str) -> bool: ...
 

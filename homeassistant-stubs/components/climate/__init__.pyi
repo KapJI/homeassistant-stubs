@@ -36,7 +36,7 @@ CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 class ClimateEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     entity_description: ClimateEntityDescription
-    _attr_current_humidity: int | None
+    _attr_current_humidity: float | None
     _attr_current_temperature: float | None
     _attr_fan_mode: str | None
     _attr_fan_modes: list[str] | None

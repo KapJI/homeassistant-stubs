@@ -11,7 +11,6 @@ type AndroidIPCamConfigEntry = ConfigEntry[AndroidIPCamDataUpdateCoordinator]
 
 class AndroidIPCamDataUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: AndroidIPCamConfigEntry
-    hass: Incomplete
     cam: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, cam: PyDroidIPCam) -> None: ...
     async def _async_update_data(self) -> None: ...

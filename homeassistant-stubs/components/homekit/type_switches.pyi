@@ -1,5 +1,5 @@
 from .accessories import HomeAccessory as HomeAccessory, HomeDriver as HomeDriver, TYPES as TYPES
-from .const import CHAR_ACTIVE as CHAR_ACTIVE, CHAR_CONFIGURED_NAME as CHAR_CONFIGURED_NAME, CHAR_IN_USE as CHAR_IN_USE, CHAR_NAME as CHAR_NAME, CHAR_ON as CHAR_ON, CHAR_OUTLET_IN_USE as CHAR_OUTLET_IN_USE, CHAR_VALVE_TYPE as CHAR_VALVE_TYPE, SERV_OUTLET as SERV_OUTLET, SERV_SWITCH as SERV_SWITCH, SERV_VALVE as SERV_VALVE, TYPE_FAUCET as TYPE_FAUCET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_VALVE as TYPE_VALVE
+from .const import CHAR_ACTIVE as CHAR_ACTIVE, CHAR_CONFIGURED_NAME as CHAR_CONFIGURED_NAME, CHAR_IN_USE as CHAR_IN_USE, CHAR_NAME as CHAR_NAME, CHAR_ON as CHAR_ON, CHAR_OUTLET_IN_USE as CHAR_OUTLET_IN_USE, CHAR_REMAINING_DURATION as CHAR_REMAINING_DURATION, CHAR_SET_DURATION as CHAR_SET_DURATION, CHAR_VALVE_TYPE as CHAR_VALVE_TYPE, CONF_LINKED_VALVE_DURATION as CONF_LINKED_VALVE_DURATION, CONF_LINKED_VALVE_END_TIME as CONF_LINKED_VALVE_END_TIME, SERV_OUTLET as SERV_OUTLET, SERV_SWITCH as SERV_SWITCH, SERV_VALVE as SERV_VALVE, TYPE_FAUCET as TYPE_FAUCET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_VALVE as TYPE_VALVE
 from .util import cleanup_name_for_homekit as cleanup_name_for_homekit
 from _typeshed import Incomplete
 from homeassistant.components import button as button, input_button as input_button
@@ -57,13 +57,23 @@ class ValveBase(HomeAccessory):
     open_states: Incomplete
     on_service: Incomplete
     off_service: Incomplete
+    chars: Incomplete
+    linked_duration_entity: str | None
+    linked_end_time_entity: str | None
     char_active: Incomplete
     char_in_use: Incomplete
     char_valve_type: Incomplete
+    char_set_duration: Incomplete
+    char_remaining_duration: Incomplete
     def __init__(self, valve_type: str, open_states: set[str], on_service: str, off_service: str, *args: Any, **kwargs: Any) -> None: ...
     def set_state(self, value: bool) -> None: ...
     @callback
     def async_update_state(self, new_state: State) -> None: ...
+    def _update_duration_chars(self) -> None: ...
+    def set_duration(self, value: int) -> None: ...
+    def get_duration(self) -> int: ...
+    def get_remaining_duration(self) -> int: ...
+    def _get_entity_state(self, entity_id: str | None) -> str | None: ...
 
 class ValveSwitch(ValveBase):
     def __init__(self, hass: HomeAssistant, driver: HomeDriver, name: str, entity_id: str, aid: int, config: dict[str, Any], *args: Any) -> None: ...

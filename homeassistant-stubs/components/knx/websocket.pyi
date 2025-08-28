@@ -1,14 +1,15 @@
-from .const import DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY, SUPPORTED_PLATFORMS_UI as SUPPORTED_PLATFORMS_UI
 from .knx_module import KNXModule as KNXModule
 from .storage.config_store import ConfigStoreException as ConfigStoreException
 from .storage.const import CONF_DATA as CONF_DATA
 from .storage.entity_store_schema import CREATE_ENTITY_BASE_SCHEMA as CREATE_ENTITY_BASE_SCHEMA, UPDATE_ENTITY_BASE_SCHEMA as UPDATE_ENTITY_BASE_SCHEMA
 from .storage.entity_store_validation import EntityStoreValidationException as EntityStoreValidationException, EntityStoreValidationSuccess as EntityStoreValidationSuccess, validate_entity_data as validate_entity_data
+from .storage.serialize import get_serialized_schema as get_serialized_schema
 from .telegrams import SIGNAL_KNX_TELEGRAM as SIGNAL_KNX_TELEGRAM, TelegramDict as TelegramDict
 from collections.abc import Awaitable, Callable
 from homeassistant.components import panel_custom as panel_custom, websocket_api as websocket_api
 from homeassistant.components.http import StaticPathConfig as StaticPathConfig
-from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_PLATFORM as CONF_PLATFORM
+from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_PLATFORM as CONF_PLATFORM, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
@@ -28,7 +29,7 @@ def provide_knx(func: KnxWebSocketCommandHandler) -> websocket_api.const.WebSock
 @websocket_api.require_admin
 @provide_knx
 @callback
-def ws_info(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+def ws_get_base_data(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @provide_knx
@@ -55,6 +56,9 @@ def ws_subscribe_telegram(hass: HomeAssistant, connection: websocket_api.ActiveC
 @websocket_api.require_admin
 @callback
 def ws_validate_entity(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+async def ws_get_schema(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @provide_knx

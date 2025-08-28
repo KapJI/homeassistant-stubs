@@ -2,7 +2,9 @@ from .const import CONF_DPT as CONF_DPT, CONF_GA_PASSIVE as CONF_GA_PASSIVE, CON
 from _typeshed import Incomplete
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
+from xknx.typing import DPTMainSubDict
 
+def dpt_string_to_dict(dpt: str) -> DPTMainSubDict: ...
 def nested_get(dic: ConfigType, *keys: str, default: Any | None = None) -> Any: ...
 
 class ConfigExtractor:

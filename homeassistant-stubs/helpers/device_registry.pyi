@@ -20,7 +20,7 @@ from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from propcache.api import cached_property as under_cached_property
-from typing import Any, Literal, TypedDict
+from typing import Any, Final, Literal, TypedDict
 from yarl import URL
 
 _LOGGER: Incomplete
@@ -35,6 +35,7 @@ CONNECTION_NETWORK_MAC: str
 CONNECTION_UPNP: str
 CONNECTION_ZIGBEE: str
 ORPHANED_DEVICE_KEEP_SECONDS: Incomplete
+UNDEFINED_STR: Final[str]
 RUNTIME_ONLY_ATTRS: Incomplete
 CONFIGURATION_URL_SCHEMES: Incomplete
 
@@ -157,7 +158,7 @@ class DeletedDeviceEntry:
     config_entries_subentries: dict[str, set[str | None]]
     connections: set[tuple[str, str]]
     created_at: datetime
-    disabled_by: DeviceEntryDisabler | None
+    disabled_by: DeviceEntryDisabler | UndefinedType | None
     id: str
     identifiers: set[tuple[str, str]]
     labels: set[str]
@@ -165,7 +166,7 @@ class DeletedDeviceEntry:
     name_by_user: str | None
     orphaned_timestamp: float | None
     _cache: dict[str, Any]
-    def to_device_entry(self, config_entry: ConfigEntry, config_subentry_id: str | None, connections: set[tuple[str, str]], identifiers: set[tuple[str, str]]) -> DeviceEntry: ...
+    def to_device_entry(self, config_entry: ConfigEntry, config_subentry_id: str | None, connections: set[tuple[str, str]], identifiers: set[tuple[str, str]], disabled_by: DeviceEntryDisabler | UndefinedType | None) -> DeviceEntry: ...
     @under_cached_property
     def as_storage_fragment(self) -> json_fragment: ...
     def __init__(self, area_id, config_entries, config_entries_subentries, connections, created_at, disabled_by, id, identifiers, labels, modified_at, name_by_user, orphaned_timestamp, cache) -> None: ...

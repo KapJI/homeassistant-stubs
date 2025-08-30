@@ -45,6 +45,7 @@ class PropertyZWaveJSEntityDescription(BinarySensorEntityDescription):
 class NewNotificationZWaveJSEntityDescription(BinarySensorEntityDescription):
     state_key: str
 
+MIGRATED_NOTIFICATION_TYPES: Incomplete
 NOTIFICATION_SENSOR_MAPPINGS: tuple[NotificationZWaveJSEntityDescription, ...]
 PROPERTY_SENSOR_MAPPINGS: dict[str, PropertyZWaveJSEntityDescription]
 BOOLEAN_SENSOR_MAPPINGS: dict[tuple[int, int | str], BinarySensorEntityDescription]

@@ -20,7 +20,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from propcache.api import cached_property as under_cached_property
-from typing import Any, Literal, NotRequired, TypedDict
+from typing import Any, Final, Literal, NotRequired, TypedDict
 
 DATA_REGISTRY: HassKey[EntityRegistry]
 EVENT_ENTITY_REGISTRY_UPDATED: EventType[EventEntityRegistryUpdatedData]
@@ -30,6 +30,7 @@ STORAGE_VERSION_MINOR: int
 STORAGE_KEY: str
 CLEANUP_INTERVAL: Incomplete
 ORPHANED_ENTITY_KEEP_SECONDS: Incomplete
+UNDEFINED_STR: Final[str]
 ENTITY_CATEGORY_VALUE_TO_INDEX: dict[EntityCategory | None, int]
 ENTITY_CATEGORY_INDEX_TO_VALUE: Incomplete
 ENTITY_DESCRIBING_ATTRIBUTES: Incomplete
@@ -61,6 +62,7 @@ type ReadOnlyEntityOptionsType = ReadOnlyDict[str, ReadOnlyDict[str, Any]]
 DISPLAY_DICT_OPTIONAL: Incomplete
 
 def _protect_entity_options(data: EntityOptionsType | None) -> ReadOnlyEntityOptionsType: ...
+def _protect_optional_entity_options(data: EntityOptionsType | UndefinedType | None) -> ReadOnlyEntityOptionsType | UndefinedType: ...
 
 class RegistryEntry:
     entity_id: str
@@ -132,15 +134,15 @@ class DeletedRegistryEntry:
     config_subentry_id: str | None
     created_at: datetime
     device_class: str | None
-    disabled_by: RegistryEntryDisabler | None
+    disabled_by: RegistryEntryDisabler | UndefinedType | None
     domain: str
-    hidden_by: RegistryEntryHider | None
+    hidden_by: RegistryEntryHider | UndefinedType | None
     icon: str | None
     id: str
     labels: set[str]
     modified_at: datetime
     name: str | None
-    options: ReadOnlyEntityOptionsType
+    options: ReadOnlyEntityOptionsType | UndefinedType
     orphaned_timestamp: float | None
     _cache: dict[str, Any]
     @domain.default

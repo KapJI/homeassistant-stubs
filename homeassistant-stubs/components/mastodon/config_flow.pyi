@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET
 from homeassistant.helpers.selector import TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.util import slugify as slugify
-from mastodon.Mastodon import Account as Account, Instance as Instance
+from mastodon.Mastodon import Account as Account, Instance as Instance, InstanceV2 as InstanceV2
 from typing import Any
 
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -15,6 +15,6 @@ def base_url_from_url(url: str) -> str: ...
 class MastodonConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    def check_connection(self, base_url: str, client_id: str, client_secret: str, access_token: str) -> tuple[Instance | None, Account | None, dict[str, str]]: ...
+    def check_connection(self, base_url: str, client_id: str, client_secret: str, access_token: str) -> tuple[InstanceV2 | Instance | None, Account | None, dict[str, str]]: ...
     def show_user_form(self, user_input: dict[str, Any] | None = None, errors: dict[str, str] | None = None, description_placeholders: dict[str, str] | None = None, step_id: str = 'user') -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

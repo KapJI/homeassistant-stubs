@@ -22,6 +22,7 @@ from homeassistant.util.json import json_loads as json_loads
 from typing import Any, Final
 
 CLOSE_MSG_TYPES: Incomplete
+AUTH_MESSAGE_TIMEOUT: int
 _WS_LOGGER: Final[Incomplete]
 
 class WebsocketAPIView(HomeAssistantView):

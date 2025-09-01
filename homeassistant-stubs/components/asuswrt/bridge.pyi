@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 from aioasuswrt.asuswrt import AsusWrt as AsusWrtLegacy
 from aiohttp import ClientSession as ClientSession
 from asusrouter import AsusRouter
+from asusrouter.config import ARConfigKey
 from asusrouter.modules.client import AsusClient as AsusClient
 from asusrouter.modules.data import AsusData
 from collections.abc import Awaitable, Callable, Coroutine
@@ -93,7 +94,8 @@ class AsusWrtHttpBridge(AsusWrtBridge):
     _api: Incomplete
     def __init__(self, conf: dict[str, Any], session: ClientSession) -> None: ...
     @staticmethod
-    def _get_api(conf: dict[str, Any], session: ClientSession) -> AsusRouter: ...
+    def _get_api(conf: dict[str, Any], session: ClientSession, config: dict[ARConfigKey, Any]) -> AsusRouter: ...
+    def _get_api_config(self) -> dict[ARConfigKey, Any]: ...
     @property
     def is_connected(self) -> bool: ...
     _label_mac: Incomplete

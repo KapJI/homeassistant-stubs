@@ -10,11 +10,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from pymiele import MieleDevice as MieleDevice
+from pymiele import MieleDevice as MieleDevice, MieleTemperature as MieleTemperature
 from typing import Any, Final
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
+
+def _get_temperature_value(temperatures: list[MieleTemperature], index: int) -> float | None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MieleClimateDescription(ClimateEntityDescription):

@@ -22,7 +22,7 @@ LIBRARY_TITLE_MAP: Incomplete
 LIBRARY_MEDIA_CLASS_MAP: Incomplete
 MEDIA_CONTENT_TYPE_FLAC: str
 THUMB_SIZE: int
-SORT_NAME_DESC: str
+SORT_NAME: str
 LOGGER: Incomplete
 
 def media_source_filter(item: BrowseMedia) -> bool: ...

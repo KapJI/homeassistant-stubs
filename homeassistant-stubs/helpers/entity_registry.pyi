@@ -20,7 +20,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from propcache.api import cached_property as under_cached_property
-from typing import Any, Final, Literal, NotRequired, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict
 
 DATA_REGISTRY: HassKey[EntityRegistry]
 EVENT_ENTITY_REGISTRY_UPDATED: EventType[EventEntityRegistryUpdatedData]
@@ -30,7 +30,6 @@ STORAGE_VERSION_MINOR: int
 STORAGE_KEY: str
 CLEANUP_INTERVAL: Incomplete
 ORPHANED_ENTITY_KEEP_SECONDS: Incomplete
-UNDEFINED_STR: Final[str]
 ENTITY_CATEGORY_VALUE_TO_INDEX: dict[EntityCategory | None, int]
 ENTITY_CATEGORY_INDEX_TO_VALUE: Incomplete
 ENTITY_DESCRIBING_ATTRIBUTES: Incomplete

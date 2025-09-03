@@ -20,7 +20,7 @@ from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from propcache.api import cached_property as under_cached_property
-from typing import Any, Final, Literal, TypedDict
+from typing import Any, Literal, TypedDict
 from yarl import URL
 
 _LOGGER: Incomplete
@@ -35,7 +35,6 @@ CONNECTION_NETWORK_MAC: str
 CONNECTION_UPNP: str
 CONNECTION_ZIGBEE: str
 ORPHANED_DEVICE_KEEP_SECONDS: Incomplete
-UNDEFINED_STR: Final[str]
 RUNTIME_ONLY_ATTRS: Incomplete
 CONFIGURATION_URL_SCHEMES: Incomplete
 

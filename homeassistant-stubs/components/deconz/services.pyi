@@ -4,7 +4,6 @@ from .hub import DeconzHub as DeconzHub
 from .util import get_master_hub as get_master_hub
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 
 DECONZ_SERVICES: str

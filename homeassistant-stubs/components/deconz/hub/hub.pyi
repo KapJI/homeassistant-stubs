@@ -6,7 +6,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from pydeconz import DeconzSession as DeconzSession
 from pydeconz.interfaces.api_handlers import APIHandler as APIHandler, GroupedAPIHandler as GroupedAPIHandler

@@ -1,5 +1,5 @@
 from . import Trackables as Trackables, TractiveClient as TractiveClient, TractiveConfigEntry as TractiveConfigEntry
-from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
+from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, ATTR_POWER_SAVING as ATTR_POWER_SAVING, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -25,7 +25,7 @@ class TractiveSwitch(TractiveEntity, SwitchEntity):
     _tracker: Incomplete
     _method: Incomplete
     def __init__(self, client: TractiveClient, item: Trackables, description: TractiveSwitchEntityDescription) -> None: ...
-    _attr_available: bool
+    _attr_available: Incomplete
     _attr_is_on: Incomplete
     @callback
     def handle_status_update(self, event: dict[str, Any]) -> None: ...

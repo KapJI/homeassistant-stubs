@@ -19,8 +19,8 @@ class ModbusLight(BaseSwitch, LightEntity):
     _color_temp_address: int | None
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
-    _attr_min_color_temp_kelvin: Incomplete
-    _attr_max_color_temp_kelvin: Incomplete
+    _attr_min_color_temp_kelvin: int
+    _attr_max_color_temp_kelvin: int
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict[str, Any]) -> None: ...
     _attr_brightness: Incomplete
     _attr_color_temp_kelvin: Incomplete

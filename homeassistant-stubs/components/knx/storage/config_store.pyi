@@ -1,7 +1,7 @@
 import abc
 from ..const import DOMAIN as DOMAIN
 from .const import CONF_DATA as CONF_DATA
-from .migration import migrate_1_to_2 as migrate_1_to_2
+from .migration import migrate_1_to_2 as migrate_1_to_2, migrate_2_1_to_2_2 as migrate_2_1_to_2_2
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,6 +14,7 @@ from typing import Any, Final, TypedDict
 
 _LOGGER: Incomplete
 STORAGE_VERSION: Final[int]
+STORAGE_VERSION_MINOR: Final[int]
 STORAGE_KEY: Final[Incomplete]
 type KNXPlatformStoreModel = dict[str, dict[str, Any]]
 type KNXEntityStoreModel = dict[str, KNXPlatformStoreModel]

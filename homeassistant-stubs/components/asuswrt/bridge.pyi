@@ -40,11 +40,14 @@ def handle_errors_and_zip[_AsusWrtBridgeT: AsusWrtBridge](exceptions: type[Excep
 class AsusWrtBridge(ABC, metaclass=abc.ABCMeta):
     @staticmethod
     def get_bridge(hass: HomeAssistant, conf: dict[str, Any], options: dict[str, Any] | None = None) -> AsusWrtBridge: ...
+    _configuration_url: Incomplete
     _host: Incomplete
     _firmware: str | None
     _label_mac: str | None
     _model: str | None
     def __init__(self, host: str) -> None: ...
+    @property
+    def configuration_url(self) -> str: ...
     @property
     def host(self) -> str: ...
     @property
@@ -99,6 +102,7 @@ class AsusWrtHttpBridge(AsusWrtBridge):
     @property
     def is_connected(self) -> bool: ...
     _label_mac: Incomplete
+    _configuration_url: Incomplete
     _firmware: Incomplete
     _model: Incomplete
     async def async_connect(self) -> None: ...

@@ -13,7 +13,7 @@ from homeassistant.components.http.ban import log_invalid_auth as log_invalid_au
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
 from homeassistant.components.http.view import HomeAssistantView as HomeAssistantView
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.network import is_cloud_connection as is_cloud_connection
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url, is_cloud_connection as is_cloud_connection
 from homeassistant.util.network import is_local as is_local
 from typing import Any
 

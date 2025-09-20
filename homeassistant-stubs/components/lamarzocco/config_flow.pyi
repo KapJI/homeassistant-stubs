@@ -1,4 +1,5 @@
-from .const import CONF_USE_BLUETOOTH as CONF_USE_BLUETOOTH, DOMAIN as DOMAIN
+from . import create_client_session as create_client_session
+from .const import CONF_INSTALLATION_KEY as CONF_INSTALLATION_KEY, CONF_USE_BLUETOOTH as CONF_USE_BLUETOOTH, DOMAIN as DOMAIN
 from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession
@@ -7,10 +8,10 @@ from homeassistant.components.bluetooth import BluetoothServiceInfo as Bluetooth
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
-from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from pylamarzocco.models import Thing as Thing
+from pylamarzocco.util import InstallationKey as InstallationKey
 from typing import Any
 
 CONF_MACHINE: str
@@ -20,6 +21,7 @@ _LOGGER: Incomplete
 class LmConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _client: ClientSession
+    _installation_key: InstallationKey
     _config: dict[str, Any]
     _things: dict[str, Thing]
     _discovered: dict[str, str]

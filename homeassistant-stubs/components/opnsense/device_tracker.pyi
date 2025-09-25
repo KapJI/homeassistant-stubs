@@ -1,0 +1,23 @@
+from .const import CONF_INTERFACE_CLIENT as CONF_INTERFACE_CLIENT, CONF_TRACKER_INTERFACES as CONF_TRACKER_INTERFACES, OPNSENSE_DATA as OPNSENSE_DATA
+from _typeshed import Incomplete
+from homeassistant.components.device_tracker import DeviceScanner as DeviceScanner
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.typing import ConfigType as ConfigType
+from pyopnsense import diagnostics as diagnostics
+from typing import Any
+
+DeviceDetails: Incomplete
+DeviceDetailsByMAC: Incomplete
+
+async def async_get_scanner(hass: HomeAssistant, config: ConfigType) -> DeviceScanner | None: ...
+
+class OPNsenseDeviceScanner(DeviceScanner):
+    last_results: dict[str, Any]
+    client: Incomplete
+    interfaces: Incomplete
+    def __init__(self, client: diagnostics.InterfaceClient, interfaces: list[str]) -> None: ...
+    def _get_mac_addrs(self, devices: list[DeviceDetails]) -> DeviceDetailsByMAC | dict: ...
+    def scan_devices(self) -> list[str]: ...
+    def get_device_name(self, device: str) -> str | None: ...
+    def update_info(self) -> bool: ...
+    def get_extra_attributes(self, device: str) -> dict[Any, Any]: ...

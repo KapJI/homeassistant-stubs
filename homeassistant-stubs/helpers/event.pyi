@@ -5,7 +5,8 @@ from .device_registry import EVENT_DEVICE_REGISTRY_UPDATED as EVENT_DEVICE_REGIS
 from .entity_registry import EVENT_ENTITY_REGISTRY_UPDATED as EVENT_ENTITY_REGISTRY_UPDATED, EventEntityRegistryUpdatedData as EventEntityRegistryUpdatedData
 from .ratelimit import KeyedRateLimit as KeyedRateLimit
 from .sun import get_astral_event_next as get_astral_event_next
-from .template import RenderInfo as RenderInfo, Template as Template, result_as_boolean as result_as_boolean
+from .template import Template as Template, result_as_boolean as result_as_boolean
+from .template.render_info import RenderInfo as RenderInfo
 from .typing import TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections import defaultdict

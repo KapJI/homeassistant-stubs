@@ -1,24 +1,44 @@
+import datetime
 from .const import DOMAIN as DOMAIN
 from .coordinator import GeocachingConfigEntry as GeocachingConfigEntry, GeocachingDataUpdateCoordinator as GeocachingDataUpdateCoordinator
+from .entity import GeocachingBaseEntity as GeocachingBaseEntity, GeocachingCacheEntity as GeocachingCacheEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from geocachingapi.models import GeocachingStatus as GeocachingStatus
-from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from geocachingapi.models import GeocachingCache as GeocachingCache, GeocachingStatus as GeocachingStatus
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.helpers.typing import StateType as StateType
 
 @dataclass(frozen=True, kw_only=True)
 class GeocachingSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[GeocachingStatus], str | int | None]
 
-SENSORS: tuple[GeocachingSensorEntityDescription, ...]
+PROFILE_SENSORS: tuple[GeocachingSensorEntityDescription, ...]
+
+@dataclass(frozen=True, kw_only=True)
+class GeocachingCacheSensorDescription(SensorEntityDescription):
+    value_fn: Callable[[GeocachingCache], StateType | datetime.date]
+
+CACHE_SENSORS: tuple[GeocachingCacheSensorDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: GeocachingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class GeocachingSensor(CoordinatorEntity[GeocachingDataUpdateCoordinator], SensorEntity):
+class GeoEntityBaseCache(GeocachingCacheEntity, SensorEntity):
+    _attr_unique_id: Incomplete
+    _attr_translation_key: Incomplete
+    def __init__(self, coordinator: GeocachingDataUpdateCoordinator, cache: GeocachingCache, key: str) -> None: ...
+
+class GeoEntityCacheSensorEntity(GeoEntityBaseCache, SensorEntity):
+    entity_description: GeocachingCacheSensorDescription
+    def __init__(self, coordinator: GeocachingDataUpdateCoordinator, cache: GeocachingCache, description: GeocachingCacheSensorDescription) -> None: ...
+    @property
+    def native_value(self) -> StateType | datetime.date: ...
+
+class GeocachingProfileSensor(GeocachingBaseEntity, SensorEntity):
     entity_description: GeocachingSensorEntityDescription
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete

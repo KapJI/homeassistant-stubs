@@ -1,5 +1,5 @@
 from .const import API_METRIC as API_METRIC, ATTRIBUTION as ATTRIBUTION, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_SPEED as ATTR_SPEED, ATTR_VALUE as ATTR_VALUE, CONDITION_MAP as CONDITION_MAP
-from .coordinator import AccuWeatherConfigEntry as AccuWeatherConfigEntry, AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherData as AccuWeatherData, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
+from .coordinator import AccuWeatherConfigEntry as AccuWeatherConfigEntry, AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherData as AccuWeatherData, AccuWeatherHourlyForecastDataUpdateCoordinator as AccuWeatherHourlyForecastDataUpdateCoordinator, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.weather import ATTR_FORECAST_CLOUD_COVERAGE as ATTR_FORECAST_CLOUD_COVERAGE, ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_HUMIDITY as ATTR_FORECAST_HUMIDITY, ATTR_FORECAST_NATIVE_APPARENT_TEMP as ATTR_FORECAST_NATIVE_APPARENT_TEMP, ATTR_FORECAST_NATIVE_PRECIPITATION as ATTR_FORECAST_NATIVE_PRECIPITATION, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_TEMP_LOW as ATTR_FORECAST_NATIVE_TEMP_LOW, ATTR_FORECAST_NATIVE_WIND_GUST_SPEED as ATTR_FORECAST_NATIVE_WIND_GUST_SPEED, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_PRECIPITATION_PROBABILITY as ATTR_FORECAST_PRECIPITATION_PROBABILITY, ATTR_FORECAST_TIME as ATTR_FORECAST_TIME, ATTR_FORECAST_UV_INDEX as ATTR_FORECAST_UV_INDEX, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, CoordinatorWeatherEntity as CoordinatorWeatherEntity, Forecast as Forecast, WeatherEntityFeature as WeatherEntityFeature
 from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
@@ -11,7 +11,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: AccuWeatherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class AccuWeatherEntity(CoordinatorWeatherEntity[AccuWeatherObservationDataUpdateCoordinator, AccuWeatherDailyForecastDataUpdateCoordinator]):
+class AccuWeatherEntity(CoordinatorWeatherEntity[AccuWeatherObservationDataUpdateCoordinator, AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherHourlyForecastDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_native_precipitation_unit: Incomplete
@@ -25,6 +25,7 @@ class AccuWeatherEntity(CoordinatorWeatherEntity[AccuWeatherObservationDataUpdat
     _attr_supported_features: Incomplete
     observation_coordinator: Incomplete
     daily_coordinator: Incomplete
+    hourly_coordinator: Incomplete
     def __init__(self, accuweather_data: AccuWeatherData) -> None: ...
     @property
     def condition(self) -> str | None: ...
@@ -52,3 +53,5 @@ class AccuWeatherEntity(CoordinatorWeatherEntity[AccuWeatherObservationDataUpdat
     def uv_index(self) -> float: ...
     @callback
     def _async_forecast_daily(self) -> list[Forecast] | None: ...
+    @callback
+    def _async_forecast_hourly(self) -> list[Forecast] | None: ...

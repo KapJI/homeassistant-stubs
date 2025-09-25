@@ -1,4 +1,5 @@
-from .const import CONF_ADBKEY as CONF_ADBKEY, CONF_ADB_SERVER_IP as CONF_ADB_SERVER_IP, CONF_ADB_SERVER_PORT as CONF_ADB_SERVER_PORT, CONF_SCREENCAP_INTERVAL as CONF_SCREENCAP_INTERVAL, CONF_STATE_DETECTION_RULES as CONF_STATE_DETECTION_RULES, DEFAULT_ADB_SERVER_PORT as DEFAULT_ADB_SERVER_PORT, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, DEVICE_FIRETV as DEVICE_FIRETV, PROP_ETHMAC as PROP_ETHMAC, PROP_WIFIMAC as PROP_WIFIMAC, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
+from .const import CONF_ADBKEY as CONF_ADBKEY, CONF_ADB_SERVER_IP as CONF_ADB_SERVER_IP, CONF_ADB_SERVER_PORT as CONF_ADB_SERVER_PORT, CONF_SCREENCAP_INTERVAL as CONF_SCREENCAP_INTERVAL, CONF_STATE_DETECTION_RULES as CONF_STATE_DETECTION_RULES, DEFAULT_ADB_SERVER_PORT as DEFAULT_ADB_SERVER_PORT, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, DEVICE_FIRETV as DEVICE_FIRETV, DOMAIN as DOMAIN, PROP_ETHMAC as PROP_ETHMAC, PROP_WIFIMAC as PROP_WIFIMAC, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from androidtv.adb_manager.adb_manager_sync import PythonRSASigner as PythonRSASigner
 from androidtv.setup_async import AndroidTVAsync as AndroidTVAsync, FireTVAsync as FireTVAsync
@@ -11,10 +12,12 @@ from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 ADB_PYTHON_EXCEPTIONS: tuple
 ADB_TCP_EXCEPTIONS: tuple
+CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 RELOAD_OPTIONS: Incomplete
 _INVALID_MACS: Incomplete
@@ -30,6 +33,7 @@ def get_androidtv_mac(dev_props: dict[str, Any]) -> str | None: ...
 def _setup_androidtv(hass: HomeAssistant, config: Mapping[str, Any]) -> tuple[str, PythonRSASigner | None, str]: ...
 async def async_connect_androidtv(hass: HomeAssistant, config: Mapping[str, Any], *, state_detection_rules: dict[str, Any] | None = None, timeout: float = 30.0) -> tuple[AndroidTVAsync | FireTVAsync | None, str | None]: ...
 async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: AndroidTVConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AndroidTVConfigEntry) -> bool: ...
 async def update_listener(hass: HomeAssistant, entry: AndroidTVConfigEntry) -> None: ...

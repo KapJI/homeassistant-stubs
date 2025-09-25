@@ -18,7 +18,6 @@ from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any
 
 _LOGGER: Incomplete
-DOMAIN: str
 DEFAULT_NAME: str
 DEFAULT_FLASH: bool
 DEFAULT_TRANSITION: bool

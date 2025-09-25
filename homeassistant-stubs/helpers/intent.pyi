@@ -2,6 +2,7 @@ import abc
 import asyncio
 import voluptuous as vol
 from . import area_registry as area_registry, device_registry as device_registry, entity_registry as entity_registry, floor_registry as floor_registry
+from .deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
 from .typing import VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -53,7 +54,7 @@ def async_remove(hass: HomeAssistant, intent_type: str) -> None: ...
 @callback
 def async_get(hass: HomeAssistant) -> Iterable[IntentHandler]: ...
 @bind_hass
-async def async_handle(hass: HomeAssistant, platform: str, intent_type: str, slots: _SlotsType | None = None, text_input: str | None = None, context: Context | None = None, language: str | None = None, assistant: str | None = None, device_id: str | None = None, conversation_agent_id: str | None = None) -> IntentResponse: ...
+async def async_handle(hass: HomeAssistant, platform: str, intent_type: str, slots: _SlotsType | None = None, text_input: str | None = None, context: Context | None = None, language: str | None = None, assistant: str | None = None, device_id: str | None = None, satellite_id: str | None = None, conversation_agent_id: str | None = None) -> IntentResponse: ...
 
 class IntentError(HomeAssistantError): ...
 class UnknownIntent(IntentError): ...
@@ -197,10 +198,6 @@ class ServiceIntentHandler(DynamicServiceIntentHandler):
     def __init__(self, intent_type: str, domain: str, service: str, speech: str | None = None, required_slots: _IntentSlotsType | None = None, optional_slots: _IntentSlotsType | None = None, required_domains: set[str] | None = None, required_features: int | None = None, required_states: set[str] | None = None, description: str | None = None, platforms: set[str] | None = None, device_classes: set[type[StrEnum]] | None = None) -> None: ...
     def get_domain_and_service(self, intent_obj: Intent, state: State) -> tuple[str, str]: ...
 
-class IntentCategory(Enum):
-    ACTION = 'action'
-    QUERY = 'query'
-
 class Intent:
     __slots__: Incomplete
     hass: Incomplete
@@ -210,15 +207,15 @@ class Intent:
     text_input: Incomplete
     context: Incomplete
     language: Incomplete
-    category: Incomplete
     assistant: Incomplete
     device_id: Incomplete
+    satellite_id: Incomplete
     conversation_agent_id: Incomplete
-    def __init__(self, hass: HomeAssistant, platform: str, intent_type: str, slots: _SlotsType, text_input: str | None, context: Context, language: str, category: IntentCategory | None = None, assistant: str | None = None, device_id: str | None = None, conversation_agent_id: str | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, platform: str, intent_type: str, slots: _SlotsType, text_input: str | None, context: Context, language: str, assistant: str | None = None, device_id: str | None = None, satellite_id: str | None = None, conversation_agent_id: str | None = None) -> None: ...
     @callback
     def create_response(self) -> IntentResponse: ...
 
-class IntentResponseType(Enum):
+class IntentResponseType(Enum, deprecated={'PARTIAL_ACTION_DONE': ('IntentResponseType.ACTION_DONE or IntentResponseType.ERROR', '2026.3.0')}, metaclass=EnumWithDeprecatedMembers):
     ACTION_DONE = 'action_done'
     PARTIAL_ACTION_DONE = 'partial_action_done'
     QUERY_ANSWER = 'query_answer'

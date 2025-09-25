@@ -1,16 +1,18 @@
 from . import HomeeConfigEntry as HomeeConfigEntry
 from .entity import HomeeEntity as HomeeEntity
+from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
-from pyHomee.model import HomeeAttribute as HomeeAttribute
+from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 
 PARALLEL_UPDATES: int
 SELECT_DESCRIPTIONS: dict[AttributeType, SelectEntityDescription]
 
+async def add_select_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeSelect(HomeeEntity, SelectEntity):

@@ -32,6 +32,7 @@ _OUNCE_TO_G: Incomplete
 _STONE_TO_G: Incomplete
 _STANDARD_GRAVITY: float
 _MERCURY_DENSITY: float
+_INH2O_TO_PA: float
 _L_TO_CUBIC_METER: float
 _ML_TO_CUBIC_METER: Incomplete
 _GALLON_TO_CUBIC_METER: Incomplete
@@ -62,6 +63,11 @@ class BaseUnitConverter:
     @classmethod
     @lru_cache
     def _are_unit_inverses(cls, from_unit: str | None, to_unit: str | None) -> bool: ...
+
+class CarbonMonoxideConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
 
 class DataRateConverter(BaseUnitConverter):
     UNIT_CLASS: str

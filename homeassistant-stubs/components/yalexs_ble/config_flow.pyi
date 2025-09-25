@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from bleak_retry_connector import BLEDevice as BLEDevice
 from collections.abc import Mapping
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_ble_device_from_address as async_ble_device_from_address, async_discovered_service_info as async_discovered_service_info
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
@@ -41,6 +41,6 @@ class YalexsConfigFlow(ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> YaleXSBLEOptionsFlowHandler: ...
 
-class YaleXSBLEOptionsFlowHandler(OptionsFlow):
+class YaleXSBLEOptionsFlowHandler(OptionsFlowWithReload):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_device_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

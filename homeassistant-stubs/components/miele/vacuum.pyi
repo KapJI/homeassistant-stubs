@@ -28,7 +28,7 @@ class FanProgram(IntEnum):
 PROGRAM_MAP: Incomplete
 PROGRAM_TO_SPEED: dict[int, str]
 
-class MieleVacuumStateCode(MieleEnum):
+class MieleVacuumStateCode(MieleEnum, missing_to_none=True):
     idle: int
     cleaning: int
     returning: int
@@ -44,7 +44,6 @@ class MieleVacuumStateCode(MieleEnum):
     blocked_front_wheel: int
     docked: Incomplete
     remote_controlled: int
-    missing2none: int
 
 SUPPORTED_FEATURES: Incomplete
 

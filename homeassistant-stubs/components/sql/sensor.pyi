@@ -1,4 +1,4 @@
-from .const import CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
+from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
 from .models import SQLData as SQLData
 from .util import redact_credentials as redact_credentials, resolve_db_url as resolve_db_url
 from _typeshed import Incomplete

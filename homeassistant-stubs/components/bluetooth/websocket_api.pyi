@@ -5,13 +5,15 @@ from .models import BluetoothChange as BluetoothChange
 from .util import InvalidConfigEntryID as InvalidConfigEntryID, InvalidSource as InvalidSource, config_entry_id_to_source as config_entry_id_to_source
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
-from habluetooth import HaBluetoothSlotAllocations as HaBluetoothSlotAllocations, HaScannerRegistration as HaScannerRegistration
+from habluetooth import BaseHaScanner as BaseHaScanner, HaBluetoothSlotAllocations as HaBluetoothSlotAllocations, HaScannerModeChange as HaScannerModeChange, HaScannerRegistration as HaScannerRegistration
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.json import json_bytes as json_bytes
 from typing import Any
 
+@callback
+def _async_get_source_from_config_entry(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg_id: int, config_entry_id: str | None, validate_source: bool = True) -> str | None: ...
 @callback
 def async_setup(hass: HomeAssistant) -> None: ...
 def serialize_service_info(service_info: BluetoothServiceInfoBleak, time_diff: float) -> dict[str, Any]: ...
@@ -44,3 +46,6 @@ async def ws_subscribe_connection_allocations(hass: HomeAssistant, connection: w
 @websocket_api.require_admin
 @websocket_api.async_response
 async def ws_subscribe_scanner_details(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+async def ws_subscribe_scanner_state(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
 from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, _LOGGER as _LOGGER
-from .entity import BasePlatform as BasePlatform
+from .entity import ModbusBaseEntity as ModbusBaseEntity
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
@@ -16,7 +16,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
-class ModbusBinarySensor(BasePlatform, RestoreEntity, BinarySensorEntity):
+class ModbusBinarySensor(ModbusBaseEntity, RestoreEntity, BinarySensorEntity):
     _count: Incomplete
     _coordinator: DataUpdateCoordinator[list[int] | None] | None
     _result: list[int]

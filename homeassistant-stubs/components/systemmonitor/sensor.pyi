@@ -25,6 +25,8 @@ SENSOR_TYPE_ICON: int
 SENSOR_TYPE_DEVICE_CLASS: int
 SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
+SENSORS_NO_ARG: Incomplete
+SENSORS_WITH_ARG: Incomplete
 
 @lru_cache
 def get_cpu_icon() -> Literal['mdi:cpu-64-bit', 'mdi:cpu-32-bit']: ...

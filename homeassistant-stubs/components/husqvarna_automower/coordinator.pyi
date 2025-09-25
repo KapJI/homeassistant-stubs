@@ -21,7 +21,6 @@ type AutomowerConfigEntry = ConfigEntry[AutomowerDataUpdateCoordinator]
 class AutomowerDataUpdateCoordinator(DataUpdateCoordinator[MowerDictionary]):
     config_entry: AutomowerConfigEntry
     api: Incomplete
-    ws_connected: bool
     reconnect_time: Incomplete
     new_devices_callbacks: list[Callable[[set[str]], None]]
     new_zones_callbacks: list[Callable[[str, set[str]], None]]
@@ -34,6 +33,7 @@ class AutomowerDataUpdateCoordinator(DataUpdateCoordinator[MowerDictionary]):
     @override
     @callback
     def async_update_listeners(self) -> None: ...
+    async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> MowerDictionary: ...
     update_interval: Incomplete
     @callback

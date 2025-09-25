@@ -1,19 +1,20 @@
 import asyncio
 import voluptuous as vol
 from .addon import get_addon_manager as get_addon_manager
-from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEVICE, CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY as CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY, CONF_ADDON_LR_S2_AUTHENTICATED_KEY as CONF_ADDON_LR_S2_AUTHENTICATED_KEY, CONF_ADDON_NETWORK_KEY as CONF_ADDON_NETWORK_KEY, CONF_ADDON_S0_LEGACY_KEY as CONF_ADDON_S0_LEGACY_KEY, CONF_ADDON_S2_ACCESS_CONTROL_KEY as CONF_ADDON_S2_ACCESS_CONTROL_KEY, CONF_ADDON_S2_AUTHENTICATED_KEY as CONF_ADDON_S2_AUTHENTICATED_KEY, CONF_ADDON_S2_UNAUTHENTICATED_KEY as CONF_ADDON_S2_UNAUTHENTICATED_KEY, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_KEEP_OLD_DEVICES as CONF_KEEP_OLD_DEVICES, CONF_LR_S2_ACCESS_CONTROL_KEY as CONF_LR_S2_ACCESS_CONTROL_KEY, CONF_LR_S2_AUTHENTICATED_KEY as CONF_LR_S2_AUTHENTICATED_KEY, CONF_S0_LEGACY_KEY as CONF_S0_LEGACY_KEY, CONF_S2_ACCESS_CONTROL_KEY as CONF_S2_ACCESS_CONTROL_KEY, CONF_S2_AUTHENTICATED_KEY as CONF_S2_AUTHENTICATED_KEY, CONF_S2_UNAUTHENTICATED_KEY as CONF_S2_UNAUTHENTICATED_KEY, CONF_USB_PATH as CONF_USB_PATH, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN
+from .const import ADDON_SLUG as ADDON_SLUG, CONF_ADDON_DEVICE as CONF_ADDON_DEVICE, CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY as CONF_ADDON_LR_S2_ACCESS_CONTROL_KEY, CONF_ADDON_LR_S2_AUTHENTICATED_KEY as CONF_ADDON_LR_S2_AUTHENTICATED_KEY, CONF_ADDON_NETWORK_KEY as CONF_ADDON_NETWORK_KEY, CONF_ADDON_S0_LEGACY_KEY as CONF_ADDON_S0_LEGACY_KEY, CONF_ADDON_S2_ACCESS_CONTROL_KEY as CONF_ADDON_S2_ACCESS_CONTROL_KEY, CONF_ADDON_S2_AUTHENTICATED_KEY as CONF_ADDON_S2_AUTHENTICATED_KEY, CONF_ADDON_S2_UNAUTHENTICATED_KEY as CONF_ADDON_S2_UNAUTHENTICATED_KEY, CONF_ADDON_SOCKET as CONF_ADDON_SOCKET, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_KEEP_OLD_DEVICES as CONF_KEEP_OLD_DEVICES, CONF_LR_S2_ACCESS_CONTROL_KEY as CONF_LR_S2_ACCESS_CONTROL_KEY, CONF_LR_S2_AUTHENTICATED_KEY as CONF_LR_S2_AUTHENTICATED_KEY, CONF_S0_LEGACY_KEY as CONF_S0_LEGACY_KEY, CONF_S2_ACCESS_CONTROL_KEY as CONF_S2_ACCESS_CONTROL_KEY, CONF_S2_AUTHENTICATED_KEY as CONF_S2_AUTHENTICATED_KEY, CONF_S2_UNAUTHENTICATED_KEY as CONF_S2_UNAUTHENTICATED_KEY, CONF_SOCKET_PATH as CONF_SOCKET_PATH, CONF_USB_PATH as CONF_USB_PATH, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN
 from .helpers import CannotConnect as CannotConnect, async_get_version_info as async_get_version_info, async_wait_for_driver_ready_event as async_wait_for_driver_ready_event
 from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components import usb as usb
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_USB as SOURCE_USB
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_ESPHOME as SOURCE_ESPHOME, SOURCE_USB as SOURCE_USB
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.hassio import is_hassio as is_hassio
+from homeassistant.helpers.service_info.esphome import ESPHomeServiceInfo as ESPHomeServiceInfo
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
@@ -54,6 +55,7 @@ class ZWaveJSConfigFlow(ConfigFlow, domain=DOMAIN):
     lr_s2_access_control_key: str | None
     lr_s2_authenticated_key: str | None
     usb_path: str | None
+    socket_path: str | None
     ws_address: str | None
     restart_addon: bool
     integration_created_addon: bool
@@ -70,7 +72,7 @@ class ZWaveJSConfigFlow(ConfigFlow, domain=DOMAIN):
     _addon_config_updates: dict[str, Any]
     _migrating: bool
     _reconfigure_config_entry: ZwaveJSConfigEntry | None
-    _usb_discovery: bool
+    _adapter_discovered: bool
     _recommended_install: bool
     _rf_region: str | None
     def __init__(self) -> None: ...
@@ -121,6 +123,7 @@ class ZWaveJSConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_migration_done(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_finish_addon_setup_migrate(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_finish_addon_setup_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_esphome(self, discovery_info: ESPHomeServiceInfo) -> ConfigFlowResult: ...
     async def async_revert_addon_config(self, reason: str) -> ConfigFlowResult: ...
     async def _async_backup_network(self) -> None: ...
     async def _async_restore_network_backup(self) -> None: ...

@@ -23,6 +23,7 @@ from propcache.api import cached_property
 from typing import Any, TypedDict
 from yarl import URL
 
+_LOGGER: Incomplete
 DOMAIN: str
 CONF_THEMES: str
 CONF_THEMES_MODES: str
@@ -49,9 +50,11 @@ DATA_DEFAULT_DARK_THEME: str
 DEFAULT_THEME: str
 VALUE_NO_THEME: str
 PRIMARY_COLOR: str
-_LOGGER: Incomplete
-EXTENDED_THEME_SCHEMA: Incomplete
+LEGACY_THEME_SCHEMA: Incomplete
 THEME_SCHEMA: Incomplete
+
+def _validate_themes(themes: dict) -> dict[str, Any]: ...
+
 CONFIG_SCHEMA: Incomplete
 SERVICE_SET_THEME: str
 SERVICE_RELOAD_THEMES: str

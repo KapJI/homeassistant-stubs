@@ -1,17 +1,33 @@
 import asyncio
 import dataclasses
 from . import bootstrap as bootstrap
+from .const import __version__ as __version__
 from .core import callback as callback
 from .helpers.frame import warn_use as warn_use
 from .util.executor import InterruptibleThreadPoolExecutor as InterruptibleThreadPoolExecutor
 from .util.resource import set_open_file_descriptor_limit as set_open_file_descriptor_limit
 from .util.thread import deadlock_safe_shutdown as deadlock_safe_shutdown
 from _typeshed import Incomplete
+from collections.abc import Generator
+from contextlib import contextmanager
+from io import TextIOWrapper
+from pathlib import Path
 from typing import Any
 
 MAX_EXECUTOR_WORKERS: int
 TASK_CANCELATION_TIMEOUT: int
+LOCK_FILE_NAME: str
+LOCK_FILE_VERSION: int
 _LOGGER: Incomplete
+
+@dataclasses.dataclass
+class SingleExecutionLock:
+    exit_code: int | None = ...
+
+def _write_lock_info(lock_file: TextIOWrapper) -> None: ...
+def _report_existing_instance(lock_file_path: Path, config_dir: str) -> None: ...
+@contextmanager
+def ensure_single_execution(config_dir: str) -> Generator[SingleExecutionLock]: ...
 
 @dataclasses.dataclass(slots=True)
 class RuntimeConfig:

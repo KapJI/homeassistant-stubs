@@ -1,14 +1,16 @@
 from . import HomeeConfigEntry as HomeeConfigEntry
 from .entity import HomeeEntity as HomeeEntity
+from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyHomee.model import HomeeAttribute as HomeeAttribute
+from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 
 PARALLEL_UPDATES: int
 VALVE_DESCRIPTIONS: Incomplete
 
+async def add_valve_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeValve(HomeeEntity, ValveEntity):

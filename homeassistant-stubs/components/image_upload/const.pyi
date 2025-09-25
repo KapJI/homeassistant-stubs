@@ -1,1 +1,2 @@
 DOMAIN: str
+FOLDER_IMAGE: str

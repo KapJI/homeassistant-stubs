@@ -1,21 +1,20 @@
 from .const import BLOCK_MAX_TRANSITION_TIME_MS as BLOCK_MAX_TRANSITION_TIME_MS, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, KELVIN_MAX_VALUE as KELVIN_MAX_VALUE, KELVIN_MIN_VALUE_COLOR as KELVIN_MIN_VALUE_COLOR, KELVIN_MIN_VALUE_WHITE as KELVIN_MIN_VALUE_WHITE, LOGGER as LOGGER, MODELS_SUPPORTING_LIGHT_TRANSITION as MODELS_SUPPORTING_LIGHT_TRANSITION, RGBW_MODELS as RGBW_MODELS, RPC_MIN_TRANSITION_TIME_SEC as RPC_MIN_TRANSITION_TIME_SEC, SHBLB_1_RGB_EFFECTS as SHBLB_1_RGB_EFFECTS, STANDARD_RGB_EFFECTS as STANDARD_RGB_EFFECTS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, async_remove_shelly_entity as async_remove_shelly_entity, brightness_to_percentage as brightness_to_percentage, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, percentage_to_brightness as percentage_to_brightness
+from .entity import RpcEntityDescription as RpcEntityDescription, ShellyBlockEntity as ShellyBlockEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_rpc as async_setup_entry_rpc
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, async_remove_shelly_entity as async_remove_shelly_entity, brightness_to_percentage as brightness_to_percentage, get_device_entry_gen as get_device_entry_gen, is_block_channel_type_light as is_block_channel_type_light, is_rpc_channel_type_light as is_rpc_channel_type_light, percentage_to_brightness as percentage_to_brightness
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, brightness_supported as brightness_supported
+from dataclasses import dataclass
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription, LightEntityFeature as LightEntityFeature, brightness_supported as brightness_supported
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, Final
 
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
 def async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-@callback
-def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BlockShellyLight(ShellyBlockEntity, LightEntity):
     _attr_supported_color_modes: set[str]
@@ -46,10 +45,14 @@ class BlockShellyLight(ShellyBlockEntity, LightEntity):
     @callback
     def _update_callback(self) -> None: ...
 
-class RpcShellyLightBase(ShellyRpcEntity, LightEntity):
+@dataclass(frozen=True, kw_only=True)
+class RpcLightDescription(RpcEntityDescription, LightEntityDescription): ...
+
+class RpcShellyLightBase(ShellyRpcAttributeEntity, LightEntity):
+    entity_description: RpcLightDescription
     _component: str
-    _id: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property
@@ -79,7 +82,7 @@ class RpcShellyCctLight(RpcShellyLightBase):
     _attr_supported_features: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
     @property
     def color_temp_kelvin(self) -> int: ...
 
@@ -94,3 +97,8 @@ class RpcShellyRgbwLight(RpcShellyLightBase):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
+
+LIGHTS: Final[Incomplete]
+
+@callback
+def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

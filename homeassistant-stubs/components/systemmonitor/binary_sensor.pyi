@@ -1,5 +1,5 @@
 from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
-from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN
+from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN, PROCESS_ERRORS as PROCESS_ERRORS
 from .coordinator import SystemMonitorCoordinator as SystemMonitorCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

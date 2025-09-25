@@ -1,23 +1,28 @@
-from .const import CHARGEPOINT_SETTINGS as CHARGEPOINT_SETTINGS, CHARGEPOINT_STATUS as CHARGEPOINT_STATUS, DOMAIN as DOMAIN, EVSE_ID as EVSE_ID, LOGGER as LOGGER, PLUG_AND_CHARGE as PLUG_AND_CHARGE, VALUE as VALUE
+from .const import BCU_APP as BCU_APP, CHARGEPOINT_SETTINGS as CHARGEPOINT_SETTINGS, CHARGEPOINT_STATUS as CHARGEPOINT_STATUS, CHARGING_CARD_ID as CHARGING_CARD_ID, DOMAIN as DOMAIN, EVSE_ID as EVSE_ID, LOGGER as LOGGER, PLUG_AND_CHARGE as PLUG_AND_CHARGE, SERVICE_START_CHARGE_SESSION as SERVICE_START_CHARGE_SESSION, VALUE as VALUE
 from _typeshed import Incomplete
 from bluecurrent_api import Client
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN, Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
+from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN, CONF_DEVICE_ID as CONF_DEVICE_ID, Platform as Platform
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 type BlueCurrentConfigEntry = ConfigEntry[Connector]
 PLATFORMS: Incomplete
 CHARGE_POINTS: str
+CHARGE_CARDS: str
 DATA: str
 DELAY: int
 GRID: str
 OBJECT: str
 VALUE_TYPES: Incomplete
+CONFIG_SCHEMA: Incomplete
+SERVICE_START_CHARGE_SESSION_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BlueCurrentConfigEntry) -> bool: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, config_entry: BlueCurrentConfigEntry) -> bool: ...
 
 class Connector:
@@ -26,6 +31,7 @@ class Connector:
     client: Incomplete
     charge_points: dict[str, dict]
     grid: dict[str, Any]
+    charge_cards: dict[str, dict[str, Any]]
     def __init__(self, hass: HomeAssistant, config: BlueCurrentConfigEntry, client: Client) -> None: ...
     async def on_data(self, message: dict) -> None: ...
     async def handle_charge_point_data(self, charge_points_data: list) -> None: ...

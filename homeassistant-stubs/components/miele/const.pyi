@@ -86,26 +86,204 @@ class MieleActions(IntEnum):
     STOP_SUPERCOOL = 7
 
 PROCESS_ACTIONS: Incomplete
-STATE_PROGRAM_PHASE_WASHING_MACHINE: Incomplete
-STATE_PROGRAM_PHASE_TUMBLE_DRYER: Incomplete
-STATE_PROGRAM_PHASE_DISHWASHER: Incomplete
-STATE_PROGRAM_PHASE_OVEN: Incomplete
-STATE_PROGRAM_PHASE_WARMING_DRAWER: Incomplete
-STATE_PROGRAM_PHASE_MICROWAVE: Incomplete
-STATE_PROGRAM_PHASE_COFFEE_SYSTEM: Incomplete
-STATE_PROGRAM_PHASE_ROBOT_VACUUM_CLEANER: Incomplete
-STATE_PROGRAM_PHASE_STEAM_OVEN: Incomplete
-STATE_PROGRAM_PHASE: dict[int, dict[int, str]]
 
-class StateProgramType(MieleEnum):
+class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    pre_wash: Incomplete
+    soak: int
+    main_wash: int
+    rinse: int
+    rinse_hold: int
+    cleaning: int
+    cooling_down: int
+    drain: int
+    spin: int
+    anti_crease: int
+    finished: int
+    venting: int
+    starch_stop: int
+    freshen_up_and_moisten: int
+    steam_smoothing: Incomplete
+    hygiene: int
+    drying: int
+    disinfecting: int
+
+class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    program_running: int
+    drying: int
+    machine_iron: int
+    hand_iron_2: int
+    normal: int
+    normal_plus: int
+    cooling_down: int
+    hand_iron_1: int
+    anti_crease: int
+    finished: int
+    extra_dry: int
+    hand_iron: int
+    moisten: int
+    thermo_spin: int
+    timed_drying: int
+    warm_air: int
+    steam_smoothing: int
+    comfort_cooling: int
+    rinse_out_lint: int
+    rinses: int
+    smoothing: int
+    slightly_dry: int
+    safety_cooling: int
+
+class ProgramPhaseWasherDryer(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    pre_wash: Incomplete
+    soak: int
+    main_wash: int
+    rinse: int
+    rinse_hold: int
+    cleaning: int
+    cooling_down: Incomplete
+    drain: int
+    spin: int
+    anti_crease: Incomplete
+    finished: Incomplete
+    venting: int
+    starch_stop: int
+    freshen_up_and_moisten: int
+    steam_smoothing: Incomplete
+    hygiene: int
+    drying: Incomplete
+    disinfecting: int
+    program_running: int
+    machine_iron: int
+    hand_iron_2: int
+    normal: int
+    normal_plus: int
+    hand_iron_1: int
+    extra_dry: int
+    hand_iron: int
+    moisten: int
+    thermo_spin: int
+    timed_drying: int
+    warm_air: int
+    comfort_cooling: int
+    rinse_out_lint: int
+    rinses: int
+    smoothing: int
+    slightly_dry: int
+    safety_cooling: int
+
+class ProgramPhaseDishwasher(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    reactivating: int
+    pre_dishwash: Incomplete
+    main_dishwash: int
+    rinse: int
+    interim_rinse: int
+    final_rinse: int
+    drying: int
+    finished: int
+
+class ProgramPhaseOven(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    heating_up: int
+    process_running: int
+    process_finished: int
+    energy_save: int
+    pre_heating: int
+
+class ProgramPhaseWarmingDrawer(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    heating_up: int
+    door_open: int
+    keeping_warm: int
+    cooling_down: int
+
+class ProgramPhaseMicrowave(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    heating: int
+    process_running: int
+    process_finished: int
+    energy_save: int
+
+class ProgramPhaseCoffeeSystem(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    heating_up: int
+    espresso: int
+    hot_milk: int
+    milk_foam: int
+    dispensing: Incomplete
+    pre_brewing: int
+    grinding: int
+    second_espresso: int
+    second_pre_brewing: int
+    second_grinding: int
+    rinse: int
+
+class ProgramPhaseRobotVacuumCleaner(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    vacuum_cleaning: int
+    returning: int
+    vacuum_cleaning_paused: int
+    going_to_target_area: int
+    wheel_lifted: int
+    dirty_sensors: int
+    dust_box_missing: int
+    blocked_drive_wheels: int
+    blocked_brushes: int
+    motor_overload: int
+    internal_fault: int
+    blocked_front_wheel: int
+    docked: Incomplete
+    remote_controlled: int
+
+class ProgramPhaseMicrowaveOvenCombo(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    steam_reduction: int
+    process_running: int
+    waiting_for_start: int
+    heating_up_phase: int
+    process_finished: int
+
+class ProgramPhaseSteamOven(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    steam_reduction: int
+    process_running: int
+    waiting_for_start: int
+    heating_up_phase: int
+    process_finished: int
+
+class ProgramPhaseSteamOvenCombi(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    heating_up: int
+    process_running: Incomplete
+    process_finished: Incomplete
+    energy_save: int
+    pre_heating: int
+    steam_reduction: int
+    waiting_for_start: int
+    heating_up_phase: int
+
+class ProgramPhaseSteamOvenMicro(MieleEnum, missing_to_none=True):
+    not_running: Incomplete
+    heating: int
+    process_running: Incomplete
+    process_finished: int
+    energy_save: int
+    steam_reduction: int
+    waiting_for_start: int
+    heating_up_phase: int
+
+PROGRAM_PHASE: dict[int, type[MieleEnum]]
+
+class StateProgramType(MieleEnum, missing_to_none=True):
     normal_operation_mode: int
     own_program: int
     automatic_program: int
     cleaning_care_program: int
     maintenance_program: int
-    missing2none: int
 
-class StateDryingStep(MieleEnum):
+class StateDryingStep(MieleEnum, missing_to_none=True):
     extra_dry: int
     normal_plus: int
     normal: int
@@ -114,7 +292,6 @@ class StateDryingStep(MieleEnum):
     hand_iron_2: int
     machine_iron: int
     smoothing: int
-    missing2none: int
 
 WASHING_MACHINE_PROGRAM_ID: dict[int, str]
 DISHWASHER_PROGRAM_ID: dict[int, str]
@@ -127,7 +304,7 @@ COFFEE_SYSTEM_PROFILE: dict[range, str]
 STEAM_OVEN_MICRO_PROGRAM_ID: dict[int, str]
 STATE_PROGRAM_ID: dict[int, dict[int, str]]
 
-class PlatePowerStep(MieleEnum):
+class PlatePowerStep(MieleEnum, missing_to_none=True):
     plate_step_0: int
     plate_step_warming: Incomplete
     plate_step_1: int
@@ -150,4 +327,3 @@ class PlatePowerStep(MieleEnum):
     plate_step_18: int
     plate_step_boost: Incomplete
     plate_step_boost_2: int
-    missing2none: int

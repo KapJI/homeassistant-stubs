@@ -1,5 +1,6 @@
 import psutil_home_assistant as ha_psutil
 from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
+from .const import CONF_PROCESS as CONF_PROCESS, PROCESS_ERRORS as PROCESS_ERRORS
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
@@ -34,6 +35,7 @@ class VirtualMemory(NamedTuple):
     free: float
 
 class SystemMonitorCoordinator(TimestampDataUpdateCoordinator[SensorData]):
+    config_entry: SystemMonitorConfigEntry
     _psutil: Incomplete
     _arguments: Incomplete
     boot_time: datetime | None

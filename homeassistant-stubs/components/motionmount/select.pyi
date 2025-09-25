@@ -17,6 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: MotionMountConfigEntry, 
 class MotionMountPresets(MotionMountEntity, SelectEntity):
     _attr_should_poll: bool
     _attr_translation_key: str
+    _name_to_index: dict[str, int]
     _attr_unique_id: Incomplete
     _presets: list[motionmount.Preset]
     _attr_current_option: Incomplete

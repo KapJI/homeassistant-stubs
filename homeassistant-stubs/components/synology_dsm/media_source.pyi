@@ -3,8 +3,8 @@ from .coordinator import SynologyDSMConfigEntry as SynologyDSMConfigEntry, Synol
 from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components import http as http
-from homeassistant.components.media_player import MediaClass as MediaClass
-from homeassistant.components.media_source import BrowseError as BrowseError, BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from synology_dsm.api.photos import SynoPhotosItem

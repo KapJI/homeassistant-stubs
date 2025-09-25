@@ -2,7 +2,7 @@ from . import HABITICA_KEY as HABITICA_KEY
 from .const import ASSETS_URL as ASSETS_URL
 from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
 from .entity import HabiticaBase as HabiticaBase, HabiticaPartyBase as HabiticaPartyBase
-from .util import collected_quest_items as collected_quest_items, get_attribute_points as get_attribute_points, get_attributes_total as get_attributes_total, inventory_list as inventory_list, pending_damage as pending_damage, pending_quest_items as pending_quest_items, quest_attributes as quest_attributes, quest_boss as quest_boss
+from .util import collected_quest_items as collected_quest_items, get_attribute_points as get_attribute_points, get_attributes_total as get_attributes_total, inventory_list as inventory_list, pending_damage as pending_damage, pending_quest_items as pending_quest_items, quest_attributes as quest_attributes, quest_boss as quest_boss, rage_attributes as rage_attributes
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -66,6 +66,8 @@ class HabiticaSensorEntity(StrEnum):
     BOSS_HP = 'boss_hp'
     BOSS_HP_REMAINING = 'boss_hp_remaining'
     COLLECTED_ITEMS = 'collected_items'
+    BOSS_RAGE = 'boss_rage'
+    BOSS_RAGE_LIMIT = 'boss_rage_limit'
 
 SENSOR_DESCRIPTIONS: tuple[HabiticaSensorEntityDescription, ...]
 SENSOR_DESCRIPTIONS_PARTY: tuple[HabiticaPartySensorEntityDescription, ...]

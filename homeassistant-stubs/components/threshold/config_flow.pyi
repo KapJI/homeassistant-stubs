@@ -21,6 +21,7 @@ class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     MINOR_VERSION: int
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
+    options_flow_reloads: bool
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     @staticmethod
     async def async_setup_preview(hass: HomeAssistant) -> None: ...

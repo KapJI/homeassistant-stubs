@@ -43,6 +43,7 @@ class StatisticMetaData(TypedDict):
 class CalendarStatisticPeriod(TypedDict, total=False):
     period: Literal['hour', 'day', 'week', 'month', 'year']
     offset: int
+    first_weekday: Literal['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
 class FixedStatisticPeriod(TypedDict, total=False):
     end_time: datetime

@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
 from .const import CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, _LOGGER as _LOGGER
-from .entity import BaseStructPlatform as BaseStructPlatform
+from .entity import ModbusStructEntity as ModbusStructEntity
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity
@@ -15,7 +15,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
-class ModbusRegisterSensor(BaseStructPlatform, RestoreSensor, SensorEntity):
+class ModbusRegisterSensor(ModbusStructEntity, RestoreSensor, SensorEntity):
     _count: Incomplete
     _coordinator: DataUpdateCoordinator[list[float | None] | None] | None
     _attr_native_unit_of_measurement: Incomplete

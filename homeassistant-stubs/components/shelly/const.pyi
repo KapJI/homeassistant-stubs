@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components.number import NumberMode as NumberMode
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
+from homeassistant.const import UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from logging import Logger
 from typing import Final
 
@@ -11,6 +11,7 @@ CONF_COAP_PORT: Final[str]
 FIRMWARE_PATTERN: Final[Incomplete]
 BLOCK_MAX_TRANSITION_TIME_MS: Final[int]
 RPC_MIN_TRANSITION_TIME_SEC: float
+RPC_COVER_UPDATE_TIME_SEC: float
 RGBW_MODELS: Final[Incomplete]
 MOTION_MODELS: Final[Incomplete]
 MODELS_SUPPORTING_LIGHT_TRANSITION: Final[Incomplete]
@@ -62,12 +63,14 @@ class BLEScannerMode(StrEnum):
     PASSIVE = 'passive'
 
 BLE_SCANNER_MIN_FIRMWARE: str
+WALL_DISPLAY_MIN_FIRMWARE: str
 MAX_PUSH_UPDATE_FAILURES: int
 PUSH_UPDATE_ISSUE_ID: str
 NOT_CALIBRATED_ISSUE_ID: str
 FIRMWARE_UNSUPPORTED_ISSUE_ID: str
 BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID: str
 OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID: str
+WALL_DISPLAY_FIRMWARE_UNSUPPORTED_ISSUE_ID: str
 GAS_VALVE_OPEN_STATES: Incomplete
 OTA_BEGIN: str
 OTA_ERROR: str
@@ -83,6 +86,6 @@ VIRTUAL_COMPONENTS_MAP: Incomplete
 VIRTUAL_NUMBER_MODE_MAP: Incomplete
 API_WS_URL: str
 COMPONENT_ID_PATTERN: Incomplete
-ROLE_TO_DEVICE_CLASS_MAP: Incomplete
+DEVICE_UNIT_MAP: Incomplete
 MAX_SCRIPT_SIZE: int
 All_LIGHT_TYPES: Incomplete

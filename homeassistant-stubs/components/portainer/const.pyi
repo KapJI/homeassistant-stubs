@@ -1,0 +1,2 @@
+DOMAIN: str
+DEFAULT_NAME: str

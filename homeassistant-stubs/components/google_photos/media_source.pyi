@@ -4,8 +4,8 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import StrEnum
 from google_photos_library_api.model import Album as Album, MediaItem as MediaItem
-from homeassistant.components.media_player import MediaClass as MediaClass, MediaType as MediaType
-from homeassistant.components.media_source import BrowseError as BrowseError, BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
+from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Self
 

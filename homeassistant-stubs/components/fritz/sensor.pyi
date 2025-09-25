@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation
+from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -34,6 +34,7 @@ def _retrieve_link_noise_margin_sent_state(status: FritzStatus, last_value: str)
 def _retrieve_link_noise_margin_received_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_link_attenuation_sent_state(status: FritzStatus, last_value: str) -> float: ...
 def _retrieve_link_attenuation_received_state(status: FritzStatus, last_value: str) -> float: ...
+def _retrieve_cpu_temperature_state(status: FritzStatus, last_value: float | None) -> float: ...
 
 @dataclass(frozen=True, kw_only=True)
 class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescription):

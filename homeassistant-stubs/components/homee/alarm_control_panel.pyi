@@ -1,13 +1,13 @@
 from . import DOMAIN as DOMAIN, HomeeConfigEntry as HomeeConfigEntry
 from .entity import HomeeEntity as HomeeEntity
-from .helpers import get_name_for_enum as get_name_for_enum
+from .helpers import get_name_for_enum as get_name_for_enum, setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityDescription as AlarmControlPanelEntityDescription, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyHomee.model import HomeeAttribute as HomeeAttribute
+from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 
 PARALLEL_UPDATES: int
 
@@ -19,6 +19,7 @@ class HomeeAlarmControlPanelEntityDescription(AlarmControlPanelEntityDescription
 ALARM_DESCRIPTIONS: Incomplete
 
 def get_supported_features(state_list: list[AlarmControlPanelState]) -> AlarmControlPanelEntityFeature: ...
+async def add_alarm_control_panel_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeAlarmPanel(HomeeEntity, AlarmControlPanelEntity):

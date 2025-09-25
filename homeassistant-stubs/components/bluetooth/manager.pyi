@@ -7,12 +7,13 @@ from _typeshed import Incomplete
 from bleak_retry_connector import BleakSlotManager as BleakSlotManager
 from bluetooth_adapters import BluetoothAdapters as BluetoothAdapters
 from collections.abc import Callable as Callable
-from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothManager
+from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothManager, HaScanner
 from homeassistant import config_entries as config_entries
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as hass_callback
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.util.package import is_docker_env as is_docker_env
 
 _LOGGER: Incomplete
 
@@ -46,3 +47,8 @@ class HomeAssistantBluetoothManager(BluetoothManager):
     def async_remove_scanner(self, source: str) -> None: ...
     @hass_callback
     def _handle_config_entry_removed(self, entry: config_entries.ConfigEntry) -> None: ...
+    def on_scanner_start(self, scanner: BaseHaScanner) -> None: ...
+    @hass_callback
+    def async_check_scanning_mode(self, scanner: HaScanner) -> None: ...
+    @hass_callback
+    def async_check_degraded_mode(self, scanner: HaScanner) -> None: ...

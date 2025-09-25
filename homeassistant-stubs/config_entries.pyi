@@ -43,6 +43,7 @@ _LOGGER: Incomplete
 SOURCE_BLUETOOTH: str
 SOURCE_DHCP: str
 SOURCE_DISCOVERY: str
+SOURCE_ESPHOME: str
 SOURCE_HARDWARE: str
 SOURCE_HASSIO: str
 SOURCE_HOMEKIT: str
@@ -127,11 +128,15 @@ class ConfigFlowContext(FlowContext, total=False):
     unique_id: str | None
 
 class ConfigFlowResult(FlowResult[ConfigFlowContext, str], total=False):
+    next_flow: tuple[FlowType, str]
     minor_version: int
     options: Mapping[str, Any]
     result: ConfigEntry
     subentries: Iterable[ConfigSubentryData]
     version: int
+
+class FlowType(StrEnum):
+    CONFIG_FLOW = 'config_flow'
 
 def _validate_item(*, disabled_by: ConfigEntryDisabler | Any | None = None) -> None: ...
 
@@ -415,7 +420,7 @@ class ConfigFlow(ConfigEntryBaseFlow):
     async def async_step_usb(self, discovery_info: UsbServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     @callback
-    def async_create_entry(self, *, title: str, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, options: Mapping[str, Any] | None = None, subentries: Iterable[ConfigSubentryData] | None = None) -> ConfigFlowResult: ...
+    def async_create_entry(self, *, title: str, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, next_flow: tuple[FlowType, str] | None = None, options: Mapping[str, Any] | None = None, subentries: Iterable[ConfigSubentryData] | None = None) -> ConfigFlowResult: ...
     @callback
     def async_update_reload_and_abort(self, entry: ConfigEntry, *, unique_id: str | None | UndefinedType = ..., title: str | UndefinedType = ..., data: Mapping[str, Any] | UndefinedType = ..., data_updates: Mapping[str, Any] | UndefinedType = ..., options: Mapping[str, Any] | UndefinedType = ..., reason: str | UndefinedType = ..., reload_even_if_entry_is_unchanged: bool = True) -> ConfigFlowResult: ...
     @callback

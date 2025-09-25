@@ -1,0 +1,9 @@
+from .base import BaseTemplateExtension as BaseTemplateExtension, TemplateFunction as TemplateFunction
+from homeassistant.helpers.template import TemplateEnvironment as TemplateEnvironment
+
+class Base64Extension(BaseTemplateExtension):
+    def __init__(self, environment: TemplateEnvironment) -> None: ...
+    @staticmethod
+    def base64_encode(value: str | bytes) -> str: ...
+    @staticmethod
+    def base64_decode(value: str, encoding: str | None = 'utf-8') -> str | bytes: ...

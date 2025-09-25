@@ -2,20 +2,23 @@ from .const import DATA_MANAGER as DATA_MANAGER
 from .manager import HomeAssistantBluetoothManager as HomeAssistantBluetoothManager
 from .match import BluetoothCallbackMatcher as BluetoothCallbackMatcher
 from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, ProcessAdvertisementCallback as ProcessAdvertisementCallback
+from bleak import BleakScanner
 from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import Callable as Callable, Iterable
-from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode as BluetoothScanningMode, HaBleakScannerWrapper
+from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode as BluetoothScanningMode
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as hass_callback
 from homeassistant.helpers.singleton import singleton as singleton
 
 def _get_manager(hass: HomeAssistant) -> HomeAssistantBluetoothManager: ...
 @hass_callback
-def async_get_scanner(hass: HomeAssistant) -> HaBleakScannerWrapper: ...
+def async_get_scanner(hass: HomeAssistant) -> BleakScanner: ...
 @hass_callback
 def async_scanner_by_source(hass: HomeAssistant, source: str) -> BaseHaScanner | None: ...
 @hass_callback
 def async_scanner_count(hass: HomeAssistant, connectable: bool = True) -> int: ...
+@hass_callback
+def async_current_scanners(hass: HomeAssistant) -> list[BaseHaScanner]: ...
 @hass_callback
 def async_discovered_service_info(hass: HomeAssistant, connectable: bool = True) -> Iterable[BluetoothServiceInfoBleak]: ...
 @hass_callback

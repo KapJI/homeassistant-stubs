@@ -1,6 +1,7 @@
 from . import HomeeConfigEntry as HomeeConfigEntry
 from .const import CLIMATE_PROFILES as CLIMATE_PROFILES, LIGHT_PROFILES as LIGHT_PROFILES
 from .entity import HomeeEntity as HomeeEntity
+from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -9,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
-from pyHomee.model import HomeeAttribute as HomeeAttribute
+from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -22,7 +23,8 @@ class HomeeSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_DESCRIPTIONS: dict[AttributeType, HomeeSwitchEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_devices: AddConfigEntryEntitiesCallback) -> None: ...
+async def add_switch_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeSwitch(HomeeEntity, SwitchEntity):
     entity_description: HomeeSwitchEntityDescription

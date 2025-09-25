@@ -1,4 +1,4 @@
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -11,8 +11,11 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True)
 class ReolinkSirenEntityDescription(SirenEntityDescription, ReolinkChannelEntityDescription): ...
+@dataclass(frozen=True)
+class ReolinkHostSirenEntityDescription(SirenEntityDescription, ReolinkHostEntityDescription): ...
 
 SIREN_ENTITIES: Incomplete
+HOST_SIREN_ENTITIES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -24,3 +27,10 @@ class ReolinkSirenEntity(ReolinkChannelCoordinatorEntity, SirenEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class ReolinkHostSirenEntity(ReolinkHostCoordinatorEntity, SirenEntity):
+    _attr_supported_features: Incomplete
+    entity_description: ReolinkHostSirenEntityDescription
+    def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostSirenEntityDescription) -> None: ...
+    @raise_translated_error
+    async def async_turn_on(self, **kwargs: Any) -> None: ...

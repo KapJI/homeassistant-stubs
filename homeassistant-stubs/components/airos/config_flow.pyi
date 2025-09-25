@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import AirOS as AirOS
+from .coordinator import AirOS8 as AirOS8
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME

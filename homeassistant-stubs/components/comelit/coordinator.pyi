@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import TypeVar
+from typing import Any, TypeVar
 
 type ComelitConfigEntry = ConfigEntry[ComelitBaseCoordinator]
 T = TypeVar('T', bound=dict[str, dict[int, ComelitSerialBridgeObject]] | AlarmDataObject)
@@ -25,6 +25,7 @@ class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _async_update_system_data(self) -> T: ...
+    async def _async_remove_stale_devices(self, previous_list: dict[int, Any], current_list: dict[int, Any], dev_type: str) -> None: ...
 
 class ComelitSerialBridge(ComelitBaseCoordinator[dict[str, dict[int, ComelitSerialBridgeObject]]]):
     _hw_version: str

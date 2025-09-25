@@ -5,11 +5,13 @@ from abc import ABC, abstractmethod
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterInfo, PrinterStatus, PrusaLink as PrusaLink
 from typing import TypeVar
 
 _LOGGER: Incomplete
+_MINIMUM_REFRESH_INTERVAL: float
 T = TypeVar('T', PrinterStatus, LegacyPrinterStatus, JobInfo)
 
 class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.ABCMeta):

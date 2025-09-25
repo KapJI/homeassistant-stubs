@@ -1,4 +1,4 @@
-from .const import COFFEE_SYSTEM_PROFILE as COFFEE_SYSTEM_PROFILE, DISABLED_TEMP_ENTITIES as DISABLED_TEMP_ENTITIES, DOMAIN as DOMAIN, MieleAppliance as MieleAppliance, PlatePowerStep as PlatePowerStep, STATE_PROGRAM_ID as STATE_PROGRAM_ID, STATE_PROGRAM_PHASE as STATE_PROGRAM_PHASE, STATE_STATUS_TAGS as STATE_STATUS_TAGS, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
+from .const import COFFEE_SYSTEM_PROFILE as COFFEE_SYSTEM_PROFILE, DISABLED_TEMP_ENTITIES as DISABLED_TEMP_ENTITIES, DOMAIN as DOMAIN, MieleAppliance as MieleAppliance, PROGRAM_PHASE as PROGRAM_PHASE, PlatePowerStep as PlatePowerStep, STATE_PROGRAM_ID as STATE_PROGRAM_ID, STATE_STATUS_TAGS as STATE_STATUS_TAGS, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
 from .coordinator import MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
 from .entity import MieleEntity as MieleEntity
 from _typeshed import Incomplete
@@ -57,6 +57,9 @@ class MieleRestorableSensor(MieleSensor, RestoreSensor):
     async def async_added_to_hass(self) -> None: ...
     @property
     def native_value(self) -> StateType: ...
+    def _update_last_value(self) -> None: ...
+    @callback
+    def _handle_coordinator_update(self) -> None: ...
 
 class MielePlateSensor(MieleSensor):
     entity_description: MieleSensorDescription
@@ -71,6 +74,8 @@ class MieleStatusSensor(MieleSensor):
     def native_value(self) -> StateType: ...
     @property
     def available(self) -> bool: ...
+
+PROGRAM_PHASE_TRANSLATION: Incomplete
 
 class MielePhaseSensor(MieleSensor):
     @property
@@ -87,5 +92,9 @@ class MieleProgramIdSensor(MieleSensor):
 
 class MieleTimeSensor(MieleRestorableSensor):
     _last_value: Incomplete
-    @callback
-    def _handle_coordinator_update(self) -> None: ...
+    def _update_last_value(self) -> None: ...
+
+class MieleConsumptionSensor(MieleRestorableSensor):
+    _is_reporting: bool
+    _last_value: Incomplete
+    def _update_last_value(self) -> None: ...

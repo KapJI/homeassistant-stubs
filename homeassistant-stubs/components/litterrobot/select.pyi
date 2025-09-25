@@ -19,7 +19,7 @@ class RobotSelectEntityDescription(SelectEntityDescription, Generic[_WhiskerEnti
     options_fn: Callable[[_WhiskerEntityT], list[_CastTypeT]]
     select_fn: Callable[[_WhiskerEntityT, str], Coroutine[Any, Any, bool]]
 
-ROBOT_SELECT_MAP: dict[type[Robot], RobotSelectEntityDescription]
+ROBOT_SELECT_MAP: dict[type[Robot], tuple[RobotSelectEntityDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

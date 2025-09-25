@@ -1,4 +1,4 @@
-from .coordinator import AirOSConfigEntry as AirOSConfigEntry, AirOSData as AirOSData, AirOSDataUpdateCoordinator as AirOSDataUpdateCoordinator
+from .coordinator import AirOS8Data as AirOS8Data, AirOSConfigEntry as AirOSConfigEntry, AirOSDataUpdateCoordinator as AirOSDataUpdateCoordinator
 from .entity import AirOSEntity as AirOSEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -13,7 +13,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AirOSBinarySensorEntityDescription(BinarySensorEntityDescription):
-    value_fn: Callable[[AirOSData], bool]
+    value_fn: Callable[[AirOS8Data], bool]
 
 BINARY_SENSORS: tuple[AirOSBinarySensorEntityDescription, ...]
 

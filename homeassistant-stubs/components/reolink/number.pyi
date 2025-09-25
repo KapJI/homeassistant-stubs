@@ -1,4 +1,4 @@
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostChimeCoordinatorEntity as ReolinkHostChimeCoordinatorEntity, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -79,6 +79,15 @@ class ReolinkHostNumberEntity(ReolinkHostCoordinatorEntity, NumberEntity):
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ReolinkChimeNumberEntity(ReolinkChimeCoordinatorEntity, NumberEntity):
+    entity_description: ReolinkChimeNumberEntityDescription
+    _attr_mode: Incomplete
+    def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeNumberEntityDescription) -> None: ...
+    @property
+    def native_value(self) -> float | None: ...
+    @raise_translated_error
+    async def async_set_native_value(self, value: float) -> None: ...
+
+class ReolinkHostChimeNumberEntity(ReolinkHostChimeCoordinatorEntity, NumberEntity):
     entity_description: ReolinkChimeNumberEntityDescription
     _attr_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeNumberEntityDescription) -> None: ...

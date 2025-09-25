@@ -13,13 +13,13 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any
 
-class BasePlatform(Entity, metaclass=abc.ABCMeta):
+class ModbusBaseEntity(Entity, metaclass=abc.ABCMeta):
     _value: str | None
     _attr_should_poll: bool
     _attr_available: bool
     _attr_unit_of_measurement: Incomplete
     _hub: Incomplete
-    _slave: Incomplete
+    _device_address: Incomplete
     _address: Incomplete
     _input_type: Incomplete
     _scan_interval: Incomplete
@@ -42,7 +42,7 @@ class BasePlatform(Entity, metaclass=abc.ABCMeta):
     async def async_await_connection(self, _now: Any) -> None: ...
     async def async_base_added_to_hass(self) -> None: ...
 
-class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):
+class ModbusStructEntity(ModbusBaseEntity, RestoreEntity, metaclass=abc.ABCMeta):
     _swap: Incomplete
     _data_type: Incomplete
     _structure: str
@@ -57,7 +57,7 @@ class BaseStructPlatform(BasePlatform, RestoreEntity, metaclass=abc.ABCMeta):
     def __process_raw_value(self, entry: float | str | bytes) -> str | None: ...
     def unpack_structure_result(self, registers: list[int]) -> str | None: ...
 
-class BaseSwitch(BasePlatform, ToggleEntity, RestoreEntity):
+class ModbusToggleEntity(ModbusBaseEntity, ToggleEntity, RestoreEntity):
     _attr_is_on: bool
     _write_type: Incomplete
     command_on: Incomplete

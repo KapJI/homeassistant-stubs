@@ -23,6 +23,7 @@ DEM_OPT_OUT_STATE_MAP: Incomplete
 ESA_STATE_MAP: Incomplete
 EVSE_FAULT_STATE_MAP: Incomplete
 PUMP_CONTROL_MODE_MAP: Incomplete
+TEMPERATURE_SCALING_FACTOR: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

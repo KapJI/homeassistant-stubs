@@ -15,3 +15,4 @@ STABLE_BLE_VERSION: Incomplete
 PROJECT_URLS: Incomplete
 STABLE_BLE_URL_VERSION: Incomplete
 DEFAULT_URL: Incomplete
+NO_WAKE_WORD: Final[str]

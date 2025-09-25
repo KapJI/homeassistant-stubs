@@ -2,7 +2,7 @@ from .const import CONF_APPS as CONF_APPS, DOMAIN as DOMAIN
 from .helpers import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
 from _typeshed import Incomplete
 from androidtvremote2 import AndroidTVRemote as AndroidTVRemote
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
@@ -14,8 +14,6 @@ class AndroidTVRemoteBaseEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _api: Incomplete
-    _host: Incomplete
-    _name: Incomplete
     _apps: dict[str, Any]
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete

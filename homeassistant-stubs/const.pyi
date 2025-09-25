@@ -1,4 +1,5 @@
 from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
+from .generated.entity_platforms import EntityPlatforms as EntityPlatforms
 from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, EnumWithDeprecatedMembers as EnumWithDeprecatedMembers, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
@@ -18,52 +19,7 @@ REQUIRED_PYTHON_VER: Final[tuple[int, int, int]]
 REQUIRED_NEXT_PYTHON_VER: Final[tuple[int, int, int]]
 REQUIRED_NEXT_PYTHON_HA_RELEASE: Final[str]
 PLATFORM_FORMAT: Final[str]
-
-class Platform(StrEnum):
-    AI_TASK = 'ai_task'
-    AIR_QUALITY = 'air_quality'
-    ALARM_CONTROL_PANEL = 'alarm_control_panel'
-    ASSIST_SATELLITE = 'assist_satellite'
-    BINARY_SENSOR = 'binary_sensor'
-    BUTTON = 'button'
-    CALENDAR = 'calendar'
-    CAMERA = 'camera'
-    CLIMATE = 'climate'
-    CONVERSATION = 'conversation'
-    COVER = 'cover'
-    DATE = 'date'
-    DATETIME = 'datetime'
-    DEVICE_TRACKER = 'device_tracker'
-    EVENT = 'event'
-    FAN = 'fan'
-    GEO_LOCATION = 'geo_location'
-    HUMIDIFIER = 'humidifier'
-    IMAGE = 'image'
-    IMAGE_PROCESSING = 'image_processing'
-    LAWN_MOWER = 'lawn_mower'
-    LIGHT = 'light'
-    LOCK = 'lock'
-    MEDIA_PLAYER = 'media_player'
-    NOTIFY = 'notify'
-    NUMBER = 'number'
-    REMOTE = 'remote'
-    SCENE = 'scene'
-    SELECT = 'select'
-    SENSOR = 'sensor'
-    SIREN = 'siren'
-    STT = 'stt'
-    SWITCH = 'switch'
-    TEXT = 'text'
-    TIME = 'time'
-    TODO = 'todo'
-    TTS = 'tts'
-    UPDATE = 'update'
-    VACUUM = 'vacuum'
-    VALVE = 'valve'
-    WAKE_WORD = 'wake_word'
-    WATER_HEATER = 'water_heater'
-    WEATHER = 'weather'
-
+Platform = EntityPlatforms
 BASE_PLATFORMS: Final[Incomplete]
 MATCH_ALL: Final[str]
 ENTITY_MATCH_NONE: Final[str]
@@ -196,6 +152,7 @@ CONF_MONITORED_VARIABLES: Final[str]
 CONF_NAME: Final[str]
 CONF_OFFSET: Final[str]
 CONF_OPTIMISTIC: Final[str]
+CONF_OPTIONS: Final[str]
 CONF_PACKAGES: Final[str]
 CONF_PARALLEL: Final[str]
 CONF_PARAMS: Final[str]
@@ -395,6 +352,7 @@ ATTR_PERSONS: Final[str]
 class UnitOfApparentPower(StrEnum):
     MILLIVOLT_AMPERE = 'mVA'
     VOLT_AMPERE = 'VA'
+    KILO_VOLT_AMPERE = 'kVA'
 
 class UnitOfPower(StrEnum):
     MILLIWATT = 'mW'
@@ -496,6 +454,7 @@ class UnitOfPressure(StrEnum):
     MBAR = 'mbar'
     MMHG = 'mmHg'
     INHG = 'inHg'
+    INH2O = 'inH₂O'
     PSI = 'psi'
 
 class UnitOfSoundPressure(StrEnum):
@@ -505,6 +464,7 @@ class UnitOfSoundPressure(StrEnum):
 class UnitOfVolume(StrEnum):
     CUBIC_FEET = 'ft³'
     CENTUM_CUBIC_FEET = 'CCF'
+    MILLE_CUBIC_FEET = 'MCF'
     CUBIC_METERS = 'm³'
     LITERS = 'L'
     MILLILITERS = 'mL'
@@ -590,6 +550,7 @@ class UnitOfSpeed(StrEnum):
     BEAUFORT = 'Beaufort'
     FEET_PER_SECOND = 'ft/s'
     INCHES_PER_SECOND = 'in/s'
+    METERS_PER_MINUTE = 'm/min'
     METERS_PER_SECOND = 'm/s'
     KILOMETERS_PER_HOUR = 'km/h'
     KNOTS = 'kn'

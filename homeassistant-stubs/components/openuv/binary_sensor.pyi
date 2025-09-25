@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.util.dt import as_local as as_local, parse_datetime as parse_datetime, utcnow as utcnow
+from homeassistant.util.dt import as_local as as_local
 
 ATTR_PROTECTION_WINDOW_ENDING_TIME: str
 ATTR_PROTECTION_WINDOW_ENDING_UV: str
@@ -19,5 +19,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class OpenUvBinarySensor(OpenUvEntity, BinarySensorEntity):
     @callback
     def _handle_coordinator_update(self) -> None: ...
-    _attr_is_on: bool
+    _attr_is_on: Incomplete
     def _update_attrs(self) -> None: ...

@@ -1,3 +1,4 @@
+import voluptuous as vol
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
 from enum import StrEnum
@@ -11,7 +12,7 @@ from typing import Any, Literal, Required, TypedDict
 
 SELECTORS: decorator.Registry[str, type[Selector]]
 
-def _get_selector_class(config: Any) -> type[Selector]: ...
+def _get_selector_type_and_class(config: Any) -> tuple[str, type[Selector]]: ...
 def selector(config: Any) -> Selector: ...
 def validate_selector(config: Any) -> dict: ...
 
@@ -27,14 +28,13 @@ class Selector[_T: Mapping[str, Any]]:
 def _entity_feature_flag(domain: str, enum_name: str, feature_name: str) -> int: ...
 def _validate_supported_feature(supported_feature: str) -> int: ...
 def _validate_supported_features(supported_features: list[str]) -> int: ...
-
-BASE_SELECTOR_CONFIG_SCHEMA: Incomplete
+def make_selector_config_schema(schema_dict: dict | None = None) -> vol.Schema: ...
 
 class BaseSelectorConfig(TypedDict, total=False):
     read_only: bool
 
 ENTITY_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
-LEGACY_ENTITY_SELECTOR_CONFIG_SCHEMA: Incomplete
+_LEGACY_ENTITY_SELECTOR_CONFIG_SCHEMA_DICT: Incomplete
 
 class EntityFilterSelectorConfig(TypedDict, total=False):
     integration: str
@@ -43,7 +43,7 @@ class EntityFilterSelectorConfig(TypedDict, total=False):
     supported_features: list[str]
 
 DEVICE_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
-LEGACY_DEVICE_SELECTOR_CONFIG_SCHEMA: Incomplete
+_LEGACY_DEVICE_SELECTOR_CONFIG_SCHEMA_DICT: Incomplete
 
 class DeviceFilterSelectorConfig(TypedDict, total=False):
     integration: str
@@ -55,7 +55,7 @@ class ActionSelectorConfig(BaseSelectorConfig): ...
 
 class ActionSelector(Selector[ActionSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ActionSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -84,7 +84,7 @@ class AssistPipelineSelectorConfig(BaseSelectorConfig, total=False): ...
 
 class AssistPipelineSelector(Selector[AssistPipelineSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: AssistPipelineSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
@@ -102,7 +102,7 @@ class BackupLocationSelectorConfig(BaseSelectorConfig, total=False): ...
 
 class BackupLocationSelector(Selector[BackupLocationSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: BackupLocationSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
@@ -110,7 +110,7 @@ class BooleanSelectorConfig(BaseSelectorConfig): ...
 
 class BooleanSelector(Selector[BooleanSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: BooleanSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> bool: ...
 
@@ -118,7 +118,7 @@ class ColorRGBSelectorConfig(BaseSelectorConfig): ...
 
 class ColorRGBSelector(Selector[ColorRGBSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ColorRGBSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> list[int]: ...
 
@@ -143,7 +143,7 @@ class ConditionSelectorConfig(BaseSelectorConfig): ...
 
 class ConditionSelector(Selector[ConditionSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ConditionSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -190,7 +190,7 @@ class DateSelectorConfig(BaseSelectorConfig): ...
 
 class DateSelector(Selector[DateSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: DateSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -198,7 +198,7 @@ class DateTimeSelectorConfig(BaseSelectorConfig): ...
 
 class DateTimeSelector(Selector[DateTimeSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: DateTimeSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -421,7 +421,7 @@ class TemplateSelectorConfig(BaseSelectorConfig): ...
 
 class TemplateSelector(Selector[TemplateSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: TemplateSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
@@ -466,7 +466,7 @@ class TimeSelectorConfig(BaseSelectorConfig): ...
 
 class TimeSelector(Selector[TimeSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: TimeSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
@@ -474,6 +474,6 @@ class TriggerSelectorConfig(BaseSelectorConfig): ...
 
 class TriggerSelector(Selector[TriggerSelectorConfig]):
     selector_type: str
-    CONFIG_SCHEMA = BASE_SELECTOR_CONFIG_SCHEMA
+    CONFIG_SCHEMA: Incomplete
     def __init__(self, config: TriggerSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...

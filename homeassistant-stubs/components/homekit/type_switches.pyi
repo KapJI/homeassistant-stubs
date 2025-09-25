@@ -1,5 +1,5 @@
 from .accessories import HomeAccessory as HomeAccessory, HomeDriver as HomeDriver, TYPES as TYPES
-from .const import CHAR_ACTIVE as CHAR_ACTIVE, CHAR_CONFIGURED_NAME as CHAR_CONFIGURED_NAME, CHAR_IN_USE as CHAR_IN_USE, CHAR_NAME as CHAR_NAME, CHAR_ON as CHAR_ON, CHAR_OUTLET_IN_USE as CHAR_OUTLET_IN_USE, CHAR_REMAINING_DURATION as CHAR_REMAINING_DURATION, CHAR_SET_DURATION as CHAR_SET_DURATION, CHAR_VALVE_TYPE as CHAR_VALVE_TYPE, CONF_LINKED_VALVE_DURATION as CONF_LINKED_VALVE_DURATION, CONF_LINKED_VALVE_END_TIME as CONF_LINKED_VALVE_END_TIME, SERV_OUTLET as SERV_OUTLET, SERV_SWITCH as SERV_SWITCH, SERV_VALVE as SERV_VALVE, TYPE_FAUCET as TYPE_FAUCET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_VALVE as TYPE_VALVE
+from .const import CHAR_ACTIVE as CHAR_ACTIVE, CHAR_CONFIGURED_NAME as CHAR_CONFIGURED_NAME, CHAR_IN_USE as CHAR_IN_USE, CHAR_NAME as CHAR_NAME, CHAR_ON as CHAR_ON, CHAR_OUTLET_IN_USE as CHAR_OUTLET_IN_USE, CHAR_REMAINING_DURATION as CHAR_REMAINING_DURATION, CHAR_SET_DURATION as CHAR_SET_DURATION, CHAR_VALVE_TYPE as CHAR_VALVE_TYPE, CONF_LINKED_VALVE_DURATION as CONF_LINKED_VALVE_DURATION, CONF_LINKED_VALVE_END_TIME as CONF_LINKED_VALVE_END_TIME, PROP_MAX_VALUE as PROP_MAX_VALUE, PROP_MIN_STEP as PROP_MIN_STEP, PROP_MIN_VALUE as PROP_MIN_VALUE, SERV_OUTLET as SERV_OUTLET, SERV_SWITCH as SERV_SWITCH, SERV_VALVE as SERV_VALVE, TYPE_FAUCET as TYPE_FAUCET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_VALVE as TYPE_VALVE
 from .util import cleanup_name_for_homekit as cleanup_name_for_homekit
 from _typeshed import Incomplete
 from homeassistant.components import button as button, input_button as input_button
@@ -20,6 +20,11 @@ class ValveInfo(NamedTuple):
     valve_type: int
 
 VALVE_TYPE: dict[str, ValveInfo]
+VALVE_LINKED_DURATION_PROPERTIES: Incomplete
+VALVE_DURATION_MIN_DEFAULT: int
+VALVE_DURATION_MAX_DEFAULT: int
+VALVE_DURATION_STEP_DEFAULT: int
+VALVE_REMAINING_TIME_MAX_DEFAULT: Incomplete
 ACTIVATE_ONLY_SWITCH_DOMAINS: Incomplete
 ACTIVATE_ONLY_RESET_SECONDS: int
 
@@ -74,6 +79,7 @@ class ValveBase(HomeAccessory):
     def get_duration(self) -> int: ...
     def get_remaining_duration(self) -> int: ...
     def _get_entity_state(self, entity_id: str | None) -> str | None: ...
+    def _get_linked_duration_property(self, attr: str, fallback_value: int) -> int: ...
 
 class ValveSwitch(ValveBase):
     def __init__(self, hass: HomeAssistant, driver: HomeDriver, name: str, entity_id: str, aid: int, config: dict[str, Any], *args: Any) -> None: ...

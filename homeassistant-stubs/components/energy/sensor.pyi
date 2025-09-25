@@ -27,7 +27,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 @dataclass(slots=True)
 class SourceAdapter:
     source_type: Literal['grid', 'gas', 'water']
-    flow_type: Literal['flow_from', 'flow_to', None]
+    flow_type: Literal['flow_from', 'flow_to'] | None
     stat_energy_key: Literal['stat_energy_from', 'stat_energy_to']
     total_money_key: Literal['stat_cost', 'stat_compensation']
     name_suffix: str

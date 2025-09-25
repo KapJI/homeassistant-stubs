@@ -1,6 +1,6 @@
 from . import get_hub as get_hub
 from .const import CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CALL_TYPE_WRITE_REGISTER as CALL_TYPE_WRITE_REGISTER, CONF_BRIGHTNESS_REGISTER as CONF_BRIGHTNESS_REGISTER, CONF_COLOR_TEMP_REGISTER as CONF_COLOR_TEMP_REGISTER, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_TEMP as CONF_MIN_TEMP, LIGHT_DEFAULT_MAX_KELVIN as LIGHT_DEFAULT_MAX_KELVIN, LIGHT_DEFAULT_MIN_KELVIN as LIGHT_DEFAULT_MIN_KELVIN, LIGHT_MAX_BRIGHTNESS as LIGHT_MAX_BRIGHTNESS, LIGHT_MODBUS_INVALID_VALUE as LIGHT_MODBUS_INVALID_VALUE, LIGHT_MODBUS_SCALE_MAX as LIGHT_MODBUS_SCALE_MAX, LIGHT_MODBUS_SCALE_MIN as LIGHT_MODBUS_SCALE_MIN
-from .entity import BaseSwitch as BaseSwitch
+from .entity import ModbusToggleEntity as ModbusToggleEntity
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ColorMode as ColorMode, LightEntity as LightEntity
@@ -14,7 +14,7 @@ PARALLEL_UPDATES: int
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
-class ModbusLight(BaseSwitch, LightEntity):
+class ModbusLight(ModbusToggleEntity, LightEntity):
     _brightness_address: int | None
     _color_temp_address: int | None
     _attr_color_mode: Incomplete

@@ -1,27 +1,18 @@
 from . import AndroidTVConfigEntry as AndroidTVConfigEntry
 from .const import CONF_APPS as CONF_APPS, CONF_EXCLUDE_UNNAMED_APPS as CONF_EXCLUDE_UNNAMED_APPS, CONF_GET_SOURCES as CONF_GET_SOURCES, CONF_SCREENCAP_INTERVAL as CONF_SCREENCAP_INTERVAL, CONF_TURN_OFF_COMMAND as CONF_TURN_OFF_COMMAND, CONF_TURN_ON_COMMAND as CONF_TURN_ON_COMMAND, DEFAULT_EXCLUDE_UNNAMED_APPS as DEFAULT_EXCLUDE_UNNAMED_APPS, DEFAULT_GET_SOURCES as DEFAULT_GET_SOURCES, DEFAULT_SCREENCAP_INTERVAL as DEFAULT_SCREENCAP_INTERVAL, DEVICE_ANDROIDTV as DEVICE_ANDROIDTV, SIGNAL_CONFIG_ENTITY as SIGNAL_CONFIG_ENTITY
 from .entity import AndroidTVEntity as AndroidTVEntity, adb_decorator as adb_decorator
+from .services import ATTR_ADB_RESPONSE as ATTR_ADB_RESPONSE, ATTR_HDMI_INPUT as ATTR_HDMI_INPUT, SERVICE_LEARN_SENDEVENT as SERVICE_LEARN_SENDEVENT
 from _typeshed import Incomplete
 from androidtv.setup_async import AndroidTVAsync as AndroidTVAsync, FireTVAsync as FireTVAsync
 from datetime import datetime, timedelta
 from homeassistant.components import persistent_notification as persistent_notification
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
-from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 
 _LOGGER: Incomplete
-ATTR_ADB_RESPONSE: str
-ATTR_DEVICE_PATH: str
-ATTR_HDMI_INPUT: str
-ATTR_LOCAL_PATH: str
-SERVICE_ADB_COMMAND: str
-SERVICE_DOWNLOAD: str
-SERVICE_LEARN_SENDEVENT: str
-SERVICE_UPLOAD: str
 ANDROIDTV_STATES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: AndroidTVConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

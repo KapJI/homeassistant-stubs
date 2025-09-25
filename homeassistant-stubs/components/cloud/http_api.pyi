@@ -17,6 +17,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.loader import async_get_custom_components as async_get_custom_components, async_get_loaded_integration as async_get_loaded_integration
 from homeassistant.util.location import async_detect_location_info as async_detect_location_info
 from http import HTTPStatus
 from typing import Any, Concatenate
@@ -82,6 +83,7 @@ class CloudForgotPasswordView(HomeAssistantView):
 class DownloadSupportPackageView(HomeAssistantView):
     url: str
     name: str
+    async def _get_integration_info(self, hass: HomeAssistant) -> dict[str, Any]: ...
     async def _generate_markdown(self, hass: HomeAssistant, hass_info: dict[str, Any], domains_info: dict[str, dict[str, str]]) -> str: ...
     async def get(self, request: web.Request) -> web.Response: ...
 

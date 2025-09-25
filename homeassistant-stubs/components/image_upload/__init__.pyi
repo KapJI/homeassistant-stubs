@@ -1,5 +1,5 @@
 import pathlib
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, FOLDER_IMAGE as FOLDER_IMAGE
 from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components import websocket_api as websocket_api

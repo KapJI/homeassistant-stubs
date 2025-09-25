@@ -1,6 +1,7 @@
 from . import HomeeConfigEntry as HomeeConfigEntry
 from .const import HOMEE_UNIT_TO_HA_UNIT as HOMEE_UNIT_TO_HA_UNIT
 from .entity import HomeeEntity as HomeeEntity
+from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -8,7 +9,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfSpeed as UnitOfSpeed
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyHomee.model import HomeeAttribute as HomeeAttribute
+from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 
 PARALLEL_UPDATES: int
 
@@ -19,6 +20,7 @@ class HomeeNumberEntityDescription(NumberEntityDescription):
 
 NUMBER_DESCRIPTIONS: Incomplete
 
+async def add_number_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeNumber(HomeeEntity, NumberEntity):

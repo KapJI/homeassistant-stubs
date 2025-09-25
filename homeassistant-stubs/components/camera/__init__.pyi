@@ -3,7 +3,7 @@ import collections
 from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, StreamType as StreamType
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
-from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings
+from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings, get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
 from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, DATA_ICE_SERVERS as DATA_ICE_SERVERS, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_ice_servers as async_register_ice_servers, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
 from _typeshed import Incomplete
 from aiohttp import web

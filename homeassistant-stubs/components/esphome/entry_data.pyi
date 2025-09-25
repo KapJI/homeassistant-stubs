@@ -7,10 +7,13 @@ from bleak_esphome.backend.device import ESPHomeBluetoothDevice as ESPHomeBlueto
 from collections import defaultdict
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass, field
+from homeassistant import config_entries as config_entries
 from homeassistant.components.assist_satellite import AssistSatelliteConfiguration as AssistSatelliteConfiguration
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import discovery_flow as discovery_flow
+from homeassistant.helpers.service_info.esphome import ESPHomeServiceInfo as ESPHomeServiceInfo
 from homeassistant.helpers.storage import Store as Store
 from typing import Any, Final, TypedDict
 
@@ -64,7 +67,8 @@ class RuntimeEntryData:
     original_options: dict[str, Any] = field(default_factory=dict)
     media_player_formats: dict[str, list[MediaPlayerSupportedFormat]] = field(default_factory=Incomplete)
     assist_satellite_config_update_callbacks: list[Callable[[AssistSatelliteConfiguration], None]] = field(default_factory=list)
-    assist_satellite_set_wake_word_callbacks: list[Callable[[str], None]] = field(default_factory=list)
+    assist_satellite_set_wake_words_callbacks: list[Callable[[list[str]], None]] = field(default_factory=list)
+    assist_satellite_wake_words: dict[int, str] = field(default_factory=dict)
     device_id_to_name: dict[int, str] = field(default_factory=dict)
     entity_removal_callbacks: dict[EntityInfoKey, list[CALLBACK_TYPE]] = field(default_factory=dict)
     @property
@@ -102,15 +106,15 @@ class RuntimeEntryData:
     @callback
     def async_on_disconnect(self) -> None: ...
     @callback
-    def async_on_connect(self, device_info: DeviceInfo, api_version: APIVersion) -> None: ...
+    def async_on_connect(self, hass: HomeAssistant, device_info: DeviceInfo, api_version: APIVersion) -> None: ...
     @callback
     def async_register_assist_satellite_config_updated_callback(self, callback_: Callable[[AssistSatelliteConfiguration], None]) -> CALLBACK_TYPE: ...
     @callback
     def async_assist_satellite_config_updated(self, config: AssistSatelliteConfiguration) -> None: ...
     @callback
-    def async_register_assist_satellite_set_wake_word_callback(self, callback_: Callable[[str], None]) -> CALLBACK_TYPE: ...
+    def async_register_assist_satellite_set_wake_words_callback(self, callback_: Callable[[list[str]], None]) -> CALLBACK_TYPE: ...
     @callback
-    def async_assist_satellite_set_wake_word(self, wake_word_id: str) -> None: ...
+    def async_assist_satellite_set_wake_word(self, wake_word_index: int, wake_word_id: str | None) -> None: ...
     @callback
     def async_register_entity_removal_callback(self, info_type: type[EntityInfo], device_id: int, key: int, callback_: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
     @callback

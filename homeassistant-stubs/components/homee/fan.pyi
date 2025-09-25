@@ -1,6 +1,7 @@
 from . import HomeeConfigEntry as HomeeConfigEntry
 from .const import DOMAIN as DOMAIN, PRESET_AUTO as PRESET_AUTO, PRESET_MANUAL as PRESET_MANUAL, PRESET_SUMMER as PRESET_SUMMER
 from .entity import HomeeNodeEntity as HomeeNodeEntity
+from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,7 +14,8 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_devices: AddConfigEntryEntitiesCallback) -> None: ...
+async def add_fan_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeFan(HomeeNodeEntity, FanEntity):
     _attr_translation_key = DOMAIN

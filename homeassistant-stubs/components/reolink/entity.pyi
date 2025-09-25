@@ -57,6 +57,16 @@ class ReolinkChannelCoordinatorEntity(ReolinkHostCoordinatorEntity):
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
 
+class ReolinkHostChimeCoordinatorEntity(ReolinkHostCoordinatorEntity):
+    _channel: Incomplete
+    _chime: Incomplete
+    _attr_unique_id: Incomplete
+    _dev_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, reolink_data: ReolinkData, chime: Chime, coordinator: DataUpdateCoordinator[None] | None = None) -> None: ...
+    @property
+    def available(self) -> bool: ...
+
 class ReolinkChimeCoordinatorEntity(ReolinkChannelCoordinatorEntity):
     _chime: Incomplete
     _attr_unique_id: Incomplete

@@ -3,13 +3,13 @@ from anyio.streams.memory import MemoryObjectSendStream as MemoryObjectSendStrea
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
-from mcp import types as types
+from mcp.shared.message import SessionMessage as SessionMessage
 
 _LOGGER: Incomplete
 
 @dataclass
 class Session:
-    read_stream_writer: MemoryObjectSendStream[types.JSONRPCMessage | Exception]
+    read_stream_writer: MemoryObjectSendStream[SessionMessage | Exception]
 
 class SessionManager:
     _sessions: dict[str, Session]

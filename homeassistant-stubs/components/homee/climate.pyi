@@ -1,6 +1,7 @@
 from . import HomeeConfigEntry as HomeeConfigEntry
 from .const import CLIMATE_PROFILES as CLIMATE_PROFILES, DOMAIN as DOMAIN, HOMEE_UNIT_TO_HA_UNIT as HOMEE_UNIT_TO_HA_UNIT, PRESET_MANUAL as PRESET_MANUAL
 from .entity import HomeeNodeEntity as HomeeNodeEntity
+from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,7 +12,8 @@ from typing import Any
 PARALLEL_UPDATES: int
 ROOM_THERMOSTATS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_devices: AddConfigEntryEntitiesCallback) -> None: ...
+async def add_climate_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeClimate(HomeeNodeEntity, ClimateEntity):
     _attr_name: Incomplete

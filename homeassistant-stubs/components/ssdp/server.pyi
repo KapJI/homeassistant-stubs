@@ -1,3 +1,4 @@
+import socket
 from .common import async_build_source_set as async_build_source_set
 from _typeshed import Incomplete
 from async_upnp_client.const import AddressTupleVXType as AddressTupleVXType
@@ -8,8 +9,6 @@ from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableE
 from homeassistant.helpers.system_info import async_get_system_info as async_get_system_info
 from typing import Any
 
-UPNP_SERVER_MIN_PORT: int
-UPNP_SERVER_MAX_PORT: int
 _LOGGER: Incomplete
 
 class HassUpnpServiceDevice(UpnpServerDevice):
@@ -17,7 +16,7 @@ class HassUpnpServiceDevice(UpnpServerDevice):
     EMBEDDED_DEVICES: list[type[UpnpServerDevice]]
     SERVICES: list[type[UpnpServerService]]
 
-async def _async_find_next_available_port(source: AddressTupleVXType) -> int: ...
+async def _async_find_next_available_port(source: AddressTupleVXType) -> tuple[int, socket.socket]: ...
 
 class Server:
     hass: Incomplete

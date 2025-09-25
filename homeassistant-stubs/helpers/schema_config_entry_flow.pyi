@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable, Container, Coroutine, Mapping
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.data_entry_flow import UnknownHandler as UnknownHandler
 from typing import Any
@@ -27,6 +27,7 @@ class SchemaFlowFormStep(SchemaFlowStep):
 @dataclass(slots=True)
 class SchemaFlowMenuStep(SchemaFlowStep):
     options: Container[str] | Callable[[SchemaCommonFlowHandler], Coroutine[Any, Any, Container[str]]]
+    sort: bool = ...
 
 class SchemaCommonFlowHandler:
     _flow: Incomplete
@@ -52,6 +53,7 @@ class SchemaCommonFlowHandler:
 class SchemaConfigFlowHandler(ConfigFlow, ABC, metaclass=abc.ABCMeta):
     config_flow: Mapping[str, SchemaFlowStep]
     options_flow: Mapping[str, SchemaFlowStep] | None
+    options_flow_reloads: bool
     VERSION: int
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
     _common_handler: Incomplete
@@ -85,6 +87,8 @@ class SchemaOptionsFlowHandler(OptionsFlow):
     def _async_step(step_id: str) -> Callable[[SchemaConfigFlowHandler, dict[str, Any] | None], Coroutine[Any, Any, ConfigFlowResult]]: ...
     @callback
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...
+
+class SchemaOptionsFlowHandlerWithReload(SchemaOptionsFlowHandler, OptionsFlowWithReload): ...
 
 @callback
 def wrapped_entity_config_entry_title(hass: HomeAssistant, entity_id_or_uuid: str) -> str: ...

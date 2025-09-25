@@ -26,6 +26,7 @@ class SwitchbotDevices:
     locks: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     fans: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     lights: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
+    humidifiers: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
 
 @dataclass
 class SwitchbotCloudData:

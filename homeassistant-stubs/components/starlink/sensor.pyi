@@ -3,7 +3,7 @@ from .entity import StarlinkEntity as StarlinkEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfDataRate as UnitOfDataRate, UnitOfEnergy as UnitOfEnergy, UnitOfInformation as UnitOfInformation, UnitOfPower as UnitOfPower, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -21,4 +21,11 @@ class StarlinkSensorEntity(StarlinkEntity, SensorEntity):
     @property
     def native_value(self) -> StateType | datetime: ...
 
+class StarlinkRestoreSensor(StarlinkSensorEntity, RestoreSensor):
+    _attr_native_value: int | float
+    @property
+    def native_value(self) -> int | float: ...
+    async def async_added_to_hass(self) -> None: ...
+
 SENSORS: tuple[StarlinkSensorEntityDescription, ...]
+RESTORE_SENSORS: tuple[StarlinkSensorEntityDescription, ...]

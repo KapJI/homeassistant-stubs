@@ -7,6 +7,7 @@ from awesomeversion import AwesomeVersion
 from collections.abc import Callable, Generator, Sequence
 from contextlib import contextmanager
 from datetime import date, datetime
+from homeassistant.const import WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.recorder import DATA_INSTANCE as DATA_INSTANCE, get_instance as get_instance, session_scope as session_scope
 from sqlalchemy.engine import Result as Result, Row as Row

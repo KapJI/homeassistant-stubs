@@ -12,6 +12,7 @@ from datetime import datetime
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import CALLBACK_TYPE, Event, HomeAssistant, callback
 from homeassistant.helpers.typing import ConfigType
+from pathlib import Path
 from propcache.api import cached_property
 from time import monotonic
 from typing import Any, Generic, Protocol, TypeVar
@@ -45,6 +46,7 @@ async def async_get_media_source_audio(hass: HomeAssistant, media_source_id: str
 @dataclass
 class ResultStream:
     last_used: float = field(default_factory=monotonic, init=False)
+    hass: HomeAssistant
     token: str
     extension: str
     content_type: str
@@ -54,6 +56,7 @@ class ResultStream:
     options: dict
     supports_streaming_input: bool
     _manager: SpeechManager
+    _override_media_path: Path | None = ...
     @cached_property
     def url(self) -> str: ...
     @cached_property
@@ -65,6 +68,8 @@ class ResultStream:
     @callback
     def async_set_message_stream(self, message_stream: AsyncGenerator[str]) -> None: ...
     async def async_stream_result(self) -> AsyncGenerator[bytes]: ...
+    def async_override_result(self, media_path: str | Path) -> None: ...
+    async def _async_stream_override_result(self) -> AsyncGenerator[bytes]: ...
 
 class HasLastUsed(Protocol):
     last_used: float

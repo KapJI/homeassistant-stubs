@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostChimeCoordinatorEntity as ReolinkHostChimeCoordinatorEntity, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -56,6 +56,16 @@ class ReolinkNVRSwitchEntity(ReolinkHostCoordinatorEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ReolinkChimeSwitchEntity(ReolinkChimeCoordinatorEntity, SwitchEntity):
+    entity_description: ReolinkChimeSwitchEntityDescription
+    def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSwitchEntityDescription) -> None: ...
+    @property
+    def is_on(self) -> bool | None: ...
+    @raise_translated_error
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @raise_translated_error
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
+
+class ReolinkHostChimeSwitchEntity(ReolinkHostChimeCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkChimeSwitchEntityDescription
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSwitchEntityDescription) -> None: ...
     @property

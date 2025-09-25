@@ -19,6 +19,7 @@ class AirzoneSelectDescription(SelectEntityDescription):
 GRILLE_ANGLE_DICT: Final[dict[str, int]]
 MODE_DICT: Final[dict[str, int]]
 SLEEP_DICT: Final[dict[str, int]]
+Q_ADAPT_DICT: Final[dict[str, int]]
 
 def main_zone_options(zone_data: dict[str, Any], options: dict[str, int]) -> list[str]: ...
 

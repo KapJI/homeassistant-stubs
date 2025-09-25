@@ -1,4 +1,4 @@
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkChimeCoordinatorEntity as ReolinkChimeCoordinatorEntity, ReolinkChimeEntityDescription as ReolinkChimeEntityDescription, ReolinkHostChimeCoordinatorEntity as ReolinkHostChimeCoordinatorEntity, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -29,7 +29,7 @@ class ReolinkHostSelectEntityDescription(SelectEntityDescription, ReolinkHostEnt
 class ReolinkChimeSelectEntityDescription(SelectEntityDescription, ReolinkChimeEntityDescription):
     get_options: list[str]
     method: Callable[[Chime, str], Any]
-    value: Callable[[Chime], str]
+    value: Callable[[Chime], str | None]
 
 def _get_quick_reply_id(api: Host, ch: int, mess: str) -> int: ...
 
@@ -60,7 +60,15 @@ class ReolinkHostSelectEntity(ReolinkHostCoordinatorEntity, SelectEntity):
 
 class ReolinkChimeSelectEntity(ReolinkChimeCoordinatorEntity, SelectEntity):
     entity_description: ReolinkChimeSelectEntityDescription
-    _log_error: bool
+    _attr_options: Incomplete
+    def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSelectEntityDescription) -> None: ...
+    @property
+    def current_option(self) -> str | None: ...
+    @raise_translated_error
+    async def async_select_option(self, option: str) -> None: ...
+
+class ReolinkHostChimeSelectEntity(ReolinkHostChimeCoordinatorEntity, SelectEntity):
+    entity_description: ReolinkChimeSelectEntityDescription
     _attr_options: Incomplete
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSelectEntityDescription) -> None: ...
     @property

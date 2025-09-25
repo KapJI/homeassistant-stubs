@@ -1,6 +1,6 @@
 import asyncio
 from .actions import get_music_assistant_client as get_music_assistant_client, register_actions as register_actions
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import ATTR_CONF_EXPOSE_PLAYER_TO_HA as ATTR_CONF_EXPOSE_PLAYER_TO_HA, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -14,6 +14,7 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from music_assistant_client import MusicAssistantClient
 from music_assistant_models.event import MassEvent as MassEvent
+from music_assistant_models.player import Player as Player
 
 PLATFORMS: Incomplete
 CONNECT_TIMEOUT: int

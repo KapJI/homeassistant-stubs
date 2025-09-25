@@ -12,6 +12,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
+from homeassistant.util.variance import ignore_variance as ignore_variance
 from homewizard_energy.models import CombinedModels as CombinedModels, ExternalDevice
 from typing import Final
 
@@ -29,8 +30,9 @@ class HomeWizardExternalSensorEntityDescription(SensorEntityDescription):
     device_name: str
 
 def to_percentage(value: float | None) -> float | None: ...
-def time_to_datetime(value: int | None) -> datetime | None: ...
+def uptime_to_datetime(value: int) -> datetime: ...
 
+uptime_to_stable_datetime: Incomplete
 SENSORS: Final[tuple[HomeWizardSensorEntityDescription, ...]]
 EXTERNAL_SENSORS: Incomplete
 

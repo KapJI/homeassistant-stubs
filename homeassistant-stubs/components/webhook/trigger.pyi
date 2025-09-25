@@ -4,8 +4,9 @@ from aiohttp import web as web
 from dataclasses import dataclass
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 
 _LOGGER: Incomplete
 DEPENDENCIES: Incomplete

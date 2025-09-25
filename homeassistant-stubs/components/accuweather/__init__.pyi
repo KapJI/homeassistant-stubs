@@ -1,7 +1,7 @@
-from .const import DOMAIN as DOMAIN, UPDATE_INTERVAL_DAILY_FORECAST as UPDATE_INTERVAL_DAILY_FORECAST, UPDATE_INTERVAL_OBSERVATION as UPDATE_INTERVAL_OBSERVATION
-from .coordinator import AccuWeatherConfigEntry as AccuWeatherConfigEntry, AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherData as AccuWeatherData, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
+from .const import DOMAIN as DOMAIN
+from .coordinator import AccuWeatherConfigEntry as AccuWeatherConfigEntry, AccuWeatherDailyForecastDataUpdateCoordinator as AccuWeatherDailyForecastDataUpdateCoordinator, AccuWeatherData as AccuWeatherData, AccuWeatherHourlyForecastDataUpdateCoordinator as AccuWeatherHourlyForecastDataUpdateCoordinator, AccuWeatherObservationDataUpdateCoordinator as AccuWeatherObservationDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 

@@ -8,7 +8,6 @@ ATTR_VALUE: str
 ATTR_MIN: str
 ATTR_MAX: str
 ATTR_STEP: str
-ATTR_STEP_VALIDATION: str
 DEFAULT_MIN_VALUE: float
 DEFAULT_MAX_VALUE: float
 DEFAULT_STEP: float
@@ -54,6 +53,7 @@ class NumberDeviceClass(StrEnum):
     PM1 = 'pm1'
     PM10 = 'pm10'
     PM25 = 'pm25'
+    PM4 = 'pm4'
     POWER_FACTOR = 'power_factor'
     POWER = 'power'
     PRECIPITATION = 'precipitation'

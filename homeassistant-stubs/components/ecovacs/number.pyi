@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from deebot_client.capabilities import CapabilitySet
+from deebot_client.device import Device as Device
 from deebot_client.events.base import Event as Event
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
 from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory
@@ -22,7 +23,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntr
 
 class EcovacsNumberEntity[EventT: Event](EcovacsDescriptionEntity[CapabilitySet[EventT, [int]]], NumberEntity):
     entity_description: EcovacsNumberEntityDescription
-    _attr_native_value: Incomplete
+    _attr_native_min_value: Incomplete
     _attr_native_max_value: Incomplete
+    def __init__(self, device: Device, capability: CapabilitySet[EventT, [int]], entity_description: EcovacsNumberEntityDescription) -> None: ...
+    _attr_native_value: Incomplete
     async def async_added_to_hass(self) -> None: ...
     async def async_set_native_value(self, value: float) -> None: ...

@@ -1,5 +1,6 @@
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry
 from .entity import AmazonEntity as AmazonEntity
+from .utils import async_update_unique_id as async_update_unique_id
 from _typeshed import Incomplete
 from aioamazondevices.api import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable
@@ -16,6 +17,7 @@ PARALLEL_UPDATES: int
 class AmazonBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[AmazonDevice, str], bool]
     is_supported: Callable[[AmazonDevice, str], bool] = ...
+    is_available_fn: Callable[[AmazonDevice, str], bool] = ...
 
 BINARY_SENSORS: Final[Incomplete]
 
@@ -25,3 +27,5 @@ class AmazonBinarySensorEntity(AmazonEntity, BinarySensorEntity):
     entity_description: AmazonBinarySensorEntityDescription
     @property
     def is_on(self) -> bool: ...
+    @property
+    def available(self) -> bool: ...

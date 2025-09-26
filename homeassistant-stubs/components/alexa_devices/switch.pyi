@@ -1,6 +1,6 @@
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry
 from .entity import AmazonEntity as AmazonEntity
-from .utils import alexa_api_call as alexa_api_call
+from .utils import alexa_api_call as alexa_api_call, async_update_unique_id as async_update_unique_id
 from _typeshed import Incomplete
 from aioamazondevices.api import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable
@@ -15,7 +15,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class AmazonSwitchEntityDescription(SwitchEntityDescription):
     is_on_fn: Callable[[AmazonDevice], bool]
-    subkey: str
+    is_available_fn: Callable[[AmazonDevice, str], bool] = ...
     method: str
 
 SWITCHES: Final[Incomplete]
@@ -30,3 +30,5 @@ class AmazonSwitchEntity(AmazonEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
     def is_on(self) -> bool: ...
+    @property
+    def available(self) -> bool: ...

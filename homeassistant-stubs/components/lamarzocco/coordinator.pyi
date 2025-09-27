@@ -8,7 +8,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pylamarzocco import LaMarzoccoMachine as LaMarzoccoMachine
+from pylamarzocco import LaMarzoccoCloudClient as LaMarzoccoCloudClient, LaMarzoccoMachine as LaMarzoccoMachine
 
 SCAN_INTERVAL: Incomplete
 SETTINGS_UPDATE_INTERVAL: Incomplete
@@ -29,12 +29,14 @@ class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABC
     config_entry: LaMarzoccoConfigEntry
     websocket_terminated: bool
     device: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, device: LaMarzoccoMachine) -> None: ...
+    cloud_client: Incomplete
+    def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, device: LaMarzoccoMachine, cloud_client: LaMarzoccoCloudClient | None = None) -> None: ...
     async def _async_update_data(self) -> None: ...
     @abstractmethod
     async def _internal_async_update_data(self) -> None: ...
 
 class LaMarzoccoConfigUpdateCoordinator(LaMarzoccoUpdateCoordinator):
+    cloud_client: LaMarzoccoCloudClient
     async def _internal_async_update_data(self) -> None: ...
     websocket_terminated: bool
     async def connect_websocket(self) -> None: ...

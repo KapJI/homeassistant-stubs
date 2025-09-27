@@ -10,7 +10,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any
 
 DEFAULT_HOST: str
-DEFAULT_PIN: int
+DEFAULT_PIN: str
+pin_regex: str
 USER_SCHEMA: Incomplete
 STEP_REAUTH_DATA_SCHEMA: Incomplete
 STEP_RECONFIGURE: Incomplete

@@ -64,11 +64,6 @@ class BaseUnitConverter:
     @lru_cache
     def _are_unit_inverses(cls, from_unit: str | None, to_unit: str | None) -> bool: ...
 
-class CarbonMonoxideConcentrationConverter(BaseUnitConverter):
-    UNIT_CLASS: str
-    _UNIT_CONVERSION: dict[str | None, float]
-    VALID_UNITS: Incomplete
-
 class DataRateConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]

@@ -1,3 +1,4 @@
+import aiodns
 from .const import CONF_HOSTNAME as CONF_HOSTNAME, CONF_IPV4 as CONF_IPV4, CONF_IPV6 as CONF_IPV6, CONF_PORT_IPV6 as CONF_PORT_IPV6, CONF_RESOLVER as CONF_RESOLVER, CONF_RESOLVER_IPV6 as CONF_RESOLVER_IPV6, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
@@ -23,12 +24,15 @@ class WanIpSensor(SensorEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     hostname: Incomplete
-    resolver: Incomplete
+    port: Incomplete
+    _resolver: Incomplete
     querytype: Literal['A', 'AAAA']
     _retries: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete
+    resolver: aiodns.DNSResolver
     def __init__(self, name: str, hostname: str, resolver: str, ipv6: bool, port: int) -> None: ...
+    def create_dns_resolver(self) -> None: ...
     _attr_native_value: Incomplete
     _attr_available: bool
     async def async_update(self) -> None: ...

@@ -24,6 +24,10 @@ class PickedFirmwareType(StrEnum):
     THREAD = 'thread'
     ZIGBEE = 'zigbee'
 
+class ZigbeeFlowStrategy(StrEnum):
+    ADVANCED = 'advanced'
+    RECOMMENDED = 'recommended'
+
 class ZigbeeIntegration(StrEnum):
     OTHER = 'other'
     ZHA = 'zha'
@@ -31,6 +35,7 @@ class ZigbeeIntegration(StrEnum):
 class BaseFirmwareInstallFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
     ZIGBEE_BAUDRATE: int
     _picked_firmware_type: PickedFirmwareType
+    _zigbee_flow_strategy: ZigbeeFlowStrategy
     _probed_firmware_info: FirmwareInfo | None
     _device: str | None
     _hardware_name: str

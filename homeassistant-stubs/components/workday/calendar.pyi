@@ -9,8 +9,6 @@ from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-CALENDAR_DAYS_AHEAD: int
-
 async def async_setup_entry(hass: HomeAssistant, entry: WorkdayConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WorkdayCalendarEntity(BaseWorkdayEntity, CalendarEntity):

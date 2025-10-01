@@ -2,7 +2,7 @@ from . import DATA_COMPONENT as DATA_COMPONENT
 from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
 from .silabs_multiprotocol_addon import WaitingAddonManager as WaitingAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager
 from _typeshed import Incomplete
-from collections.abc import AsyncIterator, Callable as Callable, Iterable
+from collections.abc import AsyncIterator, Callable as Callable, Iterable, Sequence
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from enum import StrEnum
@@ -12,19 +12,25 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.singleton import singleton as singleton
-from universal_silabs_flasher.const import ApplicationType as FlasherApplicationType
+from universal_silabs_flasher.const import ApplicationType as FlasherApplicationType, ResetTarget as FlasherResetTarget
 
 _LOGGER: Incomplete
 
 class ApplicationType(StrEnum):
     GECKO_BOOTLOADER = 'bootloader'
-    CPC = 'cpc'
     EZSP = 'ezsp'
     SPINEL = 'spinel'
+    CPC = 'cpc'
     ROUTER = 'router'
     @classmethod
     def from_flasher_application_type(cls, app_type: FlasherApplicationType) -> ApplicationType: ...
     def as_flasher_application_type(self) -> FlasherApplicationType: ...
+
+class ResetTarget(StrEnum):
+    RTS_DTR = 'rts_dtr'
+    BAUDRATE = 'baudrate'
+    YELLOW = 'yellow'
+    def as_flasher_reset_target(self) -> FlasherResetTarget: ...
 
 @callback
 def get_otbr_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
@@ -60,4 +66,4 @@ async def guess_hardware_owners(hass: HomeAssistant, device_path: str) -> list[F
 async def guess_firmware_info(hass: HomeAssistant, device_path: str) -> FirmwareInfo: ...
 async def probe_silabs_firmware_info(device: str, *, probe_methods: Iterable[ApplicationType] | None = None) -> FirmwareInfo | None: ...
 async def probe_silabs_firmware_type(device: str, *, probe_methods: Iterable[ApplicationType] | None = None) -> ApplicationType | None: ...
-async def async_flash_silabs_firmware(hass: HomeAssistant, device: str, fw_data: bytes, expected_installed_firmware_type: ApplicationType, bootloader_reset_type: str | None = None, progress_callback: Callable[[int, int], None] | None = None) -> FirmwareInfo: ...
+async def async_flash_silabs_firmware(hass: HomeAssistant, device: str, fw_data: bytes, expected_installed_firmware_type: ApplicationType, bootloader_reset_methods: Sequence[ResetTarget] = (), progress_callback: Callable[[int, int], None] | None = None) -> FirmwareInfo: ...

@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
-from homeassistant.const import EntityCategory as EntityCategory, PRECISION_WHOLE as PRECISION_WHOLE
+from homeassistant.const import EntityCategory as EntityCategory, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from letpot.deviceclient import LetPotDeviceClient as LetPotDeviceClient

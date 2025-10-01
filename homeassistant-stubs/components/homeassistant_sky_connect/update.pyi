@@ -19,7 +19,7 @@ def _async_create_update_entity(hass: HomeAssistant, config_entry: ConfigEntry, 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FirmwareUpdateEntity(BaseFirmwareUpdateEntity):
-    bootloader_reset_type: Incomplete
+    bootloader_reset_methods: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _current_firmware_info: Incomplete

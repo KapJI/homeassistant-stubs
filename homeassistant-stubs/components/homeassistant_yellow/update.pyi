@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as F
 from _typeshed import Incomplete
 from homeassistant.components.homeassistant_hardware.coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from homeassistant.components.homeassistant_hardware.update import BaseFirmwareUpdateEntity as BaseFirmwareUpdateEntity, FirmwareUpdateEntityDescription as FirmwareUpdateEntityDescription
-from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo
+from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
@@ -19,7 +19,7 @@ def _async_create_update_entity(hass: HomeAssistant, config_entry: ConfigEntry, 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FirmwareUpdateEntity(BaseFirmwareUpdateEntity):
-    bootloader_reset_type: str
+    bootloader_reset_methods: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _current_firmware_info: Incomplete

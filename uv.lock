@@ -44,16 +44,16 @@ wheels = [
 
 [[package]]
 name = "aiohasupervisor"
-version = "0.3.3b0"
+version = "0.3.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
     { name = "mashumaro" },
     { name = "orjson" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e0/4c/60e72d87dbda6a783aa774c83b49f1d41193f4748bb4f9f700f7767a480f/aiohasupervisor-0.3.3b0.tar.gz", hash = "sha256:f323fae69f66a7468708b214542cbf24e554c93c9fd8b5b077d0e7e0970e5a79", size = 44714, upload-time = "2025-09-23T15:26:13.542Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/e0/f8865efa28ce22e44e3526f18654c7a69a6f0d0e8523e2aaf743f2798fd8/aiohasupervisor-0.3.3.tar.gz", hash = "sha256:24e268f58f37f9d8dafadba2ef9d860292ff622bc6e78b1ca4ef5e5095d1bbc8", size = 44696, upload-time = "2025-10-01T14:55:57.98Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/94/81/ad656b2d3a2c05c9e9e265759616b9fa30ca163e8127fc1adbdddad05029/aiohasupervisor-0.3.3b0-py3-none-any.whl", hash = "sha256:b3434b998421d6c3458073e6d15bfc10c92928a8a08ec0004fb3e69b505132a2", size = 40511, upload-time = "2025-09-23T15:26:12.376Z" },
+    { url = "https://files.pythonhosted.org/packages/f0/97/b811d22148e7227e6f02a1f0f13f60d959bb163c806feab853544da07c3e/aiohasupervisor-0.3.3-py3-none-any.whl", hash = "sha256:bc185dbb81bb8ec6ba91b5512df7fd3bf99db15e648b20aed3f8ce7dc3203f1f", size = 40486, upload-time = "2025-10-01T14:55:56.52Z" },
 ]
 
 [[package]]
@@ -800,7 +800,7 @@ wheels = [
 
 [[package]]
 name = "homeassistant"
-version = "2025.10.0"
+version = "2025.10.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiodns" },
@@ -854,9 +854,9 @@ dependencies = [
     { name = "yarl" },
     { name = "zeroconf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/33/25/dc8d1397dc0cdc51d23e0a8f99ee12afec0323cb53e5d3f5f043a562cd60/homeassistant-2025.10.0.tar.gz", hash = "sha256:e879874c6dfb84bb41157fe531baa8354adb5498dd4ecc2e838d72ef38ae1dd8", size = 28353120, upload-time = "2025-10-01T16:56:55.69Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/20/6f/08b3b45f9303a8c939ad06086e411d533e7e5af99e4f7c5e3ad2ba06dfde/homeassistant-2025.10.1.tar.gz", hash = "sha256:71501154b83cd30564aee49e77bcb0ae72be96eb4b59b3092f630123001aa410", size = 28363358, upload-time = "2025-10-03T19:14:49.43Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8f/53/e40c683974a5856da860d5311b60ec5fe56f6f805898e8bd1fe5a1a95f2c/homeassistant-2025.10.0-py3-none-any.whl", hash = "sha256:25d1d6ec8f1af3b577069dc483753324b639335c90c0cb5a6ca94af54887c922", size = 47713411, upload-time = "2025-10-01T16:56:49.673Z" },
+    { url = "https://files.pythonhosted.org/packages/10/ee/52e40d633dd0885ebed591dae1147d82783d7bdde8614a8fa1ff05f8cb68/homeassistant-2025.10.1-py3-none-any.whl", hash = "sha256:e470f1f5f63b9e3d1503b997c352af2fd2b1180c374d072a75ab2efd7c86664b", size = 47731513, upload-time = "2025-10-03T19:14:43.394Z" },
 ]
 
 [[package]]
@@ -878,7 +878,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homeassistant", specifier = "==2025.10.0" }]
+requires-dist = [{ name = "homeassistant", specifier = "==2025.10.1" }]
 
 [package.metadata.requires-dev]
 dev = [

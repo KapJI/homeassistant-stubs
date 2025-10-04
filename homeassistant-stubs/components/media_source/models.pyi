@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass, field
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.translation import async_get_cached_translations as async_get_cached_translations
 from pathlib import Path
 from typing import Any
 

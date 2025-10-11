@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry
 from .entity import AmazonEntity as AmazonEntity
 from .utils import async_update_unique_id as async_update_unique_id
@@ -20,6 +21,7 @@ class AmazonBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_available_fn: Callable[[AmazonDevice, str], bool] = ...
 
 BINARY_SENSORS: Final[Incomplete]
+DEPRECATED_BINARY_SENSORS: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

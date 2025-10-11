@@ -27,6 +27,7 @@ class SmSwitch(SmEntity, SwitchEntity):
     coordinator: SmDataUpdateCoordinator
     entity_description: SmSwitchEntityDescription
     _attr_device_class: Incomplete
+    _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmSwitchEntityDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...

@@ -13,6 +13,8 @@ from renault_api.renault_account import RenaultAccount as RenaultAccount
 
 LOGGER: Incomplete
 
+async def _get_filtered_vehicles(account: RenaultAccount) -> list[KamereonVehiclesLink]: ...
+
 class RenaultHub:
     _hass: Incomplete
     _client: Incomplete

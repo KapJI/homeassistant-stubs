@@ -32,6 +32,7 @@ async def async_modbus_setup(hass: HomeAssistant, config: ConfigType) -> bool: .
 
 class ModbusHub:
     _client: AsyncModbusSerialClient | AsyncModbusTcpClient | AsyncModbusUdpClient | None
+    _lock: Incomplete
     event_connected: Incomplete
     hass: Incomplete
     name: Incomplete

@@ -44,11 +44,11 @@ class MqttLock(MqttEntity, LockEntity):
     _attr_code_format: Incomplete
     _attr_supported_features: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
-    _attr_is_locking: Incomplete
-    _attr_is_open: Incomplete
-    _attr_is_opening: Incomplete
     _attr_is_unlocking: Incomplete
+    _attr_is_open: Incomplete
     _attr_is_jammed: Incomplete
+    _attr_is_locking: Incomplete
+    _attr_is_opening: Incomplete
     @callback
     def _message_received(self, msg: ReceiveMessage) -> None: ...
     @callback

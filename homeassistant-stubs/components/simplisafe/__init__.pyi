@@ -26,7 +26,8 @@ ATTR_PIN_LABEL_OR_VALUE: str
 ATTR_PIN_VALUE: str
 ATTR_TIMESTAMP: str
 DEFAULT_SCAN_INTERVAL: Incomplete
-DEFAULT_SOCKET_MIN_RETRY: int
+WEBSOCKET_RECONNECT_RETRIES: int
+WEBSOCKET_RETRY_DELAY: int
 EVENT_SIMPLISAFE_EVENT: str
 EVENT_SIMPLISAFE_NOTIFICATION: str
 PLATFORMS: Incomplete
@@ -53,6 +54,7 @@ class SimpliSafe:
     _api: Incomplete
     _hass: Incomplete
     _system_notifications: dict[int, set[SystemNotification]]
+    _websocket_reconnect_retries: int
     _websocket_reconnect_task: asyncio.Task | None
     entry: Incomplete
     initial_event_to_use: dict[int, dict[str, Any]]

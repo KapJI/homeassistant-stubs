@@ -3,7 +3,7 @@ from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from .utils import bridge_api_call as bridge_api_call
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
-from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
+from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -17,7 +17,6 @@ class ComelitCoverEntity(ComelitBridgeBaseEntity, RestoreEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_name: Incomplete
     _last_action: int | None
-    _last_state: str | None
     def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...
     def _current_action(self, action: str) -> bool: ...
     @property
@@ -33,4 +32,5 @@ class ComelitCoverEntity(ComelitBridgeBaseEntity, RestoreEntity, CoverEntity):
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_stop_cover(self, **_kwargs: Any) -> None: ...
+    _attr_is_closed: Incomplete
     async def async_added_to_hass(self) -> None: ...

@@ -36,8 +36,9 @@ class IntegrationMatchHistory:
     manufacturer_data: bool
     service_data: set[str]
     service_uuids: set[str]
+    name: str
 
-def seen_all_fields(previous_match: IntegrationMatchHistory, advertisement_data: AdvertisementData) -> bool: ...
+def seen_all_fields(previous_match: IntegrationMatchHistory, advertisement_data: AdvertisementData, name: str) -> bool: ...
 
 class IntegrationMatcher:
     __slots__: Incomplete

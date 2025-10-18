@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, PREREQUISITES_URL as PREREQUISITES_URL
 from .utils import async_discover_devices as async_discover_devices
 from _typeshed import Incomplete
 from aioswitcher.device import SwitcherBase as SwitcherBase

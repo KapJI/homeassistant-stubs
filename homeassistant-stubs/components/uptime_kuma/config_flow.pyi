@@ -13,6 +13,7 @@ from yarl import URL
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 STEP_REAUTH_DATA_SCHEMA: Incomplete
+PLACEHOLDER: Incomplete
 
 async def validate_connection(hass: HomeAssistant, url: URL | str, verify_ssl: bool, api_key: str | None) -> dict[str, str]: ...
 

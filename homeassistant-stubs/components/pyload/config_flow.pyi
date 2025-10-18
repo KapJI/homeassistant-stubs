@@ -12,6 +12,7 @@ from typing import Any
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 REAUTH_SCHEMA: Incomplete
+PLACEHOLDER: Incomplete
 
 async def validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> None: ...
 

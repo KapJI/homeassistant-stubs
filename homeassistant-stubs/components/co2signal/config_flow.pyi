@@ -14,6 +14,7 @@ TYPE_USE_HOME: str
 TYPE_SPECIFY_COORDINATES: str
 TYPE_SPECIFY_COUNTRY: str
 _LOGGER: Incomplete
+DESCRIPTION_PLACEHOLDER: Incomplete
 
 class ElectricityMapsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

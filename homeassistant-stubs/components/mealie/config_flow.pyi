@@ -9,6 +9,7 @@ from typing import Any
 
 USER_SCHEMA: Incomplete
 REAUTH_SCHEMA: Incomplete
+EXAMPLE_URL: str
 
 class MealieConfigFlow(ConfigFlow, domain=DOMAIN):
     host: str | None

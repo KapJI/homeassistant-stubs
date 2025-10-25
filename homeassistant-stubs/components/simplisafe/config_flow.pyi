@@ -8,6 +8,8 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client
 from typing import Any, NamedTuple
 
 CONF_AUTH_CODE: str
+CONF_DOCUMENTATION_URL: str
+DOCUMENTATION_URL: str
 STEP_USER_SCHEMA: Incomplete
 
 class SimpliSafeOAuthValues(NamedTuple):

@@ -14,6 +14,8 @@ from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as A
 from homeassistant.util.network import is_link_local as is_link_local
 from typing import Any
 
+DEVICES_URL: str
+
 class LaMetricFlowHandler(AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     VERSION: int

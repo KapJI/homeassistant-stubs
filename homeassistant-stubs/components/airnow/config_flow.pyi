@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from typing import Any
 
 _LOGGER: Incomplete
+_API_KEY_URL: str
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> bool: ...
 

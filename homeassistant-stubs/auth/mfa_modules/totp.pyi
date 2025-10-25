@@ -16,6 +16,8 @@ STORAGE_USER_ID: str
 STORAGE_OTA_SECRET: str
 INPUT_FIELD_CODE: str
 DUMMY_SECRET: str
+GOOGLE_AUTHENTICATOR_URL: str
+AUTHY_URL: str
 
 def _generate_qr_code(data: str) -> str: ...
 def _generate_secret_and_qr_code(username: str) -> tuple[str, str, str]: ...

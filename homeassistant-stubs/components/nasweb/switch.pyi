@@ -12,6 +12,7 @@ from typing import Any
 from webio_api import Output as NASwebOutput
 
 OUTPUT_TRANSLATION_KEY: str
+NASWEB_STATE_TO_HA_STATE: Incomplete
 _LOGGER: Incomplete
 
 def _get_output(coordinator: NASwebCoordinator, index: int) -> NASwebOutput | None: ...

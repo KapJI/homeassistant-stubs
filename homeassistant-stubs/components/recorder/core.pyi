@@ -3,10 +3,10 @@ import psutil_home_assistant as ha_psutil
 import queue
 import threading
 from . import migration as migration, statistics as statistics
-from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, LAST_REPORTED_SCHEMA_VERSION as LAST_REPORTED_SCHEMA_VERSION, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
+from .const import DB_WORKER_PREFIX as DB_WORKER_PREFIX, DEFAULT_MAX_BIND_VARS as DEFAULT_MAX_BIND_VARS, DOMAIN as DOMAIN, KEEPALIVE_TIME as KEEPALIVE_TIME, MARIADB_PYMYSQL_URL_PREFIX as MARIADB_PYMYSQL_URL_PREFIX, MARIADB_URL_PREFIX as MARIADB_URL_PREFIX, MAX_QUEUE_BACKLOG_MIN_VALUE as MAX_QUEUE_BACKLOG_MIN_VALUE, MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG as MIN_AVAILABLE_MEMORY_FOR_QUEUE_BACKLOG, MYSQLDB_PYMYSQL_URL_PREFIX as MYSQLDB_PYMYSQL_URL_PREFIX, MYSQLDB_URL_PREFIX as MYSQLDB_URL_PREFIX, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .db_schema import Base as Base, EventData as EventData, EventTypes as EventTypes, Events as Events, SCHEMA_VERSION as SCHEMA_VERSION, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta, Statistics as Statistics, StatisticsShortTerm as StatisticsShortTerm
 from .executor import DBInterruptibleThreadPoolExecutor as DBInterruptibleThreadPoolExecutor
-from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
+from .models import DatabaseEngine as DatabaseEngine, StatisticData as StatisticData, StatisticMetaData as StatisticMetaData, UnsupportedDialect as UnsupportedDialect
 from .pool import MutexPool as MutexPool, POOL_SIZE as POOL_SIZE, RecorderPool as RecorderPool
 from .table_managers.event_data import EventDataManager as EventDataManager
 from .table_managers.event_types import EventTypeManager as EventTypeManager
@@ -158,7 +158,7 @@ class Recorder(threading.Thread):
     @callback
     def async_clear_statistics(self, statistic_ids: list[str], *, on_done: Callable[[], None] | None = None) -> None: ...
     @callback
-    def async_update_statistics_metadata(self, statistic_id: str, *, new_statistic_id: str | UndefinedType = ..., new_unit_of_measurement: str | None | UndefinedType = ..., on_done: Callable[[], None] | None = None) -> None: ...
+    def async_update_statistics_metadata(self, statistic_id: str, *, new_statistic_id: str | UndefinedType = ..., new_unit_class: str | None | UndefinedType = ..., new_unit_of_measurement: str | None | UndefinedType = ..., on_done: Callable[[], None] | None = None) -> None: ...
     @callback
     def async_update_states_metadata(self, entity_id: str, new_entity_id: str) -> None: ...
     @callback

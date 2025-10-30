@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ColorTempModes as ColorTempModes, CoverConf as CoverConf, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS
+from .const import CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ClimateConf as ClimateConf, ColorTempModes as ColorTempModes, CoverConf as CoverConf, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS
 from .validation import backwards_compatible_xknx_climate_enum_member as backwards_compatible_xknx_climate_enum_member, dpt_base_type_validator as dpt_base_type_validator, ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator
 from _typeshed import Incomplete
 from abc import ABC
@@ -46,10 +46,7 @@ class ClimateSchema(KNXPlatformSchema):
     CONF_SETPOINT_SHIFT_ADDRESS: str
     CONF_SETPOINT_SHIFT_STATE_ADDRESS: str
     CONF_SETPOINT_SHIFT_MODE: str
-    CONF_SETPOINT_SHIFT_MAX: str
-    CONF_SETPOINT_SHIFT_MIN: str
     CONF_TEMPERATURE_ADDRESS: str
-    CONF_TEMPERATURE_STEP: str
     CONF_TARGET_TEMPERATURE_ADDRESS: str
     CONF_TARGET_TEMPERATURE_STATE_ADDRESS: str
     CONF_OPERATION_MODE_ADDRESS: str
@@ -65,19 +62,10 @@ class ClimateSchema(KNXPlatformSchema):
     CONF_OPERATION_MODE_NIGHT_ADDRESS: str
     CONF_OPERATION_MODE_COMFORT_ADDRESS: str
     CONF_OPERATION_MODE_STANDBY_ADDRESS: str
-    CONF_OPERATION_MODES: str
-    CONF_CONTROLLER_MODES: str
-    CONF_DEFAULT_CONTROLLER_MODE: str
     CONF_ON_OFF_ADDRESS: str
     CONF_ON_OFF_STATE_ADDRESS: str
-    CONF_ON_OFF_INVERT: str
-    CONF_MIN_TEMP: str
-    CONF_MAX_TEMP: str
     CONF_FAN_SPEED_ADDRESS: str
     CONF_FAN_SPEED_STATE_ADDRESS: str
-    CONF_FAN_MAX_STEP: str
-    CONF_FAN_SPEED_MODE: str
-    CONF_FAN_ZERO_MODE: str
     CONF_HUMIDITY_STATE_ADDRESS: str
     CONF_SWING_ADDRESS: str
     CONF_SWING_STATE_ADDRESS: str

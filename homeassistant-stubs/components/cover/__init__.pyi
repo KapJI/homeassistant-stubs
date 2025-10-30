@@ -3,9 +3,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from enum import IntFlag, StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION, SERVICE_STOP_COVER as SERVICE_STOP_COVER, SERVICE_STOP_COVER_TILT as SERVICE_STOP_COVER_TILT, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TOGGLE_COVER_TILT as SERVICE_TOGGLE_COVER_TILT, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING
+from homeassistant.const import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION, SERVICE_STOP_COVER as SERVICE_STOP_COVER, SERVICE_STOP_COVER_TILT as SERVICE_STOP_COVER_TILT, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TOGGLE_COVER_TILT as SERVICE_TOGGLE_COVER_TILT
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -26,11 +25,6 @@ class CoverState(StrEnum):
     CLOSING = 'closing'
     OPEN = 'open'
     OPENING = 'opening'
-
-_DEPRECATED_STATE_CLOSED: Incomplete
-_DEPRECATED_STATE_CLOSING: Incomplete
-_DEPRECATED_STATE_OPEN: Incomplete
-_DEPRECATED_STATE_OPENING: Incomplete
 
 class CoverDeviceClass(StrEnum):
     AWNING = 'awning'
@@ -125,7 +119,3 @@ class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def toggle_tilt(self, **kwargs: Any) -> None: ...
     async def async_toggle_tilt(self, **kwargs: Any) -> None: ...
     def _get_toggle_function[**_P, _R](self, fns: dict[str, Callable[_P, _R]]) -> Callable[_P, _R]: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

@@ -1,5 +1,5 @@
 from .const import CONF_ENABLE_PUSH as CONF_ENABLE_PUSH, DOMAIN as DOMAIN
-from .coordinator import ImapDataUpdateCoordinator as ImapDataUpdateCoordinator, ImapMessage as ImapMessage, ImapPollingDataUpdateCoordinator as ImapPollingDataUpdateCoordinator, ImapPushDataUpdateCoordinator as ImapPushDataUpdateCoordinator, connect_to_server as connect_to_server
+from .coordinator import ImapDataUpdateCoordinator as ImapDataUpdateCoordinator, ImapMessage as ImapMessage, ImapPollingDataUpdateCoordinator as ImapPollingDataUpdateCoordinator, ImapPushDataUpdateCoordinator as ImapPushDataUpdateCoordinator, connect_to_server as connect_to_server, get_parts as get_parts
 from .errors import InvalidAuth as InvalidAuth, InvalidFolder as InvalidFolder
 from _typeshed import Incomplete
 from aioimaplib import IMAP4_SSL as IMAP4_SSL, Response as Response
@@ -12,6 +12,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 PLATFORMS: list[Platform]
 CONF_ENTRY: str
 CONF_SEEN: str
+CONF_PART: str
 CONF_UID: str
 CONF_TARGET_FOLDER: str
 _LOGGER: Incomplete
@@ -21,6 +22,7 @@ SERVICE_SEEN_SCHEMA = _SERVICE_UID_SCHEMA
 SERVICE_MOVE_SCHEMA: Incomplete
 SERVICE_DELETE_SCHEMA = _SERVICE_UID_SCHEMA
 SERVICE_FETCH_TEXT_SCHEMA = _SERVICE_UID_SCHEMA
+SERVICE_FETCH_PART_SCHEMA: Incomplete
 type ImapConfigEntry = ConfigEntry[ImapDataUpdateCoordinator]
 
 async def async_get_imap_client(hass: HomeAssistant, entry_id: str) -> IMAP4_SSL: ...

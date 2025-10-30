@@ -1,5 +1,6 @@
+from .const import MODEL_FRANKEVER_IRRIGATION_CONTROLLER as MODEL_FRANKEVER_IRRIGATION_CONTROLLER, MODEL_LINKEDGO_ST1820_THERMOSTAT as MODEL_LINKEDGO_ST1820_THERMOSTAT, MODEL_LINKEDGO_ST802_THERMOSTAT as MODEL_LINKEDGO_ST802_THERMOSTAT, MODEL_NEO_WATER_VALVE as MODEL_NEO_WATER_VALVE, MODEL_TOP_EV_CHARGER_EVE01 as MODEL_TOP_EV_CHARGER_EVE01, ROLE_GENERIC as ROLE_GENERIC
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc
+from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
 from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids, is_block_exclude_from_relay as is_block_exclude_from_relay, is_rpc_exclude_from_relay as is_rpc_exclude_from_relay, is_view_for_platform as is_view_for_platform
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
@@ -26,16 +27,16 @@ class RpcSwitchDescription(RpcEntityDescription, SwitchEntityDescription):
     is_on: Callable[[dict[str, Any]], bool]
     method_on: str
     method_off: str
-    method_params_fn: Callable[[int | None, bool], dict]
+    method_params_fn: Callable[[int | None, bool], tuple]
 
 RPC_RELAY_SWITCHES: Incomplete
 RPC_SWITCHES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BlockSleepingMotionSwitch(ShellySleepingBlockAttributeEntity, RestoreEntity, SwitchEntity):
     entity_description: BlockSwitchDescription
@@ -64,7 +65,9 @@ class RpcSwitch(ShellyRpcAttributeEntity, SwitchEntity):
     entity_description: RpcSwitchDescription
     @property
     def is_on(self) -> bool: ...
+    @rpc_call
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class RpcRelaySwitch(RpcSwitch):

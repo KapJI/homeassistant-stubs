@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
-from typing import TypedDict
+from typing import NotRequired, TypedDict
 
 @dataclass
 class Device:
@@ -22,7 +22,7 @@ class Interface(TypedDict):
     ssid: str | None
     type: str
 
-HostAttributes = TypedDict('HostAttributes', {'Index': int, 'IPAddress': str, 'MACAddress': str, 'Active': bool, 'HostName': str, 'InterfaceType': str, 'X_AVM-DE_Port': int, 'X_AVM-DE_Speed': int, 'X_AVM-DE_UpdateAvailable': bool, 'X_AVM-DE_UpdateSuccessful': str, 'X_AVM-DE_InfoURL': str | None, 'X_AVM-DE_MACAddressList': str | None, 'X_AVM-DE_Model': str | None, 'X_AVM-DE_URL': str | None, 'X_AVM-DE_Guest': bool, 'X_AVM-DE_RequestClient': str, 'X_AVM-DE_VPN': bool, 'X_AVM-DE_WANAccess': str, 'X_AVM-DE_Disallow': bool, 'X_AVM-DE_IsMeshable': str, 'X_AVM-DE_Priority': str, 'X_AVM-DE_FriendlyName': str, 'X_AVM-DE_FriendlyNameIsWriteable': str})
+HostAttributes = TypedDict('HostAttributes', {'Index': int, 'IPAddress': str, 'MACAddress': str, 'Active': bool, 'HostName': str, 'InterfaceType': str, 'X_AVM-DE_Port': int, 'X_AVM-DE_Speed': int, 'X_AVM-DE_UpdateAvailable': bool, 'X_AVM-DE_UpdateSuccessful': str, 'X_AVM-DE_InfoURL': str | None, 'X_AVM-DE_MACAddressList': str | None, 'X_AVM-DE_Model': str | None, 'X_AVM-DE_URL': str | None, 'X_AVM-DE_Guest': bool, 'X_AVM-DE_RequestClient': str, 'X_AVM-DE_VPN': bool, 'X_AVM-DE_WANAccess': NotRequired[str], 'X_AVM-DE_Disallow': bool, 'X_AVM-DE_IsMeshable': str, 'X_AVM-DE_Priority': str, 'X_AVM-DE_FriendlyName': str, 'X_AVM-DE_FriendlyNameIsWriteable': str})
 
 class HostInfo(TypedDict):
     mac: str

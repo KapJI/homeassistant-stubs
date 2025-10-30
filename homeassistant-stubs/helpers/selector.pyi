@@ -327,22 +327,23 @@ class NumberSelector(Selector[NumberSelectorConfig]):
     def __init__(self, config: NumberSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> float: ...
 
-class ObjectSelectorField(TypedDict):
+class ObjectSelectorField(TypedDict, total=False):
     label: str
     required: bool
-    selector: dict[str, Any]
+    selector: Required[Selector | dict[str, Any]]
 
-class ObjectSelectorConfig(BaseSelectorConfig):
+class ObjectSelectorConfig(BaseSelectorConfig, total=False):
     fields: dict[str, ObjectSelectorField]
     multiple: bool
     label_field: str
-    description_field: bool
+    description_field: str
     translation_key: str
 
 class ObjectSelector(Selector[ObjectSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ObjectSelectorConfig | None = None) -> None: ...
+    def serialize(self) -> dict[str, dict[str, ObjectSelectorConfig]]: ...
     def __call__(self, data: Any) -> Any: ...
 
 class QrErrorCorrectionLevel(StrEnum):

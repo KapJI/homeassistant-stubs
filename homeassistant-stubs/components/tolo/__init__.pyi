@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
+from .coordinator import ToloConfigEntry as ToloConfigEntry, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 PLATFORMS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ToloConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: ToloConfigEntry) -> bool: ...

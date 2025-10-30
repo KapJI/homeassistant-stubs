@@ -15,7 +15,7 @@ from homeassistant.helpers.typing import ConfigType
 from pathlib import Path
 from propcache.api import cached_property
 from time import monotonic
-from typing import Any, Generic, Protocol, TypeVar
+from typing import Any, Protocol
 
 __all__ = ['ATTR_AUDIO_OUTPUT', 'ATTR_PREFERRED_FORMAT', 'ATTR_PREFERRED_SAMPLE_BYTES', 'ATTR_PREFERRED_SAMPLE_CHANNELS', 'ATTR_PREFERRED_SAMPLE_RATE', 'CONF_LANG', 'DEFAULT_CACHE_DIR', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'Provider', 'ResultStream', 'SampleFormat', 'TTSAudioResponse', 'TextToSpeechEntity', 'TtsAudioType', 'Voice', 'async_default_engine', 'async_get_media_source_audio', 'generate_media_source_id']
 
@@ -73,9 +73,8 @@ class ResultStream:
 
 class HasLastUsed(Protocol):
     last_used: float
-T = TypeVar('T', bound=HasLastUsed)
 
-class DictCleaning(Generic[T]):
+class DictCleaning[T: HasLastUsed]:
     unsub: CALLBACK_TYPE | None
     hass: Incomplete
     maxage: Incomplete

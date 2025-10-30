@@ -2,7 +2,7 @@ import asyncio
 import collections
 from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, StreamType as StreamType
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
-from .img_util import scale_jpeg_camera_image as scale_jpeg_camera_image
+from .img_util import TurboJPEGSingleton as TurboJPEGSingleton, scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings, get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
 from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, DATA_ICE_SERVERS as DATA_ICE_SERVERS, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_ice_servers as async_register_ice_servers, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
 from _typeshed import Incomplete
@@ -19,7 +19,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
@@ -43,9 +42,6 @@ SERVICE_PLAY_STREAM: Final[str]
 ATTR_FILENAME: Final[str]
 ATTR_MEDIA_PLAYER: Final[str]
 ATTR_FORMAT: Final[str]
-_DEPRECATED_STATE_RECORDING: Incomplete
-_DEPRECATED_STATE_STREAMING: Incomplete
-_DEPRECATED_STATE_IDLE: Incomplete
 
 class CameraEntityFeature(IntFlag):
     ON_OFF = 1
@@ -219,7 +215,3 @@ async def async_handle_snapshot_service(camera: Camera, service_call: ServiceCal
 async def async_handle_play_stream_service(camera: Camera, service_call: ServiceCall) -> None: ...
 async def _async_stream_endpoint_url(hass: HomeAssistant, camera: Camera, fmt: str) -> str: ...
 async def async_handle_record_service(camera: Camera, service_call: ServiceCall) -> None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

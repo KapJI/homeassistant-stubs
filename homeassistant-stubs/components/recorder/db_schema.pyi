@@ -1,13 +1,12 @@
 from .const import ALL_DOMAIN_EXCLUDE_ATTRS as ALL_DOMAIN_EXCLUDE_ATTRS, SupportedDialect as SupportedDialect
-from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, bytes_to_ulid_or_none as bytes_to_ulid_or_none, bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
+from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp, ulid_to_bytes_or_none as ulid_to_bytes_or_none, uuid_hex_to_bytes_or_none as uuid_hex_to_bytes_or_none
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta
 from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, MATCH_ALL as MATCH_ALL, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
-from homeassistant.core import Context as Context, Event as Event, EventOrigin as EventOrigin, EventStateChangedData as EventStateChangedData, State as State
+from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, json_bytes as json_bytes, json_bytes_strip_null as json_bytes_strip_null
-from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads, json_loads_object as json_loads_object
 from sqlalchemy import CHAR, ColumnElement as ColumnElement, DateTime, JSON, LargeBinary
 from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
@@ -85,8 +84,6 @@ class _LiteralProcessorType(Protocol):
 class JSONLiteral(JSON):
     def literal_processor(self, dialect: Dialect) -> _LiteralProcessorType: ...
 
-EVENT_ORIGIN_ORDER: Incomplete
-
 class Events(Base):
     __table_args__: Incomplete
     __tablename__ = TABLE_EVENTS
@@ -112,7 +109,6 @@ class Events(Base):
     def _time_fired_isotime(self) -> str | None: ...
     @staticmethod
     def from_event(event: Event) -> Events: ...
-    def to_native(self, validate_entity_id: bool = True) -> Event | None: ...
 
 class LegacyEvents(LegacyBase):
     __table_args__: Incomplete
@@ -131,7 +127,6 @@ class EventData(Base):
     def shared_data_bytes_from_event(event: Event, dialect: SupportedDialect | None) -> bytes: ...
     @staticmethod
     def hash_shared_data_bytes(shared_data_bytes: bytes) -> int: ...
-    def to_native(self) -> dict[str, Any]: ...
 
 class EventTypes(Base):
     __table_args__: Incomplete
@@ -171,7 +166,6 @@ class States(Base):
     def _last_updated_isotime(self) -> str | None: ...
     @staticmethod
     def from_event(event: Event[EventStateChangedData]) -> States: ...
-    def to_native(self, validate_entity_id: bool = True) -> State | None: ...
 
 class LegacyStates(LegacyBase):
     __table_args__: Incomplete
@@ -192,7 +186,6 @@ class StateAttributes(Base):
     def shared_attrs_bytes_from_event(event: Event[EventStateChangedData], dialect: SupportedDialect | None) -> bytes: ...
     @staticmethod
     def hash_shared_attrs_bytes(shared_attrs_bytes: bytes) -> int: ...
-    def to_native(self) -> dict[str, Any]: ...
 
 class StatesMeta(Base):
     __table_args__: Incomplete
@@ -245,6 +238,7 @@ class _StatisticsMeta:
     statistic_id: Mapped[str | None]
     source: Mapped[str | None]
     unit_of_measurement: Mapped[str | None]
+    unit_class: Mapped[str | None]
     has_mean: Mapped[bool | None]
     has_sum: Mapped[bool | None]
     name: Mapped[str | None]
@@ -266,7 +260,6 @@ class RecorderRuns(Base):
     closed_incorrect: Mapped[bool]
     created: Mapped[datetime]
     def __repr__(self) -> str: ...
-    def to_native(self, validate_entity_id: bool = True) -> Self: ...
 
 class MigrationChanges(Base):
     __tablename__ = TABLE_MIGRATION_CHANGES

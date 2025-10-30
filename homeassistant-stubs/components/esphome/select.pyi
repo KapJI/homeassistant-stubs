@@ -3,7 +3,7 @@ from .entity import EsphomeAssistEntity as EsphomeAssistEntity, EsphomeEntity as
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, SelectInfo, SelectState
-from homeassistant.components.assist_pipeline.select import AssistPipelineSelect as AssistPipelineSelect, VadSensitivitySelect as VadSensitivitySelect
+from homeassistant.components.assist_pipeline import AssistPipelineSelect as AssistPipelineSelect, VadSensitivitySelect as VadSensitivitySelect
 from homeassistant.components.assist_satellite import AssistSatelliteConfiguration as AssistSatelliteConfiguration
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory

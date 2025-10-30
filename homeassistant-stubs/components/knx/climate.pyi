@@ -1,13 +1,16 @@
-from .const import CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, KNX_MODULE_KEY as KNX_MODULE_KEY
-from .entity import KnxYamlEntity as KnxYamlEntity
+from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, ClimateConf as ClimateConf, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, _KnxEntityBase as _KnxEntityBase
 from .knx_module import KNXModule as KNXModule
 from .schema import ClimateSchema as ClimateSchema
+from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_ACTIVE as CONF_GA_ACTIVE, CONF_GA_CONTROLLER_MODE as CONF_GA_CONTROLLER_MODE, CONF_GA_CONTROLLER_STATUS as CONF_GA_CONTROLLER_STATUS, CONF_GA_FAN_SPEED as CONF_GA_FAN_SPEED, CONF_GA_FAN_SWING as CONF_GA_FAN_SWING, CONF_GA_FAN_SWING_HORIZONTAL as CONF_GA_FAN_SWING_HORIZONTAL, CONF_GA_HEAT_COOL as CONF_GA_HEAT_COOL, CONF_GA_HUMIDITY_CURRENT as CONF_GA_HUMIDITY_CURRENT, CONF_GA_ON_OFF as CONF_GA_ON_OFF, CONF_GA_OPERATION_MODE as CONF_GA_OPERATION_MODE, CONF_GA_OP_MODE_COMFORT as CONF_GA_OP_MODE_COMFORT, CONF_GA_OP_MODE_ECO as CONF_GA_OP_MODE_ECO, CONF_GA_OP_MODE_PROTECTION as CONF_GA_OP_MODE_PROTECTION, CONF_GA_OP_MODE_STANDBY as CONF_GA_OP_MODE_STANDBY, CONF_GA_SETPOINT_SHIFT as CONF_GA_SETPOINT_SHIFT, CONF_GA_TEMPERATURE_CURRENT as CONF_GA_TEMPERATURE_CURRENT, CONF_GA_TEMPERATURE_TARGET as CONF_GA_TEMPERATURE_TARGET, CONF_GA_VALVE as CONF_GA_VALVE, CONF_IGNORE_AUTO_MODE as CONF_IGNORE_AUTO_MODE, CONF_TARGET_TEMPERATURE as CONF_TARGET_TEMPERATURE
+from .storage.entity_store_schema import ConfClimateFanSpeedMode as ConfClimateFanSpeedMode, ConfSetpointShiftMode as ConfSetpointShiftMode
+from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode, SWING_OFF as SWING_OFF, SWING_ON as SWING_ON
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 from xknx import XKNX as XKNX
@@ -18,24 +21,23 @@ CONTROLLER_MODES_INV: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
+def _create_climate_ui(xknx: XKNX, conf: ConfigExtractor, name: str) -> XknxClimate: ...
 
-class KNXClimate(KnxYamlEntity, ClimateEntity):
+class _KnxClimate(ClimateEntity, _KnxEntityBase):
     _device: XknxClimate
     _attr_temperature_unit: Incomplete
     _attr_translation_key: str
-    _attr_entity_category: Incomplete
+    default_hvac_mode: HVACMode
+    _last_hvac_mode: HVACMode
+    fan_zero_mode: str
+    _fan_modes_percentages: list[int]
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
-    _fan_modes_percentages: Incomplete
-    fan_zero_mode: str
     _attr_fan_modes: Incomplete
     _attr_swing_modes: Incomplete
     _attr_swing_horizontal_modes: Incomplete
     _attr_target_temperature_step: Incomplete
-    _attr_unique_id: Incomplete
-    default_hvac_mode: HVACMode
-    _last_hvac_mode: HVACMode
-    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+    def _init_from_device_config(self, device: XknxClimate, default_hvac_mode: HVACMode, fan_max_step: int, fan_zero_mode: str) -> None: ...
     @property
     def current_temperature(self) -> float | None: ...
     @property
@@ -73,3 +75,13 @@ class KNXClimate(KnxYamlEntity, ClimateEntity):
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     def after_update_callback(self, device: XknxDevice) -> None: ...
+
+class KnxYamlClimate(_KnxClimate, KnxYamlEntity):
+    _device: XknxClimate
+    _attr_entity_category: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+
+class KnxUiClimate(_KnxClimate, KnxUiEntity):
+    _device: XknxClimate
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...

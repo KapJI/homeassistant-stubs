@@ -1,8 +1,9 @@
-from . import SqueezeboxConfigEntry as SqueezeboxConfigEntry
+from . import SQUEEZEBOX_HASS_DATA as SQUEEZEBOX_HASS_DATA, SqueezeboxConfigEntry as SqueezeboxConfigEntry
 from .browse_media import BrowseData as BrowseData, build_item_response as build_item_response, generate_playlist as generate_playlist, library_payload as library_payload, media_source_content_filter as media_source_content_filter
-from .const import ATTR_ANNOUNCE_TIMEOUT as ATTR_ANNOUNCE_TIMEOUT, ATTR_ANNOUNCE_VOLUME as ATTR_ANNOUNCE_VOLUME, CONF_BROWSE_LIMIT as CONF_BROWSE_LIMIT, CONF_VOLUME_STEP as CONF_VOLUME_STEP, DEFAULT_BROWSE_LIMIT as DEFAULT_BROWSE_LIMIT, DEFAULT_VOLUME_STEP as DEFAULT_VOLUME_STEP, DISCOVERY_TASK as DISCOVERY_TASK, DOMAIN as DOMAIN, SERVER_MANUFACTURER as SERVER_MANUFACTURER, SERVER_MODEL as SERVER_MODEL, SERVER_MODEL_ID as SERVER_MODEL_ID, SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED, SQUEEZEBOX_SOURCE_STRINGS as SQUEEZEBOX_SOURCE_STRINGS
+from .const import ATTR_ANNOUNCE_TIMEOUT as ATTR_ANNOUNCE_TIMEOUT, ATTR_ANNOUNCE_VOLUME as ATTR_ANNOUNCE_VOLUME, CONF_BROWSE_LIMIT as CONF_BROWSE_LIMIT, CONF_VOLUME_STEP as CONF_VOLUME_STEP, DEFAULT_BROWSE_LIMIT as DEFAULT_BROWSE_LIMIT, DEFAULT_VOLUME_STEP as DEFAULT_VOLUME_STEP, DOMAIN as DOMAIN, SERVER_MANUFACTURER as SERVER_MANUFACTURER, SERVER_MODEL as SERVER_MODEL, SERVER_MODEL_ID as SERVER_MODEL_ID, SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED, SQUEEZEBOX_SOURCE_STRINGS as SQUEEZEBOX_SOURCE_STRINGS
 from .coordinator import SqueezeBoxPlayerUpdateCoordinator as SqueezeBoxPlayerUpdateCoordinator
 from .entity import SqueezeboxEntity as SqueezeboxEntity
+from .util import safe_library_call as safe_library_call
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime
@@ -18,6 +19,8 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.util.dt import utcnow as utcnow
+from homeassistant.util.ulid import ulid_now as ulid_now
+from lru import LRU
 from pysqueezebox import Server as Server
 from typing import Any
 
@@ -46,6 +49,7 @@ class SqueezeBoxMediaPlayerEntity(SqueezeboxEntity, MediaPlayerEntity):
     _previous_media_position: int
     _attr_unique_id: Incomplete
     _browse_data: Incomplete
+    _synthetic_media_browser_thumbnail_items: LRU[str, str]
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
@@ -111,5 +115,6 @@ class SqueezeBoxMediaPlayerEntity(SqueezeboxEntity, MediaPlayerEntity):
     async def async_call_query(self, command: str, parameters: list[str] | None = None) -> None: ...
     async def async_join_players(self, group_members: list[str]) -> None: ...
     async def async_unjoin_player(self) -> None: ...
+    def get_synthetic_id_and_cache_url(self, url: str) -> str: ...
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     async def async_get_browse_image(self, media_content_type: MediaType | str, media_content_id: str, media_image_id: str | None = None) -> tuple[bytes | None, str | None]: ...

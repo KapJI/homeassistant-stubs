@@ -1,4 +1,4 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, MODEL_FRANKEVER_WATER_VALVE as MODEL_FRANKEVER_WATER_VALVE, MODEL_LINKEDGO_ST1820_THERMOSTAT as MODEL_LINKEDGO_ST1820_THERMOSTAT, MODEL_LINKEDGO_ST802_THERMOSTAT as MODEL_LINKEDGO_ST802_THERMOSTAT, MODEL_TOP_EV_CHARGER_EVE01 as MODEL_TOP_EV_CHARGER_EVE01, ROLE_GENERIC as ROLE_GENERIC, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
 from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids, get_virtual_component_unit as get_virtual_component_unit, is_view_for_platform as is_view_for_platform
@@ -8,7 +8,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberExtraStoredData as NumberExtraStoredData, NumberMode as NumberMode, RestoreNumber as RestoreNumber
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
@@ -27,6 +27,7 @@ class RpcNumberDescription(RpcEntityDescription, NumberEntityDescription):
     min_fn: Callable[[dict], float] | None = ...
     step_fn: Callable[[dict], float] | None = ...
     mode_fn: Callable[[dict], NumberMode] | None = ...
+    slot: str | None = ...
     method: str
 
 class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
@@ -40,6 +41,10 @@ class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...
+    @rpc_call
+    async def async_set_native_value(self, value: float) -> None: ...
+
+class RpcCuryIntensityNumber(RpcNumber):
     @rpc_call
     async def async_set_native_value(self, value: float) -> None: ...
 
@@ -57,6 +62,10 @@ NUMBERS: dict[tuple[str, str], BlockNumberDescription]
 RPC_NUMBERS: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, RestoreNumber):
     entity_description: BlockNumberDescription

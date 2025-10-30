@@ -1,5 +1,5 @@
 from . import OpenAIConfigEntry as OpenAIConfigEntry
-from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, RECOMMENDED_CHAT_MODEL as RECOMMENDED_CHAT_MODEL, UNSUPPORTED_IMAGE_MODELS as UNSUPPORTED_IMAGE_MODELS
+from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_IMAGE_MODEL as CONF_IMAGE_MODEL, RECOMMENDED_CHAT_MODEL as RECOMMENDED_CHAT_MODEL, RECOMMENDED_IMAGE_MODEL as RECOMMENDED_IMAGE_MODEL, UNSUPPORTED_IMAGE_MODELS as UNSUPPORTED_IMAGE_MODELS
 from .entity import OpenAIBaseLLMEntity as OpenAIBaseLLMEntity
 from _typeshed import Incomplete
 from homeassistant.components import ai_task as ai_task, conversation as conversation

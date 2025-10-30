@@ -14,6 +14,7 @@ def _clean_user_input(user_input: dict[str, Any]) -> dict[str, Any]: ...
 
 class PingConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback

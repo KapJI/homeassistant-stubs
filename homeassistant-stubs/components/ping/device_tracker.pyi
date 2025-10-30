@@ -1,4 +1,4 @@
-from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY
+from .const import CONF_IMPORTED_BY as CONF_IMPORTED_BY, DOMAIN as DOMAIN
 from .coordinator import PingConfigEntry as PingConfigEntry, PingUpdateCoordinator as PingUpdateCoordinator
 from _typeshed import Incomplete
 from datetime import datetime
@@ -14,7 +14,8 @@ class PingDeviceTracker(CoordinatorEntity[PingUpdateCoordinator], ScannerEntity)
     _attr_name: Incomplete
     config_entry: Incomplete
     _consider_home_interval: Incomplete
-    def __init__(self, config_entry: PingConfigEntry, coordinator: PingUpdateCoordinator) -> None: ...
+    device_entry: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: PingConfigEntry, coordinator: PingUpdateCoordinator) -> None: ...
     @property
     def ip_address(self) -> str: ...
     @property

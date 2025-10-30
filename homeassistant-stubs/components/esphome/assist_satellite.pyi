@@ -1,19 +1,23 @@
 import asyncio
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, WAKE_WORDS_API_PATH as WAKE_WORDS_API_PATH, WAKE_WORDS_DIR_NAME as WAKE_WORDS_DIR_NAME
 from .entity import EsphomeAssistEntity as EsphomeAssistEntity, convert_api_error_ha_error as convert_api_error_ha_error
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from .ffmpeg_proxy import async_create_proxy_url as async_create_proxy_url
 from _typeshed import Incomplete
-from aioesphomeapi import MediaPlayerSupportedFormat as MediaPlayerSupportedFormat, VoiceAssistantAnnounceFinished as VoiceAssistantAnnounceFinished, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings, VoiceAssistantEventType, VoiceAssistantTimerEventType
+from aioesphomeapi import MediaPlayerSupportedFormat as MediaPlayerSupportedFormat, VoiceAssistantAnnounceFinished as VoiceAssistantAnnounceFinished, VoiceAssistantAudioSettings as VoiceAssistantAudioSettings, VoiceAssistantEventType, VoiceAssistantExternalWakeWord, VoiceAssistantTimerEventType
 from collections.abc import AsyncIterable
 from homeassistant.components import assist_satellite as assist_satellite, tts as tts
 from homeassistant.components.assist_pipeline import PipelineEvent as PipelineEvent, PipelineEventType as PipelineEventType, PipelineStage as PipelineStage
+from homeassistant.components.http import StaticPathConfig as StaticPathConfig
 from homeassistant.components.intent import TimerEventType as TimerEventType, TimerInfo as TimerInfo, async_register_timer_handler as async_register_timer_handler
 from homeassistant.components.media_player import async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.network import get_url as get_url
+from homeassistant.helpers.singleton import singleton as singleton
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -22,6 +26,8 @@ _VOICE_ASSISTANT_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantEventType, Pipelin
 _TIMER_EVENT_TYPES: EsphomeEnumMapper[VoiceAssistantTimerEventType, TimerEventType]
 _ANNOUNCEMENT_TIMEOUT_SEC: Incomplete
 _CONFIG_TIMEOUT_SEC: int
+_WAKE_WORD_CONFIG_SCHEMA: Incomplete
+_DATA_WAKE_WORDS: HassKey[dict[str, VoiceAssistantExternalWakeWord]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -83,3 +89,7 @@ class VoiceAssistantUDPServer(asyncio.DatagramProtocol):
     def error_received(self, exc: Exception) -> None: ...
     def close(self) -> None: ...
     def send_audio_bytes(self, data: bytes) -> None: ...
+
+async def async_get_custom_wake_words(hass: HomeAssistant) -> dict[str, VoiceAssistantExternalWakeWord]: ...
+def _get_custom_wake_words(hass: HomeAssistant) -> dict[str, VoiceAssistantExternalWakeWord]: ...
+async def async_setup(hass: HomeAssistant) -> None: ...

@@ -8,12 +8,13 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import slugify as slugify
 from propcache.api import cached_property
 from roborock import HomeDataRoom as HomeDataRoom
-from roborock.containers import HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, HomeDataScene as HomeDataScene, NetworkInfo as NetworkInfo, UserData as UserData
+from roborock.data import HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, HomeDataScene as HomeDataScene, NetworkInfo as NetworkInfo, UserData as UserData
 from roborock.roborock_message import RoborockDyadDataProtocol, RoborockZeoProtocol
 from roborock.roborock_typing import DeviceProp
 from roborock.version_1_apis.roborock_local_client_v1 import RoborockLocalClientV1

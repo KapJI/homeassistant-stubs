@@ -30,6 +30,9 @@ class GroupEntity(Entity, metaclass=abc.ABCMeta):
     @abstractmethod
     @callback
     def async_update_group_state(self) -> None: ...
+    _attr_assumed_state: bool
+    @callback
+    def _update_assumed_state_from_members(self) -> None: ...
     @callback
     def async_update_supported_features(self, entity_id: str, new_state: State | None) -> None: ...
 

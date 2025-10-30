@@ -2,6 +2,7 @@ from . import SqueezeboxConfigEntry as SqueezeboxConfigEntry
 from .const import SIGNAL_PLAYER_DISCOVERED as SIGNAL_PLAYER_DISCOVERED
 from .coordinator import SqueezeBoxPlayerUpdateCoordinator as SqueezeBoxPlayerUpdateCoordinator
 from .entity import SqueezeboxEntity as SqueezeboxEntity
+from .util import safe_library_call as safe_library_call
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription

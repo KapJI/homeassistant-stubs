@@ -25,6 +25,7 @@ class SensorData:
     boot_time: datetime
     processes: list[Process]
     temperatures: dict[str, list[shwtemp]]
+    process_fds: dict[str, int]
     def as_dict(self) -> dict[str, Any]: ...
 
 class VirtualMemory(NamedTuple):

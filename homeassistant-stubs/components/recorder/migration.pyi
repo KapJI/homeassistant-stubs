@@ -6,7 +6,7 @@ from .db_schema import BIG_INTEGER_SQL as BIG_INTEGER_SQL, Base as Base, CONTEXT
 from .models import StatisticMeanType as StatisticMeanType, process_timestamp as process_timestamp
 from .models.time import datetime_to_timestamp_or_none as datetime_to_timestamp_or_none
 from .queries import batch_cleanup_entity_ids as batch_cleanup_entity_ids, delete_duplicate_short_term_statistics_row as delete_duplicate_short_term_statistics_row, delete_duplicate_statistics_row as delete_duplicate_statistics_row, find_entity_ids_to_migrate as find_entity_ids_to_migrate, find_event_type_to_migrate as find_event_type_to_migrate, find_events_context_ids_to_migrate as find_events_context_ids_to_migrate, find_states_context_ids_to_migrate as find_states_context_ids_to_migrate, find_unmigrated_short_term_statistics_rows as find_unmigrated_short_term_statistics_rows, find_unmigrated_statistics_rows as find_unmigrated_statistics_rows, get_migration_changes as get_migration_changes, has_entity_ids_to_migrate as has_entity_ids_to_migrate, has_event_type_to_migrate as has_event_type_to_migrate, has_events_context_ids_to_migrate as has_events_context_ids_to_migrate, has_states_context_ids_to_migrate as has_states_context_ids_to_migrate, has_used_states_entity_ids as has_used_states_entity_ids, has_used_states_event_ids as has_used_states_event_ids, migrate_single_short_term_statistics_row_to_timestamp as migrate_single_short_term_statistics_row_to_timestamp, migrate_single_statistics_row_to_timestamp as migrate_single_statistics_row_to_timestamp
-from .statistics import cleanup_statistics_timestamp_migration as cleanup_statistics_timestamp_migration, get_start_time as get_start_time
+from .statistics import _PRIMARY_UNIT_CONVERTERS as _PRIMARY_UNIT_CONVERTERS, cleanup_statistics_timestamp_migration as cleanup_statistics_timestamp_migration, get_start_time as get_start_time
 from .tasks import RecorderTask as RecorderTask
 from .util import database_job_retry_wrapper as database_job_retry_wrapper, database_job_retry_wrapper_method as database_job_retry_wrapper_method, execute_stmt_lambda_element as execute_stmt_lambda_element, get_index_by_name as get_index_by_name, retryable_database_job_method as retryable_database_job_method, session_scope as session_scope
 from _typeshed import Incomplete
@@ -257,6 +257,9 @@ class _SchemaVersion49Migrator(_SchemaVersionMigrator, target_version=49):
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion50Migrator(_SchemaVersionMigrator, target_version=50):
+    def _apply_update(self) -> None: ...
+
+class _SchemaVersion51Migrator(_SchemaVersionMigrator, target_version=51):
     def _apply_update(self) -> None: ...
 
 def _migrate_statistics_columns_to_timestamp_removing_duplicates(hass: HomeAssistant, instance: Recorder, session_maker: Callable[[], Session], engine: Engine) -> None: ...

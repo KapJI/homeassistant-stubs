@@ -10,11 +10,6 @@ from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as Ba
 from webio_api import Input as NASwebInput, TempSensor as TempSensor
 
 SENSOR_INPUT_TRANSLATION_KEY: str
-STATE_UNDEFINED: str
-STATE_TAMPER: str
-STATE_ACTIVE: str
-STATE_NORMAL: str
-STATE_PROBLEM: str
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config: NASwebConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

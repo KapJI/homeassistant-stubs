@@ -4,10 +4,11 @@ from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers import selector as selector
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from sfrbox_api.bridge import SFRBox
 from typing import Any
 
+_LOGGER: Incomplete
 DATA_SCHEMA: Incomplete
 AUTH_SCHEMA: Incomplete
 

@@ -1,25 +1,24 @@
 from . import SwitcherConfigEntry as SwitcherConfigEntry
-from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
+from .const import API_CONTROL_BREEZE_DEVICE as API_CONTROL_BREEZE_DEVICE, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .entity import SwitcherEntity as SwitcherEntity
 from .utils import get_breeze_remote_manager as get_breeze_remote_manager
 from _typeshed import Incomplete
-from aioswitcher.api import SwitcherApi
-from aioswitcher.api.messages import SwitcherBaseResponse as SwitcherBaseResponse
 from aioswitcher.api.remotes import SwitcherBreezeRemote
-from collections.abc import Callable as Callable, Coroutine
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class SwitcherThermostatButtonEntityDescription(ButtonEntityDescription):
-    press_fn: Callable[[SwitcherApi, SwitcherBreezeRemote], Coroutine[Any, Any, SwitcherBaseResponse]]
+    press_args: dict[str, Any]
     supported: Callable[[SwitcherBreezeRemote], bool]
 
 THERMOSTAT_BUTTONS: Incomplete

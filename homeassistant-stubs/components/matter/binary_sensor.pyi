@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class MatterBinarySensorEntityDescription(BinarySensorEntityDescription, MatterEntityDescription): ...
 
 class MatterBinarySensor(MatterEntity, BinarySensorEntity):

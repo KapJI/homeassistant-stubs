@@ -1,6 +1,6 @@
 from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
 from .generated.entity_platforms import EntityPlatforms as EntityPlatforms
-from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, EnumWithDeprecatedMembers as EnumWithDeprecatedMembers, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
 from .util.hass_dict import HassKey as HassKey
@@ -271,21 +271,6 @@ STATE_STANDBY: Final[str]
 STATE_UNAVAILABLE: Final[str]
 STATE_OK: Final[str]
 STATE_PROBLEM: Final[str]
-_DEPRECATED_STATE_LOCKED: Final[Incomplete]
-_DEPRECATED_STATE_UNLOCKED: Final[Incomplete]
-_DEPRECATED_STATE_LOCKING: Final[Incomplete]
-_DEPRECATED_STATE_UNLOCKING: Final[Incomplete]
-_DEPRECATED_STATE_JAMMED: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_DISARMED: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_ARMED_HOME: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_ARMED_AWAY: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_ARMED_NIGHT: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_ARMED_VACATION: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_ARMED_CUSTOM_BYPASS: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_PENDING: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_ARMING: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_DISARMING: Final[Incomplete]
-_DEPRECATED_STATE_ALARM_TRIGGERED: Final[Incomplete]
 ATTR_ATTRIBUTION: Final[str]
 ATTR_CREDENTIALS: Final[str]
 ATTR_NOW: Final[str]
@@ -446,6 +431,7 @@ class UnitOfFrequency(StrEnum):
     GIGAHERTZ = 'GHz'
 
 class UnitOfPressure(StrEnum):
+    MILLIPASCAL = 'mPa'
     PA = 'Pa'
     HPA = 'hPa'
     KPA = 'kPa'
@@ -479,6 +465,7 @@ class UnitOfVolumeFlowRate(StrEnum):
     LITERS_PER_HOUR = 'L/h'
     LITERS_PER_MINUTE = 'L/min'
     LITERS_PER_SECOND = 'L/s'
+    GALLONS_PER_HOUR = 'gal/h'
     GALLONS_PER_MINUTE = 'gal/min'
     MILLILITERS_PER_SECOND = 'mL/s'
 
@@ -505,15 +492,11 @@ class UnitOfMass(StrEnum):
     POUNDS = 'lb'
     STONES = 'st'
 
-class UnitOfConductivity(StrEnum, deprecated={'SIEMENS': ('UnitOfConductivity.SIEMENS_PER_CM', '2025.11.0'), 'MICROSIEMENS': ('UnitOfConductivity.MICROSIEMENS_PER_CM', '2025.11.0'), 'MILLISIEMENS': ('UnitOfConductivity.MILLISIEMENS_PER_CM', '2025.11.0')}, metaclass=EnumWithDeprecatedMembers):
+class UnitOfConductivity(StrEnum):
     SIEMENS_PER_CM = 'S/cm'
     MICROSIEMENS_PER_CM = 'μS/cm'
     MILLISIEMENS_PER_CM = 'mS/cm'
-    SIEMENS = 'S/cm'
-    MICROSIEMENS = 'μS/cm'
-    MILLISIEMENS = 'mS/cm'
 
-_DEPRECATED_CONDUCTIVITY: Final[Incomplete]
 LIGHT_LUX: Final[str]
 UV_INDEX: Final[str]
 PERCENTAGE: Final[str]

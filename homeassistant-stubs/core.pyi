@@ -11,7 +11,7 @@ from .components.http import HomeAssistantHTTP as HomeAssistantHTTP
 from .config_entries import ConfigEntries as ConfigEntries
 from .const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_SERVICE as ATTR_SERVICE, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_ATTRIBUTES, COMPRESSED_STATE_CONTEXT as COMPRESSED_STATE_CONTEXT, COMPRESSED_STATE_LAST_CHANGED as COMPRESSED_STATE_LAST_CHANGED, COMPRESSED_STATE_LAST_UPDATED as COMPRESSED_STATE_LAST_UPDATED, COMPRESSED_STATE_STATE as COMPRESSED_STATE_STATE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, EVENT_SERVICE_REGISTERED as EVENT_SERVICE_REGISTERED, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_STATE_REPORTED as EVENT_STATE_REPORTED, MATCH_ALL as MATCH_ALL, MAX_EXPECTED_ENTITY_IDS as MAX_EXPECTED_ENTITY_IDS, MAX_LENGTH_EVENT_EVENT_TYPE as MAX_LENGTH_EVENT_EVENT_TYPE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, STATE_UNKNOWN as STATE_UNKNOWN, __version__ as __version__
 from .exceptions import HomeAssistantError as HomeAssistantError, InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, MaxLengthExceeded as MaxLengthExceeded, ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError, Unauthorized as Unauthorized
-from .helpers.deprecation import DeferredDeprecatedAlias as DeferredDeprecatedAlias, EnumWithDeprecatedMembers as EnumWithDeprecatedMembers, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .helpers.deprecation import DeferredDeprecatedAlias as DeferredDeprecatedAlias, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.entity import StateInfo as StateInfo
 from .helpers.json import json_bytes as json_bytes, json_fragment as json_fragment
 from .helpers.typing import VolSchemaType as VolSchemaType
@@ -41,12 +41,6 @@ DOMAIN: str
 BLOCK_LOG_TIMEOUT: int
 type ServiceResponse = JsonObjectType | None
 type EntityServiceResponse = dict[str, ServiceResponse]
-
-class ConfigSource(enum.StrEnum, deprecated={'DEFAULT': ('core_config.ConfigSource.DEFAULT', '2025.11.0'), 'DISCOVERED': ('core_config.ConfigSource.DISCOVERED', '2025.11.0'), 'STORAGE': ('core_config.ConfigSource.STORAGE', '2025.11.0'), 'YAML': ('core_config.ConfigSource.YAML', '2025.11.0')}, metaclass=EnumWithDeprecatedMembers):
-    DEFAULT = 'default'
-    DISCOVERED = 'discovered'
-    STORAGE = 'storage'
-    YAML = 'yaml'
 
 class EventStateEventData(TypedDict):
     entity_id: str

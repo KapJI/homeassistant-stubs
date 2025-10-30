@@ -1,4 +1,5 @@
 from .core import Recorder as Recorder
+from .statistics import async_update_statistics_metadata as async_update_statistics_metadata
 from .util import filter_unique_constraint_integrity_error as filter_unique_constraint_integrity_error, get_instance as get_instance, session_scope as session_scope
 from _typeshed import Incomplete
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback

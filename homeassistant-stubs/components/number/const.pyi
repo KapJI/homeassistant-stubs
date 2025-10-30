@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.const import CONCENTRATION_GRAMS_PER_CUBIC_METER as CONCENTRATION_GRAMS_PER_CUBIC_METER, CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT as CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER as CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfFrequency as UnitOfFrequency, UnitOfInformation as UnitOfInformation, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfReactiveEnergy as UnitOfReactiveEnergy, UnitOfReactivePower as UnitOfReactivePower, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
-from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, ReactiveEnergyConverter as ReactiveEnergyConverter, TemperatureConverter as TemperatureConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
+from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter, ReactiveEnergyConverter as ReactiveEnergyConverter, TemperatureConverter as TemperatureConverter, TemperatureDeltaConverter as TemperatureDeltaConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
 from typing import Final
 
 ATTR_VALUE: str
@@ -66,6 +66,7 @@ class NumberDeviceClass(StrEnum):
     SPEED = 'speed'
     SULPHUR_DIOXIDE = 'sulphur_dioxide'
     TEMPERATURE = 'temperature'
+    TEMPERATURE_DELTA = 'temperature_delta'
     VOLATILE_ORGANIC_COMPOUNDS = 'volatile_organic_compounds'
     VOLATILE_ORGANIC_COMPOUNDS_PARTS = 'volatile_organic_compounds_parts'
     VOLTAGE = 'voltage'

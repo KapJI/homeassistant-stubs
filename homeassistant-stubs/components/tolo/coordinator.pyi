@@ -8,14 +8,15 @@ from tololib import ToloSettings as ToloSettings, ToloStatus as ToloStatus
 from typing import NamedTuple
 
 _LOGGER: Incomplete
+type ToloConfigEntry = ConfigEntry[ToloSaunaUpdateCoordinator]
 
 class ToloSaunaData(NamedTuple):
     status: ToloStatus
     settings: ToloSettings
 
 class ToloSaunaUpdateCoordinator(DataUpdateCoordinator[ToloSaunaData]):
-    config_entry: ConfigEntry
+    config_entry: ToloConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: ToloConfigEntry) -> None: ...
     async def _async_update_data(self) -> ToloSaunaData: ...
     def _get_tolo_sauna_data(self) -> ToloSaunaData: ...

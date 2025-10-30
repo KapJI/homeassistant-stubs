@@ -5,9 +5,11 @@ from homeassistant.components.bluetooth import async_get_scanner as async_get_sc
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 SCAN_INTERVAL: Incomplete
+UPDATE_DEBOUNCE_TIME: float
 _LOGGER: Incomplete
 type AcaiaConfigEntry = ConfigEntry[AcaiaCoordinator]
 

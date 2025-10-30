@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries, data_entry_flow as data_entry_flow
@@ -9,9 +10,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import DependencyError as DependencyError, Unauthorized as Unauthorized
 from homeassistant.helpers.data_entry_flow import FlowManagerIndexView as FlowManagerIndexView, FlowManagerResourceView as FlowManagerResourceView
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.json import json_fragment as json_fragment
+from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_config_flows as async_get_config_flows, async_get_integrations as async_get_integrations, async_get_loaded_integration as async_get_loaded_integration
+from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any, NoReturn
+
+_LOGGER: Incomplete
 
 @callback
 def async_setup(hass: HomeAssistant) -> bool: ...

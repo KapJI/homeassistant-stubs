@@ -6,7 +6,7 @@ from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as 
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER
 from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
 from .store import BackupStore as BackupStore
-from .util import AsyncIteratorReader as AsyncIteratorReader, DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
+from .util import DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -15,6 +15,7 @@ from homeassistant.backup_restore import RESTORE_BACKUP_FILE as RESTORE_BACKUP_F
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import frame as frame, instance_id as instance_id, integration_platform as integration_platform, start as start
 from homeassistant.helpers.json import json_bytes as json_bytes
+from homeassistant.util.async_iterator import AsyncIteratorReader as AsyncIteratorReader
 from pathlib import Path
 from typing import Any, Protocol, TypedDict
 

@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from airos.airos8 import AirOS8 as AirOS8, AirOS8Data
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete

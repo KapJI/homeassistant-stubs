@@ -15,7 +15,7 @@ from mcp.client.session import ClientSession
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
 TIMEOUT: int
-TokenManager = Callable[[], Awaitable[str]]
+type TokenManager = Callable[[], Awaitable[str]]
 
 @asynccontextmanager
 async def mcp_client(url: str, token_manager: TokenManager | None = None) -> AsyncGenerator[ClientSession]: ...

@@ -58,7 +58,7 @@ class AsusWrtRouter:
     _sensors_data_handler: AsusWrtSensorDataHandler | None
     _sensors_coordinator: dict[str, Any]
     _on_close: list[Callable]
-    _options: dict[str, Any]
+    _options: dict[str, str | bool | int]
     _api: AsusWrtBridge
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     def _migrate_entities_unique_id(self) -> None: ...

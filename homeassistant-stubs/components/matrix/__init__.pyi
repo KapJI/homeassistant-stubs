@@ -1,4 +1,4 @@
-from .const import ATTR_FORMAT as ATTR_FORMAT, ATTR_IMAGES as ATTR_IMAGES, CONF_ROOMS_REGEX as CONF_ROOMS_REGEX, DOMAIN as DOMAIN, FORMAT_HTML as FORMAT_HTML
+from .const import ATTR_FORMAT as ATTR_FORMAT, ATTR_IMAGES as ATTR_IMAGES, ATTR_MESSAGE_ID as ATTR_MESSAGE_ID, ATTR_REACTION as ATTR_REACTION, ATTR_ROOM as ATTR_ROOM, ATTR_THREAD_ID as ATTR_THREAD_ID, CONF_ROOMS_REGEX as CONF_ROOMS_REGEX, DOMAIN as DOMAIN, FORMAT_HTML as FORMAT_HTML
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from collections.abc import Sequence
@@ -10,6 +10,7 @@ from homeassistant.helpers.json import save_json as save_json
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import JsonObjectType as JsonObjectType, load_json_object as load_json_object
 from nio import AsyncClient, Event, MatrixRoom as MatrixRoom
+from nio.events.room_events import RoomMessageText
 from nio.responses import Response as Response
 from typing import Final, Required, TypedDict
 
@@ -20,11 +21,13 @@ CONF_ROOMS: Final[str]
 CONF_COMMANDS: Final[str]
 CONF_WORD: Final[str]
 CONF_EXPRESSION: Final[str]
+CONF_REACTION: Final[str]
 CONF_USERNAME_REGEX: str
 EVENT_MATRIX_COMMAND: str
 DEFAULT_CONTENT_TYPE: str
 WordCommand: Incomplete
 ExpressionCommand: Incomplete
+ReactionCommand: Incomplete
 RoomAlias: Incomplete
 RoomID: Incomplete
 RoomAnyID = RoomID | RoomAlias
@@ -34,6 +37,7 @@ class ConfigCommand(TypedDict, total=False):
     rooms: list[RoomID]
     word: WordCommand
     expression: ExpressionCommand
+    reaction: ReactionCommand
 
 COMMAND_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
@@ -52,10 +56,12 @@ class MatrixBot:
     _listening_rooms: dict[RoomAnyID, RoomID]
     _word_commands: dict[RoomID, dict[WordCommand, ConfigCommand]]
     _expression_commands: dict[RoomID, list[ConfigCommand]]
+    _reaction_commands: dict[RoomID, dict[ReactionCommand, ConfigCommand]]
     _unparsed_commands: Incomplete
     def __init__(self, hass: HomeAssistant, config_file: str, homeserver: str, verify_ssl: bool, username: str, password: str, listening_rooms: list[RoomAnyID], commands: list[ConfigCommand]) -> None: ...
     def _load_commands(self, commands: list[ConfigCommand]) -> None: ...
     async def _handle_room_message(self, room: MatrixRoom, message: Event) -> None: ...
+    def _get_thread_parent(self, message: RoomMessageText) -> str | None: ...
     async def _resolve_room_alias(self, room_alias_or_id: RoomAnyID) -> dict[RoomAnyID, RoomID]: ...
     async def _resolve_room_aliases(self, listening_rooms: list[RoomAnyID]) -> None: ...
     async def _join_room(self, room_id: RoomID, room_alias_or_id: RoomAnyID) -> None: ...
@@ -65,6 +71,8 @@ class MatrixBot:
     async def _login(self) -> None: ...
     async def _handle_room_send(self, target_room: RoomAnyID, message_type: str, content: dict) -> None: ...
     async def _handle_multi_room_send(self, target_rooms: Sequence[RoomAnyID], message_type: str, content: dict) -> None: ...
-    async def _send_image(self, image_path: str, target_rooms: Sequence[RoomAnyID]) -> None: ...
+    async def _send_image(self, image_path: str, target_rooms: Sequence[RoomAnyID], thread_id: str | None) -> None: ...
     async def _send_message(self, message: str, target_rooms: list[RoomAnyID], data: dict | None) -> None: ...
+    async def _send_reaction(self, reaction: str, target_room: RoomAnyID, message_id: str) -> None: ...
     async def handle_send_message(self, service: ServiceCall) -> None: ...
+    async def handle_send_reaction(self, service: ServiceCall) -> None: ...

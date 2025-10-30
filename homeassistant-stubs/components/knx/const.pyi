@@ -104,3 +104,17 @@ class CoverConf:
     INVERT_UPDOWN: Final[str]
     INVERT_POSITION: Final[str]
     INVERT_ANGLE: Final[str]
+
+class ClimateConf:
+    MIN_TEMP: Final[str]
+    MAX_TEMP: Final[str]
+    TEMPERATURE_STEP: Final[str]
+    SETPOINT_SHIFT_MAX: Final[str]
+    SETPOINT_SHIFT_MIN: Final[str]
+    ON_OFF_INVERT: Final[str]
+    OPERATION_MODES: Final[str]
+    CONTROLLER_MODES: Final[str]
+    DEFAULT_CONTROLLER_MODE: Final[str]
+    FAN_MAX_STEP: Final[str]
+    FAN_SPEED_MODE: Final[str]
+    FAN_ZERO_MODE: Final[str]

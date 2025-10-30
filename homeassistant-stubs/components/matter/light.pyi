@@ -1,9 +1,10 @@
 from .const import LOGGER as LOGGER
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from .util import convert_to_hass_hs as convert_to_hass_hs, convert_to_hass_xy as convert_to_hass_xy, convert_to_matter_hs as convert_to_matter_hs, convert_to_matter_xy as convert_to_matter_xy, renormalize as renormalize
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
@@ -16,8 +17,11 @@ TRANSITION_BLOCKLIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
+@dataclass(frozen=True, kw_only=True)
+class MatterLightEntityDescription(LightEntityDescription, MatterEntityDescription): ...
+
 class MatterLight(MatterEntity, LightEntity):
-    entity_description: LightEntityDescription
+    entity_description: MatterLightEntityDescription
     _supports_brightness: bool
     _supports_color: bool
     _supports_color_temperature: bool

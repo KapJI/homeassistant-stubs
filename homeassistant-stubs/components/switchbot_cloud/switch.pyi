@@ -1,11 +1,12 @@
 from . import SwitchbotCloudData as SwitchbotCloudData
-from .const import DOMAIN as DOMAIN
+from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, DOMAIN as DOMAIN
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote, SwitchBotAPI as SwitchBotAPI
 from typing import Any
@@ -27,6 +28,17 @@ class SwitchBotCloudPlugSwitch(SwitchBotCloudSwitch):
     _attr_device_class: Incomplete
 
 class SwitchBotCloudRelaySwitchSwitch(SwitchBotCloudSwitch):
+    _attr_is_on: Incomplete
+    def _set_attributes(self) -> None: ...
+
+class SwitchBotCloudRelaySwitch2PMSwitch(SwitchBotCloudSwitch):
+    _channel: Incomplete
+    _device_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator, channel: str) -> None: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     def _set_attributes(self) -> None: ...
 

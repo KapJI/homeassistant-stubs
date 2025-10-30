@@ -1,18 +1,19 @@
+from . import SwitcherConfigEntry as SwitcherConfigEntry
 from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .entity import SwitcherEntity as SwitcherEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-API_SET_POSITON: str
+PARALLEL_UPDATES: int
+API_SET_POSITION: str
 API_STOP: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: SwitcherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitcherBaseCoverEntity(SwitcherEntity, CoverEntity):
     _attr_device_class: Incomplete

@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import CONF_DEVICE_DETAILS as CONF_DEVICE_DETAILS, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DEVICE_TYPE as DEVICE_TYPE, DEVICE_URL as DEVICE_URL, DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry
 from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete
@@ -14,10 +14,11 @@ def user_form_schema(user_input: dict[str, Any] | None) -> vol.Schema: ...
 
 STEP_REAUTH_DATA_SCHEMA: Incomplete
 
-async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
+async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 
 class VodafoneStationConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: VodafoneConfigEntry) -> VodafoneStationOptionsFlowHandler: ...

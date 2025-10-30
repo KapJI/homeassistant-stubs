@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, __version__ as __version__
 
 CONF_API_USER: str
+CONF_PARTY_MEMBER: str
 DEFAULT_URL: str
 ASSETS_URL: str
 SITE_DATA_URL: str

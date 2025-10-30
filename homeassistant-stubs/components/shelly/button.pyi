@@ -1,7 +1,7 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SHELLY_GAS_MODELS as SHELLY_GAS_MODELS
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, MODEL_FRANKEVER_WATER_VALVE as MODEL_FRANKEVER_WATER_VALVE, ROLE_GENERIC as ROLE_GENERIC, SHELLY_GAS_MODELS as SHELLY_GAS_MODELS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import get_entity_block_device_info as get_entity_block_device_info, get_entity_rpc_device_info as get_entity_rpc_device_info
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, format_ble_addr as format_ble_addr, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_ids as get_rpc_key_ids, get_virtual_component_ids as get_virtual_component_ids
+from .entity import RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingRpcAttributeEntity as ShellySleepingRpcAttributeEntity, async_setup_entry_rpc as async_setup_entry_rpc, get_entity_block_device_info as get_entity_block_device_info, get_entity_rpc_device_info as get_entity_rpc_device_info, rpc_call as rpc_call
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, format_ble_addr as format_ble_addr, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids, get_rpc_key_instances as get_rpc_key_instances, get_rpc_role_by_key as get_rpc_role_by_key, get_virtual_component_ids as get_virtual_component_ids
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -21,9 +21,10 @@ class ShellyButtonDescription[_ShellyCoordinatorT: ShellyBlockCoordinator | Shel
     press_action: str
     supported: Callable[[_ShellyCoordinatorT], bool] = ...
 
+@dataclass(frozen=True, kw_only=True)
+class RpcButtonDescription(RpcEntityDescription, ButtonEntityDescription): ...
+
 BUTTONS: Final[list[ShellyButtonDescription[Any]]]
-BLU_TRV_BUTTONS: Final[list[ShellyButtonDescription]]
-VIRTUAL_BUTTONS: Final[list[ShellyButtonDescription]]
 
 @callback
 def async_migrate_unique_ids(coordinator: ShellyRpcCoordinator | ShellyBlockCoordinator, entity_entry: er.RegistryEntry) -> dict[str, Any] | None: ...
@@ -42,17 +43,26 @@ class ShellyButton(ShellyBaseButton):
     def __init__(self, coordinator: ShellyRpcCoordinator | ShellyBlockCoordinator, description: ShellyButtonDescription[ShellyRpcCoordinator | ShellyBlockCoordinator]) -> None: ...
     async def _press_method(self) -> None: ...
 
-class ShellyBluTrvButton(ShellyBaseButton):
+class ShellyBluTrvButton(ShellyRpcAttributeEntity, ButtonEntity):
+    entity_description: RpcButtonDescription
+    _id: int
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    _id: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, description: ShellyButtonDescription, id_: int) -> None: ...
-    async def _press_method(self) -> None: ...
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
+    @rpc_call
+    async def async_press(self) -> None: ...
 
-class ShellyVirtualButton(ShellyBaseButton):
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    _attr_name: Incomplete
-    _id: Incomplete
-    def __init__(self, coordinator: ShellyRpcCoordinator, description: ShellyButtonDescription, _id: int) -> None: ...
-    async def _press_method(self) -> None: ...
+class RpcVirtualButton(ShellyRpcAttributeEntity, ButtonEntity):
+    entity_description: RpcButtonDescription
+    _id: int
+    @rpc_call
+    async def async_press(self) -> None: ...
+
+class RpcSleepingSmokeMuteButton(ShellySleepingRpcAttributeEntity, ButtonEntity):
+    entity_description: RpcButtonDescription
+    @rpc_call
+    async def async_press(self) -> None: ...
+    @property
+    def available(self) -> bool: ...
+
+RPC_BUTTONS: Incomplete

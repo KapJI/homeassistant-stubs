@@ -1,7 +1,8 @@
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
@@ -13,9 +14,12 @@ ValveStateEnum: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
+@dataclass(frozen=True, kw_only=True)
+class MatterValveEntityDescription(ValveEntityDescription, MatterEntityDescription): ...
+
 class MatterValve(MatterEntity, ValveEntity):
     _feature_map: int | None
-    entity_description: ValveEntityDescription
+    entity_description: MatterValveEntityDescription
     _platform_translation_key: str
     async def async_open_valve(self) -> None: ...
     async def async_close_valve(self) -> None: ...

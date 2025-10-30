@@ -40,6 +40,7 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _entry: Incomplete
     _client: Incomplete
     _attr_assumed_state: bool
+    _unavailable_logged: bool
     _device_name: Incomplete
     _attr_unique_id: Incomplete
     _sources: Incomplete
@@ -64,6 +65,8 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _attr_extra_state_attributes: Incomplete
     def _update_states(self) -> None: ...
     def _update_sources(self) -> None: ...
+    _attr_available: Incomplete
+    def _set_availability(self, available: bool) -> None: ...
     async def async_update(self) -> None: ...
     @property
     def supported_features(self) -> MediaPlayerEntityFeature: ...

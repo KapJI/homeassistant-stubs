@@ -1,10 +1,12 @@
 from .const import API_ATTR_OK as API_ATTR_OK, DOMAIN as DOMAIN
 from .coordinator import UptimeRobotConfigEntry as UptimeRobotConfigEntry
 from .entity import UptimeRobotEntity as UptimeRobotEntity
+from .utils import new_device_listener as new_device_listener
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
 from typing import Any
 
 PARALLEL_UPDATES: int

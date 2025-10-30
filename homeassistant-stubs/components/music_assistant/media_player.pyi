@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse a
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
-from music_assistant_client import MusicAssistantClient as MusicAssistantClient
+from music_assistant_client.client import MusicAssistantClient as MusicAssistantClient
 from music_assistant_models.enums import MediaType, QueueOption
 from music_assistant_models.event import MassEvent as MassEvent
 from music_assistant_models.player import Player as Player

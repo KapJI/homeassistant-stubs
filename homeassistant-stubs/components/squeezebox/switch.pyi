@@ -14,6 +14,7 @@ from pysqueezebox.player import Alarm as Alarm
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

@@ -1,6 +1,6 @@
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_MAX as CONF_MAX, CONF_MIN as CONF_MIN, CONF_PAYLOAD_RESET as CONF_PAYLOAD_RESET, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_STEP as CONF_STEP, DEFAULT_PAYLOAD_RESET as DEFAULT_PAYLOAD_RESET
 from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -18,11 +18,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
-CONF_MIN: str
-CONF_MAX: str
-CONF_STEP: str
 DEFAULT_NAME: str
-DEFAULT_PAYLOAD_RESET: str
 MQTT_NUMBER_ATTRIBUTES_BLOCKED: Incomplete
 
 def validate_config(config: ConfigType) -> ConfigType: ...

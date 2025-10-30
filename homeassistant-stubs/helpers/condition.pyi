@@ -10,8 +10,9 @@ from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsTy
 from _typeshed import Incomplete
 from collections.abc import Callable, Container, Coroutine, Generator, Iterable
 from contextlib import contextmanager
+from dataclasses import dataclass
 from datetime import time as dt_time, timedelta
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_OPTIONS as CONF_OPTIONS, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_TARGET as CONF_TARGET, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, ConditionErrorMessage as ConditionErrorMessage, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
@@ -29,28 +30,37 @@ INPUT_ENTITY_ID: Incomplete
 CONDITION_DESCRIPTION_CACHE: HassKey[dict[str, dict[str, Any] | None]]
 CONDITION_PLATFORM_SUBSCRIPTIONS: HassKey[list[Callable[[set[str]], Coroutine[Any, Any, None]]]]
 CONDITIONS: HassKey[dict[str, str]]
-_FIELD_SCHEMA: Incomplete
-_CONDITION_SCHEMA: Incomplete
+_FIELD_DESCRIPTION_SCHEMA: Incomplete
+_CONDITION_DESCRIPTION_SCHEMA: Incomplete
 
 def starts_with_dot(key: str) -> str: ...
 
-_CONDITIONS_SCHEMA: Incomplete
+_CONDITIONS_DESCRIPTION_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant) -> None: ...
 @callback
 def async_subscribe_platform_events(hass: HomeAssistant, on_event: Callable[[set[str]], Coroutine[Any, Any, None]]) -> Callable[[], None]: ...
 async def _register_condition_platform(hass: HomeAssistant, integration_domain: str, platform: ConditionProtocol) -> None: ...
 
+_CONDITION_SCHEMA: Incomplete
+
 class Condition(abc.ABC, metaclass=abc.ABCMeta):
-    def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
+    @classmethod
+    async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     @classmethod
     @abc.abstractmethod
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
+    def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
     @abc.abstractmethod
     async def async_get_checker(self) -> ConditionCheckerType: ...
 
 class ConditionProtocol(Protocol):
     async def async_get_conditions(self, hass: HomeAssistant) -> dict[str, type[Condition]]: ...
+
+@dataclass(slots=True)
+class ConditionConfig:
+    options: dict[str, Any] | None = ...
+    target: dict[str, Any] | None = ...
 type ConditionCheckerType = Callable[[HomeAssistant, TemplateVarsType], bool | None]
 
 def condition_trace_append(variables: TemplateVarsType, path: str) -> TraceElement: ...

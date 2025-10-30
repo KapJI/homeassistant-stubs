@@ -13,7 +13,7 @@ from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class MatterButtonEntityDescription(ButtonEntityDescription, MatterEntityDescription):
     command: Callable[[], Any] | None = ...
 

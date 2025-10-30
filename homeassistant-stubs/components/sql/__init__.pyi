@@ -1,5 +1,6 @@
 from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
-from .util import redact_credentials as redact_credentials
+from .services import async_setup_services as async_setup_services
+from .util import redact_credentials as redact_credentials, validate_sql_select as validate_sql_select
 from _typeshed import Incomplete
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, get_instance as get_instance
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
@@ -11,9 +12,6 @@ from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as C
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete
-
-def validate_sql_select(value: str) -> str: ...
-
 QUERY_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 

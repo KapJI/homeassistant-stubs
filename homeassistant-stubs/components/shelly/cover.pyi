@@ -1,28 +1,39 @@
 import asyncio
 from .const import RPC_COVER_UPDATE_TIME_SEC as RPC_COVER_UPDATE_TIME_SEC
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import ShellyBlockEntity as ShellyBlockEntity, ShellyRpcEntity as ShellyRpcEntity
-from .utils import get_device_entry_gen as get_device_entry_gen, get_rpc_key_ids as get_rpc_key_ids
+from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
+from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
+from dataclasses import dataclass
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityDescription as CoverEntityDescription, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 PARALLEL_UPDATES: int
 
+@dataclass(frozen=True, kw_only=True)
+class BlockCoverDescription(BlockEntityDescription, CoverEntityDescription): ...
+@dataclass(frozen=True, kw_only=True)
+class RpcCoverDescription(RpcEntityDescription, CoverEntityDescription): ...
+
+BLOCK_COVERS: Incomplete
+RPC_COVERS: Incomplete
+
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
-def async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class BlockShellyCover(ShellyBlockEntity, CoverEntity):
+class BlockShellyCover(ShellyBlockAttributeEntity, CoverEntity):
+    entity_description: BlockCoverDescription
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
     control_result: dict[str, Any] | None
-    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
+    _attr_unique_id: str
+    def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockCoverDescription) -> None: ...
     @property
     def is_closed(self) -> bool: ...
     @property
@@ -38,12 +49,14 @@ class BlockShellyCover(ShellyBlockEntity, CoverEntity):
     @callback
     def _update_callback(self) -> None: ...
 
-class RpcShellyCover(ShellyRpcEntity, CoverEntity):
+class RpcShellyCover(ShellyRpcAttributeEntity, CoverEntity):
+    entity_description: RpcCoverDescription
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
-    _id: Incomplete
+    _id: int
+    _attr_unique_id: str
     _update_task: asyncio.Task | None
-    def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcCoverDescription) -> None: ...
     @property
     def is_closed(self) -> bool | None: ...
     @property
@@ -57,11 +70,19 @@ class RpcShellyCover(ShellyRpcEntity, CoverEntity):
     def launch_update_task(self) -> None: ...
     async def update_position(self) -> None: ...
     def _update_callback(self) -> None: ...
+    @rpc_call
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_stop_cover(self, **_kwargs: Any) -> None: ...
+    @rpc_call
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
+    @rpc_call
     async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...

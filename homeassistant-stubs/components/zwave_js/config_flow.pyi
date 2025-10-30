@@ -39,6 +39,7 @@ NETWORK_TYPE_EXISTING: str
 ZWAVE_JS_SERVER_INSTRUCTIONS: str
 ZWAVE_JS_UI_MIGRATION_INSTRUCTIONS: str
 RF_REGIONS: Incomplete
+IGNORED_USB_DEVICES: Incomplete
 
 def get_manual_schema(user_input: dict[str, Any]) -> vol.Schema: ...
 def get_on_supervisor_schema(user_input: dict[str, Any]) -> vol.Schema: ...

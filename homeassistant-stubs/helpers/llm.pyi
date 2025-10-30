@@ -22,7 +22,7 @@ from typing import Any
 
 ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, vol.Schema]]]]
 LLM_API_ASSIST: str
-BASE_PROMPT: str
+DATE_TIME_PROMPT: str
 DEFAULT_INSTRUCTIONS_PROMPT: str
 NO_ENTITIES_PROMPT: str
 DYNAMIC_CONTEXT_PROMPT: str
@@ -148,6 +148,11 @@ class TodoGetItemsTool(Tool):
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 class GetLiveContextTool(Tool):
+    name: str
+    description: str
+    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+
+class GetDateTimeTool(Tool):
     name: str
     description: str
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

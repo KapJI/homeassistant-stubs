@@ -1,14 +1,20 @@
 from . import DATA_COMPONENT as DATA_COMPONENT
+from .const import HARDWARE_INTEGRATION_DOMAINS as HARDWARE_INTEGRATION_DOMAINS
 from .util import FirmwareInfo as FirmwareInfo
 from _typeshed import Incomplete
 from collections import defaultdict
 from collections.abc import AsyncIterator, Awaitable, Callable as Callable
 from contextlib import asynccontextmanager
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.components.usb import USBDevice as USBDevice, async_get_usb_matchers_for_device as async_get_usb_matchers_for_device, usb_device_from_path as usb_device_from_path
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as hass_callback
-from typing import Protocol
+from typing import Protocol, TypedDict
 
 _LOGGER: Incomplete
+
+class HardwareFirmwareDiscoveryInfo(TypedDict):
+    usb_device: USBDevice | None
+    firmware_info: FirmwareInfo
 
 class SyncHardwareFirmwareInfoModule(Protocol):
     def get_firmware_info(self, hass: HomeAssistant, entry: ConfigEntry) -> FirmwareInfo | None: ...
@@ -16,6 +22,9 @@ class SyncHardwareFirmwareInfoModule(Protocol):
 class AsyncHardwareFirmwareInfoModule(Protocol):
     async def async_get_firmware_info(self, hass: HomeAssistant, entry: ConfigEntry) -> FirmwareInfo | None: ...
 type HardwareFirmwareInfoModule = SyncHardwareFirmwareInfoModule | AsyncHardwareFirmwareInfoModule
+
+@hass_callback
+def async_get_hardware_domain_for_usb_device(hass: HomeAssistant, usb_device: USBDevice) -> str | None: ...
 
 class HardwareInfoDispatcher:
     hass: Incomplete
@@ -26,6 +35,7 @@ class HardwareInfoDispatcher:
     def register_firmware_info_provider(self, domain: str, platform: HardwareFirmwareInfoModule) -> None: ...
     def register_firmware_info_callback(self, device: str, callback: Callable[[FirmwareInfo], None]) -> CALLBACK_TYPE: ...
     async def notify_firmware_info(self, domain: str, firmware_info: FirmwareInfo) -> None: ...
+    async def _async_trigger_hardware_discovery(self, firmware_info: FirmwareInfo) -> None: ...
     async def iter_firmware_info(self) -> AsyncIterator[FirmwareInfo]: ...
     def register_firmware_update_in_progress(self, device: str, source_domain: str) -> None: ...
     def unregister_firmware_update_in_progress(self, device: str, source_domain: str) -> None: ...

@@ -9,7 +9,7 @@ from collections.abc import AsyncGenerator, AsyncIterable, Callable
 from dataclasses import dataclass, field
 from enum import StrEnum
 from hassil.recognize import RecognizeResult as RecognizeResult
-from homeassistant.components import conversation as conversation, stt as stt, tts as tts, wake_word as wake_word, websocket_api as websocket_api
+from homeassistant.components import conversation as conversation, media_player as media_player, stt as stt, tts as tts, wake_word as wake_word, websocket_api as websocket_api
 from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, MATCH_ALL as MATCH_ALL
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

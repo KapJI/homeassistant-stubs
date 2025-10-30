@@ -1,9 +1,9 @@
+from .entity import MatterEntityDescription as MatterEntityDescription
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
 from chip.clusters.Objects import Cluster as Cluster, ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from dataclasses import dataclass
 from homeassistant.const import Platform as Platform
-from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from matter_server.client.models.device_types import DeviceType as DeviceType
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from typing import Any, TypedDict
@@ -23,7 +23,7 @@ class MatterEntityInfo:
     endpoint: MatterEndpoint
     platform: Platform
     attributes_to_watch: list[type[ClusterAttributeDescriptor]]
-    entity_description: EntityDescription
+    entity_description: MatterEntityDescription
     entity_class: type
     discovery_schema: MatterDiscoverySchema
     @property
@@ -32,7 +32,7 @@ class MatterEntityInfo:
 @dataclass
 class MatterDiscoverySchema:
     platform: Platform
-    entity_description: EntityDescription
+    entity_description: MatterEntityDescription
     entity_class: type
     required_attributes: tuple[type[ClusterAttributeDescriptor], ...]
     device_type: tuple[type[DeviceType] | DeviceType, ...] | None = ...

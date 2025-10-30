@@ -11,6 +11,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as _ZeroconfServiceInfo
 from homeassistant.loader import HomeKitDiscoveredIntegration as HomeKitDiscoveredIntegration, ZeroconfMatcher as ZeroconfMatcher
 from homeassistant.util.hass_dict import HassKey as HassKey
+from ipaddress import IPv4Address, IPv6Address
 from typing import Any, Final
 from zeroconf import ServiceStateChange
 from zeroconf.asyncio import AsyncServiceBrowser, AsyncServiceInfo
@@ -25,6 +26,7 @@ HOMEKIT_MODEL_UPPER: str
 ATTR_DOMAIN: Final[str]
 ATTR_NAME: Final[str]
 ATTR_PROPERTIES: Final[str]
+DUPLICATE_INSTANCE_ID_ISSUE_ID: str
 DATA_DISCOVERY: HassKey[ZeroconfDiscovery]
 
 def build_homekit_model_lookups(homekit_models: dict[str, HomeKitDiscoveredIntegration]) -> tuple[dict[str, HomeKitDiscoveredIntegration], dict[re.Pattern, HomeKitDiscoveredIntegration]]: ...
@@ -44,7 +46,10 @@ class ZeroconfDiscovery:
     async_service_browser: AsyncServiceBrowser | None
     _service_update_listeners: set[Callable[[AsyncServiceInfo], None]]
     _service_removed_listeners: set[Callable[[str], None]]
-    def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf, zeroconf_types: dict[str, list[ZeroconfMatcher]], homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration]) -> None: ...
+    _conflicting_instances: set[str]
+    _local_service_info: Incomplete
+    _local_ips: set[IPv4Address | IPv6Address]
+    def __init__(self, hass: HomeAssistant, zeroconf: HaZeroconf, zeroconf_types: dict[str, list[ZeroconfMatcher]], homekit_model_lookups: dict[str, HomeKitDiscoveredIntegration], homekit_model_matchers: dict[re.Pattern, HomeKitDiscoveredIntegration], local_service_info: AsyncServiceInfo) -> None: ...
     @callback
     def async_register_service_update_listener(self, listener: Callable[[AsyncServiceInfo], None]) -> Callable[[], None]: ...
     @callback
@@ -61,3 +66,5 @@ class ZeroconfDiscovery:
     async def _async_lookup_and_process_service_update(self, zeroconf: HaZeroconf, async_service_info: AsyncServiceInfo, service_type: str, name: str) -> None: ...
     @callback
     def _async_process_service_update(self, async_service_info: AsyncServiceInfo, service_type: str, name: str) -> None: ...
+    @callback
+    def _async_check_instance_id_conflict(self, discovered_instance_id: str, info: _ZeroconfServiceInfo) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfEnergy as UnitOfEnergy
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util.unit_conversion import EnergyConverter as EnergyConverter
 
 FIVE_YEARS: Incomplete
 _LOGGER: Incomplete

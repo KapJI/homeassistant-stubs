@@ -1,5 +1,5 @@
 from .const import DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
-from .errors import ConnectionRefused as ConnectionRefused, ConnectionTimeout as ConnectionTimeout, ResolveFailed as ResolveFailed, ValidationFailure as ValidationFailure
+from .errors import ConnectionRefused as ConnectionRefused, ConnectionReset as ConnectionReset, ConnectionTimeout as ConnectionTimeout, ResolveFailed as ResolveFailed, ValidationFailure as ValidationFailure
 from .helper import get_cert_expiry_timestamp as get_cert_expiry_timestamp
 from _typeshed import Incomplete
 from collections.abc import Mapping

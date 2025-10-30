@@ -1,7 +1,6 @@
 from _typeshed import Incomplete
 
 CONF_HTTPS: str
-DISCOVERY_TASK: str
 DOMAIN: str
 DEFAULT_PORT: int
 PLAYER_DISCOVERY_UNSUB: str

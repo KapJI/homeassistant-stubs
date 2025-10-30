@@ -1,8 +1,10 @@
 import asyncio
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import AsyncGenerator, Callable as Callable
+from contextlib import asynccontextmanager
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from logging import Logger
+from typing import Any
 
 class Debouncer[_R_co]:
     hass: Incomplete
@@ -13,10 +15,13 @@ class Debouncer[_R_co]:
     _timer_task: asyncio.TimerHandle | None
     _execute_at_end_of_timer: bool
     _execute_lock: Incomplete
+    _execute_lock_owner: asyncio.Task[Any] | None
     _background: Incomplete
     _job: HassJob[[], _R_co] | None
     _shutdown_requested: bool
     def __init__(self, hass: HomeAssistant, logger: Logger, *, cooldown: float, immediate: bool, function: Callable[[], _R_co] | None = None, background: bool = False) -> None: ...
+    @asynccontextmanager
+    async def async_lock(self) -> AsyncGenerator[None]: ...
     @property
     def function(self) -> Callable[[], _R_co] | None: ...
     @function.setter

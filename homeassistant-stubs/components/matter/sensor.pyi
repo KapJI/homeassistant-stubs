@@ -16,18 +16,21 @@ AIR_QUALITY_MAP: Incomplete
 CONTAMINATION_STATE_MAP: Incomplete
 EVE_CLUSTER_WEATHER_MAP: Incomplete
 OPERATIONAL_STATE_MAP: Incomplete
+OPERATIONAL_STATE_ERROR_MAP: Incomplete
 RVC_OPERATIONAL_STATE_MAP: Incomplete
+RVC_OPERATIONAL_STATE_ERROR_MAP: Incomplete
 BOOST_STATE_MAP: Incomplete
 CHARGE_STATE_MAP: Incomplete
 DEM_OPT_OUT_STATE_MAP: Incomplete
 ESA_STATE_MAP: Incomplete
 EVSE_FAULT_STATE_MAP: Incomplete
 PUMP_CONTROL_MODE_MAP: Incomplete
+HUMIDITY_SCALING_FACTOR: int
 TEMPERATURE_SCALING_FACTOR: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class MatterSensorEntityDescription(SensorEntityDescription, MatterEntityDescription): ...
 
 @dataclass(frozen=True, kw_only=True)

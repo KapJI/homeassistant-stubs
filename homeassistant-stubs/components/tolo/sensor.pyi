@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
+from .coordinator import ToloConfigEntry as ToloConfigEntry, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
 from .entity import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -19,12 +17,12 @@ class ToloSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ToloConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ToloSensorEntity(ToloSaunaCoordinatorEntity, SensorEntity):
     entity_description: ToloSensorEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry, entity_description: ToloSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ToloConfigEntry, entity_description: ToloSensorEntityDescription) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

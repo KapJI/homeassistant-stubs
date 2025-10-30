@@ -30,6 +30,10 @@ REST_UPDATES: Final[Incomplete]
 RPC_UPDATES: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RestUpdateEntity(ShellyRestAttributeEntity, UpdateEntity):
     _attr_supported_features: Incomplete

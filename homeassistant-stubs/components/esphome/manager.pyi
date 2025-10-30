@@ -5,13 +5,13 @@ from .domain_data import DomainData as DomainData
 from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService, ZWaveProxyRequest as ZWaveProxyRequest
 from aioesphomeapi.api_pb2 import SubscribeLogsResponse as SubscribeLogsResponse
 from homeassistant.components import bluetooth as bluetooth, tag as tag, zeroconf as zeroconf
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
-from homeassistant.helpers import template as template
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError
+from homeassistant.helpers import json as json, template as template
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
@@ -20,6 +20,7 @@ from homeassistant.helpers.template import Template as Template
 from typing import Any, NamedTuple
 
 DEVICE_CONFLICT_ISSUE_FORMAT: str
+UNPACK_UINT32_BE: Incomplete
 _LOGGER: Incomplete
 LOG_LEVEL_TO_LOGGER: Incomplete
 LOGGER_TO_LOG_LEVEL: Incomplete
@@ -49,6 +50,9 @@ class ESPHomeManager:
     def services_issue(self) -> str: ...
     @callback
     def async_on_service_call(self, service: HomeassistantServiceCall) -> None: ...
+    async def _handle_service_call_with_response(self, domain: str, service_name: str, service_data: dict, call_id: int, response_template: str | None = None) -> None: ...
+    async def _handle_service_call_with_notification(self, domain: str, service_name: str, service_data: dict, call_id: int) -> None: ...
+    def _send_service_call_response(self, call_id: int, success: bool, error_message: str, response_data: bytes) -> None: ...
     @callback
     def _send_home_assistant_state(self, entity_id: str, attribute: str | None, state: State | None) -> None: ...
     @callback
@@ -64,6 +68,7 @@ class ESPHomeManager:
     @callback
     def _async_subscribe_logs(self, log_level: LogLevel) -> None: ...
     async def _on_connect(self) -> None: ...
+    def _async_zwave_proxy_request(self, request: ZWaveProxyRequest) -> None: ...
     async def on_disconnect(self, expected_disconnect: bool) -> None: ...
     async def on_connect_error(self, err: Exception) -> None: ...
     async def _start_reauth_and_disconnect(self) -> None: ...

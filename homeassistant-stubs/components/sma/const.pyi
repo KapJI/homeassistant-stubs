@@ -1,0 +1,11 @@
+from _typeshed import Incomplete
+
+DOMAIN: str
+PYSMA_COORDINATOR: str
+PYSMA_OBJECT: str
+PYSMA_REMOVE_LISTENER: str
+PYSMA_SENSORS: str
+PYSMA_DEVICE_INFO: str
+CONF_GROUP: str
+DEFAULT_SCAN_INTERVAL: int
+GROUPS: Incomplete

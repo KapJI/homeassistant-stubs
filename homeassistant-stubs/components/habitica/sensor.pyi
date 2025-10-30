@@ -1,11 +1,12 @@
 from . import HABITICA_KEY as HABITICA_KEY
 from .const import ASSETS_URL as ASSETS_URL
 from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
-from .entity import HabiticaBase as HabiticaBase, HabiticaPartyBase as HabiticaPartyBase
+from .entity import HabiticaBase as HabiticaBase, HabiticaPartyBase as HabiticaPartyBase, HabiticaPartyMemberBase as HabiticaPartyMemberBase
 from .util import collected_quest_items as collected_quest_items, get_attribute_points as get_attribute_points, get_attributes_total as get_attributes_total, inventory_list as inventory_list, pending_damage as pending_damage, pending_quest_items as pending_quest_items, quest_attributes as quest_attributes, quest_boss as quest_boss, rage_attributes as rage_attributes
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from datetime import datetime
 from enum import StrEnum
 from habiticalib import ContentData as ContentData, GroupData as GroupData, TaskData as TaskData, UserData as UserData
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
@@ -20,7 +21,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(kw_only=True, frozen=True)
 class HabiticaSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[UserData, ContentData], StateType]
+    value_fn: Callable[[UserData, ContentData], StateType | datetime]
     attributes_fn: Callable[[UserData, ContentData], dict[str, Any] | None] | None = ...
     entity_picture: str | None = ...
 
@@ -68,7 +69,9 @@ class HabiticaSensorEntity(StrEnum):
     COLLECTED_ITEMS = 'collected_items'
     BOSS_RAGE = 'boss_rage'
     BOSS_RAGE_LIMIT = 'boss_rage_limit'
+    LAST_CHECKIN = 'last_checkin'
 
+SENSOR_DESCRIPTIONS_COMMON: tuple[HabiticaSensorEntityDescription, ...]
 SENSOR_DESCRIPTIONS: tuple[HabiticaSensorEntityDescription, ...]
 SENSOR_DESCRIPTIONS_PARTY: tuple[HabiticaPartySensorEntityDescription, ...]
 
@@ -77,16 +80,18 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEnt
 class HabiticaSensor(HabiticaBase, SensorEntity):
     entity_description: HabiticaSensorEntityDescription
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> StateType | datetime: ...
     @property
     def extra_state_attributes(self) -> dict[str, float | None] | None: ...
     @property
     def entity_picture(self) -> str | None: ...
 
+class HabiticaPartyMemberSensor(HabiticaSensor, HabiticaPartyMemberBase): ...
+
 class HabiticaPartySensor(HabiticaPartyBase, SensorEntity):
     entity_description: HabiticaPartySensorEntityDescription
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> StateType | datetime: ...
     @property
     def entity_picture(self) -> str | None: ...
     @property

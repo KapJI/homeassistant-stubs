@@ -10,10 +10,12 @@ from typing import Any
 
 SCAN_INTERVAL: Incomplete
 FIRMWARE_UPDATE_ENTITY: Incomplete
+RELEASE_URL: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RobotUpdateEntity(LitterRobotEntity[LitterRobot4], UpdateEntity):
+    _attr_release_url = RELEASE_URL
     _attr_supported_features: Incomplete
     @property
     def installed_version(self) -> str: ...

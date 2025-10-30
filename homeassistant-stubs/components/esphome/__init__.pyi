@@ -1,4 +1,4 @@
-from . import dashboard as dashboard, ffmpeg_proxy as ffmpeg_proxy
+from . import assist_satellite as assist_satellite, dashboard as dashboard, ffmpeg_proxy as ffmpeg_proxy
 from .const import CONF_BLUETOOTH_MAC_ADDRESS as CONF_BLUETOOTH_MAC_ADDRESS, CONF_NOISE_PSK as CONF_NOISE_PSK, DOMAIN as DOMAIN
 from .domain_data import DomainData as DomainData
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData

@@ -4,8 +4,7 @@ from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession
 from go2rtc_client import Go2RtcRestClient
 from go2rtc_client.ws import Go2RtcWsClient, ReceiveMessages as ReceiveMessages
-from homeassistant.components.camera import Camera as Camera, CameraWebRTCProvider as CameraWebRTCProvider, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_register_webrtc_provider as async_register_webrtc_provider
-from homeassistant.components.camera.prefs import get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
+from homeassistant.components.camera import Camera as Camera, CameraWebRTCProvider as CameraWebRTCProvider, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_register_webrtc_provider as async_register_webrtc_provider, get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
 from homeassistant.components.stream import Orientation as Orientation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP

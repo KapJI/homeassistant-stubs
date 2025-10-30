@@ -9,7 +9,8 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from typing import Any, Concatenate
 
 _LOGGER: Incomplete
-UPLOAD_CHUNK_SIZE: Incomplete
+MAX_CHUNK_SIZE: Incomplete
+TARGET_CHUNKS: int
 TIMEOUT: Incomplete
 METADATA_VERSION: int
 CACHE_TTL: int

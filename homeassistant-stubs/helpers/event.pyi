@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_STATE_REPORTED as EVENT_STATE_REPORTED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateEventData as EventStateEventData, EventStateReportedData as EventStateReportedData, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
-from homeassistant.exceptions import TemplateError as TemplateError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.event_type import EventType as EventType

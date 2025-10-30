@@ -1,8 +1,7 @@
 from _typeshed import Incomplete
 from bs4 import BeautifulSoup
 from datetime import timedelta
-from homeassistant.components.rest import RestData as RestData
-from homeassistant.components.rest.const import CONF_PAYLOAD_TEMPLATE as CONF_PAYLOAD_TEMPLATE
+from homeassistant.components.rest import CONF_PAYLOAD_TEMPLATE as CONF_PAYLOAD_TEMPLATE, RestData as RestData
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_RESOURCE_TEMPLATE as CONF_RESOURCE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant

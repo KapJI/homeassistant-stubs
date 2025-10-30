@@ -12,6 +12,7 @@ from .media_player import MediaPlayerGroup as MediaPlayerGroup, async_create_pre
 from .notify import async_create_preview_notify as async_create_preview_notify
 from .sensor import async_create_preview_sensor as async_create_preview_sensor
 from .switch import async_create_preview_switch as async_create_preview_switch
+from .valve import async_create_preview_valve as async_create_preview_valve
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine, Mapping
 from homeassistant.components import websocket_api as websocket_api
@@ -53,6 +54,7 @@ CREATE_PREVIEW_ENTITY: dict[str, Callable[[HomeAssistant, str, dict[str, Any]], 
 class GroupConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
+    options_flow_reloads: bool
     @callback
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     @callback

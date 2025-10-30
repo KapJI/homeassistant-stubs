@@ -9,10 +9,8 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, form
 from homeassistant.helpers.entity import Entity as Entity
 from qbusmqttapi.discovery import QbusMqttDevice as QbusMqttDevice, QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttState
-from typing import Generic, TypeVar
 
 _REFID_REGEX: Incomplete
-StateT = TypeVar('StateT', bound=QbusMqttState)
 
 def create_new_entities(coordinator: QbusControllerCoordinator, added_outputs: list[QbusMqttOutput], filter_fn: Callable[[QbusMqttOutput], bool], entity_type: type[QbusEntity]) -> list[QbusEntity]: ...
 def determine_new_outputs(coordinator: QbusControllerCoordinator, added_outputs: list[QbusMqttOutput], filter_fn: Callable[[QbusMqttOutput], bool]) -> list[QbusMqttOutput]: ...
@@ -20,7 +18,7 @@ def format_ref_id(ref_id: str) -> str | None: ...
 def create_device_identifier(mqtt_device: QbusMqttDevice) -> tuple[str, str]: ...
 def create_unique_id(serial_number: str, suffix: str) -> str: ...
 
-class QbusEntity(Entity, ABC, Generic[StateT], metaclass=abc.ABCMeta):
+class QbusEntity[StateT: QbusMqttState](Entity, ABC, metaclass=abc.ABCMeta):
     _state_cls: type[StateT]
     _attr_has_entity_name: bool
     _attr_should_poll: bool

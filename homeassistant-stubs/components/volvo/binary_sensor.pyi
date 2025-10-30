@@ -1,5 +1,5 @@
 from .const import API_NONE_VALUE as API_NONE_VALUE
-from .coordinator import VolvoBaseCoordinator as VolvoBaseCoordinator, VolvoConfigEntry as VolvoConfigEntry
+from .coordinator import VolvoConfigEntry as VolvoConfigEntry
 from .entity import VolvoEntity as VolvoEntity, VolvoEntityDescription as VolvoEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass, field
@@ -36,7 +36,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: VolvoConfigEntry, async_
 
 class VolvoBinarySensor(VolvoEntity, BinarySensorEntity):
     entity_description: VolvoBinarySensorDescription
-    _attr_extra_state_attributes: Incomplete
-    def __init__(self, coordinator: VolvoBaseCoordinator, description: VolvoBinarySensorDescription) -> None: ...
     _attr_is_on: Incomplete
     def _update_state(self, api_field: VolvoCarsApiBaseModel | None) -> None: ...

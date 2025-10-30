@@ -1,0 +1,3 @@
+DOMAIN: str
+MANUFACTURER: str
+NAME: str

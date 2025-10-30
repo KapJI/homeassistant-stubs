@@ -47,6 +47,7 @@ NET_CONSUMPTION_PHASE_SENSORS: Incomplete
 class EnvoyCTSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyMeterData], int | float | str | CtType | CtMeterStatus | CtStatusFlags | CtState | None]
     on_phase: str | None
+    cttype: str | None = ...
 
 CT_NET_CONSUMPTION_SENSORS: Incomplete
 CT_NET_CONSUMPTION_PHASE_SENSORS: Incomplete
@@ -79,6 +80,7 @@ ENPOWER_SENSORS: Incomplete
 class EnvoyCollarSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyCollar], datetime.datetime | int | float | str]
 
+ADMIN_STATE_MAP: Incomplete
 COLLAR_SENSORS: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
@@ -148,32 +150,12 @@ class EnvoyNetConsumptionPhaseEntity(EnvoySystemSensorEntity):
     @property
     def native_value(self) -> int | None: ...
 
-class EnvoyConsumptionCTEntity(EnvoySystemSensorEntity):
+class EnvoyCTEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyCTSensorEntityDescription
     @property
     def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
 
-class EnvoyConsumptionCTPhaseEntity(EnvoySystemSensorEntity):
-    entity_description: EnvoyCTSensorEntityDescription
-    @property
-    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
-
-class EnvoyProductionCTEntity(EnvoySystemSensorEntity):
-    entity_description: EnvoyCTSensorEntityDescription
-    @property
-    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
-
-class EnvoyProductionCTPhaseEntity(EnvoySystemSensorEntity):
-    entity_description: EnvoyCTSensorEntityDescription
-    @property
-    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
-
-class EnvoyStorageCTEntity(EnvoySystemSensorEntity):
-    entity_description: EnvoyCTSensorEntityDescription
-    @property
-    def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
-
-class EnvoyStorageCTPhaseEntity(EnvoySystemSensorEntity):
+class EnvoyCTPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyCTSensorEntityDescription
     @property
     def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...

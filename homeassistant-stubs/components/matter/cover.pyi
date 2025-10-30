@@ -1,8 +1,9 @@
 from .const import LOGGER as LOGGER
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from enum import IntEnum
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityDescription as CoverEntityDescription, CoverEntityFeature as CoverEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -22,8 +23,11 @@ class OperationalStatus(IntEnum):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
+@dataclass(frozen=True, kw_only=True)
+class MatterCoverEntityDescription(CoverEntityDescription, MatterEntityDescription): ...
+
 class MatterCover(MatterEntity, CoverEntity):
-    entity_description: CoverEntityDescription
+    entity_description: MatterCoverEntityDescription
     @property
     def is_closed(self) -> bool | None: ...
     async def async_stop_cover(self, **kwargs: Any) -> None: ...

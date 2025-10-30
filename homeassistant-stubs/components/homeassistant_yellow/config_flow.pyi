@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as F
 from .hardware import BOARD_NAME as BOARD_NAME
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_yellow_settings as async_get_yellow_settings, async_set_yellow_settings as async_set_yellow_settings, get_supervisor_client as get_supervisor_client
+from homeassistant.components.hassio import SupervisorError as SupervisorError, YellowOptions as YellowOptions, get_supervisor_client as get_supervisor_client
 from homeassistant.components.homeassistant_hardware.firmware_config_flow import BaseFirmwareConfigFlow as BaseFirmwareConfigFlow, BaseFirmwareOptionsFlow as BaseFirmwareOptionsFlow
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import OptionsFlowHandler as MultiprotocolOptionsFlowHandler, SerialPortSettings as MultiprotocolSerialPortSettings
 from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget, probe_silabs_firmware_info as probe_silabs_firmware_info

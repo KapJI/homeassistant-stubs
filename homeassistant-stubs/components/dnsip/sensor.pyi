@@ -21,17 +21,17 @@ class WanIpSensor(SensorEntity):
     _attr_has_entity_name: bool
     _attr_translation_key: str
     _unrecorded_attributes: Incomplete
+    resolver: aiodns.DNSResolver
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     hostname: Incomplete
     port: Incomplete
-    _resolver: Incomplete
+    nameserver: Incomplete
     querytype: Literal['A', 'AAAA']
     _retries: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete
-    resolver: aiodns.DNSResolver
-    def __init__(self, name: str, hostname: str, resolver: str, ipv6: bool, port: int) -> None: ...
+    def __init__(self, name: str, hostname: str, nameserver: str, ipv6: bool, port: int) -> None: ...
     def create_dns_resolver(self) -> None: ...
     _attr_native_value: Incomplete
     _attr_available: bool

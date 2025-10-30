@@ -6,6 +6,7 @@ from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass, field
 from datetime import datetime
 from fritzconnection import FritzConnection
+from fritzconnection.lib.fritzcall import FritzCall
 from fritzconnection.lib.fritzhosts import FritzHosts
 from fritzconnection.lib.fritzstatus import FritzStatus
 from fritzconnection.lib.fritzwlan import FritzGuestWLAN
@@ -46,6 +47,7 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     fritz_guest_wifi: FritzGuestWLAN
     fritz_hosts: FritzHosts
     fritz_status: FritzStatus
+    fritz_call: FritzCall
     host: Incomplete
     mesh_role: Incomplete
     mesh_wifi_uplink: bool
@@ -102,6 +104,7 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     async def async_trigger_reboot(self) -> None: ...
     async def async_trigger_reconnect(self) -> None: ...
     async def async_trigger_set_guest_password(self, password: str | None, length: int) -> None: ...
+    async def async_trigger_dial(self, number: str, max_ring_seconds: int) -> None: ...
     async def async_trigger_cleanup(self) -> None: ...
 
 class AvmWrapper(FritzBoxTools):

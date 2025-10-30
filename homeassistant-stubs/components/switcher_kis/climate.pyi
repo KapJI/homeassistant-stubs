@@ -1,5 +1,5 @@
 from . import SwitcherConfigEntry as SwitcherConfigEntry
-from .const import SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
+from .const import API_CONTROL_BREEZE_DEVICE as API_CONTROL_BREEZE_DEVICE, SIGNAL_DEVICE_ADD as SIGNAL_DEVICE_ADD
 from .coordinator import SwitcherDataUpdateCoordinator as SwitcherDataUpdateCoordinator
 from .entity import SwitcherEntity as SwitcherEntity
 from .utils import get_breeze_remote_manager as get_breeze_remote_manager
@@ -8,12 +8,12 @@ from aioswitcher.api.remotes import SwitcherBreezeRemote as SwitcherBreezeRemote
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode, SWING_OFF as SWING_OFF, SWING_VERTICAL as SWING_VERTICAL
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-API_CONTROL_BREEZE_DEVICE: str
+PARALLEL_UPDATES: int
 DEVICE_MODE_TO_HA: Incomplete
 HA_TO_DEVICE_MODE: Incomplete
 DEVICE_FAN_TO_HA: Incomplete

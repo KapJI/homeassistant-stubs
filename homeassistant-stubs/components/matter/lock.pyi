@@ -1,9 +1,10 @@
 import asyncio
 from .const import LOGGER as LOGGER
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription, LockEntityFeature as LockEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, Platform as Platform
@@ -16,6 +17,9 @@ DOOR_LOCK_OPERATION_SOURCE: Incomplete
 DoorLockFeature: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class MatterLockEntityDescription(LockEntityDescription, MatterEntityDescription): ...
 
 class MatterLock(MatterEntity, LockEntity):
     _feature_map: int | None

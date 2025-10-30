@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from roborock.containers import HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, NetworkInfo as NetworkInfo
+from roborock.data import HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, NetworkInfo as NetworkInfo
 from roborock.roborock_typing import DeviceProp as DeviceProp
 from typing import Any
 from vacuum_map_parser_base.map_data import MapData as MapData

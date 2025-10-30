@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import frame as frame
 from homeassistant.util import slugify as slugify
+from homeassistant.util.async_iterator import AsyncIteratorReader as AsyncIteratorReader, AsyncIteratorWriter as AsyncIteratorWriter
 from multidict import istr
 
 @callback

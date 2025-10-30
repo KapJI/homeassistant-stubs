@@ -7,7 +7,7 @@ from homeassistant.const import CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from roborock.containers import UserData as UserData
+from roborock.data import UserData as UserData
 from roborock.web_api import RoborockApiClient
 from typing import Any
 

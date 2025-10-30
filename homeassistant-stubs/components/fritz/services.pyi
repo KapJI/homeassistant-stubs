@@ -8,7 +8,10 @@ from homeassistant.helpers.service import async_extract_config_entry_ids as asyn
 _LOGGER: Incomplete
 SERVICE_SET_GUEST_WIFI_PW: str
 SERVICE_SCHEMA_SET_GUEST_WIFI_PW: Incomplete
+SERVICE_DIAL: str
+SERVICE_SCHEMA_DIAL: Incomplete
 
 async def _async_set_guest_wifi_password(service_call: ServiceCall) -> None: ...
+async def _async_dial(service_call: ServiceCall) -> None: ...
 @callback
 def async_setup_services(hass: HomeAssistant) -> None: ...

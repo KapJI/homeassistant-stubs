@@ -59,21 +59,6 @@ class VacuumEntityFeature(IntFlag):
     STATE = 4096
     START = 8192
 
-_DEPRECATED_SUPPORT_TURN_ON: Incomplete
-_DEPRECATED_SUPPORT_TURN_OFF: Incomplete
-_DEPRECATED_SUPPORT_PAUSE: Incomplete
-_DEPRECATED_SUPPORT_STOP: Incomplete
-_DEPRECATED_SUPPORT_RETURN_HOME: Incomplete
-_DEPRECATED_SUPPORT_FAN_SPEED: Incomplete
-_DEPRECATED_SUPPORT_BATTERY: Incomplete
-_DEPRECATED_SUPPORT_STATUS: Incomplete
-_DEPRECATED_SUPPORT_SEND_COMMAND: Incomplete
-_DEPRECATED_SUPPORT_LOCATE: Incomplete
-_DEPRECATED_SUPPORT_CLEAN_SPOT: Incomplete
-_DEPRECATED_SUPPORT_MAP: Incomplete
-_DEPRECATED_SUPPORT_STATE: Incomplete
-_DEPRECATED_SUPPORT_START: Incomplete
-
 @bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

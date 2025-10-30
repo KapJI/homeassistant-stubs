@@ -1,4 +1,3 @@
-import asyncio
 from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,8 +7,6 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
-from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
@@ -40,13 +37,6 @@ class AlarmControlPanelEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_A
     _attr_code_format: CodeFormat | None
     _attr_supported_features: AlarmControlPanelEntityFeature
     _alarm_control_panel_option_default_code: str | None
-    __alarm_legacy_state: bool
-    def __init_subclass__(cls, **kwargs: Any) -> None: ...
-    def __setattr__(self, name: str, value: Any, /) -> None: ...
-    @callback
-    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
-    @callback
-    def _report_deprecated_alarm_state_handling(self) -> None: ...
     @final
     @property
     def state(self) -> str | None: ...

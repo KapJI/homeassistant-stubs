@@ -1,4 +1,4 @@
-from .const import BLEScannerMode as BLEScannerMode, BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID as BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID, BLE_SCANNER_MIN_FIRMWARE as BLE_SCANNER_MIN_FIRMWARE, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, DOMAIN as DOMAIN, OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID as OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID, WALL_DISPLAY_FIRMWARE_UNSUPPORTED_ISSUE_ID as WALL_DISPLAY_FIRMWARE_UNSUPPORTED_ISSUE_ID, WALL_DISPLAY_MIN_FIRMWARE as WALL_DISPLAY_MIN_FIRMWARE
+from .const import BLEScannerMode as BLEScannerMode, BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID as BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID, BLE_SCANNER_MIN_FIRMWARE as BLE_SCANNER_MIN_FIRMWARE, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, DEPRECATED_FIRMWARES as DEPRECATED_FIRMWARES, DEPRECATED_FIRMWARE_ISSUE_ID as DEPRECATED_FIRMWARE_ISSUE_ID, DOMAIN as DOMAIN, OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID as OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry
 from .utils import get_rpc_ws_url as get_rpc_ws_url
 from _typeshed import Incomplete
@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 @callback
 def async_manage_ble_scanner_firmware_unsupported_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
 @callback
-def async_manage_wall_display_firmware_unsupported_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
+def async_manage_deprecated_firmware_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
 @callback
 def async_manage_outbound_websocket_incorrectly_enabled_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
 

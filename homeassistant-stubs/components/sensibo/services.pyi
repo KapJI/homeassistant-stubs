@@ -1,0 +1,31 @@
+from .const import DOMAIN as DOMAIN
+from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_SWING_MODE as ATTR_SWING_MODE, HVACMode as HVACMode
+from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE
+from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.helpers import service as service
+
+SERVICE_ASSUME_STATE: str
+SERVICE_ENABLE_TIMER: str
+ATTR_MINUTES: str
+SERVICE_ENABLE_PURE_BOOST: str
+SERVICE_DISABLE_PURE_BOOST: str
+SERVICE_FULL_STATE: str
+SERVICE_ENABLE_CLIMATE_REACT: str
+SERVICE_GET_DEVICE_CAPABILITIES: str
+ATTR_HIGH_TEMPERATURE_THRESHOLD: str
+ATTR_HIGH_TEMPERATURE_STATE: str
+ATTR_LOW_TEMPERATURE_THRESHOLD: str
+ATTR_LOW_TEMPERATURE_STATE: str
+ATTR_SMART_TYPE: str
+ATTR_AC_INTEGRATION: str
+ATTR_GEO_INTEGRATION: str
+ATTR_INDOOR_INTEGRATION: str
+ATTR_OUTDOOR_INTEGRATION: str
+ATTR_SENSITIVITY: str
+ATTR_TARGET_TEMPERATURE: str
+ATTR_HORIZONTAL_SWING_MODE: str
+ATTR_LIGHT: str
+BOOST_INCLUSIVE: str
+
+@callback
+def async_setup_services(hass: HomeAssistant) -> None: ...

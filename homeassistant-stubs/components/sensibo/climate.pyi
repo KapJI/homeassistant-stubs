@@ -3,37 +3,14 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordinator
 from .entity import SensiboDeviceBaseEntity as SensiboDeviceBaseEntity, async_handle_api_call as async_handle_api_call
 from _typeshed import Incomplete
-from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_SWING_MODE as ATTR_SWING_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
-from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
+from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any
 
-SERVICE_ASSUME_STATE: str
-SERVICE_ENABLE_TIMER: str
-ATTR_MINUTES: str
-SERVICE_ENABLE_PURE_BOOST: str
-SERVICE_DISABLE_PURE_BOOST: str
-SERVICE_FULL_STATE: str
-SERVICE_ENABLE_CLIMATE_REACT: str
-SERVICE_GET_DEVICE_CAPABILITIES: str
-ATTR_HIGH_TEMPERATURE_THRESHOLD: str
-ATTR_HIGH_TEMPERATURE_STATE: str
-ATTR_LOW_TEMPERATURE_THRESHOLD: str
-ATTR_LOW_TEMPERATURE_STATE: str
-ATTR_SMART_TYPE: str
-ATTR_AC_INTEGRATION: str
-ATTR_GEO_INTEGRATION: str
-ATTR_INDOOR_INTEGRATION: str
-ATTR_OUTDOOR_INTEGRATION: str
-ATTR_SENSITIVITY: str
-ATTR_TARGET_TEMPERATURE: str
-ATTR_HORIZONTAL_SWING_MODE: str
-ATTR_LIGHT: str
-BOOST_INCLUSIVE: str
 AVAILABLE_FAN_MODES: Incomplete
 AVAILABLE_SWING_MODES: Incomplete
 AVAILABLE_HORIZONTAL_SWING_MODES: Incomplete

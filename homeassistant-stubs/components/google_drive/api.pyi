@@ -10,6 +10,7 @@ from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth
 from typing import Any
 
 _UPLOAD_AND_DOWNLOAD_TIMEOUT: Incomplete
+_UPLOAD_MAX_RETRIES: int
 _LOGGER: Incomplete
 
 class AsyncConfigEntryAuth(AbstractAuth):

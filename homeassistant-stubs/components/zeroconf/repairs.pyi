@@ -1,0 +1,13 @@
+from homeassistant import data_entry_flow as data_entry_flow
+from homeassistant.components.homeassistant import SERVICE_HOMEASSISTANT_RESTART as SERVICE_HOMEASSISTANT_RESTART
+from homeassistant.components.repairs import RepairsFlow as RepairsFlow
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import instance_id as instance_id
+
+class DuplicateInstanceIDRepairFlow(RepairsFlow):
+    @callback
+    def _async_get_placeholders(self) -> dict[str, str]: ...
+    async def async_step_init(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+    async def async_step_confirm_recreate(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+
+async def async_create_fix_flow(hass: HomeAssistant, issue_id: str, data: dict[str, str | int | float | None] | None) -> RepairsFlow: ...

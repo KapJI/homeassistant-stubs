@@ -6,7 +6,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-ATTR_LAST_TIME_REACHABLE: str
 DEFAULT_DEVICE_NAME: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: AsusWrtConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -14,7 +13,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AsusWrtConfigEntry, asyn
 def add_entities(router: AsusWrtRouter, async_add_entities: AddConfigEntryEntitiesCallback, tracked: set[str]) -> None: ...
 
 class AsusWrtDevice(ScannerEntity):
-    _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
     _router: Incomplete
     _device: Incomplete
@@ -30,7 +28,6 @@ class AsusWrtDevice(ScannerEntity):
     def ip_address(self) -> str | None: ...
     @property
     def mac_address(self) -> str: ...
-    _attr_extra_state_attributes: Incomplete
     @callback
     def async_on_demand_update(self) -> None: ...
     async def async_added_to_hass(self) -> None: ...

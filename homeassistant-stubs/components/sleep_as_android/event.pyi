@@ -22,6 +22,7 @@ class SleepAsAndroidEvent(StrEnum):
     SLEEP_PHASE = 'sleep_phase'
     SLEEP_TRACKING = 'sleep_tracking'
     SOUND_EVENT = 'sound_event'
+    JET_LAG_PREVENTION = 'jet_lag_prevention'
 
 EVENT_DESCRIPTIONS: tuple[SleepAsAndroidEventEntityDescription, ...]
 

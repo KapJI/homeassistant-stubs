@@ -1,5 +1,5 @@
 from . import EcovacsConfigEntry as EcovacsConfigEntry
-from .const import SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS
+from .const import SUPPORTED_LIFESPANS as SUPPORTED_LIFESPANS, SUPPORTED_STATION_ACTIONS as SUPPORTED_STATION_ACTIONS
 from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity
 from .util import get_supported_entities as get_supported_entities
 from _typeshed import Incomplete

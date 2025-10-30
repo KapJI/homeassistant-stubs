@@ -38,6 +38,11 @@ _ML_TO_CUBIC_METER: Incomplete
 _GALLON_TO_CUBIC_METER: Incomplete
 _FLUID_OUNCE_TO_CUBIC_METER: Incomplete
 _CUBIC_FOOT_TO_CUBIC_METER: Incomplete
+_IDEAL_GAS_CONSTANT: float
+_AMBIENT_TEMPERATURE: float
+_AMBIENT_PRESSURE: int
+_AMBIENT_IDEAL_GAS_MOLAR_VOLUME: Incomplete
+_CARBON_MONOXIDE_MOLAR_MASS: float
 
 class BaseUnitConverter:
     UNIT_CLASS: str
@@ -63,6 +68,11 @@ class BaseUnitConverter:
     @classmethod
     @lru_cache
     def _are_unit_inverses(cls, from_unit: str | None, to_unit: str | None) -> bool: ...
+
+class CarbonMonoxideConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
 
 class DataRateConverter(BaseUnitConverter):
     UNIT_CLASS: str
@@ -188,6 +198,11 @@ class TemperatureConverter(BaseUnitConverter):
     def _celsius_to_fahrenheit(cls, celsius: float) -> float: ...
     @classmethod
     def _celsius_to_kelvin(cls, celsius: float) -> float: ...
+
+class TemperatureDeltaConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    VALID_UNITS: Incomplete
+    _UNIT_CONVERSION: Incomplete
 
 class UnitlessRatioConverter(BaseUnitConverter):
     UNIT_CLASS: str

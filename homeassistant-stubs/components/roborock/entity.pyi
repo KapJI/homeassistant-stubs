@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from roborock.api import RoborockClient as RoborockClient
 from roborock.command_cache import CacheableAttribute as CacheableAttribute
-from roborock.containers import Consumable as Consumable, Status
+from roborock.data import Consumable as Consumable, Status
 from roborock.roborock_message import RoborockDataProtocol
 from roborock.roborock_typing import RoborockCommand
 from roborock.version_1_apis.roborock_client_v1 import AttributeCache as AttributeCache, RoborockClientV1 as RoborockClientV1

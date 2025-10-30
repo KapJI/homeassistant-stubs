@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util.unit_conversion import EnergyConverter as EnergyConverter, VolumeConverter as VolumeConverter
 from opower import Account as Account, CostRead as CostRead, Forecast
 
 _LOGGER: Incomplete

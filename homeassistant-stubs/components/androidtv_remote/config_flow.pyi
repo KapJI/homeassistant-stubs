@@ -15,6 +15,8 @@ _LOGGER: Incomplete
 APPS_NEW_ID: str
 CONF_APP_DELETE: str
 CONF_APP_ID: str
+_EXAMPLE_APP_ID: str
+_EXAMPLE_APP_PLAY_STORE_URL: Incomplete
 STEP_PAIR_DATA_SCHEMA: Incomplete
 
 class AndroidTVRemoteConfigFlow(ConfigFlow, domain=DOMAIN):

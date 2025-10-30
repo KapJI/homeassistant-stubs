@@ -1,11 +1,12 @@
 from . import HABITICA_KEY as HABITICA_KEY
 from .const import ASSETS_URL as ASSETS_URL
 from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator, HabiticaPartyCoordinator as HabiticaPartyCoordinator
-from .entity import HabiticaBase as HabiticaBase, HabiticaPartyBase as HabiticaPartyBase
+from .entity import HabiticaBase as HabiticaBase, HabiticaPartyBase as HabiticaPartyBase, HabiticaPartyMemberBase as HabiticaPartyMemberBase
 from _typeshed import Incomplete
 from enum import StrEnum
 from habiticalib import Avatar as Avatar, ContentData as ContentData
 from homeassistant.components.image import Image as Image, ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription
+from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
@@ -23,9 +24,12 @@ class HabiticaImage(HabiticaBase, ImageEntity):
     _avatar: Avatar | None
     _cache: bytes | None
     _attr_image_last_updated: Incomplete
-    def __init__(self, hass: HomeAssistant, coordinator: HabiticaDataUpdateCoordinator) -> None: ...
+    def __init__(self, hass: HomeAssistant, coordinator: HabiticaDataUpdateCoordinator, subentry: ConfigSubentry | None = None) -> None: ...
     def _handle_coordinator_update(self) -> None: ...
     async def async_image(self) -> bytes | None: ...
+
+class HabiticaPartyMemberImage(HabiticaImage, HabiticaPartyMemberBase):
+    def __init__(self, hass: HomeAssistant, coordinator: HabiticaDataUpdateCoordinator, party_coordinator: HabiticaPartyCoordinator, subentry: ConfigSubentry | None = None) -> None: ...
 
 class HabiticaPartyImage(HabiticaPartyBase, ImageEntity):
     entity_description: Incomplete

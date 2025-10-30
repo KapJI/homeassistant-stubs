@@ -1,5 +1,5 @@
 from .models import StatisticMeanType as StatisticMeanType, StatisticPeriod as StatisticPeriod
-from .statistics import STATISTIC_UNIT_TO_UNIT_CONVERTER as STATISTIC_UNIT_TO_UNIT_CONVERTER, async_add_external_statistics as async_add_external_statistics, async_change_statistics_unit as async_change_statistics_unit, async_import_statistics as async_import_statistics, async_list_statistic_ids as async_list_statistic_ids, list_statistic_ids as list_statistic_ids, statistic_during_period as statistic_during_period, statistics_during_period as statistics_during_period, update_statistics_issues as update_statistics_issues, validate_statistics as validate_statistics
+from .statistics import UNIT_CLASS_TO_UNIT_CONVERTER as UNIT_CLASS_TO_UNIT_CONVERTER, async_add_external_statistics as async_add_external_statistics, async_change_statistics_unit as async_change_statistics_unit, async_import_statistics as async_import_statistics, async_list_statistic_ids as async_list_statistic_ids, async_update_statistics_metadata as async_update_statistics_metadata, list_statistic_ids as list_statistic_ids, statistic_during_period as statistic_during_period, statistics_during_period as statistics_during_period, update_statistics_issues as update_statistics_issues, validate_statistics as validate_statistics
 from .util import PERIOD_SCHEMA as PERIOD_SCHEMA, get_instance as get_instance, resolve_period as resolve_period
 from _typeshed import Incomplete
 from datetime import datetime as dt
@@ -8,9 +8,11 @@ from homeassistant.components.websocket_api import messages as messages
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.json import json_bytes as json_bytes
-from homeassistant.util.unit_conversion import ApparentPowerConverter as ApparentPowerConverter, AreaConverter as AreaConverter, BloodGlucoseConcentrationConverter as BloodGlucoseConcentrationConverter, ConductivityConverter as ConductivityConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, DurationConverter as DurationConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, EnergyDistanceConverter as EnergyDistanceConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, MassVolumeConcentrationConverter as MassVolumeConcentrationConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, ReactiveEnergyConverter as ReactiveEnergyConverter, ReactivePowerConverter as ReactivePowerConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
+from homeassistant.util.unit_conversion import ApparentPowerConverter as ApparentPowerConverter, AreaConverter as AreaConverter, BloodGlucoseConcentrationConverter as BloodGlucoseConcentrationConverter, CarbonMonoxideConcentrationConverter as CarbonMonoxideConcentrationConverter, ConductivityConverter as ConductivityConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, DurationConverter as DurationConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, EnergyDistanceConverter as EnergyDistanceConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, MassVolumeConcentrationConverter as MassVolumeConcentrationConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, ReactiveEnergyConverter as ReactiveEnergyConverter, ReactivePowerConverter as ReactivePowerConverter, SpeedConverter as SpeedConverter, TemperatureConverter as TemperatureConverter, TemperatureDeltaConverter as TemperatureDeltaConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
 from typing import Any, Literal
 
+_LOGGER: Incomplete
 CLEAR_STATISTICS_TIME_OUT: int
 UPDATE_STATISTICS_METADATA_TIME_OUT: int
 UNIT_SCHEMA: Incomplete
@@ -41,8 +43,8 @@ async def ws_get_statistics_metadata(hass: HomeAssistant, connection: websocket_
 @websocket_api.async_response
 async def ws_update_statistics_metadata(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.require_admin
-@callback
-def ws_change_statistics_unit(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
+async def ws_change_statistics_unit(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 async def ws_adjust_sum_statistics(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

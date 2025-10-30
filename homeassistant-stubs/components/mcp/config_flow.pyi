@@ -1,9 +1,10 @@
 from . import async_get_config_entry_implementation as async_get_config_entry_implementation
 from .application_credentials import authorization_server_context as authorization_server_context
-from .const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_AUTHORIZATION_URL as CONF_AUTHORIZATION_URL, CONF_TOKEN_URL as CONF_TOKEN_URL, DOMAIN as DOMAIN
+from .const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_AUTHORIZATION_URL as CONF_AUTHORIZATION_URL, CONF_SCOPE as CONF_SCOPE, CONF_TOKEN_URL as CONF_TOKEN_URL, DOMAIN as DOMAIN
 from .coordinator import TokenManager as TokenManager, mcp_client as mcp_client
 from _typeshed import Incomplete
 from collections.abc import Mapping
+from dataclasses import dataclass
 from homeassistant.components.application_credentials import AuthorizationServer as AuthorizationServer
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_TOKEN as CONF_TOKEN, CONF_URL as CONF_URL
@@ -16,8 +17,14 @@ _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 OAUTH_DISCOVERY_ENDPOINT: str
 MCP_DISCOVERY_HEADERS: Incomplete
+EXAMPLE_URL: str
 
-async def async_discover_oauth_config(hass: HomeAssistant, mcp_server_url: str) -> AuthorizationServer: ...
+@dataclass
+class OAuthConfig:
+    authorization_server: AuthorizationServer
+    scopes: list[str] | None = ...
+
+async def async_discover_oauth_config(hass: HomeAssistant, mcp_server_url: str) -> OAuthConfig: ...
 async def validate_input(hass: HomeAssistant, data: dict[str, Any], token_manager: TokenManager | None = None) -> dict[str, Any]: ...
 
 class ModelContextProtocolConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
@@ -25,10 +32,13 @@ class ModelContextProtocolConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     logger = _LOGGER
     data: dict[str, Any]
+    oauth_config: OAuthConfig | None
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth_discovery(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def authorization_server(self) -> AuthorizationServer: ...
+    @property
+    def extra_authorize_data(self) -> dict: ...
     async def async_step_credentials_choice(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_new_credentials(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_pick_implementation(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

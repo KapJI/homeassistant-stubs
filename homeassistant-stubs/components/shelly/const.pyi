@@ -3,7 +3,7 @@ from enum import StrEnum
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.const import UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from logging import Logger
-from typing import Final
+from typing import Final, TypedDict
 
 DOMAIN: Final[str]
 LOGGER: Logger
@@ -63,14 +63,19 @@ class BLEScannerMode(StrEnum):
     PASSIVE = 'passive'
 
 BLE_SCANNER_MIN_FIRMWARE: str
-WALL_DISPLAY_MIN_FIRMWARE: str
 MAX_PUSH_UPDATE_FAILURES: int
 PUSH_UPDATE_ISSUE_ID: str
 NOT_CALIBRATED_ISSUE_ID: str
 FIRMWARE_UNSUPPORTED_ISSUE_ID: str
 BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID: str
 OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID: str
-WALL_DISPLAY_FIRMWARE_UNSUPPORTED_ISSUE_ID: str
+DEPRECATED_FIRMWARE_ISSUE_ID: str
+
+class DeprecatedFirmwareInfo(TypedDict):
+    min_firmware: str
+    ha_version: str
+
+DEPRECATED_FIRMWARES: dict[str, DeprecatedFirmwareInfo]
 GAS_VALVE_OPEN_STATES: Incomplete
 OTA_BEGIN: str
 OTA_ERROR: str
@@ -89,3 +94,10 @@ COMPONENT_ID_PATTERN: Incomplete
 DEVICE_UNIT_MAP: Incomplete
 MAX_SCRIPT_SIZE: int
 All_LIGHT_TYPES: Incomplete
+MODEL_NEO_WATER_VALVE: str
+MODEL_FRANKEVER_WATER_VALVE: str
+MODEL_LINKEDGO_ST802_THERMOSTAT: str
+MODEL_LINKEDGO_ST1820_THERMOSTAT: str
+MODEL_TOP_EV_CHARGER_EVE01: str
+MODEL_FRANKEVER_IRRIGATION_CONTROLLER: str
+ROLE_GENERIC: str

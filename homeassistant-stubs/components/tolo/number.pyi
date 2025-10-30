@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
+from .coordinator import ToloConfigEntry as ToloConfigEntry, ToloSaunaUpdateCoordinator as ToloSaunaUpdateCoordinator
 from .entity import ToloSaunaCoordinatorEntity as ToloSaunaCoordinatorEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -22,12 +20,12 @@ class ToloNumberEntityDescription(NumberEntityDescription):
 
 NUMBERS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ToloConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ToloNumberEntity(ToloSaunaCoordinatorEntity, NumberEntity):
     entity_description: ToloNumberEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ConfigEntry, entity_description: ToloNumberEntityDescription) -> None: ...
+    def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ToloConfigEntry, entity_description: ToloNumberEntityDescription) -> None: ...
     @property
     def native_value(self) -> float: ...
     def set_native_value(self, value: float) -> None: ...

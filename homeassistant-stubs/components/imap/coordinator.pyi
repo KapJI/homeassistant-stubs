@@ -8,7 +8,7 @@ from collections.abc import Mapping
 from datetime import datetime, timedelta
 from email.message import Message
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, TemplateError as TemplateError
 from homeassistant.helpers.json import json_bytes as json_bytes
 from homeassistant.helpers.template import Template as Template
@@ -42,6 +42,9 @@ class ImapMessage:
     def subject(self) -> str: ...
     @property
     def text(self) -> str: ...
+
+@callback
+def get_parts(message: Message, prefix: str | None = None) -> dict[str, Any]: ...
 
 class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
     config_entry: ImapConfigEntry

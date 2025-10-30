@@ -6,8 +6,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from eq3btsmart.models import Status as Status
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.components.sensor.const import SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

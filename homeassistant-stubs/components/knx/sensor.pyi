@@ -7,16 +7,15 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant import config_entries as config_entries
-from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory, Platform as Platform
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
 from xknx import XKNX as XKNX
 from xknx.core.connection_state import XknxConnectionState
-from xknx.devices import Sensor as XknxSensor
+from xknx.devices import Device as XknxDevice, Sensor as XknxSensor
 
 SCAN_INTERVAL: Incomplete
 
@@ -33,7 +32,7 @@ SYSTEM_ENTITY_DESCRIPTIONS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _create_sensor(xknx: XKNX, config: ConfigType) -> XknxSensor: ...
 
-class KNXSensor(KnxYamlEntity, SensorEntity):
+class KNXSensor(KnxYamlEntity, RestoreSensor):
     _device: XknxSensor
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete
@@ -41,11 +40,11 @@ class KNXSensor(KnxYamlEntity, SensorEntity):
     _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
+    _attr_extra_state_attributes: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
-    @property
-    def native_value(self) -> StateType: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, Any] | None: ...
+    _attr_native_value: Incomplete
+    async def async_added_to_hass(self) -> None: ...
+    def after_update_callback(self, device: XknxDevice) -> None: ...
 
 class KNXSystemSensor(SensorEntity):
     _attr_has_entity_name: bool

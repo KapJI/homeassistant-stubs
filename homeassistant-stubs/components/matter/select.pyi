@@ -21,7 +21,7 @@ type SelectCluster = clusters.ModeSelect | clusters.OvenMode | clusters.LaundryW
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class MatterSelectEntityDescription(SelectEntityDescription, MatterEntityDescription): ...
 
 @dataclass(frozen=True, kw_only=True)

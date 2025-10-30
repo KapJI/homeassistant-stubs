@@ -19,4 +19,5 @@ OPTIONS_FLOW: Incomplete
 class WorldclockConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
+    options_flow_reloads: bool
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

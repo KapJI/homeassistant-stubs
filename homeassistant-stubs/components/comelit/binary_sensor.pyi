@@ -1,4 +1,5 @@
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitVedoSystem as ComelitVedoSystem
+from .utils import DeviceType as DeviceType, new_device_listener as new_device_listener
 from _typeshed import Incomplete
 from aiocomelit import ComelitVedoZoneObject as ComelitVedoZoneObject
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity

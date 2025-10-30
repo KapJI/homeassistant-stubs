@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.hassio import HassioAPIError as HassioAPIError, async_get_green_settings as async_get_green_settings, async_set_green_settings as async_set_green_settings
+from homeassistant.components.hassio import GreenOptions as GreenOptions, SupervisorError as SupervisorError, get_supervisor_client as get_supervisor_client
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from typing import Any
@@ -19,5 +19,7 @@ class HomeAssistantGreenConfigFlow(ConfigFlow, domain=DOMAIN):
 
 class HomeAssistantGreenOptionsFlow(OptionsFlow):
     _hw_settings: dict[str, bool] | None
+    _supervisor_client: Incomplete
+    def __init__(self, hass: HomeAssistant, *args: Any, **kwargs: Any) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_hardware_settings(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -5,6 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from pyHomee import Homee
+from pyHomee.model import HomeeNode as HomeeNode
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete

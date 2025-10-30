@@ -1,4 +1,4 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, MODEL_FRANKEVER_WATER_VALVE as MODEL_FRANKEVER_WATER_VALVE, ROLE_GENERIC as ROLE_GENERIC
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, ShellySleepingRpcAttributeEntity as ShellySleepingRpcAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc
 from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, is_block_momentary_input as is_block_momentary_input, is_rpc_momentary_input as is_rpc_momentary_input, is_view_for_platform as is_view_for_platform
@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Final
@@ -38,6 +38,10 @@ REST_SENSORS: Final[Incomplete]
 RPC_SENSORS: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BlockBinarySensor(ShellyBlockAttributeEntity, BinarySensorEntity):
     entity_description: BlockBinarySensorDescription

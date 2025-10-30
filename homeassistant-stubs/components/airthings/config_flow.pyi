@@ -7,6 +7,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
+URL_API_INTEGRATION: Incomplete
 
 class AirthingsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

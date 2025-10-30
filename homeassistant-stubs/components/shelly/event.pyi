@@ -27,6 +27,10 @@ RPC_EVENT: Final[Incomplete]
 SCRIPT_EVENT: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ShellyBlockEvent(ShellyBlockEntity, EventEntity):
     entity_description: ShellyBlockEventDescription

@@ -35,7 +35,7 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     _last_valid_state_time: tuple[str, datetime] | None
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
-    _unit_template: Incomplete
+    _unit_template: str | None
     _attr_native_unit_of_measurement: Incomplete
     _unit_prefix: Incomplete
     _unit_time: Incomplete
@@ -43,6 +43,7 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     _max_sub_interval: timedelta | None
     _cancel_max_sub_interval_exceeded_callback: CALLBACK_TYPE
     def __init__(self, hass: HomeAssistant, *, name: str | None, round_digits: int, source_entity: str, time_window: timedelta, unit_of_measurement: str | None, unit_prefix: str | None, unit_time: UnitOfTime, max_sub_interval: timedelta | None, unique_id: str | None) -> None: ...
+    def _derive_and_set_attributes_from_state(self, source_state: State | None) -> None: ...
     def _calc_derivative_from_state_list(self, current_time: datetime) -> Decimal: ...
     def _prune_state_list(self, current_time: datetime) -> None: ...
     _attr_available: bool

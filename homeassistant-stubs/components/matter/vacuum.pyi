@@ -1,8 +1,9 @@
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
+from dataclasses import dataclass
 from enum import IntEnum
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -28,10 +29,13 @@ class ModeTag(IntEnum):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
+@dataclass(frozen=True, kw_only=True)
+class MatterStateVacuumEntityDescription(StateVacuumEntityDescription, MatterEntityDescription): ...
+
 class MatterVacuum(MatterEntity, StateVacuumEntity):
     _last_accepted_commands: list[int] | None
     _supported_run_modes: dict[int, clusters.RvcRunMode.Structs.ModeOptionStruct] | None
-    entity_description: StateVacuumEntityDescription
+    entity_description: MatterStateVacuumEntityDescription
     _platform_translation_key: str
     def _get_run_mode_by_tag(self, tag: ModeTag) -> clusters.RvcRunMode.Structs.ModeOptionStruct | None: ...
     async def async_stop(self, **kwargs: Any) -> None: ...

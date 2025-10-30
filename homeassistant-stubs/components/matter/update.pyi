@@ -1,4 +1,4 @@
-from .entity import MatterEntity as MatterEntity
+from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import get_matter as get_matter
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
@@ -27,6 +27,9 @@ class MatterUpdateExtraStoredData(ExtraStoredData):
     def from_dict(cls, data: dict[str, Any]) -> MatterUpdateExtraStoredData: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class MatterUpdateEntityDescription(UpdateEntityDescription, MatterEntityDescription): ...
 
 class MatterUpdate(MatterEntity, UpdateEntity):
     _attr_should_poll: bool

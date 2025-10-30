@@ -1,10 +1,12 @@
 from .coordinator import UptimeRobotConfigEntry as UptimeRobotConfigEntry
 from .entity import UptimeRobotEntity as UptimeRobotEntity
+from .utils import new_device_listener as new_device_listener
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
 
 SENSORS_INFO: Incomplete
 PARALLEL_UPDATES: int

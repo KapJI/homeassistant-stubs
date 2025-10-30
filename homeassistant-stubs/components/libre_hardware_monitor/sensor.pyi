@@ -1,6 +1,5 @@
-from . import LibreHardwareMonitorCoordinator as LibreHardwareMonitorCoordinator
+from . import LibreHardwareMonitorConfigEntry as LibreHardwareMonitorConfigEntry, LibreHardwareMonitorCoordinator as LibreHardwareMonitorCoordinator
 from .const import DOMAIN as DOMAIN
-from .coordinator import LibreHardwareMonitorConfigEntry as LibreHardwareMonitorConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -25,7 +24,7 @@ class LibreHardwareMonitorSensor(CoordinatorEntity[LibreHardwareMonitorCoordinat
     _attr_unique_id: str
     _sensor_id: str
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: LibreHardwareMonitorCoordinator, sensor_data: LibreHardwareMonitorSensorData) -> None: ...
+    def __init__(self, coordinator: LibreHardwareMonitorCoordinator, entry_id: str, sensor_data: LibreHardwareMonitorSensorData) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
     @property

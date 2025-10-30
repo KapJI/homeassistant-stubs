@@ -7,12 +7,15 @@ from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping
 from homeassistant.components import zeroconf as zeroconf
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, FlowType as FlowType, OptionsFlow as OptionsFlow, SOURCE_ESPHOME as SOURCE_ESPHOME, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
-from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResultType as FlowResultType
+from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
+from homeassistant.helpers.service_info.esphome import ESPHomeServiceInfo as ESPHomeServiceInfo
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.service_info.mqtt import MqttServiceInfo as MqttServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
@@ -31,6 +34,7 @@ class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     _reauth_entry: ConfigEntry
     _reconfig_entry: ConfigEntry
     _host: str | None
+    _connected_address: str | None
     __name: str | None
     _port: int | None
     _password: str | None
@@ -64,8 +68,7 @@ class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_name_conflict(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_name_conflict_migrate(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_name_conflict_overwrite(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
-    @callback
-    def _async_create_entry(self) -> ConfigFlowResult: ...
+    async def _async_create_entry(self) -> ConfigFlowResult: ...
     @callback
     def _async_make_config_data(self) -> dict[str, Any]: ...
     @callback

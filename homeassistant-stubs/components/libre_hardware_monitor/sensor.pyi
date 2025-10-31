@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from librehardwaremonitor_api.model import LibreHardwareMonitorSensorData as LibreHardwareMonitorSensorData
+from typing import Any
 
 PARALLEL_UPDATES: int
 STATE_MIN_VALUE: str
@@ -18,8 +19,8 @@ class LibreHardwareMonitorSensor(CoordinatorEntity[LibreHardwareMonitorCoordinat
     _attr_state_class: Incomplete
     _attr_has_entity_name: bool
     _attr_name: str
-    value: str | None
-    _attr_extra_state_attributes: dict[str, str]
+    _attr_native_value: str | None
+    _attr_extra_state_attributes: dict[str, Any]
     _attr_native_unit_of_measurement: Incomplete
     _attr_unique_id: str
     _sensor_id: str
@@ -27,7 +28,3 @@ class LibreHardwareMonitorSensor(CoordinatorEntity[LibreHardwareMonitorCoordinat
     def __init__(self, coordinator: LibreHardwareMonitorCoordinator, entry_id: str, sensor_data: LibreHardwareMonitorSensorData) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
-    @property
-    def native_value(self) -> str | None: ...
-    @staticmethod
-    def _format_number_value(number_str: str) -> str: ...

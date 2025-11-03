@@ -1,6 +1,7 @@
 from .bot import TelegramBotConfigEntry as TelegramBotConfigEntry
-from .const import EVENT_TELEGRAM_ATTACHMENT as EVENT_TELEGRAM_ATTACHMENT, EVENT_TELEGRAM_CALLBACK as EVENT_TELEGRAM_CALLBACK, EVENT_TELEGRAM_COMMAND as EVENT_TELEGRAM_COMMAND, EVENT_TELEGRAM_SENT as EVENT_TELEGRAM_SENT, EVENT_TELEGRAM_TEXT as EVENT_TELEGRAM_TEXT, SIGNAL_UPDATE_EVENT as SIGNAL_UPDATE_EVENT
+from .const import EVENT_TELEGRAM_ATTACHMENT as EVENT_TELEGRAM_ATTACHMENT, EVENT_TELEGRAM_CALLBACK as EVENT_TELEGRAM_CALLBACK, EVENT_TELEGRAM_COMMAND as EVENT_TELEGRAM_COMMAND, EVENT_TELEGRAM_SENT as EVENT_TELEGRAM_SENT, EVENT_TELEGRAM_TEXT as EVENT_TELEGRAM_TEXT
 from .entity import TelegramBotEntity as TelegramBotEntity
+from .helpers import signal as signal
 from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

@@ -22,7 +22,7 @@ keywords = ["homeassistant", "typing", "pep484"]
 requires-python = ">=3.13.2"
 dynamic = ["version"]
 dependencies = [
-    "homeassistant==2025.11.0b5",
+    "homeassistant==2025.11.0b6",
 ]
 
 [dependency-groups]

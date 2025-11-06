@@ -26,6 +26,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import storage as storage
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, KEY_ALLOW_CONFIGURED_CORS as KEY_ALLOW_CONFIGURED_CORS, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS, current_request as current_request
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url

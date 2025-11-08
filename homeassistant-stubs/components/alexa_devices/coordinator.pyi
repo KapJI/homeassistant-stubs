@@ -1,6 +1,6 @@
 from .const import CONF_LOGIN_DATA as CONF_LOGIN_DATA, DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from _typeshed import Incomplete
-from aioamazondevices.api import AmazonDevice
+from aioamazondevices.structures import AmazonDevice
 from aiohttp import ClientSession as ClientSession
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME

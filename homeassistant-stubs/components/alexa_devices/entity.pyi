@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import AmazonDevicesCoordinator as AmazonDevicesCoordinator
 from _typeshed import Incomplete
-from aioamazondevices.api import AmazonDevice as AmazonDevice
+from aioamazondevices.structures import AmazonDevice as AmazonDevice
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

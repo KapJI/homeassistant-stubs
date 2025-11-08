@@ -2,7 +2,7 @@ from .const import CATEGORY_NOTIFICATIONS as CATEGORY_NOTIFICATIONS, CATEGORY_SE
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry
 from .entity import AmazonEntity as AmazonEntity
 from _typeshed import Incomplete
-from aioamazondevices.api import AmazonDevice as AmazonDevice
+from aioamazondevices.structures import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime

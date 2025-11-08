@@ -1,4 +1,4 @@
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DEVICE_MODEL as DEVICE_MODEL, DEVICE_SPECIFIC_SCAN_INTERVAL as DEVICE_SPECIFIC_SCAN_INTERVAL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from airthings_ble import AirthingsDevice
 from bleak.backends.device import BLEDevice as BLEDevice
@@ -17,5 +17,6 @@ class AirthingsBLEDataUpdateCoordinator(DataUpdateCoordinator[AirthingsDevice]):
     config_entry: AirthingsBLEConfigEntry
     airthings: Incomplete
     def __init__(self, hass: HomeAssistant, entry: AirthingsBLEConfigEntry) -> None: ...
+    update_interval: Incomplete
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> AirthingsDevice: ...

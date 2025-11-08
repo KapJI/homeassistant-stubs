@@ -1,5 +1,5 @@
 import dataclasses
-from .const import DOMAIN as DOMAIN, MFCT_ID as MFCT_ID
+from .const import DEVICE_MODEL as DEVICE_MODEL, DOMAIN as DOMAIN, MFCT_ID as MFCT_ID
 from _typeshed import Incomplete
 from airthings_ble import AirthingsBluetoothDeviceData, AirthingsDevice as AirthingsDevice
 from habluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak

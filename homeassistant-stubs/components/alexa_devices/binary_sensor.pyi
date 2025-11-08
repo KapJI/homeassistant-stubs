@@ -3,7 +3,7 @@ from .coordinator import AmazonConfigEntry as AmazonConfigEntry
 from .entity import AmazonEntity as AmazonEntity
 from .utils import async_update_unique_id as async_update_unique_id
 from _typeshed import Incomplete
-from aioamazondevices.api import AmazonDevice as AmazonDevice
+from aioamazondevices.structures import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

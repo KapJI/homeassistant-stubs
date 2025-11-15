@@ -139,7 +139,9 @@ class FlowHandler(Generic[_FlowContextT, _FlowResultT, _HandlerT]):
     __progress_task: asyncio.Task[Any] | None
     __no_progress_task_reported: bool
     deprecated_show_progress: bool
-    _progress_step_data: ProgressStepData[_FlowResultT]
+    __progress_step_data: ProgressStepData[_FlowResultT] | None
+    @property
+    def _progress_step_data(self) -> ProgressStepData[_FlowResultT]: ...
     @property
     def source(self) -> str | None: ...
     @property

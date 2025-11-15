@@ -13,7 +13,6 @@ DEFAULT_HOST: str
 DEFAULT_PIN: str
 USER_SCHEMA: Incomplete
 STEP_REAUTH_DATA_SCHEMA: Incomplete
-STEP_RECONFIGURE: Incomplete
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
 

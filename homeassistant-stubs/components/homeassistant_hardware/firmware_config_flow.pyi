@@ -35,6 +35,7 @@ class ZigbeeIntegration(StrEnum):
 class BaseFirmwareInstallFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
     ZIGBEE_BAUDRATE: int
     BOOTLOADER_RESET_METHODS: list[ResetTarget]
+    APPLICATION_PROBE_METHODS: list[tuple[ApplicationType, int]]
     _picked_firmware_type: PickedFirmwareType
     _zigbee_flow_strategy: ZigbeeFlowStrategy
     _probed_firmware_info: FirmwareInfo | None

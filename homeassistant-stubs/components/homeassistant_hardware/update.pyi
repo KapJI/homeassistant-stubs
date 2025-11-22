@@ -32,7 +32,8 @@ class FirmwareUpdateExtraStoredData(ExtraStoredData):
 
 class BaseFirmwareUpdateEntity(CoordinatorEntity[FirmwareUpdateCoordinator], UpdateEntity):
     entity_description: FirmwareUpdateEntityDescription
-    bootloader_reset_methods: list[ResetTarget]
+    BOOTLOADER_RESET_METHODS: list[ResetTarget]
+    APPLICATION_PROBE_METHODS: list[tuple[ApplicationType, int]]
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
     _current_device: Incomplete

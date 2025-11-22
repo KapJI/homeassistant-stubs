@@ -19,7 +19,9 @@ class FirmwareInstallFlowProtocol(Protocol):
     async def _install_firmware_step(self, fw_update_url: str, fw_type: str, firmware_name: str, expected_installed_firmware_type: ApplicationType, step_id: str, next_step_id: str) -> ConfigFlowResult: ...
 
 class YellowFirmwareMixin(ConfigEntryBaseFlow, FirmwareInstallFlowProtocol, metaclass=abc.ABCMeta):
+    ZIGBEE_BAUDRATE: int
     BOOTLOADER_RESET_METHODS: Incomplete
+    APPLICATION_PROBE_METHODS: Incomplete
     async def async_step_install_zigbee_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_install_thread_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

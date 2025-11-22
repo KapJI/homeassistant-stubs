@@ -19,7 +19,6 @@ from webrtc_models import RTCIceCandidateInit
 
 _LOGGER: Incomplete
 _FFMPEG: str
-_SUPPORTED_STREAMS: Incomplete
 CONFIG_SCHEMA: Incomplete
 _DATA_GO2RTC: HassKey[str]
 _RETRYABLE_ERRORS: Incomplete
@@ -37,9 +36,11 @@ class WebRTCProvider(CameraWebRTCProvider):
     _session: Incomplete
     _rest_client: Incomplete
     _sessions: dict[str, Go2RtcWsClient]
+    _supported_schemes: set[str]
     def __init__(self, hass: HomeAssistant, url: str, session: ClientSession, rest_client: Go2RtcRestClient) -> None: ...
     @property
     def domain(self) -> str: ...
+    async def initialize(self) -> None: ...
     @callback
     def async_is_supported(self, stream_source: str) -> bool: ...
     async def async_handle_async_webrtc_offer(self, camera: Camera, offer_sdp: str, session_id: str, send_message: WebRTCSendMessage) -> None: ...

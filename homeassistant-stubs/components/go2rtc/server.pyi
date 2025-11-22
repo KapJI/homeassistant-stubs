@@ -14,6 +14,10 @@ _LOCALHOST_IP: str
 _LOG_BUFFER_SIZE: int
 _RESPAWN_COOLDOWN: int
 _GO2RTC_CONFIG_FORMAT: str
+_APP_MODULES: Incomplete
+_API_ALLOW_PATHS: Incomplete
+_UI_APP_MODULES: Incomplete
+_UI_API_ALLOW_PATHS: Incomplete
 _LOG_LEVEL_MAP: Incomplete
 
 class Go2RTCServerStartError(HomeAssistantError):
@@ -21,7 +25,8 @@ class Go2RTCServerStartError(HomeAssistantError):
 
 class Go2RTCWatchdogError(HomeAssistantError): ...
 
-def _create_temp_file(api_ip: str) -> str: ...
+def _format_list_for_yaml(items: tuple[str, ...]) -> str: ...
+def _create_temp_file(enable_ui: bool) -> str: ...
 
 class Server:
     _hass: Incomplete
@@ -29,7 +34,7 @@ class Server:
     _log_buffer: deque[str]
     _process: asyncio.subprocess.Process | None
     _startup_complete: Incomplete
-    _api_ip: Incomplete
+    _enable_ui: Incomplete
     _watchdog_task: asyncio.Task | None
     _watchdog_tasks: list[asyncio.Task]
     def __init__(self, hass: HomeAssistant, binary: str, *, enable_ui: bool = False) -> None: ...

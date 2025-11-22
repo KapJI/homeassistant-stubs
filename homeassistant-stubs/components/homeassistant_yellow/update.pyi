@@ -1,9 +1,10 @@
 from . import HomeAssistantYellowConfigEntry as HomeAssistantYellowConfigEntry
+from .config_flow import YellowFirmwareMixin as YellowFirmwareMixin
 from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, MANUFACTURER as MANUFACTURER, MODEL as MODEL, RADIO_DEVICE as RADIO_DEVICE
 from _typeshed import Incomplete
 from homeassistant.components.homeassistant_hardware.coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from homeassistant.components.homeassistant_hardware.update import BaseFirmwareUpdateEntity as BaseFirmwareUpdateEntity, FirmwareUpdateEntityDescription as FirmwareUpdateEntityDescription
-from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget
+from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -17,7 +18,8 @@ def _async_create_update_entity(hass: HomeAssistant, config_entry: HomeAssistant
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeAssistantYellowConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FirmwareUpdateEntity(BaseFirmwareUpdateEntity):
-    bootloader_reset_methods: Incomplete
+    BOOTLOADER_RESET_METHODS: Incomplete
+    APPLICATION_PROBE_METHODS: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _current_firmware_info: Incomplete

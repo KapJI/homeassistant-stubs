@@ -2,6 +2,7 @@ import abc
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from abc import abstractmethod
+from asyncio import Task
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -27,18 +28,20 @@ type LaMarzoccoConfigEntry = ConfigEntry[LaMarzoccoRuntimeData]
 class LaMarzoccoUpdateCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):
     _default_update_interval = SCAN_INTERVAL
     config_entry: LaMarzoccoConfigEntry
-    websocket_terminated: bool
+    _websocket_task: Task | None
     device: Incomplete
     cloud_client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: LaMarzoccoConfigEntry, device: LaMarzoccoMachine, cloud_client: LaMarzoccoCloudClient | None = None) -> None: ...
+    @property
+    def websocket_terminated(self) -> bool: ...
     async def _async_update_data(self) -> None: ...
     @abstractmethod
     async def _internal_async_update_data(self) -> None: ...
 
 class LaMarzoccoConfigUpdateCoordinator(LaMarzoccoUpdateCoordinator):
     cloud_client: LaMarzoccoCloudClient
+    _websocket_task: Incomplete
     async def _internal_async_update_data(self) -> None: ...
-    websocket_terminated: bool
     async def connect_websocket(self) -> None: ...
 
 class LaMarzoccoSettingsUpdateCoordinator(LaMarzoccoUpdateCoordinator):

@@ -23,12 +23,14 @@ from homeassistant.helpers.service import async_register_admin_service as async_
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
 from homeassistant.util.signal_type import SignalType as SignalType
+from typing import Any
 
 DEFAULT_MODE = MODE_PROD
 PLATFORMS: Incomplete
 SERVICE_REMOTE_CONNECT: str
 SERVICE_REMOTE_DISCONNECT: str
 SIGNAL_CLOUD_CONNECTION_STATE: SignalType[CloudConnectionState]
+_SIGNAL_CLOUDHOOKS_UPDATED: SignalType[dict[str, Any]]
 STARTUP_REPAIR_DELAY: int
 ALEXA_ENTITY_SCHEMA: Incomplete
 GOOGLE_ENTITY_SCHEMA: Incomplete
@@ -61,12 +63,14 @@ async def async_get_or_create_cloudhook(hass: HomeAssistant, webhook_id: str) ->
 async def async_create_cloudhook(hass: HomeAssistant, webhook_id: str) -> str: ...
 @bind_hass
 async def async_delete_cloudhook(hass: HomeAssistant, webhook_id: str) -> None: ...
+@callback
+def async_listen_cloudhook_change(hass: HomeAssistant, webhook_id: str, on_change: Callable[[dict[str, Any] | None], None]) -> Callable[[], None]: ...
 @bind_hass
 @callback
 def async_remote_ui_url(hass: HomeAssistant) -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 @callback
-def _remote_handle_prefs_updated(cloud: Cloud[CloudClient]) -> None: ...
+def _handle_prefs_updated(hass: HomeAssistant, cloud: Cloud[CloudClient]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 @callback

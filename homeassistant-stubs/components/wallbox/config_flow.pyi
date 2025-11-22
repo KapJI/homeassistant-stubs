@@ -1,4 +1,4 @@
-from .const import CONF_STATION as CONF_STATION, DOMAIN as DOMAIN
+from .const import CHARGER_JWT_REFRESH_TOKEN as CHARGER_JWT_REFRESH_TOKEN, CHARGER_JWT_REFRESH_TTL as CHARGER_JWT_REFRESH_TTL, CHARGER_JWT_TOKEN as CHARGER_JWT_TOKEN, CHARGER_JWT_TTL as CHARGER_JWT_TTL, CONF_STATION as CONF_STATION, DOMAIN as DOMAIN, UPDATE_INTERVAL as UPDATE_INTERVAL
 from .coordinator import InvalidAuth as InvalidAuth, async_validate_input as async_validate_input
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -10,7 +10,7 @@ from typing import Any
 COMPONENT_DOMAIN = DOMAIN
 STEP_USER_DATA_SCHEMA: Incomplete
 
-async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, str]: ...
+async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]: ...
 
 class WallboxConfigFlow(ConfigFlow, domain=COMPONENT_DOMAIN):
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

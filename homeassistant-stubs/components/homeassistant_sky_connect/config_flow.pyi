@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components import usb as usb
 from homeassistant.components.homeassistant_hardware import firmware_config_flow as firmware_config_flow, silabs_multiprotocol_addon as silabs_multiprotocol_addon
 from homeassistant.components.homeassistant_hardware.helpers import HardwareFirmwareDiscoveryInfo as HardwareFirmwareDiscoveryInfo
-from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo
+from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget
 from homeassistant.components.usb import usb_service_info_from_device as usb_service_info_from_device, usb_unique_id_from_service_info as usb_unique_id_from_service_info
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlowContext as ConfigFlowContext, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
@@ -20,6 +20,9 @@ class FirmwareInstallFlowProtocol(Protocol):
 
 class SkyConnectFirmwareMixin(ConfigEntryBaseFlow, FirmwareInstallFlowProtocol, metaclass=abc.ABCMeta):
     context: ConfigFlowContext
+    ZIGBEE_BAUDRATE: int
+    BOOTLOADER_RESET_METHODS: list[ResetTarget]
+    APPLICATION_PROBE_METHODS: Incomplete
     def _get_translation_placeholders(self) -> dict[str, str]: ...
     async def async_step_install_zigbee_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_install_thread_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

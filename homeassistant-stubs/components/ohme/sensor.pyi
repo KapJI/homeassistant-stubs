@@ -15,8 +15,7 @@ PARALLEL_UPDATES: int
 class OhmeSensorDescription(OhmeEntityDescription, SensorEntityDescription):
     value_fn: Callable[[OhmeApiClient], str | int | float | None]
 
-SENSOR_CHARGE_SESSION: Incomplete
-SENSOR_ADVANCED_SETTINGS: Incomplete
+SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OhmeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

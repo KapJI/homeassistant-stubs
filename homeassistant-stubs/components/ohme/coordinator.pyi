@@ -5,7 +5,7 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from ohme import OhmeApiClient as OhmeApiClient
 
@@ -14,7 +14,6 @@ _LOGGER: Incomplete
 @dataclass()
 class OhmeRuntimeData:
     charge_session_coordinator: OhmeChargeSessionCoordinator
-    advanced_settings_coordinator: OhmeAdvancedSettingsCoordinator
     device_info_coordinator: OhmeDeviceInfoCoordinator
 type OhmeConfigEntry = ConfigEntry[OhmeRuntimeData]
 
@@ -32,11 +31,6 @@ class OhmeBaseCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):
 class OhmeChargeSessionCoordinator(OhmeBaseCoordinator):
     coordinator_name: str
     _default_update_interval: Incomplete
-    async def _internal_update_data(self) -> None: ...
-
-class OhmeAdvancedSettingsCoordinator(OhmeBaseCoordinator):
-    coordinator_name: str
-    def __init__(self, hass: HomeAssistant, config_entry: OhmeConfigEntry, client: OhmeApiClient) -> None: ...
     async def _internal_update_data(self) -> None: ...
 
 class OhmeDeviceInfoCoordinator(OhmeBaseCoordinator):

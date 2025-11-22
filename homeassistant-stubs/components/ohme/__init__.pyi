@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
-from .coordinator import OhmeAdvancedSettingsCoordinator as OhmeAdvancedSettingsCoordinator, OhmeChargeSessionCoordinator as OhmeChargeSessionCoordinator, OhmeConfigEntry as OhmeConfigEntry, OhmeDeviceInfoCoordinator as OhmeDeviceInfoCoordinator, OhmeRuntimeData as OhmeRuntimeData
+from .coordinator import OhmeChargeSessionCoordinator as OhmeChargeSessionCoordinator, OhmeConfigEntry as OhmeConfigEntry, OhmeDeviceInfoCoordinator as OhmeDeviceInfoCoordinator, OhmeRuntimeData as OhmeRuntimeData
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD

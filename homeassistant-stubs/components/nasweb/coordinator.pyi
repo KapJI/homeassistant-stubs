@@ -12,6 +12,7 @@ from webio_api import WebioAPI as WebioAPI
 _LOGGER: Incomplete
 KEY_INPUTS: str
 KEY_OUTPUTS: str
+KEY_ZONES: str
 
 class NotificationCoordinator:
     _coordinators: dict[str, NASwebCoordinator]

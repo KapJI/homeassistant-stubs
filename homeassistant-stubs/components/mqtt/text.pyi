@@ -1,7 +1,7 @@
 import re
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC
+from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_MAX as CONF_MAX, CONF_MIN as CONF_MIN, CONF_PATTERN as CONF_PATTERN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -20,11 +20,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
-CONF_MAX: str
-CONF_MIN: str
-CONF_PATTERN: str
 DEFAULT_NAME: str
-DEFAULT_PAYLOAD_RESET: str
 MQTT_TEXT_ATTRIBUTES_BLOCKED: Incomplete
 
 def valid_text_size_configuration(config: ConfigType) -> ConfigType: ...

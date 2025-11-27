@@ -1,6 +1,7 @@
+from .const import ObjectClassType as ObjectClassType
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
-from .utils import DeviceType as DeviceType, bridge_api_call as bridge_api_call, new_device_listener as new_device_listener
+from .utils import bridge_api_call as bridge_api_call, new_device_listener as new_device_listener
 from _typeshed import Incomplete
 from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity

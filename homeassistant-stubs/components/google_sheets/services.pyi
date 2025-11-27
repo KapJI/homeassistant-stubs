@@ -8,6 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySelector
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 
+ADD_CREATED_COLUMN: str
 DATA: str
 DATA_CONFIG_ENTRY: str
 ROWS: str

@@ -1,5 +1,5 @@
-from . import WLEDConfigEntry as WLEDConfigEntry, WLED_KEY as WLED_KEY
-from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator, WLEDReleasesDataUpdateCoordinator as WLEDReleasesDataUpdateCoordinator
+from . import WLED_KEY as WLED_KEY
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry, WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator, WLEDReleasesDataUpdateCoordinator as WLEDReleasesDataUpdateCoordinator
 from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
 from _typeshed import Incomplete
@@ -7,6 +7,8 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

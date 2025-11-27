@@ -10,7 +10,6 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 
 _LOGGER: Incomplete
 
@@ -25,7 +24,6 @@ class HuaweiLteSelectEntity(HuaweiLteBaseEntityWithDevice, SelectEntity):
     _raw_state: str | None
     key: Incomplete
     item: Incomplete
-    _attr_name: Incomplete
     def __init__(self, router: Router, entity_description: HuaweiSelectEntityDescription, key: str, item: str) -> None: ...
     def select_option(self, option: str) -> None: ...
     @property

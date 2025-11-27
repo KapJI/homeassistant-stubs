@@ -1,4 +1,4 @@
-from .const import CONF_COMMUNITY as CONF_COMMUNITY, DEFAULT_COMMUNITY as DEFAULT_COMMUNITY, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, PRINTER_TYPES as PRINTER_TYPES, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS
+from .const import CONF_COMMUNITY as CONF_COMMUNITY, DEFAULT_COMMUNITY as DEFAULT_COMMUNITY, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, PRINTER_TYPES as PRINTER_TYPES, PRINTER_TYPE_LASER as PRINTER_TYPE_LASER, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS
 from _typeshed import Incomplete
 from brother import Brother
 from homeassistant.components.snmp import async_get_snmp_engine as async_get_snmp_engine
@@ -7,6 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import section as section
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.util.network import is_host_valid as is_host_valid
 from typing import Any

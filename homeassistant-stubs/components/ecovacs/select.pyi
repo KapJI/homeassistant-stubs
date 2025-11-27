@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from deebot_client.capabilities import CapabilityMap, CapabilitySetTypes
+from deebot_client.command import CommandWithMessageHandling as CommandWithMessageHandling
 from deebot_client.device import Device as Device
 from deebot_client.events.base import Event as Event
 from deebot_client.events.map import CachedMapInfoEvent, MajorMapEvent as MajorMapEvent
@@ -18,6 +19,7 @@ from typing import Any
 class EcovacsSelectEntityDescription[EventT: Event](SelectEntityDescription, EcovacsCapabilityEntityDescription):
     current_option_fn: Callable[[EventT], str | None]
     options_fn: Callable[[CapabilitySetTypes], list[str]]
+    set_option_fn: Callable[[CapabilitySetTypes, str], CommandWithMessageHandling] = ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSelectEntityDescription, ...]
 

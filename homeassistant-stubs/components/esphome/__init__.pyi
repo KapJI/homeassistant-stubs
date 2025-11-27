@@ -1,6 +1,7 @@
 from . import assist_satellite as assist_satellite, dashboard as dashboard, ffmpeg_proxy as ffmpeg_proxy
 from .const import CONF_BLUETOOTH_MAC_ADDRESS as CONF_BLUETOOTH_MAC_ADDRESS, CONF_NOISE_PSK as CONF_NOISE_PSK, DOMAIN as DOMAIN
 from .domain_data import DomainData as DomainData
+from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from .manager import DEVICE_CONFLICT_ISSUE_FORMAT as DEVICE_CONFLICT_ISSUE_FORMAT, ESPHomeManager as ESPHomeManager, cleanup_instance as cleanup_instance
 from _typeshed import Incomplete
@@ -11,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.issue_registry import async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
+_LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 CLIENT_INFO: Incomplete
 
@@ -18,3 +20,4 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry) -> None: ...
+async def _async_clear_dynamic_encryption_key(hass: HomeAssistant, entry: ESPHomeConfigEntry) -> None: ...

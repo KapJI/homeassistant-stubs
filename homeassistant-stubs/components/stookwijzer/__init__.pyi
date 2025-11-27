@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import StookwijzerConfigEntry as StookwijzerConfigEntry, StookwijzerCoordinator as StookwijzerCoordinator
-from .services import setup_services as setup_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

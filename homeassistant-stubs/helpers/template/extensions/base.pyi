@@ -1,10 +1,12 @@
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.template import TemplateEnvironment as TemplateEnvironment
 from jinja2.ext import Extension
 from jinja2.nodes import Node as Node
 from jinja2.parser import Parser as Parser
-from typing import Any
+from typing import Any, Concatenate, NoReturn
 
 @dataclass
 class TemplateFunction:
@@ -14,8 +16,15 @@ class TemplateFunction:
     as_filter: bool = ...
     as_test: bool = ...
     limited_ok: bool = ...
+    requires_hass: bool = ...
+
+def _pass_context[**_P, _R](func: Callable[Concatenate[Any, _P], _R], jinja_context: Callable[[Callable[Concatenate[Any, _P], _R]], Callable[Concatenate[Any, _P], _R]] = ...) -> Callable[Concatenate[Any, _P], _R]: ...
 
 class BaseTemplateExtension(Extension):
     environment: TemplateEnvironment
     def __init__(self, environment: TemplateEnvironment, *, functions: list[TemplateFunction] | None = None) -> None: ...
+    @staticmethod
+    def _create_unsupported_function(name: str) -> Callable[[], NoReturn]: ...
+    @property
+    def hass(self) -> HomeAssistant: ...
     def parse(self, parser: Parser) -> Node | list[Node]: ...

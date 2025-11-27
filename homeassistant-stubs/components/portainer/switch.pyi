@@ -1,6 +1,6 @@
 from . import PortainerConfigEntry as PortainerConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import PortainerCoordinator as PortainerCoordinator
+from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
@@ -10,12 +10,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer import Portainer as Portainer
-from pyportainer.models.docker import DockerContainer as DockerContainer
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerSwitchEntityDescription(SwitchEntityDescription):
-    is_on_fn: Callable[[DockerContainer], bool | None]
+    is_on_fn: Callable[[PortainerContainerData], bool | None]
     turn_on_fn: Callable[[str, Portainer, int, str], Coroutine[Any, Any, None]]
     turn_off_fn: Callable[[str, Portainer, int, str], Coroutine[Any, Any, None]]
 
@@ -28,7 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, as
 class PortainerContainerSwitch(PortainerContainerEntity, SwitchEntity):
     entity_description: PortainerSwitchEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerSwitchEntityDescription, device_info: DockerContainer, via_device: PortainerCoordinatorData) -> None: ...
+    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerSwitchEntityDescription, device_info: PortainerContainerData, via_device: PortainerCoordinatorData) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

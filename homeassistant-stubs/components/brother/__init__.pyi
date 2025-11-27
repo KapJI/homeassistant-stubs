@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.snmp import async_get_snmp_engine as async_get_snmp_engine
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete

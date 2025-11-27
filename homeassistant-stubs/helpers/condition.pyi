@@ -1,7 +1,7 @@
 import abc
 import logging
 from . import selector as selector
-from .automation import get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key
+from .automation import get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from .selector import TargetSelector as TargetSelector
 from .template import Template as Template, render_complex as render_complex
@@ -28,6 +28,7 @@ _LOGGER: Incomplete
 _PLATFORM_ALIASES: dict[str | None, str | None]
 INPUT_ENTITY_ID: Incomplete
 CONDITION_DESCRIPTION_CACHE: HassKey[dict[str, dict[str, Any] | None]]
+CONDITION_DISABLED_CONDITIONS: HassKey[set[str]]
 CONDITION_PLATFORM_SUBSCRIPTIONS: HassKey[list[Callable[[set[str]], Coroutine[Any, Any, None]]]]
 CONDITIONS: HassKey[dict[str, str]]
 _FIELD_DESCRIPTION_SCHEMA: Incomplete
@@ -42,6 +43,7 @@ async def async_setup(hass: HomeAssistant) -> None: ...
 def async_subscribe_platform_events(hass: HomeAssistant, on_event: Callable[[set[str]], Coroutine[Any, Any, None]]) -> Callable[[], None]: ...
 async def _register_condition_platform(hass: HomeAssistant, integration_domain: str, platform: ConditionProtocol) -> None: ...
 
+_CONDITION_BASE_SCHEMA: Incomplete
 _CONDITION_SCHEMA: Incomplete
 
 class Condition(abc.ABC, metaclass=abc.ABCMeta):

@@ -1,6 +1,7 @@
+from .const import ObjectClassType as ObjectClassType
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge, ComelitVedoSystem as ComelitVedoSystem
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
-from .utils import DeviceType as DeviceType, new_device_listener as new_device_listener
+from .utils import new_device_listener as new_device_listener
 from _typeshed import Incomplete
 from aiocomelit.api import ComelitSerialBridgeObject as ComelitSerialBridgeObject, ComelitVedoZoneObject as ComelitVedoZoneObject
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription

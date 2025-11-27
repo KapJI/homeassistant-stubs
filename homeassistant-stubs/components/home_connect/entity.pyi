@@ -6,7 +6,6 @@ from _typeshed import Incomplete
 from abc import abstractmethod
 from aiohomeconnect.model import OptionKey
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

@@ -32,11 +32,11 @@ class ZWaveBaseEntity(Entity):
     driver: Incomplete
     info: Incomplete
     watched_value_ids: Incomplete
-    _attr_name: Incomplete
-    _attr_unique_id: Incomplete
     entity_description: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _attr_entity_category: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _attr_assumed_state: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo) -> None: ...

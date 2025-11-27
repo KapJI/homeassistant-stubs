@@ -1,6 +1,7 @@
 from .const import CONF_KEEP_MAIN_LIGHT as CONF_KEEP_MAIN_LIGHT, DEFAULT_KEEP_MAIN_LIGHT as DEFAULT_KEEP_MAIN_LIGHT, DOMAIN as DOMAIN
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry
 from homeassistant.components import onboarding as onboarding
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
@@ -14,7 +15,7 @@ class WLEDFlowHandler(ConfigFlow, domain=DOMAIN):
     discovered_device: Device
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> WLEDOptionsFlowHandler: ...
+    def async_get_options_flow(config_entry: WLEDConfigEntry) -> WLEDOptionsFlowHandler: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

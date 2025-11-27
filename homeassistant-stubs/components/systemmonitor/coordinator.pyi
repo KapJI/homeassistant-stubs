@@ -1,6 +1,7 @@
 import psutil_home_assistant as ha_psutil
 from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
 from .const import CONF_PROCESS as CONF_PROCESS, PROCESS_ERRORS as PROCESS_ERRORS
+from .util import read_fan_speed as read_fan_speed
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
@@ -8,24 +9,26 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 from psutil import Process as Process
-from psutil._common import sdiskusage as sdiskusage, shwtemp as shwtemp, snetio as snetio, snicaddr as snicaddr, sswap as sswap
+from psutil._common import sbattery as sbattery, sdiskusage as sdiskusage, shwtemp as shwtemp, snetio as snetio, snicaddr as snicaddr, sswap as sswap
 from typing import Any, NamedTuple
 
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class SensorData:
-    disk_usage: dict[str, sdiskusage]
-    swap: sswap
-    memory: VirtualMemory
-    io_counters: dict[str, snetio]
     addresses: dict[str, list[snicaddr]]
-    load: tuple[float, float, float]
-    cpu_percent: float | None
+    battery: sbattery | None
     boot_time: datetime
-    processes: list[Process]
-    temperatures: dict[str, list[shwtemp]]
+    cpu_percent: float | None
+    disk_usage: dict[str, sdiskusage]
+    fan_speed: dict[str, int]
+    io_counters: dict[str, snetio]
+    load: tuple[float, float, float]
+    memory: VirtualMemory
     process_fds: dict[str, int]
+    processes: list[Process]
+    swap: sswap
+    temperatures: dict[str, list[shwtemp]]
     def as_dict(self) -> dict[str, Any]: ...
 
 class VirtualMemory(NamedTuple):

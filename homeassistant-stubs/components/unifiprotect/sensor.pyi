@@ -36,7 +36,6 @@ SENSE_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 DOORLOCK_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 NVR_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 NVR_DISABLED_SENSORS: tuple[ProtectSensorEntityDescription, ...]
-LICENSE_PLATE_EVENT_SENSORS: tuple[ProtectSensorEventEntityDescription, ...]
 LIGHT_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 MOTION_TRIP_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 CHIME_SENSORS: tuple[ProtectSensorEntityDescription, ...]
@@ -61,14 +60,3 @@ class ProtectNVRSensor(BaseProtectSensor, ProtectNVREntity): ...
 class ProtectEventSensor(EventEntityMixin, SensorEntity):
     entity_description: ProtectSensorEventEntityDescription
     _state_attrs: Incomplete
-
-class ProtectLicensePlateEventSensor(ProtectEventSensor):
-    device: Camera
-    _attr_native_value: Incomplete
-    _attr_extra_state_attributes: Incomplete
-    @callback
-    def _set_event_done(self) -> None: ...
-    _event: Incomplete
-    _event_end: Incomplete
-    @callback
-    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...

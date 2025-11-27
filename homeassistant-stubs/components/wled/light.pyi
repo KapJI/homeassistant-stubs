@@ -1,6 +1,5 @@
-from . import WLEDConfigEntry as WLEDConfigEntry
 from .const import ATTR_CCT as ATTR_CCT, ATTR_COLOR_PRIMARY as ATTR_COLOR_PRIMARY, ATTR_ON as ATTR_ON, ATTR_SEGMENT_ID as ATTR_SEGMENT_ID, COLOR_TEMP_K_MAX as COLOR_TEMP_K_MAX, COLOR_TEMP_K_MIN as COLOR_TEMP_K_MIN, LIGHT_CAPABILITIES_COLOR_MODE_MAPPING as LIGHT_CAPABILITIES_COLOR_MODE_MAPPING
-from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry, WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
 from .entity import WLEDEntity as WLEDEntity
 from .helpers import kelvin_to_255 as kelvin_to_255, kelvin_to_255_reverse as kelvin_to_255_reverse, wled_exception_handler as wled_exception_handler
 from _typeshed import Incomplete

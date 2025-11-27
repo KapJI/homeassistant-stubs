@@ -1,6 +1,6 @@
 from .const import CONF_BASE_URL as CONF_BASE_URL, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import MastodonConfigEntry as MastodonConfigEntry, MastodonCoordinator as MastodonCoordinator, MastodonData as MastodonData
-from .services import setup_services as setup_services
+from .services import async_setup_services as async_setup_services
 from .utils import construct_mastodon_username as construct_mastodon_username, create_mastodon_client as create_mastodon_client
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, Platform as Platform

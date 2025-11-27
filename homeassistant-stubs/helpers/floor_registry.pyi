@@ -31,8 +31,8 @@ class FloorRegistryStoreData(TypedDict):
     floors: list[_FloorStoreData]
 
 class EventFloorRegistryUpdatedData(TypedDict):
-    action: Literal['create', 'remove', 'update']
-    floor_id: str
+    action: Literal['create', 'remove', 'update', 'reorder']
+    floor_id: str | None
 type EventFloorRegistryUpdated = Event[EventFloorRegistryUpdatedData]
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -73,6 +73,8 @@ class FloorRegistry(BaseRegistry[FloorRegistryStoreData]):
     def async_delete(self, floor_id: str) -> None: ...
     @callback
     def async_update(self, floor_id: str, *, aliases: set[str] | UndefinedType = ..., icon: str | None | UndefinedType = ..., level: int | UndefinedType = ..., name: str | UndefinedType = ...) -> FloorEntry: ...
+    @callback
+    def async_reorder(self, floor_ids: list[str]) -> None: ...
     async def async_load(self) -> None: ...
     @callback
     def _data_to_save(self) -> FloorRegistryStoreData: ...

@@ -1,17 +1,16 @@
-from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerCoordinator as PortainerCoordinator
+from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
-from homeassistant.const import UnitOfInformation as UnitOfInformation
+from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyportainer.models.docker import DockerContainer as DockerContainer
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerContainerSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[DockerContainer], StateType]
+    value_fn: Callable[[PortainerContainerData], StateType]
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerEndpointSensorEntityDescription(SensorEntityDescription):
@@ -25,7 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, as
 class PortainerContainerSensor(PortainerContainerEntity, SensorEntity):
     entity_description: PortainerContainerSensorEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerContainerSensorEntityDescription, device_info: DockerContainer, via_device: PortainerCoordinatorData) -> None: ...
+    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerContainerSensorEntityDescription, device_info: PortainerContainerData, via_device: PortainerCoordinatorData) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

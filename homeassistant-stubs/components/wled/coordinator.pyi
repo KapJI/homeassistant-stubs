@@ -7,12 +7,13 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from wled import Device as WLEDDevice, Releases
 
+type WLEDConfigEntry = ConfigEntry[WLEDDataUpdateCoordinator]
 class WLEDDataUpdateCoordinator(DataUpdateCoordinator[WLEDDevice]):
     keep_main_light: bool
-    config_entry: ConfigEntry
+    config_entry: WLEDConfigEntry
     wled: Incomplete
     unsub: CALLBACK_TYPE | None
-    def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, entry: WLEDConfigEntry) -> None: ...
     @property
     def has_main_light(self) -> bool: ...
     last_update_success: bool

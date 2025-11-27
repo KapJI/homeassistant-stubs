@@ -483,15 +483,12 @@ class OptionsFlowManager(data_entry_flow.FlowManager[ConfigFlowContext, ConfigFl
 
 class OptionsFlow(ConfigEntryBaseFlow):
     handler: str
-    _config_entry: ConfigEntry
     @callback
     def _async_abort_entries_match(self, match_dict: dict[str, Any] | None = None) -> None: ...
     @property
     def _config_entry_id(self) -> str: ...
     @property
     def config_entry(self) -> ConfigEntry: ...
-    @config_entry.setter
-    def config_entry(self, value: ConfigEntry) -> None: ...
 
 class OptionsFlowWithConfigEntry(OptionsFlow):
     _config_entry: Incomplete

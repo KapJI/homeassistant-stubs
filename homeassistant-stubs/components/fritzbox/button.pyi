@@ -7,6 +7,8 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FritzBoxTemplate(FritzBoxEntity, ButtonEntity):

@@ -1,5 +1,7 @@
 from . import BangOlufsenConfigEntry as BangOlufsenConfigEntry
-from .const import DEVICE_BUTTONS as DEVICE_BUTTONS, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
+from .util import get_device_buttons as get_device_buttons
+from homeassistant.const import CONF_MODEL as CONF_MODEL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 

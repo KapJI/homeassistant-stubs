@@ -13,6 +13,8 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+DOOR_LOCK_OPERATING_MODE_MAP: Incomplete
+DOOR_LOCK_OPERATING_MODE_MAP_REVERSE: Incomplete
 NUMBER_OF_RINSES_STATE_MAP: Incomplete
 NUMBER_OF_RINSES_STATE_MAP_REVERSE: Incomplete
 PUMP_OPERATION_MODE_MAP: Incomplete

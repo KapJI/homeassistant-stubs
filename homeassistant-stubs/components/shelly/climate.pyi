@@ -1,7 +1,7 @@
 from .const import BLU_TRV_TEMPERATURE_SETTINGS as BLU_TRV_TEMPERATURE_SETTINGS, DOMAIN as DOMAIN, LOGGER as LOGGER, MODEL_LINKEDGO_ST1820_THERMOSTAT as MODEL_LINKEDGO_ST1820_THERMOSTAT, MODEL_LINKEDGO_ST802_THERMOSTAT as MODEL_LINKEDGO_ST802_THERMOSTAT, NOT_CALIBRATED_ISSUE_ID as NOT_CALIBRATED_ISSUE_ID, RPC_THERMOSTAT_SETTINGS as RPC_THERMOSTAT_SETTINGS, SHTRV_01_TEMPERATURE_SETTINGS as SHTRV_01_TEMPERATURE_SETTINGS
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellyRpcEntity as ShellyRpcEntity, async_setup_entry_rpc as async_setup_entry_rpc, get_entity_block_device_info as get_entity_block_device_info, rpc_call as rpc_call
-from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_entity_name as get_block_entity_name, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_rpc_key_by_role as get_rpc_key_by_role, get_rpc_key_ids as get_rpc_key_ids, id_from_key as id_from_key, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator
+from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_rpc_key_by_role as get_rpc_key_by_role, get_rpc_key_id as get_rpc_key_id, get_rpc_key_ids as get_rpc_key_ids, is_rpc_thermostat_internal_actuator as is_rpc_thermostat_internal_actuator
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Mapping
@@ -140,6 +140,7 @@ class RpcClimate(ShellyRpcEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
+    _attr_name: Incomplete
     _id: Incomplete
     _thermostat_type: Incomplete
     _attr_hvac_modes: Incomplete
@@ -166,6 +167,7 @@ class RpcBluTrvClimate(ShellyRpcEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete
     _attr_target_temperature_step: Incomplete
     _attr_temperature_unit: Incomplete
+    _attr_name: Incomplete
     _id: Incomplete
     _config: Incomplete
     _attr_unique_id: Incomplete

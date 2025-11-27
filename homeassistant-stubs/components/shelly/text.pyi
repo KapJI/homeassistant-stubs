@@ -1,7 +1,7 @@
 from .const import ROLE_GENERIC as ROLE_GENERIC
-from .coordinator import ShellyConfigEntry as ShellyConfigEntry
+from .coordinator import ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids, is_view_for_platform as is_view_for_platform
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_device_entry_gen as get_device_entry_gen, get_rpc_channel_name as get_rpc_channel_name, get_virtual_component_ids as get_virtual_component_ids, is_view_for_platform as is_view_for_platform
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.text import TextEntity as TextEntity, TextEntityDescription as TextEntityDescription
@@ -24,6 +24,8 @@ class RpcText(ShellyRpcAttributeEntity, TextEntity):
     entity_description: RpcTextDescription
     attribute_value: str | None
     _id: int
+    _attr_name: Incomplete
+    def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcTextDescription) -> None: ...
     @property
     def native_value(self) -> str | None: ...
     @rpc_call

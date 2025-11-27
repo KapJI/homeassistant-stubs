@@ -1,6 +1,5 @@
-from . import WLEDConfigEntry as WLEDConfigEntry
 from .const import ATTR_DURATION as ATTR_DURATION, ATTR_TARGET_BRIGHTNESS as ATTR_TARGET_BRIGHTNESS, ATTR_UDP_PORT as ATTR_UDP_PORT
-from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry, WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
 from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
 from _typeshed import Incomplete

@@ -1,17 +1,21 @@
 import dataclasses
+import functools
 from . import data as data
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping, Sequence
 from homeassistant.components import recorder as recorder, sensor as sensor
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 
 ENERGY_USAGE_DEVICE_CLASSES: Incomplete
 ENERGY_USAGE_UNITS: dict[str, tuple[UnitOfEnergy, ...]]
+POWER_USAGE_DEVICE_CLASSES: Incomplete
+POWER_USAGE_UNITS: dict[str, tuple[UnitOfPower, ...]]
 ENERGY_PRICE_UNITS: Incomplete
 ENERGY_UNIT_ERROR: str
 ENERGY_PRICE_UNIT_ERROR: str
+POWER_UNIT_ERROR: str
 GAS_USAGE_DEVICE_CLASSES: Incomplete
 GAS_USAGE_UNITS: dict[str, tuple[UnitOfEnergy | UnitOfVolume, ...]]
 GAS_PRICE_UNITS: Incomplete
@@ -41,14 +45,22 @@ class ValidationIssues:
 class EnergyPreferencesValidation:
     energy_sources: list[ValidationIssues] = dataclasses.field(default_factory=list)
     device_consumption: list[ValidationIssues] = dataclasses.field(default_factory=list)
+    device_consumption_water: list[ValidationIssues] = dataclasses.field(default_factory=list)
     def as_dict(self) -> dict: ...
 
+@callback
+def _async_validate_stat_common(hass: HomeAssistant, metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], stat_id: str, allowed_device_classes: Sequence[str], allowed_units: Mapping[str, Sequence[str]], unit_error: str, issues: ValidationIssues, check_negative: bool = False) -> str | None: ...
 @callback
 def _async_validate_usage_stat(hass: HomeAssistant, metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], stat_id: str, allowed_device_classes: Sequence[str], allowed_units: Mapping[str, Sequence[str]], unit_error: str, issues: ValidationIssues) -> None: ...
 @callback
 def _async_validate_price_entity(hass: HomeAssistant, entity_id: str, issues: ValidationIssues, allowed_units: tuple[str, ...], unit_error: str) -> None: ...
 @callback
+def _async_validate_power_stat(hass: HomeAssistant, metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], stat_id: str, allowed_device_classes: Sequence[str], allowed_units: Mapping[str, Sequence[str]], unit_error: str, issues: ValidationIssues) -> None: ...
+@callback
 def _async_validate_cost_stat(hass: HomeAssistant, metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], stat_id: str, issues: ValidationIssues) -> None: ...
 @callback
 def _async_validate_auto_generated_cost_entity(hass: HomeAssistant, energy_entity_id: str, issues: ValidationIssues) -> None: ...
+def _validate_grid_source(hass: HomeAssistant, source: data.GridSourceType, statistics_metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], wanted_statistics_metadata: set[str], source_result: ValidationIssues, validate_calls: list[functools.partial[None]]) -> None: ...
+def _validate_gas_source(hass: HomeAssistant, source: data.GasSourceType, statistics_metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], wanted_statistics_metadata: set[str], source_result: ValidationIssues, validate_calls: list[functools.partial[None]]) -> None: ...
+def _validate_water_source(hass: HomeAssistant, source: data.WaterSourceType, statistics_metadata: dict[str, tuple[int, recorder.models.StatisticMetaData]], wanted_statistics_metadata: set[str], source_result: ValidationIssues, validate_calls: list[functools.partial[None]]) -> None: ...
 async def async_validate(hass: HomeAssistant) -> EnergyPreferencesValidation: ...

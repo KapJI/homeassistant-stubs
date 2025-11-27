@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import AVAILABLE as AVAILABLE, DOMAIN as DOMAIN
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_NAME as ATTR_NAME, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_HOST as CONF_HOST

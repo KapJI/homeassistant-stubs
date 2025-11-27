@@ -11,8 +11,6 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from roborock.command_cache import CacheableAttribute
-from roborock.version_1_apis.roborock_client_v1 import AttributeCache as AttributeCache
 from typing import Any
 
 _LOGGER: Incomplete
@@ -20,9 +18,9 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockTimeDescription(TimeEntityDescription):
-    cache_key: CacheableAttribute
-    update_value: Callable[[AttributeCache, datetime.time], Coroutine[Any, Any, None]]
-    get_value: Callable[[AttributeCache], datetime.time]
+    trait: Callable[[Any], Any | None]
+    get_value: Callable[[Any], datetime.time]
+    update_value: Callable[[Any, datetime.time], Coroutine[Any, Any, None]]
 
 TIME_DESCRIPTIONS: list[RoborockTimeDescription]
 
@@ -30,7 +28,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEnt
 
 class RoborockTimeEntity(RoborockEntityV1, TimeEntity):
     entity_description: RoborockTimeDescription
-    def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, entity_description: RoborockTimeDescription) -> None: ...
+    _trait: Incomplete
+    def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, entity_description: RoborockTimeDescription, trait: Any) -> None: ...
     @property
     def native_value(self) -> time | None: ...
     async def async_set_value(self, value: time) -> None: ...

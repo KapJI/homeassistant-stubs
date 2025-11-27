@@ -3,9 +3,10 @@ from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import singleton as singleton, storage as storage
-from typing import Literal, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict
 
 STORAGE_VERSION: int
+STORAGE_MINOR_VERSION: int
 STORAGE_KEY = DOMAIN
 
 async def async_get_manager(hass: HomeAssistant) -> EnergyManager: ...
@@ -22,21 +23,27 @@ class FlowToGridSourceType(TypedDict):
     entity_energy_price: str | None
     number_energy_price: float | None
 
+class GridPowerSourceType(TypedDict):
+    stat_rate: str
+
 class GridSourceType(TypedDict):
     type: Literal['grid']
     flow_from: list[FlowFromGridSourceType]
     flow_to: list[FlowToGridSourceType]
+    power: NotRequired[list[GridPowerSourceType]]
     cost_adjustment_day: float
 
 class SolarSourceType(TypedDict):
     type: Literal['solar']
     stat_energy_from: str
+    stat_rate: NotRequired[str]
     config_entry_solar_forecast: list[str] | None
 
 class BatterySourceType(TypedDict):
     type: Literal['battery']
     stat_energy_from: str
     stat_energy_to: str
+    stat_rate: NotRequired[str]
 
 class GasSourceType(TypedDict):
     type: Literal['gas']
@@ -55,12 +62,14 @@ type SourceType = GridSourceType | SolarSourceType | BatterySourceType | GasSour
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str
+    stat_rate: NotRequired[str]
     name: str | None
-    included_in_stat: str | None
+    included_in_stat: NotRequired[str]
 
 class EnergyPreferences(TypedDict):
     energy_sources: list[SourceType]
     device_consumption: list[DeviceConsumption]
+    device_consumption_water: NotRequired[list[DeviceConsumption]]
 
 class EnergyPreferencesUpdate(EnergyPreferences, total=False): ...
 
@@ -68,6 +77,7 @@ def _flow_from_ensure_single_price(val: FlowFromGridSourceType) -> FlowFromGridS
 
 FLOW_FROM_GRID_SOURCE_SCHEMA: Incomplete
 FLOW_TO_GRID_SOURCE_SCHEMA: Incomplete
+GRID_POWER_SOURCE_SCHEMA: Incomplete
 
 def _generate_unique_value_validator(key: str) -> Callable[[list[dict]], list[dict]]: ...
 
@@ -81,6 +91,9 @@ def check_type_limits(value: list[SourceType]) -> list[SourceType]: ...
 
 ENERGY_SOURCE_SCHEMA: Incomplete
 DEVICE_CONSUMPTION_SCHEMA: Incomplete
+
+class _EnergyPreferencesStore(storage.Store[EnergyPreferences]):
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class EnergyManager:
     _hass: Incomplete

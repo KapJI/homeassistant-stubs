@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from functools import lru_cache
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -26,6 +26,7 @@ SENSOR_TYPE_ICON: int
 SENSOR_TYPE_DEVICE_CLASS: int
 SENSOR_TYPE_MANDATORY_ARG: int
 SIGNAL_SYSTEMMONITOR_UPDATE: str
+BATTERY_REMAIN_UNKNOWNS: Incomplete
 SENSORS_NO_ARG: Incomplete
 SENSORS_WITH_ARG: Incomplete
 
@@ -36,6 +37,7 @@ def get_packets(entity: SystemMonitorSensor) -> float | None: ...
 def get_throughput(entity: SystemMonitorSensor) -> float | None: ...
 def get_ip_address(entity: SystemMonitorSensor) -> str | None: ...
 def get_process_num_fds(entity: SystemMonitorSensor) -> int | None: ...
+def battery_time_ends(entity: SystemMonitorSensor) -> datetime | None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class SysMonitorSensorEntityDescription(SensorEntityDescription):

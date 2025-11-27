@@ -12,13 +12,8 @@ from typing import Final
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class RpcSelectDescription(RpcEntityDescription, SelectEntityDescription): ...
-
-RPC_SELECT_ENTITIES: Final[Incomplete]
-
-async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-@callback
-def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+class RpcSelectDescription(RpcEntityDescription, SelectEntityDescription):
+    method: str
 
 class RpcSelect(ShellyRpcAttributeEntity, SelectEntity):
     entity_description: RpcSelectDescription
@@ -29,3 +24,13 @@ class RpcSelect(ShellyRpcAttributeEntity, SelectEntity):
     def current_option(self) -> str | None: ...
     @rpc_call
     async def async_select_option(self, option: str) -> None: ...
+
+class RpcCuryModeSelect(RpcSelect):
+    @property
+    def current_option(self) -> str | None: ...
+
+RPC_SELECT_ENTITIES: Final[Incomplete]
+
+async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+@callback
+def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

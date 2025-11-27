@@ -9,6 +9,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+_LOGGER: Incomplete
 STATE_CODE_TO_STATE: Incomplete
 PARALLEL_UPDATES: int
 
@@ -19,8 +20,9 @@ class RoborockVacuum(RoborockCoordinatedEntityV1, StateVacuumEntity):
     _attr_supported_features: Incomplete
     _attr_translation_key = DOMAIN
     _attr_name: Incomplete
-    _attr_fan_speed_list: Incomplete
     def __init__(self, coordinator: RoborockDataUpdateCoordinator) -> None: ...
+    @property
+    def fan_speed_list(self) -> list[str]: ...
     @property
     def activity(self) -> VacuumActivity | None: ...
     @property

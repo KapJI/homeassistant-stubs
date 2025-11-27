@@ -38,8 +38,8 @@ class AreasRegistryStoreData(TypedDict):
     areas: list[_AreaStoreData]
 
 class EventAreaRegistryUpdatedData(TypedDict):
-    action: Literal['create', 'remove', 'update']
-    area_id: str
+    action: Literal['create', 'remove', 'update', 'reorder']
+    area_id: str | None
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class AreaEntry(NormalizedNameBaseRegistryEntry):
@@ -94,6 +94,8 @@ class AreaRegistry(BaseRegistry[AreasRegistryStoreData]):
     def async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., humidity_entity_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ..., temperature_entity_id: str | None | UndefinedType = ...) -> AreaEntry: ...
     @callback
     def _async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., humidity_entity_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ..., temperature_entity_id: str | None | UndefinedType = ...) -> AreaEntry: ...
+    @callback
+    def async_reorder(self, area_ids: list[str]) -> None: ...
     async def async_load(self) -> None: ...
     @callback
     def _data_to_save(self) -> AreasRegistryStoreData: ...

@@ -1,5 +1,4 @@
-from . import WLEDConfigEntry as WLEDConfigEntry
-from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry, WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
 from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
 from _typeshed import Incomplete

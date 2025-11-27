@@ -1,4 +1,6 @@
 from .context import template_cv as template_cv
+from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any, NoReturn
 
 def raise_no_default(function: str, value: Any) -> NoReturn: ...
+def resolve_area_id(hass: HomeAssistant, lookup_value: Any) -> str | None: ...

@@ -29,10 +29,11 @@ def get_process(entity: SystemMonitorSensor) -> bool: ...
 
 @dataclass(frozen=True, kw_only=True)
 class SysMonitorBinarySensorEntityDescription(BinarySensorEntityDescription):
-    value_fn: Callable[[SystemMonitorSensor], bool]
+    value_fn: Callable[[SystemMonitorSensor], bool | None]
     add_to_update: Callable[[SystemMonitorSensor], tuple[str, str]]
 
-SENSOR_TYPES: tuple[SysMonitorBinarySensorEntityDescription, ...]
+PROCESS_TYPES: tuple[SysMonitorBinarySensorEntityDescription, ...]
+BINARY_SENSOR_TYPES: tuple[SysMonitorBinarySensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SystemMonitorConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

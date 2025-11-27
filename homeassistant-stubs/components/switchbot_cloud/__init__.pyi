@@ -18,7 +18,7 @@ PLATFORMS: list[Platform]
 class SwitchbotDevices:
     binary_sensors: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     buttons: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
-    climates: list[tuple[Remote, SwitchBotCoordinator]] = field(default_factory=list)
+    climates: list[tuple[Remote | Device, SwitchBotCoordinator]] = field(default_factory=list)
     covers: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     switches: list[tuple[Device | Remote, SwitchBotCoordinator]] = field(default_factory=list)
     sensors: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)

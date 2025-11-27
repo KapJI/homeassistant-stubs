@@ -1,4 +1,4 @@
-from . import async_wait_for_elk_to_sync as async_wait_for_elk_to_sync, hostname_from_url as hostname_from_url
+from . import ElkSyncWaiter as ElkSyncWaiter, LoginFailed as LoginFailed, hostname_from_url as hostname_from_url
 from .const import CONF_AUTO_CONFIGURE as CONF_AUTO_CONFIGURE, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, LOGIN_TIMEOUT as LOGIN_TIMEOUT
 from .discovery import _short_mac as _short_mac, async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_update_entry_from_discovery as async_update_entry_from_discovery
 from _typeshed import Incomplete

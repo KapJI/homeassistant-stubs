@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 import socket
 import ssl
 from .async_client import AsyncMQTTClient as AsyncMQTTClient
-from .const import CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_HEADERS as DEFAULT_WS_HEADERS, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, MQTT_CONNECTION_STATE as MQTT_CONNECTION_STATE, PROTOCOL_31 as PROTOCOL_31, PROTOCOL_5 as PROTOCOL_5, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
+from .const import CONF_BIRTH_MESSAGE as CONF_BIRTH_MESSAGE, CONF_BROKER as CONF_BROKER, CONF_CERTIFICATE as CONF_CERTIFICATE, CONF_CLIENT_CERT as CONF_CLIENT_CERT, CONF_CLIENT_KEY as CONF_CLIENT_KEY, CONF_KEEPALIVE as CONF_KEEPALIVE, CONF_TLS_INSECURE as CONF_TLS_INSECURE, CONF_TRANSPORT as CONF_TRANSPORT, CONF_WILL_MESSAGE as CONF_WILL_MESSAGE, CONF_WS_HEADERS as CONF_WS_HEADERS, CONF_WS_PATH as CONF_WS_PATH, DEFAULT_BIRTH as DEFAULT_BIRTH, DEFAULT_ENCODING as DEFAULT_ENCODING, DEFAULT_KEEPALIVE as DEFAULT_KEEPALIVE, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_PROTOCOL as DEFAULT_PROTOCOL, DEFAULT_QOS as DEFAULT_QOS, DEFAULT_TRANSPORT as DEFAULT_TRANSPORT, DEFAULT_WILL as DEFAULT_WILL, DEFAULT_WS_HEADERS as DEFAULT_WS_HEADERS, DEFAULT_WS_PATH as DEFAULT_WS_PATH, DOMAIN as DOMAIN, MQTT_CONNECTION_STATE as MQTT_CONNECTION_STATE, MQTT_PROCESSED_SUBSCRIPTIONS as MQTT_PROCESSED_SUBSCRIPTIONS, PROTOCOL_31 as PROTOCOL_31, PROTOCOL_5 as PROTOCOL_5, TRANSPORT_WEBSOCKETS as TRANSPORT_WEBSOCKETS
 from .models import DATA_MQTT as DATA_MQTT, MessageCallbackType as MessageCallbackType, MqttData as MqttData, PublishMessage as PublishMessage, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .util import EnsureJobAfterCooldown as EnsureJobAfterCooldown, get_file_path as get_file_path, mqtt_config_entry_enabled as mqtt_config_entry_enabled
 from _typeshed import Incomplete
@@ -15,7 +15,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -33,6 +33,7 @@ INITIAL_SUBSCRIBE_COOLDOWN: float
 SUBSCRIBE_COOLDOWN: float
 UNSUBSCRIBE_COOLDOWN: float
 TIMEOUT_ACK: int
+SUBSCRIBE_TIMEOUT: int
 RECONNECT_INTERVAL_SECONDS: int
 MAX_WILDCARD_SUBSCRIBES_PER_CALL: int
 MAX_SUBSCRIBES_PER_CALL: int
@@ -43,6 +44,8 @@ type SubscribePayloadType = str | bytes | bytearray
 
 def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
+@callback
+def async_on_subscribe_done(hass: HomeAssistant, topic: str, qos: int, on_subscribe_status: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
 @bind_hass
 async def async_subscribe(hass: HomeAssistant, topic: str, msg_callback: Callable[[ReceiveMessage], Coroutine[Any, Any, None] | None], qos: int = ..., encoding: str | None = ...) -> CALLBACK_TYPE: ...
 @callback
@@ -122,7 +125,8 @@ class MQTT:
     def _async_on_socket_register_write(self, client: mqtt.Client, userdata: Any, sock: SocketType) -> None: ...
     @callback
     def _async_on_socket_unregister_write(self, client: mqtt.Client, userdata: Any, sock: SocketType) -> None: ...
-    def _is_active_subscription(self, topic: str) -> bool: ...
+    def is_active_subscription(self, topic: str) -> bool: ...
+    def is_pending_subscription(self, topic: str) -> bool: ...
     async def async_publish(self, topic: str, payload: PublishPayloadType, qos: int, retain: bool) -> None: ...
     async def async_connect(self, client_available: asyncio.Future[bool]) -> None: ...
     @callback

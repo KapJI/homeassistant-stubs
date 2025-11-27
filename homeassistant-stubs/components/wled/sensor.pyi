@@ -1,5 +1,4 @@
-from . import WLEDConfigEntry as WLEDConfigEntry
-from .coordinator import WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry, WLEDDataUpdateCoordinator as WLEDDataUpdateCoordinator
 from .entity import WLEDEntity as WLEDEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -12,6 +11,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from wled import Device as WLEDDevice
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class WLEDSensorEntityDescription(SensorEntityDescription):

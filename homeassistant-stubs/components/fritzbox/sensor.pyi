@@ -14,6 +14,8 @@ from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class FritzSensorEntityDescription(SensorEntityDescription, FritzEntityDescriptionMixinBase):
     entity_category_fn: Callable[[FritzhomeDevice], EntityCategory | None] | None = ...

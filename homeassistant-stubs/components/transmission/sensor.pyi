@@ -1,15 +1,13 @@
-from .const import DOMAIN as DOMAIN, STATE_ATTR_TORRENT_INFO as STATE_ATTR_TORRENT_INFO, STATE_DOWNLOADING as STATE_DOWNLOADING, STATE_SEEDING as STATE_SEEDING, STATE_UP_DOWN as STATE_UP_DOWN, SUPPORTED_ORDER_MODES as SUPPORTED_ORDER_MODES
+from .const import STATE_ATTR_TORRENT_INFO as STATE_ATTR_TORRENT_INFO, STATE_DOWNLOADING as STATE_DOWNLOADING, STATE_SEEDING as STATE_SEEDING, STATE_UP_DOWN as STATE_UP_DOWN, SUPPORTED_ORDER_MODES as SUPPORTED_ORDER_MODES
 from .coordinator import TransmissionConfigEntry as TransmissionConfigEntry, TransmissionDataUpdateCoordinator as TransmissionDataUpdateCoordinator
-from _typeshed import Incomplete
+from .entity import TransmissionEntity as TransmissionEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import STATE_IDLE as STATE_IDLE, UnitOfDataRate as UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from transmission_rpc.torrent import Torrent as Torrent
 from typing import Any
 
@@ -24,12 +22,8 @@ SENSOR_TYPES: tuple[TransmissionSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class TransmissionSensor(CoordinatorEntity[TransmissionDataUpdateCoordinator], SensorEntity):
+class TransmissionSensor(TransmissionEntity, SensorEntity):
     entity_description: TransmissionSensorEntityDescription
-    _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    def __init__(self, coordinator: TransmissionDataUpdateCoordinator, entity_description: TransmissionSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
     @property

@@ -7,7 +7,7 @@ from homeassistant.helpers.debounce import Debouncer
 from homeassistant.loader import USBMatcher
 from typing import Any, overload
 
-__all__ = ['USBCallbackMatcher', 'async_is_plugged_in', 'async_register_port_event_callback', 'async_register_scan_request_callback']
+__all__ = ['USBCallbackMatcher', 'async_register_port_event_callback', 'async_register_scan_request_callback']
 
 PORT_EVENT_CALLBACK_TYPE = Callable[[set[USBDevice], set[USBDevice]], None]
 
@@ -17,13 +17,10 @@ class USBCallbackMatcher(USBMatcher): ...
 def async_register_scan_request_callback(hass: HomeAssistant, callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
 @hass_callback
 def async_register_port_event_callback(hass: HomeAssistant, callback: PORT_EVENT_CALLBACK_TYPE) -> CALLBACK_TYPE: ...
-@hass_callback
-def async_is_plugged_in(hass: HomeAssistant, matcher: USBCallbackMatcher) -> bool: ...
 
 class USBDiscovery:
     hass: Incomplete
     usb: Incomplete
-    seen: set[tuple[str, ...]]
     observer_active: bool
     _request_debouncer: Debouncer[Coroutine[Any, Any, None]] | None
     _add_remove_debouncer: Debouncer[Coroutine[Any, Any, None]] | None
@@ -50,6 +47,7 @@ class USBDiscovery:
     @hass_callback
     def async_get_usb_matchers_for_device(self, device: USBDevice) -> list[USBMatcher]: ...
     async def _async_process_discovered_usb_device(self, device: USBDevice) -> None: ...
+    async def _async_process_removed_usb_device(self, device: USBDevice) -> None: ...
     async def _async_process_ports(self, usb_devices: Sequence[USBDevice]) -> None: ...
     @hass_callback
     def _async_delayed_add_remove_scan(self) -> None: ...

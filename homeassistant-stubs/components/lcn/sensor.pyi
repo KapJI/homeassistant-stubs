@@ -1,3 +1,4 @@
+import pypck
 from .const import CONF_DOMAIN_DATA as CONF_DOMAIN_DATA, LED_PORTS as LED_PORTS, S0_INPUTS as S0_INPUTS, SETPOINTS as SETPOINTS, THRESHOLDS as THRESHOLDS, VARIABLES as VARIABLES
 from .entity import LcnEntity as LcnEntity
 from .helpers import InputType as InputType, LcnConfigEntry as LcnConfigEntry
@@ -10,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 PARALLEL_UPDATES: int
+SCAN_INTERVAL: Incomplete
 DEVICE_CLASS_MAPPING: Incomplete
 UNIT_OF_MEASUREMENT_MAPPING: Incomplete
 
@@ -22,15 +24,15 @@ class LcnVariableSensor(LcnEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_device_class: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    async def async_will_remove_from_hass(self) -> None: ...
+    _attr_available: Incomplete
+    async def async_update(self) -> None: ...
     _attr_native_value: Incomplete
     def input_received(self, input_obj: InputType) -> None: ...
 
 class LcnLedLogicSensor(LcnEntity, SensorEntity):
-    source: Incomplete
+    source: pypck.lcn_defs.LedPort | pypck.lcn_defs.LogicOpPort
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
-    async def async_will_remove_from_hass(self) -> None: ...
+    _attr_available: Incomplete
+    async def async_update(self) -> None: ...
     _attr_native_value: Incomplete
     def input_received(self, input_obj: InputType) -> None: ...

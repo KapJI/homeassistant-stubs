@@ -1,5 +1,5 @@
 from . import MusicAssistantConfigEntry as MusicAssistantConfigEntry
-from .const import ATTR_ACTIVE as ATTR_ACTIVE, ATTR_ACTIVE_QUEUE as ATTR_ACTIVE_QUEUE, ATTR_ALBUM as ATTR_ALBUM, ATTR_ANNOUNCE_VOLUME as ATTR_ANNOUNCE_VOLUME, ATTR_ARTIST as ATTR_ARTIST, ATTR_AUTO_PLAY as ATTR_AUTO_PLAY, ATTR_CURRENT_INDEX as ATTR_CURRENT_INDEX, ATTR_CURRENT_ITEM as ATTR_CURRENT_ITEM, ATTR_ELAPSED_TIME as ATTR_ELAPSED_TIME, ATTR_ITEMS as ATTR_ITEMS, ATTR_MASS_PLAYER_TYPE as ATTR_MASS_PLAYER_TYPE, ATTR_MEDIA_ID as ATTR_MEDIA_ID, ATTR_MEDIA_TYPE as ATTR_MEDIA_TYPE, ATTR_NEXT_ITEM as ATTR_NEXT_ITEM, ATTR_QUEUE_ID as ATTR_QUEUE_ID, ATTR_RADIO_MODE as ATTR_RADIO_MODE, ATTR_REPEAT_MODE as ATTR_REPEAT_MODE, ATTR_SHUFFLE_ENABLED as ATTR_SHUFFLE_ENABLED, ATTR_SOURCE_PLAYER as ATTR_SOURCE_PLAYER, ATTR_URL as ATTR_URL, ATTR_USE_PRE_ANNOUNCE as ATTR_USE_PRE_ANNOUNCE, DOMAIN as DOMAIN
+from .const import ATTR_ACTIVE as ATTR_ACTIVE, ATTR_ACTIVE_QUEUE as ATTR_ACTIVE_QUEUE, ATTR_CURRENT_INDEX as ATTR_CURRENT_INDEX, ATTR_CURRENT_ITEM as ATTR_CURRENT_ITEM, ATTR_ELAPSED_TIME as ATTR_ELAPSED_TIME, ATTR_ITEMS as ATTR_ITEMS, ATTR_MASS_PLAYER_TYPE as ATTR_MASS_PLAYER_TYPE, ATTR_NEXT_ITEM as ATTR_NEXT_ITEM, ATTR_QUEUE_ID as ATTR_QUEUE_ID, ATTR_RADIO_MODE as ATTR_RADIO_MODE, ATTR_REPEAT_MODE as ATTR_REPEAT_MODE, ATTR_SHUFFLE_ENABLED as ATTR_SHUFFLE_ENABLED, DOMAIN as DOMAIN
 from .entity import MusicAssistantEntity as MusicAssistantEntity
 from .helpers import catch_musicassistant_error as catch_musicassistant_error
 from .media_browser import async_browse_media as async_browse_media, async_search_media as async_search_media
@@ -7,11 +7,11 @@ from .schemas import QUEUE_DETAILS_SCHEMA as QUEUE_DETAILS_SCHEMA, queue_item_di
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import ATTR_NAME as ATTR_NAME, Platform as Platform, STATE_OFF as STATE_OFF
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from music_assistant_client.client import MusicAssistantClient as MusicAssistantClient
 from music_assistant_models.enums import MediaType, QueueOption
@@ -22,10 +22,7 @@ from typing import Any
 
 SUPPORTED_FEATURES_BASE: Incomplete
 QUEUE_OPTION_MAP: Incomplete
-SERVICE_PLAY_MEDIA_ADVANCED: str
-SERVICE_PLAY_ANNOUNCEMENT: str
-SERVICE_TRANSFER_QUEUE: str
-SERVICE_GET_QUEUE: str
+REPEAT_MODE_MAPPING_TO_HA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: MusicAssistantConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

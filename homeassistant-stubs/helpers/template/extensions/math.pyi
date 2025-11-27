@@ -2,7 +2,7 @@ from .base import BaseTemplateExtension as BaseTemplateExtension, TemplateFuncti
 from _typeshed import Incomplete
 from homeassistant.helpers.template import TemplateEnvironment as TemplateEnvironment
 from homeassistant.helpers.template.helpers import raise_no_default as raise_no_default
-from typing import Any
+from typing import Any, Literal
 
 _SENTINEL: Incomplete
 
@@ -41,3 +41,9 @@ class MathExtension(BaseTemplateExtension):
     def bitwise_or(first_value: Any, second_value: Any) -> Any: ...
     @staticmethod
     def bitwise_xor(first_value: Any, second_value: Any) -> Any: ...
+    @staticmethod
+    def clamp(value: Any, min_value: Any, max_value: Any) -> Any: ...
+    @staticmethod
+    def wrap(value: Any, min_value: Any, max_value: Any) -> Any: ...
+    @staticmethod
+    def remap(value: Any, in_min: Any, in_max: Any, out_min: Any, out_max: Any, *, steps: int = 0, edges: Literal['none', 'clamp', 'wrap', 'mirror'] = 'none') -> Any: ...

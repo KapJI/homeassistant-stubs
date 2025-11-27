@@ -1,6 +1,5 @@
 from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
 from .generated.entity_platforms import EntityPlatforms as EntityPlatforms
-from .helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
 from .util.hass_dict import HassKey as HassKey
@@ -353,8 +352,6 @@ class UnitOfReactivePower(StrEnum):
     VOLT_AMPERE_REACTIVE = 'var'
     KILO_VOLT_AMPERE_REACTIVE = 'kvar'
 
-_DEPRECATED_POWER_VOLT_AMPERE_REACTIVE: Final[Incomplete]
-
 class UnitOfEnergy(StrEnum):
     JOULE = 'J'
     KILO_JOULE = 'kJ'
@@ -480,8 +477,6 @@ class UnitOfArea(StrEnum):
     SQUARE_MILES = 'mi²'
     ACRES = 'ac'
     HECTARES = 'ha'
-
-_DEPRECATED_AREA_SQUARE_METERS: Final[Incomplete]
 
 class UnitOfMass(StrEnum):
     GRAMS = 'g'
@@ -682,6 +677,3 @@ FORMAT_DATE: Final[str]
 FORMAT_TIME: Final[str]
 FORMAT_DATETIME: Final[Incomplete]
 MAX_EXPECTED_ENTITY_IDS: Final[int]
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

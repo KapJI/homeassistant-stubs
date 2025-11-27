@@ -6,7 +6,7 @@ from .trace import trace_script as trace_script
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from homeassistant.components import websocket_api as websocket_api
+from homeassistant.components import automation as automation, websocket_api as websocket_api
 from homeassistant.components.blueprint import CONF_USE_BLUEPRINT as CONF_USE_BLUEPRINT
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ALIAS as CONF_ALIAS, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_ICON as CONF_ICON, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PATH as CONF_PATH, CONF_SEQUENCE as CONF_SEQUENCE, CONF_VARIABLES as CONF_VARIABLES, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback

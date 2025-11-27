@@ -49,12 +49,8 @@ class EnvoyCTSensorEntityDescription(SensorEntityDescription):
     on_phase: str | None
     cttype: str | None = ...
 
-CT_NET_CONSUMPTION_SENSORS: Incomplete
-CT_NET_CONSUMPTION_PHASE_SENSORS: Incomplete
-CT_PRODUCTION_SENSORS: Incomplete
-CT_PRODUCTION_PHASE_SENSORS: Incomplete
-CT_STORAGE_SENSORS: Incomplete
-CT_STORAGE_PHASE_SENSORS: Incomplete
+CT_SENSORS: Incomplete
+CT_PHASE_SENSORS: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyEnchargeSensorEntityDescription(SensorEntityDescription):

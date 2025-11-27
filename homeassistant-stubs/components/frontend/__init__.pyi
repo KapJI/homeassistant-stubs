@@ -82,17 +82,18 @@ class Panel:
     component_name: str
     sidebar_icon: str | None
     sidebar_title: str | None
+    sidebar_default_visible: bool
     frontend_url_path: str
     config: dict[str, Any] | None
     require_admin: bool
     config_panel_domain: str | None
-    def __init__(self, component_name: str, sidebar_title: str | None, sidebar_icon: str | None, frontend_url_path: str | None, config: dict[str, Any] | None, require_admin: bool, config_panel_domain: str | None) -> None: ...
+    def __init__(self, component_name: str, sidebar_title: str | None, sidebar_icon: str | None, sidebar_default_visible: bool, frontend_url_path: str | None, config: dict[str, Any] | None, require_admin: bool, config_panel_domain: str | None) -> None: ...
     @callback
     def to_response(self) -> PanelResponse: ...
 
 @bind_hass
 @callback
-def async_register_built_in_panel(hass: HomeAssistant, component_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, frontend_url_path: str | None = None, config: dict[str, Any] | None = None, require_admin: bool = False, *, update: bool = False, config_panel_domain: str | None = None) -> None: ...
+def async_register_built_in_panel(hass: HomeAssistant, component_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, sidebar_default_visible: bool = True, frontend_url_path: str | None = None, config: dict[str, Any] | None = None, require_admin: bool = False, *, update: bool = False, config_panel_domain: str | None = None) -> None: ...
 @bind_hass
 @callback
 def async_remove_panel(hass: HomeAssistant, frontend_url_path: str, *, warn_if_unknown: bool = True) -> None: ...
@@ -148,6 +149,7 @@ class PanelResponse(TypedDict):
     component_name: str
     icon: str | None
     title: str | None
+    default_visible: bool
     config: dict[str, Any] | None
     url_path: str
     require_admin: bool

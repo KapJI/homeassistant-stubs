@@ -13,7 +13,7 @@ from typing import Final, Literal
 
 CACHE_SIZE: int
 _LOGGER: Incomplete
-QUERY_STATISTIC_META: Incomplete
+QUERY_STATISTICS_META: Incomplete
 INDEX_ID: Final[int]
 INDEX_STATISTIC_ID: Final[int]
 INDEX_SOURCE: Final[int]

@@ -1,4 +1,4 @@
-from . import WLEDConfigEntry as WLEDConfigEntry
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any

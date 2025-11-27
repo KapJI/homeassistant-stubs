@@ -1,5 +1,6 @@
 from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
 from .entity import RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
+from .models import DeviceState as DeviceState
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -7,13 +8,12 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from roborock.roborock_typing import DeviceProp as DeviceProp
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockBinarySensorDescription(BinarySensorEntityDescription):
-    value_fn: Callable[[DeviceProp], bool | int | None]
+    value_fn: Callable[[DeviceState], bool | int | None]
     is_dock_entity: bool = ...
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete

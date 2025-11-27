@@ -1,4 +1,4 @@
-from . import DEVICE_UPDATE_INTERVAL as DEVICE_UPDATE_INTERVAL
+from . import DEVICE_UPDATE_INTERVAL_MIN as DEVICE_UPDATE_INTERVAL_MIN, DEVICE_UPDATE_INTERVAL_PER_CAM as DEVICE_UPDATE_INTERVAL_PER_CAM
 from .const import DOMAIN as DOMAIN
 from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error

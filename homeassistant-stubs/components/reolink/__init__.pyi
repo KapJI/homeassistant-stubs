@@ -18,7 +18,8 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 _LOGGER: Incomplete
 PLATFORMS: Incomplete
-DEVICE_UPDATE_INTERVAL: Incomplete
+DEVICE_UPDATE_INTERVAL_MIN: Incomplete
+DEVICE_UPDATE_INTERVAL_PER_CAM: Incomplete
 FIRMWARE_UPDATE_INTERVAL: Incomplete
 NUM_CRED_ERRORS: int
 CONFIG_SCHEMA: Incomplete

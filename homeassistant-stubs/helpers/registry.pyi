@@ -26,6 +26,5 @@ class BaseRegistry[_StoreDataT: Mapping[str, Any] | Sequence[Any]](ABC, metaclas
     _store: Store[_StoreDataT]
     @callback
     def async_schedule_save(self) -> None: ...
-    @callback
     @abstractmethod
     def _data_to_save(self) -> _StoreDataT: ...

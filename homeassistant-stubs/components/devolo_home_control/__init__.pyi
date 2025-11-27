@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from _typeshed import Incomplete
 from collections.abc import Mapping
 from devolo_home_control_api.homecontrol import HomeControl
 from devolo_home_control_api.mydevolo import Mydevolo
@@ -11,6 +12,8 @@ from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from typing import Any
 
 type DevoloHomeControlConfigEntry = ConfigEntry[list[HomeControl]]
+_LOGGER: Incomplete
+
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry) -> bool: ...
 async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: DevoloHomeControlConfigEntry, device_entry: DeviceEntry) -> bool: ...

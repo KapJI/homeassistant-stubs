@@ -9,8 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from roborock.command_cache import CacheableAttribute
-from roborock.version_1_apis.roborock_client_v1 import AttributeCache as AttributeCache
+from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
 from typing import Any
 
 _LOGGER: Incomplete
@@ -18,8 +17,9 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockNumberDescription(NumberEntityDescription):
-    cache_key: CacheableAttribute
-    update_value: Callable[[AttributeCache, float], Coroutine[Any, Any, None]]
+    trait: Callable[[PropertiesApi], Any | None]
+    get_value: Callable[[Any], float]
+    set_value: Callable[[Any, float], Coroutine[Any, Any, None]]
 
 NUMBER_DESCRIPTIONS: list[RoborockNumberDescription]
 
@@ -27,7 +27,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEnt
 
 class RoborockNumberEntity(RoborockEntityV1, NumberEntity):
     entity_description: RoborockNumberDescription
-    def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, entity_description: RoborockNumberDescription) -> None: ...
+    _trait: Incomplete
+    def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, entity_description: RoborockNumberDescription, trait: Any) -> None: ...
     @property
     def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...

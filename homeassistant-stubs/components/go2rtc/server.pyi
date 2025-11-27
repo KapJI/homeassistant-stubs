@@ -1,10 +1,10 @@
 import asyncio
-from .const import HA_MANAGED_API_PORT as HA_MANAGED_API_PORT, HA_MANAGED_URL as HA_MANAGED_URL
+from .const import HA_MANAGED_API_PORT as HA_MANAGED_API_PORT, HA_MANAGED_UNIX_SOCKET as HA_MANAGED_UNIX_SOCKET, HA_MANAGED_URL as HA_MANAGED_URL
 from _typeshed import Incomplete
+from aiohttp import ClientSession as ClientSession
 from collections import deque
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 
 _LOGGER: Incomplete
 _TERMINATE_TIMEOUT: int
@@ -26,18 +26,21 @@ class Go2RTCServerStartError(HomeAssistantError):
 class Go2RTCWatchdogError(HomeAssistantError): ...
 
 def _format_list_for_yaml(items: tuple[str, ...]) -> str: ...
-def _create_temp_file(enable_ui: bool) -> str: ...
+def _create_temp_file(enable_ui: bool, username: str, password: str) -> str: ...
 
 class Server:
     _hass: Incomplete
     _binary: Incomplete
+    _session: Incomplete
+    _enable_ui: Incomplete
+    _username: Incomplete
+    _password: Incomplete
     _log_buffer: deque[str]
     _process: asyncio.subprocess.Process | None
     _startup_complete: Incomplete
-    _enable_ui: Incomplete
     _watchdog_task: asyncio.Task | None
     _watchdog_tasks: list[asyncio.Task]
-    def __init__(self, hass: HomeAssistant, binary: str, *, enable_ui: bool = False) -> None: ...
+    def __init__(self, hass: HomeAssistant, binary: str, session: ClientSession, *, enable_ui: bool = False, username: str, password: str) -> None: ...
     async def start(self) -> None: ...
     async def _start(self) -> None: ...
     async def _log_output(self, process: asyncio.subprocess.Process) -> None: ...

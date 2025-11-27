@@ -1,0 +1,13 @@
+from typing import Final
+
+DOMAIN: Final[str]
+NAME: Final[str]
+CONF_PROVISIONING_KEY: Final[str]
+CONF_PROVISIONING_SECRET: Final[str]
+CONF_DEVICE_ID: Final[str]
+CONF_DEVICE_NAME: Final[str]
+CONF_HA_ENTITY_UUID: Final[str]
+CONF_ENERGYID_KEY: Final[str]
+ENERGYID_DEVICE_ID_FOR_WEBHOOK_PREFIX: Final[str]
+POLLING_INTERVAL: Final[int]
+MAX_POLLING_ATTEMPTS: Final[int]

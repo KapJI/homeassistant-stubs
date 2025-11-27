@@ -10,6 +10,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
 from typing import Final
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class FritzBinarySensorEntityDescription(BinarySensorEntityDescription, FritzEntityDescriptionMixinBase):
     is_on: Callable[[FritzhomeDevice], bool | None]

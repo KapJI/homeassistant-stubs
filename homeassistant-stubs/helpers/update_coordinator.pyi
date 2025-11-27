@@ -21,7 +21,9 @@ REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
 _DataT = TypeVar('_DataT', default=dict[str, Any])
 
-class UpdateFailed(HomeAssistantError): ...
+class UpdateFailed(HomeAssistantError):
+    retry_after: Incomplete
+    def __init__(self, *args: Any, retry_after: float | None = None, **kwargs: Any) -> None: ...
 
 class BaseDataUpdateCoordinatorProtocol(Protocol):
     @callback
@@ -44,6 +46,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     _unsub_refresh: CALLBACK_TYPE | None
     _unsub_shutdown: CALLBACK_TYPE | None
     _request_refresh_task: asyncio.TimerHandle | None
+    _retry_after: float | None
     last_update_success: bool
     last_exception: Exception | None
     _debounced_refresh: Incomplete

@@ -20,6 +20,7 @@ class Selector[_T: Mapping[str, Any]]:
     CONFIG_SCHEMA: Callable
     config: _T
     selector_type: str
+    allowed_context_keys: dict[str, set[str]]
     def __init__(self, config: Mapping[str, Any] | None = None) -> None: ...
     def __eq__(self, other: object) -> bool: ...
     def serialize(self) -> dict[str, dict[str, _T]]: ...
@@ -94,6 +95,7 @@ class AttributeSelectorConfig(BaseSelectorConfig, total=False):
 
 class AttributeSelector(Selector[AttributeSelectorConfig]):
     selector_type: str
+    allowed_context_keys: Incomplete
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: AttributeSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
@@ -299,13 +301,15 @@ class LocationSelector(Selector[LocationSelectorConfig]):
 
 class MediaSelectorConfig(BaseSelectorConfig, total=False):
     accept: list[str]
+    multiple: bool
 
 class MediaSelector(Selector[MediaSelectorConfig]):
     selector_type: str
+    allowed_context_keys: Incomplete
     CONFIG_SCHEMA: Incomplete
     DATA_SCHEMA: Incomplete
     def __init__(self, config: MediaSelectorConfig | None = None) -> None: ...
-    def __call__(self, data: Any) -> dict[str, str]: ...
+    def __call__(self, data: Any) -> dict[str, str] | list[dict[str, str]]: ...
 
 class NumberSelectorConfig(BaseSelectorConfig, total=False):
     min: float
@@ -394,6 +398,7 @@ class StateSelectorConfig(BaseSelectorConfig, total=False):
 
 class StateSelector(Selector[StateSelectorConfig]):
     selector_type: str
+    allowed_context_keys: Incomplete
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: StateSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...

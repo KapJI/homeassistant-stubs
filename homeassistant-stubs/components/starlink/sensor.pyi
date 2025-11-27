@@ -15,17 +15,17 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEnt
 @dataclass(frozen=True, kw_only=True)
 class StarlinkSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[StarlinkData], datetime | StateType]
+    entity_class: Callable
 
 class StarlinkSensorEntity(StarlinkEntity, SensorEntity):
     entity_description: StarlinkSensorEntityDescription
     @property
     def native_value(self) -> StateType | datetime: ...
 
-class StarlinkRestoreSensor(StarlinkSensorEntity, RestoreSensor):
+class StarlinkAccumulationSensor(StarlinkSensorEntity, RestoreSensor):
     _attr_native_value: int | float
     @property
     def native_value(self) -> int | float: ...
     async def async_added_to_hass(self) -> None: ...
 
 SENSORS: tuple[StarlinkSensorEntityDescription, ...]
-RESTORE_SENSORS: tuple[StarlinkSensorEntityDescription, ...]

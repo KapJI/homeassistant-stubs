@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entity import WLEDEntity as WLEDEntity
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

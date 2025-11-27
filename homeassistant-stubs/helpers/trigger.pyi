@@ -2,28 +2,30 @@ import abc
 import asyncio
 import voluptuous as vol
 from . import selector as selector
-from .automation import get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key
+from .automation import get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from .selector import TargetSelector as TargetSelector
+from .target import TargetStateChangedData as TargetStateChangedData, async_track_target_selector_state_change_event as async_track_target_selector_state_change_event
 from .template import Template as Template
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from _typeshed import Incomplete
 from collections import defaultdict
 from collections.abc import Callable, Coroutine, Iterable
 from dataclasses import dataclass, field
-from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_TARGET as CONF_TARGET, CONF_VARIABLES as CONF_VARIABLES
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, is_callback as is_callback
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ALIAS as CONF_ALIAS, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_TARGET as CONF_TARGET, CONF_VARIABLES as CONF_VARIABLES, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, is_callback as is_callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
-from typing import Any, Protocol, TypedDict
+from typing import Any, Final, Protocol, TypedDict, override
 
 _LOGGER: Incomplete
 _PLATFORM_ALIASES: Incomplete
 DATA_PLUGGABLE_ACTIONS: HassKey[defaultdict[tuple, PluggableActionsEntry]]
 TRIGGER_DESCRIPTION_CACHE: HassKey[dict[str, dict[str, Any] | None]]
+TRIGGER_DISABLED_TRIGGERS: HassKey[set[str]]
 TRIGGER_PLATFORM_SUBSCRIPTIONS: HassKey[list[Callable[[set[str]], Coroutine[Any, Any, None]]]]
 TRIGGERS: HassKey[dict[str, str]]
 _FIELD_DESCRIPTION_SCHEMA: Incomplete
@@ -51,6 +53,50 @@ class Trigger(abc.ABC, metaclass=abc.ABCMeta):
     async def async_attach_action(self, action: TriggerAction, action_payload_builder: TriggerActionPayloadBuilder) -> CALLBACK_TYPE: ...
     @abc.abstractmethod
     async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+
+ATTR_BEHAVIOR: Final[str]
+BEHAVIOR_FIRST: Final[str]
+BEHAVIOR_LAST: Final[str]
+BEHAVIOR_ANY: Final[str]
+ENTITY_STATE_TRIGGER_SCHEMA: Incomplete
+ENTITY_STATE_TRIGGER_SCHEMA_FIRST_LAST: Incomplete
+
+class EntityTriggerBase(Trigger, metaclass=abc.ABCMeta):
+    _domain: str
+    _schema: vol.Schema
+    @override
+    @classmethod
+    async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
+    _options: Incomplete
+    _target: Incomplete
+    def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
+    def is_from_state(self, from_state: State, to_state: State) -> bool: ...
+    @abc.abstractmethod
+    def is_to_state(self, state: State) -> bool: ...
+    def check_all_match(self, entity_ids: set[str]) -> bool: ...
+    def check_one_match(self, entity_ids: set[str]) -> bool: ...
+    def entity_filter(self, entities: set[str]) -> set[str]: ...
+    @override
+    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+
+class EntityStateTriggerBase(EntityTriggerBase):
+    _to_state: str
+    def is_to_state(self, state: State) -> bool: ...
+
+class ConditionalEntityStateTriggerBase(EntityTriggerBase):
+    _from_states: set[str]
+    _to_states: set[str]
+    def is_from_state(self, from_state: State, to_state: State) -> bool: ...
+    def is_to_state(self, state: State) -> bool: ...
+
+class EntityStateAttributeTriggerBase(EntityTriggerBase):
+    _attribute: str
+    _attribute_to_state: str
+    def is_to_state(self, state: State) -> bool: ...
+
+def make_entity_state_trigger(domain: str, to_state: str) -> type[EntityStateTriggerBase]: ...
+def make_conditional_entity_state_trigger(domain: str, *, from_states: set[str], to_states: set[str]) -> type[ConditionalEntityStateTriggerBase]: ...
+def make_entity_state_attribute_trigger(domain: str, attribute: str, to_state: str) -> type[EntityStateAttributeTriggerBase]: ...
 
 class TriggerProtocol(Protocol):
     async def async_get_triggers(self, hass: HomeAssistant) -> dict[str, type[Trigger]]: ...

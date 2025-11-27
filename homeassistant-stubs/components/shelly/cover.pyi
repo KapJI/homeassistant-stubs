@@ -2,7 +2,7 @@ import asyncio
 from .const import RPC_COVER_UPDATE_TIME_SEC as RPC_COVER_UPDATE_TIME_SEC
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
-from .utils import get_device_entry_gen as get_device_entry_gen
+from .utils import get_device_entry_gen as get_device_entry_gen, get_rpc_channel_name as get_rpc_channel_name
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass
@@ -32,6 +32,7 @@ class BlockShellyCover(ShellyBlockAttributeEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
     control_result: dict[str, Any] | None
+    _attr_name: Incomplete
     _attr_unique_id: str
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockCoverDescription) -> None: ...
     @property
@@ -54,6 +55,7 @@ class RpcShellyCover(ShellyRpcAttributeEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
     _id: int
+    _attr_name: Incomplete
     _attr_unique_id: str
     _update_task: asyncio.Task | None
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcCoverDescription) -> None: ...

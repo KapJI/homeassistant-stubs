@@ -78,7 +78,6 @@ class EntityDescription(frozen_or_thawed=True, metaclass=FrozenOrThawed):
 class CalculatedState:
     state: str
     attributes: dict[str, Any]
-    capability_attributes: Mapping[str, Any] | None
 
 class CachedProperties(type):
     def __new__(mcs, name: str, bases: tuple[type, ...], namespace: dict[Any, Any], cached_properties: set[str] | None = None, **kwargs: Any) -> Any: ...

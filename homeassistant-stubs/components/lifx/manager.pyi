@@ -1,5 +1,5 @@
 from .const import ATTR_THEME as ATTR_THEME, DOMAIN as DOMAIN, _ATTR_COLOR_TEMP as _ATTR_COLOR_TEMP
-from .coordinator import LIFXConfigEntry as LIFXConfigEntry, LIFXUpdateCoordinator as LIFXUpdateCoordinator
+from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .util import convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk
 from _typeshed import Incomplete
 from aiolifx.aiolifx import Light as Light
@@ -74,12 +74,12 @@ SERVICES_SCHEMA: Incomplete
 class LIFXManager:
     hass: Incomplete
     effects_conductor: Incomplete
-    entry_id_to_entity_id: dict[str, str]
+    entity_id_to_coordinator: dict[str, LIFXUpdateCoordinator]
     def __init__(self, hass: HomeAssistant) -> None: ...
     @callback
     def async_unload(self) -> None: ...
     @callback
-    def async_register_entity(self, entity_id: str, entry_id: str) -> Callable[[], None]: ...
+    def async_register_entity(self, entity_id: str, coordinator: LIFXUpdateCoordinator) -> Callable[[], None]: ...
     @callback
     def async_setup(self) -> None: ...
     @staticmethod

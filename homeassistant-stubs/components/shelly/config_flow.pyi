@@ -1,19 +1,48 @@
-from .const import BLEScannerMode as BLEScannerMode, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_GEN as CONF_GEN, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER
+import asyncio
+from .ble_provisioning import ProvisioningState as ProvisioningState, async_get_provisioning_registry as async_get_provisioning_registry, async_register_zeroconf_discovery as async_register_zeroconf_discovery
+from .const import BLEScannerMode as BLEScannerMode, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_GEN as CONF_GEN, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, CONF_SSID as CONF_SSID, DOMAIN as DOMAIN, LOGGER as LOGGER, PROVISIONING_TIMEOUT as PROVISIONING_TIMEOUT
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry, async_reconnect_soon as async_reconnect_soon
 from .utils import get_block_device_sleep_period as get_block_device_sleep_period, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_http_port as get_http_port, get_info_auth as get_info_auth, get_info_gen as get_info_gen, get_model_name as get_model_name, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, get_ws_context as get_ws_context, mac_address_from_name as mac_address_from_name
 from _typeshed import Incomplete
-from collections.abc import Mapping
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
+from bleak.backends.device import BLEDevice as BLEDevice
+from collections.abc import AsyncIterator, Mapping
+from contextlib import asynccontextmanager
+from dataclasses import dataclass
+from homeassistant.components import zeroconf as zeroconf
+from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_ble_device_from_address as async_ble_device_from_address, async_clear_address_from_match_history as async_clear_address_from_match_history, async_discovered_service_info as async_discovered_service_info
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_BLUETOOTH as SOURCE_BLUETOOTH, SOURCE_ZEROCONF as SOURCE_ZEROCONF
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
+from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any, Final
 
 CONFIG_SCHEMA: Final[Incomplete]
 BLE_SCANNER_OPTIONS: Incomplete
 INTERNAL_WIFI_AP_IP: str
+MANUAL_ENTRY_STRING: str
+DISCOVERY_SOURCES: Incomplete
+
+async def async_get_ip_from_ble(ble_device: BLEDevice) -> str | None: ...
+
+BLUETOOTH_FINISHING_STEPS: Incomplete
+
+@dataclass(frozen=True, slots=True)
+class DiscoveredDeviceZeroconf:
+    name: str
+    mac: str
+    host: str
+    port: int
+
+@dataclass(frozen=True, slots=True)
+class DiscoveredDeviceBluetooth:
+    name: str
+    mac: str
+    ble_device: BLEDevice
+    discovery_info: BluetoothServiceInfoBleak
 
 async def validate_input(hass: HomeAssistant, host: str, port: int, info: dict[str, Any], data: dict[str, Any]) -> dict[str, Any]: ...
 
@@ -24,9 +53,42 @@ class ShellyConfigFlow(ConfigFlow, domain=DOMAIN):
     port: int
     info: dict[str, Any]
     device_info: dict[str, Any]
+    ble_device: BLEDevice | None
+    device_name: str
+    wifi_networks: list[dict[str, Any]]
+    selected_ssid: str
+    _provision_task: asyncio.Task | None
+    _provision_result: ConfigFlowResult | None
+    disable_ap_after_provision: bool
+    disable_ble_rpc_after_provision: bool
+    _discovered_devices: dict[str, DiscoveredDeviceZeroconf | DiscoveredDeviceBluetooth]
+    @staticmethod
+    def _get_name_from_mac_and_ble_model(mac: str, parsed_data: dict[str, int | str]) -> str: ...
+    def _parse_ble_device_mac_and_name(self, discovery_info: BluetoothServiceInfoBleak) -> tuple[str | None, str]: ...
+    async def _async_discover_zeroconf_devices(self) -> dict[str, DiscoveredDeviceZeroconf]: ...
+    @callback
+    def _async_discover_bluetooth_devices(self) -> dict[str, DiscoveredDeviceBluetooth]: ...
+    async def _async_connect_and_get_info(self, host: str, port: int) -> ConfigFlowResult | None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_user_manual(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_credentials(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @callback
+    def _async_get_in_progress_discovery_macs(self) -> set[str]: ...
+    def _abort_idle_ble_flows(self, mac: str) -> None: ...
+    async def _async_handle_zeroconf_mac_discovery(self, mac: str, host: str, port: int) -> None: ...
     async def _async_discovered_mac(self, mac: str, host: str) -> None: ...
+    async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
+    async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_wifi_scan(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_wifi_scan_failed(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @asynccontextmanager
+    async def _async_provision_context(self, mac: str) -> AsyncIterator[ProvisioningState]: ...
+    async def _async_secure_device_after_provision(self, host: str, port: int) -> None: ...
+    async def _async_provision_wifi_and_wait_for_zeroconf(self, mac: str, password: str, state: ProvisioningState) -> ConfigFlowResult | None: ...
+    async def _do_provision(self, password: str) -> None: ...
+    async def async_step_do_provision(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_provision_failed(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_provision_done(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_confirm_discovery(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

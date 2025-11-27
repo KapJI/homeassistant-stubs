@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.util import snakecase as snakecase
 from typing import Any
 
 _LOGGER: Incomplete
@@ -21,7 +22,6 @@ def _is_connected(host: _HostType | None) -> bool: ...
 def _is_us(host: _HostType) -> bool: ...
 @callback
 def async_add_new_entities(router: Router, async_add_entities: AddConfigEntryEntitiesCallback, tracked: set[str]) -> None: ...
-def _better_snakecase(text: str) -> str: ...
 
 class HuaweiLteScannerEntity(HuaweiLteBaseEntity, ScannerEntity):
     _ip_address: str | None

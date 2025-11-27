@@ -5,7 +5,7 @@ from homeassistant.const import CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
+_LOGGER: Incomplete
 TO_REDACT_CONFIG: Incomplete
-TO_REDACT_COORD: Incomplete
 
 async def async_get_config_entry_diagnostics(hass: HomeAssistant, config_entry: RoborockConfigEntry) -> dict[str, Any]: ...

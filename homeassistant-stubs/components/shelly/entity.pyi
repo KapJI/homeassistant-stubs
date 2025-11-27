@@ -1,6 +1,6 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, ROLE_GENERIC as ROLE_GENERIC
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_device_info as get_block_device_info, get_block_entity_name as get_block_entity_name, get_rpc_device_info as get_rpc_device_info, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_instances as get_rpc_key_instances, get_rpc_role_by_key as get_rpc_role_by_key
+from .utils import async_remove_shelly_entity as async_remove_shelly_entity, get_block_device_info as get_block_device_info, get_rpc_channel_name as get_rpc_channel_name, get_rpc_device_info as get_rpc_device_info, get_rpc_key as get_rpc_key, get_rpc_key_instances as get_rpc_key_instances, get_rpc_role_by_key as get_rpc_role_by_key
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Awaitable, Callable as Callable, Coroutine, Mapping
@@ -32,7 +32,6 @@ def async_setup_entry_rest(hass: HomeAssistant, config_entry: ShellyConfigEntry,
 
 @dataclass(frozen=True)
 class BlockEntityDescription(EntityDescription):
-    name: str = ...
     unit_fn: Callable[[dict], str] | None = ...
     value: Callable[[Any], Any] = ...
     available: Callable[[Block], bool] | None = ...
@@ -41,7 +40,6 @@ class BlockEntityDescription(EntityDescription):
 
 @dataclass(frozen=True, kw_only=True)
 class RpcEntityDescription(EntityDescription):
-    name: str = ...
     sub_key: str | None = ...
     value: Callable[[Any, Any], Any] | None = ...
     available: Callable[[dict], bool] | None = ...
@@ -55,7 +53,6 @@ class RpcEntityDescription(EntityDescription):
 
 @dataclass(frozen=True)
 class RestEntityDescription(EntityDescription):
-    name: str = ...
     value: Callable[[dict, Any], Any] | None = ...
 
 def rpc_call[_T: ShellyRpcEntity, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...
@@ -63,7 +60,6 @@ def rpc_call[_T: ShellyRpcEntity, **_P](func: Callable[Concatenate[_T, _P], Awai
 class ShellyBlockEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     _attr_has_entity_name: bool
     block: Incomplete
-    _attr_name: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block) -> None: ...
@@ -77,7 +73,6 @@ class ShellyRpcEntity(CoordinatorEntity[ShellyRpcCoordinator]):
     key: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str) -> None: ...
     @property
     def available(self) -> bool: ...
@@ -93,7 +88,6 @@ class ShellyBlockAttributeEntity(ShellyBlockEntity, Entity):
     entity_description: BlockEntityDescription
     attribute: Incomplete
     _attr_unique_id: str
-    _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockEntityDescription) -> None: ...
     @property
     def attribute_value(self) -> StateType: ...
@@ -105,7 +99,6 @@ class ShellyRestAttributeEntity(CoordinatorEntity[ShellyBlockCoordinator]):
     entity_description: RestEntityDescription
     block_coordinator: Incomplete
     attribute: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _last_value: Incomplete
@@ -118,8 +111,8 @@ class ShellyRestAttributeEntity(CoordinatorEntity[ShellyBlockCoordinator]):
 class ShellyRpcAttributeEntity(ShellyRpcEntity, Entity):
     entity_description: RpcEntityDescription
     attribute: Incomplete
-    _attr_unique_id: Incomplete
     _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _last_value: Incomplete
     _id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
@@ -132,6 +125,9 @@ class ShellyRpcAttributeEntity(ShellyRpcEntity, Entity):
     def attribute_value(self) -> StateType: ...
     @property
     def available(self) -> bool: ...
+    _attr_translation_placeholders: Incomplete
+    _attr_translation_key: Incomplete
+    def configure_translation_attributes(self) -> None: ...
 
 class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity):
     last_state: State | None
@@ -141,7 +137,6 @@ class ShellySleepingBlockAttributeEntity(ShellyBlockAttributeEntity):
     entity_description: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockEntityDescription, entry: RegistryEntry | None = None) -> None: ...
     @callback
     def _update_callback(self) -> None: ...

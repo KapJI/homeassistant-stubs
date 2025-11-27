@@ -1,7 +1,7 @@
 from .const import BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import ShellyBlockEntity as ShellyBlockEntity, get_entity_rpc_device_info as get_entity_rpc_device_info
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, async_remove_shelly_entity as async_remove_shelly_entity, get_device_entry_gen as get_device_entry_gen, get_rpc_entity_name as get_rpc_entity_name, get_rpc_key_instances as get_rpc_key_instances, is_block_momentary_input as is_block_momentary_input, is_rpc_momentary_input as is_rpc_momentary_input
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, async_remove_shelly_entity as async_remove_shelly_entity, get_block_channel as get_block_channel, get_block_channel_name as get_block_channel_name, get_block_custom_name as get_block_custom_name, get_block_number_of_channels as get_block_number_of_channels, get_device_entry_gen as get_device_entry_gen, get_rpc_custom_name as get_rpc_custom_name, get_rpc_key as get_rpc_key, get_rpc_key_id as get_rpc_key_id, get_rpc_key_instances as get_rpc_key_instances, get_rpc_number_of_channels as get_rpc_number_of_channels, is_block_momentary_input as is_block_momentary_input, is_block_single_device as is_block_single_device, is_rpc_momentary_input as is_rpc_momentary_input
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from collections.abc import Callable as Callable
@@ -37,6 +37,8 @@ class ShellyBlockEvent(ShellyBlockEntity, EventEntity):
     channel: Incomplete
     _attr_unique_id: Incomplete
     _attr_event_types: Incomplete
+    _attr_translation_placeholders: Incomplete
+    _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, description: ShellyBlockEventDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @callback
@@ -45,10 +47,11 @@ class ShellyBlockEvent(ShellyBlockEntity, EventEntity):
 class ShellyRpcEvent(CoordinatorEntity[ShellyRpcCoordinator], EventEntity):
     _attr_has_entity_name: bool
     entity_description: ShellyRpcEventDescription
-    event_id: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
+    _attr_translation_placeholders: Incomplete
+    event_id: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, description: ShellyRpcEventDescription) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @callback

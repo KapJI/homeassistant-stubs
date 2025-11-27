@@ -1,17 +1,18 @@
-from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_URL as HA_MANAGED_URL, RECOMMENDED_VERSION as RECOMMENDED_VERSION
+from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_UNIX_SOCKET as HA_MANAGED_UNIX_SOCKET, HA_MANAGED_URL as HA_MANAGED_URL, RECOMMENDED_VERSION as RECOMMENDED_VERSION
 from .server import Server as Server
 from _typeshed import Incomplete
-from aiohttp import ClientSession as ClientSession
+from aiohttp import ClientSession
+from dataclasses import dataclass
 from go2rtc_client import Go2RtcRestClient
 from go2rtc_client.ws import Go2RtcWsClient, ReceiveMessages as ReceiveMessages
 from homeassistant.components.camera import Camera as Camera, CameraWebRTCProvider as CameraWebRTCProvider, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_register_webrtc_provider as async_register_webrtc_provider, get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
 from homeassistant.components.stream import Orientation as Orientation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
-from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import discovery_flow as discovery_flow
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.package import is_docker_env as is_docker_env
@@ -19,8 +20,12 @@ from webrtc_models import RTCIceCandidateInit
 
 _LOGGER: Incomplete
 _FFMPEG: str
+_AUTH: str
+
+def _validate_auth(config: dict) -> dict: ...
+
 CONFIG_SCHEMA: Incomplete
-_DATA_GO2RTC: HassKey[str]
+_DATA_GO2RTC: HassKey[Go2RtcConfig]
 _RETRYABLE_ERRORS: Incomplete
 type Go2RtcConfigEntry = ConfigEntry[WebRTCProvider]
 
@@ -50,3 +55,8 @@ class WebRTCProvider(CameraWebRTCProvider):
     async def async_get_image(self, camera: Camera, width: int | None = None, height: int | None = None) -> bytes | None: ...
     async def _update_stream_source(self, camera: Camera) -> None: ...
     async def teardown(self) -> None: ...
+
+@dataclass
+class Go2RtcConfig:
+    url: str
+    session: ClientSession

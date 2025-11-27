@@ -1,6 +1,6 @@
 from .. import Recorder as Recorder
 from ..const import SupportedDialect as SupportedDialect
-from ..db_schema import DOUBLE_PRECISION_TYPE_SQL as DOUBLE_PRECISION_TYPE_SQL, DOUBLE_TYPE as DOUBLE_TYPE
+from ..db_schema import DOUBLE_PRECISION_TYPE_SQL as DOUBLE_PRECISION_TYPE_SQL, DOUBLE_TYPE as DOUBLE_TYPE, MYSQL_COLLATE as MYSQL_COLLATE
 from ..util import session_scope as session_scope
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping

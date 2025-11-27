@@ -1,8 +1,8 @@
 import abc
-from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, ObjectClassType as ObjectClassType, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as _LOGGER
 from _typeshed import Incomplete
 from abc import abstractmethod
-from aiocomelit.api import AlarmDataObject, ComelitCommonApi as ComelitCommonApi, ComelitSerialBridgeObject, ComelitVedoApi, ComelitVedoAreaObject as ComelitVedoAreaObject, ComelitVedoZoneObject as ComelitVedoZoneObject, ComeliteSerialBridgeApi
+from aiocomelit.api import AlarmDataObject, ComelitCommonApi as ComelitCommonApi, ComelitSerialBridgeObject, ComelitVedoApi, ComeliteSerialBridgeApi
 from aiohttp import ClientSession as ClientSession
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -21,7 +21,7 @@ class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     _device: Incomplete
     _host: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, device: str, host: str) -> None: ...
-    def platform_device_info(self, object_class: ComelitVedoZoneObject | ComelitVedoAreaObject | ComelitSerialBridgeObject, object_type: str) -> dr.DeviceInfo: ...
+    def platform_device_info(self, object_class: ObjectClassType, object_type: str) -> dr.DeviceInfo: ...
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _async_update_system_data(self) -> T: ...

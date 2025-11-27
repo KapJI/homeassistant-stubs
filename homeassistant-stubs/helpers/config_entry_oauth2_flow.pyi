@@ -13,6 +13,7 @@ from collections.abc import Awaitable, Callable as Callable
 from habluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.loader import async_get_application_credentials as async_get_application_credentials
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
@@ -27,6 +28,8 @@ MY_AUTH_CALLBACK_PATH: str
 CLOCK_OUT_OF_SYNC_MAX_SEC: int
 OAUTH_AUTHORIZE_URL_TIMEOUT_SEC: int
 OAUTH_TOKEN_TIMEOUT_SEC: int
+
+class ImplementationUnavailableError(HomeAssistantError): ...
 
 @callback
 def async_get_redirect_uri(hass: HomeAssistant) -> str: ...

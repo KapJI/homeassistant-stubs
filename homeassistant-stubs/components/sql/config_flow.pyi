@@ -1,13 +1,14 @@
 import voluptuous as vol
 from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
-from .util import resolve_db_url as resolve_db_url
+from .util import EmptyQueryError as EmptyQueryError, InvalidSqlQuery as InvalidSqlQuery, MultipleQueryError as MultipleQueryError, NotSelectQueryError as NotSelectQueryError, UnknownQueryTypeError as UnknownQueryTypeError, check_and_render_sql_query as check_and_render_sql_query, resolve_db_url as resolve_db_url
 from _typeshed import Incomplete
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, get_instance as get_instance
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
-from homeassistant.core import callback as callback
+from homeassistant.core import async_get_hass as async_get_hass, callback as callback
 from homeassistant.data_entry_flow import section as section
+from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import selector as selector
 from sqlalchemy.engine import Engine as Engine, Result as Result
 from sqlalchemy.orm import Session as Session

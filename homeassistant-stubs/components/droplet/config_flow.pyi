@@ -6,6 +6,8 @@ from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as Z
 from pydroplet.droplet import DropletDiscovery
 from typing import Any
 
+def normalize_pairing_code(code: str) -> str: ...
+
 class DropletConfigFlow(ConfigFlow, domain=DOMAIN):
     _droplet_discovery: DropletDiscovery
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...

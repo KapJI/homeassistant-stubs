@@ -1,6 +1,6 @@
 from .const import CONF_BASE_URL as CONF_BASE_URL, CONF_USER_DATA as CONF_USER_DATA, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinators as RoborockCoordinators, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator, RoborockWetDryVacUpdateCoordinator as RoborockWetDryVacUpdateCoordinator
-from .roborock_storage import CacheStore as CacheStore, async_remove_map_storage as async_remove_map_storage
+from .roborock_storage import CacheStore as CacheStore, async_cleanup_map_storage as async_cleanup_map_storage
 from _typeshed import Incomplete
 from collections.abc import Coroutine
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP

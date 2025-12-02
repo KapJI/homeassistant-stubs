@@ -1,3 +1,4 @@
+import asyncio
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import websocket_api as websocket_api
@@ -8,7 +9,7 @@ from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
-DATA_STORAGE: HassKey[dict[str, UserStore]]
+DATA_STORAGE: HassKey[dict[str, asyncio.Future[UserStore]]]
 DATA_SYSTEM_STORAGE: HassKey[SystemStore]
 STORAGE_VERSION_USER_DATA: int
 STORAGE_VERSION_SYSTEM_DATA: int

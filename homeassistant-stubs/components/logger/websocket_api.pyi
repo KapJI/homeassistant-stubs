@@ -2,6 +2,7 @@ from .const import LOGSEVERITY as LOGSEVERITY
 from .helpers import DATA_LOGGER as DATA_LOGGER, LogPersistance as LogPersistance, LogSettingsType as LogSettingsType, LoggerSetting as LoggerSetting, get_logger as get_logger
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
+from homeassistant.config_entries import DISCOVERY_SOURCES as DISCOVERY_SOURCES
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration
 from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations

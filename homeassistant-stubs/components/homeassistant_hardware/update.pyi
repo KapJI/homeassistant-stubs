@@ -1,6 +1,6 @@
 from .coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from .helpers import async_register_firmware_info_callback as async_register_firmware_info_callback
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget, async_flash_silabs_firmware as async_flash_silabs_firmware
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware
 from _typeshed import Incomplete
 from collections.abc import Callable
 from dataclasses import dataclass

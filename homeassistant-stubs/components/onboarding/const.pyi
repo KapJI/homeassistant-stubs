@@ -1,4 +1,10 @@
 from _typeshed import Incomplete
+from dataclasses import dataclass
+
+@dataclass(frozen=True, slots=True)
+class DefaultArea:
+    key: str
+    icon: str
 
 DOMAIN: str
 STEP_USER: str

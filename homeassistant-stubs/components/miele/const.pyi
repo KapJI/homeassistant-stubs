@@ -91,14 +91,14 @@ class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
     not_running: Incomplete
     pre_wash: Incomplete
     soak: int
-    main_wash: int
-    rinse: int
+    main_wash: Incomplete
+    rinse: Incomplete
     rinse_hold: int
     cleaning: int
     cooling_down: int
     drain: int
-    spin: int
-    anti_crease: int
+    spin: Incomplete
+    anti_crease: Incomplete
     finished: int
     venting: int
     starch_stop: int
@@ -328,6 +328,7 @@ class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     cottons_eco: int
     quick_power_wash: int
     eco_40_60: int
+    normal: int
 
 class DishWasherProgramId(MieleEnum, missing_to_none=True):
     no_program: Incomplete

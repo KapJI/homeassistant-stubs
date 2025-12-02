@@ -1,7 +1,7 @@
 import abc
 import asyncio
-from .const import OTBR_DOMAIN as OTBR_DOMAIN, Z2M_EMBER_DOCS_URL as Z2M_EMBER_DOCS_URL, ZHA_DOMAIN as ZHA_DOMAIN
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, OwningAddon as OwningAddon, OwningIntegration as OwningIntegration, ResetTarget as ResetTarget, async_flash_silabs_firmware as async_flash_silabs_firmware, get_otbr_addon_manager as get_otbr_addon_manager, guess_firmware_info as guess_firmware_info, guess_hardware_owners as guess_hardware_owners, probe_silabs_firmware_info as probe_silabs_firmware_info
+from .const import DOMAIN as DOMAIN, OTBR_DOMAIN as OTBR_DOMAIN, Z2M_EMBER_DOCS_URL as Z2M_EMBER_DOCS_URL, ZHA_DOMAIN as ZHA_DOMAIN
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, OwningAddon as OwningAddon, OwningIntegration as OwningIntegration, ResetTarget as ResetTarget, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware, get_otbr_addon_manager as get_otbr_addon_manager, guess_firmware_info as guess_firmware_info, guess_hardware_owners as guess_hardware_owners, probe_silabs_firmware_info as probe_silabs_firmware_info
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from enum import StrEnum

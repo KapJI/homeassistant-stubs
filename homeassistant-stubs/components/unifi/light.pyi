@@ -13,6 +13,9 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.color import rgb_hex_to_rgb_list as rgb_hex_to_rgb_list
 from typing import Any
 
+def convert_brightness_to_unifi(ha_brightness: int) -> int: ...
+def convert_brightness_to_ha(unifi_brightness: int) -> int: ...
+def get_device_brightness_or_default(device: Device) -> int: ...
 @callback
 def async_device_led_supported_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 @callback
@@ -31,8 +34,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry,
 class UnifiLightEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], LightEntity):
     entity_description: UnifiLightEntityDescription[HandlerT, ApiItemT]
     _attr_supported_features: Incomplete
-    _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
     @callback
     def async_initiate_state(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

@@ -1,5 +1,6 @@
-from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_UNIX_SOCKET as HA_MANAGED_UNIX_SOCKET, HA_MANAGED_URL as HA_MANAGED_URL, RECOMMENDED_VERSION as RECOMMENDED_VERSION
+from .const import CONF_DEBUG_UI as CONF_DEBUG_UI, DEBUG_UI_URL_MESSAGE as DEBUG_UI_URL_MESSAGE, DOMAIN as DOMAIN, HA_MANAGED_URL as HA_MANAGED_URL, RECOMMENDED_VERSION as RECOMMENDED_VERSION
 from .server import Server as Server
+from .util import get_go2rtc_unix_socket_path as get_go2rtc_unix_socket_path
 from _typeshed import Incomplete
 from aiohttp import ClientSession
 from dataclasses import dataclass

@@ -99,7 +99,7 @@ class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
     drain: int
     spin: Incomplete
     anti_crease: Incomplete
-    finished: int
+    finished: Incomplete
     venting: int
     starch_stop: int
     freshen_up_and_moisten: int
@@ -107,6 +107,7 @@ class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
     hygiene: int
     drying: int
     disinfecting: int
+    flex_load_active: int
 
 class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
     not_running: Incomplete
@@ -326,8 +327,8 @@ class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     express_20: int
     down_filled_items: int
     cottons_eco: int
-    quick_power_wash: int
-    eco_40_60: int
+    quick_power_wash: Incomplete
+    eco_40_60: Incomplete
     normal: int
 
 class DishWasherProgramId(MieleEnum, missing_to_none=True):

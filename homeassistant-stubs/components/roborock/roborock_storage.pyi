@@ -4,6 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.storage import Store as Store
 from pathlib import Path
 from roborock.devices.cache import Cache, CacheData
+from typing import Any
 
 _LOGGER: Incomplete
 STORAGE_PATH: Incomplete
@@ -12,6 +13,10 @@ CACHE_VERSION: int
 
 def _storage_path_prefix(hass: HomeAssistant, entry_id: str) -> Path: ...
 async def async_cleanup_map_storage(hass: HomeAssistant, entry_id: str) -> None: ...
+
+class StoreImpl(Store[dict[str, Any]]):
+    def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
+    async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class CacheStore(Cache):
     _cache_store: Incomplete

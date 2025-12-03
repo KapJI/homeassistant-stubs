@@ -6,7 +6,7 @@ from enum import Enum
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components import conversation as conversation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.util import slugify as slugify

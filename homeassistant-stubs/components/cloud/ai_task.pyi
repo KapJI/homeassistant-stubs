@@ -5,7 +5,7 @@ from hass_nabucasa.llm import LLMImageAttachment
 from homeassistant.components import ai_task as ai_task, conversation as conversation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.json import json_loads as json_loads
 
@@ -15,7 +15,7 @@ def _convert_image_for_editing(data: bytes) -> tuple[bytes, str]: ...
 async def async_prepare_image_generation_attachments(hass: HomeAssistant, attachments: list[conversation.Attachment]) -> list[LLMImageAttachment]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class CloudLLMTaskEntity(ai_task.AITaskEntity, BaseCloudLLMEntity):
+class CloudAITaskEntity(BaseCloudLLMEntity, ai_task.AITaskEntity):
     _attr_has_entity_name: bool
     _attr_supported_features: Incomplete
     _attr_translation_key: str

@@ -11,7 +11,7 @@ from typing import Literal
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class CloudConversationEntity(conversation.ConversationEntity, BaseCloudLLMEntity):
+class CloudConversationEntity(BaseCloudLLMEntity, conversation.ConversationEntity):
     _attr_has_entity_name: bool
     _attr_name: str
     _attr_translation_key: str

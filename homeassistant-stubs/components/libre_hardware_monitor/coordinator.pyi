@@ -6,7 +6,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from librehardwaremonitor_api.model import DeviceId, DeviceName, LibreHardwareMonitorData
-from types import MappingProxyType
 
 _LOGGER: Incomplete
 type LibreHardwareMonitorConfigEntry = ConfigEntry[LibreHardwareMonitorCoordinator]
@@ -14,8 +13,8 @@ type LibreHardwareMonitorConfigEntry = ConfigEntry[LibreHardwareMonitorCoordinat
 class LibreHardwareMonitorCoordinator(DataUpdateCoordinator[LibreHardwareMonitorData]):
     config_entry: LibreHardwareMonitorConfigEntry
     _api: Incomplete
-    _previous_devices: MappingProxyType[DeviceId, DeviceName]
+    _previous_devices: dict[DeviceId, DeviceName]
     def __init__(self, hass: HomeAssistant, config_entry: LibreHardwareMonitorConfigEntry) -> None: ...
     async def _async_update_data(self) -> LibreHardwareMonitorData: ...
     async def _async_refresh(self, log_failures: bool = True, raise_on_auth_failed: bool = False, scheduled: bool = False, raise_on_entry_error: bool = False) -> None: ...
-    async def _async_handle_changes_in_devices(self, detected_devices: MappingProxyType[DeviceId, DeviceName]) -> None: ...
+    async def _async_handle_changes_in_devices(self, detected_devices: dict[DeviceId, DeviceName]) -> None: ...

@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import XboxConfigEntry as XboxConfigEntry, XboxConsolesCoordinator as XboxConsolesCoordinator
-from .entity import MAP_MODEL as MAP_MODEL, XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, check_deprecated_entity as check_deprecated_entity
+from .entity import MAP_MODEL as MAP_MODEL, XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, check_deprecated_entity as check_deprecated_entity, to_https as to_https
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

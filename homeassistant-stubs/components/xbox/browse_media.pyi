@@ -1,3 +1,4 @@
+from .entity import to_https as to_https
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaType as MediaType
 from pythonxbox.api.client import XboxLiveClient as XboxLiveClient

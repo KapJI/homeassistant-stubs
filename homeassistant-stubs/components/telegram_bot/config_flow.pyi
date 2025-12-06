@@ -15,6 +15,7 @@ from telegram import Bot as Bot, ChatFullInfo as ChatFullInfo
 from typing import Any
 
 _LOGGER: Incomplete
+DESCRIPTION_PLACEHOLDERS: dict[str, str]
 STEP_USER_DATA_SCHEMA: vol.Schema
 STEP_RECONFIGURE_USER_DATA_SCHEMA: vol.Schema
 STEP_REAUTH_DATA_SCHEMA: vol.Schema

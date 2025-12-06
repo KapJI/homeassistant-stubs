@@ -14,6 +14,7 @@ from homeassistant.util.dt import as_timestamp as as_timestamp, utcnow as utcnow
 from homeassistant.util.network import is_ip_address as is_ip_address
 from regenmaschine.controller import Controller as Controller
 
+API_URL_REFERENCE: str
 DEFAULT_SSL: bool
 PLATFORMS: Incomplete
 CONF_CONDITION: str

@@ -1,6 +1,7 @@
 from .binary_sensor import profile_pic as profile_pic
 from .const import DOMAIN as DOMAIN
 from .coordinator import XboxConfigEntry as XboxConfigEntry
+from .entity import to_https as to_https
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable

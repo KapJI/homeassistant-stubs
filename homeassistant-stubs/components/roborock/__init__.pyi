@@ -4,7 +4,7 @@ from .roborock_storage import CacheStore as CacheStore, async_cleanup_map_storag
 from _typeshed import Incomplete
 from collections.abc import Coroutine
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from roborock.data import UserData

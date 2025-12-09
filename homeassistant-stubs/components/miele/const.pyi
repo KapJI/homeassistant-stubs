@@ -108,6 +108,7 @@ class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
     drying: int
     disinfecting: int
     flex_load_active: int
+    automatic_start: int
 
 class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
     not_running: Incomplete
@@ -296,19 +297,19 @@ class StateDryingStep(MieleEnum, missing_to_none=True):
 
 class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     no_program: Incomplete
-    cottons: int
+    cottons: Incomplete
     minimum_iron: int
-    delicates: int
-    woollens: int
-    silks: int
+    delicates: Incomplete
+    woollens: Incomplete
+    silks: Incomplete
     starch: int
-    rinse: int
-    drain_spin: int
-    curtains: int
-    shirts: int
+    rinse: Incomplete
+    drain_spin: Incomplete
+    curtains: Incomplete
+    shirts: Incomplete
     denim: Incomplete
-    proofing: int
-    sportswear: int
+    proofing: Incomplete
+    sportswear: Incomplete
     automatic_plus: int
     outerwear: int
     pillows: int
@@ -317,19 +318,29 @@ class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     rinse_out_lint: int
     dark_garments: int
     separate_rinse_starch: int
-    first_wash: int
+    first_wash: Incomplete
     cottons_hygiene: int
     steam_care: int
     freshen_up: int
-    trainers: int
-    clean_machine: int
-    down_duvets: int
-    express_20: int
+    trainers: Incomplete
+    clean_machine: Incomplete
+    down_duvets: Incomplete
+    express_20: Incomplete
     down_filled_items: int
     cottons_eco: int
     quick_power_wash: Incomplete
     eco_40_60: Incomplete
-    normal: int
+    bed_linen: int
+    easy_care: int
+    dark_jeans: int
+    outdoor_garments: int
+    game_pieces: int
+    stuffed_toys: int
+    pre_ironing: int
+    trainers_refresh: int
+    smartmatic: int
+    cottonrepair: int
+    powerfresh: int
 
 class DishWasherProgramId(MieleEnum, missing_to_none=True):
     no_program: Incomplete

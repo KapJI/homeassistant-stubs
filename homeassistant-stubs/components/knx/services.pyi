@@ -9,6 +9,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 
 _LOGGER: Incomplete
+_DESCRIPTION_PLACEHOLDERS: Incomplete
 
 @callback
 def async_setup_services(hass: HomeAssistant) -> None: ...

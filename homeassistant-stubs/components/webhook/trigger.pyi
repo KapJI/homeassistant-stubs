@@ -7,6 +7,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJo
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from homeassistant.util.json import json_loads as json_loads
 
 _LOGGER: Incomplete
 DEPENDENCIES: Incomplete

@@ -58,6 +58,12 @@ class MatterModeSelectEntity(MatterAttributeSelectEntity):
     @callback
     def _update_from_device(self) -> None: ...
 
+class MatterDoorLockOperatingModeSelectEntity(MatterAttributeSelectEntity):
+    entity_description: MatterMapSelectEntityDescription
+    _attr_options: Incomplete
+    @callback
+    def _update_from_device(self) -> None: ...
+
 class MatterListSelectEntity(MatterEntity, SelectEntity):
     entity_description: MatterListSelectEntityDescription
     async def async_select_option(self, option: str) -> None: ...

@@ -61,6 +61,7 @@ class ReolinkHost:
     _lost_subscription_start: bool
     _lost_subscription: bool
     cancel_refresh_privacy_mode: CALLBACK_TYPE | None
+    cancel_first_firmware_check: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, config: Mapping[str, Any], options: Mapping[str, Any], config_entry: ReolinkConfigEntry | None = None) -> None: ...
     @callback
     def async_register_update_cmd(self, cmd: str, channel: int | None = None) -> None: ...

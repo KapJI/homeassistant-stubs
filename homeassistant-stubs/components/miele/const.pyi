@@ -53,28 +53,26 @@ class MieleAppliance(IntEnum):
 
 DEVICE_TYPE_TAGS: Incomplete
 
-class StateStatus(IntEnum):
-    RESERVED = 0
-    OFF = 1
-    ON = 2
-    PROGRAMMED = 3
-    WAITING_TO_START = 4
-    IN_USE = 5
-    PAUSE = 6
-    PROGRAM_ENDED = 7
-    FAILURE = 8
-    PROGRAM_INTERRUPTED = 9
-    IDLE = 10
-    RINSE_HOLD = 11
-    SERVICE = 12
-    SUPERFREEZING = 13
-    SUPERCOOLING = 14
-    SUPERHEATING = 15
-    SUPERCOOLING_SUPERFREEZING = 146
-    AUTOCLEANING = 147
-    NOT_CONNECTED = 255
-
-STATE_STATUS_TAGS: Incomplete
+class StateStatus(MieleEnum, missing_to_none=True):
+    reserved: int
+    off: int
+    on: int
+    programmed: int
+    waiting_to_start: int
+    in_use: int
+    pause: int
+    program_ended: int
+    failure: int
+    program_interrupted: int
+    idle: int
+    rinse_hold: int
+    service: int
+    superfreezing: int
+    supercooling: int
+    superheating: int
+    supercooling_superfreezing: int
+    autocleaning: int
+    not_connected: int
 
 class MieleActions(IntEnum):
     START = 1

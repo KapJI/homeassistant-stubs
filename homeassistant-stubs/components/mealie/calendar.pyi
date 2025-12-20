@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
+SUPPORTED_MEALPLAN_ENTRY_TYPES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: MealieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _get_event_from_mealplan(mealplan: Mealplan) -> CalendarEvent: ...

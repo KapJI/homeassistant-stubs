@@ -1,4 +1,4 @@
-from .const import COFFEE_SYSTEM_PROFILE as COFFEE_SYSTEM_PROFILE, DISABLED_TEMP_ENTITIES as DISABLED_TEMP_ENTITIES, DOMAIN as DOMAIN, MieleAppliance as MieleAppliance, PROGRAM_IDS as PROGRAM_IDS, PROGRAM_PHASE as PROGRAM_PHASE, PlatePowerStep as PlatePowerStep, STATE_STATUS_TAGS as STATE_STATUS_TAGS, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
+from .const import COFFEE_SYSTEM_PROFILE as COFFEE_SYSTEM_PROFILE, DISABLED_TEMP_ENTITIES as DISABLED_TEMP_ENTITIES, DOMAIN as DOMAIN, MieleAppliance as MieleAppliance, PROGRAM_IDS as PROGRAM_IDS, PROGRAM_PHASE as PROGRAM_PHASE, PlatePowerStep as PlatePowerStep, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
 from .coordinator import MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
 from .entity import MieleEntity as MieleEntity
 from _typeshed import Incomplete

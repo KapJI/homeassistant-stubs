@@ -40,6 +40,7 @@ class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState]):
     _last_home_update_attempt: datetime
     last_home_update: datetime | None
     _last_update_success_time: datetime | None
+    _has_connected_locally: bool
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, properties_api: PropertiesApi) -> None: ...
     @cached_property
     def dock_device_info(self) -> DeviceInfo: ...

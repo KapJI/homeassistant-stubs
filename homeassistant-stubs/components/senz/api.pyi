@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
-from aiosenz import AbstractSENZAuth
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from httpx import AsyncClient as AsyncClient
+from pysenz import AbstractSENZAuth
 
 class SENZConfigEntryAuth(AbstractSENZAuth):
     _oauth_session: Incomplete

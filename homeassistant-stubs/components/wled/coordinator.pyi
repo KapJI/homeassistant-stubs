@@ -10,11 +10,14 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from wled import Device as WLEDDevice, Releases
 
 type WLEDConfigEntry = ConfigEntry[WLEDDataUpdateCoordinator]
+def normalize_mac_address(mac: str) -> str: ...
+
 class WLEDDataUpdateCoordinator(DataUpdateCoordinator[WLEDDevice]):
     keep_main_light: bool
     config_entry: WLEDConfigEntry
     wled: Incomplete
     unsub: CALLBACK_TYPE | None
+    config_mac_address: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: WLEDConfigEntry) -> None: ...
     @property
     def has_main_light(self) -> bool: ...

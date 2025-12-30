@@ -1,7 +1,6 @@
 from .api import SENZConfigEntryAuth as SENZConfigEntryAuth
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from aiosenz import Thermostat
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -9,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import httpx_client as httpx_client
 from homeassistant.helpers.config_entry_oauth2_flow import ImplementationUnavailableError as ImplementationUnavailableError, OAuth2Session as OAuth2Session, async_get_config_entry_implementation as async_get_config_entry_implementation
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from pysenz import Thermostat
 
 UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete

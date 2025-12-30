@@ -1,5 +1,5 @@
 from .const import CONF_KEEP_MAIN_LIGHT as CONF_KEEP_MAIN_LIGHT, DEFAULT_KEEP_MAIN_LIGHT as DEFAULT_KEEP_MAIN_LIGHT, DOMAIN as DOMAIN
-from .coordinator import WLEDConfigEntry as WLEDConfigEntry
+from .coordinator import WLEDConfigEntry as WLEDConfigEntry, normalize_mac_address as normalize_mac_address
 from homeassistant.components import onboarding as onboarding
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
@@ -12,6 +12,7 @@ from wled import Device as Device
 
 class WLEDFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     discovered_host: str
     discovered_device: Device
     @staticmethod

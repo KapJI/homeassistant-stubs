@@ -5,20 +5,21 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.target import TargetSelectorData as TargetSelectorData, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
+from homeassistant.helpers.target import TargetSelection as TargetSelection, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from typing import Any
 from uiprotect.api import ProtectApiClient as ProtectApiClient
 from uiprotect.data import Camera
 
+_LOGGER: Incomplete
 SERVICE_ADD_DOORBELL_TEXT: str
 SERVICE_REMOVE_DOORBELL_TEXT: str
 SERVICE_SET_PRIVACY_ZONE: str
 SERVICE_REMOVE_PRIVACY_ZONE: str
 SERVICE_SET_CHIME_PAIRED: str
 SERVICE_GET_USER_KEYRING_INFO: str
-ALL_GLOBAL_SERIVCES: Incomplete
+ALL_GLOBAL_SERVICES: Incomplete
 DOORBELL_TEXT_SCHEMA: Incomplete
 CHIME_PAIRED_SCHEMA: Incomplete
 REMOVE_PRIVACY_ZONE_SCHEMA: Incomplete

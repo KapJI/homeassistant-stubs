@@ -32,27 +32,29 @@ SENSORS_INVERTER: tuple[AutarcoInverterSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutarcoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class AutarcoBatterySensorEntity(CoordinatorEntity[AutarcoDataUpdateCoordinator], SensorEntity):
-    entity_description: AutarcoBatterySensorEntityDescription
+class AutarcoSensorBase(CoordinatorEntity[AutarcoDataUpdateCoordinator], SensorEntity):
     _attr_has_entity_name: bool
+    entity_description: Incomplete
+    def __init__(self, coordinator: AutarcoDataUpdateCoordinator, description: SensorEntityDescription) -> None: ...
+
+class AutarcoBatterySensorEntity(AutarcoSensorBase):
+    entity_description: AutarcoBatterySensorEntityDescription
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: AutarcoDataUpdateCoordinator, description: AutarcoBatterySensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 
-class AutarcoSolarSensorEntity(CoordinatorEntity[AutarcoDataUpdateCoordinator], SensorEntity):
+class AutarcoSolarSensorEntity(AutarcoSensorBase):
     entity_description: AutarcoSolarSensorEntityDescription
-    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: AutarcoDataUpdateCoordinator, description: AutarcoSolarSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 
-class AutarcoInverterSensorEntity(CoordinatorEntity[AutarcoDataUpdateCoordinator], SensorEntity):
+class AutarcoInverterSensorEntity(AutarcoSensorBase):
     entity_description: AutarcoInverterSensorEntityDescription
-    _attr_has_entity_name: bool
     _serial_number: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

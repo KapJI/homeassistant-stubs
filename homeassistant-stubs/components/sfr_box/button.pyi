@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import SFRConfigEntry as SFRConfigEntry
 from .entity import SFREntity as SFREntity
 from _typeshed import Incomplete
@@ -11,6 +12,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from sfrbox_api.bridge import SFRBox as SFRBox
 from sfrbox_api.models import SystemInfo as SystemInfo
 from typing import Any, Concatenate
+
+PARALLEL_UPDATES: int
 
 def with_error_wrapping[**_P, _R](func: Callable[Concatenate[SFRBoxButton, _P], Awaitable[_R]]) -> Callable[Concatenate[SFRBoxButton, _P], Coroutine[Any, Any, _R]]: ...
 

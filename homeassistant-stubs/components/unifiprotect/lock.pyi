@@ -1,5 +1,6 @@
 from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
+from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -8,6 +9,7 @@ from typing import Any
 from uiprotect.data import Doorlock, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,5 +24,7 @@ class ProtectLock(ProtectDeviceEntity, LockEntity):
     _attr_available: bool
     @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @async_ufp_instance_command
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    @async_ufp_instance_command
     async def async_lock(self, **kwargs: Any) -> None: ...

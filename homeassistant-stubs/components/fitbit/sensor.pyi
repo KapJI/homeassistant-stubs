@@ -2,10 +2,11 @@ from .api import FitbitApi as FitbitApi
 from .const import ATTRIBUTION as ATTRIBUTION, BATTERY_LEVELS as BATTERY_LEVELS, DOMAIN as DOMAIN, FitbitScope as FitbitScope, FitbitUnitSystem as FitbitUnitSystem
 from .coordinator import FitbitConfigEntry as FitbitConfigEntry, FitbitDeviceCoordinator as FitbitDeviceCoordinator
 from .exceptions import FitbitApiException as FitbitApiException, FitbitAuthException as FitbitAuthException
-from .model import FitbitDevice as FitbitDevice, config_from_entry_data as config_from_entry_data
+from .model import config_from_entry_data as config_from_entry_data
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from fitbit_web_api.models.device import Device as Device
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -72,7 +73,7 @@ class FitbitBatterySensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEnti
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _attr_entity_registry_enabled_default: bool
-    def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: FitbitDevice, enable_default_override: bool) -> None: ...
+    def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: Device, enable_default_override: bool) -> None: ...
     @property
     def icon(self) -> str | None: ...
     @property
@@ -88,7 +89,7 @@ class FitbitBatteryLevelSensor(CoordinatorEntity[FitbitDeviceCoordinator], Senso
     device: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: FitbitDevice) -> None: ...
+    def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: Device) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     @callback

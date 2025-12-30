@@ -4,6 +4,8 @@ from .const import BLEScannerMode as BLEScannerMode, CONF_BLE_SCANNER_MODE as CO
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry, async_reconnect_soon as async_reconnect_soon
 from .utils import get_block_device_sleep_period as get_block_device_sleep_period, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_http_port as get_http_port, get_info_auth as get_info_auth, get_info_gen as get_info_gen, get_model_name as get_model_name, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, get_ws_context as get_ws_context, mac_address_from_name as mac_address_from_name
 from _typeshed import Incomplete
+from aioshelly.rpc_device import RpcDevice
+from aioshelly.rpc_device.models import ShellyWiFiNetwork as ShellyWiFiNetwork
 from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import AsyncIterator, Mapping
 from contextlib import asynccontextmanager
@@ -25,9 +27,6 @@ BLE_SCANNER_OPTIONS: Incomplete
 INTERNAL_WIFI_AP_IP: str
 MANUAL_ENTRY_STRING: str
 DISCOVERY_SOURCES: Incomplete
-
-async def async_get_ip_from_ble(ble_device: BLEDevice) -> str | None: ...
-
 BLUETOOTH_FINISHING_STEPS: Incomplete
 
 @dataclass(frozen=True, slots=True)
@@ -55,16 +54,20 @@ class ShellyConfigFlow(ConfigFlow, domain=DOMAIN):
     device_info: dict[str, Any]
     ble_device: BLEDevice | None
     device_name: str
-    wifi_networks: list[dict[str, Any]]
+    wifi_networks: list[ShellyWiFiNetwork]
     selected_ssid: str
     _provision_task: asyncio.Task | None
     _provision_result: ConfigFlowResult | None
     disable_ap_after_provision: bool
     disable_ble_rpc_after_provision: bool
     _discovered_devices: dict[str, DiscoveredDeviceZeroconf | DiscoveredDeviceBluetooth]
+    _ble_rpc_device: RpcDevice | None
     @staticmethod
     def _get_name_from_mac_and_ble_model(mac: str, parsed_data: dict[str, int | str]) -> str: ...
     def _parse_ble_device_mac_and_name(self, discovery_info: BluetoothServiceInfoBleak) -> tuple[str | None, str]: ...
+    async def _async_ensure_ble_connected(self) -> RpcDevice: ...
+    async def _async_disconnect_ble(self) -> None: ...
+    async def _async_get_ip_from_ble(self) -> str | None: ...
     async def _async_discover_zeroconf_devices(self) -> dict[str, DiscoveredDeviceZeroconf]: ...
     @callback
     def _async_discover_bluetooth_devices(self) -> dict[str, DiscoveredDeviceBluetooth]: ...
@@ -95,6 +98,8 @@ class ShellyConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_get_info(self, host: str, port: int) -> dict[str, Any]: ...
+    @callback
+    def async_remove(self) -> None: ...
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: ShellyConfigEntry) -> OptionsFlowHandler: ...

@@ -4,19 +4,21 @@ from .dashboard import async_get_dashboard as async_get_dashboard
 from .domain_data import DomainData as DomainData
 from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
+from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
-from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, UserService as UserService, ZWaveProxyRequest as ZWaveProxyRequest
+from aioesphomeapi import APIClient as APIClient, APIVersion as APIVersion, DeviceInfo as EsphomeDeviceInfo, ExecuteServiceResponse as ExecuteServiceResponse, HomeassistantServiceCall as HomeassistantServiceCall, LogLevel, ReconnectLogic, SupportsResponseType, UserService as UserService, ZWaveProxyRequest as ZWaveProxyRequest
 from aioesphomeapi.api_pb2 import SubscribeLogsResponse as SubscribeLogsResponse
 from homeassistant.components import bluetooth as bluetooth, tag as tag, zeroconf as zeroconf
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_MODE as CONF_MODE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED, Platform as Platform
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, State as State, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError
-from homeassistant.helpers import json as json, template as template
+from homeassistant.helpers import template as template
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
+from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any, NamedTuple
 
 DEVICE_CONFLICT_ISSUE_FORMAT: str
@@ -90,9 +92,11 @@ class ServiceMetadata(NamedTuple):
 
 ARG_TYPE_METADATA: Incomplete
 
-@callback
-def execute_service(entry_data: RuntimeEntryData, service: UserService, call: ServiceCall) -> None: ...
+async def execute_service(entry_data: RuntimeEntryData, service: UserService, call: ServiceCall, *, supports_response: SupportsResponseType) -> ServiceResponse: ...
 def build_service_name(device_info: EsphomeDeviceInfo, service: UserService) -> str: ...
+
+_RESPONSE_TYPE_MAPPER: Incomplete
+
 @callback
 def _async_register_service(hass: HomeAssistant, entry_data: RuntimeEntryData, device_info: EsphomeDeviceInfo, service: UserService) -> None: ...
 @callback

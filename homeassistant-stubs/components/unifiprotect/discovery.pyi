@@ -1,13 +1,21 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from dataclasses import dataclass, field
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from homeassistant.util.hass_dict import HassKey as HassKey
 from unifi_discovery import UnifiDevice as UnifiDevice
 
 _LOGGER: Incomplete
-DISCOVERY: str
+
+@dataclass
+class UniFiProtectRuntimeData:
+    auth_retries: dict[str, int] = field(default_factory=dict)
+    discovery_started: bool = ...
+
+DATA_UNIFIPROTECT: HassKey[UniFiProtectRuntimeData]
 DISCOVERY_INTERVAL: Incomplete
 
 @callback

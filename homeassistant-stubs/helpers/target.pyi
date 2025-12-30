@@ -1,5 +1,6 @@
 import dataclasses
 from . import group as group
+from .deprecation import deprecated_class as deprecated_class
 from .event import async_track_state_change_event as async_track_state_change_event
 from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
@@ -19,7 +20,7 @@ class TargetStateChangedData:
 
 def _has_match(ids: str | list[str] | None) -> TypeGuard[str | list[str]]: ...
 
-class TargetSelectorData:
+class TargetSelection:
     __slots__: Incomplete
     entity_ids: Incomplete
     device_ids: Incomplete
@@ -27,6 +28,10 @@ class TargetSelectorData:
     floor_ids: Incomplete
     label_ids: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
+    @property
+    def has_any_target(self) -> bool: ...
+
+class TargetSelectorData(TargetSelection):
     @property
     def has_any_selector(self) -> bool: ...
 
@@ -42,16 +47,16 @@ class SelectedEntities:
     referenced_areas: set[str] = dataclasses.field(default_factory=set)
     def log_missing(self, missing_entities: set[str], logger: Logger) -> None: ...
 
-def async_extract_referenced_entity_ids(hass: HomeAssistant, selector_data: TargetSelectorData, expand_group: bool = True) -> SelectedEntities: ...
+def async_extract_referenced_entity_ids(hass: HomeAssistant, target_selection: TargetSelection, expand_group: bool = True) -> SelectedEntities: ...
 
 class TargetStateChangeTracker:
     _hass: Incomplete
-    _selector_data: Incomplete
+    _target_selection: Incomplete
     _action: Incomplete
     _entity_filter: Incomplete
     _state_change_unsub: CALLBACK_TYPE | None
     _registry_unsubs: list[CALLBACK_TYPE]
-    def __init__(self, hass: HomeAssistant, selector_data: TargetSelectorData, action: Callable[[TargetStateChangedData], Any], entity_filter: Callable[[set[str]], set[str]]) -> None: ...
+    def __init__(self, hass: HomeAssistant, target_selection: TargetSelection, action: Callable[[TargetStateChangedData], Any], entity_filter: Callable[[set[str]], set[str]]) -> None: ...
     def async_setup(self) -> Callable[[], None]: ...
     def _track_entities_state_change(self) -> None: ...
     def _setup_registry_listeners(self) -> None: ...

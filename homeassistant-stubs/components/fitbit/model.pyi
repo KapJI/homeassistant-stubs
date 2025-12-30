@@ -10,14 +10,6 @@ class FitbitProfile:
     locale: str | None
 
 @dataclass
-class FitbitDevice:
-    id: str
-    device_version: str
-    battery_level: int
-    battery: str
-    type: str
-
-@dataclass
 class FitbitConfig:
     clock_format: str | None
     monitored_resources: set[str] | None

@@ -7,7 +7,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from hass_nabucasa.client import CloudClient as Interface
 from homeassistant.components import google_assistant as google_assistant, persistent_notification as persistent_notification, webhook as webhook
-from homeassistant.components.camera import async_register_ice_servers as async_register_ice_servers
+from homeassistant.components.web_rtc import async_register_ice_servers as async_register_ice_servers
 from homeassistant.core import Context as Context, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import SERVER_SOFTWARE as SERVER_SOFTWARE
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

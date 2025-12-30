@@ -1,10 +1,12 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import FritzboxConfigEntry as FritzboxConfigEntry
-from .entity import FritzBoxDeviceEntity as FritzBoxDeviceEntity
+from .entity import FritzBoxDeviceEntity as FritzBoxDeviceEntity, FritzBoxEntity as FritzBoxEntity
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyfritzhome.devicetypes import FritzhomeTrigger as FritzhomeTrigger
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -17,3 +19,13 @@ class FritzboxSwitch(FritzBoxDeviceEntity, SwitchEntity):
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def check_lock_state(self) -> None: ...
+
+class FritzboxTrigger(FritzBoxEntity, SwitchEntity):
+    @property
+    def data(self) -> FritzhomeTrigger: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
+    @property
+    def is_on(self) -> bool: ...
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    async def async_turn_off(self, **kwargs: Any) -> None: ...

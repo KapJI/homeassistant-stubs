@@ -2,7 +2,6 @@ from .data import UFPConfigEntry as UFPConfigEntry, async_get_data_for_entry_id 
 from .utils import async_create_api_client as async_create_api_client
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from uiprotect import ProtectApiClient as ProtectApiClient
 from uiprotect.data import Bootstrap as Bootstrap, Camera as Camera
@@ -33,5 +32,5 @@ class RTSPRepair(ProtectRepair):
     async def async_step_confirm(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
 
 @callback
-def _async_get_or_create_api_client(hass: HomeAssistant, entry: ConfigEntry) -> ProtectApiClient: ...
+def _async_get_or_create_api_client(hass: HomeAssistant, entry: UFPConfigEntry) -> ProtectApiClient: ...
 async def async_create_fix_flow(hass: HomeAssistant, issue_id: str, data: dict[str, str | int | float | None] | None) -> RepairsFlow: ...

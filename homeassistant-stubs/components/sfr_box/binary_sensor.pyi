@@ -8,6 +8,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from sfrbox_api.models import DslInfo, FtthInfo, WanInfo
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class SFRBoxBinarySensorEntityDescription[_T](BinarySensorEntityDescription):
     value_fn: Callable[[_T], bool | None]

@@ -7,6 +7,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
+AFTER_WRITE_SLEEP: int
+
 @dataclass(frozen=True, kw_only=True)
 class TransmissionSwitchEntityDescription(SwitchEntityDescription):
     is_on_func: Callable[[TransmissionDataUpdateCoordinator], bool | None]

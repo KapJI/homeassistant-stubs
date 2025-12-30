@@ -11,6 +11,7 @@ from uiprotect.data import ModelType, NVR as NVR, ProtectAdoptableDeviceModel as
 from uiprotect.data.nvr import UOSDisk as UOSDisk
 
 _KEY_DOOR: str
+PARALLEL_UPDATES: int
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(ProtectEntityDescription, BinarySensorEntityDescription): ...

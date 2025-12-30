@@ -6,8 +6,7 @@ from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_
 class TextChangedTrigger(EntityTriggerBase):
     _domain = DOMAIN
     _schema = ENTITY_STATE_TRIGGER_SCHEMA
-    def is_from_state(self, from_state: State, to_state: State) -> bool: ...
-    def is_to_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State) -> bool: ...
 
 TRIGGERS: dict[str, type[Trigger]]
 

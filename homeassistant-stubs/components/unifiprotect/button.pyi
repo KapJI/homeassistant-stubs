@@ -1,6 +1,7 @@
 from .const import DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DOMAIN as DOMAIN
 from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -9,16 +10,15 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
 from uiprotect.data import ModelType, ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class ProtectButtonEntityDescription(ProtectSetableKeysMixin[T], ButtonEntityDescription):
+class ProtectButtonEntityDescription(ProtectSettableKeysMixin[T], ButtonEntityDescription):
     ufp_press: str | None = ...
 
-DEVICE_CLASS_CHIME_BUTTON: Final[str]
 ALL_DEVICE_BUTTONS: tuple[ProtectButtonEntityDescription, ...]
 ADOPT_BUTTON: Incomplete
 SENSOR_BUTTONS: tuple[ProtectButtonEntityDescription, ...]
@@ -31,6 +31,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_ad
 
 class ProtectButton(ProtectDeviceEntity, ButtonEntity):
     entity_description: ProtectButtonEntityDescription
+    @async_ufp_instance_command
     async def async_press(self) -> None: ...
 
 class ProtectAdoptButton(ProtectButton):

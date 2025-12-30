@@ -9,7 +9,7 @@ from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_PANELS_UPDATED as EVENT_PANELS_UPDATED, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, async_get_hass as async_get_hass, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import service as service
 from homeassistant.helpers.icon import async_get_icons as async_get_icons
@@ -25,6 +25,7 @@ from yarl import URL
 
 _LOGGER: Incomplete
 DOMAIN: str
+CONF_NAME_DARK: str
 CONF_THEMES: str
 CONF_THEMES_MODES: str
 CONF_THEMES_LIGHT: str
@@ -102,6 +103,7 @@ def remove_extra_js_url(hass: HomeAssistant, url: str, es5: bool = False) -> Non
 def add_manifest_json_key(key: str, val: Any) -> None: ...
 def _frontend_root(dev_repo_path: str | None) -> pathlib.Path: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+def _validate_selected_theme(theme: str) -> str: ...
 async def _async_setup_themes(hass: HomeAssistant, themes: dict[str, Any] | None) -> None: ...
 @callback
 def _async_render_index_cached(template: jinja2.Template, **kwargs: Any) -> str: ...

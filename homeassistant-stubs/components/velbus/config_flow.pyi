@@ -1,14 +1,22 @@
-from .const import CONF_TLS as CONF_TLS, DOMAIN as DOMAIN
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from .const import CONF_TLS as CONF_TLS, CONF_VLP_FILE as CONF_VLP_FILE, DOMAIN as DOMAIN
+from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import selector as selector
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
-from typing import Any
+from typing import Any, Final
+
+STORAGE_PATH: Final[str]
+
+class InvalidVlpFile(HomeAssistantError): ...
 
 class VelbusConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
-    _errors: dict[str, str]
     _device: str
+    _vlp_file: str | None
     _title: str
     def __init__(self) -> None: ...
     def _create_device(self) -> ConfigFlowResult: ...
@@ -18,3 +26,8 @@ class VelbusConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_usbselect(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_usb(self, discovery_info: UsbServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def _validate_vlp_file(self, file_path: str) -> None: ...
+    async def async_step_vlp(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+
+def save_uploaded_vlp_file(hass: HomeAssistant, uploaded_file_id: str) -> str: ...

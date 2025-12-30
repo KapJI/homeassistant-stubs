@@ -1,7 +1,7 @@
 import asyncio
 from .const import RPC_COVER_UPDATE_TIME_SEC as RPC_COVER_UPDATE_TIME_SEC
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
+from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_block as async_setup_entry_block, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
 from .utils import get_device_entry_gen as get_device_entry_gen, get_rpc_channel_name as get_rpc_channel_name
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block

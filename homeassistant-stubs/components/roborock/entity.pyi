@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01
+from .coordinator import RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockDataUpdateCoordinatorB01 as RoborockDataUpdateCoordinatorB01
 from _typeshed import Incomplete
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -32,3 +32,7 @@ class RoborockCoordinatedEntityV1(RoborockEntityV1, CoordinatorEntity[RoborockDa
 class RoborockCoordinatedEntityA01(RoborockEntity, CoordinatorEntity[RoborockDataUpdateCoordinatorA01]):
     _attr_unique_id: Incomplete
     def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinatorA01) -> None: ...
+
+class RoborockCoordinatedEntityB01(RoborockEntity, CoordinatorEntity[RoborockDataUpdateCoordinatorB01]):
+    _attr_unique_id: Incomplete
+    def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinatorB01) -> None: ...

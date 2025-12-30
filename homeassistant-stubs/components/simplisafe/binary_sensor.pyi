@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from simplipy.device import DeviceV3 as DeviceV3
 from simplipy.device.sensor.v3 import SensorV3 as SensorV3
 from simplipy.system.v3 import SystemV3 as SystemV3
+from simplipy.websocket import WebsocketEvent as WebsocketEvent
 
 SUPPORTED_BATTERY_SENSOR_TYPES: Incomplete
 TRIGGERED_SENSOR_TYPES: Incomplete
@@ -23,6 +24,8 @@ class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_is_on: Incomplete
     @callback
     def async_update_from_rest_api(self) -> None: ...
+    @callback
+    def async_update_from_websocket_event(self, event: WebsocketEvent) -> None: ...
 
 class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete

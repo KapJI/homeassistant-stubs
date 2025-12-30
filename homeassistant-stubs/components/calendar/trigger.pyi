@@ -1,15 +1,16 @@
 import datetime
 from . import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
-from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
+from .const import DATA_COMPONENT as DATA_COMPONENT
 from _typeshed import Incomplete
-from collections.abc import Awaitable, Callable, Coroutine
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
-from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_OFFSET as CONF_OFFSET, CONF_PLATFORM as CONF_PLATFORM
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_OFFSET as CONF_OFFSET, CONF_OPTIONS as CONF_OPTIONS
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.automation import move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time, async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
+from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
@@ -17,7 +18,8 @@ _LOGGER: Incomplete
 EVENT_START: str
 EVENT_END: str
 UPDATE_INTERVAL: Incomplete
-TRIGGER_SCHEMA: Incomplete
+_OPTIONS_SCHEMA_DICT: Incomplete
+_CONFIG_SCHEMA: Incomplete
 
 @dataclass
 class QueuedCalendarEvent:
@@ -41,14 +43,14 @@ def queued_event_fetcher(fetcher: EventFetcher, event_type: str, offset: datetim
 
 class CalendarEventListener:
     _hass: Incomplete
-    _job: Incomplete
-    _trigger_data: Incomplete
+    _action_runner: Incomplete
+    _trigger_payload: Incomplete
     _unsub_event: CALLBACK_TYPE | None
     _unsub_refresh: CALLBACK_TYPE | None
     _fetcher: Incomplete
     _timespan: Incomplete
     _events: list[QueuedCalendarEvent]
-    def __init__(self, hass: HomeAssistant, job: HassJob[..., Coroutine[Any, Any, None] | Any], trigger_data: dict[str, Any], fetcher: QueuedEventFetcher) -> None: ...
+    def __init__(self, hass: HomeAssistant, action_runner: TriggerActionRunner, trigger_payload: dict[str, Any], fetcher: QueuedEventFetcher) -> None: ...
     async def async_attach(self) -> None: ...
     @callback
     def async_detach(self) -> None: ...
@@ -59,4 +61,15 @@ class CalendarEventListener:
     def _dispatch_events(self, now: datetime.datetime) -> None: ...
     async def _handle_refresh(self, now_utc: datetime.datetime) -> None: ...
 
-async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: TriggerActionType, trigger_info: TriggerInfo) -> CALLBACK_TYPE: ...
+class EventTrigger(Trigger):
+    _options: dict[str, Any]
+    @classmethod
+    async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
+    @classmethod
+    async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
+    def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
+    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+
+TRIGGERS: dict[str, type[Trigger]]
+
+async def async_get_triggers(hass: HomeAssistant) -> dict[str, type[Trigger]]: ...

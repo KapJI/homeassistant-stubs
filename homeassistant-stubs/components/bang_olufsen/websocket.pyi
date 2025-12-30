@@ -1,5 +1,5 @@
-from .const import BANG_OLUFSEN_WEBSOCKET_EVENT as BANG_OLUFSEN_WEBSOCKET_EVENT, BangOlufsenModel as BangOlufsenModel, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, EVENT_TRANSLATION_MAP as EVENT_TRANSLATION_MAP, WebsocketNotification as WebsocketNotification
-from .entity import BangOlufsenBase as BangOlufsenBase
+from .const import BEO_WEBSOCKET_EVENT as BEO_WEBSOCKET_EVENT, BeoModel as BeoModel, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, EVENT_TRANSLATION_MAP as EVENT_TRANSLATION_MAP, WebsocketNotification as WebsocketNotification
+from .entity import BeoBase as BeoBase
 from .util import get_device as get_device, get_remotes as get_remotes
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from mozart_api.mozart_client import BaseWebSocketResponse as BaseWebSocketRespo
 
 _LOGGER: Incomplete
 
-class BangOlufsenWebsocket(BangOlufsenBase):
+class BeoWebsocket(BeoBase):
     hass: Incomplete
     _device: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, client: MozartClient) -> None: ...

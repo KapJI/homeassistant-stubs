@@ -5,8 +5,8 @@ from collections.abc import Callable as Callable
 from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, split_entity_id as split_entity_id
 from homeassistant.helpers import target as target
-from homeassistant.helpers.condition import Condition as Condition, ConditionCheckerType as ConditionCheckerType, ConditionConfig as ConditionConfig, trace_condition_function as trace_condition_function
-from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from homeassistant.helpers.condition import Condition as Condition, ConditionCheckParams as ConditionCheckParams, ConditionChecker as ConditionChecker, ConditionConfig as ConditionConfig
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final, override
 
 ATTR_BEHAVIOR: Final[str]
@@ -20,13 +20,12 @@ class StateConditionBase(Condition):
     @override
     @classmethod
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
-    _hass: Incomplete
     _target: Incomplete
     _behavior: Incomplete
     _state: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConditionConfig, state: str) -> None: ...
     @override
-    async def async_get_checker(self) -> ConditionCheckerType: ...
+    async def async_get_checker(self) -> ConditionChecker: ...
 
 class IsOnCondition(StateConditionBase):
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...

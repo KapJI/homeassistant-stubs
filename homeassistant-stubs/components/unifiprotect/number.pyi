@@ -1,5 +1,6 @@
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -9,8 +10,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from uiprotect.data import Camera as Camera, Doorlock, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
-class ProtectNumberEntityDescription(ProtectSetableKeysMixin[T], NumberEntityDescription):
+class ProtectNumberEntityDescription(ProtectSettableKeysMixin[T], NumberEntityDescription):
     ufp_max: int | float
     ufp_min: int | float
     ufp_step: int | float
@@ -41,4 +44,5 @@ class ProtectNumbers(ProtectDeviceEntity, NumberEntity):
     _attr_native_value: Incomplete
     @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @async_ufp_instance_command
     async def async_set_native_value(self, value: float) -> None: ...

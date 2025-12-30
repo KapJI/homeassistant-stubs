@@ -3,9 +3,8 @@ from . import DeviceAutomationType as DeviceAutomationType, async_get_device_aut
 from .helpers import async_validate_device_automation_config as async_validate_device_automation_config
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_OPTIONS as CONF_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import condition as condition
-from homeassistant.helpers.condition import Condition as Condition, ConditionCheckerType as ConditionCheckerType, ConditionConfig as ConditionConfig, trace_condition_function as trace_condition_function
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.condition import Condition as Condition, ConditionChecker as ConditionChecker, ConditionCheckerType as ConditionCheckerType, ConditionConfig as ConditionConfig
+from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
 from typing import Any, Protocol
 
 class DeviceAutomationConditionProtocol(Protocol):
@@ -16,14 +15,13 @@ class DeviceAutomationConditionProtocol(Protocol):
     async def async_get_conditions(self, hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...
 
 class DeviceCondition(Condition):
-    _hass: HomeAssistant
     _config: ConfigType
     @classmethod
     async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     @classmethod
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
-    async def async_get_checker(self) -> condition.ConditionCheckerType: ...
+    async def async_get_checker(self) -> ConditionChecker: ...
 
 CONDITIONS: dict[str, type[Condition]]
 

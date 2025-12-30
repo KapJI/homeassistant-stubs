@@ -1,5 +1,6 @@
 from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -9,8 +10,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from uiprotect.data import Camera as Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
-class ProtectTextEntityDescription(ProtectSetableKeysMixin[T], TextEntityDescription): ...
+class ProtectTextEntityDescription(ProtectSettableKeysMixin[T], TextEntityDescription): ...
 
 def _get_doorbell_current(obj: Camera) -> str | None: ...
 async def _set_doorbell_message(obj: Camera, message: str) -> None: ...
@@ -26,4 +29,5 @@ class ProtectDeviceText(ProtectDeviceEntity, TextEntity):
     _attr_native_value: Incomplete
     @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @async_ufp_instance_command
     async def async_set_value(self, value: str) -> None: ...

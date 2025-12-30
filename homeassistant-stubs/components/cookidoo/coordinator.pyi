@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from cookidoo_api import Cookidoo as Cookidoo, CookidooAdditionalItem as CookidooAdditionalItem, CookidooIngredientItem as CookidooIngredientItem, CookidooSubscription as CookidooSubscription, CookidooUserInfo as CookidooUserInfo
+from cookidoo_api.types import CookidooCalendarDay as CookidooCalendarDay
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL
@@ -16,6 +17,7 @@ class CookidooData:
     ingredient_items: list[CookidooIngredientItem]
     additional_items: list[CookidooAdditionalItem]
     subscription: CookidooSubscription | None
+    week_plan: list[CookidooCalendarDay]
 
 class CookidooDataUpdateCoordinator(DataUpdateCoordinator[CookidooData]):
     config_entry: CookidooConfigEntry

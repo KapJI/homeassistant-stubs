@@ -1,12 +1,14 @@
+import voluptuous as vol
 from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_MAX_MEDIA as CONF_MAX_MEDIA, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEFAULT_MAX_MEDIA as DEFAULT_MAX_MEDIA, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, OUTDATED_LOG_MESSAGE as OUTDATED_LOG_MESSAGE
-from .data import async_last_update_was_successful as async_last_update_was_successful
+from .data import UFPConfigEntry as UFPConfigEntry, async_last_update_was_successful as async_last_update_was_successful
 from .discovery import async_start_discovery as async_start_discovery
-from .utils import _async_resolve as _async_resolve, _async_short_mac as _async_short_mac, _async_unifi_mac_from_hass as _async_unifi_mac_from_hass
+from .utils import _async_resolve as _async_resolve, _async_short_mac as _async_short_mac, _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_create_api_client as async_create_api_client
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_IGNORE as SOURCE_IGNORE
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_IGNORE as SOURCE_IGNORE
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
@@ -18,11 +20,28 @@ from typing import Any
 from uiprotect.data import NVR as NVR
 
 _LOGGER: Incomplete
+
+def _filter_empty_credentials(user_input: dict[str, Any]) -> dict[str, Any]: ...
+def _normalize_port(data: dict[str, Any]) -> dict[str, Any]: ...
+def _build_data_without_credentials(entry_data: Mapping[str, Any]) -> dict[str, Any]: ...
+async def _async_clear_session_if_credentials_changed(hass: HomeAssistant, entry: UFPConfigEntry, new_data: Mapping[str, Any]) -> None: ...
+
 ENTRY_FAILURE_STATES: Incomplete
+_TEXT_SELECTOR: Incomplete
+_PASSWORD_SELECTOR: Incomplete
+_PORT_SELECTOR: Incomplete
+_BOOL_SELECTOR: Incomplete
+
+def _build_schema(*, include_host: bool = True, include_connection: bool = True, credentials_optional: bool = False) -> vol.Schema: ...
+
+CONFIG_SCHEMA: Incomplete
+RECONFIGURE_SCHEMA: Incomplete
+DISCOVERY_SCHEMA: Incomplete
+REAUTH_SCHEMA: Incomplete
 
 async def async_local_user_documentation_url(hass: HomeAssistant) -> str: ...
 def _host_is_direct_connect(host: str) -> bool: ...
-async def _async_console_is_offline(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def _async_console_is_offline(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...
 
 class ProtectFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
@@ -35,12 +54,13 @@ class ProtectFlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
+    def async_get_options_flow(config_entry: UFPConfigEntry) -> OptionsFlowHandler: ...
     @callback
     def _async_create_entry(self, title: str, data: dict[str, Any]) -> ConfigFlowResult: ...
     async def _async_get_nvr_data(self, user_input: dict[str, Any]) -> tuple[NVR | None, dict[str, str]]: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class OptionsFlowHandler(OptionsFlowWithReload):

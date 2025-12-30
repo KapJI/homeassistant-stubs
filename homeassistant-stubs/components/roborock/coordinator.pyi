@@ -13,11 +13,13 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import slugify as slugify
 from propcache.api import cached_property
+from roborock import B01Props
 from roborock.data import HomeDataScene as HomeDataScene
 from roborock.devices.device import RoborockDevice as RoborockDevice
 from roborock.devices.traits.a01 import DyadApi as DyadApi, ZeoApi as ZeoApi
+from roborock.devices.traits.b01 import Q7PropertiesApi as Q7PropertiesApi
 from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
-from roborock.roborock_message import RoborockDyadDataProtocol, RoborockZeoProtocol
+from roborock.roborock_message import RoborockB01Props, RoborockDyadDataProtocol, RoborockZeoProtocol
 from typing import Any, TypeVar
 
 SCAN_INTERVAL: Incomplete
@@ -28,7 +30,8 @@ _LOGGER: Incomplete
 class RoborockCoordinators:
     v1: list[RoborockDataUpdateCoordinator]
     a01: list[RoborockDataUpdateCoordinatorA01]
-    def values(self) -> list[RoborockDataUpdateCoordinator | RoborockDataUpdateCoordinatorA01]: ...
+    b01: list[RoborockDataUpdateCoordinatorB01]
+    def values(self) -> list[RoborockDataUpdateCoordinator | RoborockDataUpdateCoordinatorA01 | RoborockDataUpdateCoordinatorB01]: ...
 type RoborockConfigEntry = ConfigEntry[RoborockCoordinators]
 
 class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState]):
@@ -87,3 +90,21 @@ class RoborockWetDryVacUpdateCoordinator(RoborockDataUpdateCoordinatorA01[Roboro
     request_protocols: list[RoborockDyadDataProtocol]
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: DyadApi) -> None: ...
     async def _async_update_data(self) -> dict[RoborockDyadDataProtocol, StateType]: ...
+
+class RoborockDataUpdateCoordinatorB01(DataUpdateCoordinator[B01Props]):
+    config_entry: RoborockConfigEntry
+    _device: Incomplete
+    device_info: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice) -> None: ...
+    @cached_property
+    def duid(self) -> str: ...
+    @cached_property
+    def duid_slug(self) -> str: ...
+    @property
+    def device(self) -> RoborockDevice: ...
+
+class RoborockB01Q7UpdateCoordinator(RoborockDataUpdateCoordinatorB01):
+    api: Incomplete
+    request_protocols: list[RoborockB01Props]
+    def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: Q7PropertiesApi) -> None: ...
+    async def _async_update_data(self) -> B01Props: ...

@@ -6,8 +6,9 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGatewayPortConfig as OmadaGatewayPortConfig, OmadaGatewayPortStatus as OmadaGatewayPortStatus
+from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGatewayPortConfig as OmadaGatewayPortConfig, OmadaGatewayPortStatus as OmadaGatewayPortStatus, OmadaListDevice as OmadaListDevice
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

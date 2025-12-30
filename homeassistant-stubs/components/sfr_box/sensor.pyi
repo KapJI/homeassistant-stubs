@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from sfrbox_api.models import DslInfo, SystemInfo, WanInfo
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class SFRBoxSensorEntityDescription[_T](SensorEntityDescription):
     value_fn: Callable[[_T], StateType]

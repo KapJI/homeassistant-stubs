@@ -25,6 +25,7 @@ _HECTARE_TO_M2: Incomplete
 _MIN_TO_SEC: int
 _HRS_TO_MINUTES: int
 _HRS_TO_SECS: Incomplete
+_DAYS_TO_HRS: int
 _DAYS_TO_SECS: Incomplete
 _WH_TO_J: int
 _WH_TO_CAL: Incomplete

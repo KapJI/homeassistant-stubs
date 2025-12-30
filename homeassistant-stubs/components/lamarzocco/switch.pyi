@@ -21,6 +21,7 @@ class LaMarzoccoSwitchEntityDescription(LaMarzoccoEntityDescription, SwitchEntit
     is_on_fn: Callable[[LaMarzoccoMachine], bool]
 
 ENTITIES: tuple[LaMarzoccoSwitchEntityDescription, ...]
+MAIN_SWITCH_ENTITY: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -30,6 +31,10 @@ class LaMarzoccoSwitchEntity(LaMarzoccoEntity, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
     def is_on(self) -> bool: ...
+
+class LaMarzoccoMainSwitchEntity(LaMarzoccoSwitchEntity):
+    @property
+    def entity_picture(self) -> str | None: ...
 
 class LaMarzoccoAutoOnOffSwitchEntity(LaMarzoccoBaseEntity, SwitchEntity):
     coordinator: LaMarzoccoUpdateCoordinator

@@ -11,6 +11,8 @@ from homeassistant.helpers.event import async_call_at as async_call_at
 from typing import Any
 from uiprotect.data.nvr import Event as Event, EventDetectedThumbnail as EventDetectedThumbnail
 
+PARALLEL_UPDATES: int
+
 def _thumbnail_sort_key(t: EventDetectedThumbnail) -> tuple[bool, float, float]: ...
 def _add_ulp_user_infos(bootstrap: Bootstrap, event_data: dict[str, str], ulp_id: str) -> None: ...
 

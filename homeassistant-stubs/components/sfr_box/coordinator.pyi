@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -20,9 +21,9 @@ class SFRRuntimeData:
     system: SFRDataUpdateCoordinator[SystemInfo]
     wan: SFRDataUpdateCoordinator[WanInfo]
 
-class SFRDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT | None]):
+class SFRDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
     config_entry: SFRConfigEntry
     box: Incomplete
     _method: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SFRConfigEntry, box: SFRBox, name: str, method: Callable[[SFRBox], Coroutine[Any, Any, _DataT | None]]) -> None: ...
-    async def _async_update_data(self) -> _DataT | None: ...
+    async def _async_update_data(self) -> _DataT: ...

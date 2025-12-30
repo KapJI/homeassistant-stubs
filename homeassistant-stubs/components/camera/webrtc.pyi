@@ -4,7 +4,7 @@ from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, StreamTyp
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Awaitable, Callable, Iterable
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from functools import cache
 from homeassistant.components import websocket_api as websocket_api
@@ -13,11 +13,10 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ulid import ulid as ulid
 from typing import Any
-from webrtc_models import RTCConfiguration, RTCIceCandidate as RTCIceCandidate, RTCIceCandidateInit, RTCIceServer as RTCIceServer
+from webrtc_models import RTCConfiguration, RTCIceCandidate as RTCIceCandidate, RTCIceCandidateInit
 
 _LOGGER: Incomplete
 DATA_WEBRTC_PROVIDERS: HassKey[set[CameraWebRTCProvider]]
-DATA_ICE_SERVERS: HassKey[list[Callable[[], Iterable[RTCIceServer]]]]
 _WEBRTC: str
 
 @dataclass(frozen=True)
@@ -82,5 +81,3 @@ async def ws_candidate(connection: websocket_api.ActiveConnection, msg: dict[str
 @callback
 def async_register_ws(hass: HomeAssistant) -> None: ...
 async def async_get_supported_provider(hass: HomeAssistant, camera: Camera) -> CameraWebRTCProvider | None: ...
-@callback
-def async_register_ice_servers(hass: HomeAssistant, get_ice_server_fn: Callable[[], Iterable[RTCIceServer]]) -> Callable[[], None]: ...

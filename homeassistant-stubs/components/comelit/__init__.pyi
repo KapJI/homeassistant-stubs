@@ -1,4 +1,4 @@
-from .const import DEFAULT_PORT as DEFAULT_PORT
+from .const import CONF_VEDO_PIN as CONF_VEDO_PIN, DEFAULT_PORT as DEFAULT_PORT
 from .coordinator import ComelitBaseCoordinator as ComelitBaseCoordinator, ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge, ComelitVedoSystem as ComelitVedoSystem
 from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete
@@ -6,6 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PIN as CONF_PIN, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 BRIDGE_PLATFORMS: Incomplete
+BRIDGE_AND_VEDO_PLATFORMS: Incomplete
 VEDO_PLATFORMS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ComelitConfigEntry) -> bool: ...

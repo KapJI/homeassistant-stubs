@@ -17,7 +17,7 @@ class EntryData(TypedDict, total=False):
 
 _exception_map: Incomplete
 
-class BangOlufsenConfigFlowHandler(ConfigFlow, domain=DOMAIN):
+class BeoConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     _beolink_jid: str
     _client: MozartClient
     _host: str

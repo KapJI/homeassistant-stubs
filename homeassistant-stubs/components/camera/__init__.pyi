@@ -4,7 +4,7 @@ from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_S
 from .helper import get_camera_from_entity_id as get_camera_from_entity_id
 from .img_util import TurboJPEGSingleton as TurboJPEGSingleton, scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings, get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
-from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, DATA_ICE_SERVERS as DATA_ICE_SERVERS, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_ice_servers as async_register_ice_servers, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
+from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
@@ -14,6 +14,7 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Orientation as Orientation, Stream as Stream, create_stream as create_stream
+from homeassistant.components.web_rtc import async_get_ice_servers as async_get_ice_servers
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON

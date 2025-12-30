@@ -1,3 +1,4 @@
+from .b2_client import B2Api as B2Api, InMemoryAccountInfo as InMemoryAccountInfo
 from .const import BACKBLAZE_REALM as BACKBLAZE_REALM, CONF_APPLICATION_KEY as CONF_APPLICATION_KEY, CONF_BUCKET as CONF_BUCKET, CONF_KEY_ID as CONF_KEY_ID, CONF_PREFIX as CONF_PREFIX, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping

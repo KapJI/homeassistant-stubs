@@ -1,6 +1,6 @@
-from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitVedoSystem as ComelitVedoSystem
+from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge, ComelitVedoSystem as ComelitVedoSystem
 from _typeshed import Incomplete
-from aiocomelit.api import ComelitVedoAreaObject as ComelitVedoAreaObject
+from aiocomelit.api import ComelitVedoAreaObject
 from aiocomelit.const import AlarmAreaState
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -20,7 +20,7 @@ ALARM_AREA_ARMED_STATUS: dict[str, int]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ComelitAlarmEntity(CoordinatorEntity[ComelitVedoSystem], AlarmControlPanelEntity):
+class ComelitAlarmEntity(CoordinatorEntity[ComelitVedoSystem | ComelitSerialBridge], AlarmControlPanelEntity):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_code_format: Incomplete
@@ -29,7 +29,7 @@ class ComelitAlarmEntity(CoordinatorEntity[ComelitVedoSystem], AlarmControlPanel
     _area_index: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: ComelitVedoSystem, area: ComelitVedoAreaObject, config_entry_entry_id: str) -> None: ...
+    def __init__(self, coordinator: ComelitVedoSystem | ComelitSerialBridge, area: ComelitVedoAreaObject, config_entry_entry_id: str) -> None: ...
     @property
     def _area(self) -> ComelitVedoAreaObject: ...
     @property

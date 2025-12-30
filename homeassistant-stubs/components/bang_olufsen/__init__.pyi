@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .websocket import BangOlufsenWebsocket as BangOlufsenWebsocket
+from .websocket import BeoWebsocket as BeoWebsocket
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -10,12 +10,12 @@ from homeassistant.util.ssl import get_default_context as get_default_context
 from mozart_api.mozart_client import MozartClient
 
 @dataclass
-class BangOlufsenData:
-    websocket: BangOlufsenWebsocket
+class BeoData:
+    websocket: BeoWebsocket
     client: MozartClient
-type BangOlufsenConfigEntry = ConfigEntry[BangOlufsenData]
+type BeoConfigEntry = ConfigEntry[BeoData]
 
 PLATFORMS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: BangOlufsenConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: BangOlufsenConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: BeoConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: BeoConfigEntry) -> bool: ...

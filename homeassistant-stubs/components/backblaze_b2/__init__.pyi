@@ -1,3 +1,4 @@
+from .b2_client import B2Api as B2Api, InMemoryAccountInfo as InMemoryAccountInfo
 from .const import BACKBLAZE_REALM as BACKBLAZE_REALM, CONF_APPLICATION_KEY as CONF_APPLICATION_KEY, CONF_BUCKET as CONF_BUCKET, CONF_KEY_ID as CONF_KEY_ID, DATA_BACKUP_AGENT_LISTENERS as DATA_BACKUP_AGENT_LISTENERS, DOMAIN as DOMAIN
 from .repairs import async_check_for_repair_issues as async_check_for_repair_issues, create_bucket_access_restricted_issue as create_bucket_access_restricted_issue, create_bucket_not_found_issue as create_bucket_not_found_issue
 from _typeshed import Incomplete

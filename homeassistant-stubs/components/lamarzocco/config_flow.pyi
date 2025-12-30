@@ -1,5 +1,5 @@
 from . import create_client_session as create_client_session
-from .const import CONF_INSTALLATION_KEY as CONF_INSTALLATION_KEY, CONF_USE_BLUETOOTH as CONF_USE_BLUETOOTH, DOMAIN as DOMAIN
+from .const import CONF_INSTALLATION_KEY as CONF_INSTALLATION_KEY, CONF_OFFLINE_MODE as CONF_OFFLINE_MODE, CONF_USE_BLUETOOTH as CONF_USE_BLUETOOTH, DOMAIN as DOMAIN
 from .coordinator import LaMarzoccoConfigEntry as LaMarzoccoConfigEntry
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession

@@ -30,9 +30,13 @@ class _FloorStoreData(TypedDict):
 class FloorRegistryStoreData(TypedDict):
     floors: list[_FloorStoreData]
 
-class EventFloorRegistryUpdatedData(TypedDict):
-    action: Literal['create', 'remove', 'update', 'reorder']
-    floor_id: str | None
+class _EventFloorRegistryUpdatedData_Create_Remove_Update(TypedDict):
+    action: Literal['create', 'remove', 'update']
+    floor_id: str
+
+class _EventFloorRegistryUpdatedData_Reorder(TypedDict):
+    action: Literal['reorder']
+type EventFloorRegistryUpdatedData = _EventFloorRegistryUpdatedData_Create_Remove_Update | _EventFloorRegistryUpdatedData_Reorder
 type EventFloorRegistryUpdated = Event[EventFloorRegistryUpdatedData]
 
 @dataclass(slots=True, kw_only=True, frozen=True)

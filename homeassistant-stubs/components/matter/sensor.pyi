@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from chip.clusters.ClusterObjects import ClusterAttributeDescriptor as ClusterAttributeDescriptor
 from chip.clusters.Types import Nullable as Nullable
 from dataclasses import dataclass, field
+from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfReactivePower as UnitOfReactivePower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
@@ -25,9 +26,12 @@ DEM_OPT_OUT_STATE_MAP: Incomplete
 ESA_STATE_MAP: Incomplete
 EVSE_FAULT_STATE_MAP: Incomplete
 PUMP_CONTROL_MODE_MAP: Incomplete
+MATTER_2000_TO_UNIX_EPOCH_OFFSET: int
 HUMIDITY_SCALING_FACTOR: int
 TEMPERATURE_SCALING_FACTOR: int
 
+def matter_epoch_seconds_to_utc(x: int | None) -> datetime | None: ...
+def matter_epoch_microseconds_to_utc(x: int | None) -> datetime | None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)

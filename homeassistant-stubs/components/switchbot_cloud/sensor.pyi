@@ -46,16 +46,16 @@ POWER_CONSUMPTION_DESCRIPTION: Incomplete
 RELAY_SWITCH_2PM_POWER_DESCRIPTION: Incomplete
 RELAY_SWITCH_2PM_VOLTAGE_DESCRIPTION: Incomplete
 RELAY_SWITCH_2PM_CURRENT_DESCRIPTION: Incomplete
-RELAY_SWITCH_2PM_ElECTRICITY_DESCRIPTION: Incomplete
+RELAY_SWITCH_2PM_ELECTRICITY_DESCRIPTION: Incomplete
 LIGHTLEVEL_DESCRIPTION: Incomplete
 SENSOR_DESCRIPTIONS_BY_DEVICE_TYPES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudSensor(SwitchBotCloudEntity, SensorEntity):
-    entity_description: Incomplete
+    entity_description: SwitchbotCloudSensorEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SensorEntityDescription) -> None: ...
+    def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SwitchbotCloudSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     def _set_attributes(self) -> None: ...
 
@@ -64,9 +64,9 @@ class SwitchBotCloudRelaySwitch2PMSensor(SwitchBotCloudSensor):
     _channel: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SensorEntityDescription, channel: str) -> None: ...
+    def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SwitchbotCloudSensorEntityDescription, channel: str) -> None: ...
     _attr_native_value: Incomplete
     def _set_attributes(self) -> None: ...
 
 @callback
-def _async_make_entity(api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator, description: SensorEntityDescription) -> SwitchBotCloudSensor: ...
+def _async_make_entity(api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator, description: SwitchbotCloudSensorEntityDescription) -> SwitchBotCloudSensor: ...

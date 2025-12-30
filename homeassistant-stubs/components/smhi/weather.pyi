@@ -8,6 +8,7 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import sun as sun
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.util import slugify as slugify
 from pysmhi import SMHIForecast as SMHIForecast
 from typing import Any, Final
 

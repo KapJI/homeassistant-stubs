@@ -1,6 +1,6 @@
-from . import BangOlufsenConfigEntry as BangOlufsenConfigEntry
-from .const import BANG_OLUFSEN_REPEAT_FROM_HA as BANG_OLUFSEN_REPEAT_FROM_HA, BANG_OLUFSEN_REPEAT_TO_HA as BANG_OLUFSEN_REPEAT_TO_HA, BANG_OLUFSEN_STATES as BANG_OLUFSEN_STATES, BEOLINK_JOIN_SOURCES as BEOLINK_JOIN_SOURCES, BEOLINK_JOIN_SOURCES_TO_UPPER as BEOLINK_JOIN_SOURCES_TO_UPPER, BangOlufsenMediaType as BangOlufsenMediaType, BangOlufsenSource as BangOlufsenSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, MANUFACTURER as MANUFACTURER, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
-from .entity import BangOlufsenEntity as BangOlufsenEntity
+from . import BeoConfigEntry as BeoConfigEntry
+from .const import BEOLINK_JOIN_SOURCES as BEOLINK_JOIN_SOURCES, BEOLINK_JOIN_SOURCES_TO_UPPER as BEOLINK_JOIN_SOURCES_TO_UPPER, BEO_REPEAT_FROM_HA as BEO_REPEAT_FROM_HA, BEO_REPEAT_TO_HA as BEO_REPEAT_TO_HA, BEO_STATES as BEO_STATES, BeoAttribute as BeoAttribute, BeoMediaType as BeoMediaType, BeoSource as BeoSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, MANUFACTURER as MANUFACTURER, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
+from .entity import BeoEntity as BeoEntity
 from .util import get_serial_number_from_jid as get_serial_number_from_jid
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -21,11 +21,11 @@ from typing import Any
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
-BANG_OLUFSEN_FEATURES: Incomplete
+BEO_FEATURES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: BangOlufsenConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: BeoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
+class BeoMediaPlayer(BeoEntity, MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_device_class: Incomplete
     _beolink_jid: str
@@ -39,6 +39,7 @@ class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     _sources: dict[str, str]
     _state: str
     _video_sources: dict[str, str]
+    _video_source_id_map: dict[str, str]
     _sound_modes: dict[str, int]
     _beolink_sources: dict[str, bool]
     _remote_leader: BeolinkLeader | None
@@ -85,11 +86,13 @@ class BangOlufsenMediaPlayer(BangOlufsenEntity, MediaPlayerEntity):
     @property
     def is_volume_muted(self) -> bool | None: ...
     @property
-    def media_content_type(self) -> str: ...
+    def media_content_type(self) -> MediaType | str | None: ...
     @property
     def media_duration(self) -> int | None: ...
     @property
     def media_position(self) -> int | None: ...
+    @property
+    def media_content_id(self) -> str | None: ...
     @property
     def media_image_url(self) -> str | None: ...
     @property

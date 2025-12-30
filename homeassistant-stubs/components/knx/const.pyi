@@ -62,6 +62,7 @@ SERVICE_KNX_ATTR_REMOVE: Final[str]
 SERVICE_KNX_EVENT_REGISTER: Final[str]
 SERVICE_KNX_EXPOSURE_REGISTER: Final[str]
 SERVICE_KNX_READ: Final[str]
+REPAIR_ISSUE_DATA_SECURE_GROUP_KEY: Final[str]
 
 class KNXConfigEntryData(TypedDict, total=False):
     connection_type: str
@@ -118,3 +119,9 @@ class ClimateConf:
     FAN_MAX_STEP: Final[str]
     FAN_SPEED_MODE: Final[str]
     FAN_ZERO_MODE: Final[str]
+
+class FanConf:
+    MAX_STEP: Final[str]
+
+class SceneConf:
+    SCENE_NUMBER: Final[str]

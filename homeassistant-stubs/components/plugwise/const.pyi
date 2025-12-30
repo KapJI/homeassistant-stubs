@@ -1,5 +1,4 @@
 from _typeshed import Incomplete
-from datetime import timedelta
 from homeassistant.const import Platform as Platform
 from typing import Final, Literal
 
@@ -30,8 +29,9 @@ type SelectOptionsType = Literal['available_schedules', 'dhw_modes', 'gateway_mo
 DEFAULT_MAX_TEMP: Final[int]
 DEFAULT_MIN_TEMP: Final[int]
 DEFAULT_PORT: Final[int]
-DEFAULT_SCAN_INTERVAL: Final[dict[str, timedelta]]
+DEFAULT_UPDATE_INTERVAL: Incomplete
 DEFAULT_USERNAME: Final[str]
+P1_UPDATE_INTERVAL: Incomplete
 MASTER_THERMOSTATS: Final[list[str]]
 SELECT_DHW_MODE: Final[str]
 SELECT_GATEWAY_MODE: Final[str]

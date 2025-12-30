@@ -44,7 +44,7 @@ class ServiceParams(TypedDict):
     service_data: dict[str, Any]
     target: dict | None
 
-class ServiceTargetSelector(target_helpers.TargetSelectorData):
+class ServiceTargetSelector(target_helpers.TargetSelection):
     def __init__(self, service_call: ServiceCall) -> None: ...
 
 class SelectedEntities(target_helpers.SelectedEntities):

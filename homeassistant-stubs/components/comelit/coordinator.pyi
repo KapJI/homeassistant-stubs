@@ -2,17 +2,18 @@ import abc
 from .const import DOMAIN as DOMAIN, ObjectClassType as ObjectClassType, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as _LOGGER
 from _typeshed import Incomplete
 from abc import abstractmethod
-from aiocomelit.api import AlarmDataObject, ComelitCommonApi as ComelitCommonApi, ComelitSerialBridgeObject, ComelitVedoApi, ComeliteSerialBridgeApi
+from aiocomelit.api import ComelitCommonApi as ComelitCommonApi, ComelitVedoApi, ComeliteSerialBridgeApi
 from aiohttp import ClientSession as ClientSession
+from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, TypeVar
+from typing import TypeVar
 
 type ComelitConfigEntry = ConfigEntry[ComelitBaseCoordinator]
-T = TypeVar('T', bound=dict[str, dict[int, ComelitSerialBridgeObject]] | AlarmDataObject)
+T = TypeVar('T', bound=dict[str, Mapping[int, ObjectClassType]])
 
 class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     _hw_version: str
@@ -25,16 +26,18 @@ class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _async_update_system_data(self) -> T: ...
-    async def _async_remove_stale_devices(self, previous_list: dict[int, Any], current_list: dict[int, Any], dev_type: str) -> None: ...
+    async def _async_remove_stale_devices(self, previous_list: Mapping[int, ObjectClassType], current_list: Mapping[int, ObjectClassType], dev_type: str) -> None: ...
 
-class ComelitSerialBridge(ComelitBaseCoordinator[dict[str, dict[int, ComelitSerialBridgeObject]]]):
+class ComelitSerialBridge(ComelitBaseCoordinator[T]):
     _hw_version: str
     api: ComeliteSerialBridgeApi
-    def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: str, session: ClientSession) -> None: ...
-    async def _async_update_system_data(self) -> dict[str, dict[int, ComelitSerialBridgeObject]]: ...
+    vedo_pin: Incomplete
+    def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: str, vedo_pin: str | None, session: ClientSession) -> None: ...
+    async def _async_update_system_data(self) -> T: ...
 
-class ComelitVedoSystem(ComelitBaseCoordinator[AlarmDataObject]):
+class ComelitVedoSystem(ComelitBaseCoordinator[T]):
     _hw_version: str
     api: ComelitVedoApi
+    vedo_pin: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: str, session: ClientSession) -> None: ...
-    async def _async_update_system_data(self) -> AlarmDataObject: ...
+    async def _async_update_system_data(self) -> T: ...

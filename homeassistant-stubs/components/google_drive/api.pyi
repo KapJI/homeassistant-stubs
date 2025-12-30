@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession, StreamReader as StreamReader
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
+from dataclasses import dataclass
 from google_drive_api.api import AbstractAuth
 from homeassistant.components.backup import AgentBackup as AgentBackup, suggested_filename as suggested_filename
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
@@ -12,6 +13,13 @@ from typing import Any
 _UPLOAD_AND_DOWNLOAD_TIMEOUT: Incomplete
 _UPLOAD_MAX_RETRIES: int
 _LOGGER: Incomplete
+
+@dataclass
+class StorageQuotaData:
+    limit: int | None
+    usage: int
+    usage_in_drive: int
+    usage_in_trash: int
 
 class AsyncConfigEntryAuth(AbstractAuth):
     _oauth_session: Incomplete
@@ -28,9 +36,11 @@ class DriveClient:
     _api: Incomplete
     def __init__(self, ha_instance_id: str, auth: AbstractAuth) -> None: ...
     async def async_get_email_address(self) -> str: ...
+    async def async_get_storage_quota(self) -> StorageQuotaData: ...
     async def async_create_ha_root_folder_if_not_exists(self) -> tuple[str, str]: ...
     async def async_upload_backup(self, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup) -> None: ...
     async def async_list_backups(self) -> list[AgentBackup]: ...
+    async def async_get_size_of_all_backups(self) -> int: ...
     async def async_get_backup_file_id(self, backup_id: str) -> str | None: ...
     async def async_delete(self, file_id: str) -> None: ...
     async def async_download(self, file_id: str) -> StreamReader: ...

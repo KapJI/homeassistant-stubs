@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from _typeshed import Incomplete
@@ -10,6 +11,7 @@ from typing import Any
 from uiprotect.data import Camera, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 _SPEAKER_DESCRIPTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

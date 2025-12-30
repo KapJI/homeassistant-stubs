@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from abc import abstractmethod
 from aiomealie import MealieClient as MealieClient, Mealplan, MealplanEntryType, ShoppingItem as ShoppingItem, ShoppingList as ShoppingList, Statistics
+from awesomeversion import AwesomeVersion as AwesomeVersion
 from dataclasses import dataclass
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -15,6 +16,7 @@ WEEK: Incomplete
 @dataclass
 class MealieData:
     client: MealieClient
+    version: AwesomeVersion
     mealplan_coordinator: MealieMealplanCoordinator
     shoppinglist_coordinator: MealieShoppingListCoordinator
     statistics_coordinator: MealieStatisticsCoordinator

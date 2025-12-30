@@ -1,19 +1,19 @@
 from .const import REQUESTS as REQUESTS
 from .coordinator import OverseerrConfigEntry as OverseerrConfigEntry, OverseerrCoordinator as OverseerrCoordinator
 from .entity import OverseerrEntity as OverseerrEntity
+from .models import OverseerrData as OverseerrData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from python_overseerr import RequestCount as RequestCount
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class OverseerrSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[RequestCount], int]
+    value_fn: Callable[[OverseerrData], int]
 
 SENSORS: tuple[OverseerrSensorEntityDescription, ...]
 

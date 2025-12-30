@@ -4,16 +4,18 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from lunatone_rest_api_client import Device, Devices as Devices, Info as Info
+from lunatone_rest_api_client import DALIBroadcast as DALIBroadcast, Device, Devices as Devices, Info as Info
 from lunatone_rest_api_client.models import InfoData
 
 _LOGGER: Incomplete
+DEFAULT_INFO_SCAN_INTERVAL: Incomplete
 DEFAULT_DEVICES_SCAN_INTERVAL: Incomplete
 
 @dataclass
 class LunatoneData:
     coordinator_info: LunatoneInfoDataUpdateCoordinator
     coordinator_devices: LunatoneDevicesDataUpdateCoordinator
+    dali_line_broadcasts: list[DALIBroadcast]
 type LunatoneConfigEntry = ConfigEntry[LunatoneData]
 
 class LunatoneInfoDataUpdateCoordinator(DataUpdateCoordinator[InfoData]):

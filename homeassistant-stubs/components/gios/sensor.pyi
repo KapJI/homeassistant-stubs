@@ -1,13 +1,12 @@
-from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_C6H6 as ATTR_C6H6, ATTR_CO as ATTR_CO, ATTR_NO as ATTR_NO, ATTR_NO2 as ATTR_NO2, ATTR_NOX as ATTR_NOX, ATTR_O3 as ATTR_O3, ATTR_PM10 as ATTR_PM10, ATTR_PM25 as ATTR_PM25, ATTR_SO2 as ATTR_SO2, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, URL as URL
+from .const import ATTRIBUTION as ATTRIBUTION, ATTR_AQI as ATTR_AQI, ATTR_C6H6 as ATTR_C6H6, ATTR_CO as ATTR_CO, ATTR_NO as ATTR_NO, ATTR_NO2 as ATTR_NO2, ATTR_NOX as ATTR_NOX, ATTR_O3 as ATTR_O3, ATTR_PM10 as ATTR_PM10, ATTR_PM25 as ATTR_PM25, ATTR_SO2 as ATTR_SO2, DOMAIN as DOMAIN
 from .coordinator import GiosConfigEntry as GiosConfigEntry, GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from gios.model import GiosSensors as GiosSensors
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONF_NAME as CONF_NAME
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -30,7 +29,7 @@ class GiosSensor(CoordinatorEntity[GiosDataUpdateCoordinator], SensorEntity):
     entity_description: GiosSensorEntityDescription
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, name: str, coordinator: GiosDataUpdateCoordinator, description: GiosSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: GiosDataUpdateCoordinator, description: GiosSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...
     @property

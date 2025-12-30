@@ -8,7 +8,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from mozart_api.models import PlaybackContentMetadata, PlaybackProgress, RenderingState, Source, VolumeState
 from mozart_api.mozart_client import MozartClient as MozartClient
 
-class BangOlufsenBase:
+class BeoBase:
     _client: Incomplete
     entry: ConfigEntry
     _host: str
@@ -21,7 +21,7 @@ class BangOlufsenBase:
     _volume: VolumeState
     def __init__(self, entry: ConfigEntry, client: MozartClient) -> None: ...
 
-class BangOlufsenEntity(Entity, BangOlufsenBase):
+class BeoEntity(Entity, BeoBase):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _attr_device_info: Incomplete

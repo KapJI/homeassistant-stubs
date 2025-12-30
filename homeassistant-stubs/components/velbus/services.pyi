@@ -3,7 +3,7 @@ from .const import CONF_CONFIG_ENTRY as CONF_CONFIG_ENTRY, CONF_MEMO_TEXT as CON
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 

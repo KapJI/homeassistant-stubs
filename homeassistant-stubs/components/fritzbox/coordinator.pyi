@@ -7,13 +7,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyfritzhome import Fritzhome, FritzhomeDevice as FritzhomeDevice
-from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
+from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate, FritzhomeTrigger as FritzhomeTrigger
 
 type FritzboxConfigEntry = ConfigEntry[FritzboxDataUpdateCoordinator]
 @dataclass
 class FritzboxCoordinatorData:
     devices: dict[str, FritzhomeDevice]
     templates: dict[str, FritzhomeTemplate]
+    triggers: dict[str, FritzhomeTrigger]
     supported_color_properties: dict[str, tuple[dict, list]]
 
 class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorData]):
@@ -21,8 +22,10 @@ class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorDat
     configuration_url: str
     fritz: Fritzhome
     has_templates: bool
+    has_triggers: bool
     new_devices: set[str]
     new_templates: set[str]
+    new_triggers: set[str]
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FritzboxConfigEntry) -> None: ...
     async def async_setup(self) -> None: ...

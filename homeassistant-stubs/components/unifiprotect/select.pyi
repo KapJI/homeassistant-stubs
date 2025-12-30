@@ -1,7 +1,7 @@
 from .const import TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
-from .utils import async_get_light_motion_current as async_get_light_motion_current
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .utils import async_get_light_motion_current as async_get_light_motion_current, async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
 from dataclasses import dataclass
@@ -10,12 +10,13 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any
 from uiprotect.api import ProtectApiClient as ProtectApiClient
 from uiprotect.data import Camera, Doorlock, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
+PARALLEL_UPDATES: int
 HDR_MODES: Incomplete
 INFRARED_MODES: Incomplete
 CHIME_TYPES: Incomplete
@@ -28,10 +29,9 @@ LIGHT_MODES: Incomplete
 LIGHT_MODE_TO_SETTINGS: Incomplete
 MOTION_MODE_TO_LIGHT_MODE: Incomplete
 DEVICE_RECORDING_MODES: Incomplete
-DEVICE_CLASS_LCD_MESSAGE: Final[str]
 
 @dataclass(frozen=True, kw_only=True)
-class ProtectSelectEntityDescription(ProtectSetableKeysMixin[T], SelectEntityDescription):
+class ProtectSelectEntityDescription(ProtectSettableKeysMixin[T], SelectEntityDescription):
     ufp_options: list[dict[str, Any]] | None = ...
     ufp_options_fn: Callable[[ProtectApiClient], list[dict[str, Any]]] | None = ...
     ufp_enum_type: type[Enum] | None = ...
@@ -68,4 +68,5 @@ class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     _unifi_to_hass_options: Incomplete
     @callback
     def _async_set_options(self, data: ProtectData, description: ProtectSelectEntityDescription) -> None: ...
+    @async_ufp_instance_command
     async def async_select_option(self, option: str) -> None: ...

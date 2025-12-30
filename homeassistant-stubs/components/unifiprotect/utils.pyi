@@ -1,10 +1,13 @@
-from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEVICES_FOR_SUBSCRIBE as DEVICES_FOR_SUBSCRIBE, ModelType as ModelType
+from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEVICES_FOR_SUBSCRIBE as DEVICES_FOR_SUBSCRIBE, DOMAIN as DOMAIN, ModelType as ModelType
 from .data import UFPConfigEntry as UFPConfigEntry
-from collections.abc import Generator, Iterable
+from .entity import BaseProtectEntity as BaseProtectEntity
+from collections.abc import Callable as Callable, Coroutine, Generator, Iterable
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
+from typing import Any, Concatenate
 from uiprotect import ProtectApiClient
 from uiprotect.data import Bootstrap as Bootstrap, CameraChannel as CameraChannel, Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
@@ -23,3 +26,4 @@ def async_get_light_motion_current(obj: Light) -> str: ...
 def async_create_api_client(hass: HomeAssistant, entry: UFPConfigEntry) -> ProtectApiClient: ...
 @callback
 def get_camera_base_name(channel: CameraChannel) -> str: ...
+def async_ufp_instance_command[_EntityT: BaseProtectEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...

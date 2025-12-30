@@ -4,24 +4,30 @@ from homeassistant.components.media_player import MediaPlayerState as MediaPlaye
 from mozart_api.models import Source, SourceArray
 from typing import Final
 
-class BangOlufsenSource:
+class BeoSource:
+    DEEZER: Final[Source]
     LINE_IN: Final[Source]
+    NET_RADIO: Final[Source]
     SPDIF: Final[Source]
+    TIDAL: Final[Source]
+    TV: Final[Source]
+    UNKNOWN: Final[Source]
     URI_STREAMER: Final[Source]
 
-BANG_OLUFSEN_STATES: dict[str, MediaPlayerState]
-BANG_OLUFSEN_REPEAT_FROM_HA: dict[RepeatMode, str]
-BANG_OLUFSEN_REPEAT_TO_HA: dict[str, RepeatMode]
+BEO_STATES: dict[str, MediaPlayerState]
+BEO_REPEAT_FROM_HA: dict[RepeatMode, str]
+BEO_REPEAT_TO_HA: dict[str, RepeatMode]
 
-class BangOlufsenMediaType(StrEnum):
-    FAVOURITE = 'favourite'
+class BeoMediaType(StrEnum):
     DEEZER = 'deezer'
+    FAVOURITE = 'favourite'
+    OVERLAY_TTS = 'overlay_tts'
     RADIO = 'radio'
     TIDAL = 'tidal'
     TTS = 'provider'
-    OVERLAY_TTS = 'overlay_tts'
+    TV = 'tv'
 
-class BangOlufsenModel(StrEnum):
+class BeoModel(StrEnum):
     BEOCONNECT_CORE = 'Beoconnect Core'
     BEOLAB_8 = 'BeoLab 8'
     BEOLAB_28 = 'BeoLab 28'
@@ -35,7 +41,14 @@ class BangOlufsenModel(StrEnum):
     BEOSOUND_THEATRE = 'Beosound Theatre'
     BEOREMOTE_ONE = 'Beoremote One'
 
-class BangOlufsenButtons(StrEnum):
+class BeoAttribute(StrEnum):
+    BEOLINK = 'beolink'
+    BEOLINK_PEERS = 'peers'
+    BEOLINK_SELF = 'self'
+    BEOLINK_LEADER = 'leader'
+    BEOLINK_LISTENERS = 'listeners'
+
+class BeoButtons(StrEnum):
     BLUETOOTH = 'Bluetooth'
     MICROPHONE = 'Microphone'
     NEXT = 'Next'
@@ -79,10 +92,10 @@ ATTR_TYPE_NUMBER: Final[str]
 ATTR_SERIAL_NUMBER: Final[str]
 ATTR_ITEM_NUMBER: Final[str]
 ATTR_FRIENDLY_NAME: Final[str]
-BANG_OLUFSEN_ON: Final[str]
+BEO_ON: Final[str]
 VALID_MEDIA_TYPES: Final[tuple]
 FALLBACK_SOURCES: Final[SourceArray]
-BANG_OLUFSEN_WEBSOCKET_EVENT: Final[str]
+BEO_WEBSOCKET_EVENT: Final[str]
 EVENT_TRANSLATION_MAP: dict[str, str]
 CONNECTION_STATUS: Final[str]
 DEVICE_BUTTONS: Final[list[str]]

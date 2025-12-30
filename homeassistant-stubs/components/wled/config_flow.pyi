@@ -10,6 +10,8 @@ from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as Z
 from typing import Any
 from wled import Device as Device
 
+def _normalize_host(host: str) -> str: ...
+
 class WLEDFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int

@@ -1,4 +1,4 @@
-from ..const import DOMAIN as DOMAIN
+from ..const import DOMAIN as DOMAIN, REPAIR_ISSUE_DATA_SECURE_GROUP_KEY as REPAIR_ISSUE_DATA_SECURE_GROUP_KEY
 from _typeshed import Incomplete
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.core import HomeAssistant as HomeAssistant

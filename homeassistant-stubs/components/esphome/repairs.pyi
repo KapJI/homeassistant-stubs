@@ -2,13 +2,11 @@ from .manager import async_replace_device as async_replace_device
 from _typeshed import Incomplete
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.repairs import RepairsFlow as RepairsFlow
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 
 class ESPHomeRepair(RepairsFlow):
     _data: Incomplete
     def __init__(self, data: dict[str, str | int | float | None] | None) -> None: ...
-    @callback
-    def _async_get_placeholders(self) -> dict[str, str]: ...
 
 class DeviceConflictRepair(ESPHomeRepair):
     @property

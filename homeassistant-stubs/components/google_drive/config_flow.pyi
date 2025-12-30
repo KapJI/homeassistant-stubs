@@ -1,6 +1,6 @@
 import logging
 from .api import AsyncConfigFlowAuth as AsyncConfigFlowAuth, DriveClient as DriveClient
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, DRIVE_FOLDER_URL_PREFIX as DRIVE_FOLDER_URL_PREFIX
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
@@ -10,7 +10,6 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from typing import Any
 
 DEFAULT_NAME: str
-DRIVE_FOLDER_URL_PREFIX: str
 OAUTH2_SCOPES: Incomplete
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):

@@ -1,6 +1,6 @@
-from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, MODEL_FRANKEVER_WATER_VALVE as MODEL_FRANKEVER_WATER_VALVE, MODEL_LINKEDGO_ST1820_THERMOSTAT as MODEL_LINKEDGO_ST1820_THERMOSTAT, MODEL_LINKEDGO_ST802_THERMOSTAT as MODEL_LINKEDGO_ST802_THERMOSTAT, MODEL_TOP_EV_CHARGER_EVE01 as MODEL_TOP_EV_CHARGER_EVE01, ROLE_GENERIC as ROLE_GENERIC, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
+from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, LOGGER as LOGGER, MODEL_FRANKEVER_WATER_VALVE as MODEL_FRANKEVER_WATER_VALVE, MODEL_LINKEDGO_ST1820_THERMOSTAT as MODEL_LINKEDGO_ST1820_THERMOSTAT, MODEL_LINKEDGO_ST802_THERMOSTAT as MODEL_LINKEDGO_ST802_THERMOSTAT, MODEL_TOP_EV_CHARGER_EVE01 as MODEL_TOP_EV_CHARGER_EVE01, ROLE_GENERIC as ROLE_GENERIC, TRV_CHANNEL as TRV_CHANNEL, VIRTUAL_NUMBER_MODE_MAP as VIRTUAL_NUMBER_MODE_MAP
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
-from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_attribute_entities as async_setup_entry_attribute_entities, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
+from .entity import BlockEntityDescription as BlockEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, async_setup_entry_block as async_setup_entry_block, async_setup_entry_rpc as async_setup_entry_rpc, rpc_call as rpc_call
 from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_virtual_component_ids as get_virtual_component_ids, get_virtual_component_unit as get_virtual_component_unit, is_view_for_platform as is_view_for_platform
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
@@ -12,14 +12,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
-from typing import Any, Final
+from typing import Final
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription):
-    rest_path: str = ...
-    rest_arg: str = ...
+class BlockNumberDescription(BlockEntityDescription, NumberEntityDescription): ...
 
 @dataclass(frozen=True, kw_only=True)
 class RpcNumberDescription(RpcEntityDescription, NumberEntityDescription):
@@ -58,7 +56,7 @@ class RpcBluTrvExtTempNumber(RpcBluTrvNumber):
     def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...
 
-NUMBERS: dict[tuple[str, str], BlockNumberDescription]
+BLOCK_NUMBERS: dict[tuple[str, str], BlockNumberDescription]
 RPC_NUMBERS: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -75,4 +73,3 @@ class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, RestoreNumber):
     @property
     def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...
-    async def _set_state_full_path(self, path: str, params: Any) -> Any: ...

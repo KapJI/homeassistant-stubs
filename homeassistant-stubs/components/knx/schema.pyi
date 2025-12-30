@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ClimateConf as ClimateConf, ColorTempModes as ColorTempModes, CoverConf as CoverConf, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS
+from .const import CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, ClimateConf as ClimateConf, ColorTempModes as ColorTempModes, CoverConf as CoverConf, FanConf as FanConf, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS, SceneConf as SceneConf
 from .validation import backwards_compatible_xknx_climate_enum_member as backwards_compatible_xknx_climate_enum_member, dpt_base_type_validator as dpt_base_type_validator, ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator
 from _typeshed import Incomplete
 from abc import ABC
@@ -123,7 +123,8 @@ class FanSchema(KNXPlatformSchema):
     CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
     CONF_OSCILLATION_ADDRESS: str
     CONF_OSCILLATION_STATE_ADDRESS: str
-    CONF_MAX_STEP: str
+    CONF_SWITCH_ADDRESS: str
+    CONF_SWITCH_STATE_ADDRESS: str
     DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 

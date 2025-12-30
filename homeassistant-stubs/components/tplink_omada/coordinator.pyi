@@ -1,16 +1,18 @@
 from . import OmadaConfigEntry as OmadaConfigEntry
 from _typeshed import Incomplete
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from tplink_omada_client import OmadaSiteClient as OmadaSiteClient, OmadaSwitchPortDetails
 from tplink_omada_client.clients import OmadaWirelessClient
-from tplink_omada_client.devices import OmadaGateway, OmadaListDevice, OmadaSwitch as OmadaSwitch
+from tplink_omada_client.devices import OmadaFirmwareUpdate as OmadaFirmwareUpdate, OmadaGateway, OmadaListDevice, OmadaSwitch as OmadaSwitch
+from typing import NamedTuple
 
 _LOGGER: Incomplete
 POLL_SWITCH_PORT: int
 POLL_GATEWAY: int
 POLL_CLIENTS: int
 POLL_DEVICES: int
+POLL_UPGRADE: int
 
 class OmadaCoordinator[_T](DataUpdateCoordinator[dict[str, _T]]):
     config_entry: OmadaConfigEntry
@@ -36,3 +38,16 @@ class OmadaDevicesCoordinator(OmadaCoordinator[OmadaListDevice]):
 class OmadaClientsCoordinator(OmadaCoordinator[OmadaWirelessClient]):
     def __init__(self, hass: HomeAssistant, config_entry: OmadaConfigEntry, omada_client: OmadaSiteClient) -> None: ...
     async def poll_update(self) -> dict[str, OmadaWirelessClient]: ...
+
+class FirmwareUpdateStatus(NamedTuple):
+    device: OmadaListDevice
+    firmware: OmadaFirmwareUpdate | None
+
+class OmadaFirmwareUpdateCoordinator(OmadaCoordinator[FirmwareUpdateStatus]):
+    _devices_coordinator: Incomplete
+    _config_entry: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: OmadaConfigEntry, omada_client: OmadaSiteClient, devices_coordinator: OmadaDevicesCoordinator) -> None: ...
+    async def _get_firmware_updates(self) -> list[FirmwareUpdateStatus]: ...
+    async def poll_update(self) -> dict[str, FirmwareUpdateStatus]: ...
+    @callback
+    def _handle_devices_update(self) -> None: ...

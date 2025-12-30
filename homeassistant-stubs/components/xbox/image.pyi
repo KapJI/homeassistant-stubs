@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.image import ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pythonxbox.api.provider.people.models import Person as Person
 from pythonxbox.api.provider.titlehub.models import Title as Title

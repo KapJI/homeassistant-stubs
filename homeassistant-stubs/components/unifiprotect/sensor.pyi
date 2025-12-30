@@ -14,6 +14,7 @@ from uiprotect.data import Camera, ModelType, NVR, ProtectAdoptableDeviceModel a
 
 _LOGGER: Incomplete
 OBJECT_TYPE_NONE: str
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class ProtectSensorEntityDescription(ProtectEntityDescription[T], SensorEntityDescription):

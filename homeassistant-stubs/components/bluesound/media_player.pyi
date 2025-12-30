@@ -1,7 +1,7 @@
 from . import BluesoundConfigEntry as BluesoundConfigEntry
-from .const import ATTR_BLUESOUND_GROUP as ATTR_BLUESOUND_GROUP, ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN
+from .const import ATTR_BLUESOUND_GROUP as ATTR_BLUESOUND_GROUP, ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, SERVICE_CLEAR_TIMER as SERVICE_CLEAR_TIMER, SERVICE_JOIN as SERVICE_JOIN, SERVICE_SET_TIMER as SERVICE_SET_TIMER, SERVICE_UNJOIN as SERVICE_UNJOIN
 from .coordinator import BluesoundCoordinator as BluesoundCoordinator
-from .utils import dispatcher_join_signal as dispatcher_join_signal, dispatcher_unjoin_signal as dispatcher_unjoin_signal, format_unique_id as format_unique_id
+from .utils import dispatcher_join_signal as dispatcher_join_signal, dispatcher_unjoin_signal as dispatcher_unjoin_signal, format_unique_id as format_unique_id, id_to_paired_player as id_to_paired_player
 from _typeshed import Incomplete
 from asyncio import Task
 from datetime import datetime
@@ -10,7 +10,6 @@ from homeassistant.components.media_player import BrowseMedia as BrowseMedia, Me
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -23,10 +22,6 @@ _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 DATA_BLUESOUND = DOMAIN
 DEFAULT_PORT: int
-SERVICE_CLEAR_TIMER: str
-SERVICE_JOIN: str
-SERVICE_SET_TIMER: str
-SERVICE_UNJOIN: str
 POLL_TIMEOUT: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BluesoundConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -47,6 +42,7 @@ class BluesoundPlayer(CoordinatorEntity[BluesoundCoordinator], MediaPlayerEntity
     _presets: list[Preset]
     _group_name: str | None
     _group_list: list[str]
+    _group_members: list[str] | None
     _bluesound_device_name: Incomplete
     _player: Incomplete
     _attr_unique_id: Incomplete
@@ -94,11 +90,17 @@ class BluesoundPlayer(CoordinatorEntity[BluesoundCoordinator], MediaPlayerEntity
     def is_grouped(self) -> bool: ...
     @property
     def shuffle(self) -> bool: ...
-    async def async_join(self, master: str) -> None: ...
-    async def async_unjoin(self) -> None: ...
+    @property
+    def group_members(self) -> list[str] | None: ...
+    async def async_join_players(self, group_members: list[str]) -> None: ...
+    async def async_unjoin_player(self) -> None: ...
+    async def async_bluesound_join(self, master: str) -> None: ...
+    async def async_bluesound_unjoin(self) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     def rebuild_bluesound_group(self) -> list[str]: ...
+    def rebuild_group_members(self) -> list[str] | None: ...
+    def _entity_ids_with_sync_status(self) -> dict[str, SyncStatus]: ...
     async def async_add_follower(self, host: str, port: int) -> None: ...
     async def async_remove_follower(self, host: str, port: int) -> None: ...
     async def async_increase_timer(self) -> int: ...

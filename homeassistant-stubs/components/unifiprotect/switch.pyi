@@ -1,5 +1,6 @@
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import BaseProtectEntity as BaseProtectEntity, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, ProtectSetableKeysMixin as ProtectSetableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import BaseProtectEntity as BaseProtectEntity, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -13,9 +14,10 @@ from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as Pro
 
 ATTR_PREV_MIC: str
 ATTR_PREV_RECORD: str
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class ProtectSwitchEntityDescription(ProtectSetableKeysMixin[T], SwitchEntityDescription): ...
+class ProtectSwitchEntityDescription(ProtectSettableKeysMixin[T], SwitchEntityDescription): ...
 
 async def _set_highfps(obj: Camera, value: bool) -> None: ...
 
@@ -31,7 +33,9 @@ _PRIVACY_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
 class ProtectBaseSwitch(ProtectIsOnEntity):
     entity_description: ProtectSwitchEntityDescription
+    @async_ufp_instance_command
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @async_ufp_instance_command
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ProtectSwitch(ProtectDeviceEntity, ProtectBaseSwitch, SwitchEntity):
@@ -51,7 +55,9 @@ class ProtectPrivacyModeSwitch(RestoreEntity, ProtectSwitch):
     def _update_previous_attr(self) -> None: ...
     @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @async_ufp_instance_command
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @async_ufp_instance_command
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 

@@ -19,6 +19,8 @@ PREBREW_MODE_HA_TO_LM: Incomplete
 PREBREW_MODE_LM_TO_HA: Incomplete
 STANDBY_MODE_HA_TO_LM: Incomplete
 STANDBY_MODE_LM_TO_HA: Incomplete
+DOSE_MODE_HA_TO_LM: Incomplete
+DOSE_MODE_LM_TO_HA: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoSelectEntityDescription(LaMarzoccoEntityDescription, SelectEntityDescription):

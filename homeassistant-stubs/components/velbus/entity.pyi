@@ -11,7 +11,7 @@ class VelbusEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _channel: Incomplete
-    _module_adress: Incomplete
+    _module_address: Incomplete
     _attr_name: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete

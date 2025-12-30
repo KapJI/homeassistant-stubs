@@ -3,7 +3,6 @@ import asyncio
 import logging
 from . import entity as entity, event as event
 from .debounce import Debouncer as Debouncer
-from .frame import report_usage as report_usage
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -48,7 +47,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     _request_refresh_task: asyncio.TimerHandle | None
     _retry_after: float | None
     last_update_success: bool
-    last_exception: Exception | None
+    last_exception: BaseException | None
     _debounced_refresh: Incomplete
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, config_entry: config_entries.ConfigEntry | None | UndefinedType = ..., name: str, update_interval: timedelta | None = None, update_method: Callable[[], Awaitable[_DataT]] | None = None, setup_method: Callable[[], Awaitable[None]] | None = None, request_refresh_debouncer: Debouncer[Coroutine[Any, Any, None]] | None = None, always_update: bool = True) -> None: ...
     async def async_register_shutdown(self) -> None: ...

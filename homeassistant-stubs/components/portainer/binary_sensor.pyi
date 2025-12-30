@@ -1,4 +1,5 @@
 from . import PortainerConfigEntry as PortainerConfigEntry
+from .const import CONTAINER_STATE_RUNNING as CONTAINER_STATE_RUNNING
 from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity
 from _typeshed import Incomplete

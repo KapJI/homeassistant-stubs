@@ -21,10 +21,9 @@ class FeedReaderEvent(CoordinatorEntity[FeedReaderCoordinator], EventEntity):
     _attr_event_types: Incomplete
     _attr_name: Incomplete
     _attr_has_entity_name: bool
-    _unrecorded_attributes: Incomplete
-    coordinator: FeedReaderCoordinator
-    _attr_unique_id: Incomplete
     _attr_translation_key: str
+    _unrecorded_attributes: Incomplete
+    _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: FeedReaderCoordinator) -> None: ...
     @callback

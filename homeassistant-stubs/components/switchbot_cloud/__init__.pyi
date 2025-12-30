@@ -9,6 +9,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_API_TOKEN as CONF_API_TOKEN, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from switchbot_api import Device, Remote, SwitchBotAPI
 
 _LOGGER: Incomplete

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, TibberConfigEntry as TibberConfigEntry
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback

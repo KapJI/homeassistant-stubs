@@ -11,8 +11,10 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
 from typing import Final
 
+_LOGGER: Incomplete
 _METRIC: Final[Incomplete]
 _IMPERIAL: Final[Incomplete]
+_RAIN_COUNT_SENSORS_STATE_CLASS_MAPPING: Final[Incomplete]
 ECOWITT_SENSORS_MAPPING: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, entry: EcowittConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

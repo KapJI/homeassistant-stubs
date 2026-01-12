@@ -10,6 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 CACHE_TTL: int
+UPLOAD_TIMEOUT: int
 
 def suggested_filenames(backup: AgentBackup) -> tuple[str, str]: ...
 def _parse_metadata(raw_content: str) -> dict[str, Any]: ...

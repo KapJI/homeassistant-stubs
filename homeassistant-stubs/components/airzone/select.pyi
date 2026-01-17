@@ -1,5 +1,5 @@
 from .coordinator import AirzoneConfigEntry as AirzoneConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
-from .entity import AirzoneEntity as AirzoneEntity, AirzoneZoneEntity as AirzoneZoneEntity
+from .entity import AirzoneEntity as AirzoneEntity, AirzoneSystemEntity as AirzoneSystemEntity, AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -23,6 +23,7 @@ Q_ADAPT_DICT: Final[dict[str, int]]
 
 def main_zone_options(zone_data: dict[str, Any], options: dict[str, int]) -> list[str]: ...
 
+SYSTEM_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 MAIN_ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 ZONE_SELECT_TYPES: Final[tuple[AirzoneSelectDescription, ...]]
 
@@ -37,6 +38,14 @@ class AirzoneBaseSelect(AirzoneEntity, SelectEntity):
     _attr_current_option: Incomplete
     @callback
     def _async_update_attrs(self) -> None: ...
+
+class AirzoneSystemSelect(AirzoneSystemEntity, AirzoneBaseSelect):
+    _attr_unique_id: Incomplete
+    entity_description: Incomplete
+    _attr_options: Incomplete
+    values_dict: Incomplete
+    def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneSelectDescription, entry: ConfigEntry, system_id: str, system_data: dict[str, Any]) -> None: ...
+    async def async_select_option(self, option: str) -> None: ...
 
 class AirzoneZoneSelect(AirzoneZoneEntity, AirzoneBaseSelect):
     _attr_unique_id: Incomplete

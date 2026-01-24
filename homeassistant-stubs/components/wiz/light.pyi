@@ -17,11 +17,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_ad
 class WizBulbEntity(WizToggleEntity, LightEntity):
     _attr_name: Incomplete
     _fixed_color_mode: ColorMode | None
+    _attr_max_color_temp_kelvin: Incomplete
+    _attr_min_color_temp_kelvin: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     _attr_effect_list: Incomplete
-    _attr_max_color_temp_kelvin: Incomplete
-    _attr_min_color_temp_kelvin: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, wiz_data: WizData, name: str) -> None: ...
     _attr_brightness: Incomplete

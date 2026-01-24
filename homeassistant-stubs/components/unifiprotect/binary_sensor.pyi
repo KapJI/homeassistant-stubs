@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from uiprotect.data import ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor as Sensor
+from uiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor as Sensor
 from uiprotect.data.nvr import UOSDisk as UOSDisk
 
 _KEY_DOOR: str
@@ -57,6 +57,8 @@ class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     _attr_extra_state_attributes: Incomplete
     @callback
     def _set_event_done(self) -> None: ...
+    @callback
+    def _find_active_event_with_object_type(self, device: ProtectDeviceType) -> Event | None: ...
     _event: Incomplete
     _event_end: Incomplete
     @callback

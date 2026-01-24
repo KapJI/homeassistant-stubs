@@ -8,6 +8,8 @@ from typing import Any
 
 class MonzoFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
+    VERSION: int
+    MINOR_VERSION: int
     oauth_data: dict[str, Any]
     @property
     def logger(self) -> logging.Logger: ...

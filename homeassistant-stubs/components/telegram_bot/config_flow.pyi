@@ -1,10 +1,10 @@
 import voluptuous as vol
 from . import initialize_bot as initialize_bot
-from .bot import TelegramBotConfigEntry as TelegramBotConfigEntry
-from .const import ATTR_PARSER as ATTR_PARSER, BOT_NAME as BOT_NAME, CONF_CHAT_ID as CONF_CHAT_ID, CONF_PROXY_URL as CONF_PROXY_URL, CONF_TRUSTED_NETWORKS as CONF_TRUSTED_NETWORKS, DEFAULT_TRUSTED_NETWORKS as DEFAULT_TRUSTED_NETWORKS, DOMAIN as DOMAIN, ERROR_FIELD as ERROR_FIELD, ERROR_MESSAGE as ERROR_MESSAGE, PARSER_HTML as PARSER_HTML, PARSER_MD as PARSER_MD, PARSER_MD2 as PARSER_MD2, PARSER_PLAIN_TEXT as PARSER_PLAIN_TEXT, PLATFORM_BROADCAST as PLATFORM_BROADCAST, PLATFORM_POLLING as PLATFORM_POLLING, PLATFORM_WEBHOOKS as PLATFORM_WEBHOOKS, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS, SUBENTRY_TYPE_ALLOWED_CHAT_IDS as SUBENTRY_TYPE_ALLOWED_CHAT_IDS
+from .bot import TelegramBotConfigEntry as TelegramBotConfigEntry, TelegramNotificationService as TelegramNotificationService
+from .const import ATTR_PARSER as ATTR_PARSER, BOT_NAME as BOT_NAME, CONF_API_ENDPOINT as CONF_API_ENDPOINT, CONF_CHAT_ID as CONF_CHAT_ID, CONF_PROXY_URL as CONF_PROXY_URL, CONF_TRUSTED_NETWORKS as CONF_TRUSTED_NETWORKS, DEFAULT_API_ENDPOINT as DEFAULT_API_ENDPOINT, DEFAULT_TRUSTED_NETWORKS as DEFAULT_TRUSTED_NETWORKS, DOMAIN as DOMAIN, ERROR_FIELD as ERROR_FIELD, ERROR_MESSAGE as ERROR_MESSAGE, PARSER_HTML as PARSER_HTML, PARSER_MD as PARSER_MD, PARSER_MD2 as PARSER_MD2, PARSER_PLAIN_TEXT as PARSER_PLAIN_TEXT, PLATFORM_BROADCAST as PLATFORM_BROADCAST, PLATFORM_POLLING as PLATFORM_POLLING, PLATFORM_WEBHOOKS as PLATFORM_WEBHOOKS, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS, SUBENTRY_TYPE_ALLOWED_CHAT_IDS as SUBENTRY_TYPE_ALLOWED_CHAT_IDS
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE, SubentryFlowResult as SubentryFlowResult
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE, SubentryFlowResult as SubentryFlowResult
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_PLATFORM as CONF_PLATFORM, CONF_URL as CONF_URL
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import section as section
@@ -26,6 +26,7 @@ class OptionsFlowHandler(OptionsFlow):
 
 class TelgramBotConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: TelegramBotConfigEntry) -> OptionsFlowHandler: ...

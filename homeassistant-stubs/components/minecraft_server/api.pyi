@@ -2,8 +2,8 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant
-from mcstatus import BedrockServer, JavaServer
-from mcstatus.responses import BedrockStatusResponse as BedrockStatusResponse, JavaStatusResponse
+from mcstatus import BedrockServer, JavaServer, LegacyServer
+from mcstatus.responses import BedrockStatusResponse, JavaStatusResponse, LegacyStatusResponse as LegacyStatusResponse
 
 _LOGGER: Incomplete
 LOOKUP_TIMEOUT: float
@@ -26,13 +26,14 @@ class MinecraftServerData:
 class MinecraftServerType(StrEnum):
     BEDROCK_EDITION = 'Bedrock Edition'
     JAVA_EDITION = 'Java Edition'
+    LEGACY_JAVA_EDITION = 'Legacy Java Edition'
 
 class MinecraftServerAddressError(Exception): ...
 class MinecraftServerConnectionError(Exception): ...
 class MinecraftServerNotInitializedError(Exception): ...
 
 class MinecraftServer:
-    _server: BedrockServer | JavaServer | None
+    _server: BedrockServer | JavaServer | LegacyServer | None
     _hass: Incomplete
     _server_type: Incomplete
     _address: Incomplete
@@ -42,4 +43,5 @@ class MinecraftServer:
     async def async_get_data(self) -> MinecraftServerData: ...
     def _extract_java_data(self, status_response: JavaStatusResponse) -> MinecraftServerData: ...
     def _extract_bedrock_data(self, status_response: BedrockStatusResponse) -> MinecraftServerData: ...
+    def _extract_legacy_data(self, status_response: LegacyStatusResponse) -> MinecraftServerData: ...
     def _get_error_message(self, error: BaseException) -> str: ...

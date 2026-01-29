@@ -1,5 +1,6 @@
 from .bot import BaseTelegramBot as BaseTelegramBot, TelegramBotConfigEntry as TelegramBotConfigEntry
 from .const import CONF_TRUSTED_NETWORKS as CONF_TRUSTED_NETWORKS
+from .helpers import get_base_url as get_base_url
 from _typeshed import Incomplete
 from aiohttp.web_response import Response as Response
 from homeassistant.components.http import HomeAssistantRequest as HomeAssistantRequest, HomeAssistantView as HomeAssistantView
@@ -13,7 +14,6 @@ from telegram.ext import Application as Application
 
 _LOGGER: Incomplete
 TELEGRAM_WEBHOOK_URL: str
-REMOVE_WEBHOOK_URL: str
 SECRET_TOKEN_LENGTH: int
 
 async def async_setup_platform(hass: HomeAssistant, bot: Bot, config: TelegramBotConfigEntry) -> BaseTelegramBot | None: ...

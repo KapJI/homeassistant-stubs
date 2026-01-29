@@ -43,7 +43,7 @@ class DeconzDevice[_DeviceT: _DeviceType](DeconzBase[_DeviceT], Entity):
 
 class DeconzSceneMixin(DeconzDevice[PydeconzScene]):
     _attr_has_entity_name: bool
-    group: Incomplete
+    deconz_group: Incomplete
     _attr_name: Incomplete
     _group_identifier: Incomplete
     def __init__(self, device: PydeconzScene, hub: DeconzHub) -> None: ...

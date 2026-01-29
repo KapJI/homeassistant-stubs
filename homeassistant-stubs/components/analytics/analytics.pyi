@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from homeassistant.components import hassio as hassio
 from homeassistant.components.api import ATTR_INSTALLATION_TYPE as ATTR_INSTALLATION_TYPE
+from homeassistant.components.labs import async_is_preview_feature_enabled as async_is_preview_feature_enabled
 from homeassistant.config_entries import SOURCE_IGNORE as SOURCE_IGNORE
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_DOMAIN as ATTR_DOMAIN, BASE_PLATFORMS as BASE_PLATFORMS
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_release_channel as get_release_channel
@@ -66,13 +67,12 @@ class AnalyticsData:
 class Analytics:
     _hass: HomeAssistant
     _snapshots_url: Incomplete
-    _disable_snapshots: Incomplete
     _session: Incomplete
     _data: Incomplete
     _store: Incomplete
     _basic_scheduled: CALLBACK_TYPE | None
     _snapshot_scheduled: CALLBACK_TYPE | None
-    def __init__(self, hass: HomeAssistant, snapshots_url: str | None = None, disable_snapshots: bool = False) -> None: ...
+    def __init__(self, hass: HomeAssistant, snapshots_url: str | None = None) -> None: ...
     @property
     def preferences(self) -> dict: ...
     @property
@@ -83,6 +83,8 @@ class Analytics:
     def endpoint_basic(self) -> str: ...
     @property
     def supervisor(self) -> bool: ...
+    @property
+    def _snapshots_enabled(self) -> bool: ...
     async def load(self) -> None: ...
     async def _save(self) -> None: ...
     async def save_preferences(self, preferences: dict) -> None: ...

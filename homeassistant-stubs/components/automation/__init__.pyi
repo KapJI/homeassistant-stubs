@@ -9,10 +9,9 @@ from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from homeassistant.components import labs as labs, websocket_api as websocket_api
 from homeassistant.components.blueprint import CONF_USE_BLUEPRINT as CONF_USE_BLUEPRINT
-from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ACTIONS as CONF_ACTIONS, CONF_ALIAS as CONF_ALIAS, CONF_CONDITIONS as CONF_CONDITIONS, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_OPTIONS as CONF_OPTIONS, CONF_PATH as CONF_PATH, CONF_PLATFORM as CONF_PLATFORM, CONF_TARGET as CONF_TARGET, CONF_TRIGGERS as CONF_TRIGGERS, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
+from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ACTIONS as CONF_ACTIONS, CONF_ALIAS as CONF_ALIAS, CONF_CONDITIONS as CONF_CONDITIONS, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_PATH as CONF_PATH, CONF_TRIGGERS as CONF_TRIGGERS, CONF_VARIABLES as CONF_VARIABLES, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError
-from homeassistant.helpers import condition as condition
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
@@ -21,13 +20,12 @@ from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_
 from homeassistant.helpers.script_variables import ScriptVariables as ScriptVariables
 from homeassistant.helpers.service import ReloadServiceHelper as ReloadServiceHelper, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_get as trace_get, trace_path as trace_path
-from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, Literal, Protocol
+from typing import Any, Protocol
 
 DATA_COMPONENT: HassKey[EntityComponent[BaseAutomationEntity]]
 ENTITY_ID_FORMAT: Incomplete
@@ -139,7 +137,7 @@ class AutomationEntity(BaseAutomationEntity, RestoreEntity):
     _attr_name: Incomplete
     _trigger_config: Incomplete
     _async_detach_triggers: CALLBACK_TYPE | None
-    _cond_func: Incomplete
+    _condition: Incomplete
     action_script: Incomplete
     _initial_state: Incomplete
     _is_enabled: bool
@@ -150,7 +148,7 @@ class AutomationEntity(BaseAutomationEntity, RestoreEntity):
     _blueprint_inputs: Incomplete
     _trace_config: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, automation_id: str | None, name: str, trigger_config: list[ConfigType], cond_func: IfAction | None, action_script: Script, initial_state: bool | None, variables: ScriptVariables | None, trigger_variables: ScriptVariables | None, raw_config: ConfigType | None, blueprint_inputs: ConfigType | None, trace_config: ConfigType) -> None: ...
+    def __init__(self, automation_id: str | None, name: str, trigger_config: list[ConfigType], condition: IfAction | None, action_script: Script, initial_state: bool | None, variables: ScriptVariables | None, trigger_variables: ScriptVariables | None, raw_config: ConfigType | None, blueprint_inputs: ConfigType | None, trace_config: ConfigType) -> None: ...
     @property
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
@@ -195,10 +193,4 @@ async def _async_process_config(hass: HomeAssistant, config: dict[str, Any], com
 def _automation_matches_config(automation: BaseAutomationEntity | None, config: AutomationEntityConfig | None) -> bool: ...
 async def _async_process_single_config(hass: HomeAssistant, config: dict[str, Any], component: EntityComponent[BaseAutomationEntity], automation_id: str) -> None: ...
 async def _async_process_if(hass: HomeAssistant, name: str, config: dict[str, Any]) -> IfAction | None: ...
-@callback
-def _trigger_extract_devices(trigger_conf: dict) -> list[str]: ...
-@callback
-def _trigger_extract_entities(trigger_conf: dict) -> list[str]: ...
-@callback
-def _get_targets_from_trigger_config(config: dict, target: Literal['entity_id', 'device_id', 'area_id', 'floor_id', 'label_id']) -> list[str]: ...
 def websocket_config(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

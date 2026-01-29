@@ -1,5 +1,5 @@
 from . import dashboard as dashboard, resources as resources, websocket as websocket
-from .const import CONF_ALLOW_SINGLE_WORD as CONF_ALLOW_SINGLE_WORD, CONF_ICON as CONF_ICON, CONF_REQUIRE_ADMIN as CONF_REQUIRE_ADMIN, CONF_SHOW_IN_SIDEBAR as CONF_SHOW_IN_SIDEBAR, CONF_TITLE as CONF_TITLE, CONF_URL_PATH as CONF_URL_PATH, DASHBOARD_BASE_CREATE_FIELDS as DASHBOARD_BASE_CREATE_FIELDS, DEFAULT_ICON as DEFAULT_ICON, DOMAIN as DOMAIN, EVENT_LOVELACE_UPDATED as EVENT_LOVELACE_UPDATED, LOVELACE_DATA as LOVELACE_DATA, MODE_STORAGE as MODE_STORAGE, MODE_YAML as MODE_YAML, RESOURCE_CREATE_FIELDS as RESOURCE_CREATE_FIELDS, RESOURCE_RELOAD_SERVICE_SCHEMA as RESOURCE_RELOAD_SERVICE_SCHEMA, RESOURCE_SCHEMA as RESOURCE_SCHEMA, RESOURCE_UPDATE_FIELDS as RESOURCE_UPDATE_FIELDS, SERVICE_RELOAD_RESOURCES as SERVICE_RELOAD_RESOURCES, STORAGE_DASHBOARD_CREATE_FIELDS as STORAGE_DASHBOARD_CREATE_FIELDS, STORAGE_DASHBOARD_UPDATE_FIELDS as STORAGE_DASHBOARD_UPDATE_FIELDS
+from .const import CONF_ALLOW_SINGLE_WORD as CONF_ALLOW_SINGLE_WORD, CONF_ICON as CONF_ICON, CONF_REQUIRE_ADMIN as CONF_REQUIRE_ADMIN, CONF_SHOW_IN_SIDEBAR as CONF_SHOW_IN_SIDEBAR, CONF_TITLE as CONF_TITLE, CONF_URL_PATH as CONF_URL_PATH, DASHBOARD_BASE_CREATE_FIELDS as DASHBOARD_BASE_CREATE_FIELDS, DEFAULT_ICON as DEFAULT_ICON, DOMAIN as DOMAIN, EVENT_LOVELACE_UPDATED as EVENT_LOVELACE_UPDATED, LOVELACE_CONFIG_FILE as LOVELACE_CONFIG_FILE, LOVELACE_DATA as LOVELACE_DATA, MODE_STORAGE as MODE_STORAGE, MODE_YAML as MODE_YAML, RESOURCE_CREATE_FIELDS as RESOURCE_CREATE_FIELDS, RESOURCE_RELOAD_SERVICE_SCHEMA as RESOURCE_RELOAD_SERVICE_SCHEMA, RESOURCE_SCHEMA as RESOURCE_SCHEMA, RESOURCE_UPDATE_FIELDS as RESOURCE_UPDATE_FIELDS, SERVICE_RELOAD_RESOURCES as SERVICE_RELOAD_RESOURCES, STORAGE_DASHBOARD_CREATE_FIELDS as STORAGE_DASHBOARD_CREATE_FIELDS, STORAGE_DASHBOARD_UPDATE_FIELDS as STORAGE_DASHBOARD_UPDATE_FIELDS
 from .system_health import system_health_info as system_health_info
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -9,8 +9,8 @@ from homeassistant.const import CONF_FILENAME as CONF_FILENAME, CONF_MODE as CON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection
-from homeassistant.helpers.frame import report_usage as report_usage
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
+from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_integration as async_get_integration
@@ -31,11 +31,14 @@ class LovelaceData:
     dashboards: dict[str | None, dashboard.LovelaceConfig]
     resources: resources.ResourceYAMLCollection | resources.ResourceStorageCollection
     yaml_dashboards: dict[str | None, ConfigType]
-    def __getitem__(self, name: str) -> Any: ...
-    def get(self, name: str, default: Any = None) -> Any: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def create_yaml_resource_col(hass: HomeAssistant, yaml_resources: list[ConfigType] | None) -> resources.ResourceYAMLCollection: ...
 @callback
+def _async_ensure_default_panel(hass: HomeAssistant) -> None: ...
+@callback
 def _register_panel(hass: HomeAssistant, url_path: str | None, mode: str, config: dict, update: bool) -> None: ...
 async def _create_map_dashboard(hass: HomeAssistant, dashboards_collection: dashboard.DashboardsCollection) -> None: ...
+async def _async_migrate_default_config(hass: HomeAssistant, dashboards_collection: dashboard.DashboardsCollection) -> None: ...
+@callback
+def _async_create_yaml_mode_repair(hass: HomeAssistant) -> None: ...

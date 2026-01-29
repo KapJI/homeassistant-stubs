@@ -27,7 +27,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     _supports_rgbw: bool
     _supports_color_temp: bool
     _supports_dimming: bool
-    _color_mode: str | None
+    _color_mode: ColorMode | None
     _hs_color: tuple[float, float] | None
     _rgbw_color: tuple[int, int, int, int] | None
     _color_temp: int | None
@@ -47,7 +47,7 @@ class ZwaveLight(ZWaveBaseEntity, LightEntity):
     @property
     def brightness(self) -> int | None: ...
     @property
-    def color_mode(self) -> str | None: ...
+    def color_mode(self) -> ColorMode | None: ...
     @property
     def is_on(self) -> bool | None: ...
     @property

@@ -22,6 +22,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AppleTvConfigEntr
 
 class AppleTvMediaPlayer(AppleTVEntity, MediaPlayerEntity, PowerListener, AudioListener, PushListener):
     _attr_supported_features = SUPPORT_APPLE_TV
+    _attr_name: Incomplete
     _playing: Playing | None
     _playing_last_updated: datetime | None
     _app_list: dict[str, str]
@@ -41,6 +42,8 @@ class AppleTvMediaPlayer(AppleTVEntity, MediaPlayerEntity, PowerListener, AudioL
     def powerstate_update(self, old_state: PowerState, new_state: PowerState) -> None: ...
     @callback
     def volume_update(self, old_level: float, new_level: float) -> None: ...
+    @callback
+    def volume_device_update(self, output_device: OutputDevice, old_level: float, new_level: float) -> None: ...
     @callback
     def outputdevices_update(self, old_devices: list[OutputDevice], new_devices: list[OutputDevice]) -> None: ...
     @property

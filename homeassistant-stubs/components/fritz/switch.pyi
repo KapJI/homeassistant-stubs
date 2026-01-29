@@ -77,7 +77,7 @@ class FritzBoxPortSwitch(FritzBoxBaseSwitch):
     port_mapping: Incomplete
     _idx: Incomplete
     _attr_entity_category: Incomplete
-    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, port_mapping: dict[str, Any] | None, port_name: str, idx: int, connection_type: str) -> None: ...
+    def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, port_mapping: dict[str, Any], port_name: str, idx: int, connection_type: str) -> None: ...
     _is_available: bool
     _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...
@@ -96,9 +96,8 @@ class FritzBoxDeflectionSwitch(FritzBoxBaseCoordinatorSwitch):
     async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
 
 class FritzBoxProfileSwitch(FritzDeviceBase, SwitchEntity):
-    _attr_icon: str
+    _attr_translation_key: str
     _attr_is_on: bool
-    _name: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...

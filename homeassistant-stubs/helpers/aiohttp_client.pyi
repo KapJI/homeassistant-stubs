@@ -22,7 +22,6 @@ DATA_CONNECTOR: HassKey[dict[tuple[bool, int, str], aiohttp.BaseConnector]]
 DATA_CLIENTSESSION: HassKey[dict[tuple[bool, int, str], aiohttp.ClientSession]]
 DATA_RESOLVER: HassKey[HassAsyncDNSResolver]
 SERVER_SOFTWARE: Incomplete
-ENABLE_CLEANUP_CLOSED: Incomplete
 WARN_CLOSE_MSG: str
 MAXIMUM_CONNECTIONS: int
 MAXIMUM_CONNECTIONS_PER_HOST: int

@@ -19,6 +19,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.loader import async_get_custom_components as async_get_custom_components, async_get_loaded_integration as async_get_loaded_integration
 from homeassistant.util.location import async_detect_location_info as async_detect_location_info
+from homeassistant.util.package import async_get_installed_packages as async_get_installed_packages
 from http import HTTPStatus
 from typing import Any, Concatenate
 

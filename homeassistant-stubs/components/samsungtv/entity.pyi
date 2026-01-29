@@ -10,6 +10,8 @@ from homeassistant.helpers.trigger import PluggableAction as PluggableAction
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
+DEPRECATED_IMPLICIT_WAKE_ON_LAN: str
+
 class SamsungTVEntity(CoordinatorEntity[SamsungTVDataUpdateCoordinator], Entity):
     _attr_has_entity_name: bool
     _bridge: Incomplete

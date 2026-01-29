@@ -5,9 +5,10 @@ from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from eheimdigital.classic_vario import EheimDigitalClassicVario
 from eheimdigital.device import EheimDigitalDevice
+from eheimdigital.filter import EheimDigitalFilter
 from eheimdigital.heater import EheimDigitalHeater
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
@@ -20,6 +21,7 @@ class EheimDigitalNumberDescription[_DeviceT: EheimDigitalDevice](NumberEntityDe
     set_value_fn: Callable[[_DeviceT, float], Awaitable[None]]
     uom_fn: Callable[[_DeviceT], str] | None = ...
 
+FILTER_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalFilter], ...]
 CLASSICVARIO_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalClassicVario], ...]
 HEATER_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalHeater], ...]
 GENERAL_DESCRIPTIONS: tuple[EheimDigitalNumberDescription[EheimDigitalDevice], ...]

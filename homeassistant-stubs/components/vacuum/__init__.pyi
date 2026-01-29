@@ -1,11 +1,9 @@
 import asyncio
-from .const import DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, _DEPRECATED_STATE_CLEANING as _DEPRECATED_STATE_CLEANING, _DEPRECATED_STATE_DOCKED as _DEPRECATED_STATE_DOCKED, _DEPRECATED_STATE_ERROR as _DEPRECATED_STATE_ERROR, _DEPRECATED_STATE_RETURNING as _DEPRECATED_STATE_RETURNING
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from _typeshed import Incomplete
-from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
@@ -13,12 +11,10 @@ from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any, final
 
 _LOGGER: Incomplete
-DATA_COMPONENT: HassKey[EntityComponent[StateVacuumEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -39,25 +35,7 @@ SERVICE_START: str
 SERVICE_PAUSE: str
 SERVICE_STOP: str
 DEFAULT_NAME: str
-_DEPRECATED_STATE_IDLE: Incomplete
-_DEPRECATED_STATE_PAUSED: Incomplete
 _BATTERY_DEPRECATION_IGNORED_PLATFORMS: Incomplete
-
-class VacuumEntityFeature(IntFlag):
-    TURN_ON = 1
-    TURN_OFF = 2
-    PAUSE = 4
-    STOP = 8
-    RETURN_HOME = 16
-    FAN_SPEED = 32
-    BATTERY = 64
-    STATUS = 128
-    SEND_COMMAND = 256
-    LOCATE = 512
-    CLEAN_SPOT = 1024
-    MAP = 2048
-    STATE = 4096
-    START = 8192
 
 @bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
@@ -78,7 +56,6 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     _attr_fan_speed_list: list[str]
     _attr_activity: VacuumActivity | None
     _attr_supported_features: VacuumEntityFeature
-    __vacuum_legacy_state: bool
     __vacuum_legacy_battery_level: bool
     __vacuum_legacy_battery_icon: bool
     __vacuum_legacy_battery_feature: bool
@@ -86,8 +63,6 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     def __setattr__(self, name: str, value: Any) -> None: ...
     @callback
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
-    @callback
-    def _report_deprecated_activity_handling(self) -> None: ...
     @callback
     def _report_deprecated_battery_properties(self, property: str) -> None: ...
     @callback
@@ -127,7 +102,3 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     async def async_start(self) -> None: ...
     def pause(self) -> None: ...
     async def async_pause(self) -> None: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

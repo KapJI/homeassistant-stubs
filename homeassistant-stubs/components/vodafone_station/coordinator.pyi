@@ -27,6 +27,7 @@ class VodafoneStationDeviceInfo:
 class UpdateCoordinatorDataType:
     devices: dict[str, VodafoneStationDeviceInfo]
     sensors: dict[str, Any]
+    wifi: dict[str, Any]
 
 class VodafoneStationRouter(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     config_entry: VodafoneConfigEntry

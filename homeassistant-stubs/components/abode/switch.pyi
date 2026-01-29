@@ -1,5 +1,4 @@
-from . import AbodeSystem as AbodeSystem
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN_DATA as DOMAIN_DATA
 from .entity import AbodeAutomation as AbodeAutomation, AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity

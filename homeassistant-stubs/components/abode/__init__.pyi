@@ -1,4 +1,4 @@
-from .const import CONF_POLLING as CONF_POLLING, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_POLLING as CONF_POLLING, DOMAIN as DOMAIN, DOMAIN_DATA as DOMAIN_DATA, LOGGER as LOGGER
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass, field

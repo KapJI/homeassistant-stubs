@@ -1,9 +1,15 @@
+from .json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_array as json_loads_array
 from .system_info import is_official_image as is_official_image
 from _typeshed import Incomplete
 from functools import cache
 from packaging.requirements import Requirement
+from typing import TypedDict
 
 _LOGGER: Incomplete
+
+class InstalledPackage(TypedDict):
+    name: str
+    version: str
 
 def is_virtual_env() -> bool: ...
 @cache
@@ -16,3 +22,4 @@ _UV_ENV_PYTHON_VARS: Incomplete
 
 def install_package(package: str, upgrade: bool = True, target: str | None = None, constraints: str | None = None, timeout: int | None = None) -> bool: ...
 async def async_get_user_site(deps_dir: str) -> str: ...
+async def async_get_installed_packages() -> list[InstalledPackage]: ...

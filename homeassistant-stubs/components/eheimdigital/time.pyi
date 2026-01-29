@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from datetime import time
 from eheimdigital.classic_vario import EheimDigitalClassicVario
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
+from eheimdigital.filter import EheimDigitalFilter
 from eheimdigital.heater import EheimDigitalHeater
 from homeassistant.components.time import TimeEntity as TimeEntity, TimeEntityDescription as TimeEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
@@ -20,6 +21,7 @@ class EheimDigitalTimeDescription[_DeviceT: EheimDigitalDevice](TimeEntityDescri
     value_fn: Callable[[_DeviceT], time | None]
     set_value_fn: Callable[[_DeviceT, time], Awaitable[None]]
 
+FILTER_DESCRIPTIONS: tuple[EheimDigitalTimeDescription[EheimDigitalFilter], ...]
 CLASSICVARIO_DESCRIPTIONS: tuple[EheimDigitalTimeDescription[EheimDigitalClassicVario], ...]
 HEATER_DESCRIPTIONS: tuple[EheimDigitalTimeDescription[EheimDigitalHeater], ...]
 

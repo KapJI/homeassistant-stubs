@@ -6,15 +6,16 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from velbusaio.channels import ButtonCounter, LightSensor, SensorNumber, Temperature
+from velbusaio.channels import ButtonCounter, SensorNumber, Temperature
+from velbusaio.properties import LightValue
 
 PARALLEL_UPDATES: int
-type VelbusSensorChannel = ButtonCounter | Temperature | LightSensor | SensorNumber
+type VelbusSensorChannel = ButtonCounter | Temperature | LightValue | SensorNumber
 
 @dataclass(frozen=True, kw_only=True)
 class VelbusSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[VelbusSensorChannel], float | None] = ...
-    unit_fn: Callable[[VelbusSensorChannel], str | None] = ...
+    unit_fn: Callable[[VelbusSensorChannel], str | None] | None = ...
     unique_id_suffix: str = ...
 
 SENSOR_DESCRIPTIONS: dict[str, VelbusSensorEntityDescription]

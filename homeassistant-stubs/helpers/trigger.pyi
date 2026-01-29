@@ -13,14 +13,14 @@ from collections import defaultdict
 from collections.abc import Callable, Coroutine, Iterable
 from dataclasses import dataclass, field
 from enum import StrEnum
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ABOVE as CONF_ABOVE, CONF_ALIAS as CONF_ALIAS, CONF_BELOW as CONF_BELOW, CONF_ENABLED as CONF_ENABLED, CONF_ID as CONF_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_TARGET as CONF_TARGET, CONF_VARIABLES as CONF_VARIABLES, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, is_callback as is_callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ABOVE as CONF_ABOVE, CONF_ALIAS as CONF_ALIAS, CONF_BELOW as CONF_BELOW, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_ID as CONF_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_TARGET as CONF_TARGET, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, is_callback as is_callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
-from typing import Any, Final, Protocol, TypedDict, override
+from typing import Any, Final, Literal, Protocol, TypedDict, override
 
 _LOGGER: Incomplete
 _PLATFORM_ALIASES: Incomplete
@@ -118,6 +118,7 @@ class EntityNumericalStateAttributeChangedTriggerBase(EntityTriggerBase):
     _schema = NUMERICAL_ATTRIBUTE_CHANGED_TRIGGER_SCHEMA
     _above: None | float | str
     _below: None | float | str
+    _converter: Callable[[Any], float]
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     def is_valid_state(self, state: State) -> bool: ...
@@ -142,6 +143,7 @@ class EntityNumericalStateAttributeCrossedThresholdTriggerBase(EntityTriggerBase
     _lower_limit: float | str | None
     _upper_limit: float | str | None
     _threshold_type: ThresholdType
+    _converter: Callable[[Any], float]
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     def is_valid_state(self, state: State) -> bool: ...
@@ -220,3 +222,9 @@ async def async_initialize_triggers(hass: HomeAssistant, trigger_config: list[Co
 def _load_triggers_file(integration: Integration) -> dict[str, Any]: ...
 def _load_triggers_files(integrations: Iterable[Integration]) -> dict[str, dict[str, Any]]: ...
 async def async_get_all_descriptions(hass: HomeAssistant) -> dict[str, dict[str, Any] | None]: ...
+@callback
+def async_extract_devices(trigger_conf: dict) -> list[str]: ...
+@callback
+def async_extract_entities(trigger_conf: dict) -> list[str]: ...
+@callback
+def async_extract_targets(config: dict, target: Literal['entity_id', 'device_id', 'area_id', 'floor_id', 'label_id']) -> list[str]: ...

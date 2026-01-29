@@ -1,4 +1,5 @@
 import datetime
+from .const import DEFAULT_DEVICE_NAME as DEFAULT_DEVICE_NAME
 from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .entity import FritzDeviceBase as FritzDeviceBase
 from .helpers import device_filter_out_from_trackers as device_filter_out_from_trackers
@@ -17,6 +18,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_
 def _async_add_entities(avm_wrapper: AvmWrapper, async_add_entities: AddConfigEntryEntitiesCallback, data_fritz: FritzData) -> None: ...
 
 class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
+    _attr_translation_key: str
+    _attr_name: str
     _last_activity: datetime.datetime | None
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
@@ -25,7 +28,5 @@ class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
     def unique_id(self) -> str: ...
     @property
     def mac_address(self) -> str: ...
-    @property
-    def icon(self) -> str: ...
     @property
     def extra_state_attributes(self) -> dict[str, str]: ...

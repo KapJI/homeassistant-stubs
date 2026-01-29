@@ -11,4 +11,5 @@ class MastodonEntity(CoordinatorEntity[MastodonCoordinator]):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     entity_description: Incomplete
+    instance: Incomplete
     def __init__(self, coordinator: MastodonCoordinator, entity_description: EntityDescription, data: MastodonConfigEntry) -> None: ...

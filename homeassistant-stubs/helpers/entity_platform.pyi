@@ -1,5 +1,5 @@
 import asyncio
-from . import device_registry as dev_reg, service as service, translation as translation
+from . import service as service, translation as translation
 from .deprecation import deprecated_function as deprecated_function
 from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
@@ -19,7 +19,7 @@ from homeassistant.setup import SetupPhases as SetupPhases, async_start_setup as
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
 from logging import Logger
-from typing import Any, Protocol
+from typing import Any, Protocol, overload
 
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
@@ -127,8 +127,10 @@ class EntityPlatform:
     def default_language_platform_translations(self) -> dict[str, str]: ...
     async def async_load_translations(self) -> None: ...
 
-@callback
-def async_calculate_suggested_object_id(entity: Entity, device: dev_reg.DeviceEntry | None) -> str | None: ...
+@overload
+def _async_derive_object_ids(entity: Entity, platform: EntityPlatform, *, fallback_object_id: None = None) -> tuple[str | None, str | None]: ...
+@overload
+def _async_derive_object_ids(entity: Entity, platform: EntityPlatform, *, fallback_object_id: str) -> tuple[str, None] | tuple[None, str]: ...
 
 current_platform: ContextVar[EntityPlatform | None]
 

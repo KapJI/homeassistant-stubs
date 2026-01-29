@@ -1,4 +1,4 @@
-from .const import ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, SERVICE_CLEAR_TIMER as SERVICE_CLEAR_TIMER, SERVICE_JOIN as SERVICE_JOIN, SERVICE_SET_TIMER as SERVICE_SET_TIMER, SERVICE_UNJOIN as SERVICE_UNJOIN
+from .const import ATTR_MASTER as ATTR_MASTER, DOMAIN as DOMAIN, SERVICE_JOIN as SERVICE_JOIN, SERVICE_UNJOIN as SERVICE_UNJOIN
 from .coordinator import BluesoundConfigEntry as BluesoundConfigEntry, BluesoundCoordinator as BluesoundCoordinator, BluesoundRuntimeData as BluesoundRuntimeData
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

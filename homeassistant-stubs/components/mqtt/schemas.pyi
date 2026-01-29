@@ -7,7 +7,6 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any
 
 SHARED_OPTIONS: Incomplete
-MQTT_ORIGIN_INFO_SCHEMA: Incomplete
 _MQTT_AVAILABILITY_SINGLE_SCHEMA: Incomplete
 _MQTT_AVAILABILITY_LIST_SCHEMA: Incomplete
 _MQTT_AVAILABILITY_SCHEMA: Incomplete
@@ -15,6 +14,7 @@ _MQTT_AVAILABILITY_SCHEMA: Incomplete
 def validate_device_has_at_least_one_identifier(value: ConfigType) -> ConfigType: ...
 
 MQTT_ENTITY_DEVICE_INFO_SCHEMA: Incomplete
+MQTT_ORIGIN_INFO_SCHEMA: Incomplete
 MQTT_ENTITY_COMMON_SCHEMA: Incomplete
 _UNIQUE_ID_SCHEMA: Incomplete
 

@@ -13,7 +13,6 @@ from typing import Final
 class JvcProjectorSelectDescription(SelectEntityDescription):
     command: Callable[[JvcProjector, str], Awaitable[None]]
 
-OPTIONS: Final[dict[str, dict[str, str]]]
 SELECTS: Final[list[JvcProjectorSelectDescription]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

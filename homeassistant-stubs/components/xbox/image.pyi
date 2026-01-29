@@ -1,4 +1,4 @@
-from .coordinator import XboxConfigEntry as XboxConfigEntry, XboxUpdateCoordinator as XboxUpdateCoordinator
+from .coordinator import XboxConfigEntry as XboxConfigEntry, XboxPresenceCoordinator as XboxPresenceCoordinator
 from .entity import XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, profile_pic as profile_pic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -29,6 +29,6 @@ class XboxImageEntity(XboxBaseEntity, ImageEntity):
     entity_description: XboxImageEntityDescription
     _attr_image_url: Incomplete
     _attr_image_last_updated: Incomplete
-    def __init__(self, hass: HomeAssistant, coordinator: XboxUpdateCoordinator, xuid: str, entity_description: XboxImageEntityDescription) -> None: ...
+    def __init__(self, hass: HomeAssistant, coordinator: XboxPresenceCoordinator, xuid: str, entity_description: XboxImageEntityDescription) -> None: ...
     _cached_image: Incomplete
     def _handle_coordinator_update(self) -> None: ...

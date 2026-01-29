@@ -28,7 +28,7 @@ INVERTER_SENSORS: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class EnvoyProductionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoySystemProduction], int]
-    on_phase: str | None
+    on_phase: str | None = ...
 
 PRODUCTION_SENSORS: Incomplete
 PRODUCTION_PHASE_SENSORS: Incomplete
@@ -36,7 +36,7 @@ PRODUCTION_PHASE_SENSORS: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class EnvoyConsumptionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoySystemConsumption], int]
-    on_phase: str | None
+    on_phase: str | None = ...
 
 CONSUMPTION_SENSORS: Incomplete
 CONSUMPTION_PHASE_SENSORS: Incomplete
@@ -46,7 +46,7 @@ NET_CONSUMPTION_PHASE_SENSORS: Incomplete
 @dataclass(frozen=True, kw_only=True)
 class EnvoyCTSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoyMeterData], int | float | str | CtType | CtMeterStatus | CtStatusFlags | CtState | None]
-    on_phase: str | None
+    on_phase: str | None = ...
     cttype: str | None = ...
 
 CT_SENSORS: Incomplete

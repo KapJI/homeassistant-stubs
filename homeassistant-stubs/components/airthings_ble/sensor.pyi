@@ -13,6 +13,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 
 _LOGGER: Incomplete
+CONNECTIVITY_MODE_MAP: Incomplete
 SENSORS_MAPPING_TEMPLATE: dict[str, SensorEntityDescription]
 PARALLEL_UPDATES: int
 

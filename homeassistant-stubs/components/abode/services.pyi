@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, DOMAIN_DATA as DOMAIN_DATA, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback

@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .ics import InvalidIcsException as InvalidIcsException, parse_calendar as parse_calendar
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_URL as CONF_URL
+from homeassistant.const import CONF_URL as CONF_URL, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed

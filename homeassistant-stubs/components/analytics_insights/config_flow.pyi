@@ -1,5 +1,5 @@
 from . import AnalyticsInsightsConfigEntry as AnalyticsInsightsConfigEntry
-from .const import CONF_TRACKED_ADDONS as CONF_TRACKED_ADDONS, CONF_TRACKED_CUSTOM_INTEGRATIONS as CONF_TRACKED_CUSTOM_INTEGRATIONS, CONF_TRACKED_INTEGRATIONS as CONF_TRACKED_INTEGRATIONS, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_TRACKED_APPS as CONF_TRACKED_APPS, CONF_TRACKED_CUSTOM_INTEGRATIONS as CONF_TRACKED_CUSTOM_INTEGRATIONS, CONF_TRACKED_INTEGRATIONS as CONF_TRACKED_INTEGRATIONS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.core import callback as callback
@@ -10,6 +10,7 @@ from typing import Any
 INTEGRATION_TYPES_WITHOUT_ANALYTICS: Incomplete
 
 class HomeassistantAnalyticsConfigFlow(ConfigFlow, domain=DOMAIN):
+    VERSION: int
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: AnalyticsInsightsConfigEntry) -> HomeassistantAnalyticsOptionsFlowHandler: ...

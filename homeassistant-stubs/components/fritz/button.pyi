@@ -38,9 +38,8 @@ class FritzButton(ButtonEntity):
 def _async_wol_buttons_list(avm_wrapper: AvmWrapper, data_fritz: FritzData) -> list[FritzBoxWOLButton]: ...
 
 class FritzBoxWOLButton(FritzDeviceBase, ButtonEntity):
-    _attr_icon: str
     _attr_entity_registry_enabled_default: bool
-    _name: Incomplete
+    _attr_translation_key: str
     _attr_unique_id: Incomplete
     _is_available: bool
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...

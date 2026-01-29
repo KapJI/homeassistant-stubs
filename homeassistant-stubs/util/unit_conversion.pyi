@@ -45,6 +45,10 @@ _AMBIENT_TEMPERATURE: float
 _AMBIENT_PRESSURE: int
 _AMBIENT_IDEAL_GAS_MOLAR_VOLUME: Incomplete
 _CARBON_MONOXIDE_MOLAR_MASS: float
+_NITROGEN_DIOXIDE_MOLAR_MASS: float
+_NITROGEN_MONOXIDE_MOLAR_MASS: float
+_OZONE_MOLAR_MASS: float
+_SULPHUR_DIOXIDE_MOLAR_MASS: float
 
 class BaseUnitConverter:
     UNIT_CLASS: str
@@ -71,12 +75,7 @@ class BaseUnitConverter:
     @lru_cache
     def _are_unit_inverses(cls, from_unit: str | None, to_unit: str | None) -> bool: ...
 
-class CarbonMonoxideConcentrationConverter(BaseUnitConverter):
-    UNIT_CLASS: str
-    _UNIT_CONVERSION: dict[str | None, float]
-    VALID_UNITS: Incomplete
-
-class DataRateConverter(BaseUnitConverter):
+class ApparentPowerConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
@@ -86,17 +85,32 @@ class AreaConverter(BaseUnitConverter):
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
-class DistanceConverter(BaseUnitConverter):
-    UNIT_CLASS: str
-    _UNIT_CONVERSION: dict[str | None, float]
-    VALID_UNITS: Incomplete
-
 class BloodGlucoseConcentrationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
+class CarbonMonoxideConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
 class ConductivityConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class DataRateConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class DistanceConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class DurationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
@@ -132,7 +146,22 @@ class MassConverter(BaseUnitConverter):
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
-class ApparentPowerConverter(BaseUnitConverter):
+class MassVolumeConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class NitrogenDioxideConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class NitrogenMonoxideConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class OzoneConcentrationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
@@ -174,6 +203,11 @@ class SpeedConverter(BaseUnitConverter):
     @classmethod
     def _beaufort_to_ms(cls, beaufort: float) -> float: ...
 
+class SulphurDioxideConcentrationConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
 class TemperatureConverter(BaseUnitConverter):
     UNIT_CLASS: str
     VALID_UNITS: Incomplete
@@ -211,22 +245,12 @@ class UnitlessRatioConverter(BaseUnitConverter):
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
-class MassVolumeConcentrationConverter(BaseUnitConverter):
-    UNIT_CLASS: str
-    _UNIT_CONVERSION: dict[str | None, float]
-    VALID_UNITS: Incomplete
-
 class VolumeConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete
 
 class VolumeFlowRateConverter(BaseUnitConverter):
-    UNIT_CLASS: str
-    _UNIT_CONVERSION: dict[str | None, float]
-    VALID_UNITS: Incomplete
-
-class DurationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete

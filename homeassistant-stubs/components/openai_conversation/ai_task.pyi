@@ -3,7 +3,7 @@ from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_IMAGE_MODEL as CONF_
 from .entity import OpenAIBaseLLMEntity as OpenAIBaseLLMEntity
 from _typeshed import Incomplete
 from homeassistant.components import ai_task as ai_task, conversation as conversation
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigSubentry as ConfigSubentry
+from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -11,7 +11,7 @@ from homeassistant.util.json import json_loads as json_loads
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OpenAIConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OpenAITaskEntity(ai_task.AITaskEntity, OpenAIBaseLLMEntity):
     _attr_supported_features: Incomplete

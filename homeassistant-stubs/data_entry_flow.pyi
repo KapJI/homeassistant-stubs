@@ -7,10 +7,10 @@ from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as rep
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
 from collections import defaultdict
-from collections.abc import Callable, Container, Coroutine, Hashable, Iterable, Mapping
+from collections.abc import Callable as Callable, Container, Hashable, Iterable, Mapping
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import Any, Concatenate, Generic, Required, TypeVar, TypedDict
+from typing import Any, Generic, Required, TypeVar, TypedDict
 
 _LOGGER: Incomplete
 
@@ -76,12 +76,6 @@ class FlowResult(TypedDict, Generic[_FlowContextT, _HandlerT], total=False):
     type: FlowResultType
     url: str
 
-class ProgressStepData[_FlowResultT](TypedDict):
-    tasks: dict[str, asyncio.Task[Any]]
-    abort_reason: str
-    abort_description_placeholders: Mapping[str, str]
-    next_step_result: _FlowResultT | None
-
 def _map_error_to_schema_errors(schema_errors: dict[str, Any], error: vol.Invalid, data_schema: vol.Schema) -> None: ...
 
 class FlowManager(abc.ABC, Generic[_FlowContextT, _FlowResultT, _HandlerT], metaclass=abc.ABCMeta):
@@ -139,9 +133,6 @@ class FlowHandler(Generic[_FlowContextT, _FlowResultT, _HandlerT]):
     __progress_task: asyncio.Task[Any] | None
     __no_progress_task_reported: bool
     deprecated_show_progress: bool
-    __progress_step_data: ProgressStepData[_FlowResultT] | None
-    @property
-    def _progress_step_data(self) -> ProgressStepData[_FlowResultT]: ...
     @property
     def source(self) -> str | None: ...
     @property
@@ -153,8 +144,6 @@ class FlowHandler(Generic[_FlowContextT, _FlowResultT, _HandlerT]):
     def async_create_entry(self, *, title: str | None = None, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
     @callback
     def async_abort(self, *, reason: str, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
-    async def async_step__progress_step_abort(self, user_input: dict[str, Any] | None = None) -> _FlowResultT: ...
-    async def async_step__progress_step_progress_done(self, user_input: dict[str, Any] | None = None) -> _FlowResultT: ...
     @callback
     def async_external_step(self, *, step_id: str | None = None, url: str, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
     @callback
@@ -189,6 +178,3 @@ class section:
     options: SectionConfig
     def __init__(self, schema: vol.Schema, options: SectionConfig | None = None) -> None: ...
     def __call__(self, value: Any) -> Any: ...
-type _FuncType[_T: FlowHandler[Any, Any, Any], _R: FlowResult[Any, Any], **_P] = Callable[Concatenate[_T, _P], Coroutine[Any, Any, _R]]
-
-def progress_step[HandlerT: FlowHandler[Any, Any, Any], ResultT: FlowResult[Any, Any], **P](description_placeholders: dict[str, str] | Callable[[Any], dict[str, str]] | None = None) -> Callable[[_FuncType[HandlerT, ResultT, P]], _FuncType[HandlerT, ResultT, P]]: ...

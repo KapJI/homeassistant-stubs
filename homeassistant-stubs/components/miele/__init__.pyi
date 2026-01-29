@@ -1,6 +1,6 @@
 from .api import AsyncConfigEntryAuth as AsyncConfigEntryAuth
 from .const import DOMAIN as DOMAIN
-from .coordinator import MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
+from .coordinator import MieleAuxDataUpdateCoordinator as MieleAuxDataUpdateCoordinator, MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator, MieleRuntimeData as MieleRuntimeData
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform

@@ -2,7 +2,7 @@ from .coordinator import XboxConfigEntry as XboxConfigEntry
 from .entity import XboxConsoleBaseEntity as XboxConsoleBaseEntity
 from collections.abc import Callable as Callable, Iterable
 from homeassistant.components.remote import ATTR_DELAY_SECS as ATTR_DELAY_SECS, ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, DEFAULT_DELAY_SECS as DEFAULT_DELAY_SECS, RemoteEntity as RemoteEntity
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pythonxbox.api.provider.smartglass import SmartglassProvider as SmartglassProvider
 from typing import Any

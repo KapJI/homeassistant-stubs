@@ -28,7 +28,7 @@ class PortainerCoordinatorData:
 @dataclass(slots=True)
 class PortainerContainerData:
     container: DockerContainer
-    stats: DockerContainerStats
+    stats: DockerContainerStats | None
     stats_pre: DockerContainerStats | None
 
 class PortainerCoordinator(DataUpdateCoordinator[dict[int, PortainerCoordinatorData]]):
@@ -42,3 +42,4 @@ class PortainerCoordinator(DataUpdateCoordinator[dict[int, PortainerCoordinatorD
     async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> dict[int, PortainerCoordinatorData]: ...
     def _async_add_remove_endpoints(self, mapped_endpoints: dict[int, PortainerCoordinatorData]) -> None: ...
+    def _get_container_name(self, container_name: str) -> str: ...

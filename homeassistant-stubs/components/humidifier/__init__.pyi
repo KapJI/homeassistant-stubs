@@ -1,4 +1,4 @@
-from .const import ATTR_ACTION as ATTR_ACTION, ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_AWAY as MODE_AWAY, MODE_BABY as MODE_BABY, MODE_BOOST as MODE_BOOST, MODE_COMFORT as MODE_COMFORT, MODE_ECO as MODE_ECO, MODE_HOME as MODE_HOME, MODE_NORMAL as MODE_NORMAL, MODE_SLEEP as MODE_SLEEP, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE
+from .const import ATTR_ACTION as ATTR_ACTION, ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, ATTR_TARGET_HUMIDITY_STEP as ATTR_TARGET_HUMIDITY_STEP, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_AWAY as MODE_AWAY, MODE_BABY as MODE_BABY, MODE_BOOST as MODE_BOOST, MODE_COMFORT as MODE_COMFORT, MODE_ECO as MODE_ECO, MODE_HOME as MODE_HOME, MODE_NORMAL as MODE_NORMAL, MODE_SLEEP as MODE_SLEEP, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -50,6 +50,7 @@ class HumidifierEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_AT
     _attr_mode: str | None
     _attr_supported_features: HumidifierEntityFeature
     _attr_target_humidity: float | None
+    _attr_target_humidity_step: float | None
     @property
     def capability_attributes(self) -> dict[str, Any]: ...
     @cached_property
@@ -71,6 +72,8 @@ class HumidifierEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_AT
     async def async_set_humidity(self, humidity: int) -> None: ...
     def set_mode(self, mode: str) -> None: ...
     async def async_set_mode(self, mode: str) -> None: ...
+    @cached_property
+    def target_humidity_step(self) -> float | None: ...
     @cached_property
     def min_humidity(self) -> float: ...
     @cached_property

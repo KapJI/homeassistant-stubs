@@ -1,5 +1,5 @@
 from . import AbodeSystem as AbodeSystem
-from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
+from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN, DOMAIN_DATA as DOMAIN_DATA
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity

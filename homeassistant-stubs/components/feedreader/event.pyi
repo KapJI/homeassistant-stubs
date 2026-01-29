@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 LOGGER: Incomplete
+PARALLEL_UPDATES: int
 ATTR_CONTENT: str
 ATTR_DESCRIPTION: str
 ATTR_LINK: str

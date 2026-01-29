@@ -15,8 +15,6 @@ PATCH_VERSION: Final[str]
 __short_version__: Final[Incomplete]
 __version__: Final[Incomplete]
 REQUIRED_PYTHON_VER: Final[tuple[int, int, int]]
-REQUIRED_NEXT_PYTHON_VER: Final[tuple[int, int, int]]
-REQUIRED_NEXT_PYTHON_HA_RELEASE: Final[str]
 PLATFORM_FORMAT: Final[str]
 Platform = EntityPlatforms
 BASE_PLATFORMS: Final[Incomplete]

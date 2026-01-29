@@ -1,5 +1,4 @@
 from .const import MeshRoles as MeshRoles
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
@@ -32,20 +31,20 @@ class HostInfo(TypedDict):
 
 class FritzDevice:
     _connected: bool
-    _connected_to: str | None
-    _connection_type: str | None
-    _ip_address: str | None
+    _connected_to: str
+    _connection_type: str
+    _ip_address: str
     _last_activity: datetime | None
-    _mac: Incomplete
-    _name: Incomplete
+    _mac: str
+    _name: str
     _ssid: str | None
     _wan_access: bool | None
-    def __init__(self, mac: str, name: str) -> None: ...
+    def __init__(self, mac: str, dev_info: Device, consider_home: float) -> None: ...
     def update(self, dev_info: Device, consider_home: float) -> None: ...
     @property
-    def connected_to(self) -> str | None: ...
+    def connected_to(self) -> str: ...
     @property
-    def connection_type(self) -> str | None: ...
+    def connection_type(self) -> str: ...
     @property
     def is_connected(self) -> bool: ...
     @property
@@ -53,13 +52,15 @@ class FritzDevice:
     @property
     def hostname(self) -> str: ...
     @property
-    def ip_address(self) -> str | None: ...
+    def ip_address(self) -> str: ...
     @property
     def last_activity(self) -> datetime | None: ...
     @property
     def ssid(self) -> str | None: ...
     @property
     def wan_access(self) -> bool | None: ...
+    @wan_access.setter
+    def wan_access(self, allowed: bool) -> None: ...
 
 class SwitchInfo(TypedDict):
     description: str

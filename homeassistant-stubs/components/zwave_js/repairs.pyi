@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .helpers import async_get_node_from_device_id as async_get_node_from_device_id
+from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, format_home_id_for_display as format_home_id_for_display
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -15,6 +15,7 @@ class DeviceConfigFileChangedFlow(RepairsFlow):
 class MigrateUniqueIDFlow(RepairsFlow):
     description_placeholders: dict[str, str]
     _config_entry_id: str
+    _new_unique_id: str
     def __init__(self, data: dict[str, str]) -> None: ...
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
     async def async_step_confirm(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...

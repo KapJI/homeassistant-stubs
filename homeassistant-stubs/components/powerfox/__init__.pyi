@@ -1,4 +1,4 @@
-from .coordinator import PowerfoxConfigEntry as PowerfoxConfigEntry, PowerfoxDataUpdateCoordinator as PowerfoxDataUpdateCoordinator
+from .coordinator import PowerfoxConfigEntry as PowerfoxConfigEntry, PowerfoxDataUpdateCoordinator as PowerfoxDataUpdateCoordinator, PowerfoxReportDataUpdateCoordinator as PowerfoxReportDataUpdateCoordinator
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady

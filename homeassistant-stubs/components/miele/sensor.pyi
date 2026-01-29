@@ -1,6 +1,6 @@
 from .const import COFFEE_SYSTEM_PROFILE as COFFEE_SYSTEM_PROFILE, DISABLED_TEMP_ENTITIES as DISABLED_TEMP_ENTITIES, DOMAIN as DOMAIN, MieleAppliance as MieleAppliance, PROGRAM_IDS as PROGRAM_IDS, PROGRAM_PHASE as PROGRAM_PHASE, PlatePowerStep as PlatePowerStep, StateDryingStep as StateDryingStep, StateProgramType as StateProgramType, StateStatus as StateStatus
-from .coordinator import MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
-from .entity import MieleEntity as MieleEntity
+from .coordinator import MieleAuxDataUpdateCoordinator as MieleAuxDataUpdateCoordinator, MieleConfigEntry as MieleConfigEntry, MieleDataUpdateCoordinator as MieleDataUpdateCoordinator
+from .entity import MieleAuxEntity as MieleAuxEntity, MieleEntity as MieleEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
@@ -10,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from pymiele import MieleDevice as MieleDevice, MieleTemperature as MieleTemperature
+from pymiele import MieleDevice as MieleDevice, MieleFillingLevel, MieleTemperature as MieleTemperature
 from typing import Any, Final
 
 PARALLEL_UPDATES: int
@@ -27,19 +27,20 @@ def _convert_start_timestamp(elapsed_time_list: list[int], start_time_list: list
 def _convert_finish_timestamp(remaining_time_list: list[int], start_time_list: list[int]) -> datetime | None: ...
 
 @dataclass(frozen=True, kw_only=True)
-class MieleSensorDescription(SensorEntityDescription):
-    value_fn: Callable[[MieleDevice], StateType | datetime]
+class MieleSensorDescription[T: (MieleDevice, MieleFillingLevel)](SensorEntityDescription):
+    value_fn: Callable[[T], StateType | datetime]
     end_value_fn: Callable[[StateType | datetime], StateType | datetime] | None = ...
     extra_attributes: dict[str, Callable[[MieleDevice], StateType]] | None = ...
     zone: int | None = ...
     unique_id_fn: Callable[[str, MieleSensorDescription], str] | None = ...
 
 @dataclass
-class MieleSensorDefinition:
+class MieleSensorDefinition[T: (MieleDevice, MieleFillingLevel)]:
     types: tuple[MieleAppliance, ...]
-    description: MieleSensorDescription
+    description: MieleSensorDescription[T]
 
-SENSOR_TYPES: Final[tuple[MieleSensorDefinition, ...]]
+SENSOR_TYPES: Final[tuple[MieleSensorDefinition[MieleDevice], ...]]
+POLLED_SENSOR_TYPES: Final[tuple[MieleSensorDefinition[MieleFillingLevel], ...]]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MieleConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -62,6 +63,13 @@ class MieleRestorableSensor(MieleSensor, RestoreSensor):
     def _update_native_value(self) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
+
+class MieleAuxSensor(MieleAuxEntity, SensorEntity):
+    entity_description: MieleSensorDescription
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: MieleAuxDataUpdateCoordinator, device_id: str, description: MieleSensorDescription) -> None: ...
+    @property
+    def native_value(self) -> StateType | datetime: ...
 
 class MielePlateSensor(MieleSensor):
     entity_description: MieleSensorDescription

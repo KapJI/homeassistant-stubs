@@ -13,7 +13,6 @@ from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow
-from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.discovery_flow import DiscoveryKey as DiscoveryKey
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -26,7 +25,6 @@ CONFIG_SCHEMA: Incomplete
 REGISTERED_DEVICES: Final[str]
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
-_DEPRECATED_DhcpServiceInfo: Incomplete
 
 def async_index_integration_matchers(integration_matchers: list[DHCPMatcher]) -> DhcpMatchers: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -88,7 +86,3 @@ class RediscoveryWatcher(WatcherBase):
 
 def _compile_fnmatch(pattern: str) -> re.Pattern: ...
 def _memorized_fnmatch(name: str, pattern: str) -> bool: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

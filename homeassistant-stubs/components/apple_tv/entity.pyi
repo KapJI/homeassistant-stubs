@@ -10,7 +10,6 @@ from pyatv.interface import AppleTV as AppleTVInterface
 class AppleTVEntity(Entity):
     _attr_should_poll: bool
     _attr_has_entity_name: bool
-    _attr_name: Incomplete
     atv: AppleTVInterface | None
     manager: Incomplete
     _attr_unique_id: Incomplete

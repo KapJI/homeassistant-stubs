@@ -61,7 +61,6 @@ class SensorGroup(GroupEntity, SensorEntity):
     _valid_units: set[str | None]
     _can_convert: bool
     _attr_name: Incomplete
-    _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     _ignore_non_numeric: Incomplete
     mode: Incomplete

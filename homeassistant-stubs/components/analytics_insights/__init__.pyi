@@ -1,4 +1,4 @@
-from .const import CONF_TRACKED_INTEGRATIONS as CONF_TRACKED_INTEGRATIONS
+from .const import CONF_TRACKED_APPS as CONF_TRACKED_APPS, CONF_TRACKED_INTEGRATIONS as CONF_TRACKED_INTEGRATIONS
 from .coordinator import HomeassistantAnalyticsDataUpdateCoordinator as HomeassistantAnalyticsDataUpdateCoordinator
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -16,4 +16,5 @@ class AnalyticsInsightsData:
     names: dict[str, str]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AnalyticsInsightsConfigEntry) -> bool: ...
+async def async_migrate_entry(hass: HomeAssistant, entry: AnalyticsInsightsConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AnalyticsInsightsConfigEntry) -> bool: ...

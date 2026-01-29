@@ -1,7 +1,8 @@
-from .const import BLEScannerMode as BLEScannerMode, BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID as BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID, BLE_SCANNER_MIN_FIRMWARE as BLE_SCANNER_MIN_FIRMWARE, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, DEPRECATED_FIRMWARES as DEPRECATED_FIRMWARES, DEPRECATED_FIRMWARE_ISSUE_ID as DEPRECATED_FIRMWARE_ISSUE_ID, DOMAIN as DOMAIN, OPEN_WIFI_AP_ISSUE_ID as OPEN_WIFI_AP_ISSUE_ID, OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID as OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID
+from .const import BLEScannerMode as BLEScannerMode, BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID as BLE_SCANNER_FIRMWARE_UNSUPPORTED_ISSUE_ID, BLE_SCANNER_MIN_FIRMWARE as BLE_SCANNER_MIN_FIRMWARE, COIOT_UNCONFIGURED_ISSUE_ID as COIOT_UNCONFIGURED_ISSUE_ID, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, DEPRECATED_FIRMWARES as DEPRECATED_FIRMWARES, DEPRECATED_FIRMWARE_ISSUE_ID as DEPRECATED_FIRMWARE_ISSUE_ID, DOMAIN as DOMAIN, OPEN_WIFI_AP_ISSUE_ID as OPEN_WIFI_AP_ISSUE_ID, OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID as OUTBOUND_WEBSOCKET_INCORRECTLY_ENABLED_ISSUE_ID
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry
-from .utils import get_rpc_ws_url as get_rpc_ws_url
+from .utils import get_coiot_address as get_coiot_address, get_coiot_port as get_coiot_port, get_device_entry_gen as get_device_entry_gen, get_rpc_ws_url as get_rpc_ws_url
 from _typeshed import Incomplete
+from aioshelly.block_device import BlockDevice as BlockDevice
 from aioshelly.rpc_device import RpcDevice as RpcDevice
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow
@@ -14,7 +15,18 @@ def async_manage_deprecated_firmware_issue(hass: HomeAssistant, entry: ShellyCon
 @callback
 def async_manage_outbound_websocket_incorrectly_enabled_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
 @callback
+def async_manage_coiot_unconfigured_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
+@callback
 def async_manage_open_wifi_ap_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
+
+class ShellyBlockRepairsFlow(RepairsFlow):
+    _device: Incomplete
+    def __init__(self, device: BlockDevice) -> None: ...
+
+class CoiotConfigureFlow(ShellyBlockRepairsFlow):
+    async def async_step_init(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+    async def async_step_confirm(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
+    async def async_step_ignore(self, user_input: dict[str, str] | None = None) -> data_entry_flow.FlowResult: ...
 
 class ShellyRpcRepairsFlow(RepairsFlow):
     _device: Incomplete

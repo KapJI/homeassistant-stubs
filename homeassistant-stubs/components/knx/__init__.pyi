@@ -1,5 +1,5 @@
 from .const import CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_KNX_KNXKEY_FILENAME as CONF_KNX_KNXKEY_FILENAME, DATA_HASS_CONFIG as DATA_HASS_CONFIG, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY, SUPPORTED_PLATFORMS_UI as SUPPORTED_PLATFORMS_UI, SUPPORTED_PLATFORMS_YAML as SUPPORTED_PLATFORMS_YAML
-from .expose import create_knx_exposure as create_knx_exposure
+from .expose import create_combined_knx_exposure as create_combined_knx_exposure
 from .knx_module import KNXModule as KNXModule
 from .schema import BinarySensorSchema as BinarySensorSchema, ButtonSchema as ButtonSchema, ClimateSchema as ClimateSchema, CoverSchema as CoverSchema, DateSchema as DateSchema, DateTimeSchema as DateTimeSchema, EventSchema as EventSchema, ExposeSchema as ExposeSchema, FanSchema as FanSchema, LightSchema as LightSchema, NotifySchema as NotifySchema, NumberSchema as NumberSchema, SceneSchema as SceneSchema, SelectSchema as SelectSchema, SensorSchema as SensorSchema, SwitchSchema as SwitchSchema, TextSchema as TextSchema, TimeSchema as TimeSchema, WeatherSchema as WeatherSchema
 from .services import async_setup_services as async_setup_services

@@ -1,4 +1,5 @@
 from .bot import BaseTelegramBot as BaseTelegramBot, TelegramBotConfigEntry as TelegramBotConfigEntry
+from .helpers import get_base_url as get_base_url
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from telegram import Bot as Bot
@@ -7,8 +8,8 @@ from telegram.ext import CallbackContext as CallbackContext
 _LOGGER: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, bot: Bot, config: TelegramBotConfigEntry) -> BaseTelegramBot | None: ...
-async def process_error(update: object, context: CallbackContext) -> None: ...
-def error_callback(error: Exception, update: object | None = None) -> None: ...
+async def process_error(bot: Bot, update: object, context: CallbackContext) -> None: ...
+def error_callback(bot: Bot, error: Exception, update: object | None = None) -> None: ...
 
 class PollBot(BaseTelegramBot):
     bot: Incomplete

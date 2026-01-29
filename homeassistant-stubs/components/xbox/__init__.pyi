@@ -1,6 +1,7 @@
+from . import api as api
 from .api import AsyncConfigEntryAuth as AsyncConfigEntryAuth
 from .const import DOMAIN as DOMAIN
-from .coordinator import XboxConfigEntry as XboxConfigEntry, XboxConsolesCoordinator as XboxConsolesCoordinator, XboxCoordinators as XboxCoordinators, XboxUpdateCoordinator as XboxUpdateCoordinator
+from .coordinator import XboxConfigEntry as XboxConfigEntry, XboxConsoleStatusCoordinator as XboxConsoleStatusCoordinator, XboxConsolesCoordinator as XboxConsolesCoordinator, XboxCoordinators as XboxCoordinators, XboxPresenceCoordinator as XboxPresenceCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.const import Platform as Platform

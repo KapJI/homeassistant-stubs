@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, MEDIA_PLAYER_PREFIX as MEDIA_PLAYER_PREFIX, MEDIA_TYPE_SHOW as MEDIA_TYPE_SHOW, PLAYABLE_MEDIA_TYPES as PLAYABLE_MEDIA_TYPES
+from .const import DOMAIN as DOMAIN, MEDIA_PLAYER_PREFIX as MEDIA_PLAYER_PREFIX, MEDIA_TYPE_SHOW as MEDIA_TYPE_SHOW, MEDIA_TYPE_USER_SAVED_TRACKS as MEDIA_TYPE_USER_SAVED_TRACKS, PLAYABLE_MEDIA_TYPES as PLAYABLE_MEDIA_TYPES
 from .util import fetch_image_url as fetch_image_url
 from _typeshed import Incomplete
 from enum import StrEnum
@@ -29,7 +29,7 @@ class BrowsableMedia(StrEnum):
     CURRENT_USER_PLAYLISTS = 'current_user_playlists'
     CURRENT_USER_FOLLOWED_ARTISTS = 'current_user_followed_artists'
     CURRENT_USER_SAVED_ALBUMS = 'current_user_saved_albums'
-    CURRENT_USER_SAVED_TRACKS = 'current_user_saved_tracks'
+    CURRENT_USER_SAVED_TRACKS = MEDIA_TYPE_USER_SAVED_TRACKS
     CURRENT_USER_SAVED_SHOWS = 'current_user_saved_shows'
     CURRENT_USER_RECENTLY_PLAYED = 'current_user_recently_played'
     CURRENT_USER_TOP_ARTISTS = 'current_user_top_artists'

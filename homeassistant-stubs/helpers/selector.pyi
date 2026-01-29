@@ -60,9 +60,16 @@ class ActionSelector(Selector[ActionSelectorConfig]):
     def __init__(self, config: ActionSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
-class AddonSelectorConfig(BaseSelectorConfig, total=False):
+class AppSelectorConfig(BaseSelectorConfig, total=False):
     name: str
     slug: str
+
+class AppSelector(Selector[AppSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: AppSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+AddonSelectorConfig = AppSelectorConfig
 
 class AddonSelector(Selector[AddonSelectorConfig]):
     selector_type: str

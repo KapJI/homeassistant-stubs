@@ -8,7 +8,6 @@ from .event import async_call_later as async_call_later, async_track_template as
 from .script_variables import ScriptRunVariables as ScriptRunVariables, ScriptVariables as ScriptVariables
 from .template import Template as Template
 from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_path_stack_cv as trace_path_stack_cv, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top, trace_update_result as trace_update_result
-from .trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable, Mapping, Sequence

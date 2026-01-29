@@ -9,8 +9,11 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 SERVICE_PUBLISH: str
+SERVICE_CLEAR: str
+SERVICE_DELETE: str
 ATTR_ATTACH: str
 ATTR_CALL: str
 ATTR_CLICK: str
@@ -20,7 +23,9 @@ ATTR_ICON: str
 ATTR_MARKDOWN: str
 ATTR_PRIORITY: str
 ATTR_TAGS: str
+ATTR_SEQUENCE_ID: str
 SERVICE_PUBLISH_SCHEMA: Incomplete
+SERVICE_CLEAR_DELETE_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: NtfyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -29,3 +34,5 @@ class NtfyNotifyEntity(NtfyBaseEntity, NotifyEntity):
     _attr_supported_features: Incomplete
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...
     async def publish(self, **kwargs: Any) -> None: ...
+    async def clear(self, **kwargs: Any) -> None: ...
+    async def delete(self, **kwargs: Any) -> None: ...

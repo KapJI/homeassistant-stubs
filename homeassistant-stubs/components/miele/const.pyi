@@ -240,10 +240,12 @@ class ProgramPhaseRobotVacuumCleaner(MieleEnum, missing_to_none=True):
 class ProgramPhaseMicrowaveOvenCombo(MieleEnum, missing_to_none=True):
     not_running: Incomplete
     steam_reduction: int
-    process_running: int
+    process_running: Incomplete
     waiting_for_start: int
-    heating_up_phase: int
-    process_finished: int
+    heating_up_phase: Incomplete
+    process_finished: Incomplete
+    cooling_phase: int
+    energy_save: int
 
 class ProgramPhaseSteamOven(MieleEnum, missing_to_none=True):
     not_running: Incomplete
@@ -279,8 +281,7 @@ PROGRAM_PHASE: dict[int, type[MieleEnum]]
 class StateProgramType(MieleEnum, missing_to_none=True):
     normal_operation_mode: int
     own_program: int
-    automatic_program: int
-    cleaning_care_program: int
+    automatic_program: Incomplete
     maintenance_program: int
 
 class StateDryingStep(MieleEnum, missing_to_none=True):
@@ -379,7 +380,7 @@ class TumbleDryerProgramId(MieleEnum, missing_to_none=True):
     silks_handcare: Incomplete
     standard_pillows: Incomplete
     basket_program: Incomplete
-    cottons_hygiene: int
+    cottons_hygiene: Incomplete
     smoothing: Incomplete
     bed_linen: Incomplete
     eco: int
@@ -393,11 +394,16 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     defrost: Incomplete
     eco_fan_heat: int
     auto_roast: int
+    grill: int
     full_grill: int
     economy_grill: int
     fan_plus: int
     intensive_bake: int
     microwave: int
+    microwave_auto_roast: int
+    microwave_grill: int
+    microwave_fan_plus: int
+    microwave_fan_grill: int
     conventional_heat: int
     top_heat: int
     fan_grill: int
@@ -406,6 +412,8 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     moisture_plus_fan_plus: Incomplete
     moisture_plus_intensive_bake: Incomplete
     moisture_plus_conventional_heat: Incomplete
+    popcorn: int
+    quick_microwave: int
     custom_program_1: int
     custom_program_2: int
     custom_program_3: int
@@ -433,6 +441,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     yom_tov: int
     drying: int
     heat_crockery: int
+    prove_dough: int
     low_temperature_cooking: int
     steam_cooking: int
     keeping_warm: int
@@ -536,6 +545,10 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     rack_of_lamb_with_vegetables: int
     yorkshire_pudding: int
     meat_loaf: int
+    defrost_meat: int
+    defrost_vegetables: int
+    heating_bakes_gratins: int
+    heating_vegetables: int
     swiss_farmhouse_bread: int
     plaited_swiss_loaf: int
     tiger_bread: int

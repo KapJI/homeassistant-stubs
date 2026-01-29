@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import ConsoleData as ConsoleData, XboxUpdateCoordinator as XboxUpdateCoordinator
+from .coordinator import ConsoleData as ConsoleData, XboxConsoleStatusCoordinator as XboxConsoleStatusCoordinator, XboxPresenceCoordinator as XboxPresenceCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
@@ -20,13 +20,13 @@ class XboxBaseEntityDescription(EntityDescription):
     attributes_fn: Callable[[Person, Title | None], Mapping[str, Any] | None] | None = ...
     deprecated: bool | None = ...
 
-class XboxBaseEntity(CoordinatorEntity[XboxUpdateCoordinator]):
+class XboxBaseEntity(CoordinatorEntity[XboxPresenceCoordinator]):
     _attr_has_entity_name: bool
     entity_description: XboxBaseEntityDescription
     xuid: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: XboxUpdateCoordinator, xuid: str, entity_description: XboxBaseEntityDescription) -> None: ...
+    def __init__(self, coordinator: XboxPresenceCoordinator, xuid: str, entity_description: XboxBaseEntityDescription) -> None: ...
     @property
     def data(self) -> Person: ...
     @property
@@ -38,16 +38,18 @@ class XboxBaseEntity(CoordinatorEntity[XboxUpdateCoordinator]):
     @property
     def available(self) -> bool: ...
 
-class XboxConsoleBaseEntity(CoordinatorEntity[XboxUpdateCoordinator]):
+class XboxConsoleBaseEntity(CoordinatorEntity[XboxConsoleStatusCoordinator]):
     _attr_has_entity_name: bool
     client: Incomplete
     _console: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, console: SmartglassConsole, coordinator: XboxUpdateCoordinator) -> None: ...
+    def __init__(self, console: SmartglassConsole, coordinator: XboxConsoleStatusCoordinator) -> None: ...
     @property
     def data(self) -> ConsoleData: ...
+    @property
+    def available(self) -> bool: ...
 
 def check_deprecated_entity(hass: HomeAssistant, xuid: str, entity_description: XboxBaseEntityDescription, entity_domain: str) -> bool: ...
 def to_https(image_url: str) -> str: ...

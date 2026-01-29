@@ -21,15 +21,17 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 async def async_setup_entry(hass: HomeAssistant, entry: ScrapeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ScrapeSensor(CoordinatorEntity[ScrapeCoordinator], ManualTriggerSensorEntity):
+    _sensor_name: str | None
     _select: Incomplete
     _attr: Incomplete
     _index: Incomplete
     _value_template: Incomplete
     _attr_native_value: Incomplete
-    _attr_name: Incomplete
     _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: ScrapeCoordinator, trigger_entity_config: ConfigType, select: str, attr: str | None, index: int, value_template: ValueTemplate | None, yaml: bool) -> None: ...
+    @property
+    def name(self) -> str | None: ...
     def _extract_value(self) -> Any: ...
     async def async_added_to_hass(self) -> None: ...
     _attr_available: bool

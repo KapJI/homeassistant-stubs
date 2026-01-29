@@ -23,7 +23,7 @@ def _async_setup_block_entry(hass: HomeAssistant, config_entry: ShellyConfigEntr
 
 class BlockShellyLight(ShellyBlockAttributeEntity, LightEntity):
     entity_description: BlockLightDescription
-    _attr_supported_color_modes: set[str]
+    _attr_supported_color_modes: set[ColorMode]
     control_result: dict[str, Any] | None
     _attr_name: Incomplete
     _attr_unique_id: str

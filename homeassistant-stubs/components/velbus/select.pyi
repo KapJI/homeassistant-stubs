@@ -5,7 +5,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from velbusaio.channels import SelectedProgram as SelectedProgram
+from velbusaio.properties import SelectedProgram as SelectedProgram
 
 PARALLEL_UPDATES: int
 
@@ -14,6 +14,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async
 class VelbusSelect(VelbusEntity, SelectEntity):
     _channel: SelectedProgram
     _attr_entity_category: Incomplete
+    _attr_translation_key: str
     _attr_options: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, channel: SelectedProgram) -> None: ...

@@ -1,6 +1,6 @@
 import datetime as dt
 from .browse_media import async_browse_media_internal as async_browse_media_internal
-from .const import MEDIA_PLAYER_PREFIX as MEDIA_PLAYER_PREFIX, PLAYABLE_MEDIA_TYPES as PLAYABLE_MEDIA_TYPES
+from .const import MEDIA_PLAYER_PREFIX as MEDIA_PLAYER_PREFIX, MEDIA_TYPE_USER_SAVED_TRACKS as MEDIA_TYPE_USER_SAVED_TRACKS, PLAYABLE_MEDIA_TYPES as PLAYABLE_MEDIA_TYPES
 from .coordinator import SpotifyConfigEntry as SpotifyConfigEntry, SpotifyCoordinator as SpotifyCoordinator
 from .entity import SpotifyEntity as SpotifyEntity
 from _typeshed import Incomplete

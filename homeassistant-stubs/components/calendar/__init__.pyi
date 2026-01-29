@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time
@@ -81,6 +82,10 @@ class CalendarEntity(Entity):
     entity_description: CalendarEntityDescription
     _entity_component_unrecorded_attributes: Incomplete
     _alarm_unsubs: list[CALLBACK_TYPE] | None
+    _attr_initial_color: str | None
+    @property
+    def initial_color(self) -> str | None: ...
+    def get_initial_entity_options(self) -> er.EntityOptionsType | None: ...
     @property
     def event(self) -> CalendarEvent | None: ...
     @final

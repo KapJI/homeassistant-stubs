@@ -3,6 +3,7 @@ from .entity import EheimDigitalEntity as EheimDigitalEntity, exception_handler 
 from _typeshed import Incomplete
 from eheimdigital.classic_vario import EheimDigitalClassicVario
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
+from eheimdigital.filter import EheimDigitalFilter
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -12,11 +13,11 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: EheimDigitalConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class EheimDigitalClassicVarioSwitch(EheimDigitalEntity[EheimDigitalClassicVario], SwitchEntity):
+class EheimDigitalFilterSwitch(EheimDigitalEntity[EheimDigitalClassicVario | EheimDigitalFilter], SwitchEntity):
     _attr_translation_key: str
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalClassicVario) -> None: ...
+    def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalClassicVario | EheimDigitalFilter) -> None: ...
     @override
     @exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...

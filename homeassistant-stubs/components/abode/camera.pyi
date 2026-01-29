@@ -1,5 +1,5 @@
 from . import AbodeSystem as AbodeSystem
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN_DATA as DOMAIN_DATA, LOGGER as LOGGER
 from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera

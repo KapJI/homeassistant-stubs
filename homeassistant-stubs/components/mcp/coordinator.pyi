@@ -8,6 +8,7 @@ from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
+from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 from mcp.client.session import ClientSession
@@ -18,7 +19,7 @@ TIMEOUT: int
 type TokenManager = Callable[[], Awaitable[str]]
 
 @asynccontextmanager
-async def mcp_client(url: str, token_manager: TokenManager | None = None) -> AsyncGenerator[ClientSession]: ...
+async def mcp_client(hass: HomeAssistant, url: str, token_manager: TokenManager | None = None) -> AsyncGenerator[ClientSession]: ...
 
 class ModelContextProtocolTool(llm.Tool):
     name: Incomplete

@@ -1,5 +1,5 @@
 from . import BeoConfigEntry as BeoConfigEntry
-from .const import BEOLINK_JOIN_SOURCES as BEOLINK_JOIN_SOURCES, BEOLINK_JOIN_SOURCES_TO_UPPER as BEOLINK_JOIN_SOURCES_TO_UPPER, BEO_REPEAT_FROM_HA as BEO_REPEAT_FROM_HA, BEO_REPEAT_TO_HA as BEO_REPEAT_TO_HA, BEO_STATES as BEO_STATES, BeoAttribute as BeoAttribute, BeoMediaType as BeoMediaType, BeoSource as BeoSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, MANUFACTURER as MANUFACTURER, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
+from .const import BEOLINK_JOIN_SOURCES_TO_UPPER as BEOLINK_JOIN_SOURCES_TO_UPPER, BEO_REPEAT_FROM_HA as BEO_REPEAT_FROM_HA, BEO_REPEAT_TO_HA as BEO_REPEAT_TO_HA, BEO_STATES as BEO_STATES, BeoAttribute as BeoAttribute, BeoMediaType as BeoMediaType, BeoSource as BeoSource, CONF_BEOLINK_JID as CONF_BEOLINK_JID, CONNECTION_STATUS as CONNECTION_STATUS, DOMAIN as DOMAIN, FALLBACK_SOURCES as FALLBACK_SOURCES, MANUFACTURER as MANUFACTURER, VALID_MEDIA_TYPES as VALID_MEDIA_TYPES, WebsocketNotification as WebsocketNotification
 from .entity import BeoEntity as BeoEntity
 from .util import get_serial_number_from_jid as get_serial_number_from_jid
 from _typeshed import Incomplete
@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from mozart_api.models import Art, BeolinkLeader as BeolinkLeader, ListeningModeProps as ListeningModeProps, ListeningModeRef as ListeningModeRef, PlaybackContentMetadata as PlaybackContentMetadata, PlaybackError as PlaybackError, PlaybackProgress, RenderingState as RenderingState, SoftwareUpdateStatus, Source, VolumeState as VolumeState
 from mozart_api.mozart_client import MozartClient as MozartClient

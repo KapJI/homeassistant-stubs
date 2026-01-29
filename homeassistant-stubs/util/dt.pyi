@@ -1,7 +1,6 @@
 import datetime as dt
 import zoneinfo
 from _typeshed import Incomplete
-from homeassistant.helpers.deprecation import deprecated_function as deprecated_function
 from typing import Any, Literal, overload
 
 DATE_STR_FORMAT: str
@@ -27,7 +26,6 @@ def as_local(dattim: dt.datetime) -> dt.datetime: ...
 
 utc_from_timestamp: Incomplete
 
-def utc_to_timestamp(utc_dt: dt.datetime) -> float: ...
 def start_of_local_day(dt_or_d: dt.date | dt.datetime | None = None) -> dt.datetime: ...
 @overload
 def parse_datetime(dt_str: str) -> dt.datetime | None: ...

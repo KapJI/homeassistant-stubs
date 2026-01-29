@@ -23,8 +23,15 @@ class FlowToGridSourceType(TypedDict):
     entity_energy_price: str | None
     number_energy_price: float | None
 
-class GridPowerSourceType(TypedDict):
+class PowerConfig(TypedDict, total=False):
     stat_rate: str
+    stat_rate_inverted: str
+    stat_rate_from: str
+    stat_rate_to: str
+
+class GridPowerSourceType(TypedDict, total=False):
+    stat_rate: str
+    power_config: PowerConfig
 
 class GridSourceType(TypedDict):
     type: Literal['grid']
@@ -44,6 +51,7 @@ class BatterySourceType(TypedDict):
     stat_energy_from: str
     stat_energy_to: str
     stat_rate: NotRequired[str]
+    power_config: NotRequired[PowerConfig]
 
 class GasSourceType(TypedDict):
     type: Literal['gas']
@@ -77,6 +85,10 @@ def _flow_from_ensure_single_price(val: FlowFromGridSourceType) -> FlowFromGridS
 
 FLOW_FROM_GRID_SOURCE_SCHEMA: Incomplete
 FLOW_TO_GRID_SOURCE_SCHEMA: Incomplete
+
+def _validate_power_config(val: dict[str, Any]) -> dict[str, Any]: ...
+
+POWER_CONFIG_SCHEMA: Incomplete
 GRID_POWER_SOURCE_SCHEMA: Incomplete
 
 def _generate_unique_value_validator(key: str) -> Callable[[list[dict]], list[dict]]: ...
@@ -105,5 +117,8 @@ class EnergyManager:
     @staticmethod
     def default_preferences() -> EnergyPreferences: ...
     async def async_update(self, update: EnergyPreferencesUpdate) -> None: ...
+    def _process_energy_sources(self, sources: list[SourceType]) -> list[SourceType]: ...
+    def _process_battery_power(self, source: BatterySourceType, generate_entity_id: Callable[[str, PowerConfig], str]) -> BatterySourceType: ...
+    def _process_grid_power(self, source: GridSourceType, generate_entity_id: Callable[[str, PowerConfig], str]) -> GridSourceType: ...
     @callback
     def async_listen_updates(self, update_listener: Callable[[], Awaitable]) -> None: ...

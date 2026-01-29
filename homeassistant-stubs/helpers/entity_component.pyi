@@ -1,6 +1,6 @@
 import logging
 from . import discovery as discovery, entity as entity, service as service
-from .entity_platform import EntityPlatform as EntityPlatform, async_calculate_suggested_object_id as async_calculate_suggested_object_id
+from .entity_platform import EntityPlatform as EntityPlatform
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, Mapping
@@ -20,8 +20,6 @@ DATA_INSTANCES: HassKey[dict[str, EntityComponent]]
 
 @bind_hass
 async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None: ...
-@callback
-def async_get_entity_suggested_object_id(hass: HomeAssistant, entity_id: str) -> str | None: ...
 
 class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
     logger: Incomplete

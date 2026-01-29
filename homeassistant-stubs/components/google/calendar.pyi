@@ -35,6 +35,7 @@ class GoogleCalendarEntityDescription(CalendarEntityDescription):
     search: str | None
     local_sync: bool
     device_id: str
+    initial_color: str | None = ...
     event_type: EventTypeEnum | None = ...
 
 def _get_entity_descriptions(hass: HomeAssistant, config_entry: GoogleConfigEntry, calendar_item: Calendar, calendar_info: Mapping[str, Any]) -> list[GoogleCalendarEntityDescription]: ...
@@ -49,6 +50,7 @@ class GoogleCalendarEntity(CoordinatorEntity[CalendarSyncUpdateCoordinator | Cal
     _event: CalendarEvent | None
     entity_id: Incomplete
     _attr_unique_id: Incomplete
+    _attr_initial_color: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, coordinator: CalendarSyncUpdateCoordinator | CalendarQueryUpdateCoordinator, calendar_id: str, entity_description: GoogleCalendarEntityDescription, unique_id: str | None) -> None: ...
     @property

@@ -1,8 +1,10 @@
-from _typeshed import Incomplete
-from enum import StrEnum
-from homeassistant.helpers.deprecation import DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from . import StateVacuumEntity as StateVacuumEntity
+from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 
 DOMAIN: str
+DATA_COMPONENT: HassKey[EntityComponent[StateVacuumEntity]]
 
 class VacuumActivity(StrEnum):
     CLEANING = 'cleaning'
@@ -12,10 +14,18 @@ class VacuumActivity(StrEnum):
     RETURNING = 'returning'
     ERROR = 'error'
 
-_DEPRECATED_STATE_CLEANING: Incomplete
-_DEPRECATED_STATE_DOCKED: Incomplete
-_DEPRECATED_STATE_RETURNING: Incomplete
-_DEPRECATED_STATE_ERROR: Incomplete
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete
+class VacuumEntityFeature(IntFlag):
+    TURN_ON = 1
+    TURN_OFF = 2
+    PAUSE = 4
+    STOP = 8
+    RETURN_HOME = 16
+    FAN_SPEED = 32
+    BATTERY = 64
+    STATUS = 128
+    SEND_COMMAND = 256
+    LOCATE = 512
+    CLEAN_SPOT = 1024
+    MAP = 2048
+    STATE = 4096
+    START = 8192

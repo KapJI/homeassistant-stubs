@@ -1,5 +1,4 @@
-from . import AbodeSystem as AbodeSystem
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN_DATA as DOMAIN_DATA
 from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState

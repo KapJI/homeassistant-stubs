@@ -13,6 +13,8 @@ class PortainerEndpointEntity(PortainerCoordinatorEntity):
     device_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device_info: PortainerCoordinatorData, coordinator: PortainerCoordinator) -> None: ...
+    @property
+    def available(self) -> bool: ...
 
 class PortainerContainerEntity(PortainerCoordinatorEntity):
     _device_info: Incomplete
@@ -21,5 +23,7 @@ class PortainerContainerEntity(PortainerCoordinatorEntity):
     device_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device_info: PortainerContainerData, coordinator: PortainerCoordinator, via_device: PortainerCoordinatorData) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @property
     def container_data(self) -> PortainerContainerData: ...

@@ -8,7 +8,6 @@ from homeassistant.components import network as network
 from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import instance_id as instance_id
-from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import async_get_homekit as async_get_homekit, async_get_zeroconf as async_get_zeroconf, bind_hass as bind_hass
@@ -23,9 +22,7 @@ DEFAULT_DEFAULT_INTERFACE: bool
 DEFAULT_IPV6: bool
 MAX_PROPERTY_VALUE_LEN: int
 MAX_NAME_LEN: int
-_DEPRECATED_ATTR_PROPERTIES_ID: Incomplete
 CONFIG_SCHEMA: Incomplete
-_DEPRECATED_ZeroconfServiceInfo: Incomplete
 
 @bind_hass
 async def async_get_instance(hass: HomeAssistant) -> HaZeroconf: ...
@@ -43,7 +40,3 @@ async def _async_register_hass_zc_service(aio_zc: HaAsyncZeroconf, local_service
 def _suppress_invalid_properties(properties: dict) -> None: ...
 def _truncate_location_name_to_valid(location_name: str) -> str: ...
 async def _async_get_local_service_info(hass: HomeAssistant) -> AsyncServiceInfo: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

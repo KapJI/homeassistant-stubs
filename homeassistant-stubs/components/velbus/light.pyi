@@ -6,9 +6,11 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
 from typing import Any
 from velbusaio.channels import Button as VelbusButton, Channel as VelbusChannel, Dimmer as VelbusDimmer
 
+BRIGHTNESS_SCALE: Incomplete
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -34,6 +36,7 @@ class VelbusButtonLight(VelbusEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
+    _attr_translation_key: str
     _attr_name: Incomplete
     def __init__(self, channel: VelbusChannel) -> None: ...
     @property

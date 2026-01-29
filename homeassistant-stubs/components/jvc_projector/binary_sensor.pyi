@@ -1,3 +1,4 @@
+from .const import POWER as POWER
 from .coordinator import JVCConfigEntry as JVCConfigEntry, JvcProjectorDataUpdateCoordinator as JvcProjectorDataUpdateCoordinator
 from .entity import JvcProjectorEntity as JvcProjectorEntity
 from _typeshed import Incomplete

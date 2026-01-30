@@ -2,8 +2,10 @@ from _typeshed import Incomplete
 from homeassistant.components.script import CONF_MODE as CONF_MODE
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_TYPE as CONF_TYPE, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import intent as intent, script as script, service as service, template as template
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
+from homeassistant.helpers.script import async_validate_actions_config as async_validate_actions_config
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import TypedDict
 
@@ -23,7 +25,7 @@ DEFAULT_CONF_ASYNC_ACTION: bool
 CONFIG_SCHEMA: Incomplete
 
 async def async_reload(hass: HomeAssistant, service_call: ServiceCall) -> None: ...
-def async_load_intents(hass: HomeAssistant, intents: dict[str, ConfigType]) -> None: ...
+async def async_load_intents(hass: HomeAssistant, intents: dict[str, ConfigType]) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class _IntentSpeechRepromptData(TypedDict):

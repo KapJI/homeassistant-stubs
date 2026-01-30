@@ -2,9 +2,8 @@ from .coordinator import CalendarUpdateCoordinator as CalendarUpdateCoordinator,
 from .entity import RadarrEntity as RadarrEntity
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
+from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 CALENDAR_TYPE: Incomplete

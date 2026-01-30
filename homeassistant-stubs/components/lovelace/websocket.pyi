@@ -1,4 +1,4 @@
-from .const import CONF_URL_PATH as CONF_URL_PATH, ConfigNotFound as ConfigNotFound, LOVELACE_DATA as LOVELACE_DATA
+from .const import CONF_RESOURCE_MODE as CONF_RESOURCE_MODE, CONF_URL_PATH as CONF_URL_PATH, ConfigNotFound as ConfigNotFound, DOMAIN as DOMAIN, LOVELACE_DATA as LOVELACE_DATA
 from .dashboard import LovelaceConfig as LovelaceConfig
 from .resources import ResourceStorageCollection as ResourceStorageCollection
 from collections.abc import Awaitable, Callable
@@ -13,6 +13,8 @@ def _handle_errors[_R](func: AsyncLovelaceWebSocketCommandHandler[_R]) -> websoc
 @websocket_api.async_response
 async def websocket_lovelace_resources(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 async def websocket_lovelace_resources_impl(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
+async def websocket_lovelace_info(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.async_response
 @_handle_errors
 async def websocket_lovelace_config(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any], config: LovelaceConfig) -> json_fragment: ...

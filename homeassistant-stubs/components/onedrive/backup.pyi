@@ -2,29 +2,24 @@ from .const import CONF_DELETE_PERMANENTLY as CONF_DELETE_PERMANENTLY, DATA_BACK
 from .coordinator import OneDriveConfigEntry as OneDriveConfigEntry
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
-from dataclasses import dataclass
 from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupNotFound as BackupNotFound, suggested_filename as suggested_filename
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.json import json_dumps as json_dumps
+from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any, Concatenate
 
 _LOGGER: Incomplete
 MAX_CHUNK_SIZE: Incomplete
 TARGET_CHUNKS: int
 TIMEOUT: Incomplete
-METADATA_VERSION: int
 CACHE_TTL: int
 
 async def async_get_backup_agents(hass: HomeAssistant) -> list[BackupAgent]: ...
 @callback
 def async_register_backup_agents_listener(hass: HomeAssistant, *, listener: Callable[[], None], **kwargs: Any) -> Callable[[], None]: ...
 def handle_backup_errors[_R, **P](func: Callable[Concatenate[OneDriveBackupAgent, P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[OneDriveBackupAgent, P], Coroutine[Any, Any, _R]]: ...
-
-@dataclass(kw_only=True)
-class OneDriveBackup:
-    backup: AgentBackup
-    backup_file_id: str
-    metadata_file_id: str
+def suggested_filenames(backup: AgentBackup) -> tuple[str, str]: ...
 
 class OneDriveBackupAgent(BackupAgent):
     domain = DOMAIN
@@ -35,7 +30,7 @@ class OneDriveBackupAgent(BackupAgent):
     _folder_id: Incomplete
     name: Incomplete
     unique_id: Incomplete
-    _backup_cache: dict[str, OneDriveBackup]
+    _cache_backup_metadata: dict[str, AgentBackup]
     _cache_expiration: Incomplete
     def __init__(self, hass: HomeAssistant, entry: OneDriveConfigEntry) -> None: ...
     @handle_backup_errors
@@ -48,4 +43,5 @@ class OneDriveBackupAgent(BackupAgent):
     async def async_list_backups(self, **kwargs: Any) -> list[AgentBackup]: ...
     @handle_backup_errors
     async def async_get_backup(self, backup_id: str, **kwargs: Any) -> AgentBackup: ...
-    async def _list_cached_backups(self) -> dict[str, OneDriveBackup]: ...
+    async def _list_cached_metadata_files(self) -> dict[str, AgentBackup]: ...
+    async def _find_backup_by_id(self, backup_id: str) -> AgentBackup: ...

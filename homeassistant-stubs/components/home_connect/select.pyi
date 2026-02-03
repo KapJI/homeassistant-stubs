@@ -1,4 +1,4 @@
-from .common import setup_home_connect_entry as setup_home_connect_entry
+from .common import setup_home_connect_entry as setup_home_connect_entry, should_add_option_entity as should_add_option_entity
 from .const import AVAILABLE_MAPS_ENUM as AVAILABLE_MAPS_ENUM, BEAN_AMOUNT_OPTIONS as BEAN_AMOUNT_OPTIONS, BEAN_CONTAINER_OPTIONS as BEAN_CONTAINER_OPTIONS, CLEANING_MODE_OPTIONS as CLEANING_MODE_OPTIONS, COFFEE_MILK_RATIO_OPTIONS as COFFEE_MILK_RATIO_OPTIONS, COFFEE_TEMPERATURE_OPTIONS as COFFEE_TEMPERATURE_OPTIONS, DOMAIN as DOMAIN, DRYING_TARGET_OPTIONS as DRYING_TARGET_OPTIONS, FLOW_RATE_OPTIONS as FLOW_RATE_OPTIONS, HOT_WATER_TEMPERATURE_OPTIONS as HOT_WATER_TEMPERATURE_OPTIONS, INTENSIVE_LEVEL_OPTIONS as INTENSIVE_LEVEL_OPTIONS, PROGRAMS_TRANSLATION_KEYS_MAP as PROGRAMS_TRANSLATION_KEYS_MAP, RINSE_PLUS_OPTIONS as RINSE_PLUS_OPTIONS, SPIN_SPEED_OPTIONS as SPIN_SPEED_OPTIONS, STAINS_OPTIONS as STAINS_OPTIONS, SUCTION_POWER_OPTIONS as SUCTION_POWER_OPTIONS, TEMPERATURE_OPTIONS as TEMPERATURE_OPTIONS, TRANSLATION_KEYS_PROGRAMS_MAP as TRANSLATION_KEYS_PROGRAMS_MAP, VARIO_PERFECT_OPTIONS as VARIO_PERFECT_OPTIONS, VENTING_LEVEL_OPTIONS as VENTING_LEVEL_OPTIONS, WARMING_LEVEL_OPTIONS as WARMING_LEVEL_OPTIONS
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry, HomeConnectCoordinator as HomeConnectCoordinator
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity, constraint_fetcher as constraint_fetcher
@@ -10,8 +10,10 @@ from aiohomeconnect.model.program import Execution
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -36,7 +38,7 @@ SELECT_ENTITY_DESCRIPTIONS: Incomplete
 PROGRAM_SELECT_OPTION_ENTITY_DESCRIPTIONS: Incomplete
 
 def _get_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectEntity]: ...
-def _get_option_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectOptionEntity]: ...
+def _get_option_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData, entity_registry: er.EntityRegistry) -> list[HomeConnectOptionEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectProgramSelectEntity(HomeConnectEntity, SelectEntity):

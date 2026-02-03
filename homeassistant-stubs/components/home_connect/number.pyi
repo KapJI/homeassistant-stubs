@@ -1,4 +1,4 @@
-from .common import setup_home_connect_entry as setup_home_connect_entry
+from .common import setup_home_connect_entry as setup_home_connect_entry, should_add_option_entity as should_add_option_entity
 from .const import DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
 from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity, constraint_fetcher as constraint_fetcher
@@ -6,9 +6,10 @@ from .utils import get_dict_from_home_connect_error as get_dict_from_home_connec
 from _typeshed import Incomplete
 from aiohomeconnect.model import GetSetting as GetSetting
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.const import PERCENTAGE as PERCENTAGE
+from homeassistant.const import PERCENTAGE as PERCENTAGE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
@@ -17,7 +18,7 @@ NUMBERS: Incomplete
 NUMBER_OPTIONS: Incomplete
 
 def _get_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectEntity]: ...
-def _get_option_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectOptionEntity]: ...
+def _get_option_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData, entity_registry: er.EntityRegistry) -> list[HomeConnectOptionEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectNumberEntity(HomeConnectEntity, NumberEntity):

@@ -8,7 +8,7 @@ from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
@@ -17,6 +17,10 @@ from propcache.api import cached_property
 from typing import Any
 from xknx.devices import Fan as XknxFan
 
+_LOGGER: Incomplete
+
+@callback
+def async_migrate_yaml_uids(hass: HomeAssistant, platform_config: list[ConfigType]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class _KnxFan(FanEntity):

@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
@@ -26,6 +26,8 @@ class SENZSensor(CoordinatorEntity[SENZDataUpdateCoordinator], SensorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, thermostat: Thermostat, coordinator: SENZDataUpdateCoordinator, description: SenzSensorDescription) -> None: ...
+    @callback
+    def _handle_coordinator_update(self) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

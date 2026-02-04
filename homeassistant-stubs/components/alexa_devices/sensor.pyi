@@ -1,6 +1,7 @@
 from .const import CATEGORY_NOTIFICATIONS as CATEGORY_NOTIFICATIONS, CATEGORY_SENSORS as CATEGORY_SENSORS
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry
 from .entity import AmazonEntity as AmazonEntity
+from .utils import async_remove_unsupported_notification_sensors as async_remove_unsupported_notification_sensors
 from _typeshed import Incomplete
 from aioamazondevices.structures import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable

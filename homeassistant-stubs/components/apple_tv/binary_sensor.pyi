@@ -1,9 +1,10 @@
-from . import AppleTvConfigEntry as AppleTvConfigEntry
+from . import AppleTvConfigEntry as AppleTvConfigEntry, SIGNAL_CONNECTED as SIGNAL_CONNECTED
 from .entity import AppleTVEntity as AppleTVEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.const import CONF_NAME as CONF_NAME
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatv.const import KeyboardFocusState
 from pyatv.interface import AppleTV as AppleTV, KeyboardListener

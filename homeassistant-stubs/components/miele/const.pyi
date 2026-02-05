@@ -601,6 +601,8 @@ class CoffeeSystemProgramId(MieleEnum, missing_to_none=True):
     barista_assistant: int
     appliance_settings: Incomplete
     appliance_rinse: Incomplete
+    intermediate_rinsing: int
+    automatic_maintenance: int
     descaling: int
     brewing_unit_degrease: int
     milk_pipework_rinse: int

@@ -1,11 +1,10 @@
-from . import AmbientStation as AmbientStation, AmbientStationConfigEntry as AmbientStationConfigEntry
+from . import AmbientStationConfigEntry as AmbientStationConfigEntry
 from .const import ATTR_LAST_DATA as ATTR_LAST_DATA, TYPE_SOLARRADIATION as TYPE_SOLARRADIATION, TYPE_SOLARRADIATION_LX as TYPE_SOLARRADIATION_LX
 from .entity import AmbientWeatherEntity as AmbientWeatherEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_NAME as ATTR_NAME, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 TYPE_24HOURRAININ: str
@@ -93,8 +92,6 @@ SENSOR_DESCRIPTIONS: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: AmbientStationConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AmbientWeatherSensor(AmbientWeatherEntity, SensorEntity):
-    entity_id: Incomplete
-    def __init__(self, ambient: AmbientStation, mac_address: str, station_name: str, description: EntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def update_from_latest_data(self) -> None: ...

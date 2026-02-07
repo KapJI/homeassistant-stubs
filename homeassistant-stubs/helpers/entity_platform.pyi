@@ -4,6 +4,7 @@ from .deprecation import deprecated_function as deprecated_function
 from .entity import Entity as Entity
 from .entity_registry import EntityRegistry as EntityRegistry, RegistryEntryDisabler as RegistryEntryDisabler, RegistryEntryHider as RegistryEntryHider
 from .event import async_call_later as async_call_later
+from .frame import report_usage as report_usage
 from .issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, UNDEFINED as UNDEFINED, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete

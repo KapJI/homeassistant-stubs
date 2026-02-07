@@ -33,7 +33,6 @@ class RpcLinkedgoThermostatClimate(ShellyRpcAttributeEntity, ClimateEntity):
     _id: int
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
-    _status: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: Incomplete
@@ -50,6 +49,8 @@ class RpcLinkedgoThermostatClimate(ShellyRpcAttributeEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _working_mode_key: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
+    @property
+    def _status(self) -> dict[str, Any]: ...
     @property
     def current_humidity(self) -> float | None: ...
     @property

@@ -8,6 +8,7 @@ class Abort(Exception): ...
 
 class AsyncIteratorReader:
     _aborted: bool
+    _exhausted: bool
     _loop: Incomplete
     _stream: Incomplete
     _buffer: bytes | None

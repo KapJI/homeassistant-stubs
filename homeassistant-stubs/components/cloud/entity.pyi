@@ -9,6 +9,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.util import slugify as slugify
 from openai.types.responses import FunctionToolParam as FunctionToolParam, ResponseInputItemParam as ResponseInputItemParam, ToolParam as ToolParam
 from typing import Any, Literal

@@ -111,15 +111,15 @@ class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
 class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
     not_running: Incomplete
     program_running: int
-    drying: int
+    drying: Incomplete
     machine_iron: int
     hand_iron_2: int
     normal: int
     normal_plus: int
     cooling_down: int
     hand_iron_1: int
-    anti_crease: int
-    finished: int
+    anti_crease: Incomplete
+    finished: Incomplete
     extra_dry: int
     hand_iron: int
     moisten: int
@@ -127,12 +127,14 @@ class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
     timed_drying: int
     warm_air: int
     steam_smoothing: int
-    comfort_cooling: int
+    comfort_cooling: Incomplete
     rinse_out_lint: int
     rinses: int
     smoothing: int
     slightly_dry: int
     safety_cooling: int
+    automatic_start: int
+    perfect_dry_active: int
 
 class ProgramPhaseWasherDryer(MieleEnum, missing_to_none=True):
     not_running: Incomplete
@@ -189,6 +191,8 @@ class ProgramPhaseOven(MieleEnum, missing_to_none=True):
     heating_up: int
     process_running: int
     process_finished: int
+    searing: int
+    roasting: int
     energy_save: int
     pre_heating: int
 
@@ -260,6 +264,8 @@ class ProgramPhaseSteamOvenCombi(MieleEnum, missing_to_none=True):
     heating_up: int
     process_running: Incomplete
     process_finished: Incomplete
+    searing: int
+    roasting: int
     energy_save: int
     pre_heating: int
     steam_reduction: int
@@ -367,6 +373,7 @@ class TumbleDryerProgramId(MieleEnum, missing_to_none=True):
     cottons: Incomplete
     minimum_iron: Incomplete
     woollens_handcare: Incomplete
+    woollens: int
     delicates: Incomplete
     warm_air: Incomplete
     cool_air: Incomplete
@@ -383,11 +390,38 @@ class TumbleDryerProgramId(MieleEnum, missing_to_none=True):
     cottons_hygiene: Incomplete
     smoothing: Incomplete
     bed_linen: Incomplete
-    eco: int
+    eco: Incomplete
     gentle_smoothing: Incomplete
     gentle_denim: int
     steam_smoothing: int
     large_pillows: int
+    downs_duvets: int
+    curtains: int
+    quick_power_dry: int
+    automatic: int
+    quick_hygiene: int
+    hygiene: int
+    pillows_sanitize: int
+    custom_program_1: int
+    custom_program_2: int
+    custom_program_3: int
+    custom_program_4: int
+    custom_program_5: int
+    custom_program_6: int
+    custom_program_7: int
+    custom_program_8: int
+    custom_program_9: int
+    custom_program_10: int
+    custom_program_11: int
+    custom_program_12: int
+    custom_program_13: int
+    custom_program_14: int
+    custom_program_15: int
+    custom_program_16: int
+    custom_program_17: int
+    custom_program_18: int
+    custom_program_19: int
+    custom_program_20: int
 
 class OvenProgramId(MieleEnum, missing_to_none=True):
     no_program: Incomplete

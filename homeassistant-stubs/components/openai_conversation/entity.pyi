@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.util import slugify as slugify
 from openai._streaming import AsyncStream as AsyncStream
 from openai.types.responses import FunctionToolParam, ResponseInputMessageContentListParam as ResponseInputMessageContentListParam, ResponseInputParam as ResponseInputParam, ResponseStreamEvent as ResponseStreamEvent, ToolParam as ToolParam

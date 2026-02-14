@@ -7,6 +7,7 @@ __all__ = ['B2Api', 'InMemoryAccountInfo']
 class B2Http(BaseB2Http):
     CONNECTION_TIMEOUT = CONNECTION_TIMEOUT
     TIMEOUT_FOR_UPLOAD = TIMEOUT_FOR_UPLOAD
+    TRY_COUNT_DOWNLOAD = TRY_COUNT_DOWNLOAD
 
 class B2Session(BaseB2Session):
     B2HTTP_CLASS = B2Http

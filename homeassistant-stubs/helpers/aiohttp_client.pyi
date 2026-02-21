@@ -4,10 +4,11 @@ from .frame import warn_use as warn_use
 from .json import json_dumps as json_dumps
 from .singleton import singleton as singleton
 from _typeshed import Incomplete
-from aiohttp import web
+from aiohttp import ClientMiddlewareType as ClientMiddlewareType, web
 from aiohttp.typedefs import JSONDecoder as JSONDecoder
 from aiohttp_asyncmdnsresolver.api import AsyncDualMDNSResolver
 from collections.abc import Awaitable, Callable as Callable
+from functools import lru_cache
 from homeassistant import config_entries as config_entries
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
@@ -16,6 +17,7 @@ from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import ssl as ssl_util
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import json_loads as json_loads
+from homeassistant.util.network import is_loopback as is_loopback
 from typing import Any, Self
 
 DATA_CONNECTOR: HassKey[dict[tuple[bool, int, str], aiohttp.BaseConnector]]
@@ -23,6 +25,16 @@ DATA_CLIENTSESSION: HassKey[dict[tuple[bool, int, str], aiohttp.ClientSession]]
 DATA_RESOLVER: HassKey[HassAsyncDNSResolver]
 SERVER_SOFTWARE: Incomplete
 WARN_CLOSE_MSG: str
+_LOCALHOST: str
+_TRAILING_LOCAL_HOST: Incomplete
+
+class SSRFRedirectError(aiohttp.ClientError): ...
+
+async def _ssrf_redirect_middleware(request: aiohttp.ClientRequest, handler: aiohttp.ClientHandlerType) -> aiohttp.ClientResponse: ...
+@lru_cache
+def _is_ssrf_address(address: str) -> bool: ...
+async def _async_is_blocked_host(host: str | None, connector: aiohttp.BaseConnector | None) -> bool: ...
+
 MAXIMUM_CONNECTIONS: int
 MAXIMUM_CONNECTIONS_PER_HOST: int
 
@@ -61,6 +73,7 @@ def _make_key(verify_ssl: bool = True, family: socket.AddressFamily = ..., ssl_c
 
 class HomeAssistantTCPConnector(aiohttp.TCPConnector):
     _cleanup_closed_period: float
+    async def async_resolve_host(self, host: str) -> list[aiohttp.abc.ResolveResult]: ...
 
 @callback
 def _async_get_connector(hass: HomeAssistant, verify_ssl: bool = True, family: socket.AddressFamily = ..., ssl_cipher: ssl_util.SSLCipherList = ...) -> aiohttp.BaseConnector: ...

@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Callable
 from eheimdigital.device import EheimDigitalDevice
-from eheimdigital.types import EheimDeviceType as EheimDeviceType
+from eheimdigital.types import EheimDeviceType
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -18,6 +18,7 @@ class EheimDigitalUpdateCoordinator(DataUpdateCoordinator[dict[str, EheimDigital
     main_device_added_event: Incomplete
     hub: Incomplete
     known_devices: set[str]
+    incomplete_devices: set[str]
     platform_callbacks: set[AsyncSetupDeviceEntitiesCallback]
     def __init__(self, hass: HomeAssistant, config_entry: EheimDigitalConfigEntry) -> None: ...
     def add_platform_callback(self, async_setup_device_entities: AsyncSetupDeviceEntitiesCallback) -> None: ...

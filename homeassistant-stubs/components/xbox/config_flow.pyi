@@ -5,6 +5,7 @@ from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, SOURCE_REAUTH as SOURCE_REAUTH, SubentryFlowResult as SubentryFlowResult
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
+from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
 from typing import Any
 

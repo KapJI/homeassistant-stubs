@@ -34,7 +34,6 @@ class BrowsableMedia(StrEnum):
     CURRENT_USER_RECENTLY_PLAYED = 'current_user_recently_played'
     CURRENT_USER_TOP_ARTISTS = 'current_user_top_artists'
     CURRENT_USER_TOP_TRACKS = 'current_user_top_tracks'
-    NEW_RELEASES = 'new_releases'
 
 LIBRARY_MAP: Incomplete
 CONTENT_TYPE_MEDIA_CLASS: dict[str, Any]

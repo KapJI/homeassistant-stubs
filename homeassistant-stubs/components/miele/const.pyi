@@ -473,11 +473,11 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     evaporate_water: int
     shabbat_program: int
     yom_tov: int
-    drying: int
+    drying: Incomplete
     heat_crockery: int
-    prove_dough: int
+    prove_dough: Incomplete
     low_temperature_cooking: int
-    steam_cooking: int
+    steam_cooking: Incomplete
     keeping_warm: int
     apple_sponge: int
     apple_pie: int
@@ -524,9 +524,9 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     saddle_of_roebuck: int
     salmon_fillet: int
     potato_cheese_gratin: int
-    trout: int
-    carp: int
-    salmon_trout: int
+    trout: Incomplete
+    carp: Incomplete
+    salmon_trout: Incomplete
     springform_tin_15cm: int
     springform_tin_20cm: int
     springform_tin_25cm: int
@@ -592,73 +592,15 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     pork_belly: int
     pikeperch_fillet_with_vegetables: int
     steam_bake: int
-
-class DishWarmerProgramId(MieleEnum, missing_to_none=True):
-    no_program: Incomplete
-    warm_cups_glasses: int
-    warm_dishes_plates: int
-    keep_warm: int
-    slow_roasting: int
-
-class RobotVacuumCleanerProgramId(MieleEnum, missing_to_none=True):
-    no_program: Incomplete
-    auto: int
-    spot: int
-    turbo: int
-    silent: int
-
-class CoffeeSystemProgramId(MieleEnum, missing_to_none=True):
-    no_program: Incomplete
-    check_appliance: int
-    ristretto: Incomplete
-    espresso: Incomplete
-    coffee: Incomplete
-    long_coffee: Incomplete
-    cappuccino: Incomplete
-    cappuccino_italiano: Incomplete
-    latte_macchiato: Incomplete
-    espresso_macchiato: Incomplete
-    cafe_au_lait: Incomplete
-    caffe_latte: Incomplete
-    flat_white: Incomplete
-    very_hot_water: Incomplete
-    hot_water: Incomplete
-    hot_milk: Incomplete
-    milk_foam: Incomplete
-    black_tea: Incomplete
-    herbal_tea: Incomplete
-    fruit_tea: Incomplete
-    green_tea: Incomplete
-    white_tea: Incomplete
-    japanese_tea: Incomplete
-    coffee_pot: int
-    barista_assistant: int
-    appliance_settings: Incomplete
-    appliance_rinse: Incomplete
-    intermediate_rinsing: int
-    automatic_maintenance: int
-    descaling: int
-    brewing_unit_degrease: int
-    milk_pipework_rinse: int
-    milk_pipework_clean: int
-
-class SteamOvenMicroProgramId(MieleEnum, missing_to_none=True):
-    no_program: Incomplete
-    steam_cooking: int
-    microwave: int
-    popcorn: int
-    quick_mw: int
     sous_vide: int
     eco_steam_cooking: int
     rapid_steam_cooking: int
-    descale: int
     menu_cooking: int
     reheating_with_steam: int
     defrosting_with_steam: int
     blanching: int
     bottling: int
     sterilize_crockery: int
-    prove_dough: int
     soak: int
     reheating_with_microwave: int
     defrosting_with_microwave: int
@@ -812,18 +754,15 @@ class SteamOvenMicroProgramId(MieleEnum, missing_to_none=True):
     gilt_head_bream_fillet: int
     codfish_piece: Incomplete
     codfish_fillet: Incomplete
-    trout: int
     pike_fillet: int
     pike_piece: int
     halibut_fillet_2_cm: int
     halibut_fillet_3_cm: int
-    carp: int
     salmon_fillet_2_cm: int
     salmon_fillet_3_cm: int
     salmon_steak_2_cm: int
     salmon_steak_3_cm: int
     salmon_piece: int
-    salmon_trout: int
     iridescent_shark_fillet: int
     red_snapper_fillet_2_cm: int
     red_snapper_fillet_3_cm: int
@@ -1058,6 +997,55 @@ class SteamOvenMicroProgramId(MieleEnum, missing_to_none=True):
     sheyang_rapid_steam_cooking: int
     round_grain_rice_general_steam_cooking: int
     round_grain_rice_general_rapid_steam_cooking: int
+
+class DishWarmerProgramId(MieleEnum, missing_to_none=True):
+    no_program: Incomplete
+    warm_cups_glasses: int
+    warm_dishes_plates: int
+    keep_warm: int
+    slow_roasting: int
+
+class RobotVacuumCleanerProgramId(MieleEnum, missing_to_none=True):
+    no_program: Incomplete
+    auto: int
+    spot: int
+    turbo: int
+    silent: int
+
+class CoffeeSystemProgramId(MieleEnum, missing_to_none=True):
+    no_program: Incomplete
+    check_appliance: int
+    ristretto: Incomplete
+    espresso: Incomplete
+    coffee: Incomplete
+    long_coffee: Incomplete
+    cappuccino: Incomplete
+    cappuccino_italiano: Incomplete
+    latte_macchiato: Incomplete
+    espresso_macchiato: Incomplete
+    cafe_au_lait: Incomplete
+    caffe_latte: Incomplete
+    flat_white: Incomplete
+    very_hot_water: Incomplete
+    hot_water: Incomplete
+    hot_milk: Incomplete
+    milk_foam: Incomplete
+    black_tea: Incomplete
+    herbal_tea: Incomplete
+    fruit_tea: Incomplete
+    green_tea: Incomplete
+    white_tea: Incomplete
+    japanese_tea: Incomplete
+    coffee_pot: int
+    barista_assistant: int
+    appliance_settings: Incomplete
+    appliance_rinse: Incomplete
+    intermediate_rinsing: int
+    automatic_maintenance: int
+    descaling: int
+    brewing_unit_degrease: int
+    milk_pipework_rinse: int
+    milk_pipework_clean: int
 
 PROGRAM_IDS: dict[int, type[MieleEnum]]
 COFFEE_SYSTEM_PROFILE: dict[range, str]

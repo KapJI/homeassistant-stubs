@@ -5,12 +5,15 @@ from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from spotifyaio import PlaybackState as PlaybackState, Playlist as Playlist, SpotifyClient as SpotifyClient, UserProfile as UserProfile
 
 _LOGGER: Incomplete
 type SpotifyConfigEntry = ConfigEntry[SpotifyData]
 UPDATE_INTERVAL: Incomplete
+FREE_API_BLOGPOST: str
 
 @dataclass
 class SpotifyCoordinatorData:

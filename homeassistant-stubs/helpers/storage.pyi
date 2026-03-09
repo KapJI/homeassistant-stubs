@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, Mapping, Sequence as Sequence
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, UnsupportedStorageVersionError as UnsupportedStorageVersionError
 from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import json as json_util
 from homeassistant.util.file import WriteError as WriteError, write_utf8_file as write_utf8_file, write_utf8_file_atomic as write_utf8_file_atomic
@@ -61,13 +61,16 @@ class Store[_T: Mapping[str, Any] | Sequence[Any]]:
     _encoder: Incomplete
     _atomic_writes: Incomplete
     _read_only: Incomplete
+    _load_empty: bool
+    _max_readable_version: Incomplete
     _next_write_time: float
     _manager: Incomplete
     _serialize_in_event_loop: Incomplete
-    def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = False, *, atomic_writes: bool = False, encoder: type[JSONEncoder] | None = None, minor_version: int = 1, read_only: bool = False, serialize_in_event_loop: bool = True) -> None: ...
+    def __init__(self, hass: HomeAssistant, version: int, key: str, private: bool = False, *, atomic_writes: bool = False, encoder: type[JSONEncoder] | None = None, max_readable_version: int | None = None, minor_version: int = 1, read_only: bool = False, serialize_in_event_loop: bool = True) -> None: ...
     @cached_property
     def path(self): ...
     def make_read_only(self) -> None: ...
+    def set_load_empty(self) -> None: ...
     async def async_load(self) -> _T | None: ...
     async def _async_load(self) -> _T | None: ...
     async def _async_load_data(self): ...

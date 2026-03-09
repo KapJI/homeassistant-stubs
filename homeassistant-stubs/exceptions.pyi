@@ -121,3 +121,9 @@ class MaxLengthExceeded(HomeAssistantError):
 class DependencyError(HomeAssistantError):
     failed_dependencies: Incomplete
     def __init__(self, failed_dependencies: list[str]) -> None: ...
+
+class UnsupportedStorageVersionError(HomeAssistantError):
+    storage_key: Incomplete
+    found_version: Incomplete
+    max_supported_version: Incomplete
+    def __init__(self, storage_key: str, found_version: int, max_supported_version: int) -> None: ...

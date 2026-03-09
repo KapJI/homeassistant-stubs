@@ -13,6 +13,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+_LOGGER: Incomplete
+
 class OperationalState(IntEnum):
     STOPPED = 0
     RUNNING = 1

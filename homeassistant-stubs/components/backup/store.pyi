@@ -16,6 +16,7 @@ class StoredBackupData(TypedDict):
     config: StoredBackupConfig
 
 class _BackupStore(Store[StoredBackupData]):
+    _MAX_READABLE_VERSION: int
     def __init__(self, hass: HomeAssistant) -> None: ...
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 

@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .entity import RoborockEntity as RoborockEntity, RoborockEntityV1 as RoborockEntityV1
+from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator
+from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockEntity as RoborockEntity, RoborockEntityV1 as RoborockEntityV1
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from roborock.devices.traits.v1.consumeable import ConsumableAttribute
+from roborock.roborock_message import RoborockZeoProtocol
 from typing import Any
 
 _LOGGER: Incomplete
@@ -19,6 +20,12 @@ class RoborockButtonDescription(ButtonEntityDescription):
     attribute: ConsumableAttribute
 
 CONSUMABLE_BUTTON_DESCRIPTIONS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class RoborockButtonDescriptionA01(ButtonEntityDescription):
+    data_protocol: RoborockZeoProtocol
+
+ZEO_BUTTON_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -34,3 +41,8 @@ class RoborockRoutineButtonEntity(RoborockEntity, ButtonEntity):
     _coordinator: Incomplete
     def __init__(self, coordinator: RoborockDataUpdateCoordinator, entity_description: ButtonEntityDescription) -> None: ...
     async def async_press(self, **kwargs: Any) -> None: ...
+
+class RoborockButtonEntityA01(RoborockCoordinatedEntityA01, ButtonEntity):
+    entity_description: RoborockButtonDescriptionA01
+    def __init__(self, coordinator: RoborockDataUpdateCoordinatorA01, entity_description: RoborockButtonDescriptionA01) -> None: ...
+    async def async_press(self) -> None: ...

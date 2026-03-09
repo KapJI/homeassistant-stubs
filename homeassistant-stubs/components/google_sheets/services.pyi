@@ -1,10 +1,10 @@
 from . import GoogleSheetsConfigEntry as GoogleSheetsConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySelector
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 

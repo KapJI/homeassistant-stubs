@@ -6,20 +6,19 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from deebot_client.capabilities import Capabilities
 from deebot_client.device import Device as Device
-from deebot_client.events import FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
-from deebot_client.models import CleanAction, Room as Room
-from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
-from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
+from deebot_client.events import CachedMapInfoEvent as CachedMapInfoEvent, FanSpeedEvent as FanSpeedEvent, RoomsEvent as RoomsEvent, StateEvent as StateEvent
+from deebot_client.events.map import Map as Map
+from deebot_client.models import CleanAction
+from homeassistant.components.vacuum import Segment as Segment, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
 from typing import Any
 
 _LOGGER: Incomplete
+_SEGMENTS_SEPARATOR: str
 ATTR_ERROR: str
-ATTR_COMPONENT_PREFIX: str
-SERVICE_RAW_GET_POSITIONS: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -51,7 +50,8 @@ class EcovacsVacuum(EcovacsEntity[Capabilities], StateVacuumEntity):
     _unrecorded_attributes: Incomplete
     _attr_supported_features: Incomplete
     entity_description: Incomplete
-    _rooms: list[Room]
+    _room_event: RoomsEvent | None
+    _maps: dict[str, Map]
     _attr_fan_speed_list: Incomplete
     def __init__(self, device: Device) -> None: ...
     _attr_activity: Incomplete
@@ -68,3 +68,11 @@ class EcovacsVacuum(EcovacsEntity[Capabilities], StateVacuumEntity):
     async def async_locate(self, **kwargs: Any) -> None: ...
     async def async_send_command(self, command: str, params: dict[str, Any] | list[Any] | None = None, **kwargs: Any) -> None: ...
     async def async_raw_get_positions(self) -> dict[str, Any]: ...
+    @callback
+    def _check_segments_changed(self) -> None: ...
+    def _get_segments(self) -> list[Segment]: ...
+    async def async_get_segments(self) -> list[Segment]: ...
+    async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
+
+@callback
+def _split_composite_id(composite_id: str) -> tuple[str, str]: ...

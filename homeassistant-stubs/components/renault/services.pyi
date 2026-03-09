@@ -18,11 +18,6 @@ SERVICE_CHARGE_SET_SCHEDULES_SCHEMA: Incomplete
 SERVICE_AC_SET_SCHEDULE_DAY_SCHEMA: Incomplete
 SERVICE_AC_SET_SCHEDULE_SCHEMA: Incomplete
 SERVICE_AC_SET_SCHEDULES_SCHEMA: Incomplete
-SERVICE_AC_CANCEL: str
-SERVICE_AC_START: str
-SERVICE_CHARGE_SET_SCHEDULES: str
-SERVICE_AC_SET_SCHEDULES: str
-SERVICES: Incomplete
 
 async def ac_cancel(service_call: ServiceCall) -> None: ...
 async def ac_start(service_call: ServiceCall) -> None: ...

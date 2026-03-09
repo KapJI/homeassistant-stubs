@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError, OAuth2TokenRequestTransientError as OAuth2TokenRequestTransientError
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAuth2Session
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from httpx import AsyncClient as AsyncClient

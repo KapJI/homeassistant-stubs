@@ -1,10 +1,8 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import OhmeConfigEntry as OhmeConfigEntry
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import selector as selector
+from homeassistant.helpers import selector as selector, service as service
 from ohme import OhmeApiClient as OhmeApiClient
 from typing import Final
 

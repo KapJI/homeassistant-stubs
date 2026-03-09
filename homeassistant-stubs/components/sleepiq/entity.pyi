@@ -1,6 +1,6 @@
 import abc
 from .const import ENTITY_TYPES as ENTITY_TYPES, ICON_OCCUPIED as ICON_OCCUPIED
-from .coordinator import SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator, SleepIQPauseUpdateCoordinator as SleepIQPauseUpdateCoordinator
+from .coordinator import SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator, SleepIQPauseUpdateCoordinator as SleepIQPauseUpdateCoordinator, SleepIQSleepDataCoordinator as SleepIQSleepDataCoordinator
 from _typeshed import Incomplete
 from abc import abstractmethod
 from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSleeper
@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-type _DataCoordinatorType = SleepIQDataUpdateCoordinator | SleepIQPauseUpdateCoordinator
+type _DataCoordinatorType = SleepIQDataUpdateCoordinator | SleepIQPauseUpdateCoordinator | SleepIQSleepDataCoordinator
 def device_from_bed(bed: SleepIQBed) -> DeviceInfo: ...
 def sleeper_for_side(bed: SleepIQBed, side: str) -> SleepIQSleeper: ...
 

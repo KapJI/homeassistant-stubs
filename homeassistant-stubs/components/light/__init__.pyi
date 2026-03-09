@@ -6,36 +6,19 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.loader import bind_hass as bind_hass
 from propcache.api import cached_property
-from typing import Any, Final, Self, final
+from typing import Any, Self, final
 
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-_DEPRECATED_SUPPORT_BRIGHTNESS: Final[Incomplete]
-_DEPRECATED_SUPPORT_COLOR_TEMP: Final[Incomplete]
-_DEPRECATED_SUPPORT_EFFECT: Final[Incomplete]
-_DEPRECATED_SUPPORT_FLASH: Final[Incomplete]
-_DEPRECATED_SUPPORT_COLOR: Final[Incomplete]
-_DEPRECATED_SUPPORT_TRANSITION: Final[Incomplete]
 ATTR_COLOR_MODE: str
 ATTR_SUPPORTED_COLOR_MODES: str
-_DEPRECATED_COLOR_MODE_UNKNOWN: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_ONOFF: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_BRIGHTNESS: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_COLOR_TEMP: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_HS: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_XY: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_RGB: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_RGBW: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_RGBWW: Final[Incomplete]
-_DEPRECATED_COLOR_MODE_WHITE: Final[Incomplete]
 
 def filter_supported_color_modes(color_modes: Iterable[ColorMode]) -> set[ColorMode]: ...
 def valid_supported_color_modes(color_modes: Iterable[ColorMode]) -> set[ColorMode]: ...
@@ -55,10 +38,6 @@ ATTR_MIN_COLOR_TEMP_KELVIN: str
 ATTR_MAX_COLOR_TEMP_KELVIN: str
 ATTR_COLOR_NAME: str
 ATTR_WHITE: str
-_DEPRECATED_ATTR_COLOR_TEMP: Final[Incomplete]
-_DEPRECATED_ATTR_KELVIN: Final[Incomplete]
-_DEPRECATED_ATTR_MIN_MIREDS: Final[Incomplete]
-_DEPRECATED_ATTR_MAX_MIREDS: Final[Incomplete]
 ATTR_BRIGHTNESS: str
 ATTR_BRIGHTNESS_PCT: str
 ATTR_BRIGHTNESS_STEP: str
@@ -132,24 +111,18 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_effect_list: list[str] | None
     _attr_effect: str | None
     _attr_hs_color: tuple[float, float] | None
-    _attr_max_color_temp_kelvin: int | None
-    _attr_min_color_temp_kelvin: int | None
+    _attr_max_color_temp_kelvin: int
+    _attr_min_color_temp_kelvin: int
     _attr_rgb_color: tuple[int, int, int] | None
     _attr_rgbw_color: tuple[int, int, int, int] | None
     _attr_rgbww_color: tuple[int, int, int, int, int] | None
     _attr_supported_color_modes: set[ColorMode] | None
     _attr_supported_features: LightEntityFeature
     _attr_xy_color: tuple[float, float] | None
-    _attr_color_temp: Final[int | None]
-    _attr_max_mireds: Final[int]
-    _attr_min_mireds: Final[int]
-    __color_mode_reported: bool
     @cached_property
     def brightness(self) -> int | None: ...
     @cached_property
     def color_mode(self) -> ColorMode | None: ...
-    @property
-    def _light_internal_color_mode(self) -> str: ...
     @cached_property
     def hs_color(self) -> tuple[float, float] | None: ...
     @cached_property
@@ -162,17 +135,8 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def _light_internal_rgbw_color(self) -> tuple[int, int, int, int] | None: ...
     @cached_property
     def rgbww_color(self) -> tuple[int, int, int, int, int] | None: ...
-    @final
-    @cached_property
-    def color_temp(self) -> int | None: ...
     @property
     def color_temp_kelvin(self) -> int | None: ...
-    @final
-    @cached_property
-    def min_mireds(self) -> int: ...
-    @final
-    @cached_property
-    def max_mireds(self) -> int: ...
     @property
     def min_color_temp_kelvin(self) -> int: ...
     @property
@@ -184,7 +148,7 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @property
     def capability_attributes(self) -> dict[str, Any]: ...
     def _light_internal_convert_color(self, color_mode: ColorMode | str) -> dict[str, tuple[float, ...]]: ...
-    def __validate_color_mode(self, color_mode: ColorMode | str | None, supported_color_modes: set[ColorMode] | set[str], effect: str | None) -> None: ...
+    def __validate_color_mode(self, color_mode: ColorMode | None, supported_color_modes: set[ColorMode], effect: str | None) -> None: ...
     def __validate_supported_color_modes(self, supported_color_modes: set[ColorMode]) -> None: ...
     @final
     @property
@@ -195,11 +159,3 @@ class LightEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def supported_color_modes(self) -> set[ColorMode] | None: ...
     @cached_property
     def supported_features(self) -> LightEntityFeature: ...
-    _deprecated_supported_features_reported: bool
-    @property
-    def supported_features_compat(self) -> LightEntityFeature: ...
-    def __should_report_light_issue(self) -> bool: ...
-
-__getattr__: Incomplete
-__dir__: Incomplete
-__all__: Incomplete

@@ -11,3 +11,5 @@ PLATFORMS: Final[Incomplete]
 ATTRIBUTION: Final[str]
 ATTR_TARGET: Final[str]
 API_ATTR_OK: Final[str]
+STATUS_UP: str
+STATUS_DOWN: str

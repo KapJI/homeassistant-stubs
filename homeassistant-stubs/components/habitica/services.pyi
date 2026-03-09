@@ -3,10 +3,10 @@ from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry
 from _typeshed import Incomplete
 from habiticalib import TaskData as TaskData
 from homeassistant.components.todo import ATTR_RENAME as ATTR_RENAME
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DATE as ATTR_DATE, ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import service as service
 from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySelector
 
 _LOGGER: Incomplete
@@ -25,7 +25,6 @@ COST_MAP: Incomplete
 ITEMID_MAP: Incomplete
 SERVICE_TASK_TYPE_MAP: Incomplete
 
-def get_config_entry(hass: HomeAssistant, entry_id: str) -> HabiticaConfigEntry: ...
 async def _cast_skill(call: ServiceCall) -> ServiceResponse: ...
 async def _manage_quests(call: ServiceCall) -> ServiceResponse: ...
 async def _score_task(call: ServiceCall) -> ServiceResponse: ...

@@ -2,9 +2,9 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import ImmichConfigEntry as ImmichConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.media_source import async_resolve_media as async_resolve_media
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import service as service
 from homeassistant.helpers.selector import MediaSelector as MediaSelector
 
 _LOGGER: Incomplete

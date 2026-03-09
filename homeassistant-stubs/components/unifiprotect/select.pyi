@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 from uiprotect.api import ProtectApiClient as ProtectApiClient
-from uiprotect.data import Camera, Doorlock, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
+from uiprotect.data import Camera, Doorlock, Light, ModelType, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
@@ -28,6 +28,8 @@ LIGHT_MODE_OFF: str
 LIGHT_MODES: Incomplete
 LIGHT_MODE_TO_SETTINGS: Incomplete
 MOTION_MODE_TO_LIGHT_MODE: Incomplete
+PTZ_PATROL_STOP: str
+_KEY_PTZ_PATROL: str
 DEVICE_RECORDING_MODES: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
@@ -45,7 +47,9 @@ async def _set_light_mode(obj: Light, mode: str) -> None: ...
 async def _set_paired_camera(obj: Light | Sensor | Doorlock, camera_id: str) -> None: ...
 async def _set_doorbell_message(obj: Camera, message: str) -> None: ...
 async def _set_liveview(obj: Viewer, liveview_id: str) -> None: ...
+async def _set_ptz_patrol(obj: Camera, patrol_slot: str) -> None: ...
 
+PTZ_PATROL_DESCRIPTION: Incomplete
 CAMERA_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 LIGHT_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 SENSE_SELECTS: tuple[ProtectSelectEntityDescription, ...]
@@ -68,5 +72,19 @@ class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     _unifi_to_hass_options: Incomplete
     @callback
     def _async_set_options(self, data: ProtectData, description: ProtectSelectEntityDescription) -> None: ...
+    @async_ufp_instance_command
+    async def async_select_option(self, option: str) -> None: ...
+
+class ProtectPTZPatrolSelect(ProtectDeviceEntity, SelectEntity):
+    device: Camera
+    _attr_current_option: str | None
+    _state_attrs: Incomplete
+    _hass_to_unifi_options: dict[str, str]
+    _unifi_to_hass_options: Incomplete
+    _attr_options: Incomplete
+    def __init__(self, data: ProtectData, device: Camera, patrols: list[PTZPatrol]) -> None: ...
+    def _update_patrol_state(self) -> None: ...
+    @callback
+    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
     async def async_select_option(self, option: str) -> None: ...

@@ -2,10 +2,12 @@ from . import PLATFORMS as PLATFORMS
 from .const import CONF_ENTITY_IDS as CONF_ENTITY_IDS, CONF_ROUND_DIGITS as CONF_ROUND_DIGITS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.entity import get_device_class as get_device_class
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
@@ -71,5 +73,8 @@ class MinMaxSensor(SensorEntity):
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     @callback
     def _async_min_max_sensor_state_listener(self, event: Event[EventStateChangedData], update_state: bool = True) -> None: ...
+    _attr_device_class: Incomplete
+    @callback
+    def _update_device_class(self) -> None: ...
     @callback
     def _calc_values(self) -> None: ...

@@ -1,6 +1,5 @@
 from . import get_api as get_api
 from .const import CONF_LIMIT as CONF_LIMIT, CONF_ORDER as CONF_ORDER, DEFAULT_LIMIT as DEFAULT_LIMIT, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_ORDER as DEFAULT_ORDER, DEFAULT_PATH as DEFAULT_PATH, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_SSL as DEFAULT_SSL, DOMAIN as DOMAIN, SUPPORTED_ORDER_MODES as SUPPORTED_ORDER_MODES
-from .errors import AuthenticationError as AuthenticationError, CannotConnect as CannotConnect, UnknownError as UnknownError
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow

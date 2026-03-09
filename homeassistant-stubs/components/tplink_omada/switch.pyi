@@ -17,6 +17,7 @@ from typing import Any, Generic, TypeVar
 TPort = TypeVar('TPort')
 TDevice = TypeVar('TDevice', bound='OmadaDevice')
 TCoordinator = TypeVar('TCoordinator', bound='OmadaCoordinator[Any]')
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _get_switch_port_base_name(port: OmadaSwitchPortDetails) -> str: ...

@@ -9,6 +9,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 _LOGGER: Incomplete
+XML_MIME_TYPES: Incomplete
 
 class ScrapeCoordinator(DataUpdateCoordinator[BeautifulSoup]):
     _rest: Incomplete

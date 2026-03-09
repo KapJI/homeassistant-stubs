@@ -6,19 +6,27 @@ from homeassistant.helpers import intent as intent
 
 INTENT_LIST_ADD_ITEM: str
 INTENT_LIST_COMPLETE_ITEM: str
+INTENT_LIST_REMOVE_ITEM: str
 
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 
-class ListAddItemIntent(intent.IntentHandler):
-    intent_type = INTENT_LIST_ADD_ITEM
-    description: str
+class ListBaseIntentHandler(intent.IntentHandler):
     slot_schema: Incomplete
     platforms: Incomplete
+    async def _async_do_handle(self, target_list: TodoListEntity, item: str) -> None: ...
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
-class ListCompleteItemIntent(intent.IntentHandler):
+class ListAddItemIntentHandler(ListBaseIntentHandler):
+    intent_type = INTENT_LIST_ADD_ITEM
+    description: str
+    async def _async_do_handle(self, target_list: TodoListEntity, item: str) -> None: ...
+
+class ListCompleteItemIntentHandler(ListBaseIntentHandler):
     intent_type = INTENT_LIST_COMPLETE_ITEM
     description: str
-    slot_schema: Incomplete
-    platforms: Incomplete
-    async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+    async def _async_do_handle(self, target_list: TodoListEntity, item: str) -> None: ...
+
+class ListRemoveItemIntentHandler(ListBaseIntentHandler):
+    intent_type = INTENT_LIST_REMOVE_ITEM
+    description: str
+    async def _async_do_handle(self, target_list: TodoListEntity, item: str) -> None: ...

@@ -8,7 +8,7 @@ from functools import lru_cache
 from homeassistant.auth.models import User as User
 from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.auth.permissions.events import SUBSCRIBE_ALLOWLIST as SUBSCRIBE_ALLOWLIST
-from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
+from homeassistant.const import CONF_EXTERNAL_URL as CONF_EXTERNAL_URL, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
 from homeassistant.core import Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError, Unauthorized as Unauthorized
 from homeassistant.helpers import entity as entity, template as template

@@ -1,5 +1,5 @@
-from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles
-from .helpers import _ha_is_stopping as _ha_is_stopping
+from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_AUTH_EXCEPTIONS as FRITZ_AUTH_EXCEPTIONS, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles, SCAN_INTERVAL as SCAN_INTERVAL
+from .helpers import ha_is_stopping as ha_is_stopping
 from .models import ConnectionInfo as ConnectionInfo, Device as Device, FritzDevice as FritzDevice, HostAttributes as HostAttributes, HostInfo as HostInfo, Interface as Interface
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
@@ -18,6 +18,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util import slugify as slugify
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, TypedDict
 
@@ -38,16 +39,21 @@ class UpdateCoordinatorDataType(TypedDict):
     call_deflections: dict[int, dict]
     entity_states: dict[str, StateType | bool]
 
+class FritzConnectionCached(FritzConnection):
+    _call_cache: dict[str, dict[str, Any]]
+    def clear_cache(self) -> None: ...
+    def call_action(self, service_name: str, action_name: str, *, arguments: dict | None = None, **kwargs: Any) -> dict[str, Any]: ...
+
 class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     config_entry: FritzConfigEntry
-    _devices: dict[str, FritzDevice]
-    _options: Mapping[str, Any] | None
-    _unique_id: str | None
-    connection: FritzConnection
+    connection: FritzConnectionCached
     fritz_guest_wifi: FritzGuestWLAN
     fritz_hosts: FritzHosts
     fritz_status: FritzStatus
     fritz_call: FritzCall
+    _devices: dict[str, FritzDevice]
+    _options: Mapping[str, Any] | None
+    _unique_id: str | None
     host: Incomplete
     mesh_role: Incomplete
     mesh_wifi_uplink: bool

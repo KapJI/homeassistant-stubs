@@ -3,7 +3,7 @@ from .const import HARDWARE_INTEGRATION_DOMAINS as HARDWARE_INTEGRATION_DOMAINS
 from .util import FirmwareInfo as FirmwareInfo
 from _typeshed import Incomplete
 from collections import defaultdict
-from collections.abc import AsyncIterator, Awaitable, Callable as Callable
+from collections.abc import AsyncGenerator, AsyncIterator, Awaitable, Callable as Callable
 from contextlib import asynccontextmanager
 from homeassistant.components.usb import USBDevice as USBDevice, async_get_usb_matchers_for_device as async_get_usb_matchers_for_device, usb_device_from_path as usb_device_from_path
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT
@@ -54,4 +54,4 @@ def async_unregister_firmware_update_in_progress(hass: HomeAssistant, device: st
 @hass_callback
 def async_is_firmware_update_in_progress(hass: HomeAssistant, device: str) -> bool: ...
 @asynccontextmanager
-async def async_firmware_update_context(hass: HomeAssistant, device: str, source_domain: str) -> AsyncIterator[None]: ...
+async def async_firmware_update_context(hass: HomeAssistant, device: str, source_domain: str) -> AsyncGenerator[None]: ...

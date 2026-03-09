@@ -3,6 +3,7 @@ from .coordinator import IronOSFirmwareUpdateCoordinator as IronOSFirmwareUpdate
 from .entity import IronOSBaseEntity as IronOSBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.update import ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity

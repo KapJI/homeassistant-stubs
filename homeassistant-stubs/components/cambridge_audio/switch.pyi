@@ -3,7 +3,7 @@ from .entity import CambridgeAudioEntity as CambridgeAudioEntity, command as com
 from _typeshed import Incomplete
 from aiostreammagic import StreamMagicClient as StreamMagicClient
 from collections.abc import Awaitable, Callable as Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -14,8 +14,11 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class CambridgeAudioSwitchEntityDescription(SwitchEntityDescription):
+    load_fn: Callable[[StreamMagicClient], bool] = field(default=Incomplete)
     value_fn: Callable[[StreamMagicClient], bool]
     set_value_fn: Callable[[StreamMagicClient, bool], Awaitable[None]]
+
+def room_correction_enabled(client: StreamMagicClient) -> bool: ...
 
 CONTROL_ENTITIES: tuple[CambridgeAudioSwitchEntityDescription, ...]
 

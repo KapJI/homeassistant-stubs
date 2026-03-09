@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from aiopyarr import Command, Diskspace, SonarrCalendar, SonarrQueue, SonarrSeries, SonarrWantedMissing, SystemStatus
 from aiopyarr.models.host_configuration import PyArrHostConfiguration as PyArrHostConfiguration
 from aiopyarr.sonarr_client import SonarrClient as SonarrClient
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
@@ -11,12 +12,23 @@ from typing import TypeVar
 
 SonarrDataT = TypeVar('SonarrDataT', bound=list[SonarrCalendar] | list[Command] | list[Diskspace] | SonarrQueue | list[SonarrSeries] | SystemStatus | SonarrWantedMissing)
 
+@dataclass
+class SonarrData:
+    upcoming: CalendarDataUpdateCoordinator
+    commands: CommandsDataUpdateCoordinator
+    diskspace: DiskSpaceDataUpdateCoordinator
+    queue: QueueDataUpdateCoordinator
+    series: SeriesDataUpdateCoordinator
+    status: StatusDataUpdateCoordinator
+    wanted: WantedDataUpdateCoordinator
+type SonarrConfigEntry = ConfigEntry[SonarrData]
+
 class SonarrDataUpdateCoordinator(DataUpdateCoordinator[SonarrDataT]):
-    config_entry: ConfigEntry
+    config_entry: SonarrConfigEntry
     api_client: Incomplete
     host_configuration: Incomplete
     system_version: str | None
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, host_configuration: PyArrHostConfiguration, api_client: SonarrClient) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SonarrConfigEntry, host_configuration: PyArrHostConfiguration, api_client: SonarrClient) -> None: ...
     async def _async_update_data(self) -> SonarrDataT: ...
     async def _fetch_data(self) -> SonarrDataT: ...
 

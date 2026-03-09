@@ -4,9 +4,7 @@ from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
 from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_MODE as ATTR_MODE
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pybotvac import Robot as Robot
@@ -24,9 +22,6 @@ ATTR_CLEAN_SUSP_TIME: str
 ATTR_CLEAN_PAUSE_TIME: str
 ATTR_CLEAN_ERROR_TIME: str
 ATTR_LAUNCHED_FROM: str
-ATTR_NAVIGATION: str
-ATTR_CATEGORY: str
-ATTR_ZONE: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

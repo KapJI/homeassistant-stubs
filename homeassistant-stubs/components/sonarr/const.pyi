@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 CONF_BASE_PATH: str
 CONF_DAYS: str
 CONF_INCLUDED: str
@@ -11,4 +12,15 @@ DEFAULT_NAME: str
 DEFAULT_UPCOMING_DAYS: int
 DEFAULT_VERIFY_SSL: bool
 DEFAULT_WANTED_MAX_ITEMS: int
+DEFAULT_MAX_RECORDS: Final[int]
 LOGGER: Incomplete
+SERVICE_GET_SERIES: Final[str]
+SERVICE_GET_EPISODES: Final[str]
+SERVICE_GET_QUEUE: Final[str]
+SERVICE_GET_DISKSPACE: Final[str]
+SERVICE_GET_UPCOMING: Final[str]
+SERVICE_GET_WANTED: Final[str]
+ATTR_SHOWS: Final[str]
+ATTR_DISKS: Final[str]
+ATTR_EPISODES: Final[str]
+ATTR_ENTRY_ID: Final[str]

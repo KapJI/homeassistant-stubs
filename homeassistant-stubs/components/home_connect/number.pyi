@@ -1,6 +1,6 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry, should_add_option_entity as should_add_option_entity
 from .const import DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
-from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
+from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity, constraint_fetcher as constraint_fetcher
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
@@ -17,8 +17,8 @@ PARALLEL_UPDATES: int
 NUMBERS: Incomplete
 NUMBER_OPTIONS: Incomplete
 
-def _get_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectEntity]: ...
-def _get_option_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData, entity_registry: er.EntityRegistry) -> list[HomeConnectOptionEntity]: ...
+def _get_entities_for_appliance(appliance_coordinator: HomeConnectApplianceCoordinator) -> list[HomeConnectEntity]: ...
+def _get_option_entities_for_appliance(appliance_coordinator: HomeConnectApplianceCoordinator, entity_registry: er.EntityRegistry) -> list[HomeConnectOptionEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectNumberEntity(HomeConnectEntity, NumberEntity):

@@ -29,3 +29,4 @@ class VacuumEntityFeature(IntFlag):
     MAP = 2048
     STATE = 4096
     START = 8192
+    CLEAN_AREA = 16384

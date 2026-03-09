@@ -2,9 +2,9 @@ from .const import CONF_MAX_SUB_INTERVAL as CONF_MAX_SUB_INTERVAL, CONF_ROUND_DI
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from decimal import Decimal
-from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, RestoreSensor as RestoreSensor, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTime as UnitOfTime
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
@@ -16,6 +16,7 @@ _LOGGER: Incomplete
 ATTR_SOURCE_ID: str
 UNIT_PREFIXES: Incomplete
 UNIT_TIME: Incomplete
+DERIVED_CLASS: Incomplete
 DEFAULT_ROUND: int
 DEFAULT_TIME_WINDOW: int
 PLATFORM_SCHEMA: Incomplete
@@ -36,7 +37,8 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     _last_valid_state_time: tuple[str, datetime] | None
     _attr_name: Incomplete
     _attr_extra_state_attributes: Incomplete
-    _unit_template: str | None
+    _string_unit_prefix: str | None
+    _string_unit_time: str | None
     _attr_native_unit_of_measurement: Incomplete
     _unit_prefix: Incomplete
     _unit_time: Incomplete
@@ -44,6 +46,7 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     _max_sub_interval: timedelta | None
     _cancel_max_sub_interval_exceeded_callback: CALLBACK_TYPE
     def __init__(self, hass: HomeAssistant, *, name: str | None, round_digits: int, source_entity: str, time_window: timedelta, unit_of_measurement: str | None, unit_prefix: str | None, unit_time: UnitOfTime, max_sub_interval: timedelta | None, unique_id: str | None) -> None: ...
+    _attr_device_class: Incomplete
     def _derive_and_set_attributes_from_state(self, source_state: State | None) -> None: ...
     def _calc_derivative_from_state_list(self, current_time: datetime) -> Decimal: ...
     def _prune_state_list(self, current_time: datetime) -> None: ...

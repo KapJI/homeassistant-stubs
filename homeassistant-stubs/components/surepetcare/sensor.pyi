@@ -33,3 +33,23 @@ class Felaqua(SurePetcareEntity, SensorEntity):
     _attr_native_value: Incomplete
     @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
+
+class PetLastSeenFlapDevice(SurePetcareEntity, SensorEntity):
+    _attr_entity_category: Incomplete
+    _attr_entity_registry_enabled_default: bool
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
+    _attr_native_value: Incomplete
+    @callback
+    def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
+
+class PetLastSeenUser(SurePetcareEntity, SensorEntity):
+    _attr_entity_category: Incomplete
+    _attr_entity_registry_enabled_default: bool
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
+    _attr_native_value: Incomplete
+    @callback
+    def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...

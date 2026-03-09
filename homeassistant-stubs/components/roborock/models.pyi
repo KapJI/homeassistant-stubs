@@ -1,7 +1,8 @@
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
-from roborock.data import CleanSummaryWithDetail as CleanSummaryWithDetail, Consumable as Consumable, DnDTimer as DnDTimer, HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, NetworkInfo as NetworkInfo, Status as Status
+from roborock.data import CleanSummaryWithDetail as CleanSummaryWithDetail, Consumable as Consumable, DnDTimer as DnDTimer, HomeDataDevice as HomeDataDevice, HomeDataProduct as HomeDataProduct, NetworkInfo as NetworkInfo
+from roborock.devices.traits.v1.status import StatusTrait as StatusTrait
 from typing import Any
 from vacuum_map_parser_base.map_data import MapData as MapData
 
@@ -9,7 +10,7 @@ _LOGGER: Incomplete
 
 @dataclass
 class DeviceState:
-    status: Status
+    status: StatusTrait
     dnd_timer: DnDTimer
     consumable: Consumable
     clean_summary: CleanSummaryWithDetail

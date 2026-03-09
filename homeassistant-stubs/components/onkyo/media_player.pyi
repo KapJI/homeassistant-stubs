@@ -2,17 +2,18 @@ import asyncio
 from . import OnkyoConfigEntry as OnkyoConfigEntry
 from .const import DOMAIN as DOMAIN, InputSource as InputSource, LEGACY_HDMI_OUTPUT_MAPPING as LEGACY_HDMI_OUTPUT_MAPPING, LEGACY_REV_HDMI_OUTPUT_MAPPING as LEGACY_REV_HDMI_OUTPUT_MAPPING, ListeningMode as ListeningMode, OPTION_MAX_VOLUME as OPTION_MAX_VOLUME, OPTION_VOLUME_RESOLUTION as OPTION_VOLUME_RESOLUTION, VolumeResolution as VolumeResolution, ZONES as ZONES
 from .receiver import ReceiverManager as ReceiverManager
-from .services import DATA_MP_ENTITIES as DATA_MP_ENTITIES
 from .util import get_meaning as get_meaning
 from _typeshed import Incomplete
 from aioonkyo import Status as Status, Zone, status
 from homeassistant.components.media_player import MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
+DATA_MP_ENTITIES: HassKey[dict[str, dict[Zone, OnkyoMediaPlayer]]]
 SUPPORTED_FEATURES_BASE: Incomplete
 SUPPORTED_FEATURES_VOLUME: Incomplete
 PLAYABLE_SOURCES: Incomplete

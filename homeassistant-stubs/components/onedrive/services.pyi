@@ -3,7 +3,8 @@ from .coordinator import OneDriveConfigEntry as OneDriveConfigEntry
 from _typeshed import Incomplete
 from homeassistant.const import CONF_FILENAME as CONF_FILENAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 
 CONF_CONFIG_ENTRY_ID: str
 CONF_DESTINATION_FOLDER: str

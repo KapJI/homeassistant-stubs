@@ -1,12 +1,13 @@
 import jinja2
 import pathlib
+from .pr_download import download_pr_artifact as download_pr_artifact
 from .storage import async_setup_frontend_storage as async_setup_frontend_storage
 from _typeshed import Incomplete
 from aiohttp import web, web_urldispatcher
 from collections.abc import Callable as Callable, Iterator
 from homeassistant.components import onboarding as onboarding, websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, StaticPathConfig as StaticPathConfig
-from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_NOT_FOUND as ERR_NOT_FOUND
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, EVENT_PANELS_UPDATED as EVENT_PANELS_UPDATED, EVENT_THEMES_UPDATED as EVENT_THEMES_UPDATED
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, async_get_hass as async_get_hass, callback as callback
@@ -36,6 +37,9 @@ CONF_EXTRA_MODULE_URL: str
 CONF_EXTRA_JS_URL_ES5: str
 CONF_FRONTEND_REPO: str
 CONF_JS_VERSION: str
+CONF_DEVELOPMENT_PR: str
+CONF_GITHUB_TOKEN: str
+DEV_ARTIFACTS_DIR: str
 DEFAULT_THEME_COLOR: str
 DATA_PANELS: HassKey[dict[str, Panel]]
 DATA_EXTRA_MODULE_URL: HassKey[UrlManager]
@@ -46,6 +50,11 @@ THEMES_STORAGE_VERSION: int
 THEMES_SAVE_DELAY: int
 DATA_THEMES_STORE: HassKey[Store]
 DATA_THEMES: HassKey[dict[str, Any]]
+PANELS_STORAGE_KEY: Incomplete
+PANELS_STORAGE_VERSION: int
+PANELS_SAVE_DELAY: int
+DATA_PANELS_STORE: HassKey[Store[dict[str, dict[str, Any]]]]
+DATA_PANELS_CONFIG: HassKey[dict[str, dict[str, Any]]]
 DATA_DEFAULT_THEME: str
 DATA_DEFAULT_DARK_THEME: str
 DEFAULT_THEME: str
@@ -87,14 +96,15 @@ class Panel:
     frontend_url_path: str
     config: dict[str, Any] | None
     require_admin: bool
+    show_in_sidebar: bool
     config_panel_domain: str | None
-    def __init__(self, component_name: str, sidebar_title: str | None, sidebar_icon: str | None, sidebar_default_visible: bool, frontend_url_path: str | None, config: dict[str, Any] | None, require_admin: bool, config_panel_domain: str | None) -> None: ...
+    def __init__(self, component_name: str, sidebar_title: str | None, sidebar_icon: str | None, sidebar_default_visible: bool, frontend_url_path: str | None, config: dict[str, Any] | None, require_admin: bool, config_panel_domain: str | None, show_in_sidebar: bool) -> None: ...
     @callback
-    def to_response(self) -> PanelResponse: ...
+    def to_response(self, config_override: dict[str, Any] | None = None) -> PanelResponse: ...
 
 @bind_hass
 @callback
-def async_register_built_in_panel(hass: HomeAssistant, component_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, sidebar_default_visible: bool = True, frontend_url_path: str | None = None, config: dict[str, Any] | None = None, require_admin: bool = False, *, update: bool = False, config_panel_domain: str | None = None) -> None: ...
+def async_register_built_in_panel(hass: HomeAssistant, component_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, sidebar_default_visible: bool = True, frontend_url_path: str | None = None, config: dict[str, Any] | None = None, require_admin: bool = False, *, update: bool = False, config_panel_domain: str | None = None, show_in_sidebar: bool = True) -> None: ...
 @bind_hass
 @callback
 def async_remove_panel(hass: HomeAssistant, frontend_url_path: str, *, warn_if_unknown: bool = True) -> None: ...
@@ -146,6 +156,9 @@ async def websocket_get_translations(hass: HomeAssistant, connection: ActiveConn
 async def websocket_get_version(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @callback
 def websocket_subscribe_extra_js(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+async def websocket_update_panel(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 
 class PanelResponse(TypedDict):
     component_name: str
@@ -156,3 +169,4 @@ class PanelResponse(TypedDict):
     url_path: str
     require_admin: bool
     config_panel_domain: str | None
+    show_in_sidebar: bool

@@ -123,5 +123,10 @@ class ClimateConf:
 class FanConf:
     MAX_STEP: Final[str]
 
+class NumberConf:
+    MAX: Final[str]
+    MIN: Final[str]
+    STEP: Final[str]
+
 class SceneConf:
     SCENE_NUMBER: Final[str]

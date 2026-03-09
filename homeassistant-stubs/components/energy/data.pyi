@@ -33,11 +33,25 @@ class GridPowerSourceType(TypedDict, total=False):
     stat_rate: str
     power_config: PowerConfig
 
-class GridSourceType(TypedDict):
+class LegacyGridSourceType(TypedDict):
     type: Literal['grid']
     flow_from: list[FlowFromGridSourceType]
     flow_to: list[FlowToGridSourceType]
     power: NotRequired[list[GridPowerSourceType]]
+    cost_adjustment_day: float
+
+class GridSourceType(TypedDict):
+    type: Literal['grid']
+    stat_energy_from: str | None
+    stat_energy_to: str | None
+    stat_cost: str | None
+    entity_energy_price: str | None
+    number_energy_price: float | None
+    stat_compensation: str | None
+    entity_energy_price_export: str | None
+    number_energy_price_export: float | None
+    stat_rate: NotRequired[str]
+    power_config: NotRequired[PowerConfig]
     cost_adjustment_day: float
 
 class SolarSourceType(TypedDict):
@@ -56,6 +70,7 @@ class BatterySourceType(TypedDict):
 class GasSourceType(TypedDict):
     type: Literal['gas']
     stat_energy_from: str
+    stat_rate: NotRequired[str]
     stat_cost: str | None
     entity_energy_price: str | None
     number_energy_price: float | None
@@ -63,6 +78,7 @@ class GasSourceType(TypedDict):
 class WaterSourceType(TypedDict):
     type: Literal['water']
     stat_energy_from: str
+    stat_rate: NotRequired[str]
     stat_cost: str | None
     entity_energy_price: str | None
     number_energy_price: float | None
@@ -92,6 +108,9 @@ POWER_CONFIG_SCHEMA: Incomplete
 GRID_POWER_SOURCE_SCHEMA: Incomplete
 
 def _generate_unique_value_validator(key: str) -> Callable[[list[dict]], list[dict]]: ...
+def _grid_ensure_single_price_import(val: dict[str, Any]) -> dict[str, Any]: ...
+def _grid_ensure_single_price_export(val: dict[str, Any]) -> dict[str, Any]: ...
+def _grid_ensure_at_least_one_stat(val: dict[str, Any]) -> dict[str, Any]: ...
 
 GRID_SOURCE_SCHEMA: Incomplete
 SOLAR_SOURCE_SCHEMA: Incomplete
@@ -100,9 +119,13 @@ GAS_SOURCE_SCHEMA: Incomplete
 WATER_SOURCE_SCHEMA: Incomplete
 
 def check_type_limits(value: list[SourceType]) -> list[SourceType]: ...
+def _validate_grid_stat_uniqueness(value: list[SourceType]) -> list[SourceType]: ...
 
 ENERGY_SOURCE_SCHEMA: Incomplete
 DEVICE_CONSUMPTION_SCHEMA: Incomplete
+
+def _migrate_legacy_grid_to_unified(old_grid: dict[str, Any]) -> list[dict[str, Any]]: ...
+def _is_legacy_grid_format(source: dict[str, Any]) -> bool: ...
 
 class _EnergyPreferencesStore(storage.Store[EnergyPreferences]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...

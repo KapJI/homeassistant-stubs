@@ -15,6 +15,7 @@ from homeassistant.util import slugify as slugify
 
 AIR_QUALITY_MAP: Incomplete
 CONTAMINATION_STATE_MAP: Incomplete
+CONCENTRATION_LEVEL_MAP: Incomplete
 EVE_CLUSTER_WEATHER_MAP: Incomplete
 OPERATIONAL_STATE_MAP: Incomplete
 OPERATIONAL_STATE_ERROR_MAP: Incomplete

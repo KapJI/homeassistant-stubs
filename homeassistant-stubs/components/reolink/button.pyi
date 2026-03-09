@@ -1,20 +1,17 @@
+from .const import SUPPORT_PTZ_SPEED as SUPPORT_PTZ_SPEED
 from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.components.camera import CameraEntityFeature as CameraEntityFeature
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Host as Host
 from typing import Any
 
 PARALLEL_UPDATES: int
-ATTR_SPEED: str
-SUPPORT_PTZ_SPEED: Incomplete
-SERVICE_PTZ_MOVE: str
 
 @dataclass(frozen=True, kw_only=True)
 class ReolinkButtonEntityDescription(ButtonEntityDescription, ReolinkChannelEntityDescription):
@@ -39,7 +36,7 @@ class ReolinkButtonEntity(ReolinkChannelCoordinatorEntity, ButtonEntity):
     @raise_translated_error
     async def async_press(self) -> None: ...
     @raise_translated_error
-    async def async_ptz_move(self, **kwargs: Any) -> None: ...
+    async def async_ptz_move(self, speed: int) -> None: ...
 
 class ReolinkHostButtonEntity(ReolinkHostCoordinatorEntity, ButtonEntity):
     entity_description: ReolinkHostButtonEntityDescription

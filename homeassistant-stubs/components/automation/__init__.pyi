@@ -9,6 +9,7 @@ from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from homeassistant.components import labs as labs, websocket_api as websocket_api
 from homeassistant.components.blueprint import CONF_USE_BLUEPRINT as CONF_USE_BLUEPRINT
+from homeassistant.components.labs import async_subscribe_preview_feature as async_subscribe_preview_feature
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ACTIONS as CONF_ACTIONS, CONF_ALIAS as CONF_ALIAS, CONF_CONDITIONS as CONF_CONDITIONS, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_PATH as CONF_PATH, CONF_TRIGGERS as CONF_TRIGGERS, CONF_VARIABLES as CONF_VARIABLES, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError

@@ -13,7 +13,7 @@ from collections.abc import Awaitable, Callable as Callable
 from habluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError, OAuth2TokenRequestTransientError as OAuth2TokenRequestTransientError
 from homeassistant.loader import async_get_application_credentials as async_get_application_credentials
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any

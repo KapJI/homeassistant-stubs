@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import WattsVisionHubCoordinator as WattsVisionHubCoordinator, WattsVisionThermostatCoordinator as WattsVisionThermostatCoordinator, WattsVisionThermostatData as WattsVisionThermostatData
+from .const import DOMAIN as DOMAIN, SUPPORTED_DEVICE_TYPES as SUPPORTED_DEVICE_TYPES
+from .coordinator import WattsVisionDeviceCoordinator as WattsVisionDeviceCoordinator, WattsVisionDeviceData as WattsVisionDeviceData, WattsVisionHubCoordinator as WattsVisionHubCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -18,11 +18,11 @@ PLATFORMS: list[Platform]
 class WattsVisionRuntimeData:
     auth: WattsVisionAuth
     hub_coordinator: WattsVisionHubCoordinator
-    thermostat_coordinators: dict[str, WattsVisionThermostatCoordinator]
+    device_coordinators: dict[str, WattsVisionDeviceCoordinator]
     client: WattsVisionClient
 type WattsVisionConfigEntry = ConfigEntry[WattsVisionRuntimeData]
 
 @callback
-def _handle_new_thermostats(hass: HomeAssistant, entry: WattsVisionConfigEntry, hub_coordinator: WattsVisionHubCoordinator) -> None: ...
+def _handle_new_devices(hass: HomeAssistant, entry: WattsVisionConfigEntry, hub_coordinator: WattsVisionHubCoordinator) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: WattsVisionConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: WattsVisionConfigEntry) -> bool: ...

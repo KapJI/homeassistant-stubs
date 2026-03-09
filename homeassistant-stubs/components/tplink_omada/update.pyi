@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from tplink_omada_client.devices import OmadaListDevice as OmadaListDevice
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OmadaDeviceUpdate(OmadaDeviceEntity[OmadaFirmwareUpdateCoordinator], UpdateEntity):

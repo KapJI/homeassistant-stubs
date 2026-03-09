@@ -1,4 +1,3 @@
-from .const import POWER as POWER
 from .coordinator import JVCConfigEntry as JVCConfigEntry
 from .entity import JvcProjectorEntity as JvcProjectorEntity
 from _typeshed import Incomplete
@@ -11,6 +10,7 @@ from typing import Any
 
 COMMANDS: list[str]
 RENAMED_COMMANDS: dict[str, str]
+ON_STATUS: Incomplete
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

@@ -4,6 +4,7 @@ from .expose import KnxExposeEntity as KnxExposeEntity, KnxExposeTime as KnxExpo
 from .project import KNXProject as KNXProject
 from .repairs import data_secure_group_key_issue_dispatcher as data_secure_group_key_issue_dispatcher
 from .storage.config_store import KNXConfigStore as KNXConfigStore
+from .storage.time_server import TimeServerController as TimeServerController
 from .telegrams import Telegrams as Telegrams
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -26,6 +27,7 @@ class KNXModule:
     connected: bool
     yaml_exposures: list[KnxExposeEntity | KnxExposeTime]
     service_exposures: dict[str, KnxExposeEntity | KnxExposeTime]
+    ui_time_server_controller: Incomplete
     entry: Incomplete
     project: Incomplete
     config_store: Incomplete

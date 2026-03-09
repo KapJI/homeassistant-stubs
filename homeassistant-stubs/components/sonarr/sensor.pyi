@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import SonarrDataT as SonarrDataT, SonarrDataUpdateCoordinator as SonarrDataUpdateCoordinator
+from .coordinator import SonarrConfigEntry as SonarrConfigEntry, SonarrDataT as SonarrDataT, SonarrDataUpdateCoordinator as SonarrDataUpdateCoordinator
 from .entity import SonarrEntity as SonarrEntity
 from aiopyarr import Diskspace, SonarrQueue, SonarrWantedMissing
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -17,7 +15,7 @@ class SonarrSensorEntityDescriptionMixIn(Generic[SonarrDataT]):
     attributes_fn: Callable[[SonarrDataT], dict[str, str]]
     value_fn: Callable[[SonarrDataT], StateType]
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, kw_only=True)
 class SonarrSensorEntityDescription(SensorEntityDescription, SonarrSensorEntityDescriptionMixIn[SonarrDataT]): ...
 
 def get_disk_space_attr(disks: list[Diskspace]) -> dict[str, str]: ...
@@ -26,7 +24,7 @@ def get_wanted_attr(wanted: SonarrWantedMissing) -> dict[str, str]: ...
 
 SENSOR_TYPES: dict[str, SonarrSensorEntityDescription[Any]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SonarrConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SonarrSensor(SonarrEntity[SonarrDataT], SensorEntity):
     coordinator: SonarrDataUpdateCoordinator[SonarrDataT]

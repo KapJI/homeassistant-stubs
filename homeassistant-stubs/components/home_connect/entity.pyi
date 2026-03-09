@@ -1,6 +1,6 @@
 import abc
 from .const import API_DEFAULT_RETRY_AFTER as API_DEFAULT_RETRY_AFTER, DOMAIN as DOMAIN
-from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectCoordinator as HomeConnectCoordinator
+from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -16,13 +16,13 @@ from typing import Any, Concatenate
 
 _LOGGER: Incomplete
 
-class HomeConnectEntity(CoordinatorEntity[HomeConnectCoordinator], metaclass=abc.ABCMeta):
+class HomeConnectEntity(CoordinatorEntity[HomeConnectApplianceCoordinator], metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     appliance: Incomplete
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: HomeConnectCoordinator, appliance: HomeConnectApplianceData, desc: EntityDescription, context_override: Any | None = None) -> None: ...
+    def __init__(self, appliance_coordinator: HomeConnectApplianceCoordinator, desc: EntityDescription, context_override: Any | None = None) -> None: ...
     @abstractmethod
     def update_native_value(self) -> None: ...
     @callback

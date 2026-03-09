@@ -1,12 +1,11 @@
-from .const import ATTR_ITEM_NAME as ATTR_ITEM_NAME, ATTR_NOTIFICATION_TYPE as ATTR_NOTIFICATION_TYPE, DOMAIN as DOMAIN, SERVICE_PUSH_NOTIFICATION as SERVICE_PUSH_NOTIFICATION
+from .const import DOMAIN as DOMAIN
 from .coordinator import BringConfigEntry as BringConfigEntry, BringData as BringData, BringDataUpdateCoordinator as BringDataUpdateCoordinator
 from .entity import BringBaseEntity as BringBaseEntity
 from _typeshed import Incomplete
-from bring_api import BringList as BringList, BringNotificationType
+from bring_api import BringList as BringList, BringNotificationType as BringNotificationType
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int

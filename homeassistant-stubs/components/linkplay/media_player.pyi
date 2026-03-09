@@ -6,7 +6,6 @@ from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
@@ -23,9 +22,6 @@ REPEAT_MAP_INV: dict[RepeatMode, LoopMode]
 EQUALIZER_MAP_INV: dict[str, EqualizerMode]
 DEFAULT_FEATURES: MediaPlayerEntityFeature
 SEEKABLE_FEATURES: MediaPlayerEntityFeature
-SERVICE_PLAY_PRESET: str
-ATTR_PRESET_NUMBER: str
-SERVICE_PLAY_PRESET_SCHEMA: Incomplete
 RETRY_POLL_MAXIMUM: int
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int

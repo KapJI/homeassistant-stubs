@@ -1,7 +1,8 @@
 import abc
+from . import migration as migration
 from ..const import DOMAIN as DOMAIN
 from .const import CONF_DATA as CONF_DATA
-from .migration import migrate_1_to_2 as migrate_1_to_2, migrate_2_1_to_2_2 as migrate_2_1_to_2_2
+from .time_server import KNXTimeServerStoreModel as KNXTimeServerStoreModel
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -21,6 +22,7 @@ type KNXEntityStoreModel = dict[str, KNXPlatformStoreModel]
 
 class KNXConfigStoreModel(TypedDict):
     entities: KNXEntityStoreModel
+    time_server: KNXTimeServerStoreModel
 
 class PlatformControllerBase(ABC, metaclass=abc.ABCMeta):
     @abstractmethod
@@ -46,5 +48,8 @@ class KNXConfigStore:
     async def update_entity(self, platform: Platform, entity_id: str, data: dict[str, Any]) -> None: ...
     async def delete_entity(self, entity_id: str) -> None: ...
     def get_entity_entries(self) -> list[er.RegistryEntry]: ...
+    @callback
+    def get_time_server_config(self) -> KNXTimeServerStoreModel: ...
+    async def update_time_server_config(self, config: KNXTimeServerStoreModel) -> None: ...
 
 class ConfigStoreException(Exception): ...

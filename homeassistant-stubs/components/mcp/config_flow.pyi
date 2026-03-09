@@ -1,9 +1,10 @@
+import httpx
 from . import async_get_config_entry_implementation as async_get_config_entry_implementation
 from .application_credentials import authorization_server_context as authorization_server_context
 from .const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_AUTHORIZATION_URL as CONF_AUTHORIZATION_URL, CONF_SCOPE as CONF_SCOPE, CONF_TOKEN_URL as CONF_TOKEN_URL, DOMAIN as DOMAIN
 from .coordinator import TokenManager as TokenManager, mcp_client as mcp_client
 from _typeshed import Incomplete
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from homeassistant.components.application_credentials import AuthorizationServer as AuthorizationServer
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
@@ -12,9 +13,27 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.config_entry_oauth2_flow import AbstractOAuth2FlowHandler as AbstractOAuth2FlowHandler, async_get_implementations as async_get_implementations
 from typing import Any
+from yarl import URL
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
+WWW_AUTHENTICATE_HEADER: str
+RESOURCE_METADATA_REGEXP: str
+OAUTH_PROTECTED_RESOURCE_ENDPOINT: str
+SCOPES_REGEXP: str
+
+@dataclass
+class AuthenticateHeader:
+    resource_metadata_url: str
+    scopes: list[str] | None = ...
+    @classmethod
+    def from_header(cls, url: str, error_response: httpx.Response) -> AuthenticateHeader | None: ...
+
+@dataclass
+class ResourceMetadata:
+    authorization_servers: list[str]
+    supported_scopes: list[str] | None = ...
+
 OAUTH_DISCOVERY_ENDPOINT: str
 MCP_DISCOVERY_HEADERS: Incomplete
 EXAMPLE_URL: str
@@ -24,7 +43,7 @@ class OAuthConfig:
     authorization_server: AuthorizationServer
     scopes: list[str] | None = ...
 
-async def async_discover_oauth_config(hass: HomeAssistant, mcp_server_url: str) -> OAuthConfig: ...
+async def async_discover_authorization_server(hass: HomeAssistant, auth_server_url: str) -> OAuthConfig: ...
 async def validate_input(hass: HomeAssistant, data: dict[str, Any], token_manager: TokenManager | None = None) -> dict[str, Any]: ...
 
 class ModelContextProtocolConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
@@ -33,6 +52,7 @@ class ModelContextProtocolConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
     logger = _LOGGER
     data: dict[str, Any]
     oauth_config: OAuthConfig | None
+    auth_header: AuthenticateHeader | None
     def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth_discovery(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -47,8 +67,18 @@ class ModelContextProtocolConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
     flow_impl: Incomplete
     async def async_step_reauth_confirm(self, user_input: Mapping[str, Any] | None = None) -> ConfigFlowResult: ...
 
+async def _async_fetch_any(hass: HomeAssistant, urls: Iterable[str]) -> httpx.Response: ...
+async def async_discover_protected_resource(hass: HomeAssistant, auth_url: str, mcp_server_url: str) -> ResourceMetadata: ...
+def _authorization_server_discovery_paths(auth_server_url: URL) -> list[str]: ...
+def _select_scopes(auth_header: AuthenticateHeader | None, oauth_config: OAuthConfig, resource_metadata: ResourceMetadata | None) -> list[str] | None: ...
+
 class InvalidUrl(HomeAssistantError): ...
 class CannotConnect(HomeAssistantError): ...
 class TimeoutConnectError(HomeAssistantError): ...
-class InvalidAuth(HomeAssistantError): ...
+class NotFoundError(CannotConnect): ...
+
+class InvalidAuth(HomeAssistantError):
+    metadata: Incomplete
+    def __init__(self, metadata: AuthenticateHeader | None = None) -> None: ...
+
 class MissingCapabilities(HomeAssistantError): ...

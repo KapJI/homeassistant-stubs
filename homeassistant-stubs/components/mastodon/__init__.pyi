@@ -5,7 +5,7 @@ from .utils import construct_mastodon_username as construct_mastodon_username, c
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util import slugify as slugify
 from mastodon.Mastodon import Account as Account, Instance as Instance, InstanceV2 as InstanceV2, Mastodon as Mastodon

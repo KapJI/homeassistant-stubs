@@ -1,4 +1,4 @@
-from .const import ATTR_BUTTON as ATTR_BUTTON, ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_SOUND_OUTPUT as ATTR_SOUND_OUTPUT, CONF_SOURCES as CONF_SOURCES, DOMAIN as DOMAIN, LIVE_TV_APP_ID as LIVE_TV_APP_ID, SERVICE_BUTTON as SERVICE_BUTTON, SERVICE_COMMAND as SERVICE_COMMAND, SERVICE_SELECT_SOUND_OUTPUT as SERVICE_SELECT_SOUND_OUTPUT, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
+from .const import ATTR_PAYLOAD as ATTR_PAYLOAD, ATTR_SOUND_OUTPUT as ATTR_SOUND_OUTPUT, CONF_SOURCES as CONF_SOURCES, DOMAIN as DOMAIN, LIVE_TV_APP_ID as LIVE_TV_APP_ID, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
 from .helpers import WebOsTvConfigEntry as WebOsTvConfigEntry, update_client_key as update_client_key
 from .triggers.turn_on import async_get_turn_on_trigger as async_get_turn_on_trigger
 from _typeshed import Incomplete
@@ -6,16 +6,14 @@ from aiowebostv import WebOsTvState as WebOsTvState
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant import util as util
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
-from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse
+from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
-from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any, Concatenate
 
 _LOGGER: Incomplete
@@ -25,10 +23,6 @@ MIN_TIME_BETWEEN_SCANS: Incomplete
 MIN_TIME_BETWEEN_FORCED_SCANS: Incomplete
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
-BUTTON_SCHEMA: VolDictType
-COMMAND_SCHEMA: VolDictType
-SOUND_OUTPUT_SCHEMA: VolDictType
-SERVICES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: WebOsTvConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def cmd[_R, **_P](func: Callable[Concatenate[LgWebOSMediaPlayerEntity, _P], Coroutine[Any, Any, _R]]) -> Callable[Concatenate[LgWebOSMediaPlayerEntity, _P], Coroutine[Any, Any, _R]]: ...

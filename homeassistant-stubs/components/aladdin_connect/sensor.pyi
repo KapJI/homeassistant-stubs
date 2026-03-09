@@ -9,6 +9,8 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class AladdinConnectSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[GarageDoor], float | None]

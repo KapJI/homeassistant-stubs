@@ -1,0 +1,6 @@
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, PLATFORMS as PLATFORMS
+from .coordinator import SystemNexa2ConfigEntry as SystemNexa2ConfigEntry, SystemNexa2DataUpdateCoordinator as SystemNexa2DataUpdateCoordinator
+from homeassistant.core import HomeAssistant as HomeAssistant
+
+async def async_setup_entry(hass: HomeAssistant, entry: SystemNexa2ConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: SystemNexa2ConfigEntry) -> bool: ...

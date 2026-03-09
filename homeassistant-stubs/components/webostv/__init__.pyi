@@ -1,5 +1,6 @@
 from .const import DATA_HASS_CONFIG as DATA_HASS_CONFIG, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
 from .helpers import WebOsTvConfigEntry as WebOsTvConfigEntry, update_client_key as update_client_key
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET, CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant

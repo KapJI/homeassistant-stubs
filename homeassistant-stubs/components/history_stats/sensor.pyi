@@ -7,7 +7,7 @@ from .helpers import pretty_ratio as pretty_ratio
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Mapping
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
@@ -23,6 +23,7 @@ UNITS: dict[str, str]
 ICON: str
 
 def exactly_two_period_keys[_T: dict[str, Any]](conf: _T) -> _T: ...
+def no_ratio_total[_T: dict[str, Any]](conf: _T) -> _T: ...
 
 PLATFORM_SCHEMA: Incomplete
 
@@ -40,15 +41,15 @@ class HistoryStatsSensorBase(CoordinatorEntity[HistoryStatsUpdateCoordinator], S
     def _process_update(self) -> None: ...
 
 class HistoryStatsSensor(HistoryStatsSensorBase):
-    _attr_state_class: Incomplete
     _preview_callback: Callable[[Exception | None, str, Mapping[str, Any]], None] | None
     _attr_native_unit_of_measurement: Incomplete
     _type: Incomplete
+    _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
     device_entry: Incomplete
     _attr_device_class: Incomplete
     _attr_suggested_display_precision: int
-    def __init__(self, hass: HomeAssistant, *, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, source_entity_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, source_entity_id: str, state_class: SensorStateClass | None) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def _process_update(self) -> None: ...

@@ -23,7 +23,7 @@ POWER_SENSORS: list[SwitcherSensorEntityDescription]
 TIME_SENSORS: list[SwitcherSensorEntityDescription]
 TEMPERATURE_SENSORS: list[SwitcherSensorEntityDescription]
 POWER_PLUG_SENSORS = POWER_SENSORS
-WATER_HEATER_SENSORS: Incomplete
+HEATER_SENSORS: Incomplete
 THERMOSTAT_SENSORS = TEMPERATURE_SENSORS
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: SwitcherConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

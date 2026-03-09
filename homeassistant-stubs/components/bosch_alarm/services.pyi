@@ -2,10 +2,10 @@ import datetime as dt
 from .const import ATTR_DATETIME as ATTR_DATETIME, DOMAIN as DOMAIN, SERVICE_SET_DATE_TIME as SERVICE_SET_DATE_TIME
 from .types import BoschAlarmConfigEntry as BoschAlarmConfigEntry
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 from typing import Any
 
 def validate_datetime(value: Any) -> dt.datetime: ...

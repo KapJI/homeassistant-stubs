@@ -1,4 +1,4 @@
-from .const import ATTR_THEME as ATTR_THEME, DOMAIN as DOMAIN, _ATTR_COLOR_TEMP as _ATTR_COLOR_TEMP
+from .const import ATTR_THEME as ATTR_THEME, DOMAIN as DOMAIN
 from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .util import convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk
 from _typeshed import Incomplete

@@ -2,7 +2,7 @@ import voluptuous as vol
 from .client import CloudClient as CloudClient
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable, Iterable
-from enum import Enum
+from enum import StrEnum
 from hass_nabucasa import Cloud as Cloud
 from homeassistant.components import conversation as conversation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -17,7 +17,7 @@ from typing import Any, Literal
 _LOGGER: Incomplete
 _MAX_TOOL_ITERATIONS: int
 
-class ResponseItemType(str, Enum):
+class ResponseItemType(StrEnum):
     FUNCTION_CALL = 'function_call'
     MESSAGE = 'message'
     REASONING = 'reasoning'

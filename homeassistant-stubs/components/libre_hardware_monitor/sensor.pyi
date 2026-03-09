@@ -19,12 +19,13 @@ class LibreHardwareMonitorSensor(CoordinatorEntity[LibreHardwareMonitorCoordinat
     _attr_state_class: Incomplete
     _attr_has_entity_name: bool
     _attr_name: str
-    _attr_native_value: str | None
-    _attr_extra_state_attributes: dict[str, Any]
-    _attr_native_unit_of_measurement: Incomplete
     _attr_unique_id: str
     _sensor_id: str
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LibreHardwareMonitorCoordinator, entry_id: str, sensor_data: LibreHardwareMonitorSensorData) -> None: ...
+    _attr_native_value: str | None
+    _attr_extra_state_attributes: dict[str, Any]
+    _attr_native_unit_of_measurement: Incomplete
+    def _set_state(self, is_deprecated_lhm_version: bool, sensor_data: LibreHardwareMonitorSensorData) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...

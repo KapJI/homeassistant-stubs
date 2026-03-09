@@ -1,11 +1,14 @@
-from .const import SUPPORTED_FEATURES as SUPPORTED_FEATURES
+from .const import DOMAIN as DOMAIN, SUPPORTED_FEATURES as SUPPORTED_FEATURES
 from .coordinator import AladdinConnectConfigEntry as AladdinConnectConfigEntry, AladdinConnectCoordinator as AladdinConnectCoordinator
 from .entity import AladdinConnectEntity as AladdinConnectEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: AladdinConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

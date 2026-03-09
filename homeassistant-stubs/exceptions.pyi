@@ -1,8 +1,10 @@
 from .core import Context as Context
 from .util.event_type import EventType as EventType
 from _typeshed import Incomplete
+from aiohttp import ClientResponse as ClientResponse, ClientResponseError, RequestInfo as RequestInfo
 from collections.abc import Callable as Callable, Generator, Sequence
 from dataclasses import dataclass
+from multidict import MultiMapping
 from typing import Any
 
 _function_cache: dict[str, Callable[[str, str, dict[str, str] | None], str]]
@@ -61,6 +63,29 @@ class PlatformNotReady(IntegrationError): ...
 class ConfigEntryError(IntegrationError): ...
 class ConfigEntryNotReady(IntegrationError): ...
 class ConfigEntryAuthFailed(IntegrationError): ...
+
+class OAuth2TokenRequestError(ClientResponseError, HomeAssistantError):
+    domain: Incomplete
+    translation_domain: str
+    translation_key: str
+    translation_placeholders: Incomplete
+    generate_message: bool
+    def __init__(self, *, request_info: RequestInfo, history: tuple[ClientResponse, ...] = (), status: int = 0, message: str = 'OAuth 2.0 token refresh failed', headers: MultiMapping[str] | None = None, domain: str) -> None: ...
+
+class OAuth2TokenRequestTransientError(OAuth2TokenRequestError):
+    translation_domain: str
+    translation_key: str
+    translation_placeholders: Incomplete
+    generate_message: bool
+    def __init__(self, *, domain: str, **kwargs: Any) -> None: ...
+
+class OAuth2TokenRequestReauthError(OAuth2TokenRequestError):
+    translation_domain: str
+    translation_key: str
+    translation_placeholders: Incomplete
+    generate_message: bool
+    def __init__(self, *, domain: str, **kwargs: Any) -> None: ...
+
 class InvalidStateError(HomeAssistantError): ...
 
 class Unauthorized(HomeAssistantError):

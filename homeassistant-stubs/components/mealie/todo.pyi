@@ -4,7 +4,7 @@ from .entity import MealieEntity as MealieEntity
 from _typeshed import Incomplete
 from aiomealie import ShoppingItem as ShoppingItem, ShoppingList as ShoppingList
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
@@ -34,3 +34,4 @@ class MealieShoppingListTodoListEntity(MealieEntity, TodoListEntity):
     async def async_move_todo_item(self, uid: str, previous_uid: str | None = None) -> None: ...
     @property
     def available(self) -> bool: ...
+    async def async_get_shopping_list_items(self) -> ServiceResponse: ...

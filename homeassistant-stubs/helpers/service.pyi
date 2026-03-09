@@ -8,9 +8,10 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping
 from functools import cache
 from homeassistant.auth.permissions.const import CAT_ENTITIES as CAT_ENTITIES, POLICY_CONTROL as POLICY_CONTROL
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ACTION as CONF_ACTION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_SELECTOR as CONF_SELECTOR, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SERVICE_TEMPLATE as CONF_SERVICE_TEMPLATE, CONF_TARGET as CONF_TARGET, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
 from homeassistant.core import Context as Context, EntityServiceResponse as EntityServiceResponse, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotSupported as ServiceNotSupported, TemplateError as TemplateError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotSupported as ServiceNotSupported, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError, Unauthorized as Unauthorized, UnknownUser as UnknownUser
 from homeassistant.loader import Integration as Integration, async_get_integrations as async_get_integrations, bind_hass as bind_hass
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -100,3 +101,5 @@ def _validate_entity_service_schema(schema: VolDictType | VolSchemaType | None, 
 def async_register_entity_service(hass: HomeAssistant, domain: str, name: str, *, description_placeholders: Mapping[str, str] | None = None, entity_device_classes: Iterable[str | None] | None = None, entities: dict[str, Entity], func: str | Callable[..., Any], job_type: HassJobType | None, required_features: Iterable[int] | None = None, schema: VolDictType | VolSchemaType | None, supports_response: SupportsResponse = ...) -> None: ...
 @callback
 def async_register_platform_entity_service(hass: HomeAssistant, service_domain: str, service_name: str, *, description_placeholders: Mapping[str, str] | None = None, entity_device_classes: Iterable[str | None] | None = None, entity_domain: str, func: str | Callable[..., Any], required_features: Iterable[int] | None = None, schema: VolDictType | VolSchemaType | None, supports_response: SupportsResponse = ...) -> None: ...
+@callback
+def async_get_config_entry(hass: HomeAssistant, domain: str, entry_id: str) -> ConfigEntry: ...

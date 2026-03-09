@@ -10,6 +10,8 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGatewayPortConfig as OmadaGatewayPortConfig, OmadaGatewayPortStatus as OmadaGatewayPortStatus, OmadaListDevice as OmadaListDevice
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)

@@ -14,6 +14,7 @@ _LOGGER: Incomplete
 TIMER_NOT_FOUND_RESPONSE: str
 MULTIPLE_TIMERS_MATCHED_RESPONSE: str
 NO_TIMER_SUPPORT_RESPONSE: str
+NO_TIMER_COMMAND_RESPONSE: str
 
 @dataclass
 class TimerInfo:
@@ -60,6 +61,9 @@ class TimerNotFoundError(intent.IntentHandleError):
 class MultipleTimersMatchedError(intent.IntentHandleError):
     def __init__(self) -> None: ...
 
+class NoTimerCommandError(intent.IntentHandleError):
+    def __init__(self, command: str) -> None: ...
+
 class TimersNotSupportedError(intent.IntentHandleError):
     def __init__(self, device_id: str | None = None) -> None: ...
 
@@ -100,6 +104,7 @@ class StartTimerIntentHandler(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
+    async def _validate_conversation_command(self, intent_obj: intent.Intent, conversation_command: str) -> bool: ...
 
 class CancelTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete

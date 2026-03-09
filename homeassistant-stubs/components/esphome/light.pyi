@@ -32,7 +32,6 @@ class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     @esphome_state_property
     def brightness(self) -> int: ...
     @property
-    @esphome_state_property
     def color_mode(self) -> ColorMode: ...
     @property
     @esphome_state_property

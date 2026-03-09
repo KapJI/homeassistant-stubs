@@ -1,6 +1,6 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
 from .const import REFRIGERATION_STATUS_DOOR_CLOSED as REFRIGERATION_STATUS_DOOR_CLOSED, REFRIGERATION_STATUS_DOOR_OPEN as REFRIGERATION_STATUS_DOOR_OPEN
-from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
+from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -19,7 +19,7 @@ class HomeConnectBinarySensorEntityDescription(BinarySensorEntityDescription):
 BINARY_SENSORS: Incomplete
 CONNECTED_BINARY_ENTITY_DESCRIPTION: Incomplete
 
-def _get_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectEntity]: ...
+def _get_entities_for_appliance(appliance_coordinator: HomeConnectApplianceCoordinator) -> list[HomeConnectEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectBinarySensor(HomeConnectEntity, BinarySensorEntity):

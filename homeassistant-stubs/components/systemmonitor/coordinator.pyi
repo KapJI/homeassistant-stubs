@@ -1,7 +1,7 @@
 import psutil_home_assistant as ha_psutil
 from . import SystemMonitorConfigEntry as SystemMonitorConfigEntry
 from .const import CONF_PROCESS as CONF_PROCESS, PROCESS_ERRORS as PROCESS_ERRORS
-from .util import read_fan_speed as read_fan_speed
+from .util import get_all_pressure_info as get_all_pressure_info, read_fan_speed as read_fan_speed
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
@@ -25,6 +25,7 @@ class SensorData:
     io_counters: dict[str, snetio]
     load: tuple[float, float, float]
     memory: VirtualMemory
+    pressure: dict[str, Any]
     process_fds: dict[str, int]
     processes: list[Process]
     swap: sswap

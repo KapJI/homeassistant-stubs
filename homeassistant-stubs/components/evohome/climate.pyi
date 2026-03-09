@@ -1,6 +1,5 @@
 import evohomeasync2 as evo
-from . import EVOHOME_KEY as EVOHOME_KEY
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_DURATION_UNTIL as ATTR_DURATION_UNTIL, ATTR_PERIOD as ATTR_PERIOD, ATTR_SETPOINT as ATTR_SETPOINT, EvoService as EvoService
+from .const import ATTR_DURATION as ATTR_DURATION, ATTR_DURATION_UNTIL as ATTR_DURATION_UNTIL, ATTR_PERIOD as ATTR_PERIOD, ATTR_SETPOINT as ATTR_SETPOINT, EVOHOME_DATA as EVOHOME_DATA, EvoService as EvoService
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .entity import EvoChild as EvoChild, EvoEntity as EvoEntity
 from _typeshed import Incomplete

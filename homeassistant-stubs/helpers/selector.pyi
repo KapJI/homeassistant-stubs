@@ -240,6 +240,7 @@ class DeviceSelector(Selector[DeviceSelectorConfig]):
 
 class DurationSelectorConfig(BaseSelectorConfig, total=False):
     enable_day: bool
+    enable_second: bool
     enable_millisecond: bool
     allow_negative: bool
 

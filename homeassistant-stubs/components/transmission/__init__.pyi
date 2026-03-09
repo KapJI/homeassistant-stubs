@@ -1,7 +1,6 @@
 import transmission_rpc
 from .const import DEFAULT_PATH as DEFAULT_PATH, DEFAULT_SSL as DEFAULT_SSL, DOMAIN as DOMAIN
 from .coordinator import TransmissionConfigEntry as TransmissionConfigEntry, TransmissionDataUpdateCoordinator as TransmissionDataUpdateCoordinator
-from .errors import AuthenticationError as AuthenticationError, CannotConnect as CannotConnect, UnknownError as UnknownError
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PATH as CONF_PATH, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME, Platform as Platform

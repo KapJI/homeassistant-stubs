@@ -18,7 +18,7 @@ class RobotSensorEntityDescription(SensorEntityDescription, Generic[_WhiskerEnti
     last_reset_fn: Callable[[], datetime | None] = ...
     value_fn: Callable[[_WhiskerEntityT], float | datetime | str | None]
 
-ROBOT_SENSOR_MAP: dict[type[Robot], list[RobotSensorEntityDescription]]
+ROBOT_SENSOR_MAP: dict[type[Robot] | tuple[type[Robot], ...], list[RobotSensorEntityDescription]]
 PET_SENSORS: list[RobotSensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

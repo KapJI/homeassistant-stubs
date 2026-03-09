@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.components.camera import CameraEntityFeature as CameraEntityFeature
 
 DOMAIN: str
 CONF_USE_HTTPS: str
@@ -9,3 +10,4 @@ CONF_FIRMWARE_CHECK_TIME: str
 BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL: int
 BATTERY_WAKE_UPDATE_INTERVAL: Incomplete
 BATTERY_ALL_WAKE_UPDATE_INTERVAL: Incomplete
+SUPPORT_PTZ_SPEED: Incomplete

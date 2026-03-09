@@ -1,6 +1,5 @@
 import abc
 from . import BondConfigEntry as BondConfigEntry
-from .const import ATTR_POWER_STATE as ATTR_POWER_STATE, SERVICE_SET_LIGHT_BRIGHTNESS_TRACKED_STATE as SERVICE_SET_LIGHT_BRIGHTNESS_TRACKED_STATE, SERVICE_SET_LIGHT_POWER_TRACKED_STATE as SERVICE_SET_LIGHT_POWER_TRACKED_STATE
 from .entity import BondEntity as BondEntity
 from .models import BondData as BondData
 from .utils import BondDevice as BondDevice
@@ -8,16 +7,11 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
-SERVICE_START_INCREASING_BRIGHTNESS: str
-SERVICE_START_DECREASING_BRIGHTNESS: str
-SERVICE_STOP: str
-ENTITY_SERVICES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

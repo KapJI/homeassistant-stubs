@@ -1,6 +1,8 @@
 import asyncio
 from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
+from .websocket import async_register_websocket_handlers as async_register_websocket_handlers
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -26,6 +28,7 @@ ATTR_FAN_SPEED_LIST: str
 ATTR_PARAMS: str
 ATTR_STATUS: str
 SERVICE_CLEAN_SPOT: str
+SERVICE_CLEAN_AREA: str
 SERVICE_LOCATE: str
 SERVICE_RETURN_TO_BASE: str
 SERVICE_SEND_COMMAND: str
@@ -35,6 +38,8 @@ SERVICE_START: str
 SERVICE_PAUSE: str
 SERVICE_STOP: str
 DEFAULT_NAME: str
+ISSUE_SEGMENTS_CHANGED: str
+ISSUE_SEGMENTS_MAPPING_NOT_CONFIGURED: str
 _BATTERY_DEPRECATION_IGNORED_PLATFORMS: Incomplete
 
 @bind_hass
@@ -56,6 +61,8 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     _attr_fan_speed_list: list[str]
     _attr_activity: VacuumActivity | None
     _attr_supported_features: VacuumEntityFeature
+    _segments_not_configured_issue_created: bool
+    _segments_changed_last_seen: list[dict[str, Any]] | None
     __vacuum_legacy_battery_level: bool
     __vacuum_legacy_battery_icon: bool
     __vacuum_legacy_battery_feature: bool
@@ -63,6 +70,10 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     def __setattr__(self, name: str, value: Any) -> None: ...
     @callback
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
+    @callback
+    def async_write_ha_state(self) -> None: ...
+    @callback
+    def async_registry_entry_updated(self) -> None: ...
     @callback
     def _report_deprecated_battery_properties(self, property: str) -> None: ...
     @callback
@@ -92,6 +103,18 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
     def clean_spot(self, **kwargs: Any) -> None: ...
     async def async_clean_spot(self, **kwargs: Any) -> None: ...
+    async def async_get_segments(self) -> list[Segment]: ...
+    @final
+    @property
+    def last_seen_segments(self) -> list[Segment] | None: ...
+    @final
+    async def async_internal_clean_area(self, cleaning_area_id: list[str], **kwargs: Any) -> None: ...
+    def clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
+    async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
+    @callback
+    def async_create_segments_issue(self) -> None: ...
+    @callback
+    def _async_check_segments_issues(self) -> None: ...
     def locate(self, **kwargs: Any) -> None: ...
     async def async_locate(self, **kwargs: Any) -> None: ...
     def set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
@@ -102,3 +125,9 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     async def async_start(self) -> None: ...
     def pause(self) -> None: ...
     async def async_pause(self) -> None: ...
+
+@dataclass(slots=True)
+class Segment:
+    id: str
+    name: str
+    group: str | None = ...

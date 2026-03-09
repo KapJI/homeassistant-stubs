@@ -30,8 +30,8 @@ _LOGGER: Incomplete
 class RoborockCoordinators:
     v1: list[RoborockDataUpdateCoordinator]
     a01: list[RoborockDataUpdateCoordinatorA01]
-    b01: list[RoborockDataUpdateCoordinatorB01]
-    def values(self) -> list[RoborockDataUpdateCoordinator | RoborockDataUpdateCoordinatorA01 | RoborockDataUpdateCoordinatorB01]: ...
+    b01_q7: list[RoborockB01Q7UpdateCoordinator]
+    def values(self) -> list[RoborockDataUpdateCoordinator | RoborockDataUpdateCoordinatorA01 | RoborockB01Q7UpdateCoordinator]: ...
 type RoborockConfigEntry = ConfigEntry[RoborockCoordinators]
 
 class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState]):

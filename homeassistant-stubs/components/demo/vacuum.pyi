@@ -1,9 +1,11 @@
+from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from datetime import datetime
-from homeassistant.components.vacuum import ATTR_CLEANED_AREA as ATTR_CLEANED_AREA, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import ATTR_CLEANED_AREA as ATTR_CLEANED_AREA, Segment as Segment, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import event as event
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -12,6 +14,7 @@ SUPPORT_BASIC_SERVICES: Incomplete
 SUPPORT_MOST_SERVICES: Incomplete
 SUPPORT_ALL_SERVICES: Incomplete
 FAN_SPEEDS: Incomplete
+DEMO_SEGMENTS: Incomplete
 DEMO_VACUUM_COMPLETE: str
 DEMO_VACUUM_MOST: str
 DEMO_VACUUM_BASIC: str
@@ -21,14 +24,17 @@ DEMO_VACUUM_NONE: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class StateDemoVacuum(StateVacuumEntity):
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_should_poll: bool
     _attr_translation_key: str
-    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _attr_supported_features: Incomplete
+    _attr_device_info: Incomplete
     _attr_activity: Incomplete
     _fan_speed: Incomplete
     _cleaned_area: float
-    def __init__(self, name: str, supported_features: VacuumEntityFeature) -> None: ...
+    def __init__(self, unique_id: str, name: str, supported_features: VacuumEntityFeature) -> None: ...
     @property
     def fan_speed(self) -> str: ...
     @property
@@ -44,4 +50,6 @@ class StateDemoVacuum(StateVacuumEntity):
     async def async_locate(self, **kwargs: Any) -> None: ...
     async def async_clean_spot(self, **kwargs: Any) -> None: ...
     async def async_send_command(self, command: str, params: dict[str, Any] | list[Any] | None = None, **kwargs: Any) -> None: ...
+    async def async_get_segments(self) -> list[Segment]: ...
+    async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
     def __set_state_to_dock(self, _: datetime) -> None: ...

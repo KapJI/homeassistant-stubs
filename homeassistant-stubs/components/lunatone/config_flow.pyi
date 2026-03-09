@@ -7,8 +7,6 @@ from typing import Any, Final
 
 DATA_SCHEMA: Final[vol.Schema]
 
-def compose_title(name: str | None, serial_number: int) -> str: ...
-
 class LunatoneConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int

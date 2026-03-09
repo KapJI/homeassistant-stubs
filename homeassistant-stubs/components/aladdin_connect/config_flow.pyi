@@ -1,8 +1,9 @@
 import logging
+from .api import AsyncConfigFlowAuth as AsyncConfigFlowAuth
 from .const import CONFIG_FLOW_MINOR_VERSION as CONFIG_FLOW_MINOR_VERSION, CONFIG_FLOW_VERSION as CONFIG_FLOW_VERSION, DOMAIN as DOMAIN
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
-from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
+from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):

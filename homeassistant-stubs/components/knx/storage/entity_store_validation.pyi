@@ -1,6 +1,7 @@
 import voluptuous as vol
 from .entity_store_schema import ENTITY_STORE_DATA_SCHEMA as ENTITY_STORE_DATA_SCHEMA
 from _typeshed import Incomplete
+from homeassistant.helpers.typing import VolSchemaType as VolSchemaType
 from typing import Literal, TypedDict
 
 class _ErrorDescription(TypedDict):
@@ -18,6 +19,7 @@ class EntityStoreValidationSuccess(TypedDict):
     entity_id: str | None
 
 def parse_invalid(exc: vol.Invalid) -> _ErrorDescription: ...
+def validate_config_store_data(schema: VolSchemaType, entity_data: dict) -> dict: ...
 def validate_entity_data(entity_data: dict) -> dict: ...
 
 class EntityStoreValidationException(Exception):

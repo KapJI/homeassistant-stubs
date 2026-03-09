@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from enum import Enum
+from enum import StrEnum
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COVERS as CONF_COVERS, CONF_LIGHTS as CONF_LIGHTS, CONF_SENSORS as CONF_SENSORS, CONF_SWITCHES as CONF_SWITCHES, Platform as Platform
 
 CONF_BAUDRATE: str
@@ -99,7 +99,7 @@ ATTR_UNIT: str
 ATTR_SLAVE: str
 ATTR_VALUE: str
 
-class DataType(str, Enum):
+class DataType(StrEnum):
     CUSTOM = 'custom'
     STRING = 'string'
     INT16 = 'int16'

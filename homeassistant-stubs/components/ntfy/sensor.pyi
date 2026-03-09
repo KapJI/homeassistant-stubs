@@ -1,17 +1,14 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import NtfyConfigEntry as NtfyConfigEntry, NtfyDataUpdateCoordinator as NtfyDataUpdateCoordinator
-from _typeshed import Incomplete
+from .entity import NtfyCommonBaseEntity as NtfyCommonBaseEntity
 from aiontfy import Account as NtfyAccount
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import CONF_URL as CONF_URL, EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation, UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 PARALLEL_UPDATES: int
 
@@ -45,12 +42,8 @@ SENSOR_DESCRIPTIONS: tuple[NtfySensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: NtfyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class NtfySensorEntity(CoordinatorEntity[NtfyDataUpdateCoordinator], SensorEntity):
+class NtfySensorEntity(NtfyCommonBaseEntity, SensorEntity):
     entity_description: NtfySensorEntityDescription
     coordinator: NtfyDataUpdateCoordinator
-    _attr_has_entity_name: bool
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    def __init__(self, coordinator: NtfyDataUpdateCoordinator, description: NtfySensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType: ...

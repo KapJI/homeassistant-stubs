@@ -4,8 +4,8 @@ from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_CODE as CONF_CODE, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
-from homeassistant.core import CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_CODE as CONF_CODE, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME, Platform as Platform
+from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
@@ -28,6 +28,7 @@ ATTR_TIMESTAMP: str
 DEFAULT_SCAN_INTERVAL: Incomplete
 WEBSOCKET_RECONNECT_RETRIES: int
 WEBSOCKET_RETRY_DELAY: int
+WEBSOCKET_LOOP_TASK_NAME: str
 EVENT_SIMPLISAFE_EVENT: str
 EVENT_SIMPLISAFE_NOTIFICATION: str
 PLATFORMS: Incomplete
@@ -54,8 +55,7 @@ class SimpliSafe:
     _api: Incomplete
     _hass: Incomplete
     _system_notifications: dict[int, set[SystemNotification]]
-    _websocket_reconnect_retries: int
-    _websocket_reconnect_task: asyncio.Task | None
+    _websocket_task: asyncio.Task | None
     entry: Incomplete
     initial_event_to_use: dict[int, dict[str, Any]]
     subscription_data: dict[int, Any]
@@ -64,7 +64,9 @@ class SimpliSafe:
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: API) -> None: ...
     @callback
     def _async_process_new_notifications(self, system: SystemType) -> None: ...
-    async def _async_start_websocket_loop(self) -> None: ...
+    @callback
+    def _async_start_websocket_if_needed(self) -> None: ...
+    async def _async_websocket_loop(self) -> None: ...
     async def _async_cancel_websocket_loop(self) -> None: ...
     @callback
     def _async_websocket_on_event(self, event: WebsocketEvent) -> None: ...

@@ -1,6 +1,6 @@
 from .api import AsyncConfigEntryAuth as AsyncConfigEntryAuth
 from .const import DOMAIN as DOMAIN, OLD_NEW_UNIQUE_ID_SUFFIX_MAP as OLD_NEW_UNIQUE_ID_SUFFIX_MAP
-from .coordinator import HomeConnectConfigEntry as HomeConnectConfigEntry, HomeConnectCoordinator as HomeConnectCoordinator
+from .coordinator import HomeConnectConfigEntry as HomeConnectConfigEntry, HomeConnectRuntimeData as HomeConnectRuntimeData
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform

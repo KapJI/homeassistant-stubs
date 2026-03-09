@@ -11,13 +11,16 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Literal
 
 @dataclass(frozen=True, kw_only=True)
 class SensorEntityDescriptionWithValueAccessor(SensorEntityDescription):
     value_accessor: Callable[[BRouteData], StateType]
 
 SENSOR_DESCRIPTIONS: Incomplete
+_DEVICE_INFO_MAPPING: dict[Literal['manufacturer', 'serial_number', 'sw_version'], Callable[[BRouteUpdateCoordinator], str | None]]
 
+def _build_device_info(coordinator: BRouteUpdateCoordinator) -> DeviceInfo: ...
 async def async_setup_entry(hass: HomeAssistant, entry: BRouteConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SmartMeterBRouteSensor(CoordinatorEntity[BRouteUpdateCoordinator], SensorEntity):

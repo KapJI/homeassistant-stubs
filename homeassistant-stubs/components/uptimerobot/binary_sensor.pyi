@@ -1,3 +1,4 @@
+from .const import STATUS_UP as STATUS_UP
 from .coordinator import UptimeRobotConfigEntry as UptimeRobotConfigEntry
 from .entity import UptimeRobotEntity as UptimeRobotEntity
 from .utils import new_device_listener as new_device_listener

@@ -1,0 +1,2 @@
+DOMAIN: str
+UPDATE_URL: str

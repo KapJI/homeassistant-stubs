@@ -6,6 +6,10 @@ from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth
 API_URL: str
 API_KEY: str
 
+class AsyncConfigFlowAuth(Auth):
+    def __init__(self, websession: ClientSession, access_token: str) -> None: ...
+    async def async_get_access_token(self) -> str: ...
+
 class AsyncConfigEntryAuth(Auth):
     _oauth_session: Incomplete
     def __init__(self, websession: ClientSession, oauth_session: config_entry_oauth2_flow.OAuth2Session) -> None: ...

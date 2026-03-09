@@ -2,10 +2,10 @@ from .const import ATTR_END_DATE as ATTR_END_DATE, ATTR_ENTRY_TYPE as ATTR_ENTRY
 from .coordinator import MealieConfigEntry as MealieConfigEntry
 from _typeshed import Incomplete
 from awesomeversion import AwesomeVersion
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, ATTR_DATE as ATTR_DATE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import service as service
 
 SERVICE_GET_MEALPLAN: str
 SERVICE_GET_MEALPLAN_SCHEMA: Incomplete
@@ -13,6 +13,7 @@ SERVICE_GET_RECIPE: str
 SERVICE_GET_RECIPE_SCHEMA: Incomplete
 SERVICE_GET_RECIPES: str
 SERVICE_GET_RECIPES_SCHEMA: Incomplete
+SERVICE_GET_SHOPPING_LIST_ITEMS: str
 SERVICE_IMPORT_RECIPE: str
 SERVICE_IMPORT_RECIPE_SCHEMA: Incomplete
 SERVICE_SET_RANDOM_MEALPLAN: str
@@ -20,7 +21,6 @@ SERVICE_SET_RANDOM_MEALPLAN_SCHEMA: Incomplete
 SERVICE_SET_MEALPLAN: str
 SERVICE_SET_MEALPLAN_SCHEMA: Incomplete
 
-def _async_get_entry(call: ServiceCall) -> MealieConfigEntry: ...
 def _validate_mealplan_type(version: AwesomeVersion, entry_type: str) -> None: ...
 async def _async_get_mealplan(call: ServiceCall) -> ServiceResponse: ...
 async def _async_get_recipe(call: ServiceCall) -> ServiceResponse: ...

@@ -1,0 +1,2 @@
+DOMAIN: str
+INTEGRATION_NAME: str

@@ -3,7 +3,7 @@ from genie_partner_sdk.client import AladdinConnectClient as AladdinConnectClien
 from genie_partner_sdk.model import GarageDoor
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
 type AladdinConnectConfigEntry = ConfigEntry[dict[str, AladdinConnectCoordinator]]

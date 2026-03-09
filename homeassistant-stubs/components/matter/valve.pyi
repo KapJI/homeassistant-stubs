@@ -26,7 +26,7 @@ class MatterValve(MatterEntity, ValveEntity):
     async def async_set_valve_position(self, position: int) -> None: ...
     _attr_is_opening: bool
     _attr_is_closing: bool
-    _attr_is_closed: bool
+    _attr_is_closed: Incomplete
     _attr_current_valve_position: Incomplete
     @callback
     def _update_from_device(self) -> None: ...

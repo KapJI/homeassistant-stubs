@@ -1,9 +1,9 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import OpowerConfigEntry as OpowerConfigEntry, OpowerCoordinator as OpowerCoordinator
+from .coordinator import OpowerConfigEntry as OpowerConfigEntry, OpowerCoordinator as OpowerCoordinator, OpowerData as OpowerData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -11,14 +11,14 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from opower import Forecast as Forecast
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class OpowerEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[Forecast], str | float | date]
+    value_fn: Callable[[OpowerData], str | float | date | datetime | None]
 
+COMMON_SENSORS: tuple[OpowerEntityDescription, ...]
 ELEC_SENSORS: tuple[OpowerEntityDescription, ...]
 GAS_SENSORS: tuple[OpowerEntityDescription, ...]
 
@@ -32,4 +32,4 @@ class OpowerSensor(CoordinatorEntity[OpowerCoordinator], SensorEntity):
     utility_account_id: Incomplete
     def __init__(self, coordinator: OpowerCoordinator, description: OpowerEntityDescription, utility_account_id: str, device: DeviceInfo, device_id: str) -> None: ...
     @property
-    def native_value(self) -> StateType | date: ...
+    def native_value(self) -> StateType | date | datetime: ...

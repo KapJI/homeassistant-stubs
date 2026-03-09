@@ -1,4 +1,5 @@
 import datetime
+import pathlib
 from .const import DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo, async_nest_devices_by_device_id as async_nest_devices_by_device_id
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
@@ -28,11 +29,13 @@ EVENT_THUMBNAIL_URL_FORMAT: str
 STORAGE_KEY: str
 STORAGE_VERSION: int
 STORAGE_SAVE_DELAY_SECONDS: int
-MEDIA_PATH: Incomplete
+LEGACY_MEDIA_PATH: Incomplete
+MEDIA_CACHE_PATH: str
 DISK_READ_LRU_MAX_SIZE: int
 ORPHANED_MEDIA_AGE_CUTOFF: Incomplete
 
 async def async_get_media_event_store(hass: HomeAssistant, subscriber: GoogleNestSubscriber) -> EventMediaStore: ...
+def _prepare_media_cache_dir(media_path: pathlib.Path, legacy_media_path: pathlib.Path) -> None: ...
 async def async_get_transcoder(hass: HomeAssistant) -> Transcoder: ...
 
 class NestEventMediaStore(EventMediaStore):

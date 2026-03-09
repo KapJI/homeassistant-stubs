@@ -1,6 +1,6 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
 from .const import APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPERATION_STATE_FINISHED as BSH_OPERATION_STATE_FINISHED, BSH_OPERATION_STATE_PAUSE as BSH_OPERATION_STATE_PAUSE, BSH_OPERATION_STATE_RUN as BSH_OPERATION_STATE_RUN, UNIT_MAP as UNIT_MAP
-from .coordinator import HomeConnectApplianceData as HomeConnectApplianceData, HomeConnectConfigEntry as HomeConnectConfigEntry
+from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, constraint_fetcher as constraint_fetcher
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -24,7 +24,7 @@ BSH_PROGRAM_SENSORS: Incomplete
 SENSORS: Incomplete
 EVENT_SENSORS: Incomplete
 
-def _get_entities_for_appliance(entry: HomeConnectConfigEntry, appliance: HomeConnectApplianceData) -> list[HomeConnectEntity]: ...
+def _get_entities_for_appliance(appliance_coordinator: HomeConnectApplianceCoordinator) -> list[HomeConnectEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectSensor(HomeConnectEntity, SensorEntity):

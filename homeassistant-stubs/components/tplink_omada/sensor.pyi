@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from tplink_omada_client.devices import OmadaListDevice as OmadaListDevice
 
+PARALLEL_UPDATES: int
 DEVICE_STATUS_MAP: Incomplete
 DEVICE_STATUS_CATEGORY_MAP: Incomplete
 

@@ -38,7 +38,8 @@ class DemoClimate(ClimateEntity):
     _target_temperature_high: Incomplete
     _target_temperature_low: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, device_name: str, target_temperature: float | None, unit_of_measurement: str, preset: str | None, current_temperature: float, fan_mode: str | None, target_humidity: float | None, current_humidity: float | None, swing_mode: str | None, swing_horizontal_mode: str | None, hvac_mode: HVACMode, hvac_action: HVACAction | None, target_temp_high: float | None, target_temp_low: float | None, hvac_modes: list[HVACMode], preset_modes: list[str] | None = None) -> None: ...
+    _attr_target_humidity_step: Incomplete
+    def __init__(self, unique_id: str, device_name: str, target_temperature: float | None, unit_of_measurement: str, preset: str | None, current_temperature: float, fan_mode: str | None, target_humidity: float | None, current_humidity: float | None, swing_mode: str | None, swing_horizontal_mode: str | None, hvac_mode: HVACMode, hvac_action: HVACAction | None, target_temp_high: float | None, target_temp_low: float | None, hvac_modes: list[HVACMode], preset_modes: list[str] | None = None, target_humidity_step: int | None = None) -> None: ...
     @property
     def unique_id(self) -> str: ...
     @property

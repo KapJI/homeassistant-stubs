@@ -4,12 +4,10 @@ from _typeshed import Incomplete
 from datetime import time
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitterbot import LitterRobot
 from typing import Any
 
-SERVICE_SET_SLEEP_MODE: str
 LITTER_BOX_STATUS_STATE_MAP: Incomplete
 LITTER_BOX_ENTITY: Incomplete
 

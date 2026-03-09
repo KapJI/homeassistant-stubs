@@ -12,6 +12,7 @@ class BTHomePassiveBluetoothProcessorCoordinator(PassiveBluetoothProcessorCoordi
     discovered_event_classes: Incomplete
     device_data: Incomplete
     entry: Incomplete
+    encryption_downgrade_logged: bool
     def __init__(self, hass: HomeAssistant, logger: Logger, address: str, mode: BluetoothScanningMode, update_method: Callable[[BluetoothServiceInfoBleak], SensorUpdate], device_data: BTHomeBluetoothDeviceData, discovered_event_classes: set[str], entry: BTHomeConfigEntry, connectable: bool = False) -> None: ...
     @property
     def sleepy_device(self) -> bool: ...

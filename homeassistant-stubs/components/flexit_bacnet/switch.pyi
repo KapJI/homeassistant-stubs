@@ -6,9 +6,11 @@ from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from flexit_bacnet import FlexitBACnet as FlexitBACnet
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from typing import Any
 
 @dataclass(kw_only=True, frozen=True)

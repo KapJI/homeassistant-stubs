@@ -1,5 +1,5 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
-from .const import DOMAIN as DOMAIN, ERROR_STATES as ERROR_STATES
+from .const import DOMAIN as DOMAIN, ERROR_STATES as ERROR_STATES, MOW as MOW, PARK as PARK
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerBaseEntity as AutomowerBaseEntity, handle_sending_exception as handle_sending_exception
 from _typeshed import Incomplete
@@ -8,18 +8,13 @@ from datetime import timedelta
 from homeassistant.components.lawn_mower import LawnMowerActivity as LawnMowerActivity, LawnMowerEntity as LawnMowerEntity, LawnMowerEntityFeature as LawnMowerEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 DOCKED_ACTIVITIES: Incomplete
 MOWING_ACTIVITIES: Incomplete
 PAUSED_STATES: Incomplete
 SUPPORT_STATE_SERVICES: Incomplete
-MOW: str
-PARK: str
-OVERRIDE_MODES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

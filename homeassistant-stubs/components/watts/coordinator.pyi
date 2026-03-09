@@ -8,18 +8,18 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from visionpluspython.client import WattsVisionClient as WattsVisionClient
-from visionpluspython.models import Device, ThermostatDevice
+from visionpluspython.models import Device
 
 type WattsVisionConfigEntry = ConfigEntry[WattsVisionRuntimeData]
 _LOGGER: Incomplete
 
 @dataclass
-class WattsVisionThermostatData:
-    thermostat: ThermostatDevice
+class WattsVisionDeviceData:
+    device: Device
 
 class WattsVisionHubCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     client: Incomplete
-    _last_discovery: datetime | None
+    last_discovery: datetime | None
     previous_devices: set[str]
     def __init__(self, hass: HomeAssistant, client: WattsVisionClient, config_entry: WattsVisionConfigEntry) -> None: ...
     async def _async_update_data(self) -> dict[str, Device]: ...
@@ -27,14 +27,14 @@ class WattsVisionHubCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     @property
     def device_ids(self) -> list[str]: ...
 
-class WattsVisionThermostatCoordinator(DataUpdateCoordinator[WattsVisionThermostatData]):
+class WattsVisionDeviceCoordinator(DataUpdateCoordinator[WattsVisionDeviceData]):
     client: Incomplete
     device_id: Incomplete
     hub_coordinator: Incomplete
-    _fast_polling_until: datetime | None
+    fast_polling_until: datetime | None
     unsubscribe_hub_listener: Incomplete
     def __init__(self, hass: HomeAssistant, client: WattsVisionClient, config_entry: WattsVisionConfigEntry, hub_coordinator: WattsVisionHubCoordinator, device_id: str) -> None: ...
     def _handle_hub_update(self) -> None: ...
     update_interval: Incomplete
-    async def _async_update_data(self) -> WattsVisionThermostatData: ...
+    async def _async_update_data(self) -> WattsVisionDeviceData: ...
     def trigger_fast_polling(self, duration: int = 60) -> None: ...

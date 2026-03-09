@@ -3,7 +3,7 @@ from .data import ProtectData as ProtectData, async_get_ufp_entries as async_get
 from .views import async_generate_event_video_url as async_generate_event_video_url, async_generate_thumbnail_url as async_generate_thumbnail_url
 from _typeshed import Incomplete
 from datetime import date, datetime, timedelta
-from enum import Enum
+from enum import StrEnum
 from homeassistant.components.camera import CameraImageView as CameraImageView
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
@@ -17,19 +17,19 @@ VIDEO_FORMAT: str
 THUMBNAIL_WIDTH: int
 THUMBNAIL_HEIGHT: int
 
-class SimpleEventType(str, Enum):
+class SimpleEventType(StrEnum):
     ALL = 'all'
     RING = 'ring'
     MOTION = 'motion'
     SMART = 'smart'
     AUDIO = 'audio'
 
-class IdentifierType(str, Enum):
+class IdentifierType(StrEnum):
     EVENT = 'event'
     EVENT_THUMB = 'eventthumb'
     BROWSE = 'browse'
 
-class IdentifierTimeType(str, Enum):
+class IdentifierTimeType(StrEnum):
     RECENT = 'recent'
     RANGE = 'range'
 

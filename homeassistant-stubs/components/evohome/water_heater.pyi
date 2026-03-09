@@ -1,5 +1,5 @@
 import evohomeasync2 as evo
-from . import EVOHOME_KEY as EVOHOME_KEY
+from .const import EVOHOME_DATA as EVOHOME_DATA
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .entity import EvoChild as EvoChild
 from _typeshed import Incomplete

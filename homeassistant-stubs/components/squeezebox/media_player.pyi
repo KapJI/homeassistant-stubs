@@ -10,10 +10,10 @@ from datetime import datetime
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery, async_process_play_media_url as async_process_play_media_url
 from homeassistant.config_entries import SOURCE_INTEGRATION_DISCOVERY as SOURCE_INTEGRATION_DISCOVERY
-from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, Platform as Platform
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import discovery_flow as discovery_flow, entity_platform as entity_platform
+from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -24,12 +24,9 @@ from lru import LRU
 from pysqueezebox import Server as Server
 from typing import Any
 
-SERVICE_CALL_METHOD: str
-SERVICE_CALL_QUERY: str
 ATTR_QUERY_RESULT: str
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
-ATTR_PARAMETERS: str
 ATTR_OTHER_PLAYER: str
 ATTR_TO_PROPERTY: Incomplete
 SQUEEZEBOX_MODE: Incomplete

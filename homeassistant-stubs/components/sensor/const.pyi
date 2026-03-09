@@ -89,5 +89,5 @@ DEVICE_CLASS_UNITS: dict[SensorDeviceClass, set[type[StrEnum] | str | None]]
 DEFAULT_PRECISION_LIMIT: int
 UNITS_PRECISION: Incomplete
 DEVICE_CLASS_STATE_CLASSES: dict[SensorDeviceClass, set[SensorStateClass]]
-STATE_CLASS_UNITS: dict[SensorStateClass | str, set[type[StrEnum] | str | None]]
+STATE_CLASS_UNITS: dict[SensorStateClass, set[type[StrEnum] | str | None]]
 AMBIGUOUS_UNITS: dict[str | None, str]

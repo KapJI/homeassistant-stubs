@@ -1,6 +1,6 @@
 from . import SpeechToTextEntity as SpeechToTextEntity
 from .legacy import Provider as Provider
-from enum import Enum
+from enum import Enum, StrEnum
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.util.hass_dict import HassKey as HassKey
 
@@ -8,11 +8,11 @@ DOMAIN: str
 DATA_COMPONENT: HassKey[EntityComponent[SpeechToTextEntity]]
 DATA_PROVIDERS: HassKey[dict[str, Provider]]
 
-class AudioCodecs(str, Enum):
+class AudioCodecs(StrEnum):
     PCM = 'pcm'
     OPUS = 'opus'
 
-class AudioFormats(str, Enum):
+class AudioFormats(StrEnum):
     WAV = 'wav'
     OGG = 'ogg'
 
@@ -37,6 +37,6 @@ class AudioChannels(int, Enum):
     CHANNEL_MONO = 1
     CHANNEL_STEREO = 2
 
-class SpeechResultState(str, Enum):
+class SpeechResultState(StrEnum):
     SUCCESS = 'success'
     ERROR = 'error'

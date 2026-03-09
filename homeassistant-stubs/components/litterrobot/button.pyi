@@ -13,7 +13,7 @@ from typing import Any, Generic
 class RobotButtonEntityDescription(ButtonEntityDescription, Generic[_WhiskerEntityT]):
     press_fn: Callable[[_WhiskerEntityT], Coroutine[Any, Any, bool]]
 
-ROBOT_BUTTON_MAP: dict[type[Robot], RobotButtonEntityDescription]
+ROBOT_BUTTON_MAP: dict[tuple[type[Robot], ...], RobotButtonEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

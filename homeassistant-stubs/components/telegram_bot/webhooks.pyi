@@ -6,7 +6,6 @@ from aiohttp.web_response import Response as Response
 from homeassistant.components.http import HomeAssistantRequest as HomeAssistantRequest, HomeAssistantView as HomeAssistantView
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.network import get_url as get_url
 from ipaddress import IPv4Network
 from telegram import Bot as Bot
@@ -16,7 +15,7 @@ _LOGGER: Incomplete
 TELEGRAM_WEBHOOK_URL: str
 SECRET_TOKEN_LENGTH: int
 
-async def async_setup_platform(hass: HomeAssistant, bot: Bot, config: TelegramBotConfigEntry) -> BaseTelegramBot | None: ...
+async def async_setup_bot_platform(hass: HomeAssistant, bot: Bot, config: TelegramBotConfigEntry) -> BaseTelegramBot | None: ...
 def _get_trusted_networks(config: TelegramBotConfigEntry) -> list[IPv4Network]: ...
 
 class PushBot(BaseTelegramBot):

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, EVENT_VALUE_ADDED as EVENT_VALUE_ADDED, EVENT_VALUE_REMOVED as EVENT_VALUE_REMOVED, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
 from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
 from .models import PlatformZwaveDiscoveryInfo as PlatformZwaveDiscoveryInfo, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
@@ -16,8 +16,6 @@ from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import SetValueResult as SetValueResult, Value as ZwaveValue
 
-EVENT_VALUE_REMOVED: str
-
 @dataclass(kw_only=True)
 class NewZwaveDiscoveryInfo(PlatformZwaveDiscoveryInfo):
     entity_class: type[ZWaveBaseEntity]
@@ -31,6 +29,7 @@ class ZWaveBaseEntity(Entity):
     config_entry: Incomplete
     driver: Incomplete
     info: Incomplete
+    _primary_value_removed: bool
     watched_value_ids: Incomplete
     entity_description: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
@@ -52,6 +51,8 @@ class ZWaveBaseEntity(Entity):
     def _value_changed(self, event_data: dict) -> None: ...
     @callback
     def _value_removed(self, event_data: dict) -> None: ...
+    @callback
+    def _value_added(self, event_data: dict) -> None: ...
     @callback
     def get_zwave_value(self, value_property: str | int, command_class: int | None = None, endpoint: int | None = None, value_property_key: int | str | None = None, add_to_watched_value_ids: bool = True, check_all_endpoints: bool = False) -> ZwaveValue | None: ...
     async def _async_set_value(self, value: ZwaveValue, new_value: Any, options: dict | None = None, wait_for_result: bool | None = None) -> SetValueResult | None: ...

@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, IS_IN_BED as IS_IN_BED, SLEEP_NUMBER as SLEEP_NUMBER
-from .coordinator import SleepIQData as SleepIQData, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator, SleepIQPauseUpdateCoordinator as SleepIQPauseUpdateCoordinator
+from .coordinator import SleepIQData as SleepIQData, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator, SleepIQPauseUpdateCoordinator as SleepIQPauseUpdateCoordinator, SleepIQSleepDataCoordinator as SleepIQSleepDataCoordinator
 from _typeshed import Incomplete
 from asyncsleepiq import AsyncSleepIQ
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPORT as SOURCE_IMPORT

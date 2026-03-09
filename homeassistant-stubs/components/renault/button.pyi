@@ -1,5 +1,6 @@
 from . import RenaultConfigEntry as RenaultConfigEntry
 from .entity import RenaultEntity as RenaultEntity
+from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
@@ -12,7 +13,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class RenaultButtonEntityDescription(ButtonEntityDescription):
     async_press: Callable[[RenaultButtonEntity], Coroutine[Any, Any, Any]]
-    requires_electricity: bool = ...
+    is_supported: Callable[[RenaultVehicleProxy], bool]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

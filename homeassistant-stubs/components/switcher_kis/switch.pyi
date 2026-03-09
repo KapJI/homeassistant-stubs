@@ -35,7 +35,7 @@ class SwitcherBaseSwitchEntity(SwitcherEntity, SwitchEntity):
 class SwitcherPowerPlugSwitchEntity(SwitcherBaseSwitchEntity):
     _attr_device_class: Incomplete
 
-class SwitcherWaterHeaterSwitchEntity(SwitcherBaseSwitchEntity):
+class SwitcherHeaterSwitchEntity(SwitcherBaseSwitchEntity):
     _attr_device_class: Incomplete
     async def async_set_auto_off_service(self, auto_off: timedelta) -> None: ...
     _attr_is_on: bool

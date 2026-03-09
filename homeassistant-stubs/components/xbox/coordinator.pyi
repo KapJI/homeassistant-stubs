@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pythonxbox.api.client import XboxLiveClient as XboxLiveClient
-from pythonxbox.api.provider.catalog.models import Product as Product
+from pythonxbox.api.provider.catalog.models import AlternateIdType, Product as Product
 from pythonxbox.api.provider.people.models import Person as Person
 from pythonxbox.api.provider.smartglass.models import SmartglassConsole, SmartglassConsoleStatus as SmartglassConsoleStatus
 from pythonxbox.api.provider.titlehub.models import Title as Title
@@ -55,6 +55,7 @@ class XboxConsoleStatusCoordinator(XboxBaseCoordinator[dict[str, ConsoleData]]):
     consoles: dict[str, SmartglassConsole] | None
     def __init__(self, hass: HomeAssistant, config_entry: XboxConfigEntry, client: XboxLiveClient, consoles: dict[str, SmartglassConsole]) -> None: ...
     async def update_data(self) -> dict[str, ConsoleData]: ...
+    def _resolve_app_id(self, focus_app_aumid: str) -> tuple[str, AlternateIdType]: ...
 
 class XboxPresenceCoordinator(XboxBaseCoordinator[XboxData]):
     config_entry: XboxConfigEntry

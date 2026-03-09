@@ -5,13 +5,16 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping, Sequence
 from homeassistant.components import recorder as recorder, sensor as sensor
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 
 ENERGY_USAGE_DEVICE_CLASSES: Incomplete
 ENERGY_USAGE_UNITS: dict[str, tuple[UnitOfEnergy, ...]]
 POWER_USAGE_DEVICE_CLASSES: Incomplete
 POWER_USAGE_UNITS: dict[str, tuple[UnitOfPower, ...]]
+VOLUME_FLOW_RATE_DEVICE_CLASSES: Incomplete
+VOLUME_FLOW_RATE_UNITS: dict[str, tuple[UnitOfVolumeFlowRate, ...]]
+VOLUME_FLOW_RATE_UNIT_ERROR: str
 ENERGY_PRICE_UNITS: Incomplete
 ENERGY_UNIT_ERROR: str
 ENERGY_PRICE_UNIT_ERROR: str

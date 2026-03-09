@@ -1,11 +1,9 @@
 from . import BondConfigEntry as BondConfigEntry
-from .const import ATTR_POWER_STATE as ATTR_POWER_STATE, SERVICE_SET_POWER_TRACKED_STATE as SERVICE_SET_POWER_TRACKED_STATE
 from .entity import BondEntity as BondEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 

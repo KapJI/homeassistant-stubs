@@ -1,8 +1,11 @@
+from . import EvoData as EvoData
 from _typeshed import Incomplete
 from enum import StrEnum
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+EVOHOME_DATA: HassKey[EvoData]
 STORAGE_VER: Final[int]
 STORAGE_KEY: Final[Incomplete]
 CONF_LOCATION_IDX: Final[str]

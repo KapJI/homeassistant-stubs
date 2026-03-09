@@ -9,6 +9,7 @@ class MeshRoles(StrEnum):
     SLAVE = 'slave'
 
 DOMAIN: str
+SCAN_INTERVAL: int
 PLATFORMS: Incomplete
 CONF_OLD_DISCOVERY: str
 DEFAULT_CONF_OLD_DISCOVERY: bool

@@ -14,8 +14,10 @@ type LibreHardwareMonitorConfigEntry = ConfigEntry[LibreHardwareMonitorCoordinat
 
 class LibreHardwareMonitorCoordinator(DataUpdateCoordinator[LibreHardwareMonitorData]):
     config_entry: LibreHardwareMonitorConfigEntry
+    _entry_id: Incomplete
     _api: Incomplete
     _previous_devices: dict[DeviceId, DeviceName]
+    _is_deprecated_version: bool | None
     def __init__(self, hass: HomeAssistant, config_entry: LibreHardwareMonitorConfigEntry) -> None: ...
     async def _async_update_data(self) -> LibreHardwareMonitorData: ...
     async def _async_refresh(self, log_failures: bool = True, raise_on_auth_failed: bool = False, scheduled: bool = False, raise_on_entry_error: bool = False) -> None: ...

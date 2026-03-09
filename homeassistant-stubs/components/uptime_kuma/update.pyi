@@ -1,10 +1,10 @@
 from . import UPTIME_KUMA_KEY as UPTIME_KUMA_KEY
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, LOCAL_INSTANCE as LOCAL_INSTANCE
 from .coordinator import UptimeKumaConfigEntry as UptimeKumaConfigEntry, UptimeKumaDataUpdateCoordinator as UptimeKumaDataUpdateCoordinator, UptimeKumaSoftwareUpdateCoordinator as UptimeKumaSoftwareUpdateCoordinator
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.const import CONF_URL as CONF_URL
+from homeassistant.const import CONF_URL as CONF_URL, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

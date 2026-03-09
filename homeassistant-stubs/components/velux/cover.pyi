@@ -1,0 +1,74 @@
+from . import VeluxConfigEntry as VeluxConfigEntry
+from .entity import VeluxEntity as VeluxEntity, wrap_pyvlx_call_exceptions as wrap_pyvlx_call_exceptions
+from _typeshed import Incomplete
+from enum import StrEnum
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyvlx.opening_device import Blind, DualRollerShutter, OpeningDevice
+from typing import Any
+
+PARALLEL_UPDATES: int
+
+async def async_setup_entry(hass: HomeAssistant, config_entry: VeluxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+
+class VeluxCover(VeluxEntity, CoverEntity):
+    node: OpeningDevice
+    _attr_supported_features: Incomplete
+    _attr_device_class: Incomplete
+    def __init__(self, node: OpeningDevice, config_entry_id: str) -> None: ...
+    @property
+    def current_cover_position(self) -> int: ...
+    @property
+    def is_closed(self) -> bool: ...
+    @property
+    def is_opening(self) -> bool: ...
+    @property
+    def is_closing(self) -> bool: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_stop_cover(self, **kwargs: Any) -> None: ...
+
+class VeluxDualRollerPart(StrEnum):
+    UPPER = 'upper'
+    LOWER = 'lower'
+    DUAL = 'dual'
+
+class VeluxDualRollerShutter(VeluxCover):
+    node: DualRollerShutter
+    _attr_device_class: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_translation_key: Incomplete
+    part: Incomplete
+    def __init__(self, node: DualRollerShutter, config_entry_id: str, part: VeluxDualRollerPart) -> None: ...
+    @property
+    def current_cover_position(self) -> int: ...
+    @property
+    def is_closed(self) -> bool: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+
+class VeluxBlind(VeluxCover):
+    node: Blind
+    _attr_device_class: Incomplete
+    def __init__(self, node: Blind, config_entry_id: str) -> None: ...
+    @property
+    def current_cover_tilt_position(self) -> int | None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...
+    @wrap_pyvlx_call_exceptions
+    async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...

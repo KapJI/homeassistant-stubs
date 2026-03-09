@@ -1,5 +1,6 @@
 from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, KNX_ADDRESS as KNX_ADDRESS
 from .schema import ExposeSchema as ExposeSchema
+from .storage.time_server import KNXTimeServerStoreModel as KNXTimeServerStoreModel
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
@@ -11,7 +12,7 @@ from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from typing import Any
 from xknx import XKNX as XKNX
-from xknx.devices import ExposeSensor
+from xknx.devices import DateDevice, DateTimeDevice, ExposeSensor, TimeDevice
 from xknx.dpt import DPTBase
 from xknx.telegram.address import GroupAddress as GroupAddress, InternalGroupAddress as InternalGroupAddress
 
@@ -29,6 +30,7 @@ class KnxExposeOptions:
     dpt: type[DPTBase]
     respond_to_read: bool
     cooldown: float
+    periodic_send: float
     default: Any | None
     value_template: Template | None
 
@@ -53,10 +55,21 @@ class KnxExposeEntity:
     async def _async_entity_changed(self, event: Event[EventStateChangedData]) -> None: ...
     async def _async_set_knx_value(self, xknx_expose: ExposeSensor, value: StateType) -> None: ...
 
+@dataclass
+class KnxExposeTimeOptions:
+    device_cls: type[DateDevice | DateTimeDevice | TimeDevice]
+    group_address: GroupAddress | InternalGroupAddress
+    name: str
+
+def _yaml_config_to_expose_time_options(config: ConfigType) -> KnxExposeTimeOptions: ...
+@callback
+def create_time_server_exposures(xknx: XKNX, config: KNXTimeServerStoreModel) -> list[KnxExposeTime]: ...
+
 class KnxExposeTime:
+    __slots__: Incomplete
     xknx: Incomplete
     device: Incomplete
-    def __init__(self, xknx: XKNX, config: ConfigType) -> None: ...
+    def __init__(self, xknx: XKNX, options: KnxExposeTimeOptions) -> None: ...
     @property
     def name(self) -> str: ...
     @callback

@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .coordinator import LunatoneConfigEntry as LunatoneConfigEntry, LunatoneData as LunatoneData, LunatoneDevicesDataUpdateCoordinator as LunatoneDevicesDataUpdateCoordinator, LunatoneInfoDataUpdateCoordinator as LunatoneInfoDataUpdateCoordinator
 from homeassistant.const import CONF_URL as CONF_URL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

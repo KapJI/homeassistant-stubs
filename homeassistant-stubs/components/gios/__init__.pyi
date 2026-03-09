@@ -1,5 +1,5 @@
 from .const import CONF_STATION_ID as CONF_STATION_ID, DOMAIN as DOMAIN
-from .coordinator import GiosConfigEntry as GiosConfigEntry, GiosData as GiosData, GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
+from .coordinator import GiosConfigEntry as GiosConfigEntry, GiosDataUpdateCoordinator as GiosDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

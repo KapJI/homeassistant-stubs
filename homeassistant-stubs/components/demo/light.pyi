@@ -22,43 +22,20 @@ class DemoLight(LightEntity):
     _attr_max_color_temp_kelvin = DEFAULT_MAX_KELVIN
     _attr_min_color_temp_kelvin = DEFAULT_MIN_KELVIN
     _attr_translation_key: Incomplete
-    _available: bool
-    _brightness: Incomplete
-    _ct: Incomplete
-    _effect: Incomplete
-    _effect_list: Incomplete
-    _hs_color: Incomplete
-    _rgbw_color: Incomplete
-    _rgbww_color: Incomplete
-    _state: Incomplete
-    _unique_id: Incomplete
-    _color_mode: Incomplete
-    _color_modes: Incomplete
+    _attr_brightness: Incomplete
+    _attr_color_temp_kelvin: Incomplete
+    _attr_effect: Incomplete
+    _attr_effect_list: Incomplete
+    _attr_hs_color: Incomplete
+    _attr_rgbw_color: Incomplete
+    _attr_rgbww_color: Incomplete
+    _attr_is_on: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, device_name: str, state: bool, available: bool = False, brightness: int = 180, ct: int | None = None, effect_list: list[str] | None = None, effect: str | None = None, hs_color: tuple[int, int] | None = None, rgbw_color: tuple[int, int, int, int] | None = None, rgbww_color: tuple[int, int, int, int, int] | None = None, supported_color_modes: set[ColorMode] | None = None, translation_key: str | None = None) -> None: ...
-    @property
-    def unique_id(self) -> str: ...
+    def __init__(self, unique_id: str, device_name: str, state: bool, brightness: int = 180, ct: int | None = None, effect_list: list[str] | None = None, effect: str | None = None, hs_color: tuple[int, int] | None = None, rgbw_color: tuple[int, int, int, int] | None = None, rgbww_color: tuple[int, int, int, int, int] | None = None, supported_color_modes: set[ColorMode] | None = None, translation_key: str | None = None) -> None: ...
     @property
     def available(self) -> bool: ...
-    @property
-    def brightness(self) -> int: ...
-    @property
-    def color_mode(self) -> ColorMode | None: ...
-    @property
-    def hs_color(self) -> tuple[int, int] | None: ...
-    @property
-    def rgbw_color(self) -> tuple[int, int, int, int] | None: ...
-    @property
-    def rgbww_color(self) -> tuple[int, int, int, int, int] | None: ...
-    @property
-    def color_temp_kelvin(self) -> int | None: ...
-    @property
-    def effect_list(self) -> list[str] | None: ...
-    @property
-    def effect(self) -> str | None: ...
-    @property
-    def is_on(self) -> bool: ...
-    @property
-    def supported_color_modes(self) -> set[ColorMode]: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

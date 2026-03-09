@@ -35,6 +35,7 @@ class SourceAdapter:
     entity_id_suffix: str
 
 SOURCE_ADAPTERS: Final[Incomplete]
+GRID_EXPORT_ADAPTER: Final[Incomplete]
 
 class EntityNotFoundError(HomeAssistantError): ...
 
@@ -48,6 +49,8 @@ class SensorManager:
     async def _process_manager_data(self) -> None: ...
     @callback
     def _process_sensor_data(self, adapter: SourceAdapter, config: Mapping[str, Any], to_add: list[EnergyCostSensor | EnergyPowerSensor], to_remove: dict[tuple[str, str | None, str], EnergyCostSensor]) -> None: ...
+    @callback
+    def _process_grid_export_sensor(self, config: Mapping[str, Any], to_add: list[EnergyCostSensor | EnergyPowerSensor], to_remove: dict[tuple[str, str | None, str], EnergyCostSensor]) -> None: ...
     @callback
     def _process_power_sensor_data(self, energy_source: Mapping[str, Any], to_add: list[EnergyCostSensor | EnergyPowerSensor], to_remove: dict[str, EnergyPowerSensor]) -> None: ...
     @staticmethod

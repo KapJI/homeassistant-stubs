@@ -25,6 +25,7 @@ class DecodedTelegramPayload(TypedDict):
     value: bool | str | int | float | dict[str, str | int | float | bool] | None
 
 class TelegramDict(DecodedTelegramPayload):
+    data_secure: bool | None
     destination: str
     destination_name: str
     direction: str

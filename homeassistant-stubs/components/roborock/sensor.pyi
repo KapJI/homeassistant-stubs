@@ -1,6 +1,6 @@
 import datetime
-from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockDataUpdateCoordinatorB01 as RoborockDataUpdateCoordinatorB01
-from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01 as RoborockCoordinatedEntityB01, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1, RoborockEntity as RoborockEntity
+from .coordinator import RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator, RoborockWetDryVacUpdateCoordinator as RoborockWetDryVacUpdateCoordinator
+from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1, RoborockEntity as RoborockEntity
 from .models import DeviceState as DeviceState
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -32,7 +32,8 @@ class RoborockSensorDescriptionB01(SensorEntityDescription):
 def _dock_error_value_fn(state: DeviceState) -> str | None: ...
 
 SENSOR_DESCRIPTIONS: Incomplete
-A01_SENSOR_DESCRIPTIONS: list[RoborockSensorDescriptionA01]
+DYAD_SENSOR_DESCRIPTIONS: list[RoborockSensorDescriptionA01]
+ZEO_SENSOR_DESCRIPTIONS: list[RoborockSensorDescriptionA01]
 Q7_B01_SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -61,8 +62,8 @@ class RoborockSensorEntityA01(RoborockCoordinatedEntityA01, SensorEntity):
     @property
     def native_value(self) -> StateType: ...
 
-class RoborockSensorEntityB01(RoborockCoordinatedEntityB01, SensorEntity):
+class RoborockSensorEntityB01Q7(RoborockCoordinatedEntityB01Q7, SensorEntity):
     entity_description: RoborockSensorDescriptionB01
-    def __init__(self, coordinator: RoborockDataUpdateCoordinatorB01, description: RoborockSensorDescriptionB01) -> None: ...
+    def __init__(self, coordinator: RoborockB01Q7UpdateCoordinator, description: RoborockSensorDescriptionB01) -> None: ...
     @property
     def native_value(self) -> StateType: ...

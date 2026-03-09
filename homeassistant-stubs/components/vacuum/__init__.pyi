@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
@@ -39,7 +40,6 @@ SERVICE_PAUSE: str
 SERVICE_STOP: str
 DEFAULT_NAME: str
 ISSUE_SEGMENTS_CHANGED: str
-ISSUE_SEGMENTS_MAPPING_NOT_CONFIGURED: str
 _BATTERY_DEPRECATION_IGNORED_PLATFORMS: Incomplete
 
 @bind_hass
@@ -70,8 +70,6 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     def __setattr__(self, name: str, value: Any) -> None: ...
     @callback
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
-    @callback
-    def async_write_ha_state(self) -> None: ...
     @callback
     def async_registry_entry_updated(self) -> None: ...
     @callback

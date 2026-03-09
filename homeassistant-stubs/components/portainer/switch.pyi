@@ -2,7 +2,6 @@ from . import PortainerConfigEntry as PortainerConfigEntry
 from .const import DOMAIN as DOMAIN, STACK_STATUS_ACTIVE as STACK_STATUS_ACTIVE
 from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerStackData as PortainerStackData
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerStackEntity as PortainerStackEntity
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
@@ -35,8 +34,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, as
 
 class PortainerContainerSwitch(PortainerContainerEntity, SwitchEntity):
     entity_description: PortainerSwitchEntityDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerSwitchEntityDescription, device_info: PortainerContainerData, via_device: PortainerCoordinatorData) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
@@ -44,8 +41,6 @@ class PortainerContainerSwitch(PortainerContainerEntity, SwitchEntity):
 
 class PortainerStackSwitch(PortainerStackEntity, SwitchEntity):
     entity_description: PortainerStackSwitchEntityDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerStackSwitchEntityDescription, device_info: PortainerStackData, via_device: PortainerCoordinatorData) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...

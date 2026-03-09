@@ -3,7 +3,6 @@ from . import PortainerConfigEntry as PortainerConfigEntry
 from .const import DOMAIN as DOMAIN
 from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerEndpointEntity as PortainerEndpointEntity
-from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -35,12 +34,8 @@ class PortainerBaseButton(ButtonEntity, metaclass=abc.ABCMeta):
 
 class PortainerEndpointButton(PortainerEndpointEntity, PortainerBaseButton):
     entity_description: PortainerButtonDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerButtonDescription, device_info: PortainerCoordinatorData) -> None: ...
     async def _async_press_call(self) -> None: ...
 
 class PortainerContainerButton(PortainerContainerEntity, PortainerBaseButton):
     entity_description: PortainerButtonDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerButtonDescription, device_info: PortainerContainerData, via_device: PortainerCoordinatorData) -> None: ...
     async def _async_press_call(self) -> None: ...

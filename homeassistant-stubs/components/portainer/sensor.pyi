@@ -1,7 +1,6 @@
 from .const import STACK_TYPE_COMPOSE as STACK_TYPE_COMPOSE, STACK_TYPE_KUBERNETES as STACK_TYPE_KUBERNETES, STACK_TYPE_SWARM as STACK_TYPE_SWARM
-from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerStackData as PortainerStackData
+from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerStackData as PortainerStackData
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
@@ -31,21 +30,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, as
 
 class PortainerContainerSensor(PortainerContainerEntity, SensorEntity):
     entity_description: PortainerContainerSensorEntityDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerContainerSensorEntityDescription, device_info: PortainerContainerData, via_device: PortainerCoordinatorData) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 
 class PortainerEndpointSensor(PortainerEndpointEntity, SensorEntity):
     entity_description: PortainerEndpointSensorEntityDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerEndpointSensorEntityDescription, device_info: PortainerCoordinatorData) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 
 class PortainerStackSensor(PortainerStackEntity, SensorEntity):
     entity_description: PortainerStackSensorEntityDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: PortainerCoordinator, entity_description: PortainerStackSensorEntityDescription, device_info: PortainerStackData, via_device: PortainerCoordinatorData) -> None: ...
     @property
     def native_value(self) -> StateType: ...

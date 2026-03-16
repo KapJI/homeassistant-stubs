@@ -32,6 +32,7 @@ class UpdateCoordinatorDataType:
 class VodafoneStationRouter(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     config_entry: VodafoneConfigEntry
     api: Incomplete
+    _session: Incomplete
     _id: Incomplete
     previous_devices: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: VodafoneConfigEntry, session: ClientSession) -> None: ...

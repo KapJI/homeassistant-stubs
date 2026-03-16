@@ -122,6 +122,7 @@ class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
     finished: Incomplete
     extra_dry: int
     hand_iron: int
+    hygiene_drying: int
     moisten: int
     thermo_spin: int
     timed_drying: int

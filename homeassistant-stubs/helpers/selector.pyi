@@ -81,6 +81,7 @@ class AreaSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
     multiple: bool
+    reorder: bool
 
 class AreaSelector(Selector[AreaSelectorConfig]):
     selector_type: str

@@ -20,6 +20,7 @@ class CoverPositionMixin(ZWaveBaseEntity, CoverEntity):
     _current_position_value: ZwaveValue | None
     _target_position_value: ZwaveValue | None
     _stop_position_value: ZwaveValue | None
+    _commanded_target_position: int | None
     _attr_supported_features: Incomplete
     def _set_position_values(self, current_value: ZwaveValue, target_value: ZwaveValue | None = None, stop_value: ZwaveValue | None = None) -> None: ...
     def percent_to_zwave_position(self, value: int) -> int: ...

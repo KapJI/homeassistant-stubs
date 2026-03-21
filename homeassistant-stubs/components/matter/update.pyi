@@ -34,6 +34,7 @@ class MatterUpdateEntityDescription(UpdateEntityDescription, MatterEntityDescrip
 class MatterUpdate(MatterEntity, UpdateEntity):
     _attr_should_poll: bool
     _software_update: MatterSoftwareVersion | None
+    _installed_software_version: int | None
     _cancel_update: CALLBACK_TYPE | None
     _attr_supported_features: Incomplete
     _attr_installed_version: Incomplete
@@ -41,6 +42,7 @@ class MatterUpdate(MatterEntity, UpdateEntity):
     _attr_update_percentage: Incomplete
     @callback
     def _update_from_device(self) -> None: ...
+    def _format_latest_version(self, update_information: MatterSoftwareVersion) -> str | None: ...
     _attr_latest_version: Incomplete
     _attr_release_url: Incomplete
     async def async_update(self) -> None: ...

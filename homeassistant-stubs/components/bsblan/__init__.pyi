@@ -1,5 +1,5 @@
 import dataclasses
-from .const import CONF_PASSKEY as CONF_PASSKEY, DOMAIN as DOMAIN
+from .const import CONF_PASSKEY as CONF_PASSKEY, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import BSBLanFastCoordinator as BSBLanFastCoordinator, BSBLanSlowCoordinator as BSBLanSlowCoordinator
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
@@ -22,7 +22,7 @@ class BSBLanData:
     client: BSBLAN
     device: Device
     info: Info
-    static: StaticState
+    static: StaticState | None
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: BSBLanConfigEntry) -> bool: ...

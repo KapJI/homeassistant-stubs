@@ -1,6 +1,7 @@
 import tibber
 from .const import DOMAIN as DOMAIN, TibberConfigEntry as TibberConfigEntry
 from _typeshed import Incomplete
+from datetime import datetime
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData
 from homeassistant.components.recorder.statistics import async_add_external_statistics as async_add_external_statistics, get_last_statistics as get_last_statistics, statistics_during_period as statistics_during_period
@@ -10,16 +11,45 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.unit_conversion import EnergyConverter as EnergyConverter
 from tibber.data_api import TibberDevice
+from typing import TypedDict
 
 FIVE_YEARS: Incomplete
 _LOGGER: Incomplete
 
+class TibberHomeData(TypedDict):
+    currency: str
+    price_unit: str
+    current_price: float | None
+    current_price_time: datetime | None
+    intraday_price_ranking: float | None
+    max_price: float
+    avg_price: float
+    min_price: float
+    off_peak_1: float
+    peak: float
+    off_peak_2: float
+    month_cost: float | None
+    peak_hour: float | None
+    peak_hour_time: datetime | None
+    month_cons: float | None
+    app_nickname: str | None
+    grid_company: str | None
+    estimated_annual_consumption: int | None
+
+def _build_home_data(home: tibber.TibberHome) -> TibberHomeData: ...
+
 class TibberDataCoordinator(DataUpdateCoordinator[None]):
     config_entry: TibberConfigEntry
-    _tibber_connection: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TibberConfigEntry, tibber_connection: tibber.Tibber) -> None: ...
     async def _async_update_data(self) -> None: ...
     async def _insert_statistics(self) -> None: ...
+
+class TibberPriceCoordinator(DataUpdateCoordinator[dict[str, TibberHomeData]]):
+    config_entry: TibberConfigEntry
+    def __init__(self, hass: HomeAssistant, config_entry: TibberConfigEntry) -> None: ...
+    def _seconds_until_next_15_minute(self) -> float: ...
+    update_interval: Incomplete
+    async def _async_update_data(self) -> dict[str, TibberHomeData]: ...
 
 class TibberDataAPICoordinator(DataUpdateCoordinator[dict[str, TibberDevice]]):
     config_entry: TibberConfigEntry

@@ -9,13 +9,17 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from hyponcloud import OverviewData as OverviewData, PlantData as PlantData
 
+def _power_unit(data: OverviewData | PlantData) -> str: ...
+
 @dataclass(frozen=True, kw_only=True)
 class HypontechSensorDescription(SensorEntityDescription):
     value_fn: Callable[[OverviewData], float | None]
+    unit_fn: Callable[[OverviewData], str] | None = ...
 
 @dataclass(frozen=True, kw_only=True)
 class HypontechPlantSensorDescription(SensorEntityDescription):
     value_fn: Callable[[PlantData], float | None]
+    unit_fn: Callable[[PlantData], str] | None = ...
 
 OVERVIEW_SENSORS: tuple[HypontechSensorDescription, ...]
 PLANT_SENSORS: tuple[HypontechPlantSensorDescription, ...]
@@ -27,11 +31,15 @@ class HypontechOverviewSensor(HypontechEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HypontechDataCoordinator, description: HypontechSensorDescription) -> None: ...
     @property
+    def native_unit_of_measurement(self) -> str | None: ...
+    @property
     def native_value(self) -> float | None: ...
 
 class HypontechPlantSensor(HypontechPlantEntity, SensorEntity):
     entity_description: HypontechPlantSensorDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HypontechDataCoordinator, plant_id: str, description: HypontechPlantSensorDescription) -> None: ...
+    @property
+    def native_unit_of_measurement(self) -> str | None: ...
     @property
     def native_value(self) -> float | None: ...

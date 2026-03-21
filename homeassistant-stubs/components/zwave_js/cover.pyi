@@ -20,7 +20,7 @@ class CoverPositionMixin(ZWaveBaseEntity, CoverEntity):
     _current_position_value: ZwaveValue | None
     _target_position_value: ZwaveValue | None
     _stop_position_value: ZwaveValue | None
-    _commanded_target_position: int | None
+    _moving_state_disabled: bool
     _attr_supported_features: Incomplete
     def _set_position_values(self, current_value: ZwaveValue, target_value: ZwaveValue | None = None, stop_value: ZwaveValue | None = None) -> None: ...
     def percent_to_zwave_position(self, value: int) -> int: ...
@@ -67,6 +67,7 @@ class CoverTiltMixin(ZWaveBaseEntity, CoverEntity):
     async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...
 
 class ZWaveMultilevelSwitchCover(CoverPositionMixin):
+    _moving_state_disabled: bool
     _attr_device_class: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
 

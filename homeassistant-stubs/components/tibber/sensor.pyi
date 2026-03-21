@@ -1,6 +1,5 @@
-import datetime
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, TibberConfigEntry as TibberConfigEntry
-from .coordinator import TibberDataAPICoordinator as TibberDataAPICoordinator, TibberDataCoordinator as TibberDataCoordinator
+from .coordinator import TibberDataAPICoordinator as TibberDataAPICoordinator, TibberDataCoordinator as TibberDataCoordinator, TibberPriceCoordinator as TibberPriceCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -13,7 +12,6 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from homeassistant.util import Throttle as Throttle
 from tibber import TibberHome as TibberHome
 from tibber.data_api import TibberDevice as TibberDevice
 from typing import Any
@@ -21,9 +19,7 @@ from typing import Any
 _LOGGER: Incomplete
 ICON: str
 SCAN_INTERVAL: Incomplete
-MIN_TIME_BETWEEN_UPDATES: Incomplete
 PARALLEL_UPDATES: int
-TWENTY_MINUTES: Incomplete
 RT_SENSORS_UNIQUE_ID_MIGRATION: Incomplete
 RT_SENSORS_UNIQUE_ID_MIGRATION_SIMPLE: Incomplete
 RT_SENSORS: tuple[SensorEntityDescription, ...]
@@ -55,21 +51,20 @@ class TibberSensor(SensorEntity):
     @property
     def device_info(self) -> DeviceInfo: ...
 
-class TibberSensorElPrice(TibberSensor):
+class TibberSensorElPrice(TibberSensor, CoordinatorEntity[TibberPriceCoordinator]):
     _attr_state_class: Incomplete
     _attr_translation_key: str
-    _last_updated: datetime.datetime | None
-    _spread_load_constant: Incomplete
     _attr_available: bool
+    _attr_native_unit_of_measurement: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_icon: Incomplete
     _attr_unique_id: Incomplete
     _model: str
     _device_name: Incomplete
-    def __init__(self, tibber_home: TibberHome) -> None: ...
-    _attr_native_unit_of_measurement: Incomplete
-    async def async_update(self) -> None: ...
-    async def _fetch_data(self) -> None: ...
+    def __init__(self, coordinator: TibberPriceCoordinator, tibber_home: TibberHome) -> None: ...
+    _attr_native_value: Incomplete
+    @callback
+    def _handle_coordinator_update(self) -> None: ...
 
 class TibberDataSensor(TibberSensor, CoordinatorEntity[TibberDataCoordinator]):
     entity_description: Incomplete

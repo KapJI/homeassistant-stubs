@@ -17,7 +17,8 @@ _LOGGER: Incomplete
 class SmButtonDescription(ButtonEntityDescription):
     press_fn: Callable[[CmdWrapper, int], Awaitable[None]]
 
-BUTTONS: list[SmButtonDescription]
+CORE_BUTTON: Incomplete
+RADIO_BUTTONS: list[SmButtonDescription]
 ROUTER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

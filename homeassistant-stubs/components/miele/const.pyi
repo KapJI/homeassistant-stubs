@@ -472,8 +472,10 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     pyrolytic: int
     descale: int
     evaporate_water: int
+    rinse: int
     shabbat_program: int
     yom_tov: int
+    hydroclean: int
     drying: Incomplete
     heat_crockery: int
     prove_dough: Incomplete
@@ -578,7 +580,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     belgian_sponge_cake: int
     goose_unstuffed: int
     rack_of_lamb_with_vegetables: int
-    yorkshire_pudding: int
+    yorkshire_pudding: Incomplete
     meat_loaf: int
     defrost_meat: int
     defrost_vegetables: int
@@ -978,7 +980,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     wholegrain_rice: int
     parboiled_rice_steam_cooking: int
     parboiled_rice_rapid_steam_cooking: int
-    basmati_rice_steam_cooking: int
+    basmati_rice_steam_cooking: Incomplete
     basmati_rice_rapid_steam_cooking: int
     jasmine_rice_steam_cooking: int
     jasmine_rice_rapid_steam_cooking: int
@@ -986,7 +988,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     huanghuanian_rapid_steam_cooking: int
     simiao_steam_cooking: int
     simiao_rapid_steam_cooking: int
-    long_grain_rice_general_steam_cooking: int
+    long_grain_rice_general_steam_cooking: Incomplete
     long_grain_rice_general_rapid_steam_cooking: int
     chongming_steam_cooking: int
     chongming_rapid_steam_cooking: int

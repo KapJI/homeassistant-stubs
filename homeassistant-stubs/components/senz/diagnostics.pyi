@@ -1,4 +1,4 @@
-from . import SENZConfigEntry as SENZConfigEntry
+from .coordinator import SENZConfigEntry as SENZConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.core import HomeAssistant as HomeAssistant

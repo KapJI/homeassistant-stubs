@@ -1,5 +1,6 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
-from .entity import LitterRobotEntity as LitterRobotEntity
+from .entity import LitterRobotEntity as LitterRobotEntity, whisker_command as whisker_command
 from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -8,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pylitterbot import LitterRobot4
 from typing import Any
 
+PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
 FIRMWARE_UPDATE_ENTITY: Incomplete
 RELEASE_URL: str
@@ -25,4 +27,5 @@ class RobotUpdateEntity(LitterRobotEntity[LitterRobot4], UpdateEntity):
     def should_poll(self) -> bool: ...
     _attr_latest_version: Incomplete
     async def async_update(self) -> None: ...
+    @whisker_command
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

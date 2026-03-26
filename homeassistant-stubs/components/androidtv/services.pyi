@@ -7,10 +7,6 @@ ATTR_ADB_RESPONSE: str
 ATTR_DEVICE_PATH: str
 ATTR_HDMI_INPUT: str
 ATTR_LOCAL_PATH: str
-SERVICE_ADB_COMMAND: str
-SERVICE_DOWNLOAD: str
-SERVICE_LEARN_SENDEVENT: str
-SERVICE_UPLOAD: str
 
 @callback
 def async_setup_services(hass: HomeAssistant) -> None: ...

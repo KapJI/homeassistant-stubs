@@ -12,7 +12,6 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.json import JsonValueType as JsonValueType
 from propcache.api import cached_property
 from typing import Any, final
 
@@ -52,7 +51,7 @@ CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_todo_items: list[TodoItem] | None
-    _update_listeners: list[Callable[[list[JsonValueType] | None], None]] | None
+    _update_listeners: list[Callable[[list[TodoItem] | None], None]] | None
     @property
     def state(self) -> int | None: ...
     @cached_property
@@ -63,7 +62,7 @@ class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def async_move_todo_item(self, uid: str, previous_uid: str | None = None) -> None: ...
     @final
     @callback
-    def async_subscribe_updates(self, listener: Callable[[list[JsonValueType] | None], None]) -> CALLBACK_TYPE: ...
+    def async_subscribe_updates(self, listener: Callable[[list[TodoItem] | None], None]) -> CALLBACK_TYPE: ...
     @final
     @callback
     def async_update_listeners(self) -> None: ...

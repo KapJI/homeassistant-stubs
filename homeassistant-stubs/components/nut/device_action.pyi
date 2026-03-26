@@ -1,5 +1,5 @@
-from . import NutConfigEntry as NutConfigEntry, NutRuntimeData as NutRuntimeData
 from .const import DOMAIN as DOMAIN, INTEGRATION_SUPPORTED_COMMANDS as INTEGRATION_SUPPORTED_COMMANDS
+from .coordinator import NutConfigEntry as NutConfigEntry, NutRuntimeData as NutRuntimeData
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState

@@ -1,14 +1,14 @@
 import evohomeasync2 as evo
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_DURATION_UNTIL as ATTR_DURATION_UNTIL, ATTR_PERIOD as ATTR_PERIOD, ATTR_SETPOINT as ATTR_SETPOINT, EVOHOME_DATA as EVOHOME_DATA, EvoService as EvoService
+from .const import ATTR_DURATION as ATTR_DURATION, ATTR_PERIOD as ATTR_PERIOD, DOMAIN as DOMAIN, EVOHOME_DATA as EVOHOME_DATA, EvoService as EvoService
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .entity import EvoChild as EvoChild, EvoEntity as EvoEntity
 from _typeshed import Incomplete
-from datetime import datetime
+from datetime import datetime, timedelta
 from evohomeasync2.schemas.const import SystemMode as EvoSystemMode
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
@@ -26,6 +26,8 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 class EvoClimateEntity(EvoEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_temperature_unit: Incomplete
+    async def async_clear_zone_override(self) -> None: ...
+    async def async_set_zone_override(self, setpoint: float, duration: timedelta | None = None) -> None: ...
 
 class EvoZone(EvoChild, EvoClimateEntity):
     _attr_preset_modes: Incomplete
@@ -37,7 +39,8 @@ class EvoZone(EvoChild, EvoClimateEntity):
     _attr_precision: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.Zone) -> None: ...
-    async def async_zone_svc_request(self, service: str, data: dict[str, Any]) -> None: ...
+    async def async_clear_zone_override(self) -> None: ...
+    async def async_set_zone_override(self, setpoint: float, duration: timedelta | None = None) -> None: ...
     @property
     def name(self) -> str | None: ...
     @property

@@ -1,0 +1,6 @@
+from .const import PLATFORMS as PLATFORMS
+from .coordinator import HuumConfigEntry as HuumConfigEntry, HuumDataUpdateCoordinator as HuumDataUpdateCoordinator
+from homeassistant.core import HomeAssistant as HomeAssistant
+
+async def async_setup_entry(hass: HomeAssistant, config_entry: HuumConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, config_entry: HuumConfigEntry) -> bool: ...

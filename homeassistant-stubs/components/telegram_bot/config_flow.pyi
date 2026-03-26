@@ -19,6 +19,7 @@ STEP_USER_DATA_SCHEMA: vol.Schema
 STEP_RECONFIGURE_USER_DATA_SCHEMA: vol.Schema
 STEP_REAUTH_DATA_SCHEMA: vol.Schema
 STEP_WEBHOOKS_DATA_SCHEMA: vol.Schema
+SUBENTRY_SCHEMA: vol.Schema
 OPTIONS_SCHEMA: vol.Schema
 
 class OptionsFlowHandler(OptionsFlow):
@@ -49,4 +50,4 @@ class TelgramBotConfigFlow(ConfigFlow, domain=DOMAIN):
 class AllowedChatIdsSubEntryFlowHandler(ConfigSubentryFlow):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
 
-async def _async_get_chat_name(bot: Bot, chat_id: int) -> str: ...
+async def _get_most_recent_chat(service: TelegramNotificationService) -> tuple[int, str | None] | None: ...

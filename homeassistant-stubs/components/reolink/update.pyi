@@ -1,5 +1,5 @@
-from . import DEVICE_UPDATE_INTERVAL_MIN as DEVICE_UPDATE_INTERVAL_MIN, DEVICE_UPDATE_INTERVAL_PER_CAM as DEVICE_UPDATE_INTERVAL_PER_CAM
 from .const import DOMAIN as DOMAIN
+from .coordinator import DEVICE_UPDATE_INTERVAL_MIN as DEVICE_UPDATE_INTERVAL_MIN, DEVICE_UPDATE_INTERVAL_PER_CAM as DEVICE_UPDATE_INTERVAL_PER_CAM, ReolinkCoordinator as ReolinkCoordinator
 from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
@@ -9,7 +9,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -27,7 +27,7 @@ HOST_UPDATE_ENTITIES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ReolinkUpdateBaseEntity(CoordinatorEntity[DataUpdateCoordinator[None]], UpdateEntity):
+class ReolinkUpdateBaseEntity(CoordinatorEntity[ReolinkCoordinator], UpdateEntity):
     _attr_release_url: str
     _channel: Incomplete
     _host: Incomplete
@@ -36,7 +36,7 @@ class ReolinkUpdateBaseEntity(CoordinatorEntity[DataUpdateCoordinator[None]], Up
     _cancel_progress: CALLBACK_TYPE | None
     _installing: bool
     _reolink_data: Incomplete
-    def __init__(self, reolink_data: ReolinkData, channel: int | None, coordinator: DataUpdateCoordinator[None]) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, channel: int | None, coordinator: ReolinkCoordinator) -> None: ...
     @property
     def installed_version(self) -> str | None: ...
     @property

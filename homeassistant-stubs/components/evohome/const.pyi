@@ -15,11 +15,10 @@ SCAN_INTERVAL_MINIMUM: Final[Incomplete]
 ATTR_PERIOD: Final[str]
 ATTR_DURATION: Final[str]
 ATTR_SETPOINT: Final[str]
-ATTR_DURATION_UNTIL: Final[str]
 
 class EvoService(StrEnum):
     REFRESH_SYSTEM = 'refresh_system'
     SET_SYSTEM_MODE = 'set_system_mode'
     RESET_SYSTEM = 'reset_system'
     SET_ZONE_OVERRIDE = 'set_zone_override'
-    RESET_ZONE_OVERRIDE = 'clear_zone_override'
+    CLEAR_ZONE_OVERRIDE = 'clear_zone_override'

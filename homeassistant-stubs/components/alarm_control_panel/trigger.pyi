@@ -1,6 +1,7 @@
 from .const import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, DOMAIN as DOMAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.entity import get_supported_features as get_supported_features
 from homeassistant.helpers.trigger import EntityTargetStateTriggerBase as EntityTargetStateTriggerBase, Trigger as Trigger, make_entity_target_state_trigger as make_entity_target_state_trigger, make_entity_transition_trigger as make_entity_transition_trigger
 

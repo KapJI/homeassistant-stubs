@@ -1,5 +1,6 @@
 import datetime
 from .const import DOMAIN as DOMAIN
+from .coordinator import ReCollectWasteDataUpdateCoordinator as ReCollectWasteDataUpdateCoordinator
 from .entity import ReCollectWasteEntity as ReCollectWasteEntity
 from .util import async_get_pickup_type_names as async_get_pickup_type_names
 from _typeshed import Incomplete
@@ -8,7 +9,6 @@ from homeassistant.components.calendar import CalendarEntity as CalendarEntity, 
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 @callback
 def async_get_calendar_event_from_pickup_event(entry: ConfigEntry, pickup_event: PickupEvent) -> CalendarEvent: ...
@@ -19,7 +19,7 @@ class ReCollectWasteCalendar(ReCollectWasteEntity, CalendarEntity):
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     _event: CalendarEvent | None
-    def __init__(self, coordinator: DataUpdateCoordinator[list[PickupEvent]], entry: ConfigEntry) -> None: ...
+    def __init__(self, coordinator: ReCollectWasteDataUpdateCoordinator, entry: ConfigEntry) -> None: ...
     @property
     def event(self) -> CalendarEvent | None: ...
     @callback

@@ -2,7 +2,7 @@ from .const import CONF_DELETE_PERMANENTLY as CONF_DELETE_PERMANENTLY, DATA_BACK
 from .coordinator import OneDriveConfigEntry as OneDriveConfigEntry
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
-from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupNotFound as BackupNotFound, suggested_filename as suggested_filename
+from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupNotFound as BackupNotFound, OnProgressCallback as OnProgressCallback, suggested_filename as suggested_filename
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.json import json_dumps as json_dumps
@@ -36,7 +36,7 @@ class OneDriveBackupAgent(BackupAgent):
     @handle_backup_errors
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...
     @handle_backup_errors
-    async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, **kwargs: Any) -> None: ...
+    async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, on_progress: OnProgressCallback, **kwargs: Any) -> None: ...
     @handle_backup_errors
     async def async_delete_backup(self, backup_id: str, **kwargs: Any) -> None: ...
     @handle_backup_errors

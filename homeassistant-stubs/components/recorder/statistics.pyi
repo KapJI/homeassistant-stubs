@@ -1,6 +1,6 @@
 import dataclasses
 from . import Recorder as Recorder
-from .const import DOMAIN as DOMAIN, EVENT_RECORDER_5MIN_STATISTICS_GENERATED as EVENT_RECORDER_5MIN_STATISTICS_GENERATED, EVENT_RECORDER_HOURLY_STATISTICS_GENERATED as EVENT_RECORDER_HOURLY_STATISTICS_GENERATED, INTEGRATION_PLATFORM_COMPILE_STATISTICS as INTEGRATION_PLATFORM_COMPILE_STATISTICS, INTEGRATION_PLATFORM_LIST_STATISTIC_IDS as INTEGRATION_PLATFORM_LIST_STATISTIC_IDS, INTEGRATION_PLATFORM_UPDATE_STATISTICS_ISSUES as INTEGRATION_PLATFORM_UPDATE_STATISTICS_ISSUES, INTEGRATION_PLATFORM_VALIDATE_STATISTICS as INTEGRATION_PLATFORM_VALIDATE_STATISTICS, MAX_IDS_FOR_INDEXED_GROUP_BY as MAX_IDS_FOR_INDEXED_GROUP_BY, SupportedDialect as SupportedDialect
+from .const import DOMAIN as DOMAIN, EVENT_RECORDER_5MIN_STATISTICS_GENERATED as EVENT_RECORDER_5MIN_STATISTICS_GENERATED, EVENT_RECORDER_HOURLY_STATISTICS_GENERATED as EVENT_RECORDER_HOURLY_STATISTICS_GENERATED, INTEGRATION_PLATFORM_COMPILE_STATISTICS as INTEGRATION_PLATFORM_COMPILE_STATISTICS, INTEGRATION_PLATFORM_CUSTOM_EQUIVALENT_UNITS as INTEGRATION_PLATFORM_CUSTOM_EQUIVALENT_UNITS, INTEGRATION_PLATFORM_LIST_STATISTIC_IDS as INTEGRATION_PLATFORM_LIST_STATISTIC_IDS, INTEGRATION_PLATFORM_UPDATE_STATISTICS_ISSUES as INTEGRATION_PLATFORM_UPDATE_STATISTICS_ISSUES, INTEGRATION_PLATFORM_VALIDATE_STATISTICS as INTEGRATION_PLATFORM_VALIDATE_STATISTICS, MAX_IDS_FOR_INDEXED_GROUP_BY as MAX_IDS_FOR_INDEXED_GROUP_BY, SupportedDialect as SupportedDialect
 from .db_schema import STATISTICS_TABLES as STATISTICS_TABLES, Statistics as Statistics, StatisticsBase as StatisticsBase, StatisticsMeta as StatisticsMeta, StatisticsRuns as StatisticsRuns, StatisticsShortTerm as StatisticsShortTerm
 from .models import StatisticData as StatisticData, StatisticDataTimestamp as StatisticDataTimestamp, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult, datetime_to_timestamp_or_none as datetime_to_timestamp_or_none, process_timestamp as process_timestamp
 from .util import execute as execute, execute_stmt_lambda_element as execute_stmt_lambda_element, filter_unique_constraint_integrity_error as filter_unique_constraint_integrity_error, get_instance as get_instance, retryable_database_job as retryable_database_job, session_scope as session_scope
@@ -14,6 +14,7 @@ from homeassistant.helpers.frame import report_usage as report_usage
 from homeassistant.helpers.recorder import DATA_RECORDER as DATA_RECORDER
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
+from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.collection import chunked_or_all as chunked_or_all
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from homeassistant.util.unit_conversion import ApparentPowerConverter as ApparentPowerConverter, AreaConverter as AreaConverter, BaseUnitConverter as BaseUnitConverter, BloodGlucoseConcentrationConverter as BloodGlucoseConcentrationConverter, CarbonMonoxideConcentrationConverter as CarbonMonoxideConcentrationConverter, ConductivityConverter as ConductivityConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, DurationConverter as DurationConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, EnergyDistanceConverter as EnergyDistanceConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, MassVolumeConcentrationConverter as MassVolumeConcentrationConverter, NitrogenDioxideConcentrationConverter as NitrogenDioxideConcentrationConverter, NitrogenMonoxideConcentrationConverter as NitrogenMonoxideConcentrationConverter, OzoneConcentrationConverter as OzoneConcentrationConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, ReactiveEnergyConverter as ReactiveEnergyConverter, ReactivePowerConverter as ReactivePowerConverter, SpeedConverter as SpeedConverter, SulphurDioxideConcentrationConverter as SulphurDioxideConcentrationConverter, TemperatureConverter as TemperatureConverter, TemperatureDeltaConverter as TemperatureDeltaConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
@@ -98,6 +99,11 @@ def _compile_hourly_statistics(session: Session, start: datetime) -> None: ...
 def compile_missing_statistics(instance: Recorder) -> bool: ...
 def compile_statistics(instance: Recorder, start: datetime, fire_events: bool) -> bool: ...
 def _get_first_id_stmt(start: datetime) -> StatementLambdaElement: ...
+
+CUSTOM_EQUIVALENT_UNITS_SCHEMA: Incomplete
+_warn_custom_units_error: set[str]
+
+def _get_custom_equivalent_units(hass: HomeAssistant) -> dict[str, dict[str | None, str]]: ...
 def _compile_statistics(instance: Recorder, session: Session, start: datetime, fire_events: bool) -> set[str]: ...
 def _adjust_sum_statistics(session: Session, table: type[StatisticsBase], metadata_id: int, start_time: datetime, adj: float) -> None: ...
 def _insert_statistics(session: Session, table: type[StatisticsBase], metadata_id: int, statistic: StatisticData, now_timestamp: float) -> StatisticsBase | None: ...

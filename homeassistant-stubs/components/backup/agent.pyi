@@ -6,6 +6,9 @@ from pathlib import Path
 from propcache.api import cached_property
 from typing import Any, Protocol
 
+class OnProgressCallback(Protocol):
+    def __call__(self, *, bytes_uploaded: int, **kwargs: Any) -> None: ...
+
 class BackupAgentUnreachableError(BackupAgentError):
     error_code: str
     _message: str
@@ -19,7 +22,7 @@ class BackupAgent(abc.ABC, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...
     @abc.abstractmethod
-    async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, **kwargs: Any) -> None: ...
+    async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, on_progress: OnProgressCallback, **kwargs: Any) -> None: ...
     @abc.abstractmethod
     async def async_delete_backup(self, backup_id: str, **kwargs: Any) -> None: ...
     @abc.abstractmethod

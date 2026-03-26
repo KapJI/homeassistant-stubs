@@ -1,4 +1,4 @@
-from . import PiHoleConfigEntry as PiHoleConfigEntry
+from .coordinator import PiHoleConfigEntry as PiHoleConfigEntry, PiHoleUpdateCoordinator as PiHoleUpdateCoordinator
 from .entity import PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -8,7 +8,6 @@ from homeassistant.components.update import UpdateEntity as UpdateEntity, Update
 from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 
 @dataclass(frozen=True)
 class PiHoleUpdateEntityDescription(UpdateEntityDescription):
@@ -27,7 +26,7 @@ class PiHoleUpdateEntity(PiHoleEntity, UpdateEntity):
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_title: Incomplete
-    def __init__(self, api: Hole, coordinator: DataUpdateCoordinator[None], name: str, server_unique_id: str, description: PiHoleUpdateEntityDescription) -> None: ...
+    def __init__(self, api: Hole, coordinator: PiHoleUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleUpdateEntityDescription) -> None: ...
     @property
     def installed_version(self) -> str | None: ...
     @property

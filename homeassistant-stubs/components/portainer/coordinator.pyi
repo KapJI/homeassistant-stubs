@@ -1,4 +1,4 @@
-from .const import CONTAINER_STATE_RUNNING as CONTAINER_STATE_RUNNING, DOMAIN as DOMAIN, ENDPOINT_STATUS_DOWN as ENDPOINT_STATUS_DOWN
+from .const import ContainerState as ContainerState, DOMAIN as DOMAIN, EndpointStatus as EndpointStatus
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

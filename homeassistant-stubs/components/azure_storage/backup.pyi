@@ -3,7 +3,7 @@ from .const import DATA_BACKUP_AGENT_LISTENERS as DATA_BACKUP_AGENT_LISTENERS, D
 from _typeshed import Incomplete
 from azure.storage.blob import BlobProperties as BlobProperties
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
-from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupNotFound as BackupNotFound, suggested_filename as suggested_filename
+from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupNotFound as BackupNotFound, OnProgressCallback as OnProgressCallback, suggested_filename as suggested_filename
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any, Concatenate
 
@@ -24,7 +24,7 @@ class AzureStorageBackupAgent(BackupAgent):
     @handle_backup_errors
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...
     @handle_backup_errors
-    async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, **kwargs: Any) -> None: ...
+    async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, on_progress: OnProgressCallback, **kwargs: Any) -> None: ...
     @handle_backup_errors
     async def async_delete_backup(self, backup_id: str, **kwargs: Any) -> None: ...
     @handle_backup_errors

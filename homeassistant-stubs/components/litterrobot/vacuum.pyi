@@ -1,5 +1,5 @@
 from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
-from .entity import LitterRobotEntity as LitterRobotEntity
+from .entity import LitterRobotEntity as LitterRobotEntity, whisker_command as whisker_command
 from _typeshed import Incomplete
 from datetime import time
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
@@ -8,6 +8,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pylitterbot import LitterRobot
 from typing import Any
 
+PARALLEL_UPDATES: int
 LITTER_BOX_STATUS_STATE_MAP: Incomplete
 LITTER_BOX_ENTITY: Incomplete
 
@@ -17,8 +18,11 @@ class LitterRobotCleaner(LitterRobotEntity[LitterRobot], StateVacuumEntity):
     _attr_supported_features: Incomplete
     @property
     def activity(self) -> VacuumActivity: ...
+    @whisker_command
     async def async_start(self) -> None: ...
+    @whisker_command
     async def async_stop(self, **kwargs: Any) -> None: ...
+    @whisker_command
     async def async_set_sleep_mode(self, enabled: bool, start_time: str | None = None) -> None: ...
     @staticmethod
     def parse_time_at_default_timezone(time_str: str | None) -> time | None: ...

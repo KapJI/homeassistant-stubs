@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from aiohttp.web import Request as Request
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.http.ban import process_success_login as process_success_login, process_wrong_login as process_wrong_login
+from homeassistant.components.http.const import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.const import __version__ as __version__
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.helpers.json import json_bytes as json_bytes
@@ -29,4 +30,5 @@ class AuthPhase:
     _request: Incomplete
     _send_bytes_text: Incomplete
     def __init__(self, logger: WebSocketAdapter, hass: HomeAssistant, send_message: Callable[[bytes | str | dict[str, Any]], None], cancel_ws: CALLBACK_TYPE, request: Request, send_bytes_text: Callable[[bytes], Coroutine[Any, Any, None]]) -> None: ...
+    async def async_handle_supervisor_unix_socket(self) -> ActiveConnection: ...
     async def async_handle(self, msg: JsonValueType) -> ActiveConnection: ...

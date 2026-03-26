@@ -1,4 +1,4 @@
-from .coordinator import ZinvoltConfigEntry as ZinvoltConfigEntry, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
+from .coordinator import ZinvoltConfigEntry as ZinvoltConfigEntry, ZinvoltData as ZinvoltData, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
 from .entity import ZinvoltEntity as ZinvoltEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
@@ -8,12 +8,11 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from zinvolt import ZinvoltClient as ZinvoltClient
-from zinvolt.models import BatteryState as BatteryState
 
 @dataclass(kw_only=True, frozen=True)
 class ZinvoltBatteryStateDescription(NumberEntityDescription):
-    max_fn: Callable[[BatteryState], int] | None = ...
-    value_fn: Callable[[BatteryState], int]
+    max_fn: Callable[[ZinvoltData], int] | None = ...
+    value_fn: Callable[[ZinvoltData], int]
     set_value_fn: Callable[[ZinvoltClient, str, int], Awaitable[None]]
 
 NUMBERS: tuple[ZinvoltBatteryStateDescription, ...]

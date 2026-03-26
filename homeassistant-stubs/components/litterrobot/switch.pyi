@@ -1,6 +1,5 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
-from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT
+from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT, whisker_command as whisker_command
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -8,9 +7,10 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from pylitterbot import Robot
 from typing import Any, Generic
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RobotSwitchEntityDescription(SwitchEntityDescription, Generic[_WhiskerEntityT]):
@@ -27,5 +27,7 @@ class RobotSwitchEntity(LitterRobotEntity[_WhiskerEntityT], SwitchEntity):
     entity_description: RobotSwitchEntityDescription[_WhiskerEntityT]
     @property
     def is_on(self) -> bool | None: ...
+    @whisker_command
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @whisker_command
     async def async_turn_off(self, **kwargs: Any) -> None: ...

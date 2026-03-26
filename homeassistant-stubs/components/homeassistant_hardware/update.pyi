@@ -1,6 +1,6 @@
 from .coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from .helpers import async_register_firmware_info_callback as async_register_firmware_info_callback
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, ResetTarget as ResetTarget, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware
 from _typeshed import Incomplete
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -11,6 +11,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callb
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
+from universal_silabs_flasher.flasher import DeviceSpecificFlasher as DeviceSpecificFlasher
 
 _LOGGER: Incomplete
 type FirmwareChangeCallbackType = Callable[[ApplicationType | None, ApplicationType | None], None]
@@ -32,10 +33,9 @@ class FirmwareUpdateExtraStoredData(ExtraStoredData):
 
 class BaseFirmwareUpdateEntity(CoordinatorEntity[FirmwareUpdateCoordinator], UpdateEntity):
     entity_description: FirmwareUpdateEntityDescription
-    BOOTLOADER_RESET_METHODS: list[ResetTarget]
-    APPLICATION_PROBE_METHODS: list[tuple[ApplicationType, int]]
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
+    _flasher_cls: type[DeviceSpecificFlasher]
     _current_device: Incomplete
     _config_entry: Incomplete
     _current_firmware_info: FirmwareInfo | None

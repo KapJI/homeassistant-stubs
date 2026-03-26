@@ -1,11 +1,10 @@
-from .const import DOMAIN as DOMAIN, EVENT_VALUE_ADDED as EVENT_VALUE_ADDED, EVENT_VALUE_REMOVED as EVENT_VALUE_REMOVED, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, EVENT_METADATA_UPDATED as EVENT_METADATA_UPDATED, EVENT_VALUE_ADDED as EVENT_VALUE_ADDED, EVENT_VALUE_REMOVED as EVENT_VALUE_REMOVED, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
 from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate
 from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
-from .models import PlatformZwaveDiscoveryInfo as PlatformZwaveDiscoveryInfo, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
+from .models import PlatformZwaveDiscoveryInfo as PlatformZwaveDiscoveryInfo, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -26,9 +25,9 @@ class NewZwaveDiscoveryInfo(PlatformZwaveDiscoveryInfo):
 class ZWaveBaseEntity(Entity):
     _attr_should_poll: bool
     _attr_has_entity_name: bool
+    info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo
     config_entry: Incomplete
     driver: Incomplete
-    info: Incomplete
     _primary_value_removed: bool
     watched_value_ids: Incomplete
     entity_description: Incomplete
@@ -38,7 +37,7 @@ class ZWaveBaseEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_assumed_state: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo) -> None: ...
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo) -> None: ...
     @callback
     def on_value_update(self) -> None: ...
     async def _async_poll_value(self, value_or_id: str | ZwaveValue) -> None: ...
@@ -53,6 +52,11 @@ class ZWaveBaseEntity(Entity):
     def _value_removed(self, event_data: dict) -> None: ...
     @callback
     def _value_added(self, event_data: dict) -> None: ...
+    @callback
+    def should_rediscover_on_metadata_update(self) -> bool: ...
+    @callback
+    def _metadata_updated(self, event_data: dict) -> None: ...
+    async def _async_remove_and_rediscover(self, value: ZwaveValue) -> None: ...
     @callback
     def get_zwave_value(self, value_property: str | int, command_class: int | None = None, endpoint: int | None = None, value_property_key: int | str | None = None, add_to_watched_value_ids: bool = True, check_all_endpoints: bool = False) -> ZwaveValue | None: ...
     async def _async_set_value(self, value: ZwaveValue, new_value: Any, options: dict | None = None, wait_for_result: bool | None = None) -> SetValueResult | None: ...

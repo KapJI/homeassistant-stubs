@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from .coordinator import ReolinkDeviceCoordinator as ReolinkDeviceCoordinator, ReolinkFirmwareCoordinator as ReolinkFirmwareCoordinator
 from .host import ReolinkHost as ReolinkHost
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
@@ -10,7 +11,6 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.translation import async_get_exception_message as async_get_exception_message
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from reolink_aio.exceptions import ReolinkError
 from typing import Any
 
@@ -20,8 +20,8 @@ type ReolinkConfigEntry = config_entries.ConfigEntry[ReolinkData]
 @dataclass
 class ReolinkData:
     host: ReolinkHost
-    device_coordinator: DataUpdateCoordinator[None]
-    firmware_coordinator: DataUpdateCoordinator[None]
+    device_coordinator: ReolinkDeviceCoordinator
+    firmware_coordinator: ReolinkFirmwareCoordinator
 
 def is_connected(hass: HomeAssistant, config_entry: config_entries.ConfigEntry) -> bool: ...
 def get_host(hass: HomeAssistant, config_entry_id: str) -> ReolinkHost: ...

@@ -91,6 +91,7 @@ CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
+    entity_description: CameraEntityDescription
     _attr_brand: str | None
     _attr_frame_interval: float
     _attr_is_on: bool

@@ -13,6 +13,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class DemoWaterHeater(WaterHeaterEntity):
     _attr_should_poll: bool
     _attr_supported_features = SUPPORT_FLAGS_HEATER
+    _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_target_temperature: Incomplete
     _attr_temperature_unit: Incomplete
@@ -20,7 +21,7 @@ class DemoWaterHeater(WaterHeaterEntity):
     _attr_current_operation: Incomplete
     _attr_operation_list: Incomplete
     _attr_target_temperature_step: Incomplete
-    def __init__(self, name: str, target_temperature: int, unit_of_measurement: str, away: bool, current_operation: str, target_temperature_step: float) -> None: ...
+    def __init__(self, unique_id: str, name: str, target_temperature: int, unit_of_measurement: str, away: bool, current_operation: str, target_temperature_step: float) -> None: ...
     def set_temperature(self, **kwargs: Any) -> None: ...
     def set_operation_mode(self, operation_mode: str) -> None: ...
     def turn_away_mode_on(self) -> None: ...

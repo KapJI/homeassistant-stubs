@@ -1,16 +1,19 @@
-from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_KEEP_ALIVE as CONF_KEEP_ALIVE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_DUR as CONF_MIN_DUR, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN
+from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_DUR_COOLDOWN as CONF_DUR_COOLDOWN, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_KEEP_ALIVE as CONF_KEEP_ALIVE, CONF_MAX_DUR as CONF_MAX_DUR, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_DUR as CONF_MIN_DUR, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import fan as fan, switch as switch
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.const import CONF_NAME as CONF_NAME, DEGREE as DEGREE
 from homeassistant.helpers import selector as selector
-from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
+from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep
 from typing import Any
 
 OPTIONS_SCHEMA: Incomplete
 PRESETS_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
+
+async def _validate_config(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
+
 CONFIG_FLOW: Incomplete
 OPTIONS_FLOW: Incomplete
 

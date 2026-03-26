@@ -9,7 +9,7 @@ from homeassistant.components import cloud as cloud
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_TOKEN as CONF_TOKEN, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.config_entry_oauth2_flow import ImplementationUnavailableError as ImplementationUnavailableError, OAuth2Session as OAuth2Session, async_get_config_entry_implementation as async_get_config_entry_implementation
@@ -19,6 +19,8 @@ from typing import Any
 PLATFORMS: Incomplete
 SUBSCRIBE_DELAY: Incomplete
 UNSUBSCRIBE_DELAY: Incomplete
+WEBHOOK_REGISTER_DELAY: int
+MAX_WEBHOOK_RETRY_INTERVAL: int
 CONF_CLOUDHOOK_URL: str
 type WithingsConfigEntry = ConfigEntry[WithingsData]
 
@@ -40,15 +42,23 @@ async def async_unload_entry(hass: HomeAssistant, entry: WithingsConfigEntry) ->
 async def async_subscribe_webhooks(client: WithingsClient, webhook_url: str) -> None: ...
 
 class WithingsWebhookManager:
-    _webhooks_registered: bool
-    _register_lock: Incomplete
     hass: Incomplete
     entry: Incomplete
+    _subscribe_attempt: int
+    _webhook_url: str | None
+    _webhooks_registered: bool
+    _webhook_url_invalid: bool
+    _ha_webhook_registered: bool
+    _cancel_retry: CALLBACK_TYPE | None
+    _register_lock: Incomplete
     def __init__(self, hass: HomeAssistant, entry: WithingsConfigEntry) -> None: ...
     @property
     def withings_data(self) -> WithingsData: ...
+    def _cancel_pending_retry(self) -> None: ...
+    def _schedule_retry(self, delay: int) -> None: ...
     async def unregister_webhook(self, _: Any) -> None: ...
     async def register_webhook(self, _: Any) -> None: ...
+    async def _async_subscribe_webhook(self, _: Any = None) -> None: ...
 
 async def async_unsubscribe_webhooks(client: WithingsClient) -> None: ...
 async def _async_cloudhook_generate_url(hass: HomeAssistant, entry: WithingsConfigEntry) -> str: ...

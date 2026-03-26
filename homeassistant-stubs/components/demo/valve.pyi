@@ -1,8 +1,10 @@
+from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.valve import ValveEntity as ValveEntity, ValveEntityFeature as ValveEntityFeature, ValveState as ValveState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_utc_time_change as async_track_utc_time_change
 from typing import Any
@@ -12,8 +14,11 @@ OPEN_CLOSE_DELAY: int
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DemoValve(ValveEntity):
-    _attr_should_poll: bool
+    _attr_has_entity_name: bool
     _attr_name: Incomplete
+    _attr_should_poll: bool
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
     _attr_supported_features: Incomplete
     _state: Incomplete
     _moveable: Incomplete
@@ -21,7 +26,7 @@ class DemoValve(ValveEntity):
     _unsub_listener_valve: CALLBACK_TYPE | None
     _set_position: int
     _position: int
-    def __init__(self, name: str, state: str, moveable: bool = True, position: int | None = None) -> None: ...
+    def __init__(self, unique_id: str, name: str, state: str, moveable: bool = True, position: int | None = None) -> None: ...
     @property
     def current_valve_position(self) -> int: ...
     @property

@@ -1,5 +1,5 @@
-from . import NutConfigEntry as NutConfigEntry
 from .const import KEY_STATUS as KEY_STATUS, KEY_STATUS_DISPLAY as KEY_STATUS_DISPLAY, STATE_TYPES as STATE_TYPES
+from .coordinator import NutConfigEntry as NutConfigEntry
 from .entity import NUTBaseEntity as NUTBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass

@@ -1,5 +1,5 @@
 from .const import REDACTED as REDACTED
-from .util import async_redact_data as async_redact_data
+from .util import async_redact_data as async_redact_data, entity_entry_as_dict as entity_entry_as_dict
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable, Coroutine, Mapping
@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceEntry
 from typing import Any, Protocol
 
-__all__ = ['REDACTED', 'async_redact_data']
+__all__ = ['REDACTED', 'async_redact_data', 'entity_entry_as_dict']
 
 @dataclass(slots=True)
 class DiagnosticsPlatformData:

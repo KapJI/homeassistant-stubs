@@ -1,24 +1,15 @@
 from .const import DOMAIN as DOMAIN, INTEGRATION_SUPPORTED_COMMANDS as INTEGRATION_SUPPORTED_COMMANDS, PLATFORMS as PLATFORMS
+from .coordinator import NutConfigEntry as NutConfigEntry, NutCoordinator as NutCoordinator, NutRuntimeData as NutRuntimeData
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_RESOURCES as CONF_RESOURCES, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_USERNAME as CONF_USERNAME, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 NUT_FAKE_SERIAL: Incomplete
 _LOGGER: Incomplete
-type NutConfigEntry = ConfigEntry[NutRuntimeData]
-
-@dataclass
-class NutRuntimeData:
-    coordinator: DataUpdateCoordinator
-    data: PyNUTData
-    unique_id: str
-    user_available_commands: set[str]
 
 async def async_setup_entry(hass: HomeAssistant, entry: NutConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: NutConfigEntry) -> bool: ...

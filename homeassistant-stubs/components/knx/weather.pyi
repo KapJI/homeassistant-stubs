@@ -20,8 +20,6 @@ class KNXWeather(KnxYamlEntity, WeatherEntity):
     _attr_native_pressure_unit: Incomplete
     _attr_native_temperature_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_entity_category: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     @property
     def native_temperature(self) -> float | None: ...

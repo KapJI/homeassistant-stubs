@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pylitterbot import Robot
 from typing import Generic
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class RobotBinarySensorEntityDescription(BinarySensorEntityDescription, Generic[_WhiskerEntityT]):
     is_on_fn: Callable[[_WhiskerEntityT], bool]

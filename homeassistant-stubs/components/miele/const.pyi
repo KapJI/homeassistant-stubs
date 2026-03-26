@@ -362,6 +362,7 @@ class DishWasherProgramId(MieleEnum, missing_to_none=True):
     pasta_paela: int
     tall_items: Incomplete
     glasses_warm: int
+    quick_intense: int
     normal: int
     power_wash: Incomplete
     comfort_wash: int

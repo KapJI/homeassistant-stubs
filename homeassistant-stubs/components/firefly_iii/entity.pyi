@@ -12,19 +12,25 @@ class FireflyBaseEntity(CoordinatorEntity[FireflyDataUpdateCoordinator]):
     def __init__(self, coordinator: FireflyDataUpdateCoordinator) -> None: ...
 
 class FireflyAccountBaseEntity(FireflyBaseEntity):
-    _account: Incomplete
+    _account_id: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, account: Account, key: str) -> None: ...
+    @property
+    def _account(self) -> Account: ...
 
 class FireflyCategoryBaseEntity(FireflyBaseEntity):
-    _category: Incomplete
+    _category_id: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, category: Category, key: str) -> None: ...
+    @property
+    def _category(self) -> Category: ...
 
 class FireflyBudgetBaseEntity(FireflyBaseEntity):
-    _budget: Incomplete
+    _budget_id: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, budget: Budget, key: str) -> None: ...
+    @property
+    def _budget(self) -> Budget: ...

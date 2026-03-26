@@ -13,6 +13,7 @@ from aiohttp.http_websocket import WebSocketWriter as WebSocketWriter
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
+from homeassistant.components.http.const import is_supervisor_unix_socket_request as is_supervisor_unix_socket_request
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

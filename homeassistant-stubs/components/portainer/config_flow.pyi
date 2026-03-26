@@ -6,12 +6,13 @@ from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN, CONF_URL as CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from pyportainer.models.portainer import PortainerSystemStatus as PortainerSystemStatus
 from typing import Any
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 
-async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None: ...
+async def _validate_input(hass: HomeAssistant, data: dict[str, Any]) -> PortainerSystemStatus: ...
 
 class PortainerConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

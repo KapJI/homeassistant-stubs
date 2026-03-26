@@ -10,9 +10,6 @@ from homeassistant.helpers import device_registry as dr
 ATTR_TEXT_COMMAND: str
 ATTR_SOUND: str
 ATTR_INFO_SKILL: str
-SERVICE_TEXT_COMMAND: str
-SERVICE_SOUND_NOTIFICATION: str
-SERVICE_INFO_SKILL: str
 SCHEMA_SOUND_SERVICE: Incomplete
 SCHEMA_CUSTOM_COMMAND: Incomplete
 SCHEMA_INFO_SKILL: Incomplete

@@ -1,6 +1,5 @@
-from . import WizConfigEntry as WizConfigEntry
+from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizEntity as WizEntity
-from .models import WizData as WizData
 from _typeshed import Incomplete
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

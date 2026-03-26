@@ -1,6 +1,5 @@
-from . import WizConfigEntry as WizConfigEntry
+from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizEntity as WizEntity
-from .models import WizData as WizData
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfPower as UnitOfPower

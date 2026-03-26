@@ -43,8 +43,6 @@ class _KnxCover(CoverEntity):
 
 class KnxYamlCover(_KnxCover, KnxYamlEntity):
     _device: XknxCover
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     _attr_device_class: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 

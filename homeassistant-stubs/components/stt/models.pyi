@@ -9,7 +9,6 @@ class SpeechMetadata:
     bit_rate: AudioBitRates
     sample_rate: AudioSampleRates
     channel: AudioChannels
-    def __post_init__(self) -> None: ...
 
 @dataclass
 class SpeechResult:

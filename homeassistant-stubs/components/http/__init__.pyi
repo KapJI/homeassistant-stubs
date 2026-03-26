@@ -10,7 +10,7 @@ from .headers import setup_headers as setup_headers
 from .request_context import setup_request_context as setup_request_context
 from .security_filter import setup_security_filter as setup_security_filter
 from .static import CACHE_HEADERS as CACHE_HEADERS, CachingStaticResource as CachingStaticResource
-from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite
+from .web_runner import HomeAssistantTCPSite as HomeAssistantTCPSite, HomeAssistantUnixSite as HomeAssistantUnixSite
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.abc import AbstractStreamWriter as AbstractStreamWriter
@@ -22,7 +22,7 @@ from aiohttp.web_protocol import RequestHandler as RequestHandler
 from collections.abc import Collection
 from dataclasses import dataclass
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
-from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVER_PORT as SERVER_PORT
+from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, HASSIO_USER_NAME as HASSIO_USER_NAME, SERVER_PORT as SERVER_PORT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import storage as storage
@@ -36,6 +36,7 @@ from homeassistant.setup import SetupPhases as SetupPhases, async_start_setup as
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.json import json_loads as json_loads
 from ipaddress import IPv4Network, IPv6Network
+from pathlib import Path
 from typing import Any, Final, TypedDict
 
 CONF_SERVER_HOST: Final[str]
@@ -121,10 +122,12 @@ class HomeAssistantHTTP:
     server_port: Incomplete
     trusted_proxies: Incomplete
     ssl_profile: Incomplete
+    supervisor_unix_socket_path: Incomplete
     runner: web.AppRunner | None
     site: HomeAssistantTCPSite | None
+    supervisor_site: HomeAssistantUnixSite | None
     context: ssl.SSLContext | None
-    def __init__(self, hass: HomeAssistant, ssl_certificate: str | None, ssl_peer_certificate: str | None, ssl_key: str | None, server_host: list[str] | None, server_port: int, trusted_proxies: list[IPv4Network | IPv6Network], ssl_profile: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, ssl_certificate: str | None, ssl_peer_certificate: str | None, ssl_key: str | None, server_host: list[str] | None, server_port: int, trusted_proxies: list[IPv4Network | IPv6Network], ssl_profile: str, supervisor_unix_socket_path: Path | None = None) -> None: ...
     async def async_initialize(self, *, cors_origins: list[str], use_x_forwarded_for: bool, login_threshold: int, is_ban_enabled: bool, use_x_frame_options: bool) -> None: ...
     def register_view(self, view: HomeAssistantView | type[HomeAssistantView]) -> None: ...
     def register_redirect(self, url: str, redirect_to: StrOrURL, *, redirect_exc: type[HTTPRedirection] = ...) -> None: ...
@@ -134,6 +137,7 @@ class HomeAssistantHTTP:
     def _async_register_static_paths(self, configs: Collection[StaticPathConfig], resources: dict[str, CachingStaticResource | web.StaticResource | None]) -> None: ...
     def _create_ssl_context(self) -> ssl.SSLContext | None: ...
     def _create_emergency_ssl_context(self) -> ssl.SSLContext: ...
+    async def async_start_supervisor_unix_socket(self) -> None: ...
     async def start(self) -> None: ...
     async def stop(self) -> None: ...
 

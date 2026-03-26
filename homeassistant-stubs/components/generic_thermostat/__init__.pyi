@@ -1,4 +1,4 @@
-from .const import CONF_HEATER as CONF_HEATER, CONF_SENSOR as CONF_SENSOR, PLATFORMS as PLATFORMS
+from .const import CONF_DUR_COOLDOWN as CONF_DUR_COOLDOWN, CONF_HEATER as CONF_HEATER, CONF_MIN_DUR as CONF_MIN_DUR, CONF_SENSOR as CONF_SENSOR, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant

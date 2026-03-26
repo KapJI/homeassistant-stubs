@@ -31,6 +31,7 @@ class ValveEntityFeature(IntFlag):
     STOP = 8
 
 ATTR_CURRENT_POSITION: str
+ATTR_IS_CLOSED: str
 ATTR_POSITION: str
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -63,7 +64,7 @@ class ValveEntity(Entity):
     def state(self) -> str | None: ...
     @final
     @property
-    def state_attributes(self) -> dict[str, Any] | None: ...
+    def state_attributes(self) -> dict[str, Any]: ...
     @property
     def supported_features(self) -> ValveEntityFeature: ...
     @property

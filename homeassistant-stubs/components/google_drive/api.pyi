@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession, StreamReader as StreamReader
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine

@@ -43,12 +43,10 @@ class _KnxSensor(RestoreSensor, _KnxEntityBase):
 class KnxYamlSensor(_KnxSensor, KnxYamlEntity):
     _device: XknxSensor
     _attr_device_class: Incomplete
-    _attr_state_class: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
-    _attr_force_update: Incomplete
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     _attr_extra_state_attributes: Incomplete
+    _attr_force_update: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
+    _attr_state_class: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiSensor(_KnxSensor, KnxUiEntity):

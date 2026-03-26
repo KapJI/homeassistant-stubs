@@ -9,7 +9,7 @@ from homeassistant.components.climate import FAN_OFF as FAN_OFF, HVACMode as HVA
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.components.text import TextMode as TextMode
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TYPE as CONF_TYPE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TYPE as CONF_TYPE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform
 from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
 from typing import ClassVar, Final
 
@@ -29,15 +29,15 @@ class KNXPlatformSchema(ABC):
     @classmethod
     def platform_node(cls) -> dict[vol.Optional, vol.All]: ...
 
+COMMON_ENTITY_SCHEMA: Incomplete
+
 class BinarySensorSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class ButtonSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_VALUE: str
-    DEFAULT_NAME: str
     payload_or_value_msg: Incomplete
     length_or_type_msg: Incomplete
     ENTITY_SCHEMA: Incomplete
@@ -73,7 +73,6 @@ class ClimateSchema(KNXPlatformSchema):
     CONF_SWING_STATE_ADDRESS: str
     CONF_SWING_HORIZONTAL_ADDRESS: str
     CONF_SWING_HORIZONTAL_STATE_ADDRESS: str
-    DEFAULT_NAME: str
     DEFAULT_SETPOINT_SHIFT_MODE: str
     DEFAULT_SETPOINT_SHIFT_MAX: int
     DEFAULT_SETPOINT_SHIFT_MIN: int
@@ -92,17 +91,14 @@ class CoverSchema(KNXPlatformSchema):
     CONF_ANGLE_ADDRESS: str
     CONF_ANGLE_STATE_ADDRESS: str
     DEFAULT_TRAVEL_TIME: int
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class DateSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class DateTimeSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class ExposeSchema(KNXPlatformSchema):
@@ -128,7 +124,6 @@ class FanSchema(KNXPlatformSchema):
     CONF_OSCILLATION_STATE_ADDRESS: str
     CONF_SWITCH_ADDRESS: str
     CONF_SWITCH_STATE_ADDRESS: str
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class LightSchema(KNXPlatformSchema):
@@ -151,7 +146,6 @@ class LightSchema(KNXPlatformSchema):
     CONF_XYY_STATE_ADDRESS: str
     CONF_MIN_KELVIN: str
     CONF_MAX_KELVIN: str
-    DEFAULT_NAME: str
     DEFAULT_COLOR_TEMP_MODE: str
     DEFAULT_MIN_KELVIN: int
     DEFAULT_MAX_KELVIN: int
@@ -167,25 +161,21 @@ class LightSchema(KNXPlatformSchema):
 
 class NotifySchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class NumberSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class SceneSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_SCENE_NUMBER: str
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class SelectSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_OPTION: str
     CONF_OPTIONS: str
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class SensorSchema(KNXPlatformSchema):
@@ -193,24 +183,20 @@ class SensorSchema(KNXPlatformSchema):
     CONF_ALWAYS_CALLBACK: str
     CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
     CONF_SYNC_STATE = CONF_SYNC_STATE
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class SwitchSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
     CONF_INVERT = CONF_INVERT
     CONF_STATE_ADDRESS = CONF_STATE_ADDRESS
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class TextSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class TimeSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete
 
 class WeatherSchema(KNXPlatformSchema):
@@ -229,5 +215,4 @@ class WeatherSchema(KNXPlatformSchema):
     CONF_KNX_DAY_NIGHT_ADDRESS: str
     CONF_KNX_AIR_PRESSURE_ADDRESS: str
     CONF_KNX_HUMIDITY_ADDRESS: str
-    DEFAULT_NAME: str
     ENTITY_SCHEMA: Incomplete

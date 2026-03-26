@@ -20,6 +20,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 MAP_JOIN_RESTRICTIONS: Incomplete
+MAP_PLATFORM_NAME: Incomplete
 
 class XboxSensor(StrEnum):
     STATUS = 'status'
@@ -36,6 +37,8 @@ class XboxSensor(StrEnum):
     TOTAL_STORAGE = 'total_storage'
     FREE_STORAGE = 'free_storage'
 
+PRESENCE_ACTIVE: str
+
 @dataclass(kw_only=True, frozen=True)
 class XboxSensorEntityDescription(XboxBaseEntityDescription, SensorEntityDescription):
     value_fn: Callable[[Person, Title | None], StateType | datetime]
@@ -44,7 +47,7 @@ class XboxSensorEntityDescription(XboxBaseEntityDescription, SensorEntityDescrip
 class XboxStorageDeviceSensorEntityDescription(XboxBaseEntityDescription, SensorEntityDescription):
     value_fn: Callable[[StorageDevice], StateType]
 
-def now_playing_attributes(_: Person, title: Title | None) -> dict[str, Any]: ...
+def now_playing_attributes(person: Person, title: Title | None) -> dict[str, Any]: ...
 def join_restrictions(person: Person, _: Title | None = None) -> str | None: ...
 def title_logo(_: Person, title: Title | None) -> str | None: ...
 

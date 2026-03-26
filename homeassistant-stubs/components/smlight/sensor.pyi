@@ -27,6 +27,7 @@ INFO: list[SmInfoEntityDescription]
 RADIO_INFO: Incomplete
 SENSORS: list[SmSensorEntityDescription]
 EXTRA_SENSOR: Incomplete
+PSRAM_SENSOR: Incomplete
 UPTIME: list[SmSensorEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

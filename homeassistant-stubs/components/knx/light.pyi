@@ -50,8 +50,6 @@ class KnxYamlLight(_KnxLight, KnxYamlEntity):
     _attr_color_mode: Incomplete
     _attr_max_color_temp_kelvin: int
     _attr_min_color_temp_kelvin: int
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     def _device_unique_id(self) -> str: ...
 

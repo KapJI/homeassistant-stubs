@@ -11,6 +11,7 @@ from typing import Final
 @dataclass(frozen=True, kw_only=True)
 class JvcProjectorSelectDescription(SelectEntityDescription):
     command: type[Command]
+    snake_case_states: bool = ...
 
 SELECTS: Final[tuple[JvcProjectorSelectDescription, ...]]
 

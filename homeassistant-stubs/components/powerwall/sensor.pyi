@@ -1,6 +1,6 @@
 from .const import POWERWALL_COORDINATOR as POWERWALL_COORDINATOR
+from .coordinator import PowerwallConfigEntry as PowerwallConfigEntry, PowerwallRuntimeData as PowerwallRuntimeData
 from .entity import BatteryEntity as BatteryEntity, PowerWallEntity as PowerWallEntity
-from .models import BatteryResponse as BatteryResponse, PowerwallConfigEntry as PowerwallConfigEntry, PowerwallRuntimeData as PowerwallRuntimeData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from tesla_powerwall import MeterResponse, MeterType as MeterType
+from tesla_powerwall import BatteryResponse, MeterResponse, MeterType as MeterType
 
 _METER_DIRECTION_EXPORT: str
 _METER_DIRECTION_IMPORT: str

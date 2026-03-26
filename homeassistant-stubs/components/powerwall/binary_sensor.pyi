@@ -1,5 +1,5 @@
+from .coordinator import PowerwallConfigEntry as PowerwallConfigEntry
 from .entity import PowerWallEntity as PowerWallEntity
-from .models import PowerwallConfigEntry as PowerwallConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -1,16 +1,16 @@
 import abc
-from .models import WizData as WizData
+from .coordinator import WizCoordinator as WizCoordinator, WizData as WizData
 from _typeshed import Incomplete
 from abc import abstractmethod
 from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MODEL as ATTR_MODEL
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, ToggleEntity as ToggleEntity
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pywizlight.bulblibrary import BulbType as BulbType
 from typing import Any
 
-class WizEntity(CoordinatorEntity[DataUpdateCoordinator[float | None]], Entity, metaclass=abc.ABCMeta):
+class WizEntity(CoordinatorEntity[WizCoordinator], Entity, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     _device: Incomplete
     _attr_unique_id: Incomplete

@@ -21,7 +21,6 @@ class FireflyAccountBalanceSensor(FireflyAccountBaseEntity, SensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
-    _account: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, account: Account, key: str) -> None: ...
     @property
@@ -31,8 +30,6 @@ class FireflyAccountRoleSensor(FireflyAccountBaseEntity, SensorEntity):
     _attr_translation_key: str
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: bool
-    _account: Incomplete
-    def __init__(self, coordinator: FireflyDataUpdateCoordinator, account: Account, key: str) -> None: ...
     @property
     def native_value(self) -> StateType: ...
 
@@ -49,7 +46,6 @@ class FireflyCategorySensor(FireflyCategoryBaseEntity, SensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
-    _category: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, category: Category, key: str) -> None: ...
     @property
@@ -59,7 +55,6 @@ class FireflyBudgetSensor(FireflyBudgetBaseEntity, SensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
-    _budget: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, budget: Budget, key: str) -> None: ...
     @property

@@ -1,9 +1,45 @@
+from .entity import Entity as Entity
+from .singleton import singleton as singleton
+from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from propcache.api import cached_property
 from typing import Any
 
+DATA_GROUP_ENTITIES: str
 ENTITY_PREFIX: str
 
+class Group:
+    _entity: Entity
+    def __init__(self, entity: Entity) -> None: ...
+    @property
+    def member_entity_ids(self) -> list[str]: ...
+    @callback
+    def async_added_to_hass(self) -> None: ...
+    @callback
+    def async_will_remove_from_hass(self) -> None: ...
+
+class GenericGroup(Group):
+    _member_entity_ids: Incomplete
+    def __init__(self, entity: Entity, member_entity_ids: list[str]) -> None: ...
+    @cached_property
+    def member_entity_ids(self) -> list[str]: ...
+
+class IntegrationSpecificGroup(Group):
+    _member_entity_ids: list[str] | None
+    _member_unique_ids: list[str]
+    def __init__(self, entity: Entity, member_unique_ids: list[str]) -> None: ...
+    @cached_property
+    def member_entity_ids(self) -> list[str]: ...
+    @property
+    def member_unique_ids(self) -> list[str]: ...
+    @member_unique_ids.setter
+    def member_unique_ids(self, value: list[str]) -> None: ...
+    @callback
+    def async_added_to_hass(self) -> None: ...
+
+@callback
+def get_group_entities(hass: HomeAssistant) -> dict[str, Entity]: ...
 def expand_entity_ids(hass: HomeAssistant, entity_ids: Iterable[Any]) -> list[str]: ...
 def get_entity_ids(hass: HomeAssistant, entity_id: str, domain_filter: str | None = None) -> list[str]: ...

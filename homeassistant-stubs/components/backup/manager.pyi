@@ -14,10 +14,13 @@ from enum import StrEnum
 from homeassistant.backup_restore import RESTORE_BACKUP_FILE as RESTORE_BACKUP_FILE, RESTORE_BACKUP_RESULT_FILE as RESTORE_BACKUP_RESULT_FILE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import frame as frame, instance_id as instance_id, integration_platform as integration_platform, start as start
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.json import json_bytes as json_bytes
 from homeassistant.util.async_iterator import AsyncIteratorReader as AsyncIteratorReader
 from pathlib import Path
 from typing import Any, Protocol, TypedDict
+
+UPLOAD_PROGRESS_DEBOUNCE_SECONDS: int
 
 @dataclass(frozen=True, kw_only=True, slots=True)
 class NewBackup:
@@ -61,6 +64,7 @@ class CreateBackupStage(StrEnum):
     ADDONS = 'addons'
     AWAIT_ADDON_RESTARTS = 'await_addon_restarts'
     DOCKER_CONFIG = 'docker_config'
+    CLEANING_UP = 'cleaning_up'
     FINISHING_FILE = 'finishing_file'
     FOLDERS = 'folders'
     HOME_ASSISTANT = 'home_assistant'
@@ -134,6 +138,12 @@ class BackupPlatformEvent:
 @dataclass(frozen=True, kw_only=True, slots=True)
 class BlockedEvent(ManagerStateEvent):
     manager_state: BackupManagerState = ...
+
+@dataclass(frozen=True, kw_only=True, slots=True)
+class UploadBackupEvent(ManagerStateEvent):
+    agent_id: str
+    uploaded_bytes: int
+    total_bytes: int
 
 class BackupPlatformProtocol(Protocol):
     async def async_pre_backup(self, hass: HomeAssistant) -> None: ...

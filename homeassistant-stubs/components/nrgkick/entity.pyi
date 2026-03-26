@@ -6,6 +6,9 @@ from collections.abc import Awaitable
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Any
+
+def get_nested_dict_value(data: Any, *keys: str) -> Any: ...
 
 class NRGkickEntity(CoordinatorEntity[NRGkickDataUpdateCoordinator]):
     _attr_has_entity_name: bool

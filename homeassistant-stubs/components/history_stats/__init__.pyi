@@ -1,4 +1,4 @@
-from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_START as CONF_START, PLATFORMS as PLATFORMS
+from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_MIN_STATE_DURATION as CONF_MIN_STATE_DURATION, CONF_START as CONF_START, PLATFORMS as PLATFORMS, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS
 from .coordinator import HistoryStatsUpdateCoordinator as HistoryStatsUpdateCoordinator
 from .data import HistoryStats as HistoryStats
 from _typeshed import Incomplete

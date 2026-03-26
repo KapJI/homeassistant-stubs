@@ -14,6 +14,7 @@ from typing import Any
 @dataclass(frozen=True, kw_only=True)
 class FullyButtonEntityDescription(ButtonEntityDescription):
     press_action: Callable[[FullyKiosk], Any]
+    refresh_after_press: bool = ...
 
 BUTTONS: tuple[FullyButtonEntityDescription, ...]
 

@@ -1,5 +1,5 @@
+from .coordinator import PowerwallConfigEntry as PowerwallConfigEntry, PowerwallRuntimeData as PowerwallRuntimeData
 from .entity import PowerWallEntity as PowerWallEntity
-from .models import PowerwallConfigEntry as PowerwallConfigEntry, PowerwallRuntimeData as PowerwallRuntimeData
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.const import EntityCategory as EntityCategory

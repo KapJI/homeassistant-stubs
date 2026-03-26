@@ -1,4 +1,4 @@
-from .const import STACK_TYPE_COMPOSE as STACK_TYPE_COMPOSE, STACK_TYPE_KUBERNETES as STACK_TYPE_KUBERNETES, STACK_TYPE_SWARM as STACK_TYPE_SWARM
+from .const import StackType as StackType
 from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerStackData as PortainerStackData
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity
 from collections.abc import Callable as Callable

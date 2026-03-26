@@ -13,8 +13,6 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pysaunum import SaunumClient as SaunumClient, SaunumData as SaunumData
 
 PARALLEL_UPDATES: int
-DEFAULT_DURATION_MIN: int
-DEFAULT_FAN_DURATION_MIN: int
 
 @dataclass(frozen=True, kw_only=True)
 class LeilSaunaNumberEntityDescription(NumberEntityDescription):

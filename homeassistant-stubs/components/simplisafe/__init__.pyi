@@ -1,5 +1,6 @@
 import asyncio
 from .const import ATTR_ALARM_DURATION as ATTR_ALARM_DURATION, ATTR_ALARM_VOLUME as ATTR_ALARM_VOLUME, ATTR_CHIME_VOLUME as ATTR_CHIME_VOLUME, ATTR_ENTRY_DELAY_AWAY as ATTR_ENTRY_DELAY_AWAY, ATTR_ENTRY_DELAY_HOME as ATTR_ENTRY_DELAY_HOME, ATTR_EXIT_DELAY_AWAY as ATTR_EXIT_DELAY_AWAY, ATTR_EXIT_DELAY_HOME as ATTR_EXIT_DELAY_HOME, ATTR_LAST_EVENT_INFO as ATTR_LAST_EVENT_INFO, ATTR_LAST_EVENT_SENSOR_NAME as ATTR_LAST_EVENT_SENSOR_NAME, ATTR_LAST_EVENT_SENSOR_TYPE as ATTR_LAST_EVENT_SENSOR_TYPE, ATTR_LAST_EVENT_TIMESTAMP as ATTR_LAST_EVENT_TIMESTAMP, ATTR_LIGHT as ATTR_LIGHT, ATTR_SYSTEM_ID as ATTR_SYSTEM_ID, ATTR_VOICE_PROMPT_VOLUME as ATTR_VOICE_PROMPT_VOLUME, DISPATCHER_TOPIC_WEBSOCKET_EVENT as DISPATCHER_TOPIC_WEBSOCKET_EVENT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .coordinator import SimpliSafeDataUpdateCoordinator as SimpliSafeDataUpdateCoordinator
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -10,7 +11,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service, verify_domain_control as verify_domain_control
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from simplipy import API
 from simplipy.system import SystemNotification as SystemNotification
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
@@ -25,7 +26,6 @@ ATTR_PIN_LABEL: str
 ATTR_PIN_LABEL_OR_VALUE: str
 ATTR_PIN_VALUE: str
 ATTR_TIMESTAMP: str
-DEFAULT_SCAN_INTERVAL: Incomplete
 WEBSOCKET_RECONNECT_RETRIES: int
 WEBSOCKET_RETRY_DELAY: int
 WEBSOCKET_LOOP_TASK_NAME: str
@@ -60,7 +60,7 @@ class SimpliSafe:
     initial_event_to_use: dict[int, dict[str, Any]]
     subscription_data: dict[int, Any]
     systems: dict[int, SystemType]
-    coordinator: DataUpdateCoordinator[None] | None
+    coordinator: SimpliSafeDataUpdateCoordinator | None
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: API) -> None: ...
     @callback
     def _async_process_new_notifications(self, system: SystemType) -> None: ...

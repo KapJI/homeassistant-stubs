@@ -29,8 +29,6 @@ class _KnxText(TextEntity, RestoreEntity):
 class KnxYamlText(_KnxText, KnxYamlEntity):
     _device: XknxNotification
     _attr_mode: Incomplete
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiText(_KnxText, KnxUiEntity):

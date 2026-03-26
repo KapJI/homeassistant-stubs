@@ -1,4 +1,4 @@
-from . import PiHoleConfigEntry as PiHoleConfigEntry
+from .coordinator import PiHoleConfigEntry as PiHoleConfigEntry, PiHoleUpdateCoordinator as PiHoleUpdateCoordinator
 from .entity import PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -8,7 +8,6 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
@@ -24,7 +23,7 @@ class PiHoleBinarySensor(PiHoleEntity, BinarySensorEntity):
     entity_description: PiHoleBinarySensorEntityDescription
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
-    def __init__(self, api: Hole, coordinator: DataUpdateCoordinator[None], name: str, server_unique_id: str, description: PiHoleBinarySensorEntityDescription) -> None: ...
+    def __init__(self, api: Hole, coordinator: PiHoleUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleBinarySensorEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property

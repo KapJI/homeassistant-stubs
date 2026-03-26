@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyvlx.opening_device import OpeningDevice as OpeningDevice, Window
+from pyvlx import OpeningDevice as OpeningDevice, Position as Position, Window
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete

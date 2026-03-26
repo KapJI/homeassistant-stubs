@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from renault_api.kamereon import models
+from renault_api.kamereon import models as models
 from renault_api.renault_vehicle import RenaultVehicle as RenaultVehicle
 from typing import Any, Concatenate
 
@@ -47,6 +47,8 @@ class RenaultVehicleProxy:
     async def set_charge_start(self) -> models.KamereonVehicleChargingStartActionData: ...
     @with_error_wrapping
     async def set_charge_stop(self) -> models.KamereonVehicleChargingStartActionData: ...
+    @with_error_wrapping
+    async def set_battery_soc(self, min_soc: int, target_soc: int) -> models.KamereonVehicleBatterySocActionData: ...
     @with_error_wrapping
     async def set_ac_stop(self) -> models.KamereonVehicleHvacStartActionData: ...
     @with_error_wrapping

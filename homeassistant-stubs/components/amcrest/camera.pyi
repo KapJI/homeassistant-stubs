@@ -18,17 +18,6 @@ from typing import Any
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 STREAM_SOURCE_LIST: Incomplete
-_SRV_EN_REC: str
-_SRV_DS_REC: str
-_SRV_EN_AUD: str
-_SRV_DS_AUD: str
-_SRV_EN_MOT_REC: str
-_SRV_DS_MOT_REC: str
-_SRV_GOTO: str
-_SRV_CBW: str
-_SRV_TOUR_ON: str
-_SRV_TOUR_OFF: str
-_SRV_PTZ_CTRL: str
 _ATTR_PTZ_TT: str
 _ATTR_PTZ_MOV: str
 _MOV: Incomplete

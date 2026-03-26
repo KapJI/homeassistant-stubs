@@ -26,6 +26,12 @@ class WellKnownOAuthInfoView(HomeAssistantView):
     name: str
     async def get(self, request: web.Request) -> web.Response: ...
 
+class WellKnownProtectedResourceView(HomeAssistantView):
+    requires_auth: bool
+    url: str
+    name: str
+    async def get(self, request: web.Request) -> web.Response: ...
+
 class AuthProvidersView(HomeAssistantView):
     url: str
     name: str

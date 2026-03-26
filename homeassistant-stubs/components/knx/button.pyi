@@ -15,7 +15,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 class KNXButton(KnxYamlEntity, ButtonEntity):
     _device: XknxRawValue
     _payload: Incomplete
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     async def async_press(self) -> None: ...

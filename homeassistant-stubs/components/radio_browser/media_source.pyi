@@ -1,8 +1,9 @@
 from . import RadioBrowserConfigEntry as RadioBrowserConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.media_player import MediaClass as MediaClass, MediaType as MediaType
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.location import vincenty as vincenty
 from radios import RadioBrowser as RadioBrowser, Station as Station

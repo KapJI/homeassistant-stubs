@@ -45,8 +45,6 @@ class _KnxFan(FanEntity):
 class KnxYamlFan(_KnxFan, KnxYamlEntity):
     _device: XknxFan
     _step_range: tuple[int, int] | None
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiFan(_KnxFan, KnxUiEntity):

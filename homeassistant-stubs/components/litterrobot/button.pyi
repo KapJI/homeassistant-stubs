@@ -1,5 +1,5 @@
 from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
-from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT
+from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT, whisker_command as whisker_command
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
@@ -8,6 +8,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitterbot import Robot as Robot
 from typing import Any, Generic
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RobotButtonEntityDescription(ButtonEntityDescription, Generic[_WhiskerEntityT]):
@@ -19,4 +21,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, 
 
 class LitterRobotButtonEntity(LitterRobotEntity[_WhiskerEntityT], ButtonEntity):
     entity_description: RobotButtonEntityDescription[_WhiskerEntityT]
+    @whisker_command
     async def async_press(self) -> None: ...

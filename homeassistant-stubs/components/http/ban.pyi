@@ -1,4 +1,4 @@
-from .const import KEY_HASS as KEY_HASS
+from .const import KEY_HASS as KEY_HASS, is_supervisor_unix_socket_request as is_supervisor_unix_socket_request
 from .view import HomeAssistantView as HomeAssistantView
 from _typeshed import Incomplete
 from aiohttp.web import Application as Application, Request as Request, Response as Response, StreamResponse as StreamResponse, middleware

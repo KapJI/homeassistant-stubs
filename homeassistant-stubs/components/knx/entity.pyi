@@ -3,7 +3,7 @@ from .knx_module import KNXModule as KNXModule
 from .storage.config_store import PlatformControllerBase as PlatformControllerBase
 from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
 from _typeshed import Incomplete
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, EntityCategory as EntityCategory
+from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
@@ -21,10 +21,9 @@ class KnxUiEntityPlatformController(PlatformControllerBase):
 
 class _KnxEntityBase(Entity):
     _attr_should_poll: bool
+    _attr_unique_id: str
     _knx_module: KNXModule
     _device: XknxDevice
-    @property
-    def name(self) -> str: ...
     @property
     def available(self) -> bool: ...
     async def async_update(self) -> None: ...
@@ -34,13 +33,16 @@ class _KnxEntityBase(Entity):
 
 class KnxYamlEntity(_KnxEntityBase):
     _knx_module: Incomplete
-    _device: Incomplete
-    def __init__(self, knx_module: KNXModule, device: XknxDevice) -> None: ...
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_entity_category: Incomplete
+    def __init__(self, knx_module: KNXModule, unique_id: str, name: str, entity_category: EntityCategory | None) -> None: ...
 
 class KnxUiEntity(_KnxEntityBase):
-    _attr_unique_id: str
     _attr_has_entity_name: bool
     _knx_module: Incomplete
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, knx_module: KNXModule, unique_id: str, entity_config: dict[str, Any]) -> None: ...

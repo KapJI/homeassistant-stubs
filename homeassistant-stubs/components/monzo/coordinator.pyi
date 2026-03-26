@@ -9,6 +9,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any
 
 _LOGGER: Incomplete
+type MonzoConfigEntry = ConfigEntry[MonzoCoordinator]
 
 @dataclass
 class MonzoData:
@@ -16,7 +17,7 @@ class MonzoData:
     pots: list[dict[str, Any]]
 
 class MonzoCoordinator(DataUpdateCoordinator[MonzoData]):
-    config_entry: ConfigEntry
+    config_entry: MonzoConfigEntry
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: AuthenticatedMonzoAPI) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: MonzoConfigEntry, api: AuthenticatedMonzoAPI) -> None: ...
     async def _async_update_data(self) -> MonzoData: ...

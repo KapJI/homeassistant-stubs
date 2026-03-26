@@ -1,16 +1,17 @@
 from .binary_sensor import is_valid_notification_binary_sensor as is_valid_notification_binary_sensor
-from .const import ATTR_METER_TYPE as ATTR_METER_TYPE, ATTR_METER_TYPE_NAME as ATTR_METER_TYPE_NAME, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, ENTITY_DESC_KEY_BATTERY_LEVEL as ENTITY_DESC_KEY_BATTERY_LEVEL, ENTITY_DESC_KEY_BATTERY_LIST_STATE as ENTITY_DESC_KEY_BATTERY_LIST_STATE, ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY as ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY, ENTITY_DESC_KEY_BATTERY_TEMPERATURE as ENTITY_DESC_KEY_BATTERY_TEMPERATURE, ENTITY_DESC_KEY_CO as ENTITY_DESC_KEY_CO, ENTITY_DESC_KEY_CO2 as ENTITY_DESC_KEY_CO2, ENTITY_DESC_KEY_CURRENT as ENTITY_DESC_KEY_CURRENT, ENTITY_DESC_KEY_ENERGY_MEASUREMENT as ENTITY_DESC_KEY_ENERGY_MEASUREMENT, ENTITY_DESC_KEY_ENERGY_PRODUCTION_POWER as ENTITY_DESC_KEY_ENERGY_PRODUCTION_POWER, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL, ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING as ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING, ENTITY_DESC_KEY_HUMIDITY as ENTITY_DESC_KEY_HUMIDITY, ENTITY_DESC_KEY_ILLUMINANCE as ENTITY_DESC_KEY_ILLUMINANCE, ENTITY_DESC_KEY_MEASUREMENT as ENTITY_DESC_KEY_MEASUREMENT, ENTITY_DESC_KEY_POWER as ENTITY_DESC_KEY_POWER, ENTITY_DESC_KEY_POWER_FACTOR as ENTITY_DESC_KEY_POWER_FACTOR, ENTITY_DESC_KEY_PRESSURE as ENTITY_DESC_KEY_PRESSURE, ENTITY_DESC_KEY_SIGNAL_STRENGTH as ENTITY_DESC_KEY_SIGNAL_STRENGTH, ENTITY_DESC_KEY_TARGET_TEMPERATURE as ENTITY_DESC_KEY_TARGET_TEMPERATURE, ENTITY_DESC_KEY_TEMPERATURE as ENTITY_DESC_KEY_TEMPERATURE, ENTITY_DESC_KEY_TOTAL_INCREASING as ENTITY_DESC_KEY_TOTAL_INCREASING, ENTITY_DESC_KEY_UV_INDEX as ENTITY_DESC_KEY_UV_INDEX, ENTITY_DESC_KEY_VOLTAGE as ENTITY_DESC_KEY_VOLTAGE, LOGGER as LOGGER, SERVICE_RESET_METER as SERVICE_RESET_METER
-from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
+from .const import ATTR_METER_TYPE as ATTR_METER_TYPE, ATTR_METER_TYPE_NAME as ATTR_METER_TYPE_NAME, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, ENTITY_DESC_KEY_BATTERY_LIST_STATE as ENTITY_DESC_KEY_BATTERY_LIST_STATE, ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY as ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY, ENTITY_DESC_KEY_BATTERY_TEMPERATURE as ENTITY_DESC_KEY_BATTERY_TEMPERATURE, ENTITY_DESC_KEY_CO as ENTITY_DESC_KEY_CO, ENTITY_DESC_KEY_CO2 as ENTITY_DESC_KEY_CO2, ENTITY_DESC_KEY_CURRENT as ENTITY_DESC_KEY_CURRENT, ENTITY_DESC_KEY_ENERGY_MEASUREMENT as ENTITY_DESC_KEY_ENERGY_MEASUREMENT, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL, ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING as ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING, ENTITY_DESC_KEY_HUMIDITY as ENTITY_DESC_KEY_HUMIDITY, ENTITY_DESC_KEY_ILLUMINANCE as ENTITY_DESC_KEY_ILLUMINANCE, ENTITY_DESC_KEY_MEASUREMENT as ENTITY_DESC_KEY_MEASUREMENT, ENTITY_DESC_KEY_POWER as ENTITY_DESC_KEY_POWER, ENTITY_DESC_KEY_POWER_FACTOR as ENTITY_DESC_KEY_POWER_FACTOR, ENTITY_DESC_KEY_PRESSURE as ENTITY_DESC_KEY_PRESSURE, ENTITY_DESC_KEY_SIGNAL_STRENGTH as ENTITY_DESC_KEY_SIGNAL_STRENGTH, ENTITY_DESC_KEY_TARGET_TEMPERATURE as ENTITY_DESC_KEY_TARGET_TEMPERATURE, ENTITY_DESC_KEY_TOTAL_INCREASING as ENTITY_DESC_KEY_TOTAL_INCREASING, ENTITY_DESC_KEY_UV_INDEX as ENTITY_DESC_KEY_UV_INDEX, ENTITY_DESC_KEY_VOLTAGE as ENTITY_DESC_KEY_VOLTAGE, LOGGER as LOGGER, SERVICE_RESET_METER as SERVICE_RESET_METER
 from .discovery_data_template import NumericSensorDataTemplate as NumericSensorDataTemplate, NumericSensorDataTemplateData as NumericSensorDataTemplateData
-from .entity import ZWaveBaseEntity as ZWaveBaseEntity
+from .entity import NewZwaveDiscoveryInfo as NewZwaveDiscoveryInfo, ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
 from .migrate import async_migrate_statistics_sensors as async_migrate_statistics_sensors
-from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
+from .models import NewZWaveDiscoverySchema as NewZWaveDiscoverySchema, ValueType as ValueType, ZWaveValueDiscoverySchema as ZWaveValueDiscoverySchema, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
+from enum import IntEnum
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UV_INDEX as UV_INDEX, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UV_INDEX as UV_INDEX, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -64,7 +65,23 @@ class ZWaveNumericSensor(ZwaveSensor):
     @property
     def native_value(self) -> float | None: ...
 
+class NewZWaveNumericSensor(ZWaveBaseEntity, SensorEntity):
+    _attr_force_update: bool
+    _attr_name: Incomplete
+    _scale_type: Incomplete
+    def __init__(self, config_entry: ConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
+    def _get_scale_type(self) -> IntEnum | None: ...
+    @callback
+    def on_value_update(self) -> None: ...
+    @property
+    def native_value(self) -> float | None: ...
+
 class ZWaveMeterSensor(ZWaveNumericSensor):
+    @property
+    def extra_state_attributes(self) -> Mapping[str, int | str] | None: ...
+    async def async_reset_meter(self, meter_type: int | None = None, value: int | None = None) -> None: ...
+
+class NewZWaveMeterSensor(NewZWaveNumericSensor):
     @property
     def extra_state_attributes(self) -> Mapping[str, int | str] | None: ...
     async def async_reset_meter(self, meter_type: int | None = None, value: int | None = None) -> None: ...
@@ -74,6 +91,8 @@ class ZWaveListSensor(ZwaveSensor):
     _attr_device_class: Incomplete
     _attr_options: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: str | None = None) -> None: ...
+    @callback
+    def should_rediscover_on_metadata_update(self) -> bool: ...
     @property
     def extra_state_attributes(self) -> dict[str, str] | None: ...
 
@@ -137,3 +156,5 @@ class ZWaveStatisticsSensor(SensorEntity):
     @callback
     def _set_statistics(self, statistics: ControllerStatistics | NodeStatistics) -> None: ...
     async def async_added_to_hass(self) -> None: ...
+
+DISCOVERY_SCHEMAS: list[NewZWaveDiscoverySchema]

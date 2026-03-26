@@ -20,7 +20,7 @@ ATTR_COMMAND_VALUE: str
 CONTROLLER_MODES_INV: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-def _create_climate(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
+def _create_climate_yaml(xknx: XKNX, config: ConfigType) -> XknxClimate: ...
 def _create_climate_ui(xknx: XKNX, conf: ConfigExtractor, name: str) -> XknxClimate: ...
 
 class _KnxClimate(ClimateEntity, _KnxEntityBase):
@@ -78,8 +78,6 @@ class _KnxClimate(ClimateEntity, _KnxEntityBase):
 
 class KnxYamlClimate(_KnxClimate, KnxYamlEntity):
     _device: XknxClimate
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiClimate(_KnxClimate, KnxUiEntity):

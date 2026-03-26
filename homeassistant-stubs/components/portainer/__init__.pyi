@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import API_MAX_RETRIES as API_MAX_RETRIES, DOMAIN as DOMAIN
 from .coordinator import PortainerCoordinator as PortainerCoordinator
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete

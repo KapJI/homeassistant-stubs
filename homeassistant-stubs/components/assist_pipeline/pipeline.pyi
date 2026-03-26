@@ -1,7 +1,7 @@
 import asyncio
 from .audio_enhancer import AudioEnhancer as AudioEnhancer, EnhancedAudioChunk as EnhancedAudioChunk, MicroVadSpeexEnhancer as MicroVadSpeexEnhancer
 from .const import ACKNOWLEDGE_PATH as ACKNOWLEDGE_PATH, BYTES_PER_CHUNK as BYTES_PER_CHUNK, CONF_DEBUG_RECORDING_DIR as CONF_DEBUG_RECORDING_DIR, DATA_CONFIG as DATA_CONFIG, DATA_LAST_WAKE_UP as DATA_LAST_WAKE_UP, DOMAIN as DOMAIN, MS_PER_CHUNK as MS_PER_CHUNK, SAMPLES_PER_CHUNK as SAMPLES_PER_CHUNK, SAMPLE_CHANNELS as SAMPLE_CHANNELS, SAMPLE_RATE as SAMPLE_RATE, SAMPLE_WIDTH as SAMPLE_WIDTH, WAKE_WORD_COOLDOWN as WAKE_WORD_COOLDOWN
-from .error import DuplicateWakeUpDetectedError as DuplicateWakeUpDetectedError, IntentRecognitionError as IntentRecognitionError, PipelineError as PipelineError, PipelineNotFound as PipelineNotFound, SpeechToTextError as SpeechToTextError, TextToSpeechError as TextToSpeechError, WakeWordDetectionAborted as WakeWordDetectionAborted, WakeWordDetectionError as WakeWordDetectionError, WakeWordTimeoutError as WakeWordTimeoutError
+from .error import DuplicateWakeUpDetectedError as DuplicateWakeUpDetectedError, IntentRecognitionError as IntentRecognitionError, InvalidPipelineStagesError as InvalidPipelineStagesError, PipelineError as PipelineError, PipelineNotFound as PipelineNotFound, PipelineRunValidationError as PipelineRunValidationError, SpeechToTextError as SpeechToTextError, TextToSpeechError as TextToSpeechError, WakeWordDetectionAborted as WakeWordDetectionAborted, WakeWordDetectionError as WakeWordDetectionError, WakeWordTimeoutError as WakeWordTimeoutError
 from .vad import AudioBuffer as AudioBuffer, VoiceActivityTimeout as VoiceActivityTimeout, VoiceCommandSegmenter as VoiceCommandSegmenter, chunk_samples as chunk_samples
 from _typeshed import Incomplete
 from collections import deque
@@ -106,11 +106,6 @@ class PipelineStage(StrEnum):
 
 PIPELINE_STAGE_ORDER: Incomplete
 
-class PipelineRunValidationError(Exception): ...
-
-class InvalidPipelineStagesError(PipelineRunValidationError):
-    def __init__(self, start_stage: PipelineStage, end_stage: PipelineStage) -> None: ...
-
 @dataclass(frozen=True)
 class WakeWordSettings:
     timeout: float | None = ...
@@ -194,7 +189,7 @@ class PipelineInput:
     conversation_extra_system_prompt: str | None = ...
     device_id: str | None = ...
     satellite_id: str | None = ...
-    async def execute(self) -> None: ...
+    async def execute(self, validate: bool = False) -> None: ...
     async def validate(self) -> None: ...
 
 class PipelinePreferred(CollectionError):

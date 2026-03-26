@@ -1,71 +1,22 @@
-from .const import DOMAIN as DOMAIN, INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
+from .condition import make_cover_is_closed_condition as make_cover_is_closed_condition, make_cover_is_open_condition as make_cover_is_open_condition
+from .const import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_IS_CLOSED as ATTR_IS_CLOSED, ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntityFeature as CoverEntityFeature, CoverState as CoverState, DOMAIN as DOMAIN, INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
+from .trigger import make_cover_closed_trigger as make_cover_closed_trigger, make_cover_opened_trigger as make_cover_opened_trigger
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
-from enum import IntFlag, StrEnum
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION, SERVICE_STOP_COVER as SERVICE_STOP_COVER, SERVICE_STOP_COVER_TILT as SERVICE_STOP_COVER_TILT, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TOGGLE_COVER_TILT as SERVICE_TOGGLE_COVER_TILT
-from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
-from homeassistant.util.hass_dict import HassKey as HassKey
+from collections.abc import Callable
+from homeassistant.helpers.entity import Entity, EntityDescription
+from homeassistant.loader import bind_hass
 from propcache.api import cached_property
 from typing import Any, final
 
-_LOGGER: Incomplete
-DATA_COMPONENT: HassKey[EntityComponent[CoverEntity]]
-ENTITY_ID_FORMAT: Incomplete
+__all__ = ['ATTR_CURRENT_POSITION', 'ATTR_CURRENT_TILT_POSITION', 'ATTR_IS_CLOSED', 'ATTR_POSITION', 'ATTR_TILT_POSITION', 'DEVICE_CLASSES', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'INTENT_CLOSE_COVER', 'INTENT_OPEN_COVER', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'CoverDeviceClass', 'CoverEntity', 'CoverEntityDescription', 'CoverEntityFeature', 'CoverState', 'make_cover_closed_trigger', 'make_cover_is_closed_condition', 'make_cover_is_open_condition', 'make_cover_opened_trigger']
+
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-SCAN_INTERVAL: Incomplete
-
-class CoverState(StrEnum):
-    CLOSED = 'closed'
-    CLOSING = 'closing'
-    OPEN = 'open'
-    OPENING = 'opening'
-
-class CoverDeviceClass(StrEnum):
-    AWNING = 'awning'
-    BLIND = 'blind'
-    CURTAIN = 'curtain'
-    DAMPER = 'damper'
-    DOOR = 'door'
-    GARAGE = 'garage'
-    GATE = 'gate'
-    SHADE = 'shade'
-    SHUTTER = 'shutter'
-    WINDOW = 'window'
-
 DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
 
-class CoverEntityFeature(IntFlag):
-    OPEN = 1
-    CLOSE = 2
-    SET_POSITION = 4
-    STOP = 8
-    OPEN_TILT = 16
-    CLOSE_TILT = 32
-    STOP_TILT = 64
-    SET_TILT_POSITION = 128
-
-ATTR_CURRENT_POSITION: str
-ATTR_CURRENT_TILT_POSITION: str
-ATTR_POSITION: str
-ATTR_TILT_POSITION: str
-
-@bind_hass
-def is_closed(hass: HomeAssistant, entity_id: str) -> bool: ...
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-
 class CoverEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: CoverDeviceClass | None = ...
-
-CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: CoverEntityDescription

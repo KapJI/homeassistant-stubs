@@ -15,10 +15,10 @@ DEFAULT_SCAN_INTERVAL: Incomplete
 
 @dataclass
 class FireflyCoordinatorData:
-    accounts: list[Account]
+    accounts: dict[str, Account]
     categories: list[Category]
-    category_details: list[Category]
-    budgets: list[Budget]
+    category_details: dict[str, Category]
+    budgets: dict[str, Budget]
     bills: list[Bill]
     primary_currency: Currency
 

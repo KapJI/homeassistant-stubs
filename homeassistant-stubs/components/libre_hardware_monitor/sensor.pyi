@@ -6,9 +6,10 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from librehardwaremonitor_api.model import LibreHardwareMonitorSensorData as LibreHardwareMonitorSensorData
+from librehardwaremonitor_api.model import DeviceId as DeviceId, LibreHardwareMonitorSensorData as LibreHardwareMonitorSensorData
 from typing import Any
 
+_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 STATE_MIN_VALUE: str
 STATE_MAX_VALUE: str

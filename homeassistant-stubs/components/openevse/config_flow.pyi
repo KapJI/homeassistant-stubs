@@ -2,6 +2,7 @@ from .const import CONF_ID as CONF_ID, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOM
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info import zeroconf as zeroconf
 from typing import Any
 

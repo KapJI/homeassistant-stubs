@@ -1,5 +1,5 @@
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
-from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_METHOD_NAME as ATTR_METHOD_NAME, ATTR_PARAMETERS as ATTR_PARAMETERS, ATTR_WAIT_FOR_RESULT as ATTR_WAIT_FOR_RESULT, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, CONF_INSTALLER_MODE as CONF_INSTALLER_MODE, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, LOGGER as LOGGER, USER_AGENT as USER_AGENT
+from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_METHOD_NAME as ATTR_METHOD_NAME, ATTR_PARAMETERS as ATTR_PARAMETERS, ATTR_WAIT_FOR_RESULT as ATTR_WAIT_FOR_RESULT, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, LOGGER as LOGGER, USER_AGENT as USER_AGENT
 from .helpers import CannotConnect as CannotConnect, async_enable_statistics as async_enable_statistics, async_get_node_from_device_id as async_get_node_from_device_id, async_get_provisioning_entry_from_device_id as async_get_provisioning_entry_from_device_id, async_get_version_info as async_get_version_info, async_wait_for_driver_ready_event as async_wait_for_driver_ready_event, get_device_id as get_device_id
 from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
@@ -338,9 +338,6 @@ async def websocket_node_capabilities(hass: HomeAssistant, connection: ActiveCon
 @async_handle_failed_command
 @async_get_node
 async def websocket_invoke_cc_api(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
-@callback
-@websocket_api.require_admin
-def websocket_get_integration_settings(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @async_handle_failed_command

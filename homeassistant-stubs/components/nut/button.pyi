@@ -1,4 +1,4 @@
-from . import NutConfigEntry as NutConfigEntry
+from .coordinator import NutConfigEntry as NutConfigEntry
 from .entity import NUTBaseEntity as NUTBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription

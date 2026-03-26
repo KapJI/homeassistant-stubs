@@ -1,0 +1,13 @@
+from .const import AUTHORIZE_URL as AUTHORIZE_URL, TOKEN_URL as TOKEN_URL
+from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
+from typing import Any
+
+class TeslemetryImplementation(config_entry_oauth2_flow.LocalOAuth2ImplementationWithPkce):
+    def __init__(self, hass: HomeAssistant, domain: str, client_id: str) -> None: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def extra_authorize_data(self) -> dict[str, Any]: ...
+    @property
+    def extra_token_resolve_data(self) -> dict[str, Any]: ...

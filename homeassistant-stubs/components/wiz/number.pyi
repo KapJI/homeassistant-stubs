@@ -1,6 +1,5 @@
-from . import WizConfigEntry as WizConfigEntry
+from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizEntity as WizEntity
-from .models import WizData as WizData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass

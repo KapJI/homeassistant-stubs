@@ -4,7 +4,6 @@ from .knx_module import KNXModule as KNXModule
 from .schema import SceneSchema as SceneSchema
 from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SCENE as CONF_GA_SCENE
 from .storage.util import ConfigExtractor as ConfigExtractor
-from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.scene import BaseScene as BaseScene
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
@@ -23,8 +22,6 @@ class _KnxScene(BaseScene, _KnxEntityBase):
 
 class KnxYamlScene(_KnxScene, KnxYamlEntity):
     _device: XknxScene
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiScene(_KnxScene, KnxUiEntity):

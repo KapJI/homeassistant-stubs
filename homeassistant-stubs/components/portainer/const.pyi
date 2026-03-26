@@ -1,9 +1,21 @@
+from enum import IntEnum, StrEnum
+
 DOMAIN: str
 DEFAULT_NAME: str
-ENDPOINT_STATUS_DOWN: int
-CONTAINER_STATE_RUNNING: str
-STACK_STATUS_ACTIVE: int
-STACK_STATUS_INACTIVE: int
-STACK_TYPE_SWARM: int
-STACK_TYPE_COMPOSE: int
-STACK_TYPE_KUBERNETES: int
+API_MAX_RETRIES: int
+
+class EndpointStatus(IntEnum):
+    UP = 1
+    DOWN = 2
+
+class ContainerState(StrEnum):
+    RUNNING = 'running'
+
+class StackStatus(IntEnum):
+    ACTIVE = 1
+    INACTIVE = 2
+
+class StackType(IntEnum):
+    SWARM = 1
+    COMPOSE = 2
+    KUBERNETES = 3

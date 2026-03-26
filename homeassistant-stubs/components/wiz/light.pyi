@@ -1,6 +1,5 @@
-from . import WizConfigEntry as WizConfigEntry
+from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizToggleEntity as WizToggleEntity
-from .models import WizData as WizData
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

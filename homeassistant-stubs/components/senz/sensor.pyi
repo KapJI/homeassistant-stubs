@@ -1,5 +1,5 @@
-from . import SENZConfigEntry as SENZConfigEntry, SENZDataUpdateCoordinator as SENZDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import SENZConfigEntry as SENZConfigEntry, SENZDataUpdateCoordinator as SENZDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

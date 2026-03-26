@@ -1,5 +1,5 @@
-from .const import AUTH_COOKIE_KEY as AUTH_COOKIE_KEY, CONFIG_ENTRY_COOKIE as CONFIG_ENTRY_COOKIE, DOMAIN as DOMAIN, POWERWALL_API_CHANGED as POWERWALL_API_CHANGED, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR, UPDATE_INTERVAL as UPDATE_INTERVAL
-from .models import PowerwallBaseInfo as PowerwallBaseInfo, PowerwallConfigEntry as PowerwallConfigEntry, PowerwallData as PowerwallData, PowerwallRuntimeData as PowerwallRuntimeData
+from .const import AUTH_COOKIE_KEY as AUTH_COOKIE_KEY, CONFIG_ENTRY_COOKIE as CONFIG_ENTRY_COOKIE, DOMAIN as DOMAIN, POWERWALL_API_CHANGED as POWERWALL_API_CHANGED, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR
+from .coordinator import PowerwallBaseInfo as PowerwallBaseInfo, PowerwallConfigEntry as PowerwallConfigEntry, PowerwallData as PowerwallData, PowerwallRuntimeData as PowerwallRuntimeData, PowerwallUpdateCoordinator as PowerwallUpdateCoordinator
 from _typeshed import Incomplete
 from aiohttp import CookieJar
 from homeassistant.components import persistent_notification as persistent_notification
@@ -8,7 +8,7 @@ from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWOR
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from homeassistant.util.network import is_ip_address as is_ip_address
 from tesla_powerwall import Powerwall
 

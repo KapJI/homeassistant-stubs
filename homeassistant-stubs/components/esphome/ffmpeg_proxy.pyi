@@ -1,8 +1,10 @@
 import asyncio
+import re
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.abc import AbstractStreamWriter as AbstractStreamWriter, BaseRequest as BaseRequest
+from collections import deque
 from dataclasses import dataclass, field
 from homeassistant.components import ffmpeg as ffmpeg
 from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager
@@ -13,6 +15,10 @@ from typing import Final
 
 _LOGGER: Incomplete
 _MAX_CONVERSIONS_PER_DEVICE: Final[int]
+_MAX_STDERR_LINES: Final[int]
+_PROC_WAIT_TIMEOUT: Final[int]
+_STDERR_DRAIN_TIMEOUT: Final[int]
+_SENSITIVE_QUERY_PARAMS: Final[re.Pattern[str]]
 
 @callback
 def async_create_proxy_url(hass: HomeAssistant, device_id: str, media_url: str, media_format: str, rate: int | None = None, channels: int | None = None, width: int | None = None) -> str: ...
@@ -43,7 +49,7 @@ class FFmpegConvertResponse(web.StreamResponse):
     def __init__(self, manager: FFmpegManager, convert_info: FFmpegConversionInfo, device_id: str, proxy_data: FFmpegProxyData, chunk_size: int = 2048) -> None: ...
     async def transcode(self, request: BaseRequest, writer: AbstractStreamWriter) -> None: ...
     async def _write_ffmpeg_data(self, request: BaseRequest, writer: AbstractStreamWriter, proc: asyncio.subprocess.Process) -> None: ...
-    async def _dump_ffmpeg_stderr(self, proc: asyncio.subprocess.Process) -> None: ...
+    async def _collect_ffmpeg_stderr(self, proc: asyncio.subprocess.Process, stderr_lines: deque[str]) -> None: ...
 
 class FFmpegProxyView(HomeAssistantView):
     requires_auth: bool

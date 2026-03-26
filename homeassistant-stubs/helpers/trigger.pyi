@@ -2,25 +2,25 @@ import abc
 import asyncio
 import voluptuous as vol
 from . import selector as selector
-from .automation import get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
+from .automation import DomainSpec as DomainSpec, NumericalDomainSpec as NumericalDomainSpec, filter_by_domain_specs as filter_by_domain_specs, get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
-from .selector import TargetSelector as TargetSelector
+from .selector import NumericThresholdMode as NumericThresholdMode, NumericThresholdSelector as NumericThresholdSelector, NumericThresholdSelectorConfig as NumericThresholdSelectorConfig, NumericThresholdType as NumericThresholdType, TargetSelector as TargetSelector
 from .target import TargetStateChangedData as TargetStateChangedData, async_track_target_selector_state_change_event as async_track_target_selector_state_change_event
 from .template import Template as Template
-from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections import defaultdict
-from collections.abc import Callable, Coroutine, Iterable
+from collections.abc import Callable, Coroutine, Iterable, Mapping
 from dataclasses import dataclass, field
-from enum import StrEnum
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ABOVE as CONF_ABOVE, CONF_ALIAS as CONF_ALIAS, CONF_BELOW as CONF_BELOW, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_ID as CONF_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_TARGET as CONF_TARGET, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, is_callback as is_callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ALIAS as CONF_ALIAS, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_ID as CONF_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_PLATFORM as CONF_PLATFORM, CONF_SELECTOR as CONF_SELECTOR, CONF_TARGET as CONF_TARGET, CONF_VARIABLES as CONF_VARIABLES, CONF_ZONE as CONF_ZONE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, is_callback as is_callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
+from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
-from typing import Any, Final, Literal, Protocol, TypedDict, override
+from typing import Any, Final, Literal, Protocol, Self, TypedDict, override
 
 _LOGGER: Incomplete
 _PLATFORM_ALIASES: Incomplete
@@ -62,8 +62,8 @@ BEHAVIOR_ANY: Final[str]
 ENTITY_STATE_TRIGGER_SCHEMA: Incomplete
 ENTITY_STATE_TRIGGER_SCHEMA_FIRST_LAST: Incomplete
 
-class EntityTriggerBase(Trigger, metaclass=abc.ABCMeta):
-    _domain: str
+class EntityTriggerBase[DomainSpecT: DomainSpec = DomainSpec](Trigger, metaclass=abc.ABCMeta):
+    _domain_specs: Mapping[str, DomainSpecT]
     _schema: vol.Schema
     @override
     @classmethod
@@ -71,12 +71,14 @@ class EntityTriggerBase(Trigger, metaclass=abc.ABCMeta):
     _options: Incomplete
     _target: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
+    def entity_filter(self, entities: set[str]) -> set[str]: ...
+    def _get_tracked_value(self, state: State) -> Any: ...
+    @abc.abstractmethod
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     @abc.abstractmethod
     def is_valid_state(self, state: State) -> bool: ...
     def check_all_match(self, entity_ids: set[str]) -> bool: ...
     def check_one_match(self, entity_ids: set[str]) -> bool: ...
-    def entity_filter(self, entities: set[str]) -> set[str]: ...
     @override
     async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
 
@@ -96,64 +98,65 @@ class EntityOriginStateTriggerBase(EntityTriggerBase):
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     def is_valid_state(self, state: State) -> bool: ...
 
-class EntityTargetStateAttributeTriggerBase(EntityTriggerBase):
-    _attribute: str
-    _attribute_to_state: str
-    def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
-    def is_valid_state(self, state: State) -> bool: ...
-
-def _validate_range[_T: dict[str, Any]](lower_limit: str, upper_limit: str) -> Callable[[_T], _T]: ...
-
-_NUMBER_OR_ENTITY_CHOOSE_SCHEMA: Incomplete
-
-def _validate_number_or_entity(value: dict | float | str) -> float | str: ...
-
-_number_or_entity: Incomplete
 NUMERICAL_ATTRIBUTE_CHANGED_TRIGGER_SCHEMA: Incomplete
 
-def _get_numerical_value(hass: HomeAssistant, entity_or_float: float | str) -> float | None: ...
+@dataclass(frozen=True, kw_only=True)
+class ThresholdConfig:
+    numerical: bool
+    entity: str | None
+    number: float | None
+    unit: str | None | UndefinedType
+    @classmethod
+    def from_config(cls, config: dict[str, Any] | None) -> Self | None: ...
 
-class EntityNumericalStateAttributeChangedTriggerBase(EntityTriggerBase):
-    _attribute: str
-    _schema = NUMERICAL_ATTRIBUTE_CHANGED_TRIGGER_SCHEMA
-    _above: None | float | str
-    _below: None | float | str
-    _converter: Callable[[Any], float]
+class EntityNumericalStateTriggerBase(EntityTriggerBase[NumericalDomainSpec], metaclass=abc.ABCMeta):
+    _valid_unit: str | None | UndefinedType
+    _threshold_type: NumericThresholdType
+    threshold: Incomplete
+    lower_threshold: Incomplete
+    upper_threshold: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
-    def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
+    def _is_valid_unit(self, unit: str | None) -> bool: ...
+    def _get_threshold_value(self, threshold: ThresholdConfig | None) -> float | None: ...
+    def _get_tracked_value(self, state: State) -> float | None: ...
+    def _get_converter(self, state: State) -> Callable[[float], float]: ...
     def is_valid_state(self, state: State) -> bool: ...
 
-CONF_LOWER_LIMIT: str
-CONF_UPPER_LIMIT: str
-CONF_THRESHOLD_TYPE: str
+class EntityNumericalStateTriggerWithUnitBase(EntityNumericalStateTriggerBase, metaclass=abc.ABCMeta):
+    _base_unit: str | None
+    _unit_converter: type[BaseUnitConverter]
+    def _get_entity_unit(self, state: State) -> str | None: ...
+    def _get_threshold_value(self, threshold: ThresholdConfig | None) -> float | None: ...
+    def _get_tracked_value(self, state: State) -> float | None: ...
 
-class ThresholdType(StrEnum):
-    ABOVE = 'above'
-    BELOW = 'below'
-    BETWEEN = 'between'
-    OUTSIDE = 'outside'
+class EntityNumericalStateChangedTriggerBase(EntityNumericalStateTriggerBase):
+    _schema = NUMERICAL_ATTRIBUTE_CHANGED_TRIGGER_SCHEMA
+    def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
 
-def _validate_limits_for_threshold_type(value: dict[str, Any]) -> dict[str, Any]: ...
+def make_numerical_state_changed_with_unit_schema(unit_converter: type[BaseUnitConverter]) -> vol.Schema: ...
+
+class EntityNumericalStateChangedTriggerWithUnitBase(EntityNumericalStateChangedTriggerBase, EntityNumericalStateTriggerWithUnitBase):
+    def __init_subclass__(cls, **kwargs: Any) -> None: ...
 
 NUMERICAL_ATTRIBUTE_CROSSED_THRESHOLD_SCHEMA: Incomplete
 
-class EntityNumericalStateAttributeCrossedThresholdTriggerBase(EntityTriggerBase):
-    _attribute: str
+class EntityNumericalStateCrossedThresholdTriggerBase(EntityNumericalStateTriggerBase):
     _schema = NUMERICAL_ATTRIBUTE_CROSSED_THRESHOLD_SCHEMA
-    _lower_limit: float | str | None
-    _upper_limit: float | str | None
-    _threshold_type: ThresholdType
-    _converter: Callable[[Any], float]
-    def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
-    def is_valid_state(self, state: State) -> bool: ...
 
-def make_entity_target_state_trigger(domain: str, to_states: str | set[str]) -> type[EntityTargetStateTriggerBase]: ...
-def make_entity_transition_trigger(domain: str, *, from_states: set[str], to_states: set[str]) -> type[EntityTransitionTriggerBase]: ...
-def make_entity_origin_state_trigger(domain: str, *, from_state: str) -> type[EntityOriginStateTriggerBase]: ...
-def make_entity_numerical_state_attribute_changed_trigger(domain: str, attribute: str) -> type[EntityNumericalStateAttributeChangedTriggerBase]: ...
-def make_entity_numerical_state_attribute_crossed_threshold_trigger(domain: str, attribute: str) -> type[EntityNumericalStateAttributeCrossedThresholdTriggerBase]: ...
-def make_entity_target_state_attribute_trigger(domain: str, attribute: str, to_state: str) -> type[EntityTargetStateAttributeTriggerBase]: ...
+def _make_numerical_state_crossed_threshold_with_unit_schema(unit_converter: type[BaseUnitConverter]) -> vol.Schema: ...
+
+class EntityNumericalStateCrossedThresholdTriggerWithUnitBase(EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateTriggerWithUnitBase):
+    def __init_subclass__(cls, **kwargs: Any) -> None: ...
+
+def _normalize_domain_specs(domain_specs: Mapping[str, DomainSpec] | str) -> Mapping[str, DomainSpec]: ...
+def make_entity_target_state_trigger(domain_specs: Mapping[str, DomainSpec] | str, to_states: str | set[str]) -> type[EntityTargetStateTriggerBase]: ...
+def make_entity_transition_trigger(domain_specs: Mapping[str, DomainSpec] | str, *, from_states: set[str], to_states: set[str]) -> type[EntityTransitionTriggerBase]: ...
+def make_entity_origin_state_trigger(domain_specs: Mapping[str, DomainSpec] | str, *, from_state: str) -> type[EntityOriginStateTriggerBase]: ...
+def make_entity_numerical_state_changed_trigger(domain_specs: Mapping[str, NumericalDomainSpec], valid_unit: str | None | UndefinedType = ...) -> type[EntityNumericalStateChangedTriggerBase]: ...
+def make_entity_numerical_state_crossed_threshold_trigger(domain_specs: Mapping[str, NumericalDomainSpec], valid_unit: str | None | UndefinedType = ...) -> type[EntityNumericalStateCrossedThresholdTriggerBase]: ...
+def make_entity_numerical_state_changed_with_unit_trigger(domain_specs: Mapping[str, NumericalDomainSpec], base_unit: str, unit_converter: type[BaseUnitConverter]) -> type[EntityNumericalStateChangedTriggerWithUnitBase]: ...
+def make_entity_numerical_state_crossed_threshold_with_unit_trigger(domain_specs: Mapping[str, NumericalDomainSpec], base_unit: str, unit_converter: type[BaseUnitConverter]) -> type[EntityNumericalStateCrossedThresholdTriggerWithUnitBase]: ...
 
 class TriggerProtocol(Protocol):
     async def async_get_triggers(self, hass: HomeAssistant) -> dict[str, type[Trigger]]: ...

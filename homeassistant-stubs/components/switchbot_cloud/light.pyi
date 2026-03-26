@@ -30,18 +30,22 @@ class SwitchBotCloudLight(SwitchBotCloudEntity, LightEntity):
 
 class SwitchBotCloudCandleWarmerLamp(SwitchBotCloudLight):
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
 
 class SwitchBotCloudStripLight(SwitchBotCloudLight):
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
 
 class SwitchBotCloudRGBICLight(SwitchBotCloudLight):
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
     async def _send_rgb_color_command(self, rgb_color: tuple) -> None: ...
 
 class SwitchBotCloudRGBWWLight(SwitchBotCloudLight):
     _attr_max_color_temp_kelvin: int
     _attr_min_color_temp_kelvin: int
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
     async def _send_brightness_command(self, brightness: int) -> None: ...
     async def _send_rgb_color_command(self, rgb_color: tuple) -> None: ...
 
@@ -49,6 +53,7 @@ class SwitchBotCloudCeilingLight(SwitchBotCloudLight):
     _attr_max_color_temp_kelvin: int
     _attr_min_color_temp_kelvin: int
     _attr_supported_color_modes: Incomplete
+    _attr_color_mode: Incomplete
     async def _send_brightness_command(self, brightness: int) -> None: ...
     async def _send_color_temperature_command(self, color_temp_kelvin: int) -> None: ...
 

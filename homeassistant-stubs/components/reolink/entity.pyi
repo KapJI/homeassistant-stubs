@@ -1,12 +1,13 @@
-from . import ReolinkData as ReolinkData
 from .const import DOMAIN as DOMAIN
+from .coordinator import ReolinkCoordinator as ReolinkCoordinator
+from .util import ReolinkData as ReolinkData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from reolink_aio.api import Chime as Chime, Host as Host
 
 @dataclass(frozen=True, kw_only=True)
@@ -27,7 +28,7 @@ class ReolinkHostEntityDescription(ReolinkEntityDescription):
 class ReolinkChimeEntityDescription(ReolinkEntityDescription):
     supported: Callable[[Chime], bool] = ...
 
-class ReolinkHostCoordinatorEntity(CoordinatorEntity[DataUpdateCoordinator[None]]):
+class ReolinkHostCoordinatorEntity(CoordinatorEntity[ReolinkCoordinator]):
     _attr_has_entity_name: bool
     entity_description: ReolinkEntityDescription
     _host: Incomplete
@@ -35,7 +36,7 @@ class ReolinkHostCoordinatorEntity(CoordinatorEntity[DataUpdateCoordinator[None]
     _conf_url: Incomplete
     _dev_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, reolink_data: ReolinkData, coordinator: DataUpdateCoordinator[None] | None = None) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, coordinator: ReolinkCoordinator | None = None) -> None: ...
     @property
     def available(self) -> bool: ...
     @callback
@@ -50,7 +51,7 @@ class ReolinkChannelCoordinatorEntity(ReolinkHostCoordinatorEntity):
     _attr_unique_id: Incomplete
     _dev_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, reolink_data: ReolinkData, channel: int, coordinator: DataUpdateCoordinator[None] | None = None) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, channel: int, coordinator: ReolinkCoordinator | None = None) -> None: ...
     @property
     def available(self) -> bool: ...
     def register_callback(self, callback_id: str, cmd_id: int) -> None: ...
@@ -63,7 +64,7 @@ class ReolinkHostChimeCoordinatorEntity(ReolinkHostCoordinatorEntity):
     _attr_unique_id: Incomplete
     _dev_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, reolink_data: ReolinkData, chime: Chime, coordinator: DataUpdateCoordinator[None] | None = None) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, chime: Chime, coordinator: ReolinkCoordinator | None = None) -> None: ...
     @property
     def available(self) -> bool: ...
 
@@ -72,6 +73,6 @@ class ReolinkChimeCoordinatorEntity(ReolinkChannelCoordinatorEntity):
     _attr_unique_id: Incomplete
     _dev_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, reolink_data: ReolinkData, chime: Chime, coordinator: DataUpdateCoordinator[None] | None = None) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, chime: Chime, coordinator: ReolinkCoordinator | None = None) -> None: ...
     @property
     def available(self) -> bool: ...

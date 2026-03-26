@@ -1,4 +1,5 @@
 from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, DOMAIN as DOMAIN
+from .coordinator import WattTimeCoordinator as WattTimeCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -8,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 ATTR_BALANCING_AUTHORITY: str
@@ -18,13 +19,13 @@ REALTIME_EMISSIONS_SENSOR_DESCRIPTIONS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class RealtimeEmissionsSensor(CoordinatorEntity, SensorEntity):
+class RealtimeEmissionsSensor(CoordinatorEntity[WattTimeCoordinator], SensorEntity):
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _entry: Incomplete
     entity_description: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: DataUpdateCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: WattTimeCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @property

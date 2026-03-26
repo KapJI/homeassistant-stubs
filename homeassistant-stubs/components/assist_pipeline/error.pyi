@@ -1,3 +1,4 @@
+from .pipeline import PipelineStage as PipelineStage
 from _typeshed import Incomplete
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
@@ -20,3 +21,9 @@ class DuplicateWakeUpDetectedError(WakeWordDetectionError):
 
 class IntentRecognitionError(PipelineError): ...
 class TextToSpeechError(PipelineError): ...
+
+class PipelineRunValidationError(PipelineError):
+    def __init__(self, message: str) -> None: ...
+
+class InvalidPipelineStagesError(PipelineRunValidationError):
+    def __init__(self, start_stage: PipelineStage, end_stage: PipelineStage) -> None: ...

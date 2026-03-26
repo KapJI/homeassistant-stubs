@@ -27,9 +27,7 @@ class _KnxSwitch(SwitchEntity, RestoreEntity):
 
 class KnxYamlSwitch(_KnxSwitch, KnxYamlEntity):
     _device: XknxSwitch
-    _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiSwitch(_KnxSwitch, KnxUiEntity):

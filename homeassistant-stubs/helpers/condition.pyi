@@ -2,24 +2,25 @@ import abc
 import logging
 import voluptuous as vol
 from . import selector as selector
-from .automation import get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
+from .automation import CONF_UNIT as CONF_UNIT, DomainSpec as DomainSpec, filter_by_domain_specs as filter_by_domain_specs, get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level, number_or_entity as number_or_entity, validate_unit_set_if_range_numerical as validate_unit_set_if_range_numerical
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from .selector import TargetSelector as TargetSelector
 from .target import TargetSelection as TargetSelection, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
 from .template import Template as Template, render_complex as render_complex
 from .trace import TraceElement as TraceElement, trace_append_element as trace_append_element, trace_path as trace_path, trace_path_get as trace_path_get, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top
-from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
+from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections.abc import Callable, Container, Coroutine, Generator, Iterable
+from collections.abc import Callable, Container, Coroutine, Generator, Iterable, Mapping
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import time as dt_time, timedelta
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_OPTIONS as CONF_OPTIONS, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_TARGET as CONF_TARGET, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_OPTIONS as CONF_OPTIONS, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_TARGET as CONF_TARGET, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, ConditionErrorMessage as ConditionErrorMessage, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.hass_dict import HassKey as HassKey
+from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from typing import Any, Final, Literal, Protocol, TypedDict, Unpack, overload, override
 
@@ -62,11 +63,10 @@ class Condition(abc.ABC, metaclass=abc.ABCMeta):
 ATTR_BEHAVIOR: Final[str]
 BEHAVIOR_ANY: Final[str]
 BEHAVIOR_ALL: Final[str]
-STATE_CONDITION_OPTIONS_SCHEMA: dict[vol.Marker, Any]
 ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL: Incomplete
 
-class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
-    _domain: str
+class EntityConditionBase[DomainSpecT: DomainSpec = DomainSpec](Condition, metaclass=abc.ABCMeta):
+    _domain_specs: Mapping[str, DomainSpecT]
     _schema: vol.Schema
     @override
     @classmethod
@@ -75,6 +75,7 @@ class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     _behavior: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
     def entity_filter(self, entities: set[str]) -> set[str]: ...
+    def _get_tracked_value(self, entity_state: State) -> Any: ...
     @abc.abstractmethod
     def is_valid_state(self, entity_state: State) -> bool: ...
     @override
@@ -84,14 +85,38 @@ class EntityStateConditionBase(EntityConditionBase):
     _states: set[str]
     def is_valid_state(self, entity_state: State) -> bool: ...
 
-def make_entity_state_condition(domain: str, states: str | set[str]) -> type[EntityStateConditionBase]: ...
+def _normalize_domain_specs(domain_specs: Mapping[str, DomainSpec] | str) -> Mapping[str, DomainSpec]: ...
+def make_entity_state_condition(domain_specs: Mapping[str, DomainSpec] | str, states: str | set[str]) -> type[EntityStateConditionBase]: ...
+def _validate_above_below(config: dict[str, Any]) -> dict[str, Any]: ...
 
-class EntityStateAttributeConditionBase(EntityConditionBase):
-    _attribute: str
-    _attribute_states: set[str]
+NUMERICAL_CONDITION_SCHEMA: Incomplete
+
+class EntityNumericalConditionBase(EntityConditionBase):
+    _schema = NUMERICAL_CONDITION_SCHEMA
+    _valid_unit: str | None | UndefinedType
+    _above: float | str | None
+    _below: float | str | None
+    def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
+    def _is_valid_unit(self, unit: str | None) -> bool: ...
+    def _get_numerical_value(self, entity_or_float: float | str) -> float | None: ...
+    def _get_tracked_value(self, entity_state: State) -> Any: ...
     def is_valid_state(self, entity_state: State) -> bool: ...
 
-def make_entity_state_attribute_condition(domain: str, attribute: str, attribute_states: str | set[str]) -> type[EntityStateAttributeConditionBase]: ...
+def make_entity_numerical_condition(domain_specs: Mapping[str, DomainSpec] | str, valid_unit: str | None | UndefinedType = ...) -> type[EntityNumericalConditionBase]: ...
+def _make_numerical_condition_with_unit_schema(unit_converter: type[BaseUnitConverter]) -> vol.Schema: ...
+
+class EntityNumericalConditionWithUnitBase(EntityNumericalConditionBase):
+    _base_unit: str | None
+    _manual_limit_unit: str | None
+    _unit_converter: type[BaseUnitConverter]
+    def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
+    def __init_subclass__(cls, **kwargs: Any) -> None: ...
+    def _get_entity_unit(self, entity_state: State) -> str | None: ...
+    def _get_numerical_value(self, entity_or_float: float | str) -> float | None: ...
+    def _get_tracked_value(self, entity_state: State) -> Any: ...
+    def is_valid_state(self, entity_state: State) -> bool: ...
+
+def make_entity_numerical_condition_with_unit(domain_specs: Mapping[str, DomainSpec], base_unit: str, unit_converter: type[BaseUnitConverter]) -> type[EntityNumericalConditionWithUnitBase]: ...
 
 class ConditionProtocol(Protocol):
     async def async_get_conditions(self, hass: HomeAssistant) -> dict[str, type[Condition]]: ...

@@ -15,6 +15,7 @@ class EsphomeWaterHeater(EsphomeEntity[WaterHeaterInfo, WaterHeaterState], Water
     _attr_precision = PRECISION_TENTHS
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
+    _attr_target_temperature_step: Incomplete
     _attr_operation_list: Incomplete
     _attr_supported_features: Incomplete
     @callback
@@ -32,5 +33,9 @@ class EsphomeWaterHeater(EsphomeEntity[WaterHeaterInfo, WaterHeaterState], Water
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
+    @convert_api_error_ha_error
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @convert_api_error_ha_error
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 async_setup_entry: Incomplete

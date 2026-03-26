@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.helpers import singleton as singleton, storage as storage
 from typing import Any, Literal, NotRequired, TypedDict
 
@@ -97,6 +97,7 @@ class EnergyPreferences(TypedDict):
 
 class EnergyPreferencesUpdate(EnergyPreferences, total=False): ...
 
+def _reject_price_for_external_stat(*, stat_key: str, entity_price_key: str = 'entity_energy_price', number_price_key: str = 'number_energy_price', cost_stat_key: str = 'stat_cost') -> Callable[[dict[str, Any]], dict[str, Any]]: ...
 def _flow_from_ensure_single_price(val: FlowFromGridSourceType) -> FlowFromGridSourceType: ...
 
 FLOW_FROM_GRID_SOURCE_SCHEMA: Incomplete

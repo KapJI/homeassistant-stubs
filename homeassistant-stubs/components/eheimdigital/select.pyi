@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from eheimdigital.classic_vario import EheimDigitalClassicVario
 from eheimdigital.device import EheimDigitalDevice as EheimDigitalDevice
 from eheimdigital.filter import EheimDigitalFilter
+from eheimdigital.reeflex import EheimDigitalReeflexUV
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfFrequency as UnitOfFrequency, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -21,6 +22,7 @@ class EheimDigitalSelectDescription[_DeviceT: EheimDigitalDevice](SelectEntityDe
     value_fn: Callable[[_DeviceT], str | None]
     set_value_fn: Callable[[_DeviceT, str], Awaitable[None] | None]
 
+REEFLEX_DESCRIPTIONS: tuple[EheimDigitalSelectDescription[EheimDigitalReeflexUV], ...]
 FILTER_DESCRIPTIONS: tuple[EheimDigitalSelectDescription[EheimDigitalFilter], ...]
 CLASSICVARIO_DESCRIPTIONS: tuple[EheimDigitalSelectDescription[EheimDigitalClassicVario], ...]
 

@@ -24,6 +24,7 @@ def _retry[_SharpAquosTVDeviceT: SharpAquosTVDevice, **_P](func: Callable[Concat
 class SharpAquosTVDevice(MediaPlayerEntity):
     _attr_source_list: Incomplete
     _attr_supported_features: Incomplete
+    _attr_volume_step: Incomplete
     _power_on_enabled: Incomplete
     _attr_name: Incomplete
     _remote: Incomplete
@@ -37,10 +38,6 @@ class SharpAquosTVDevice(MediaPlayerEntity):
     def update(self) -> None: ...
     @_retry
     def turn_off(self) -> None: ...
-    @_retry
-    def volume_up(self) -> None: ...
-    @_retry
-    def volume_down(self) -> None: ...
     @_retry
     def set_volume_level(self, volume: float) -> None: ...
     @_retry

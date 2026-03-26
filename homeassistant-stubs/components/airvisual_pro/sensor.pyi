@@ -1,4 +1,4 @@
-from . import AirVisualProConfigEntry as AirVisualProConfigEntry
+from .coordinator import AirVisualProConfigEntry as AirVisualProConfigEntry
 from .entity import AirVisualProEntity as AirVisualProEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

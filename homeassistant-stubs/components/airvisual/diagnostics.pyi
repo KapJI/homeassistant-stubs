@@ -1,5 +1,5 @@
-from . import AirVisualConfigEntry as AirVisualConfigEntry
 from .const import CONF_CITY as CONF_CITY
+from .coordinator import AirVisualConfigEntry as AirVisualConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_COUNTRY as CONF_COUNTRY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_STATE as CONF_STATE, CONF_UNIQUE_ID as CONF_UNIQUE_ID

@@ -1,18 +1,20 @@
 import asyncio
 import dataclasses
 import time
-from . import device_registry as dr, entity_registry as er, singleton as singleton
+from . import device_registry as dr, entity_registry as er
 from .device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .entity_platform import EntityPlatform as EntityPlatform, PlatformData as PlatformData
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
-from .frame import report_non_thread_safe_operation as report_non_thread_safe_operation
+from .frame import report_non_thread_safe_operation as report_non_thread_safe_operation, report_usage as report_usage
+from .group import Group as Group
+from .singleton import singleton as singleton
 from .typing import StateType as StateType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from abc import ABCMeta
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping
 from enum import Enum
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_GROUP_ENTITIES as ATTR_GROUP_ENTITIES, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, get_release_channel as get_release_channel
 from homeassistant.core_config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
@@ -40,6 +42,7 @@ def generate_entity_id(entity_id_format: str, name: str | None, current_ids: lis
 def async_generate_entity_id(entity_id_format: str, name: str | None, current_ids: Iterable[str] | None = None, hass: HomeAssistant | None = None) -> str: ...
 def get_capability(hass: HomeAssistant, entity_id: str, capability: str) -> Any | None: ...
 def get_device_class(hass: HomeAssistant, entity_id: str) -> str | None: ...
+def get_device_class_or_undefined(hass: HomeAssistant, entity_id: str) -> str | None | UndefinedType: ...
 def get_supported_features(hass: HomeAssistant, entity_id: str) -> int: ...
 def get_unit_of_measurement(hass: HomeAssistant, entity_id: str) -> str | None: ...
 
@@ -94,6 +97,8 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     platform_data: PlatformData
     entity_description: EntityDescription
     internal_integration_suggested_object_id: str | None
+    group: Group | None
+    __group: Group | None
     _slow_reported: bool
     _deprecated_supported_features_reported: bool
     _disabled_reported: bool

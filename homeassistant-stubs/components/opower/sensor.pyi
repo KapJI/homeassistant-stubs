@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -31,5 +31,7 @@ class OpowerSensor(CoordinatorEntity[OpowerCoordinator], SensorEntity):
     _attr_device_info: Incomplete
     utility_account_id: Incomplete
     def __init__(self, coordinator: OpowerCoordinator, description: OpowerEntityDescription, utility_account_id: str, device: DeviceInfo, device_id: str) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @property
     def native_value(self) -> StateType | date | datetime: ...

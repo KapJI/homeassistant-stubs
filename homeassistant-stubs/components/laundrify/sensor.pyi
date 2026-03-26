@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODELS as MODELS
 from .coordinator import LaundrifyConfigEntry as LaundrifyConfigEntry, LaundrifyUpdateCoordinator as LaundrifyUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass

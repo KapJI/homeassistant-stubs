@@ -1,5 +1,5 @@
 from . import PortainerConfigEntry as PortainerConfigEntry
-from .const import DOMAIN as DOMAIN, STACK_STATUS_ACTIVE as STACK_STATUS_ACTIVE
+from .const import DOMAIN as DOMAIN, StackStatus as StackStatus
 from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerStackData as PortainerStackData
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerStackEntity as PortainerStackEntity
 from collections.abc import Callable as Callable, Coroutine

@@ -2,7 +2,7 @@ from .const import OPTION_DIAGNOSTICS_INCLUDE_FIXTURES as OPTION_DIAGNOSTICS_INC
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry
 from _typeshed import Incomplete
 from aiohttp import ClientResponse as ClientResponse
-from homeassistant.components.diagnostics import async_redact_data as async_redact_data
+from homeassistant.components.diagnostics import async_redact_data as async_redact_data, entity_entry_as_dict as entity_entry_as_dict
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.json import json_dumps as json_dumps

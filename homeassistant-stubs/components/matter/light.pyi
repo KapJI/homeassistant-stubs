@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import Any
 
 COLOR_MODE_MAP: Incomplete
+MATTER_MAX_MIREDS: int
 TRANSITION_BLOCKLIST: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

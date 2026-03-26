@@ -1,23 +1,21 @@
 from . import get_device_info as get_device_info
-from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_MAP as CONDITION_MAP, DAILY_FORECAST_ATTRIBUTE_MAP as DAILY_FORECAST_ATTRIBUTE_MAP, DAY_FORECAST_ATTRIBUTE_MAP as DAY_FORECAST_ATTRIBUTE_MAP, DOMAIN as DOMAIN, HOURLY_FORECAST_ATTRIBUTE_MAP as HOURLY_FORECAST_ATTRIBUTE_MAP, METOFFICE_COORDINATES as METOFFICE_COORDINATES, METOFFICE_DAILY_COORDINATOR as METOFFICE_DAILY_COORDINATOR, METOFFICE_HOURLY_COORDINATOR as METOFFICE_HOURLY_COORDINATOR, METOFFICE_NAME as METOFFICE_NAME, METOFFICE_TWICE_DAILY_COORDINATOR as METOFFICE_TWICE_DAILY_COORDINATOR, NIGHT_FORECAST_ATTRIBUTE_MAP as NIGHT_FORECAST_ATTRIBUTE_MAP
+from .const import ATTRIBUTION as ATTRIBUTION, CONDITION_MAP as CONDITION_MAP, DAILY_FORECAST_ATTRIBUTE_MAP as DAILY_FORECAST_ATTRIBUTE_MAP, DAY_FORECAST_ATTRIBUTE_MAP as DAY_FORECAST_ATTRIBUTE_MAP, DOMAIN as DOMAIN, HOURLY_FORECAST_ATTRIBUTE_MAP as HOURLY_FORECAST_ATTRIBUTE_MAP, NIGHT_FORECAST_ATTRIBUTE_MAP as NIGHT_FORECAST_ATTRIBUTE_MAP
+from .coordinator import MetOfficeConfigEntry as MetOfficeConfigEntry, MetOfficeRuntimeData as MetOfficeRuntimeData, MetOfficeUpdateCoordinator as MetOfficeUpdateCoordinator
 from .helpers import get_attribute as get_attribute
 from _typeshed import Incomplete
-from datapoint.Forecast import Forecast
 from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_IS_DAYTIME as ATTR_FORECAST_IS_DAYTIME, ATTR_FORECAST_NATIVE_APPARENT_TEMP as ATTR_FORECAST_NATIVE_APPARENT_TEMP, ATTR_FORECAST_NATIVE_PRESSURE as ATTR_FORECAST_NATIVE_PRESSURE, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_TEMP_LOW as ATTR_FORECAST_NATIVE_TEMP_LOW, ATTR_FORECAST_NATIVE_WIND_GUST_SPEED as ATTR_FORECAST_NATIVE_WIND_GUST_SPEED, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_PRECIPITATION as ATTR_FORECAST_PRECIPITATION, ATTR_FORECAST_PRECIPITATION_PROBABILITY as ATTR_FORECAST_PRECIPITATION_PROBABILITY, ATTR_FORECAST_UV_INDEX as ATTR_FORECAST_UV_INDEX, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, CoordinatorWeatherEntity as CoordinatorWeatherEntity, Forecast as WeatherForecast, WeatherEntityFeature as WeatherEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: MetOfficeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _build_hourly_forecast_data(timestep: dict[str, Any]) -> WeatherForecast: ...
 def _build_daily_forecast_data(timestep: dict[str, Any]) -> WeatherForecast: ...
 def _build_twice_daily_forecast_data(timestep: dict[str, Any]) -> WeatherForecast: ...
 def _populate_forecast_data(forecast: WeatherForecast, timestep: dict[str, Any], mapping: dict[str, str]) -> None: ...
 
-class MetOfficeWeather(CoordinatorWeatherEntity[TimestampDataUpdateCoordinator[Forecast], TimestampDataUpdateCoordinator[Forecast], TimestampDataUpdateCoordinator[Forecast]]):
+class MetOfficeWeather(CoordinatorWeatherEntity[MetOfficeUpdateCoordinator, MetOfficeUpdateCoordinator, MetOfficeUpdateCoordinator]):
     _attr_attribution = ATTRIBUTION
     _attr_has_entity_name: bool
     _attr_name: Incomplete
@@ -29,7 +27,7 @@ class MetOfficeWeather(CoordinatorWeatherEntity[TimestampDataUpdateCoordinator[F
     _attr_supported_features: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator_daily: TimestampDataUpdateCoordinator[Forecast], coordinator_hourly: TimestampDataUpdateCoordinator[Forecast], coordinator_twice_daily: TimestampDataUpdateCoordinator[Forecast], hass_data: dict[str, Any]) -> None: ...
+    def __init__(self, coordinator_daily: MetOfficeUpdateCoordinator, coordinator_hourly: MetOfficeUpdateCoordinator, coordinator_twice_daily: MetOfficeUpdateCoordinator, hass_data: MetOfficeRuntimeData) -> None: ...
     @property
     def condition(self) -> str | None: ...
     @property

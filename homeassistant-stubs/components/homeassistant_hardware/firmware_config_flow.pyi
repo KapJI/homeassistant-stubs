@@ -1,7 +1,7 @@
 import abc
 import asyncio
 from .const import DOMAIN as DOMAIN, OTBR_DOMAIN as OTBR_DOMAIN, Z2M_EMBER_DOCS_URL as Z2M_EMBER_DOCS_URL, ZHA_DOMAIN as ZHA_DOMAIN
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, OwningAddon as OwningAddon, OwningIntegration as OwningIntegration, ResetTarget as ResetTarget, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware, get_otbr_addon_manager as get_otbr_addon_manager, guess_firmware_info as guess_firmware_info, guess_hardware_owners as guess_hardware_owners, probe_silabs_firmware_info as probe_silabs_firmware_info
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, OwningAddon as OwningAddon, OwningIntegration as OwningIntegration, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware, get_otbr_addon_manager as get_otbr_addon_manager, guess_firmware_info as guess_firmware_info, guess_hardware_owners as guess_hardware_owners, probe_silabs_firmware_info as probe_silabs_firmware_info
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from enum import StrEnum
@@ -13,6 +13,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from typing import Any
+from universal_silabs_flasher.flasher import DeviceSpecificFlasher as DeviceSpecificFlasher
 
 _LOGGER: Incomplete
 STEP_PICK_FIRMWARE_THREAD: str
@@ -34,8 +35,7 @@ class ZigbeeIntegration(StrEnum):
 
 class BaseFirmwareInstallFlow(ConfigEntryBaseFlow, ABC, metaclass=abc.ABCMeta):
     ZIGBEE_BAUDRATE: int
-    BOOTLOADER_RESET_METHODS: list[ResetTarget]
-    APPLICATION_PROBE_METHODS: list[tuple[ApplicationType, int]]
+    _flasher_cls: type[DeviceSpecificFlasher]
     _picked_firmware_type: PickedFirmwareType
     _zigbee_flow_strategy: ZigbeeFlowStrategy
     _probed_firmware_info: FirmwareInfo | None

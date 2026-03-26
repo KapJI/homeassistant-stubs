@@ -1,4 +1,4 @@
-from .coordinator import ZinvoltConfigEntry as ZinvoltConfigEntry, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
+from .coordinator import ZinvoltConfigEntry as ZinvoltConfigEntry, ZinvoltData as ZinvoltData, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
 from .entity import ZinvoltEntity as ZinvoltEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -7,11 +7,10 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from zinvolt.models import BatteryState as BatteryState
 
 @dataclass(kw_only=True, frozen=True)
 class ZinvoltBatteryStateDescription(SensorEntityDescription):
-    value_fn: Callable[[BatteryState], float]
+    value_fn: Callable[[ZinvoltData], float]
 
 SENSORS: tuple[ZinvoltBatteryStateDescription, ...]
 

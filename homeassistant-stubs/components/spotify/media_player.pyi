@@ -1,15 +1,14 @@
 import datetime as dt
 from .browse_media import async_browse_media_internal as async_browse_media_internal
 from .const import MEDIA_PLAYER_PREFIX as MEDIA_PLAYER_PREFIX, MEDIA_TYPE_USER_SAVED_TRACKS as MEDIA_TYPE_USER_SAVED_TRACKS, PLAYABLE_MEDIA_TYPES as PLAYABLE_MEDIA_TYPES
-from .coordinator import SpotifyConfigEntry as SpotifyConfigEntry, SpotifyCoordinator as SpotifyCoordinator
+from .coordinator import SpotifyConfigEntry as SpotifyConfigEntry, SpotifyCoordinator as SpotifyCoordinator, SpotifyDeviceCoordinator as SpotifyDeviceCoordinator
 from .entity import SpotifyEntity as SpotifyEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, BrowseMedia as BrowseMedia, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from spotifyaio import Device as Device, Item as Item, PlaybackState as PlaybackState
+from spotifyaio import Item as Item, PlaybackState as PlaybackState
 from typing import Any, Concatenate
 
 _LOGGER: Incomplete
@@ -28,7 +27,7 @@ class SpotifyMediaPlayer(SpotifyEntity, MediaPlayerEntity):
     _attr_translation_key: str
     devices: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: SpotifyCoordinator, device_coordinator: DataUpdateCoordinator[list[Device]]) -> None: ...
+    def __init__(self, coordinator: SpotifyCoordinator, device_coordinator: SpotifyDeviceCoordinator) -> None: ...
     @property
     def currently_playing(self) -> PlaybackState | None: ...
     @property

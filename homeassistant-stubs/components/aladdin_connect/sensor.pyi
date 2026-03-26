@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from genie_partner_sdk.model import GarageDoor as GarageDoor
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 PARALLEL_UPDATES: int
@@ -22,6 +22,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AladdinConnectConfigEntr
 class AladdinConnectSensor(AladdinConnectEntity, SensorEntity):
     entity_description: AladdinConnectSensorEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AladdinConnectCoordinator, entity_description: AladdinConnectSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: AladdinConnectCoordinator, door_id: str, entity_description: AladdinConnectSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> float | None: ...

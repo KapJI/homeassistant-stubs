@@ -3,7 +3,6 @@ from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as
 from .knx_module import KNXModule as KNXModule
 from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_DATETIME as CONF_GA_DATETIME
 from .storage.util import ConfigExtractor as ConfigExtractor
-from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant import config_entries as config_entries
 from homeassistant.components.datetime import DateTimeEntity as DateTimeEntity
@@ -26,8 +25,6 @@ class _KNXDateTime(DateTimeEntity, RestoreEntity):
 
 class KnxYamlDateTime(_KNXDateTime, KnxYamlEntity):
     _device: XknxDateTimeDevice
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiDateTime(_KNXDateTime, KnxUiEntity):

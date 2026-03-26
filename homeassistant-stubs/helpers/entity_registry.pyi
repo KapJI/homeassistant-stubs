@@ -8,7 +8,7 @@ from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Hashable, KeysView, Mapping
 from datetime import datetime
-from enum import StrEnum
+from enum import Enum, StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_ICON as ATTR_ICON, ATTR_RESTORED as ATTR_RESTORED, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityCategory as EntityCategory, MAX_LENGTH_STATE_DOMAIN as MAX_LENGTH_STATE_DOMAIN, MAX_LENGTH_STATE_ENTITY_ID as MAX_LENGTH_STATE_ENTITY_ID, Platform as Platform, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
@@ -33,6 +33,16 @@ CLEANUP_INTERVAL: Incomplete
 ORPHANED_ENTITY_KEEP_SECONDS: Incomplete
 ENTITY_CATEGORY_VALUE_TO_INDEX: dict[EntityCategory | None, int]
 ENTITY_CATEGORY_INDEX_TO_VALUE: Incomplete
+
+class ComputedNameType(Enum):
+    _singleton = 0
+
+COMPUTED_NAME: Incomplete
+type AliasEntry = str | ComputedNameType
+
+def _serialize_aliases(aliases: list[AliasEntry]) -> list[str | None]: ...
+def _deserialize_aliases(aliases: list[str | None]) -> list[AliasEntry]: ...
+
 ENTITY_DESCRIBING_ATTRIBUTES: Incomplete
 
 class RegistryEntryDisabler(StrEnum):
@@ -69,7 +79,7 @@ class RegistryEntry:
     unique_id: str
     platform: str
     previous_unique_id: str | None
-    aliases: set[str]
+    aliases: list[AliasEntry]
     area_id: str | None
     categories: dict[str, str]
     capabilities: Mapping[str, Any] | None
@@ -97,6 +107,9 @@ class RegistryEntry:
     supported_features: int
     translation_key: str | None
     unit_of_measurement: str | None
+    compat_aliases: list[str]
+    compat_name: str | None
+    original_name_unprefixed: str | None
     _cache: dict[str, Any]
     @domain.default
     def _domain_default(self) -> str: ...
@@ -118,22 +131,28 @@ class RegistryEntry:
     def as_storage_fragment(self) -> json_fragment: ...
     @callback
     def write_unavailable_state(self, hass: HomeAssistant) -> None: ...
-    def __init__(self, entity_id, unique_id, platform, previous_unique_id, aliases, area_id, categories, capabilities, config_entry_id, config_subentry_id, created_at, device_class, device_id, domain, disabled_by, entity_category, has_entity_name, hidden_by, icon, id, labels, modified_at, name, object_id_base, options, original_device_class, original_icon, original_name, suggested_object_id, supported_features, translation_key, unit_of_measurement, cache) -> None: ...
+    def __init__(self, entity_id, unique_id, platform, previous_unique_id, aliases, area_id, categories, capabilities, config_entry_id, config_subentry_id, created_at, device_class, device_id, domain, disabled_by, entity_category, has_entity_name, hidden_by, icon, id, labels, modified_at, name, object_id_base, options, original_device_class, original_icon, original_name, suggested_object_id, supported_features, translation_key, unit_of_measurement, compat_aliases, compat_name, original_name_unprefixed, cache) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...
     def __ge__(self, other): ...
 
 @callback
-def _async_get_full_entity_name_generic(hass: HomeAssistant, *, device_id: str | None, fallback: str, has_entity_name: bool, name: str | None, original_name: str | None, overridden_name: str | None = None) -> str: ...
+def _async_get_full_entity_name(hass: HomeAssistant, *, device_id: str | None, fallback: str, has_entity_name: bool, name: str | None, original_name: str | None, original_name_unprefixed: str | None | UndefinedType = ..., overridden_name: str | None = None) -> str: ...
 @callback
 def async_get_full_entity_name(hass: HomeAssistant, entry: RegistryEntry, original_name: str | None | UndefinedType = ...) -> str: ...
+@callback
+def async_get_entity_aliases(hass: HomeAssistant, entry: RegistryEntry, *, allow_empty: bool = True) -> list[str]: ...
+@callback
+def _async_strip_prefix_from_entity_name(entity_name: str | None, prefix: str | None) -> str | None: ...
+@callback
+def _unprefix_original_name(hass: HomeAssistant, original_name: str | None, has_entity_name: bool, device_id: str | None) -> str | None: ...
 
 class DeletedRegistryEntry:
     entity_id: str
     unique_id: str
     platform: str
-    aliases: set[str]
+    aliases: list[AliasEntry]
     area_id: str | None
     categories: dict[str, str]
     config_entry_id: str | None
@@ -150,12 +169,14 @@ class DeletedRegistryEntry:
     name: str | None
     options: ReadOnlyEntityOptionsType | UndefinedType
     orphaned_timestamp: float | None
+    compat_aliases: list[str]
+    compat_name: str | None
     _cache: dict[str, Any]
     @domain.default
     def _domain_default(self) -> str: ...
     @under_cached_property
     def as_storage_fragment(self) -> json_fragment: ...
-    def __init__(self, entity_id, unique_id, platform, aliases, area_id, categories, config_entry_id, config_subentry_id, created_at, device_class, disabled_by, domain, hidden_by, icon, id, labels, modified_at, name, options, orphaned_timestamp, cache) -> None: ...
+    def __init__(self, entity_id, unique_id, platform, aliases, area_id, categories, config_entry_id, config_subentry_id, created_at, device_class, disabled_by, domain, hidden_by, icon, id, labels, modified_at, name, options, orphaned_timestamp, compat_aliases, compat_name, cache) -> None: ...
     def __lt__(self, other): ...
     def __le__(self, other): ...
     def __gt__(self, other): ...
@@ -214,9 +235,9 @@ class EntityRegistry(BaseRegistry):
     @callback
     def async_device_modified(self, event: Event[EventDeviceRegistryUpdatedData]) -> None: ...
     @callback
-    def _async_update_entity(self, entity_id: str, *, aliases: set[str] | UndefinedType = ..., area_id: str | None | UndefinedType = ..., categories: dict[str, str] | UndefinedType = ..., capabilities: Mapping[str, Any] | None | UndefinedType = ..., config_entry_id: str | None | UndefinedType = ..., config_subentry_id: str | None | UndefinedType = ..., device_class: str | None | UndefinedType = ..., device_id: str | None | UndefinedType = ..., disabled_by: RegistryEntryDisabler | None | UndefinedType = ..., entity_category: EntityCategory | None | UndefinedType = ..., hidden_by: RegistryEntryHider | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., has_entity_name: bool | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | None | UndefinedType = ..., new_entity_id: str | UndefinedType = ..., new_unique_id: str | UndefinedType = ..., object_id_base: str | None | UndefinedType = ..., options: EntityOptionsType | UndefinedType = ..., original_device_class: str | None | UndefinedType = ..., original_icon: str | None | UndefinedType = ..., original_name: str | None | UndefinedType = ..., platform: str | None | UndefinedType = ..., suggested_object_id: str | None | UndefinedType = ..., supported_features: int | UndefinedType = ..., translation_key: str | None | UndefinedType = ..., unit_of_measurement: str | None | UndefinedType = ...) -> RegistryEntry: ...
+    def _async_update_entity(self, entity_id: str, *, aliases: list[AliasEntry] | UndefinedType = ..., area_id: str | None | UndefinedType = ..., categories: dict[str, str] | UndefinedType = ..., capabilities: Mapping[str, Any] | None | UndefinedType = ..., config_entry_id: str | None | UndefinedType = ..., config_subentry_id: str | None | UndefinedType = ..., device_class: str | None | UndefinedType = ..., device_id: str | None | UndefinedType = ..., disabled_by: RegistryEntryDisabler | None | UndefinedType = ..., entity_category: EntityCategory | None | UndefinedType = ..., hidden_by: RegistryEntryHider | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., has_entity_name: bool | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | None | UndefinedType = ..., new_entity_id: str | UndefinedType = ..., new_unique_id: str | UndefinedType = ..., object_id_base: str | None | UndefinedType = ..., options: EntityOptionsType | UndefinedType = ..., original_device_class: str | None | UndefinedType = ..., original_icon: str | None | UndefinedType = ..., original_name: str | None | UndefinedType = ..., original_name_unprefixed: str | None | UndefinedType = ..., platform: str | None | UndefinedType = ..., suggested_object_id: str | None | UndefinedType = ..., supported_features: int | UndefinedType = ..., translation_key: str | None | UndefinedType = ..., unit_of_measurement: str | None | UndefinedType = ...) -> RegistryEntry: ...
     @callback
-    def async_update_entity(self, entity_id: str, *, aliases: set[str] | UndefinedType = ..., area_id: str | None | UndefinedType = ..., categories: dict[str, str] | UndefinedType = ..., capabilities: Mapping[str, Any] | None | UndefinedType = ..., config_entry_id: str | None | UndefinedType = ..., config_subentry_id: str | None | UndefinedType = ..., device_class: str | None | UndefinedType = ..., device_id: str | None | UndefinedType = ..., disabled_by: RegistryEntryDisabler | None | UndefinedType = ..., entity_category: EntityCategory | None | UndefinedType = ..., hidden_by: RegistryEntryHider | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., has_entity_name: bool | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | None | UndefinedType = ..., new_entity_id: str | UndefinedType = ..., new_unique_id: str | UndefinedType = ..., original_device_class: str | None | UndefinedType = ..., original_icon: str | None | UndefinedType = ..., original_name: str | None | UndefinedType = ..., supported_features: int | UndefinedType = ..., translation_key: str | None | UndefinedType = ..., unit_of_measurement: str | None | UndefinedType = ...) -> RegistryEntry: ...
+    def async_update_entity(self, entity_id: str, *, aliases: list[AliasEntry] | UndefinedType = ..., area_id: str | None | UndefinedType = ..., categories: dict[str, str] | UndefinedType = ..., capabilities: Mapping[str, Any] | None | UndefinedType = ..., config_entry_id: str | None | UndefinedType = ..., config_subentry_id: str | None | UndefinedType = ..., device_class: str | None | UndefinedType = ..., device_id: str | None | UndefinedType = ..., disabled_by: RegistryEntryDisabler | None | UndefinedType = ..., entity_category: EntityCategory | None | UndefinedType = ..., hidden_by: RegistryEntryHider | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., has_entity_name: bool | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | None | UndefinedType = ..., new_entity_id: str | UndefinedType = ..., new_unique_id: str | UndefinedType = ..., original_device_class: str | None | UndefinedType = ..., original_icon: str | None | UndefinedType = ..., original_name: str | None | UndefinedType = ..., supported_features: int | UndefinedType = ..., translation_key: str | None | UndefinedType = ..., unit_of_measurement: str | None | UndefinedType = ...) -> RegistryEntry: ...
     @callback
     def async_update_entity_platform(self, entity_id: str, new_platform: str, *, new_config_entry_id: str | UndefinedType = ..., new_config_subentry_id: str | UndefinedType = ..., new_unique_id: str | UndefinedType = ..., new_device_id: str | None | UndefinedType = ...) -> RegistryEntry: ...
     @callback

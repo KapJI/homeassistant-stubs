@@ -5,11 +5,12 @@ from _typeshed import Incomplete
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, STATE_UNAVAILABLE as STATE_UNAVAILABLE
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any, final, override
@@ -44,6 +45,11 @@ class NotifyEntity(RestoreEntity):
     def state(self) -> str | None: ...
     def __set_state(self, state: str | None) -> None: ...
     async def async_internal_added_to_hass(self) -> None: ...
+    @final
+    def _record_notification(self) -> None: ...
+    @final
+    @callback
+    def _async_record_notification(self) -> None: ...
     @final
     async def _async_send_message(self, **kwargs: Any) -> None: ...
     def send_message(self, message: str, title: str | None = None) -> None: ...

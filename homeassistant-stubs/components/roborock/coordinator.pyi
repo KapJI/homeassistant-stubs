@@ -1,5 +1,5 @@
-from .const import A01_UPDATE_INTERVAL as A01_UPDATE_INTERVAL, DOMAIN as DOMAIN, IMAGE_CACHE_INTERVAL as IMAGE_CACHE_INTERVAL, V1_CLOUD_IN_CLEANING_INTERVAL as V1_CLOUD_IN_CLEANING_INTERVAL, V1_CLOUD_NOT_CLEANING_INTERVAL as V1_CLOUD_NOT_CLEANING_INTERVAL, V1_LOCAL_IN_CLEANING_INTERVAL as V1_LOCAL_IN_CLEANING_INTERVAL, V1_LOCAL_NOT_CLEANING_INTERVAL as V1_LOCAL_NOT_CLEANING_INTERVAL
-from .models import DeviceState as DeviceState
+from .const import A01_UPDATE_INTERVAL as A01_UPDATE_INTERVAL, DOMAIN as DOMAIN, IMAGE_CACHE_INTERVAL as IMAGE_CACHE_INTERVAL, Q10_UPDATE_INTERVAL as Q10_UPDATE_INTERVAL, V1_CLOUD_IN_CLEANING_INTERVAL as V1_CLOUD_IN_CLEANING_INTERVAL, V1_CLOUD_NOT_CLEANING_INTERVAL as V1_CLOUD_NOT_CLEANING_INTERVAL, V1_LOCAL_IN_CLEANING_INTERVAL as V1_LOCAL_IN_CLEANING_INTERVAL, V1_LOCAL_NOT_CLEANING_INTERVAL as V1_LOCAL_NOT_CLEANING_INTERVAL
+from .models import DeviceState as DeviceState, get_device_info as get_device_info
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
@@ -17,7 +17,7 @@ from roborock import B01Props
 from roborock.data import HomeDataScene as HomeDataScene
 from roborock.devices.device import RoborockDevice as RoborockDevice
 from roborock.devices.traits.a01 import DyadApi as DyadApi, ZeoApi as ZeoApi
-from roborock.devices.traits.b01 import Q7PropertiesApi as Q7PropertiesApi
+from roborock.devices.traits.b01 import Q10PropertiesApi as Q10PropertiesApi, Q7PropertiesApi as Q7PropertiesApi
 from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
 from roborock.roborock_message import RoborockB01Props, RoborockDyadDataProtocol, RoborockZeoProtocol
 from typing import Any, TypeVar
@@ -31,10 +31,11 @@ class RoborockCoordinators:
     v1: list[RoborockDataUpdateCoordinator]
     a01: list[RoborockDataUpdateCoordinatorA01]
     b01_q7: list[RoborockB01Q7UpdateCoordinator]
-    def values(self) -> list[RoborockDataUpdateCoordinator | RoborockDataUpdateCoordinatorA01 | RoborockB01Q7UpdateCoordinator]: ...
+    b01_q10: list[RoborockB01Q10UpdateCoordinator]
+    def values(self) -> list[RoborockDataUpdateCoordinator | RoborockDataUpdateCoordinatorA01 | RoborockB01Q7UpdateCoordinator | RoborockB01Q10UpdateCoordinator]: ...
 type RoborockConfigEntry = ConfigEntry[RoborockCoordinators]
 
-class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState]):
+class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState | None]):
     config_entry: RoborockConfigEntry
     _device: Incomplete
     properties_api: Incomplete
@@ -52,7 +53,7 @@ class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState]):
     update_interval: Incomplete
     async def _verify_api(self) -> None: ...
     async def _update_device_prop(self) -> None: ...
-    async def _async_update_data(self) -> DeviceState: ...
+    async def _async_update_data(self) -> DeviceState | None: ...
     def _should_suppress_update_failure(self) -> bool: ...
     async def get_routines(self) -> list[HomeDataScene]: ...
     async def execute_routines(self, routine_id: int) -> None: ...
@@ -108,3 +109,17 @@ class RoborockB01Q7UpdateCoordinator(RoborockDataUpdateCoordinatorB01):
     request_protocols: list[RoborockB01Props]
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: Q7PropertiesApi) -> None: ...
     async def _async_update_data(self) -> B01Props: ...
+
+class RoborockB01Q10UpdateCoordinator(DataUpdateCoordinator[None]):
+    config_entry: RoborockConfigEntry
+    _device: Incomplete
+    api: Incomplete
+    device_info: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: Q10PropertiesApi) -> None: ...
+    async def _async_update_data(self) -> None: ...
+    @cached_property
+    def duid(self) -> str: ...
+    @cached_property
+    def duid_slug(self) -> str: ...
+    @property
+    def device(self) -> RoborockDevice: ...

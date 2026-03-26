@@ -1,12 +1,13 @@
 from . import SimpliSafe as SimpliSafe
 from .const import ATTR_LAST_EVENT_INFO as ATTR_LAST_EVENT_INFO, ATTR_LAST_EVENT_SENSOR_NAME as ATTR_LAST_EVENT_SENSOR_NAME, ATTR_LAST_EVENT_SENSOR_TYPE as ATTR_LAST_EVENT_SENSOR_TYPE, ATTR_LAST_EVENT_TIMESTAMP as ATTR_LAST_EVENT_TIMESTAMP, ATTR_SYSTEM_ID as ATTR_SYSTEM_ID, DISPATCHER_TOPIC_WEBSOCKET_EVENT as DISPATCHER_TOPIC_WEBSOCKET_EVENT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .coordinator import SimpliSafeDataUpdateCoordinator as SimpliSafeDataUpdateCoordinator
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from simplipy.device import Device as Device
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
 
@@ -15,7 +16,7 @@ DEFAULT_ENTITY_MODEL: str
 DEFAULT_ERROR_THRESHOLD: int
 WEBSOCKET_EVENTS_REQUIRING_SERIAL: Incomplete
 
-class SimpliSafeEntity(CoordinatorEntity[DataUpdateCoordinator[None]]):
+class SimpliSafeEntity(CoordinatorEntity[SimpliSafeDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _error_count: int
     _attr_extra_state_attributes: Incomplete

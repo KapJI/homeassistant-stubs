@@ -29,12 +29,19 @@ class Selector[_T: Mapping[str, Any]]:
 def _entity_feature_flag(domain: str, enum_name: str, feature_name: str) -> int: ...
 def _validate_supported_feature(supported_feature: str) -> int: ...
 def _validate_supported_features(supported_features: list[str]) -> int: ...
+def _validate_selector_reorder_config(config: Any) -> Any: ...
 def make_selector_config_schema(schema_dict: dict | None = None) -> vol.Schema: ...
 
 class BaseSelectorConfig(TypedDict, total=False):
     read_only: bool
 
 ENTITY_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
+
+class _LegacyEntityFilterSelectorConfig(TypedDict, total=False):
+    integration: str
+    domain: str | list[str]
+    device_class: str | list[str]
+
 _LEGACY_ENTITY_SELECTOR_CONFIG_SCHEMA_DICT: Incomplete
 
 class EntityFilterSelectorConfig(TypedDict, total=False):
@@ -42,6 +49,7 @@ class EntityFilterSelectorConfig(TypedDict, total=False):
     domain: str | list[str]
     device_class: str | list[str]
     supported_features: list[str]
+    unit_of_measurement: str | list[str]
 
 DEVICE_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
 _LEGACY_DEVICE_SELECTOR_CONFIG_SCHEMA_DICT: Incomplete
@@ -251,7 +259,7 @@ class DurationSelector(Selector[DurationSelectorConfig]):
     def __init__(self, config: DurationSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> dict[str, float]: ...
 
-class EntitySelectorConfig(BaseSelectorConfig, EntityFilterSelectorConfig, total=False):
+class EntitySelectorConfig(BaseSelectorConfig, _LegacyEntityFilterSelectorConfig, total=False):
     exclude_entities: list[str]
     include_entities: list[str]
     multiple: bool
@@ -356,6 +364,47 @@ class NumberSelector(Selector[NumberSelectorConfig]):
     def __init__(self, config: NumberSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> float: ...
 
+class NumericThresholdSelectorConfig(BaseSelectorConfig, total=False):
+    mode: Required[NumericThresholdMode]
+    unit_of_measurement: list[str | None]
+    number: NumberSelectorConfig
+    entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
+
+class NumericThresholdMode(StrEnum):
+    CROSSED = 'crossed'
+    CHANGED = 'changed'
+    IS = 'is'
+
+class NumericThresholdType(StrEnum):
+    ABOVE = 'above'
+    BELOW = 'below'
+    BETWEEN = 'between'
+    OUTSIDE = 'outside'
+    ANY = 'any'
+
+class NumericThresholdActiveChoice(StrEnum):
+    NUMBER = 'number'
+    ENTITY = 'entity'
+
+def _extract_numeric_threshold_entry(data: dict[str, Any]) -> dict[str, Any]: ...
+def _validate_numeric_threshold_active_choice(data: dict[str, Any]) -> dict[str, Any]: ...
+
+_NUMERIC_THRESHOLD_VALUE_ENTRY_SCHEMA: Incomplete
+
+def _validate_numeric_threshold_range[_T: dict[str, Any]](value: _T) -> _T: ...
+
+_NUMERIC_THRESHOLD_VALUE_SCHEMA: Incomplete
+
+def _validate_numeric_threshold_unit[_T: dict[str, Any]](allowed_units: list[str | None]) -> Callable[[_T], _T]: ...
+def _validate_numeric_threshold_not_any[_T: dict[str, Any]](value: _T) -> _T: ...
+def _validate_numeric_threshold_number_range[_T: dict[str, Any]](number_config: dict[str, Any]) -> Callable[[_T], _T]: ...
+
+class NumericThresholdSelector(Selector[NumericThresholdSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: NumericThresholdSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 class ObjectSelectorField(TypedDict, total=False):
     label: str
     required: bool
@@ -419,6 +468,7 @@ class SelectSelector(Selector[SelectSelectorConfig]):
 class StateSelectorConfig(BaseSelectorConfig, total=False):
     entity_id: str
     hide_states: list[str]
+    attribute: str
     multiple: bool
 
 class StateSelector(Selector[StateSelectorConfig]):

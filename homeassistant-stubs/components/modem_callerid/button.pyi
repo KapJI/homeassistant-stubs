@@ -1,14 +1,14 @@
-from .const import DATA_KEY_API as DATA_KEY_API, DOMAIN as DOMAIN
+from . import ModemCallerIdConfigEntry as ModemCallerIdConfigEntry
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from phone_modem import PhoneModem as PhoneModem
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ModemCallerIdConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PhoneModemButton(ButtonEntity):
     _attr_translation_key: str

@@ -10,6 +10,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pylitterbot import Robot as Robot
 from typing import Any, Generic
 
+PARALLEL_UPDATES: int
+
 def icon_for_gauge_level(gauge_level: int | None = None, offset: int = 0) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)

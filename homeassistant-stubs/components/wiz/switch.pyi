@@ -1,6 +1,5 @@
-from . import WizConfigEntry as WizConfigEntry
+from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizToggleEntity as WizToggleEntity
-from .models import WizData as WizData
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant

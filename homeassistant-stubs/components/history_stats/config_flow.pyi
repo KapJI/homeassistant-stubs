@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_PERIOD_KEYS as CONF_PERIOD_KEYS, CONF_START as CONF_START, CONF_TYPE_KEYS as CONF_TYPE_KEYS, CONF_TYPE_RATIO as CONF_TYPE_RATIO, CONF_TYPE_TIME as CONF_TYPE_TIME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_MIN_STATE_DURATION as CONF_MIN_STATE_DURATION, CONF_PERIOD_KEYS as CONF_PERIOD_KEYS, CONF_START as CONF_START, CONF_TYPE_KEYS as CONF_TYPE_KEYS, CONF_TYPE_RATIO as CONF_TYPE_RATIO, CONF_TYPE_TIME as CONF_TYPE_TIME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS
 from .coordinator import HistoryStatsUpdateCoordinator as HistoryStatsUpdateCoordinator
 from .data import HistoryStats as HistoryStats
 from .sensor import HistoryStatsSensor as HistoryStatsSensor
@@ -9,6 +9,7 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.data_entry_flow import section as section
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep
 from homeassistant.helpers.selector import DurationSelector as DurationSelector, DurationSelectorConfig as DurationSelectorConfig, EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, StateSelector as StateSelector, StateSelectorConfig as StateSelectorConfig, TemplateSelector as TemplateSelector, TextSelector as TextSelector

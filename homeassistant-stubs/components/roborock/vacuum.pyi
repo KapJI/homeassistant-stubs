@@ -1,25 +1,26 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .entity import RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
+from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
+from .entity import RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
 from homeassistant.components.vacuum import Segment as Segment, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
 STATE_CODE_TO_STATE: Incomplete
 Q7_STATE_CODE_TO_STATE: Incomplete
+Q10_STATE_CODE_TO_STATE: Incomplete
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RoborockVacuum(RoborockCoordinatedEntityV1, StateVacuumEntity):
-    _attr_icon: str
     _attr_supported_features: Incomplete
     _attr_translation_key = DOMAIN
     _attr_name: Incomplete
+    _status_trait: Incomplete
     _home_trait: Incomplete
     _maps_trait: Incomplete
     def __init__(self, coordinator: RoborockDataUpdateCoordinator) -> None: ...
@@ -46,7 +47,6 @@ class RoborockVacuum(RoborockCoordinatedEntityV1, StateVacuumEntity):
     async def get_vacuum_current_position(self) -> ServiceResponse: ...
 
 class RoborockQ7Vacuum(RoborockCoordinatedEntityB01Q7, StateVacuumEntity):
-    _attr_icon: str
     _attr_supported_features: Incomplete
     _attr_translation_key = DOMAIN
     _attr_name: Incomplete
@@ -54,6 +54,25 @@ class RoborockQ7Vacuum(RoborockCoordinatedEntityB01Q7, StateVacuumEntity):
     def __init__(self, coordinator: RoborockB01Q7UpdateCoordinator) -> None: ...
     @property
     def fan_speed_list(self) -> list[str]: ...
+    @property
+    def activity(self) -> VacuumActivity | None: ...
+    @property
+    def fan_speed(self) -> str | None: ...
+    async def async_start(self) -> None: ...
+    async def async_pause(self) -> None: ...
+    async def async_stop(self, **kwargs: Any) -> None: ...
+    async def async_return_to_base(self, **kwargs: Any) -> None: ...
+    async def async_locate(self, **kwargs: Any) -> None: ...
+    async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
+    async def async_send_command(self, command: str, params: dict[str, Any] | list[Any] | None = None, **kwargs: Any) -> None: ...
+
+class RoborockQ10Vacuum(RoborockCoordinatedEntityB01Q10, StateVacuumEntity):
+    _attr_supported_features: Incomplete
+    _attr_translation_key = DOMAIN
+    _attr_name: Incomplete
+    _attr_fan_speed_list: Incomplete
+    def __init__(self, coordinator: RoborockB01Q10UpdateCoordinator) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
     @property
     def activity(self) -> VacuumActivity | None: ...
     @property

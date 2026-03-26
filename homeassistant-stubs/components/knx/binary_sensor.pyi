@@ -26,10 +26,8 @@ class _KnxBinarySensor(BinarySensorEntity, RestoreEntity):
 
 class KnxYamlBinarySensor(_KnxBinarySensor, KnxYamlEntity):
     _device: XknxBinarySensor
-    _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 
 class KnxUiBinarySensor(_KnxBinarySensor, KnxUiEntity):

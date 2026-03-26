@@ -4,8 +4,8 @@ from .entity import TransmissionEntity as TransmissionEntity
 from .helpers import filter_torrents as filter_torrents
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import STATE_IDLE as STATE_IDLE, UnitOfDataRate as UnitOfDataRate
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import STATE_IDLE as STATE_IDLE, UnitOfDataRate as UnitOfDataRate, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -17,6 +17,8 @@ PARALLEL_UPDATES: int
 class TransmissionSensorEntityDescription(SensorEntityDescription):
     val_func: Callable[[TransmissionDataUpdateCoordinator], StateType]
     extra_state_attr_func: Callable[[Any], dict[str, str]] | None = ...
+
+def _compute_ratio(uploaded: int | None, downloaded: int | None) -> float | None: ...
 
 SENSOR_TYPES: tuple[TransmissionSensorEntityDescription, ...]
 

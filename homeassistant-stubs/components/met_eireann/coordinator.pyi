@@ -11,6 +11,7 @@ from typing import Any, Self
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
+type MetEireannConfigEntry = ConfigEntry[MetEireannUpdateCoordinator]
 
 class MetEireannWeatherData:
     _config: Incomplete

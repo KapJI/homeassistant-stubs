@@ -4,9 +4,6 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
 
-SERVICE_SETTINGS: str
-SERVICE_CAPTURE_IMAGE: str
-SERVICE_TRIGGER_AUTOMATION: str
 ATTR_SETTING: str
 ATTR_VALUE: str
 CHANGE_SETTING_SCHEMA: Incomplete

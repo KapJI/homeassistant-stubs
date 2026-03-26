@@ -1,5 +1,5 @@
-from . import SENZConfigEntry as SENZConfigEntry, SENZDataUpdateCoordinator as SENZDataUpdateCoordinator
 from .const import DOMAIN as DOMAIN
+from .coordinator import SENZConfigEntry as SENZConfigEntry, SENZDataUpdateCoordinator as SENZDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature

@@ -1,7 +1,6 @@
-from . import WizConfigEntry as WizConfigEntry
 from .const import DOMAIN as DOMAIN, SIGNAL_WIZ_PIR as SIGNAL_WIZ_PIR
+from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizEntity as WizEntity
-from .models import WizData as WizData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity

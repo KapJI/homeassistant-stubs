@@ -1,5 +1,5 @@
 from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry, LitterRobotDataUpdateCoordinator as LitterRobotDataUpdateCoordinator
-from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT
+from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT, whisker_command as whisker_command
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pylitterbot import Robot as Robot
 from typing import Any, Generic, TypeVar
 
+PARALLEL_UPDATES: int
 _CastTypeT = TypeVar('_CastTypeT', int, float, str)
 
 @dataclass(frozen=True, kw_only=True)
@@ -29,4 +30,5 @@ class LitterRobotSelectEntity(LitterRobotEntity[_WhiskerEntityT], SelectEntity, 
     def __init__(self, robot: _WhiskerEntityT, coordinator: LitterRobotDataUpdateCoordinator, description: RobotSelectEntityDescription[_WhiskerEntityT, _CastTypeT]) -> None: ...
     @property
     def current_option(self) -> str | None: ...
+    @whisker_command
     async def async_select_option(self, option: str) -> None: ...

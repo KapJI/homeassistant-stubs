@@ -1,6 +1,6 @@
 from .const import CELLULAR_MODE_MAP as CELLULAR_MODE_MAP, CONNECTOR_TYPE_MAP as CONNECTOR_TYPE_MAP, ERROR_CODE_MAP as ERROR_CODE_MAP, RCD_TRIGGER_MAP as RCD_TRIGGER_MAP, STATUS_MAP as STATUS_MAP, WARNING_CODE_MAP as WARNING_CODE_MAP
 from .coordinator import NRGkickConfigEntry as NRGkickConfigEntry, NRGkickData as NRGkickData, NRGkickDataUpdateCoordinator as NRGkickDataUpdateCoordinator
-from .entity import NRGkickEntity as NRGkickEntity
+from .entity import NRGkickEntity as NRGkickEntity, get_nested_dict_value as get_nested_dict_value
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
@@ -12,11 +12,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
-from typing import Any
 
 PARALLEL_UPDATES: int
-
-def _get_nested_dict_value(data: Any, *keys: str) -> Any: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NRGkickSensorEntityDescription(SensorEntityDescription):

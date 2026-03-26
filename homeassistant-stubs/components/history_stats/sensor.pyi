@@ -1,6 +1,6 @@
 import abc
 from . import HistoryStatsConfigEntry as HistoryStatsConfigEntry
-from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_PERIOD_KEYS as CONF_PERIOD_KEYS, CONF_START as CONF_START, CONF_TYPE_COUNT as CONF_TYPE_COUNT, CONF_TYPE_KEYS as CONF_TYPE_KEYS, CONF_TYPE_RATIO as CONF_TYPE_RATIO, CONF_TYPE_TIME as CONF_TYPE_TIME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_MIN_STATE_DURATION as CONF_MIN_STATE_DURATION, CONF_PERIOD_KEYS as CONF_PERIOD_KEYS, CONF_START as CONF_START, CONF_TYPE_COUNT as CONF_TYPE_COUNT, CONF_TYPE_KEYS as CONF_TYPE_KEYS, CONF_TYPE_RATIO as CONF_TYPE_RATIO, CONF_TYPE_TIME as CONF_TYPE_TIME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import HistoryStatsUpdateCoordinator as HistoryStatsUpdateCoordinator
 from .data import HistoryStats as HistoryStats
 from .helpers import pretty_ratio as pretty_ratio
@@ -21,6 +21,7 @@ from typing import Any
 
 UNITS: dict[str, str]
 ICON: str
+DEFAULT_MIN_STATE_DURATION: Incomplete
 
 def exactly_two_period_keys[_T: dict[str, Any]](conf: _T) -> _T: ...
 def no_ratio_total[_T: dict[str, Any]](conf: _T) -> _T: ...

@@ -1,7 +1,7 @@
 from .const import CONF_LOCAL_ACCESS_TOKEN as CONF_LOCAL_ACCESS_TOKEN, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiotedee import TedeeLock
-from aiotedee.bridge import TedeeBridge as TedeeBridge
+from aiotedee.models import TedeeBridge as TedeeBridge
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST

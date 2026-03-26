@@ -1,16 +1,14 @@
-from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_KEEP_ALIVE as CONF_KEEP_ALIVE, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_DUR as CONF_MIN_DUR, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_AC_MODE as CONF_AC_MODE, CONF_COLD_TOLERANCE as CONF_COLD_TOLERANCE, CONF_DUR_COOLDOWN as CONF_DUR_COOLDOWN, CONF_HEATER as CONF_HEATER, CONF_HOT_TOLERANCE as CONF_HOT_TOLERANCE, CONF_KEEP_ALIVE as CONF_KEEP_ALIVE, CONF_MAX_DUR as CONF_MAX_DUR, CONF_MAX_TEMP as CONF_MAX_TEMP, CONF_MIN_DUR as CONF_MIN_DUR, CONF_MIN_TEMP as CONF_MIN_TEMP, CONF_PRESETS as CONF_PRESETS, CONF_SENSOR as CONF_SENSOR, DEFAULT_TOLERANCE as DEFAULT_TOLERANCE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from datetime import datetime, timedelta
 from homeassistant.components.climate import ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import CoreState as CoreState, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.exceptions import ConditionError as ConditionError
-from homeassistant.helpers import condition as condition
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
+from homeassistant.helpers.event import async_call_later as async_call_later, async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType
@@ -38,7 +36,13 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     device_entry: Incomplete
     ac_mode: Incomplete
     min_cycle_duration: Incomplete
+    max_cycle_duration: Incomplete
+    cycle_cooldown: Incomplete
     _cold_tolerance: Incomplete
+    _last_toggled_time: Incomplete
+    _cycle_callback: CALLBACK_TYPE | None
+    _check_callback: CALLBACK_TYPE | None
+    _last_context_id: str | None
     _hot_tolerance: Incomplete
     _keep_alive: Incomplete
     _hvac_mode: Incomplete
@@ -59,7 +63,7 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_preset_modes: Incomplete
     _presets: Incomplete
     _presets_inv: Incomplete
-    def __init__(self, hass: HomeAssistant, *, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, max_cycle_duration: timedelta | None, cycle_cooldown: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
     def precision(self) -> float: ...
@@ -88,6 +92,13 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     async def _async_control_heating(self, time: datetime | None = None, force: bool = False) -> None: ...
     @property
     def _is_device_active(self) -> bool | None: ...
-    async def _async_heater_turn_on(self) -> None: ...
-    async def _async_heater_turn_off(self) -> None: ...
+    async def _async_heater_turn_on(self, keepalive: bool = False) -> None: ...
+    async def _async_heater_turn_off(self, keepalive: bool = False) -> None: ...
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    async def _async_timer_control_heating(self, _: datetime | None = None) -> None: ...
+    @callback
+    def _cancel_check_timer(self) -> None: ...
+    @callback
+    def _cancel_cycle_timer(self) -> None: ...
+    @callback
+    def _cancel_timers(self) -> None: ...

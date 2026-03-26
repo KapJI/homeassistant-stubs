@@ -3,7 +3,7 @@ from .coordinator import AladdinConnectConfigEntry as AladdinConnectConfigEntry,
 from .entity import AladdinConnectEntity as AladdinConnectEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
@@ -17,7 +17,7 @@ class AladdinCoverEntity(AladdinConnectEntity, CoverEntity):
     _attr_supported_features = SUPPORTED_FEATURES
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: AladdinConnectCoordinator) -> None: ...
+    def __init__(self, coordinator: AladdinConnectCoordinator, door_id: str) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     @property

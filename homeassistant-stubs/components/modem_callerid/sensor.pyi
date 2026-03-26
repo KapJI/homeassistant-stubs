@@ -1,14 +1,14 @@
-from .const import CID as CID, DATA_KEY_API as DATA_KEY_API, DOMAIN as DOMAIN
+from . import ModemCallerIdConfigEntry as ModemCallerIdConfigEntry
+from .const import CID as CID, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_IDLE as STATE_IDLE
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.const import STATE_IDLE as STATE_IDLE
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from phone_modem import PhoneModem as PhoneModem
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ModemCallerIdConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ModemCalleridSensor(RestoreSensor):
     _attr_should_poll: bool

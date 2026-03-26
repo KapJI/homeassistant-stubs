@@ -25,12 +25,11 @@ class _KnxNumber(RestoreNumber):
 
 class KnxYamlNumber(_KnxNumber, KnxYamlEntity):
     _device: NumericValue
+    _attr_device_class: Incomplete
+    _attr_mode: Incomplete
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete
-    _attr_mode: Incomplete
     _attr_native_step: Incomplete
-    _attr_entity_category: Incomplete
-    _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
 

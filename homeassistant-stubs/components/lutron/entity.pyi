@@ -1,0 +1,29 @@
+from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
+from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.entity import Entity as Entity
+from pylutron import Keypad as Keypad, Lutron as Lutron, LutronEntity as LutronEntity, LutronEvent as LutronEvent
+
+class LutronBaseEntity(Entity):
+    _attr_should_poll: bool
+    _attr_has_entity_name: bool
+    _lutron_device: Incomplete
+    _controller: Incomplete
+    _area_name: Incomplete
+    def __init__(self, area_name: str, lutron_device: LutronEntity, controller: Lutron) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    def _request_state(self) -> None: ...
+    def _update_attrs(self) -> None: ...
+    def _update_callback(self, _device: LutronEntity, _context: None, _event: LutronEvent, _params: dict) -> None: ...
+    @property
+    def unique_id(self) -> str: ...
+    def update(self) -> None: ...
+
+class LutronDevice(LutronBaseEntity):
+    _attr_device_info: Incomplete
+    def __init__(self, area_name: str, lutron_device: LutronEntity, controller: Lutron) -> None: ...
+
+class LutronKeypad(LutronBaseEntity):
+    _attr_device_info: Incomplete
+    def __init__(self, area_name: str, lutron_device: LutronEntity, controller: Lutron, keypad: Keypad) -> None: ...

@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import TedeeApiCoordinator as TedeeApiCoordinator
 from _typeshed import Incomplete
-from aiotedee.lock import TedeeLock as TedeeLock
+from aiotedee.models import TedeeLock as TedeeLock
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription

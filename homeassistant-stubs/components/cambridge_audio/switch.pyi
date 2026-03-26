@@ -19,6 +19,7 @@ class CambridgeAudioSwitchEntityDescription(SwitchEntityDescription):
     set_value_fn: Callable[[StreamMagicClient, bool], Awaitable[None]]
 
 def room_correction_enabled(client: StreamMagicClient) -> bool: ...
+def equalizer_enabled(client: StreamMagicClient) -> bool: ...
 
 CONTROL_ENTITIES: tuple[CambridgeAudioSwitchEntityDescription, ...]
 

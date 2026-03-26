@@ -1,14 +1,12 @@
-from . import ArcamFmjConfigEntry as ArcamFmjConfigEntry
-from .const import DOMAIN as DOMAIN, EVENT_TURN_ON as EVENT_TURN_ON, SIGNAL_CLIENT_DATA as SIGNAL_CLIENT_DATA, SIGNAL_CLIENT_STARTED as SIGNAL_CLIENT_STARTED, SIGNAL_CLIENT_STOPPED as SIGNAL_CLIENT_STOPPED
+from .const import EVENT_TURN_ON as EVENT_TURN_ON
+from .coordinator import ArcamFmjConfigEntry as ArcamFmjConfigEntry, ArcamFmjCoordinator as ArcamFmjCoordinator
+from .entity import ArcamFmjEntity as ArcamFmjEntity
 from _typeshed import Incomplete
-from arcam.fmj.state import State
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -17,20 +15,12 @@ _LOGGER: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ArcamFmjConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def convert_exception[**_P, _R](func: Callable[_P, Coroutine[Any, Any, _R]]) -> Callable[_P, Coroutine[Any, Any, _R]]: ...
 
-class ArcamFmj(MediaPlayerEntity):
-    _attr_should_poll: bool
-    _attr_has_entity_name: bool
+class ArcamFmj(ArcamFmjEntity, MediaPlayerEntity):
     _state: Incomplete
-    _attr_name: Incomplete
     _attr_supported_features: Incomplete
-    _attr_unique_id: Incomplete
-    _attr_entity_registry_enabled_default: Incomplete
-    _attr_device_info: Incomplete
-    def __init__(self, device_name: str, state: State, uuid: str) -> None: ...
+    def __init__(self, coordinator: ArcamFmjCoordinator) -> None: ...
     @property
     def state(self) -> MediaPlayerState: ...
-    async def async_added_to_hass(self) -> None: ...
-    async def async_update(self) -> None: ...
     @convert_exception
     async def async_mute_volume(self, mute: bool) -> None: ...
     @convert_exception

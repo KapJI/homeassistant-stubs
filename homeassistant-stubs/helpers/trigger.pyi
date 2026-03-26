@@ -2,7 +2,7 @@ import abc
 import asyncio
 import voluptuous as vol
 from . import selector as selector
-from .automation import DomainSpec as DomainSpec, NumericalDomainSpec as NumericalDomainSpec, filter_by_domain_specs as filter_by_domain_specs, get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
+from .automation import DomainSpec as DomainSpec, NumericalDomainSpec as NumericalDomainSpec, ThresholdConfig as ThresholdConfig, filter_by_domain_specs as filter_by_domain_specs, get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from .selector import NumericThresholdMode as NumericThresholdMode, NumericThresholdSelector as NumericThresholdSelector, NumericThresholdSelectorConfig as NumericThresholdSelectorConfig, NumericThresholdType as NumericThresholdType, TargetSelector as TargetSelector
 from .target import TargetStateChangedData as TargetStateChangedData, async_track_target_selector_state_change_event as async_track_target_selector_state_change_event
@@ -20,7 +20,7 @@ from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.unit_conversion import BaseUnitConverter as BaseUnitConverter
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
-from typing import Any, Final, Literal, Protocol, Self, TypedDict, override
+from typing import Any, Final, Literal, Protocol, TypedDict, override
 
 _LOGGER: Incomplete
 _PLATFORM_ALIASES: Incomplete
@@ -99,15 +99,6 @@ class EntityOriginStateTriggerBase(EntityTriggerBase):
     def is_valid_state(self, state: State) -> bool: ...
 
 NUMERICAL_ATTRIBUTE_CHANGED_TRIGGER_SCHEMA: Incomplete
-
-@dataclass(frozen=True, kw_only=True)
-class ThresholdConfig:
-    numerical: bool
-    entity: str | None
-    number: float | None
-    unit: str | None | UndefinedType
-    @classmethod
-    def from_config(cls, config: dict[str, Any] | None) -> Self | None: ...
 
 class EntityNumericalStateTriggerBase(EntityTriggerBase[NumericalDomainSpec], metaclass=abc.ABCMeta):
     _valid_unit: str | None | UndefinedType

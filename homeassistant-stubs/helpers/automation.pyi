@@ -1,13 +1,13 @@
 import voluptuous as vol
 from .entity import get_device_class_or_undefined as get_device_class_or_undefined
-from .typing import ConfigType as ConfigType
+from .typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
 from enum import Enum
 from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant, split_entity_id as split_entity_id
-from typing import Any, Final
+from typing import Any, Final, Self
 
 CONF_UNIT: Final[str]
 
@@ -31,10 +31,11 @@ def get_relative_description_key(domain: str, key: str) -> str: ...
 def move_top_level_schema_fields_to_options(config: ConfigType, options_schema_dict: dict[vol.Marker, Any]) -> ConfigType: ...
 def move_options_fields_to_top_level(config: ConfigType, base_schema: vol.Schema) -> ConfigType: ...
 
-_NUMBER_OR_ENTITY_CHOOSE_SCHEMA: Incomplete
-
-def _validate_number_or_entity(value: dict | float | str) -> float | str: ...
-
-number_or_entity: Incomplete
-
-def validate_unit_set_if_range_numerical[_T: dict[str, Any]](lower_limit: str, upper_limit: str) -> Callable[[_T], _T]: ...
+@dataclass(frozen=True, kw_only=True)
+class ThresholdConfig:
+    numerical: bool
+    entity: str | None
+    number: float | None
+    unit: str | None | UndefinedType
+    @classmethod
+    def from_config(cls, config: dict[str, Any] | None) -> Self | None: ...

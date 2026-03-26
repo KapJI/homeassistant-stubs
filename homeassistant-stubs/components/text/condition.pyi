@@ -1,9 +1,9 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET
+from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
-from homeassistant.helpers.condition import ATTR_BEHAVIOR as ATTR_BEHAVIOR, BEHAVIOR_ALL as BEHAVIOR_ALL, BEHAVIOR_ANY as BEHAVIOR_ANY, Condition as Condition, ConditionConfig as ConditionConfig, EntityConditionBase as EntityConditionBase
+from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityConditionBase as EntityConditionBase
 
 CONF_VALUE: str
 _TEXT_CONDITION_SCHEMA: Incomplete

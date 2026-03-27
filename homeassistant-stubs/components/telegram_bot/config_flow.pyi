@@ -25,7 +25,7 @@ OPTIONS_SCHEMA: vol.Schema
 class OptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-class TelgramBotConfigFlow(ConfigFlow, domain=DOMAIN):
+class TelegramBotConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     @staticmethod

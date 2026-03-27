@@ -2,7 +2,7 @@ import voluptuous as vol
 from .entity import get_device_class_or_undefined as get_device_class_or_undefined
 from .typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Mapping
+from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import Enum
 from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS
@@ -20,10 +20,6 @@ ANY_DEVICE_CLASS: Incomplete
 class DomainSpec:
     device_class: str | None | AnyDeviceClassType = ...
     value_source: str | None = ...
-
-@dataclass(frozen=True, slots=True)
-class NumericalDomainSpec(DomainSpec):
-    value_converter: Callable[[float], float] | None = ...
 
 def filter_by_domain_specs(hass: HomeAssistant, domain_specs: Mapping[str, DomainSpec], entities: set[str]) -> set[str]: ...
 def get_absolute_description_key(domain: str, key: str) -> str: ...

@@ -65,8 +65,8 @@ BEHAVIOR_ANY: Final[str]
 BEHAVIOR_ALL: Final[str]
 ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL: Incomplete
 
-class EntityConditionBase[DomainSpecT: DomainSpec = DomainSpec](Condition, metaclass=abc.ABCMeta):
-    _domain_specs: Mapping[str, DomainSpecT]
+class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
+    _domain_specs: Mapping[str, DomainSpec]
     _schema: vol.Schema
     @override
     @classmethod

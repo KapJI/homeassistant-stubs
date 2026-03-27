@@ -1,10 +1,20 @@
 from .const import ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_HVAC_ACTION as ATTR_HVAC_ACTION, DOMAIN as DOMAIN, HVACAction as HVACAction, HVACMode as HVACMode
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_OPTIONS as CONF_OPTIONS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
-from homeassistant.helpers.automation import DomainSpec as DomainSpec, NumericalDomainSpec as NumericalDomainSpec
-from homeassistant.helpers.condition import Condition as Condition, EntityNumericalConditionWithUnitBase as EntityNumericalConditionWithUnitBase, make_entity_numerical_condition as make_entity_numerical_condition, make_entity_state_condition as make_entity_state_condition
+from homeassistant.helpers.automation import DomainSpec as DomainSpec
+from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityConditionBase as EntityConditionBase, EntityNumericalConditionWithUnitBase as EntityNumericalConditionWithUnitBase, make_entity_numerical_condition as make_entity_numerical_condition, make_entity_state_condition as make_entity_state_condition
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
+
+CONF_HVAC_MODE: str
+_HVAC_MODE_CONDITION_SCHEMA: Incomplete
+
+class ClimateHVACModeCondition(EntityConditionBase):
+    _domain_specs: Incomplete
+    _schema = _HVAC_MODE_CONDITION_SCHEMA
+    _hvac_modes: set[str]
+    def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
+    def is_valid_state(self, entity_state: State) -> bool: ...
 
 class ClimateTargetTemperatureCondition(EntityNumericalConditionWithUnitBase):
     _base_unit: Incomplete

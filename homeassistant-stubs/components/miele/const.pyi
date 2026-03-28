@@ -194,6 +194,7 @@ class ProgramPhaseOven(MieleEnum, missing_to_none=True):
     process_finished: int
     searing: int
     roasting: int
+    cooling_down: int
     energy_save: int
     pre_heating: int
 
@@ -317,6 +318,7 @@ class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     proofing: Incomplete
     sportswear: Incomplete
     automatic_plus: int
+    table_linen: int
     outerwear: int
     pillows: int
     cool_air: int
@@ -442,6 +444,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     microwave_fan_grill: int
     conventional_heat: int
     top_heat: int
+    booster: int
     fan_grill: int
     bottom_heat: int
     moisture_plus_auto_roast: Incomplete
@@ -450,6 +453,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     moisture_plus_conventional_heat: Incomplete
     popcorn: int
     quick_microwave: int
+    airfry: int
     custom_program_1: int
     custom_program_2: int
     custom_program_3: int

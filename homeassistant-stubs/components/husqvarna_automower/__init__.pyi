@@ -7,6 +7,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
+from homeassistant.helpers.config_entry_oauth2_flow import ImplementationUnavailableError as ImplementationUnavailableError
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 CONFIG_SCHEMA: Incomplete

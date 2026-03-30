@@ -305,6 +305,7 @@ class StateDryingStep(MieleEnum, missing_to_none=True):
 class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     no_program: Incomplete
     cottons: Incomplete
+    normal: int
     minimum_iron: int
     delicates: Incomplete
     woollens: Incomplete

@@ -6,14 +6,19 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass, field
 from enum import IntEnum
+from homeassistant.components.automation import automations_with_entity as automations_with_entity
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
+from homeassistant.components.script import scripts_with_entity as scripts_with_entity
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
+from homeassistant.helpers.start import async_at_started as async_at_started
 from zwave_js_server.const.command_class.notification import NotificationEvent as NotificationEvent
 from zwave_js_server.model.driver import Driver as Driver
+from zwave_js_server.model.value import Value as ZwaveValue
 
 PARALLEL_UPDATES: int
 NOTIFICATION_SMOKE_ALARM: str
@@ -42,10 +47,10 @@ class OpeningState(IntEnum):
     OPEN = 1
     TILTED = 2
 
-def _legacy_is_closed(opening_state: OpeningState) -> bool: ...
-def _legacy_is_open(opening_state: OpeningState) -> bool: ...
-def _legacy_is_open_or_tilted(opening_state: OpeningState) -> bool: ...
-def _legacy_is_tilted(opening_state: OpeningState) -> bool: ...
+def _opening_state_is_closed(opening_state: OpeningState) -> bool: ...
+def _opening_state_is_open(opening_state: OpeningState) -> bool: ...
+def _opening_state_is_open_or_tilted(opening_state: OpeningState) -> bool: ...
+def _opening_state_is_tilted(opening_state: OpeningState) -> bool: ...
 
 @dataclass(frozen=True, kw_only=True)
 class NotificationZWaveJSEntityDescription(BinarySensorEntityDescription):
@@ -65,6 +70,13 @@ class OpeningStateZWaveJSEntityDescription(BinarySensorEntityDescription):
     state_key: int
     parse_opening_state: Callable[[OpeningState], bool]
 
+@dataclass(frozen=True, kw_only=True)
+class LegacyDoorStateRepairDescription:
+    issue_translation_key: str
+    replacement_state_key: OpeningState
+
+LEGACY_DOOR_STATE_REPAIR_DESCRIPTIONS: dict[str, LegacyDoorStateRepairDescription]
+LEGACY_DOOR_STATE_REPAIR_ISSUE_KEYS: Incomplete
 MIGRATED_NOTIFICATION_TYPES: Incomplete
 NOTIFICATION_SENSOR_MAPPINGS: tuple[NotificationZWaveJSEntityDescription, ...]
 PROPERTY_SENSOR_MAPPINGS: dict[str, PropertyZWaveJSEntityDescription]
@@ -72,6 +84,10 @@ BOOLEAN_SENSOR_MAPPINGS: dict[tuple[int, int | str], BinarySensorEntityDescripti
 
 @callback
 def is_valid_notification_binary_sensor(info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo) -> bool | NotificationZWaveJSEntityDescription: ...
+@callback
+def _async_delete_legacy_entity_repairs(hass: HomeAssistant, entity_id: str) -> None: ...
+@callback
+def _async_check_legacy_entity_repair(hass: HomeAssistant, driver: Driver, entity: ZWaveLegacyDoorStateBinarySensor) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ZWaveBooleanBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
@@ -95,6 +111,17 @@ class ZWaveLegacyDoorStateBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _opening_state_value_id: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
+    @property
+    def is_on(self) -> bool | None: ...
+
+class ZWaveOpeningStateBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
+    entity_description: OpeningStateZWaveJSEntityDescription
+    _known_states: set[str]
+    _attr_unique_id: Incomplete
+    def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
+    @callback
+    def should_rediscover_on_metadata_update(self) -> bool: ...
+    async def _async_remove_and_rediscover(self, value: ZwaveValue) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
 

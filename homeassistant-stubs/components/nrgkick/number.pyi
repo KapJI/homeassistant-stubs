@@ -1,5 +1,6 @@
 from .coordinator import NRGkickConfigEntry as NRGkickConfigEntry, NRGkickData as NRGkickData, NRGkickDataUpdateCoordinator as NRGkickDataUpdateCoordinator
 from .entity import NRGkickEntity as NRGkickEntity
+from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
@@ -21,6 +22,7 @@ class NRGkickNumberEntityDescription(NumberEntityDescription):
     max_value_fn: Callable[[NRGkickData], float] | None = ...
 
 NUMBERS: tuple[NRGkickNumberEntityDescription, ...]
+PHASE_COUNT_DESCRIPTION: Incomplete
 
 async def async_setup_entry(_hass: HomeAssistant, entry: NRGkickConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -29,6 +31,12 @@ class NRGkickNumber(NRGkickEntity, NumberEntity):
     def __init__(self, coordinator: NRGkickDataUpdateCoordinator, description: NRGkickNumberEntityDescription) -> None: ...
     @property
     def native_max_value(self) -> float: ...
+    @property
+    def native_value(self) -> float | None: ...
+    async def async_set_native_value(self, value: float) -> None: ...
+
+class NRGkickPhaseCountNumber(NRGkickNumber):
+    _last_phase_count: float | None
     @property
     def native_value(self) -> float | None: ...
     async def async_set_native_value(self, value: float) -> None: ...

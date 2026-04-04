@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN, Platform as Platform
 from .coordinator import AvmWrapper as AvmWrapper, FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity
 from _typeshed import Incomplete
@@ -10,6 +11,7 @@ from homeassistant.util import slugify as slugify
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
+async def _migrate_to_new_unique_id(hass: HomeAssistant, avm_wrapper: AvmWrapper, ssid: str) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FritzGuestWifiQRImage(FritzBoxBaseEntity, ImageEntity):

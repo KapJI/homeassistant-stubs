@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 from psutil import Process as Process
-from psutil._common import sbattery as sbattery, sdiskusage as sdiskusage, shwtemp as shwtemp, snetio as snetio, snicaddr as snicaddr, sswap as sswap
+from psutil._ntuples import sbattery as sbattery, sdiskusage as sdiskusage, shwtemp as shwtemp, snetio as snetio, snicaddr as snicaddr, sswap as sswap
 from typing import Any, NamedTuple
 
 _LOGGER: Incomplete

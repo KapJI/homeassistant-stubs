@@ -15,7 +15,6 @@ class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
     api: Incomplete
     host: Incomplete
     _session: transmission_rpc.Session | None
-    port_forwarding: bool | None
     _all_torrents: list[transmission_rpc.Torrent]
     _completed_torrents: list[transmission_rpc.Torrent]
     _started_torrents: list[transmission_rpc.Torrent]

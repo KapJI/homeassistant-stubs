@@ -1,5 +1,4 @@
 from .hassio import is_hassio as is_hassio
-from .importlib import async_import_module as async_import_module
 from .singleton import singleton as singleton
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant

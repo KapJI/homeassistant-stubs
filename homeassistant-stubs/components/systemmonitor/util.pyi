@@ -2,7 +2,7 @@ import psutil_home_assistant as ha_psutil
 from .const import CPU_SENSOR_PREFIXES as CPU_SENSOR_PREFIXES
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
-from psutil._common import sfan as sfan, shwtemp as shwtemp
+from psutil._ntuples import sfan as sfan, shwtemp as shwtemp
 from typing import Any
 
 _LOGGER: Incomplete

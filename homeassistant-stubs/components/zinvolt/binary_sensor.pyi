@@ -1,5 +1,5 @@
 from .coordinator import ZinvoltConfigEntry as ZinvoltConfigEntry, ZinvoltData as ZinvoltData, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
-from .entity import ZinvoltEntity as ZinvoltEntity
+from .entity import ZinvoltEntity as ZinvoltEntity, ZinvoltUnitEntity as ZinvoltUnitEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -25,13 +25,13 @@ class ZinvoltBatteryStateBinarySensor(ZinvoltEntity, BinarySensorEntity):
     @property
     def is_on(self) -> bool: ...
 
-class ZinvoltPointBinarySensor(ZinvoltEntity, BinarySensorEntity):
+class ZinvoltPointBinarySensor(ZinvoltUnitEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
     point: Incomplete
     _attr_translation_key: Incomplete
     _attr_device_class: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: ZinvoltDeviceCoordinator, point: str) -> None: ...
+    def __init__(self, coordinator: ZinvoltDeviceCoordinator, unit_serial_number: str, point: str) -> None: ...
     @property
     def available(self) -> bool: ...
     @property

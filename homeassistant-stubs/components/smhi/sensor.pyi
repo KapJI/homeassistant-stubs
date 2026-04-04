@@ -14,8 +14,10 @@ PARALLEL_UPDATES: int
 FWI_INDEX_MAP: Incomplete
 GRASSFIRE_MAP: Incomplete
 FORESTDRY_MAP: Incomplete
+PRECIPITATION_CATEGORY_MAP: Incomplete
 
 def get_percentage_values(entity: SMHIWeatherSensor, key: str) -> int | None: ...
+def get_precipitation_category(entity: SMHIWeatherSensor) -> str | None: ...
 def get_fire_index_value(entity: SMHIFireSensor, key: str) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)

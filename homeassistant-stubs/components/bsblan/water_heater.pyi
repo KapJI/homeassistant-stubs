@@ -2,6 +2,7 @@ from . import BSBLanConfigEntry as BSBLanConfigEntry, BSBLanData as BSBLanData
 from .const import DOMAIN as DOMAIN
 from .entity import BSBLanDualCoordinatorEntity as BSBLanDualCoordinatorEntity
 from _typeshed import Incomplete
+from bsblan import HotWaterState as HotWaterState
 from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_OFF as STATE_OFF, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -26,6 +27,8 @@ class BSBLANWaterHeater(BSBLanDualCoordinatorEntity, WaterHeaterEntity):
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     def __init__(self, data: BSBLanData) -> None: ...
+    @property
+    def _dhw(self) -> HotWaterState: ...
     @property
     def current_operation(self) -> str | None: ...
     @property

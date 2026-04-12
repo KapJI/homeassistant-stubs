@@ -28,7 +28,6 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_LIGHT_ATTRIBUTES_BLOCKED
-    _fixed_color_mode: ColorMode | str | None
     _flash_times: dict[str, int | None]
     _topic: dict[str, str | None]
     _optimistic: bool
@@ -39,8 +38,8 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _attr_max_color_temp_kelvin: Incomplete
     _attr_effect_list: Incomplete
     _attr_assumed_state: Incomplete
-    _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    _attr_supported_color_modes: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_color_temp_kelvin: Incomplete
     _attr_hs_color: Incomplete

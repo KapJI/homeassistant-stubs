@@ -62,9 +62,11 @@ class TibberSensorElPrice(TibberSensor, CoordinatorEntity[TibberPriceCoordinator
     _model: str
     _device_name: Incomplete
     def __init__(self, coordinator: TibberPriceCoordinator, tibber_home: TibberHome) -> None: ...
-    _attr_native_value: Incomplete
     @callback
     def _handle_coordinator_update(self) -> None: ...
+    _attr_native_value: Incomplete
+    @callback
+    def _update_attributes(self) -> None: ...
 
 class TibberDataSensor(TibberSensor, CoordinatorEntity[TibberDataCoordinator]):
     entity_description: Incomplete

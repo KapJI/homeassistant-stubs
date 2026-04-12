@@ -18,7 +18,7 @@ DHW_CONFIG_INCLUDE: Incomplete
 class BSBLanFastData:
     state: State
     sensor: Sensor
-    dhw: HotWaterState
+    dhw: HotWaterState | None = ...
 
 @dataclass
 class BSBLanSlowData:

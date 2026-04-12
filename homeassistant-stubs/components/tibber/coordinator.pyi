@@ -1,7 +1,7 @@
 import tibber
 from .const import DOMAIN as DOMAIN, TibberConfigEntry as TibberConfigEntry
 from _typeshed import Incomplete
-from datetime import datetime
+from datetime import datetime, timedelta
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData
 from homeassistant.components.recorder.statistics import async_add_external_statistics as async_add_external_statistics, get_last_statistics as get_last_statistics, statistics_during_period as statistics_during_period
@@ -46,8 +46,9 @@ class TibberDataCoordinator(DataUpdateCoordinator[None]):
 
 class TibberPriceCoordinator(DataUpdateCoordinator[dict[str, TibberHomeData]]):
     config_entry: TibberConfigEntry
+    _tomorrow_price_poll_threshold_seconds: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TibberConfigEntry) -> None: ...
-    def _seconds_until_next_15_minute(self) -> float: ...
+    def _time_until_next_15_minute(self) -> timedelta: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> dict[str, TibberHomeData]: ...
 

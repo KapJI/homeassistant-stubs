@@ -1,7 +1,8 @@
 from . import BSBLanData as BSBLanData
-from .const import DOMAIN as DOMAIN
+from .const import DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
 from .coordinator import BSBLanCoordinator as BSBLanCoordinator, BSBLanFastCoordinator as BSBLanFastCoordinator, BSBLanSlowCoordinator as BSBLanSlowCoordinator
 from _typeshed import Incomplete
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 

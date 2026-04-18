@@ -3,7 +3,7 @@ from .client import async_subscribe_internal as async_subscribe_internal
 from .const import ATTR_DISCOVERY_HASH as ATTR_DISCOVERY_HASH, ATTR_DISCOVERY_PAYLOAD as ATTR_DISCOVERY_PAYLOAD, ATTR_DISCOVERY_TOPIC as ATTR_DISCOVERY_TOPIC, CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_COMPONENTS as CONF_COMPONENTS, CONF_ORIGIN as CONF_ORIGIN, CONF_TOPIC as CONF_TOPIC, DOMAIN as DOMAIN, SUPPORTED_COMPONENTS as SUPPORTED_COMPONENTS
 from .models import DATA_MQTT as DATA_MQTT, MqttComponentConfig as MqttComponentConfig, MqttOriginInfo as MqttOriginInfo, ReceiveMessage as ReceiveMessage
 from .schemas import DEVICE_DISCOVERY_SCHEMA as DEVICE_DISCOVERY_SCHEMA, MQTT_ORIGIN_INFO_SCHEMA as MQTT_ORIGIN_INFO_SCHEMA, SHARED_OPTIONS as SHARED_OPTIONS
-from .util import async_forward_entry_setup_and_setup_discovery as async_forward_entry_setup_and_setup_discovery
+from .util import async_cleanup_device_registry as async_cleanup_device_registry, async_forward_entry_setup_and_setup_discovery as async_forward_entry_setup_and_setup_discovery
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_MQTT as SOURCE_MQTT, signal_discovered_config_entry_removed as signal_discovered_config_entry_removed

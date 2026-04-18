@@ -270,9 +270,11 @@ class ProgramPhaseSteamOvenCombi(MieleEnum, missing_to_none=True):
     roasting: int
     energy_save: int
     pre_heating: int
-    steam_reduction: int
+    steam_reduction: Incomplete
     waiting_for_start: int
     heating_up_phase: int
+    drying: int
+    rinse: int
 
 class ProgramPhaseSteamOvenMicro(MieleEnum, missing_to_none=True):
     not_running: Incomplete
@@ -481,7 +483,7 @@ class OvenProgramId(MieleEnum, missing_to_none=True):
     rinse: int
     shabbat_program: int
     yom_tov: int
-    hydroclean: int
+    hydroclean: Incomplete
     drying: Incomplete
     heat_crockery: int
     prove_dough: Incomplete

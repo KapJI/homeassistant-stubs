@@ -4,6 +4,7 @@ from .http import WebSocketAdapter as WebSocketAdapter
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request
 from collections.abc import Callable as Callable, Coroutine
+from homeassistant.components.http.auth_util import async_user_not_allowed_do_auth as async_user_not_allowed_do_auth
 from homeassistant.components.http.ban import process_success_login as process_success_login, process_wrong_login as process_wrong_login
 from homeassistant.components.http.const import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.const import __version__ as __version__

@@ -1,10 +1,9 @@
-from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID, COORDINATOR as COORDINATOR, COORDINATOR_LIST as COORDINATOR_LIST, DOMAIN as DOMAIN, KEY_API as KEY_API
-from .coordinator import TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
+from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID
+from .coordinator import TradfriConfigEntry as TradfriConfigEntry, TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from .entity import TradfriBaseEntity as TradfriBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pytradfri.command import Command as Command
@@ -15,7 +14,7 @@ ATTR_MAX_FAN_STEPS: int
 
 def _from_fan_percentage(percentage: int) -> int: ...
 def _from_fan_speed(fan_speed: int) -> int: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: TradfriConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TradfriAirPurifierFan(TradfriBaseEntity, FanEntity):
     _attr_name: Incomplete

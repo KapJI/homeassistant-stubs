@@ -1,5 +1,5 @@
-from .const import DOMAIN as DOMAIN, REQUEST_TIMEOUT as REQUEST_TIMEOUT
-from .discovery import DATA_DISCOVERY as DATA_DISCOVERY, ZeroconfDiscovery as ZeroconfDiscovery
+from .const import DATA_DISCOVERY as DATA_DISCOVERY, DATA_INSTANCE as DATA_INSTANCE, REQUEST_TIMEOUT as REQUEST_TIMEOUT
+from .discovery import ZeroconfDiscovery as ZeroconfDiscovery
 from .models import HaAsyncZeroconf as HaAsyncZeroconf
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

@@ -1,4 +1,5 @@
 from . import AnthropicConfigEntry as AnthropicConfigEntry
+from .const import DOMAIN as DOMAIN
 from .entity import AnthropicBaseLLMEntity as AnthropicBaseLLMEntity
 from _typeshed import Incomplete
 from homeassistant.components import ai_task as ai_task, conversation as conversation

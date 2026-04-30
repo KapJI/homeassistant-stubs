@@ -13,7 +13,6 @@ from homeassistant.components.homeassistant.exposed_entities import async_should
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any
@@ -47,14 +46,11 @@ SPEECH_TYPE_PLAIN: str
 SPEECH_TYPE_SSML: str
 
 @callback
-@bind_hass
 def async_register(hass: HomeAssistant, handler: IntentHandler) -> None: ...
 @callback
-@bind_hass
 def async_remove(hass: HomeAssistant, intent_type: str) -> None: ...
 @callback
 def async_get(hass: HomeAssistant) -> Iterable[IntentHandler]: ...
-@bind_hass
 async def async_handle(hass: HomeAssistant, platform: str, intent_type: str, slots: _SlotsType | None = None, text_input: str | None = None, context: Context | None = None, language: str | None = None, assistant: str | None = None, device_id: str | None = None, satellite_id: str | None = None, conversation_agent_id: str | None = None) -> IntentResponse: ...
 
 class IntentError(HomeAssistantError): ...
@@ -141,7 +137,6 @@ def _default_area_candidate_filter(candidate: MatchTargetsCandidate, possible_ar
 @callback
 def async_match_targets(hass: HomeAssistant, constraints: MatchTargetsConstraints, preferences: MatchTargetsPreferences | None = None, states: list[State] | None = None, area_candidate_filter: Callable[[MatchTargetsCandidate, Collection[str]], bool] = ...) -> MatchTargetsResult: ...
 @callback
-@bind_hass
 def async_match_states(hass: HomeAssistant, name: str | None = None, area_name: str | None = None, floor_name: str | None = None, domains: Collection[str] | None = None, device_classes: Collection[str] | None = None, states: list[State] | None = None, assistant: str | None = None) -> Iterable[State]: ...
 @callback
 def async_test_feature(state: State, feature: int, feature_name: str) -> None: ...

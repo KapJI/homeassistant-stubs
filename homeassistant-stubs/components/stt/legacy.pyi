@@ -1,6 +1,6 @@
 import abc
 from .const import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, DATA_PROVIDERS as DATA_PROVIDERS, DOMAIN as DOMAIN
-from .models import SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult
+from .models import DEFAULT_AUDIO_PROCESSING as DEFAULT_AUDIO_PROCESSING, SpeechAudioProcessing as SpeechAudioProcessing, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import AsyncIterable, Coroutine
@@ -41,6 +41,8 @@ class Provider(ABC, metaclass=abc.ABCMeta):
     @property
     @abstractmethod
     def supported_channels(self) -> list[AudioChannels]: ...
+    @property
+    def audio_processing(self) -> SpeechAudioProcessing: ...
     @abstractmethod
     async def async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...
     @callback

@@ -1,5 +1,7 @@
 from .coordinator import ArcamFmjConfigEntry as ArcamFmjConfigEntry
 from .entity import ArcamFmjEntity as ArcamFmjEntity
+from _typeshed import Incomplete
+from arcam.fmj import IntOrTypeEnum as IntOrTypeEnum
 from arcam.fmj.state import State as State
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -7,6 +9,11 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfFrequency as UnitOfFrequency
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+
+_LOGGER: Incomplete
+
+def _enum_options(value: type[IntOrTypeEnum]) -> list[str]: ...
+def _enum_value(value: IntOrTypeEnum | None) -> str | None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class ArcamFmjSensorEntityDescription(SensorEntityDescription):

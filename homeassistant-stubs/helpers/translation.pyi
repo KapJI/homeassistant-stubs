@@ -5,7 +5,7 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
-from homeassistant.loader import Integration as Integration, async_get_config_flows as async_get_config_flows, async_get_integrations as async_get_integrations, bind_hass as bind_hass
+from homeassistant.loader import Integration as Integration, async_get_config_flows as async_get_config_flows, async_get_integrations as async_get_integrations
 from homeassistant.util.json import load_json as load_json
 from typing import Any
 
@@ -39,7 +39,6 @@ class _TranslationCache:
     @callback
     def _build_category_cache(self, language: str, components: set[str], translation_strings: dict[str, dict[str, Any]]) -> None: ...
 
-@bind_hass
 async def async_get_translations(hass: HomeAssistant, language: str, category: str, integrations: Iterable[str] | None = None, config_flow: bool | None = None) -> dict[str, str]: ...
 @callback
 def async_get_cached_translations(hass: HomeAssistant, language: str, category: str, integration: str | None = None) -> dict[str, str]: ...

@@ -1,9 +1,9 @@
 from .coordinator import ElgatoConfigEntry as ElgatoConfigEntry, ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from .entity import ElgatoEntity as ElgatoEntity
+from .helpers import elgato_exception_handler as elgato_exception_handler
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -28,6 +28,9 @@ class ElgatoLight(ElgatoEntity, LightEntity):
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
     def is_on(self) -> bool: ...
+    @elgato_exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @elgato_exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @elgato_exception_handler
     async def async_identify(self) -> None: ...

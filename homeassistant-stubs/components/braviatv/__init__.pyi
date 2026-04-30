@@ -1,8 +1,10 @@
 from .const import CONF_USE_SSL as CONF_USE_SSL
 from .coordinator import BraviaTVConfigEntry as BraviaTVConfigEntry, BraviaTVCoordinator as BraviaTVCoordinator
+from homeassistant.components import ssdp as ssdp
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
+from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
 from typing import Final
 
 PLATFORMS: Final[list[Platform]]

@@ -4,7 +4,7 @@ import asyncio
 from .agent import BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupAgentPlatformProtocol as BackupAgentPlatformProtocol, LocalBackupAgent as LocalBackupAgent
 from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as CreateBackupParametersDict, check_unavailable_agents as check_unavailable_agents, delete_backups_exceeding_configured_count as delete_backups_exceeding_configured_count
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER, SECURETAR_CREATE_VERSION as SECURETAR_CREATE_VERSION
-from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder
+from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder, InvalidBackupFilename as InvalidBackupFilename
 from .store import BackupStore as BackupStore
 from .util import DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
 from _typeshed import Incomplete

@@ -16,7 +16,7 @@ DHW_CONFIG_INCLUDE: Incomplete
 
 @dataclass
 class BSBLanFastData:
-    state: State
+    states: dict[int, State]
     sensor: Sensor
     dhw: HotWaterState | None = ...
 
@@ -31,7 +31,8 @@ class BSBLanCoordinator[T](DataUpdateCoordinator[T]):
     def __init__(self, hass: HomeAssistant, config_entry: BSBLanConfigEntry, client: BSBLAN, name: str, update_interval: timedelta) -> None: ...
 
 class BSBLanFastCoordinator(BSBLanCoordinator[BSBLanFastData]):
-    def __init__(self, hass: HomeAssistant, config_entry: BSBLanConfigEntry, client: BSBLAN) -> None: ...
+    circuits: list[int]
+    def __init__(self, hass: HomeAssistant, config_entry: BSBLanConfigEntry, client: BSBLAN, circuits: list[int]) -> None: ...
     async def _async_update_data(self) -> BSBLanFastData: ...
 
 class BSBLanSlowCoordinator(BSBLanCoordinator[BSBLanSlowData]):

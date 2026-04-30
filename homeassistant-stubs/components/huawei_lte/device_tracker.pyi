@@ -1,9 +1,8 @@
-from . import Router as Router
-from .const import CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, DOMAIN as DOMAIN, KEY_LAN_HOST_INFO as KEY_LAN_HOST_INFO, KEY_WLAN_HOST_LIST as KEY_WLAN_HOST_LIST, UPDATE_SIGNAL as UPDATE_SIGNAL
+from . import HuaweiLteConfigEntry as HuaweiLteConfigEntry, Router as Router
+from .const import CONF_TRACK_WIRED_CLIENTS as CONF_TRACK_WIRED_CLIENTS, DEFAULT_TRACK_WIRED_CLIENTS as DEFAULT_TRACK_WIRED_CLIENTS, KEY_LAN_HOST_INFO as KEY_LAN_HOST_INFO, KEY_WLAN_HOST_LIST as KEY_WLAN_HOST_LIST, UPDATE_SIGNAL as UPDATE_SIGNAL
 from .entity import HuaweiLteBaseEntity as HuaweiLteBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
@@ -16,7 +15,7 @@ _DEVICE_SCAN: Incomplete
 type _HostType = dict[str, Any]
 
 def _get_hosts(router: Router, ignore_subscriptions: bool = False) -> list[_HostType] | None: ...
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HuaweiLteConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _is_wireless(host: _HostType) -> bool: ...
 def _is_connected(host: _HostType | None) -> bool: ...
 def _is_us(host: _HostType) -> bool: ...

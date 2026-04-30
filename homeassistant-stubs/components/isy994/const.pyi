@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.components.climate import FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_MEDIUM as FAN_MEDIUM, FAN_ON as FAN_ON, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST
 from homeassistant.components.lock import LockState as LockState
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, CURRENCY_CENT as CURRENCY_CENT, CURRENCY_DOLLAR as CURRENCY_DOLLAR, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, SERVICE_LOCK as SERVICE_LOCK, SERVICE_UNLOCK as SERVICE_UNLOCK, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_PROBLEM as STATE_PROBLEM, STATE_UNKNOWN as STATE_UNKNOWN, UV_INDEX as UV_INDEX, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfReactivePower as UnitOfReactivePower, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 
 _LOGGER: Incomplete
@@ -90,6 +91,7 @@ UOM_TO_STATES: Incomplete
 ISY_HVAC_MODES: Incomplete
 HA_HVAC_TO_ISY: Incomplete
 HA_FAN_TO_ISY: Incomplete
+TOTAL_INCREASING_DEVICE_CLASSES: Incomplete
 BINARY_SENSOR_DEVICE_TYPES_ISY: Incomplete
 BINARY_SENSOR_DEVICE_TYPES_ZWAVE: Incomplete
 SCHEME_HTTP: str

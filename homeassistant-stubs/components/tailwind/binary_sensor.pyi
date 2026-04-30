@@ -8,6 +8,8 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 @dataclass(kw_only=True, frozen=True)
 class TailwindDoorBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[TailwindDoor], bool]

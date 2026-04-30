@@ -8,6 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+PARALLEL_UPDATES: int
 SENSORS: tuple[SensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LuftdatenConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

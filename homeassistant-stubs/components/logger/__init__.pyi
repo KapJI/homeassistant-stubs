@@ -6,6 +6,7 @@ from .helpers import DATA_LOGGER as DATA_LOGGER, LoggerDomainConfig as LoggerDom
 from _typeshed import Incomplete
 from homeassistant.const import EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _VALID_LOG_LEVEL: Incomplete

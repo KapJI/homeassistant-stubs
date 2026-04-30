@@ -3,8 +3,7 @@ from . import RussoundConfigEntry as RussoundConfigEntry, media_browser as media
 from .const import DOMAIN as DOMAIN, RUSSOUND_MEDIA_TYPE_PRESET as RUSSOUND_MEDIA_TYPE_PRESET, SELECT_SOURCE_DELAY as SELECT_SOURCE_DELAY
 from .entity import RussoundBaseEntity as RussoundBaseEntity, command as command
 from _typeshed import Incomplete
-from aiorussound import Controller as Controller
-from aiorussound.models import Source as Source
+from aiorussound.rio import Controller as Controller, Source as Source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError

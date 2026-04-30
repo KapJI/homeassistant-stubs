@@ -18,14 +18,15 @@ DATA_LISTENERS: str
 DATA_SENSORS: str
 DATA_USER_PREFERENCES: str
 DEFAULT_SCAN_INTERVAL: Incomplete
+type NotionConfigEntry = ConfigEntry[NotionDataUpdateCoordinator]
 
 @callback
-def _async_register_new_bridge(hass: HomeAssistant, entry: ConfigEntry, bridge: Bridge) -> None: ...
+def _async_register_new_bridge(hass: HomeAssistant, entry: NotionConfigEntry, bridge: Bridge) -> None: ...
 
 @dataclass
 class NotionData:
     hass: HomeAssistant
-    entry: ConfigEntry
+    entry: NotionConfigEntry
     bridges: dict[int, Bridge] = field(default_factory=dict)
     listeners: dict[str, Listener] = field(default_factory=dict)
     sensors: dict[str, Sensor] = field(default_factory=dict)
@@ -37,7 +38,7 @@ class NotionData:
     def asdict(self) -> dict[str, Any]: ...
 
 class NotionDataUpdateCoordinator(DataUpdateCoordinator[NotionData]):
-    config_entry: ConfigEntry
+    config_entry: NotionConfigEntry
     _client: Incomplete
-    def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry, client: Client) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, entry: NotionConfigEntry, client: Client) -> None: ...
     async def _async_update_data(self) -> NotionData: ...

@@ -1,4 +1,4 @@
-from .const import API as API, DOMAIN as DOMAIN
+from .coordinator import Tami4ConfigEntry as Tami4ConfigEntry
 from .entity import Tami4EdgeBaseEntity as Tami4EdgeBaseEntity
 from Tami4EdgeAPI import Tami4EdgeAPI as Tami4EdgeAPI
 from Tami4EdgeAPI.drink import Drink as Drink
@@ -6,7 +6,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -23,7 +22,7 @@ class Tami4EdgeDrinkButtonEntityDescription(ButtonEntityDescription):
 
 BOIL_WATER_BUTTON: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: Tami4ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class Tami4EdgeButton(Tami4EdgeBaseEntity, ButtonEntity):
     entity_description: Tami4EdgeButtonEntityDescription

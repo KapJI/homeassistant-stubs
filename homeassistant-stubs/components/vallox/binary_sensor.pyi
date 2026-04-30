@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
+from .coordinator import ValloxConfigEntry as ValloxConfigEntry, ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from .entity import ValloxEntity as ValloxEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
@@ -23,4 +21,4 @@ class ValloxBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSOR_ENTITIES: tuple[ValloxBinarySensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ValloxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

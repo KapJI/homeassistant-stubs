@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from typing import TypedDict
 
 STORAGE_KEY = DOMAIN
@@ -26,10 +25,8 @@ class OnboardingStoreData(TypedDict):
 class OnboardingStorage(Store[OnboardingStoreData]):
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: OnboardingStoreData) -> OnboardingStoreData: ...
 
-@bind_hass
 @callback
 def async_is_onboarded(hass: HomeAssistant) -> bool: ...
-@bind_hass
 @callback
 def async_is_user_onboarded(hass: HomeAssistant) -> bool: ...
 @callback

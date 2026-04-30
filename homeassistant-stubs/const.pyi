@@ -379,6 +379,7 @@ class UnitOfEnergyDistance(StrEnum):
     KM_PER_KILO_WATT_HOUR = 'km/kWh'
 
 class UnitOfElectricCurrent(StrEnum):
+    MICROAMPERE = 'μA'
     MILLIAMPERE = 'mA'
     AMPERE = 'A'
 
@@ -422,6 +423,7 @@ class UnitOfLength(StrEnum):
     NAUTICAL_MILES = 'nmi'
 
 class UnitOfFrequency(StrEnum):
+    MILLIHERTZ = 'mHz'
     HERTZ = 'Hz'
     KILOHERTZ = 'kHz'
     MEGAHERTZ = 'MHz'

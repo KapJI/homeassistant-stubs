@@ -1,9 +1,11 @@
 from .const import CONF_KNX_CONNECTION_TYPE as CONF_KNX_CONNECTION_TYPE, CONF_KNX_INDIVIDUAL_ADDRESS as CONF_KNX_INDIVIDUAL_ADDRESS, CONF_KNX_KNXKEY_FILENAME as CONF_KNX_KNXKEY_FILENAME, CONF_KNX_KNXKEY_PASSWORD as CONF_KNX_KNXKEY_PASSWORD, CONF_KNX_LOCAL_IP as CONF_KNX_LOCAL_IP, CONF_KNX_MCAST_GRP as CONF_KNX_MCAST_GRP, CONF_KNX_MCAST_PORT as CONF_KNX_MCAST_PORT, CONF_KNX_RATE_LIMIT as CONF_KNX_RATE_LIMIT, CONF_KNX_ROUTE_BACK as CONF_KNX_ROUTE_BACK, CONF_KNX_ROUTING as CONF_KNX_ROUTING, CONF_KNX_ROUTING_BACKBONE_KEY as CONF_KNX_ROUTING_BACKBONE_KEY, CONF_KNX_ROUTING_SECURE as CONF_KNX_ROUTING_SECURE, CONF_KNX_ROUTING_SYNC_LATENCY_TOLERANCE as CONF_KNX_ROUTING_SYNC_LATENCY_TOLERANCE, CONF_KNX_SECURE_DEVICE_AUTHENTICATION as CONF_KNX_SECURE_DEVICE_AUTHENTICATION, CONF_KNX_SECURE_USER_ID as CONF_KNX_SECURE_USER_ID, CONF_KNX_SECURE_USER_PASSWORD as CONF_KNX_SECURE_USER_PASSWORD, CONF_KNX_STATE_UPDATER as CONF_KNX_STATE_UPDATER, CONF_KNX_TELEGRAM_LOG_SIZE as CONF_KNX_TELEGRAM_LOG_SIZE, CONF_KNX_TUNNELING as CONF_KNX_TUNNELING, CONF_KNX_TUNNELING_TCP as CONF_KNX_TUNNELING_TCP, CONF_KNX_TUNNELING_TCP_SECURE as CONF_KNX_TUNNELING_TCP_SECURE, CONF_KNX_TUNNEL_ENDPOINT_IA as CONF_KNX_TUNNEL_ENDPOINT_IA, KNX_ADDRESS as KNX_ADDRESS, TELEGRAM_LOG_DEFAULT as TELEGRAM_LOG_DEFAULT
 from .device import KNXInterfaceDevice as KNXInterfaceDevice
+from .entity import KnxEntityIdentifier as KnxEntityIdentifier
 from .expose import KnxExposeEntity as KnxExposeEntity, KnxExposeTime as KnxExposeTime
 from .project import KNXProject as KNXProject
 from .repairs import data_secure_group_key_issue_dispatcher as data_secure_group_key_issue_dispatcher
 from .storage.config_store import KNXConfigStore as KNXConfigStore
+from .storage.expose_controller import ExposeController as ExposeController
 from .storage.time_server import TimeServerController as TimeServerController
 from .telegrams import Telegrams as Telegrams
 from _typeshed import Incomplete
@@ -27,6 +29,7 @@ class KNXModule:
     connected: bool
     yaml_exposures: list[KnxExposeEntity | KnxExposeTime]
     service_exposures: dict[str, KnxExposeEntity | KnxExposeTime]
+    ui_expose_controller: Incomplete
     ui_time_server_controller: Incomplete
     entry: Incomplete
     project: Incomplete
@@ -36,14 +39,14 @@ class KNXModule:
     interface_device: Incomplete
     _address_filter_transcoder: dict[AddressFilter, type[DPTBase]]
     group_address_transcoder: dict[DeviceGroupAddress, type[DPTBase]]
-    group_address_entities: dict[DeviceGroupAddress, set[tuple[str, str]]]
+    group_address_entities: dict[DeviceGroupAddress, set[KnxEntityIdentifier]]
     knx_event_callback: TelegramQueue.Callback
     def __init__(self, hass: HomeAssistant, config: ConfigType, entry: ConfigEntry) -> None: ...
     async def start(self) -> None: ...
     async def stop(self, event: Event | None = None) -> None: ...
     def connection_config(self) -> ConnectionConfig: ...
-    def add_to_group_address_entities(self, group_addresses: set[DeviceGroupAddress], identifier: tuple[str, str]) -> None: ...
-    def remove_from_group_address_entities(self, group_addresses: set[DeviceGroupAddress], identifier: tuple[str, str]) -> None: ...
+    def add_to_group_address_entities(self, group_addresses: set[DeviceGroupAddress], identifier: KnxEntityIdentifier) -> None: ...
+    def remove_from_group_address_entities(self, group_addresses: set[DeviceGroupAddress], identifier: KnxEntityIdentifier) -> None: ...
     def connection_state_changed_cb(self, state: XknxConnectionState) -> None: ...
     def telegram_received_cb(self, telegram: Telegram) -> None: ...
     def register_event_callback(self) -> TelegramQueue.Callback: ...

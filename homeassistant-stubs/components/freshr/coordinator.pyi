@@ -8,8 +8,9 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyfreshr import FreshrClient
-from pyfreshr.models import DeviceReadings, DeviceSummary
+from pyfreshr.models import DeviceReadings, DeviceSummary, DeviceType
 
+_DEVICE_TYPE_NAMES: dict[DeviceType, str]
 DEVICES_SCAN_INTERVAL: Incomplete
 READINGS_SCAN_INTERVAL: Incomplete
 
@@ -19,16 +20,17 @@ class FreshrData:
     readings: dict[str, FreshrReadingsCoordinator]
 type FreshrConfigEntry = ConfigEntry[FreshrData]
 
-class FreshrDevicesCoordinator(DataUpdateCoordinator[list[DeviceSummary]]):
+class FreshrDevicesCoordinator(DataUpdateCoordinator[dict[str, DeviceSummary]]):
     config_entry: FreshrConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FreshrConfigEntry) -> None: ...
-    async def _async_update_data(self) -> list[DeviceSummary]: ...
+    async def _async_update_data(self) -> dict[str, DeviceSummary]: ...
 
 class FreshrReadingsCoordinator(DataUpdateCoordinator[DeviceReadings]):
     config_entry: FreshrConfigEntry
     _device: Incomplete
     _client: Incomplete
+    device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FreshrConfigEntry, device: DeviceSummary, client: FreshrClient) -> None: ...
     @property
     def device_id(self) -> str: ...

@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -13,7 +13,6 @@ from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatfo
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from propcache.api import cached_property
 from typing import Any, final
 
@@ -42,7 +41,6 @@ DEFAULT_NAME: str
 ISSUE_SEGMENTS_CHANGED: str
 _BATTERY_DEPRECATION_IGNORED_PLATFORMS: Incomplete
 
-@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -106,7 +104,8 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     @property
     def last_seen_segments(self) -> list[Segment] | None: ...
     @final
-    async def async_internal_clean_area(self, cleaning_area_id: list[str], **kwargs: Any) -> None: ...
+    @staticmethod
+    async def async_internal_clean_area(entities: list[StateVacuumEntity], call: ServiceCall) -> None: ...
     def clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
     async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
     @callback

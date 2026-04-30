@@ -10,6 +10,7 @@ from datetime import datetime as dt
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, messages as messages
+from homeassistant.const import EVENT_CALL_SERVICE as EVENT_CALL_SERVICE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.json import json_bytes as json_bytes

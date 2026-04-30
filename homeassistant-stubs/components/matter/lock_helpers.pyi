@@ -23,6 +23,8 @@ class LockUserData(TypedDict):
     user_type: str
     credential_rule: str
     credentials: list[LockUserCredentialData]
+    creator_fabric_index: int | None
+    last_modified_fabric_index: int | None
     next_user_index: int | None
 
 class SetLockUserResult(TypedDict):
@@ -52,6 +54,8 @@ class SetLockCredentialResult(TypedDict):
 class GetLockCredentialStatusResult(TypedDict):
     credential_exists: bool
     user_index: int | None
+    creator_fabric_index: int | None
+    last_modified_fabric_index: int | None
     next_credential_index: int | None
 
 def _get_lock_endpoint_from_node(node: MatterNode) -> MatterEndpoint | None: ...

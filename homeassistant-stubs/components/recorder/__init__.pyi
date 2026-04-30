@@ -11,7 +11,6 @@ from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEM
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.recorder import DATA_INSTANCE as DATA_INSTANCE
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.event_type import EventType as EventType
 from typing import Any
 
@@ -39,7 +38,6 @@ def validate_db_url(db_url: str) -> Any: ...
 
 CONFIG_SCHEMA: Incomplete
 
-@bind_hass
 def is_entity_recorded(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def _async_setup_integration_platform(hass: HomeAssistant, instance: Recorder) -> None: ...

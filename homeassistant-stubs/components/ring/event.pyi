@@ -3,7 +3,7 @@ from .coordinator import RingListenCoordinator as RingListenCoordinator
 from .entity import RingBaseEntity as RingBaseEntity, RingDeviceT as RingDeviceT
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
+from homeassistant.components.event import DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingCapability, RingEvent as RingAlert

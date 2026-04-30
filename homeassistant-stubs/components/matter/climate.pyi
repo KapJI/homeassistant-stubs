@@ -1,12 +1,11 @@
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
-from .helpers import get_matter as get_matter
+from .helpers import MatterConfigEntry as MatterConfigEntry
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
 from dataclasses import dataclass
 from enum import IntEnum
-from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityDescription as ClimateEntityDescription, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityDescription as ClimateEntityDescription, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MAX_TEMP as DEFAULT_MAX_TEMP, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE, PRESET_SLEEP as PRESET_SLEEP
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -15,11 +14,11 @@ from typing import Any
 HUMIDITY_SCALING_FACTOR: int
 TEMPERATURE_SCALING_FACTOR: int
 HVAC_SYSTEM_MODE_MAP: Incomplete
+PRESET_SCENARIO_TO_HA_PRESET: dict[int, str]
 SINGLE_SETPOINT_DEVICES: set[tuple[int, int]]
 SUPPORT_DRY_MODE_DEVICES: set[tuple[int, int]]
 SUPPORT_FAN_MODE_DEVICES: set[tuple[int, int]]
 SystemModeEnum: Incomplete
-ControlSequenceEnum: Incomplete
 ThermostatFeature: Incomplete
 
 class ThermostatRunningState(IntEnum):
@@ -31,7 +30,7 @@ class ThermostatRunningState(IntEnum):
     FanStage2 = 32
     FanStage3 = 64
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MatterClimateEntityDescription(ClimateEntityDescription, MatterEntityDescription): ...
@@ -39,20 +38,35 @@ class MatterClimateEntityDescription(ClimateEntityDescription, MatterEntityDescr
 class MatterClimate(MatterEntity, ClimateEntity):
     _attr_temperature_unit: str
     _attr_hvac_mode: HVACMode
+    _matter_presets: list[clusters.Thermostat.Structs.PresetStruct]
+    _attr_preset_mode: str | None
+    _attr_preset_modes: list[str] | None
     _feature_map: int | None
     _platform_translation_key: str
+    _preset_handle_by_name: dict[str, bytes | None]
+    _preset_name_by_handle: dict[bytes | None, str]
+    def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
+    @callback
+    def _update_from_device(self) -> None: ...
+    @callback
+    def _update_presets(self) -> None: ...
     _attr_hvac_action: Incomplete
+    @callback
+    def _update_hvac_mode_and_action(self) -> None: ...
     _attr_target_temperature: Incomplete
     _attr_target_temperature_high: Incomplete
     _attr_target_temperature_low: Incomplete
+    @callback
+    def _update_target_temperatures(self) -> None: ...
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     @callback
-    def _update_from_device(self) -> None: ...
+    def _update_temperature_limits(self) -> None: ...
     _attr_hvac_modes: list[HVACMode]
     _attr_supported_features: Incomplete
     @callback

@@ -1,4 +1,5 @@
-from .models import USBDevice
+from .models import SerialDevice as SerialDevice, USBDevice as USBDevice
+from .utils import scan_serial_ports as scan_serial_ports, usb_device_from_path as usb_device_from_path, usb_device_matches_matcher as usb_device_matches_matcher, usb_service_info_from_device as usb_service_info_from_device, usb_unique_id_from_service_info as usb_unique_id_from_service_info
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine, Sequence
 from homeassistant.components import websocket_api
@@ -7,9 +8,10 @@ from homeassistant.helpers.debounce import Debouncer
 from homeassistant.loader import USBMatcher
 from typing import Any, overload
 
-__all__ = ['USBCallbackMatcher', 'async_register_port_event_callback', 'async_register_scan_request_callback']
+__all__ = ['SerialDevice', 'USBCallbackMatcher', 'USBDevice', 'async_register_port_event_callback', 'async_register_scan_request_callback', 'async_register_serial_port_scanner', 'async_scan_serial_ports', 'scan_serial_ports', 'usb_device_from_path', 'usb_device_matches_matcher', 'usb_service_info_from_device', 'usb_unique_id_from_service_info']
 
 PORT_EVENT_CALLBACK_TYPE = Callable[[set[USBDevice], set[USBDevice]], None]
+SERIAL_PORT_SCANNER_TYPE = Callable[[HomeAssistant], Sequence[USBDevice | SerialDevice]]
 
 class USBCallbackMatcher(USBMatcher): ...
 
@@ -17,6 +19,9 @@ class USBCallbackMatcher(USBMatcher): ...
 def async_register_scan_request_callback(hass: HomeAssistant, callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
 @hass_callback
 def async_register_port_event_callback(hass: HomeAssistant, callback: PORT_EVENT_CALLBACK_TYPE) -> CALLBACK_TYPE: ...
+async def async_scan_serial_ports(hass: HomeAssistant) -> Sequence[USBDevice | SerialDevice]: ...
+@hass_callback
+def async_register_serial_port_scanner(hass: HomeAssistant, scanner: SERIAL_PORT_SCANNER_TYPE) -> CALLBACK_TYPE: ...
 
 class USBDiscovery:
     hass: Incomplete
@@ -28,6 +33,7 @@ class USBDiscovery:
     initial_scan_done: bool
     _initial_scan_callbacks: list[CALLBACK_TYPE]
     _port_event_callbacks: set[PORT_EVENT_CALLBACK_TYPE]
+    _serial_port_scanners: list[SERIAL_PORT_SCANNER_TYPE]
     _last_processed_devices: set[USBDevice]
     _scan_lock: Incomplete
     def __init__(self, hass: HomeAssistant, usb: list[USBMatcher]) -> None: ...
@@ -44,6 +50,9 @@ class USBDiscovery:
     def async_register_initial_scan_callback(self, callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
     @hass_callback
     def async_register_port_event_callback(self, callback: PORT_EVENT_CALLBACK_TYPE) -> CALLBACK_TYPE: ...
+    @hass_callback
+    def async_register_serial_port_scanner(self, scanner: SERIAL_PORT_SCANNER_TYPE) -> CALLBACK_TYPE: ...
+    async def async_scan_serial_ports(self) -> Sequence[USBDevice | SerialDevice]: ...
     @hass_callback
     def async_get_usb_matchers_for_device(self, device: USBDevice) -> list[USBMatcher]: ...
     async def _async_process_discovered_usb_device(self, device: USBDevice) -> None: ...

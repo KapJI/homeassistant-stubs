@@ -1,4 +1,5 @@
 from . import UnifiConfigEntry as UnifiConfigEntry
+from .const import DOMAIN as DOMAIN
 from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
@@ -10,9 +11,12 @@ from dataclasses import dataclass
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription, LightEntityFeature as LightEntityFeature
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.color import rgb_hex_to_rgb_list as rgb_hex_to_rgb_list
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 def convert_brightness_to_unifi(ha_brightness: int) -> int: ...
 def convert_brightness_to_ha(unifi_brightness: int) -> int: ...

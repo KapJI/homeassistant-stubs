@@ -10,7 +10,6 @@ from homeassistant.helpers.discovery_flow import DiscoveryKey as DiscoveryKey
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as _ZeroconfServiceInfo
 from homeassistant.loader import HomeKitDiscoveredIntegration as HomeKitDiscoveredIntegration, ZeroconfMatcher as ZeroconfMatcher
-from homeassistant.util.hass_dict import HassKey as HassKey
 from ipaddress import IPv4Address, IPv6Address
 from typing import Any, Final
 from zeroconf import ServiceStateChange
@@ -27,7 +26,6 @@ ATTR_DOMAIN: Final[str]
 ATTR_NAME: Final[str]
 ATTR_PROPERTIES: Final[str]
 DUPLICATE_INSTANCE_ID_ISSUE_ID: str
-DATA_DISCOVERY: HassKey[ZeroconfDiscovery]
 
 def build_homekit_model_lookups(homekit_models: dict[str, HomeKitDiscoveredIntegration]) -> tuple[dict[str, HomeKitDiscoveredIntegration], dict[re.Pattern, HomeKitDiscoveredIntegration]]: ...
 def _compile_fnmatch(pattern: str) -> re.Pattern: ...

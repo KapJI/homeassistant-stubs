@@ -1,16 +1,14 @@
 import abc
-from .const import DOMAIN as DOMAIN
-from .coordinator import SurePetcareDataCoordinator as SurePetcareDataCoordinator
+from .coordinator import SurePetcareConfigEntry as SurePetcareConfigEntry, SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .entity import SurePetcareEntity as SurePetcareEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from surepy.entities import SurepyEntity as SurepyEntity
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SurePetcareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SurePetcareBinarySensor(SurePetcareEntity, BinarySensorEntity, metaclass=abc.ABCMeta):
     _attr_name: Incomplete

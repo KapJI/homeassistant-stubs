@@ -1,10 +1,8 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import RidwellDataUpdateCoordinator as RidwellDataUpdateCoordinator
+from .coordinator import RidwellConfigEntry as RidwellConfigEntry, RidwellDataUpdateCoordinator as RidwellDataUpdateCoordinator
 from .entity import RidwellEntity as RidwellEntity
 from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -12,7 +10,7 @@ from typing import Any
 
 SWITCH_DESCRIPTION: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RidwellConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RidwellSwitch(RidwellEntity, SwitchEntity):
     _attr_unique_id: Incomplete

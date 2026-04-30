@@ -1,6 +1,6 @@
 from . import BSBLanConfigEntry as BSBLanConfigEntry, BSBLanData as BSBLanData
 from .const import DOMAIN as DOMAIN
-from .entity import BSBLanDualCoordinatorEntity as BSBLanDualCoordinatorEntity
+from .entity import BSBLanWaterHeaterDeviceEntity as BSBLanWaterHeaterDeviceEntity
 from _typeshed import Incomplete
 from bsblan import HotWaterState as HotWaterState
 from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_OFF as STATE_OFF, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
@@ -17,7 +17,7 @@ HA_TO_BSBLAN_OPERATION_MODE: dict[str, int]
 
 async def async_setup_entry(hass: HomeAssistant, entry: BSBLanConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class BSBLANWaterHeater(BSBLanDualCoordinatorEntity, WaterHeaterEntity):
+class BSBLANWaterHeater(BSBLanWaterHeaterDeviceEntity, WaterHeaterEntity):
     _attr_name: Incomplete
     _attr_operation_list: Incomplete
     _attr_supported_features: Incomplete

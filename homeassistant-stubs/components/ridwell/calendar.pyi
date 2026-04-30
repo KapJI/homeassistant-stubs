@@ -1,17 +1,16 @@
 import datetime
-from .const import CALENDAR_TITLE_NONE as CALENDAR_TITLE_NONE, CALENDAR_TITLE_ROTATING as CALENDAR_TITLE_ROTATING, CALENDAR_TITLE_STATUS as CALENDAR_TITLE_STATUS, CONF_CALENDAR_TITLE as CONF_CALENDAR_TITLE, DOMAIN as DOMAIN
-from .coordinator import RidwellDataUpdateCoordinator as RidwellDataUpdateCoordinator
+from .const import CALENDAR_TITLE_NONE as CALENDAR_TITLE_NONE, CALENDAR_TITLE_ROTATING as CALENDAR_TITLE_ROTATING, CALENDAR_TITLE_STATUS as CALENDAR_TITLE_STATUS, CONF_CALENDAR_TITLE as CONF_CALENDAR_TITLE
+from .coordinator import RidwellConfigEntry as RidwellConfigEntry, RidwellDataUpdateCoordinator as RidwellDataUpdateCoordinator
 from .entity import RidwellEntity as RidwellEntity
 from _typeshed import Incomplete
 from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEvent as RidwellPickupEvent
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 @callback
-def async_get_calendar_event_from_pickup_event(pickup_event: RidwellPickupEvent, config_entry: ConfigEntry) -> CalendarEvent: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+def async_get_calendar_event_from_pickup_event(pickup_event: RidwellPickupEvent, config_entry: RidwellConfigEntry) -> CalendarEvent: ...
+async def async_setup_entry(hass: HomeAssistant, entry: RidwellConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RidwellCalendar(RidwellEntity, CalendarEntity):
     _attr_name: Incomplete

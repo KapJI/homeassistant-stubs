@@ -1,7 +1,7 @@
 from . import RussoundConfigEntry as RussoundConfigEntry
 from .entity import RussoundBaseEntity as RussoundBaseEntity, command as command
 from _typeshed import Incomplete
-from aiorussound.rio import Controller as Controller, ZoneControlSurface as ZoneControlSurface
+from aiorussound.rio.client import Controller as Controller, ZoneControlSurface as ZoneControlSurface
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription

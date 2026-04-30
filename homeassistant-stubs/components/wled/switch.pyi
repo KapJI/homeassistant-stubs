@@ -3,13 +3,23 @@ from .coordinator import WLEDConfigEntry as WLEDConfigEntry, WLEDDataUpdateCoord
 from .entity import WLEDEntity as WLEDEntity
 from .helpers import wled_exception_handler as wled_exception_handler
 from _typeshed import Incomplete
-from homeassistant.components.switch import SwitchEntity as SwitchEntity
+from collections.abc import Awaitable, Callable as Callable
+from dataclasses import dataclass
+from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
+from wled import WLED as WLED
 
 PARALLEL_UPDATES: int
+
+@dataclass(frozen=True, kw_only=True)
+class WLEDSegmentSwitchEntityDescription(SwitchEntityDescription):
+    segment_translation_key: str
+    set_segment: Callable[[WLED, int, bool], Awaitable[None]]
+
+SEGMENT_SWITCHES: tuple[WLEDSegmentSwitchEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -55,21 +65,23 @@ class WLEDSyncReceiveSwitch(WLEDEntity, SwitchEntity):
     @wled_exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
-class WLEDReverseSwitch(WLEDEntity, SwitchEntity):
+class WLEDSegmentSwitch(WLEDEntity, SwitchEntity):
+    entity_description: WLEDSegmentSwitchEntityDescription
     _attr_entity_category: Incomplete
-    _attr_translation_key: str
-    _segment: int
+    _segment: Incomplete
+    _attr_translation_key: Incomplete
     _attr_translation_placeholders: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int) -> None: ...
+    def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int, description: WLEDSegmentSwitchEntityDescription) -> None: ...
     @property
     def available(self) -> bool: ...
     @property
     def is_on(self) -> bool: ...
-    @wled_exception_handler
-    async def async_turn_off(self, **kwargs: Any) -> None: ...
+    async def _async_set_state(self, value: bool) -> None: ...
     @wled_exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @wled_exception_handler
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 @callback
 def async_update_segments(coordinator: WLEDDataUpdateCoordinator, current_ids: set[int], async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

@@ -9,7 +9,6 @@ from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_DISKS as CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from homeassistant.util.dt import utcnow as utcnow
 from synology_dsm.api.core.external_usb import SynoCoreExternalUSBDevice as SynoCoreExternalUSBDevice
 
 @dataclass(frozen=True, kw_only=True)
@@ -49,8 +48,5 @@ class SynoDSMExternalUSBSensor(SynologyDSMDeviceEntity, SynoDSMSensor):
     def available(self) -> bool: ...
 
 class SynoDSMInfoSensor(SynoDSMSensor):
-    _previous_uptime: str | None
-    _last_boot: datetime | None
-    def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> StateType | datetime: ...

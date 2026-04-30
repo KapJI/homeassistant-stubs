@@ -1,14 +1,13 @@
-from .const import DOMAIN_DATA as DOMAIN_DATA
+from . import AbodeConfigEntry as AbodeConfigEntry
 from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverEntity as CoverEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jaraco.abode.devices.cover import Cover as Cover
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AbodeCover(AbodeDevice, CoverEntity):
     _device: Cover

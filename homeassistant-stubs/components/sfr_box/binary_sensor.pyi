@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from sfrbox_api.models import DslInfo, FtthInfo, WanInfo
+from sfrbox_api.models import DslInfo, FtthInfo, VoipInfo, WanInfo
 
 PARALLEL_UPDATES: int
 
@@ -16,6 +16,7 @@ class SFRBoxBinarySensorEntityDescription[_T](BinarySensorEntityDescription):
 
 DSL_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[DslInfo], ...]
 FTTH_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[FtthInfo], ...]
+VOIP_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[VoipInfo], ...]
 WAN_SENSOR_TYPES: tuple[SFRBoxBinarySensorEntityDescription[WanInfo], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: SFRConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

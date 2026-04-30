@@ -1,13 +1,13 @@
 import abc
 from .const import FitbitUnitSystem as FitbitUnitSystem
 from .exceptions import FitbitApiException as FitbitApiException, FitbitAuthException as FitbitAuthException
-from .model import FitbitProfile as FitbitProfile
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Awaitable, Callable as Callable
 from fitbit import Fitbit
 from fitbit_web_api import ApiClient
 from fitbit_web_api.models.device import Device as Device
+from fitbit_web_api.models.user import User as User
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
@@ -21,14 +21,14 @@ CONF_EXPIRES_AT: str
 
 class FitbitApi(ABC, metaclass=abc.ABCMeta):
     _hass: Incomplete
-    _profile: FitbitProfile | None
+    _profile: User | None
     _unit_system: Incomplete
     def __init__(self, hass: HomeAssistant, unit_system: FitbitUnitSystem | None = None) -> None: ...
     @abstractmethod
     async def async_get_access_token(self) -> dict[str, Any]: ...
     async def _async_get_client(self) -> Fitbit: ...
     async def _async_get_fitbit_web_api(self) -> ApiClient: ...
-    async def async_get_user_profile(self) -> FitbitProfile: ...
+    async def async_get_user_profile(self) -> User: ...
     async def async_get_unit_system(self) -> FitbitUnitSystem: ...
     async def async_get_devices(self) -> list[Device]: ...
     async def async_get_latest_time_series(self, resource_type: str) -> dict[str, Any]: ...

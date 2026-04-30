@@ -1,8 +1,9 @@
 import voluptuous as vol
 from .const import DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
-from homeassistant.const import CONF_URL as CONF_URL
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any, Final
 
 DATA_SCHEMA: Final[vol.Schema]
@@ -10,5 +11,9 @@ DATA_SCHEMA: Final[vol.Schema]
 class LunatoneConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
+    _data: dict[str, Any]
+    def __init__(self) -> None: ...
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

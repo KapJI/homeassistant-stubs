@@ -8,6 +8,8 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: TailwindConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TailwindDoorCoverEntity(TailwindDoorEntity, CoverEntity):

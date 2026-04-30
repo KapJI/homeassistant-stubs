@@ -1,8 +1,10 @@
 from ..const import ALWAYS_CONTINUOUS_DOMAINS as ALWAYS_CONTINUOUS_DOMAINS, CONDITIONALLY_CONTINUOUS_DOMAINS as CONDITIONALLY_CONTINUOUS_DOMAINS
 from _typeshed import Incomplete
+from collections.abc import Collection
 from homeassistant.components.recorder.db_schema import EVENTS_CONTEXT_ID_BIN_INDEX as EVENTS_CONTEXT_ID_BIN_INDEX, EventData as EventData, EventTypes as EventTypes, Events as Events, OLD_FORMAT_ATTRS_JSON as OLD_FORMAT_ATTRS_JSON, OLD_STATE as OLD_STATE, SHARED_ATTRS_JSON as SHARED_ATTRS_JSON, SHARED_DATA_OR_LEGACY_EVENT_DATA as SHARED_DATA_OR_LEGACY_EVENT_DATA, STATES_CONTEXT_ID_BIN_INDEX as STATES_CONTEXT_ID_BIN_INDEX, StateAttributes as StateAttributes, States as States, StatesMeta as StatesMeta
 from homeassistant.components.recorder.filters import like_domain_matchers as like_domain_matchers
 from sqlalchemy.sql.elements import BooleanClauseList as BooleanClauseList, ColumnElement as ColumnElement
+from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 from sqlalchemy.sql.selectable import Select as Select
 from typing import Final
 
@@ -22,6 +24,7 @@ CONTEXT_ONLY: Incomplete
 NOT_CONTEXT_ONLY: Incomplete
 
 def select_events_context_id_subquery(start_day: float, end_day: float, event_type_ids: tuple[int, ...]) -> Select: ...
+def select_context_user_ids_for_context_ids(context_ids: Collection[bytes]) -> StatementLambdaElement: ...
 def select_events_context_only() -> Select: ...
 def select_states_context_only() -> Select: ...
 def select_events_without_states(start_day: float, end_day: float, event_type_ids: tuple[int, ...]) -> Select: ...

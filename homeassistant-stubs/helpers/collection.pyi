@@ -153,9 +153,10 @@ class StorageCollectionWebsocket[_StorageCollectionT: StorageCollection]:
     model_name: Incomplete
     create_schema: Incomplete
     update_schema: Incomplete
+    admin_only: Incomplete
     _remove_subscription: CALLBACK_TYPE | None
     _subscribers: set[tuple[websocket_api.ActiveConnection, int]]
-    def __init__(self, storage_collection: _StorageCollectionT, api_prefix: str, model_name: str, create_schema: VolDictType, update_schema: VolDictType) -> None: ...
+    def __init__(self, storage_collection: _StorageCollectionT, api_prefix: str, model_name: str, create_schema: VolDictType, update_schema: VolDictType, *, admin_only: bool = False) -> None: ...
     @property
     def item_id_key(self) -> str: ...
     @callback

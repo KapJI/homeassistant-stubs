@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .entity import NewZwaveDiscoveryInfo as NewZwaveDiscoveryInfo, ZWaveBaseEntity as ZWaveBaseEntity
 from .helpers import get_opening_state_notification_value as get_opening_state_notification_value, is_opening_state_notification_value as is_opening_state_notification_value
-from .models import NewZWaveDiscoverySchema as NewZWaveDiscoverySchema, ValueType as ValueType, ZWaveValueDiscoverySchema as ZWaveValueDiscoverySchema, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, ZwaveJSConfigEntry as ZwaveJSConfigEntry
+from .models import FirmwareVersionRange as FirmwareVersionRange, NewZWaveDiscoverySchema as NewZWaveDiscoverySchema, ValueType as ValueType, ZWaveValueDiscoverySchema as ZWaveValueDiscoverySchema, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass, field

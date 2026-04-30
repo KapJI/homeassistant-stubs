@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from typing import Any
 from uiprotect import ProtectApiClient as ProtectApiClient
-from uiprotect.data import Camera, ModelType, NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
+from uiprotect.data import Camera, ModelType, NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel, Relay, Siren, WSSubscriptionMessage as WSSubscriptionMessage
 from uiprotect.websocket import WebsocketState
 
 _LOGGER: Incomplete
@@ -27,9 +27,12 @@ class ProtectData:
     _hass: Incomplete
     _update_interval: Incomplete
     _subscriptions: defaultdict[str, set[Callable[[ProtectDeviceType], None]]]
+    _relay_subscriptions: defaultdict[str, set[Callable[[Relay], None]]]
+    _siren_subscriptions: defaultdict[str, set[Callable[[Siren], None]]]
     _pending_camera_ids: set[str]
     _unsubs: list[CALLBACK_TYPE]
     _auth_failures: int
+    auth_retries: int
     last_update_success: bool
     api: Incomplete
     adopt_signal: Incomplete
@@ -49,6 +52,8 @@ class ProtectData:
     async def async_load_ptz_patrols_for_camera(self, camera: Camera) -> None: ...
     @callback
     def async_setup(self) -> None: ...
+    @callback
+    def _async_process_public_devices_ws_message(self, message: WSSubscriptionMessage) -> None: ...
     @callback
     def _async_websocket_state_changed(self, state: WebsocketState) -> None: ...
     def _async_update_change(self, success: bool, force_update: bool = False, exception: Exception | None = None) -> None: ...
@@ -74,7 +79,17 @@ class ProtectData:
     @callback
     def _async_unsubscribe(self, mac: str, update_callback: Callable[[ProtectDeviceType], None]) -> None: ...
     @callback
+    def async_subscribe_relay(self, mac: str, update_callback: Callable[[Relay], None]) -> CALLBACK_TYPE: ...
+    @callback
+    def _async_unsubscribe_relay(self, mac: str, update_callback: Callable[[Relay], None]) -> None: ...
+    @callback
+    def async_subscribe_siren(self, mac: str, update_callback: Callable[[Siren], None]) -> CALLBACK_TYPE: ...
+    @callback
+    def _async_unsubscribe_siren(self, mac: str, update_callback: Callable[[Siren], None]) -> None: ...
+    @callback
     def _async_signal_device_update(self, device: ProtectDeviceType) -> None: ...
+    @callback
+    def _async_signal_siren_update(self, siren: Siren) -> None: ...
 
 @callback
 def async_ufp_instance_for_config_entry_ids(hass: HomeAssistant, config_entry_ids: set[str]) -> ProtectApiClient | None: ...

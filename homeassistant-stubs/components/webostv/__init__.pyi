@@ -1,4 +1,4 @@
-from .const import DATA_HASS_CONFIG as DATA_HASS_CONFIG, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, WEBOSTV_EXCEPTIONS as WEBOSTV_EXCEPTIONS
 from .helpers import WebOsTvConfigEntry as WebOsTvConfigEntry, update_client_key as update_client_key
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete

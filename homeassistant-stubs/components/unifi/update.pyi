@@ -1,5 +1,6 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
+from .const import DOMAIN as DOMAIN
 from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import ItemEvent
@@ -9,10 +10,12 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_device_control_fn(api: aiounifi.Controller, obj_id: str) -> None: ...
 

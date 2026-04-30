@@ -8,7 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
+from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import SetupPhases as SetupPhases, async_prepare_setup_platform as async_prepare_setup_platform, async_start_setup as async_start_setup
 from homeassistant.util import slugify as slugify
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -25,9 +25,7 @@ class LegacyNotifyPlatform(Protocol):
 
 @callback
 def async_setup_legacy(hass: HomeAssistant, config: ConfigType) -> list[Coroutine[Any, Any, None]]: ...
-@bind_hass
 async def async_reload(hass: HomeAssistant, integration_name: str) -> None: ...
-@bind_hass
 async def async_reset_platform(hass: HomeAssistant, integration_name: str) -> None: ...
 def _async_integration_has_notify_services(hass: HomeAssistant, integration_name: str) -> bool: ...
 

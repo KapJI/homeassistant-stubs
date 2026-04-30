@@ -1,8 +1,7 @@
-from .const import DOMAIN_DATA as DOMAIN_DATA
+from . import AbodeConfigEntry as AbodeConfigEntry
 from .entity import AbodeAutomation as AbodeAutomation, AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -11,7 +10,7 @@ from typing import Any
 
 DEVICE_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AbodeSwitch(AbodeDevice, SwitchEntity):
     _device: Switch

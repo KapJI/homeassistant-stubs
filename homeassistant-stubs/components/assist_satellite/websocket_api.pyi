@@ -18,5 +18,6 @@ def websocket_get_configuration(hass: HomeAssistant, connection: websocket_api.c
 @websocket_api.require_admin
 @websocket_api.async_response
 async def websocket_set_wake_words(hass: HomeAssistant, connection: websocket_api.connection.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
 @websocket_api.async_response
 async def websocket_test_connection(hass: HomeAssistant, connection: websocket_api.connection.ActiveConnection, msg: dict[str, Any]) -> None: ...

@@ -20,7 +20,6 @@ from homeassistant.helpers.script import ATTR_CUR as ATTR_CUR, ATTR_MAX as ATTR_
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.trace import trace_get as trace_get, trace_path as trace_path
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from propcache.api import cached_property
@@ -30,7 +29,6 @@ SCRIPT_SERVICE_SCHEMA: Incomplete
 SCRIPT_TURN_ONOFF_SCHEMA: Incomplete
 RELOAD_SERVICE_SCHEMA: Incomplete
 
-@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 def _scripts_with_x(hass: HomeAssistant, referenced_id: str, property_name: str) -> list[str]: ...
 def _x_in_script(hass: HomeAssistant, entity_id: str, property_name: str) -> list[str]: ...

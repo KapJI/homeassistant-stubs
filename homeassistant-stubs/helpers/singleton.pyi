@@ -1,6 +1,5 @@
 from collections.abc import Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Literal, overload
 

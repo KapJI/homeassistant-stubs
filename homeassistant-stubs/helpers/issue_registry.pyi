@@ -16,6 +16,7 @@ EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED: EventType[EventIssueRegistryUpdatedData]
 STORAGE_KEY: str
 STORAGE_VERSION_MAJOR: int
 STORAGE_VERSION_MINOR: int
+FRONTEND_HANDLED_ISSUES: dict[str, set[str]]
 
 class EventIssueRegistryUpdatedData(TypedDict):
     action: Literal['create', 'remove', 'update']

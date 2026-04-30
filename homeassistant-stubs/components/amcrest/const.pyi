@@ -2,7 +2,6 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 DATA_AMCREST = DOMAIN
-CAMERAS: str
 DEVICES: str
 BINARY_SENSOR_SCAN_INTERVAL_SECS: int
 CAMERA_WEB_SESSION_TIMEOUT: int
@@ -14,3 +13,6 @@ SERVICE_EVENT: str
 SERVICE_UPDATE: str
 RESOLUTION_LIST: Incomplete
 RESOLUTION_TO_STREAM: Incomplete
+ATTR_COLOR_BW: str
+CBW: Incomplete
+MOV: Incomplete

@@ -1,23 +1,23 @@
-from . import Router as Router
-from .const import DOMAIN as DOMAIN, KEY_NET_NET_MODE as KEY_NET_NET_MODE
+from . import HuaweiLteConfigEntry as HuaweiLteConfigEntry, Router as Router
+from .const import KEY_NET_NET_MODE as KEY_NET_NET_MODE
 from .entity import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import Any
 
 _LOGGER: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class HuaweiSelectEntityDescription(SelectEntityDescription):
-    setter_fn: Callable[[str], None]
+    setter_fn: Callable[[str], Any]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HuaweiLteConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HuaweiLteSelectEntity(HuaweiLteBaseEntityWithDevice, SelectEntity):
     entity_description: HuaweiSelectEntityDescription

@@ -7,9 +7,9 @@ from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntryType as DeviceEntryType, format_mac as format_mac
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntry as DeviceEntry, DeviceEntryType as DeviceEntryType, format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -25,9 +25,11 @@ SQUEEZEBOX_HASS_DATA: HassKey[asyncio.Task]
 class SqueezeboxData:
     coordinator: LMSStatusDataUpdateCoordinator
     server: Server
+    player_coordinators: dict[str, SqueezeBoxPlayerUpdateCoordinator] = field(default_factory=dict)
     known_player_ids: set[str] = field(default_factory=set)
 type SqueezeboxConfigEntry = ConfigEntry[SqueezeboxData]
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry) -> bool: ...
+async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: SqueezeboxConfigEntry, device_entry: DeviceEntry) -> bool: ...

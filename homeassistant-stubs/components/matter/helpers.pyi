@@ -2,6 +2,7 @@ import asyncio
 from .adapter import MatterAdapter as MatterAdapter
 from .const import DOMAIN as DOMAIN, ID_TYPE_DEVICE_ID as ID_TYPE_DEVICE_ID
 from dataclasses import dataclass
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
@@ -14,6 +15,7 @@ class MissingNode(HomeAssistantError): ...
 class MatterEntryData:
     adapter: MatterAdapter
     listen_task: asyncio.Task
+type MatterConfigEntry = ConfigEntry[MatterEntryData]
 
 @callback
 def get_matter(hass: HomeAssistant) -> MatterAdapter: ...

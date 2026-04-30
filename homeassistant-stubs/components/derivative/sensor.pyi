@@ -28,6 +28,7 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 class DerivativeSensor(RestoreSensor, SensorEntity):
     _attr_translation_key: str
     _attr_should_poll: bool
+    _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
     device_entry: Incomplete
     _sensor_source_id: Incomplete

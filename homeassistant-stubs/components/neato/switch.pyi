@@ -1,9 +1,9 @@
-from .const import NEATO_LOGIN as NEATO_LOGIN, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
+from . import NeatoConfigEntry as NeatoConfigEntry
+from .const import SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
 from .entity import NeatoEntity as NeatoEntity
 from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -15,7 +15,7 @@ SCAN_INTERVAL: Incomplete
 SWITCH_TYPE_SCHEDULE: str
 SWITCH_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NeatoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NeatoConnectedSwitch(NeatoEntity, SwitchEntity):
     _attr_translation_key: str

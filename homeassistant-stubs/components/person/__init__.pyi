@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.auth import EVENT_USER_REMOVED as EVENT_USER_REMOVED
 from homeassistant.components import persistent_notification as persistent_notification, websocket_api as websocket_api
-from homeassistant.components.device_tracker import ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, SourceType as SourceType
+from homeassistant.components.device_tracker import ATTR_IN_ZONES as ATTR_IN_ZONES, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, SourceType as SourceType
 from homeassistant.components.zone import ENTITY_ID_HOME as ENTITY_ID_HOME
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_ID as ATTR_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, SERVICE_RELOAD as SERVICE_RELOAD, STATE_HOME as STATE_HOME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
@@ -13,7 +13,6 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Self
 
 _LOGGER: Incomplete
@@ -29,9 +28,7 @@ IGNORE_STATES: Incomplete
 PERSON_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 
-@bind_hass
 async def async_create_person(hass: HomeAssistant, name: str, *, user_id: str | None = None, device_trackers: list[str] | None = None) -> None: ...
-@bind_hass
 async def async_add_user_device_tracker(hass: HomeAssistant, user_id: str, device_tracker_entity_id: str) -> None: ...
 @callback
 def persons_with_entity(hass: HomeAssistant, entity_id: str) -> list[str]: ...
@@ -78,6 +75,7 @@ class Person(collection.CollectionEntity, RestoreEntity):
     _unsub_track_device: Callable[[], None] | None
     _attr_state: str | None
     device_trackers: list[str]
+    _in_zones: list[str]
     _attr_unique_id: Incomplete
     def __init__(self, config: dict[str, Any]) -> None: ...
     _attr_name: Incomplete

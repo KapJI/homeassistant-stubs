@@ -22,7 +22,7 @@ class MockPayloadWriter:
 _MOCK_PAYLOAD_WRITER: Incomplete
 
 class MockRequest:
-    mock_source: str | None
+    mock_source: str
     method: Incomplete
     url: Incomplete
     status: Incomplete
@@ -32,7 +32,8 @@ class MockRequest:
     version: Incomplete
     _content: Incomplete
     _payload_writer: Incomplete
-    def __init__(self, content: bytes, mock_source: str, method: str = 'GET', status: int = ..., headers: dict[str, str] | None = None, query_string: str | None = None, url: str = '') -> None: ...
+    remote: Incomplete
+    def __init__(self, content: bytes, mock_source: str, method: str = 'GET', status: int = ..., headers: dict[str, str] | None = None, query_string: str | None = None, url: str = '', remote: str | None = None) -> None: ...
     async def _prepare_hook(self, response: Any) -> None: ...
     @property
     def query(self) -> MultiDict[str]: ...

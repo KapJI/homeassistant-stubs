@@ -1,5 +1,6 @@
 import asyncio
 from .const import CONF_CREDENTIALS as CONF_CREDENTIALS, CONF_IDENTIFIERS as CONF_IDENTIFIERS, CONF_START_OFF as CONF_START_OFF, DOMAIN as DOMAIN, SIGNAL_CONNECTED as SIGNAL_CONNECTED, SIGNAL_DISCONNECTED as SIGNAL_DISCONNECTED
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,11 +9,13 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from pyatv.conf import AppleTV
 from pyatv.interface import AppleTV as AppleTVInterface, DeviceListener
 from typing import Any
 
 _LOGGER: Incomplete
+CONFIG_SCHEMA: Incomplete
 DEFAULT_NAME_TV: str
 DEFAULT_NAME_HP: str
 BACKOFF_TIME_LOWER_LIMIT: int
@@ -23,6 +26,7 @@ CONNECTION_TIMEOUT_EXCEPTIONS: Incomplete
 DEVICE_EXCEPTIONS: Incomplete
 type AppleTvConfigEntry = ConfigEntry[AppleTVManager]
 
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: AppleTvConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 

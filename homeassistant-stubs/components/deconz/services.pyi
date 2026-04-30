@@ -4,6 +4,7 @@ from .hub import DeconzHub as DeconzHub
 from .util import get_master_hub as get_master_hub
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 
 DECONZ_SERVICES: str

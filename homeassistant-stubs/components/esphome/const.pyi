@@ -1,7 +1,10 @@
+from .domain_data import DomainData as DomainData
 from _typeshed import Incomplete
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: str
+ESPHOME_DATA: HassKey[DomainData]
 CONF_ALLOW_SERVICE_CALLS: str
 CONF_SUBSCRIBE_LOGS: str
 CONF_DEVICE_NAME: str

@@ -21,7 +21,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
+from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Any
 
@@ -48,25 +48,19 @@ class CloudConnectionState(Enum):
     CLOUD_CONNECTED = 'cloud_connected'
     CLOUD_DISCONNECTED = 'cloud_disconnected'
 
-@bind_hass
 @callback
 def async_is_logged_in(hass: HomeAssistant) -> bool: ...
-@bind_hass
 @callback
 def async_is_connected(hass: HomeAssistant) -> bool: ...
 @callback
 def async_listen_connection_change(hass: HomeAssistant, target: Callable[[CloudConnectionState], Awaitable[None] | None]) -> Callable[[], None]: ...
-@bind_hass
 @callback
 def async_active_subscription(hass: HomeAssistant) -> bool: ...
 async def async_get_or_create_cloudhook(hass: HomeAssistant, webhook_id: str) -> str: ...
-@bind_hass
 async def async_create_cloudhook(hass: HomeAssistant, webhook_id: str) -> str: ...
-@bind_hass
 async def async_delete_cloudhook(hass: HomeAssistant, webhook_id: str) -> None: ...
 @callback
 def async_listen_cloudhook_change(hass: HomeAssistant, webhook_id: str, on_change: Callable[[dict[str, Any] | None], None]) -> Callable[[], None]: ...
-@bind_hass
 @callback
 def async_remote_ui_url(hass: HomeAssistant) -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

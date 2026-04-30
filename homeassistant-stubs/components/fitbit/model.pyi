@@ -4,12 +4,6 @@ from dataclasses import dataclass
 from typing import Any
 
 @dataclass
-class FitbitProfile:
-    encoded_id: str
-    display_name: str
-    locale: str | None
-
-@dataclass
 class FitbitConfig:
     clock_format: str | None
     monitored_resources: set[str] | None

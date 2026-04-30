@@ -1,16 +1,14 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import SwitchBeeCoordinator as SwitchBeeCoordinator
+from .coordinator import SwitchBeeConfigEntry as SwitchBeeConfigEntry
 from .entity import SwitchBeeDeviceEntity as SwitchBeeDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbee.device import SwitchBeeShutter, SwitchBeeSomfy
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SwitchBeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBeeSomfyEntity(SwitchBeeDeviceEntity[SwitchBeeSomfy], CoverEntity):
     _attr_device_class: Incomplete

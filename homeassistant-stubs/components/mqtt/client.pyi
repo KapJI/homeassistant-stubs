@@ -19,7 +19,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import SetupPhases as SetupPhases, async_pause_setup as async_pause_setup
 from homeassistant.util.collection import chunked_or_all as chunked_or_all
 from homeassistant.util.logging import catch_log_exception as catch_log_exception, log_exception as log_exception
@@ -46,11 +45,9 @@ def publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: i
 async def async_publish(hass: HomeAssistant, topic: str, payload: PublishPayloadType, qos: int | None = 0, retain: bool | None = False, encoding: str | None = ...) -> None: ...
 @callback
 def async_on_subscribe_done(hass: HomeAssistant, topic: str, qos: int, on_subscribe_status: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
-@bind_hass
 async def async_subscribe(hass: HomeAssistant, topic: str, msg_callback: Callable[[ReceiveMessage], Coroutine[Any, Any, None] | None], qos: int = ..., encoding: str | None = ...) -> CALLBACK_TYPE: ...
 @callback
 def async_subscribe_internal(hass: HomeAssistant, topic: str, msg_callback: Callable[[ReceiveMessage], Coroutine[Any, Any, None] | None], qos: int = ..., encoding: str | None = ..., job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
-@bind_hass
 def subscribe(hass: HomeAssistant, topic: str, msg_callback: MessageCallbackType, qos: int = ..., encoding: str = 'utf-8') -> Callable[[], None]: ...
 
 @dataclass(slots=True, frozen=True)

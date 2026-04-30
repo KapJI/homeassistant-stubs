@@ -6,10 +6,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
+type RecollectWasteConfigEntry = ConfigEntry[ReCollectWasteDataUpdateCoordinator]
 DEFAULT_UPDATE_INTERVAL: Incomplete
 
 class ReCollectWasteDataUpdateCoordinator(DataUpdateCoordinator[list[PickupEvent]]):
-    config_entry: ConfigEntry
+    config_entry: RecollectWasteConfigEntry
     _client: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: RecollectWasteConfigEntry) -> None: ...
     async def _async_update_data(self) -> list[PickupEvent]: ...

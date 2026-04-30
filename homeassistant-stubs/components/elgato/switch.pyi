@@ -1,5 +1,6 @@
 from .coordinator import ElgatoConfigEntry as ElgatoConfigEntry, ElgatoData as ElgatoData, ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from .entity import ElgatoEntity as ElgatoEntity
+from .helpers import elgato_exception_handler as elgato_exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -7,7 +8,6 @@ from elgato import Elgato as Elgato
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
@@ -29,5 +29,7 @@ class ElgatoSwitchEntity(ElgatoEntity, SwitchEntity):
     def __init__(self, coordinator: ElgatoDataUpdateCoordinator, description: ElgatoSwitchEntityDescription) -> None: ...
     @property
     def is_on(self) -> bool | None: ...
+    @elgato_exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @elgato_exception_handler
     async def async_turn_off(self, **kwargs: Any) -> None: ...

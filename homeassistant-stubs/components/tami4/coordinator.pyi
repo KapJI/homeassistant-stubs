@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 _LOGGER: Incomplete
+type Tami4ConfigEntry = ConfigEntry[Tami4EdgeCoordinator]
 
 @dataclass
 class FlattenedWaterQuality:
@@ -19,7 +20,7 @@ class FlattenedWaterQuality:
     def __init__(self, water_quality: WaterQuality) -> None: ...
 
 class Tami4EdgeCoordinator(DataUpdateCoordinator[FlattenedWaterQuality]):
-    config_entry: ConfigEntry
-    _api: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: Tami4EdgeAPI) -> None: ...
+    config_entry: Tami4ConfigEntry
+    api: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: Tami4ConfigEntry, api: Tami4EdgeAPI) -> None: ...
     async def _async_update_data(self) -> FlattenedWaterQuality: ...

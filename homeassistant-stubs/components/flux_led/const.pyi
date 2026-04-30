@@ -1,5 +1,7 @@
 from _typeshed import Incomplete
+from flux_led.scanner import FluxLEDDiscovery as FluxLEDDiscovery
 from homeassistant.components.light import ColorMode as ColorMode
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
@@ -12,7 +14,7 @@ SIGNAL_STATE_UPDATED: str
 DEFAULT_NETWORK_SCAN_INTERVAL: Final[int]
 DEFAULT_SCAN_INTERVAL: Final[int]
 DEFAULT_EFFECT_SPEED: Final[int]
-FLUX_LED_DISCOVERY: Final[str]
+FLUX_LED_DISCOVERY: HassKey[list[FluxLEDDiscovery]]
 FLUX_LED_EXCEPTIONS: Final[Incomplete]
 STARTUP_SCAN_TIMEOUT: Final[int]
 DISCOVER_SCAN_TIMEOUT: Final[int]

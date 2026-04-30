@@ -1,16 +1,15 @@
-from .const import DOMAIN as DOMAIN, METRIC_KEY_MODE as METRIC_KEY_MODE, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, MODE_OFF as MODE_OFF, MODE_ON as MODE_ON, PRESET_MODE_TO_VALLOX_PROFILE as PRESET_MODE_TO_VALLOX_PROFILE, VALLOX_PROFILE_TO_PRESET_MODE as VALLOX_PROFILE_TO_PRESET_MODE
-from .coordinator import ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
+from .const import METRIC_KEY_MODE as METRIC_KEY_MODE, METRIC_KEY_PROFILE_FAN_SPEED_AWAY as METRIC_KEY_PROFILE_FAN_SPEED_AWAY, METRIC_KEY_PROFILE_FAN_SPEED_BOOST as METRIC_KEY_PROFILE_FAN_SPEED_BOOST, METRIC_KEY_PROFILE_FAN_SPEED_HOME as METRIC_KEY_PROFILE_FAN_SPEED_HOME, MODE_OFF as MODE_OFF, MODE_ON as MODE_ON, PRESET_MODE_TO_VALLOX_PROFILE as PRESET_MODE_TO_VALLOX_PROFILE, VALLOX_PROFILE_TO_PRESET_MODE as VALLOX_PROFILE_TO_PRESET_MODE
+from .coordinator import ValloxConfigEntry as ValloxConfigEntry, ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from .entity import ValloxEntity as ValloxEntity
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from typing import Any, NamedTuple
-from vallox_websocket_api import Vallox as Vallox
 
 class ExtraStateAttributeDetails(NamedTuple):
     description: str
@@ -19,15 +18,14 @@ class ExtraStateAttributeDetails(NamedTuple):
 EXTRA_STATE_ATTRIBUTES: Incomplete
 
 def _convert_to_int(value: StateType) -> int | None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: ValloxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ValloxFanEntity(ValloxEntity, FanEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
-    _client: Incomplete
     _attr_unique_id: Incomplete
     _attr_preset_modes: Incomplete
-    def __init__(self, name: str, client: Vallox, coordinator: ValloxDataUpdateCoordinator) -> None: ...
+    def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator) -> None: ...
     @property
     def is_on(self) -> bool: ...
     @property

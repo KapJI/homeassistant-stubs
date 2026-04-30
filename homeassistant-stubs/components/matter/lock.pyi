@@ -1,13 +1,12 @@
 import asyncio
 from .const import ATTR_CREDENTIAL_DATA as ATTR_CREDENTIAL_DATA, ATTR_CREDENTIAL_INDEX as ATTR_CREDENTIAL_INDEX, ATTR_CREDENTIAL_RULE as ATTR_CREDENTIAL_RULE, ATTR_CREDENTIAL_TYPE as ATTR_CREDENTIAL_TYPE, ATTR_USER_INDEX as ATTR_USER_INDEX, ATTR_USER_NAME as ATTR_USER_NAME, ATTR_USER_STATUS as ATTR_USER_STATUS, ATTR_USER_TYPE as ATTR_USER_TYPE, LOCK_TIMED_REQUEST_TIMEOUT_MS as LOCK_TIMED_REQUEST_TIMEOUT_MS, LOGGER as LOGGER
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
-from .helpers import get_matter as get_matter
+from .helpers import MatterConfigEntry as MatterConfigEntry
 from .lock_helpers import DoorLockFeature as DoorLockFeature, GetLockCredentialStatusResult as GetLockCredentialStatusResult, GetLockInfoResult as GetLockInfoResult, GetLockUsersResult as GetLockUsersResult, SetLockCredentialResult as SetLockCredentialResult, clear_lock_credential as clear_lock_credential, clear_lock_user as clear_lock_user, get_lock_credential_status as get_lock_credential_status, get_lock_info as get_lock_info, get_lock_users as get_lock_users, set_lock_credential as set_lock_credential, set_lock_user as set_lock_user
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription, LockEntityFeature as LockEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -18,7 +17,7 @@ from typing import Any
 _OperationSource: Incomplete
 DOOR_LOCK_OPERATION_SOURCE: dict[int, str]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MatterLockEntityDescription(LockEntityDescription, MatterEntityDescription): ...

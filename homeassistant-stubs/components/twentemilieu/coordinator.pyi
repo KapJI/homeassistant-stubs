@@ -4,7 +4,7 @@ from datetime import date
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from twentemilieu import WasteType
 
 type TwenteMilieuConfigEntry = ConfigEntry[TwenteMilieuDataUpdateCoordinator]

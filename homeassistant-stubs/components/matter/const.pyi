@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from typing import Final
 
 ADDON_SLUG: str
 CONF_INTEGRATION_CREATED_ADDON: str
@@ -41,3 +42,4 @@ CREDENTIAL_RULE_MAP: dict[int, str]
 CREDENTIAL_RULE_REVERSE_MAP: dict[str, int]
 CREDENTIAL_TYPE_REVERSE_MAP: dict[str, int]
 SERVICE_CREDENTIAL_TYPES: Incomplete
+CONCENTRATION_BECQUERELS_PER_CUBIC_METER: Final[str]

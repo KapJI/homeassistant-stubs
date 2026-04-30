@@ -1,13 +1,11 @@
-from . import NoMatchingShoppingListItem as NoMatchingShoppingListItem, ShoppingData as ShoppingData
-from .const import DOMAIN as DOMAIN
+from .common import NoMatchingShoppingListItem as NoMatchingShoppingListItem, ShoppingData as ShoppingData, ShoppingListConfigEntry as ShoppingListConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus as TodoItemStatus, TodoListEntity as TodoListEntity, TodoListEntityFeature as TodoListEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: ShoppingListConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ShoppingTodoListEntity(TodoListEntity):
     _attr_has_entity_name: bool

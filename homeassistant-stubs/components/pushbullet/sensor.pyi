@@ -1,8 +1,8 @@
+from . import PushbulletConfigEntry as PushbulletConfigEntry
 from .api import PushBulletNotificationProvider as PushBulletNotificationProvider
 from .const import DATA_UPDATED as DATA_UPDATED, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 SENSOR_KEYS: list[str]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PushbulletConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PushBulletNotificationSensor(SensorEntity):
     _attr_should_poll: bool

@@ -1,12 +1,10 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import SleepIQData as SleepIQData
+from .coordinator import SleepIQConfigEntry as SleepIQConfigEntry
 from .entity import SleepIQEntity as SleepIQEntity
 from _typeshed import Incomplete
 from asyncsleepiq import SleepIQBed as SleepIQBed
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
@@ -17,7 +15,7 @@ class SleepIQButtonEntityDescription(ButtonEntityDescription):
 
 ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SleepIQConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SleepNumberButton(SleepIQEntity, ButtonEntity):
     entity_description: SleepIQButtonEntityDescription

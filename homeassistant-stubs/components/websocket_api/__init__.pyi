@@ -6,14 +6,12 @@ from .messages import BASE_COMMAND_MESSAGE_SCHEMA as BASE_COMMAND_MESSAGE_SCHEMA
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
-from homeassistant.loader import bind_hass as bind_hass
 from typing import Final
 
 DOMAIN: Final[Incomplete]
 DEPENDENCIES: Final[tuple[str]]
 CONFIG_SCHEMA: Incomplete
 
-@bind_hass
 @callback
 def async_register_command(hass: HomeAssistant, command_or_handler: str | const.WebSocketCommandHandler, handler: const.WebSocketCommandHandler | None = None, schema: VolSchemaType | None = None) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

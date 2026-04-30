@@ -15,8 +15,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from homeassistant.const import EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EVENT_STATE_REPORTED as EVENT_STATE_REPORTED, MATCH_ALL as MATCH_ALL, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateEventData as EventStateEventData, EventStateReportedData as EventStateReportedData, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
-from homeassistant.loader import bind_hass as bind_hass
+from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -68,12 +67,10 @@ class TrackTemplateResult:
 
 def threaded_listener_factory[**_P](async_factory: Callable[Concatenate[HomeAssistant, _P], Any]) -> Callable[Concatenate[HomeAssistant, _P], CALLBACK_TYPE]: ...
 @callback
-@bind_hass
 def async_track_state_change(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[str, State | None, State | None], Coroutine[Any, Any, None] | None], from_state: str | Iterable[str] | None = None, to_state: str | Iterable[str] | None = None) -> CALLBACK_TYPE: ...
 
 track_state_change: Incomplete
 
-@bind_hass
 def async_track_state_change_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
 @callback
 def _async_dispatch_entity_id_event_soon[_StateEventDataT: EventStateEventData](hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]], event: Event[_StateEventDataT]) -> None: ...
@@ -84,7 +81,6 @@ def _async_state_filter[_StateEventDataT: EventStateEventData](hass: HomeAssista
 
 _KEYED_TRACK_STATE_CHANGE: Incomplete
 
-@bind_hass
 def _async_track_state_change_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None) -> CALLBACK_TYPE: ...
 
 _KEYED_TRACK_STATE_REPORT: Incomplete
@@ -102,7 +98,6 @@ def _async_entity_registry_updated_filter(hass: HomeAssistant, callbacks: dict[s
 
 _KEYED_TRACK_ENTITY_REGISTRY_UPDATED: Incomplete
 
-@bind_hass
 @callback
 def async_track_entity_registry_updated_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventEntityRegistryUpdatedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
 @callback
@@ -120,19 +115,16 @@ def async_track_device_registry_updated_event(hass: HomeAssistant, device_ids: s
 def _async_dispatch_domain_event(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[EventStateChangedData]], Any]]], event: Event[EventStateChangedData]) -> None: ...
 @callback
 def _async_domain_added_filter(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[EventStateChangedData]], Any]]], event_data: EventStateChangedData) -> bool: ...
-@bind_hass
 def async_track_state_added_domain(hass: HomeAssistant, domains: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
 
 _KEYED_TRACK_STATE_ADDED_DOMAIN: Incomplete
 
-@bind_hass
 def _async_track_state_added_domain(hass: HomeAssistant, domains: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None) -> CALLBACK_TYPE: ...
 @callback
 def _async_domain_removed_filter(hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[EventStateChangedData]], Any]]], event_data: EventStateChangedData) -> bool: ...
 
 _KEYED_TRACK_STATE_REMOVED_DOMAIN: Incomplete
 
-@bind_hass
 def async_track_state_removed_domain(hass: HomeAssistant, domains: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
 @callback
 def _async_string_to_lower_list(instr: str | Iterable[str]) -> list[str]: ...
@@ -164,10 +156,8 @@ class _TrackStateChangeFiltered:
     def _setup_all_listener(self) -> None: ...
 
 @callback
-@bind_hass
 def async_track_state_change_filtered(hass: HomeAssistant, track_states: TrackStates, action: Callable[[Event[EventStateChangedData]], Any]) -> _TrackStateChangeFiltered: ...
 @callback
-@bind_hass
 def async_track_template(hass: HomeAssistant, template: Template, action: Callable[[str, State | None, State | None], Coroutine[Any, Any, None] | None], variables: TemplateVarsType | None = None) -> CALLBACK_TYPE: ...
 
 track_template: Incomplete
@@ -205,16 +195,13 @@ class TrackTemplateResultInfo:
 type TrackTemplateResultListener = Callable[[Event[EventStateChangedData] | None, list[TrackTemplateResult]], Coroutine[Any, Any, None] | None]
 
 @callback
-@bind_hass
 def async_track_template_result(hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, strict: bool = False, log_fn: Callable[[int, str], None] | None = None, has_super_template: bool = False) -> TrackTemplateResultInfo: ...
 @callback
-@bind_hass
 def async_track_same_state(hass: HomeAssistant, period: timedelta, action: Callable[[], Coroutine[Any, Any, None] | None], async_check_same_func: Callable[[str, State | None, State | None], bool], entity_ids: str | Iterable[str] = ...) -> CALLBACK_TYPE: ...
 
 track_same_state: Incomplete
 
 @callback
-@bind_hass
 def async_track_point_in_time(hass: HomeAssistant, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None], point_in_time: datetime) -> CALLBACK_TYPE: ...
 
 track_point_in_time: Incomplete
@@ -233,17 +220,14 @@ class _TrackPointUTCTime:
     def async_cancel(self) -> None: ...
 
 @callback
-@bind_hass
 def async_track_point_in_utc_time(hass: HomeAssistant, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None], point_in_time: datetime) -> CALLBACK_TYPE: ...
 
 track_point_in_utc_time: Incomplete
 
 def _run_async_call_action(hass: HomeAssistant, job: HassJob[[datetime], Coroutine[Any, Any, None] | None]) -> None: ...
 @callback
-@bind_hass
 def async_call_at(hass: HomeAssistant, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None], loop_time: float) -> CALLBACK_TYPE: ...
 @callback
-@bind_hass
 def async_call_later(hass: HomeAssistant, delay: float | timedelta, action: HassJob[[datetime], Coroutine[Any, Any, None] | None] | Callable[[datetime], Coroutine[Any, Any, None] | None]) -> CALLBACK_TYPE: ...
 
 call_later: Incomplete
@@ -266,7 +250,6 @@ class _TrackTimeInterval:
     def async_cancel(self) -> None: ...
 
 @callback
-@bind_hass
 def async_track_time_interval(hass: HomeAssistant, action: Callable[[datetime], Coroutine[Any, Any, None] | None], interval: timedelta, *, name: str | None = None, cancel_on_shutdown: bool | None = None) -> CALLBACK_TYPE: ...
 
 track_time_interval: Incomplete
@@ -291,13 +274,11 @@ class SunListener:
     def _handle_config_event(self, _event: Any) -> None: ...
 
 @callback
-@bind_hass
 def async_track_sunrise(hass: HomeAssistant, action: Callable[[], None], offset: timedelta | None = None) -> CALLBACK_TYPE: ...
 
 track_sunrise: Incomplete
 
 @callback
-@bind_hass
 def async_track_sunset(hass: HomeAssistant, action: Callable[[], None], offset: timedelta | None = None) -> CALLBACK_TYPE: ...
 
 track_sunset: Incomplete
@@ -322,13 +303,11 @@ class _TrackUTCTimeChange:
     def async_cancel(self) -> None: ...
 
 @callback
-@bind_hass
 def async_track_utc_time_change(hass: HomeAssistant, action: Callable[[datetime], Coroutine[Any, Any, None] | None], hour: Any | None = None, minute: Any | None = None, second: Any | None = None, local: bool = False) -> CALLBACK_TYPE: ...
 
 track_utc_time_change: Incomplete
 
 @callback
-@bind_hass
 def async_track_time_change(hass: HomeAssistant, action: Callable[[datetime], Coroutine[Any, Any, None] | None], hour: Any | None = None, minute: Any | None = None, second: Any | None = None) -> CALLBACK_TYPE: ...
 
 track_time_change: Incomplete

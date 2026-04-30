@@ -2,14 +2,14 @@ from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN, CONF_STATE_TOPIC as CONF_STATE_TOPIC
 from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
-from .models import ReceiveMessage as ReceiveMessage
+from .models import MqttCommandTemplate as MqttCommandTemplate, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from homeassistant.components import vacuum as vacuum
-from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, Segment as Segment, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME
+from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.json import json_dumps as json_dumps
@@ -19,6 +19,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 FAN_SPEED: str
+SEGMENTS: str
 STATE: str
 STATE_IDLE: str
 STATE_DOCKED: str
@@ -27,6 +28,8 @@ STATE_PAUSED: str
 STATE_RETURNING: str
 STATE_CLEANING: str
 POSSIBLE_STATES: dict[str, VacuumActivity]
+CONF_CLEAN_SEGMENTS_COMMAND_TOPIC: str
+CONF_CLEAN_SEGMENTS_COMMAND_TEMPLATE: str
 CONF_SUPPORTED_FEATURES = ATTR_SUPPORTED_FEATURES
 CONF_PAYLOAD_TURN_ON: str
 CONF_PAYLOAD_TURN_OFF: str
@@ -59,6 +62,10 @@ DEFAULT_SERVICE_STRINGS: Incomplete
 _FEATURE_PAYLOADS: Incomplete
 MQTT_VACUUM_ATTRIBUTES_BLOCKED: Incomplete
 MQTT_VACUUM_DOCS_URL: str
+
+def validate_clean_area_config(config: ConfigType) -> ConfigType: ...
+
+_BASE_SCHEMA: Incomplete
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
@@ -68,15 +75,18 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format = ENTITY_ID_FORMAT
     _attributes_extra_blocked = MQTT_VACUUM_ATTRIBUTES_BLOCKED
+    _segments: list[Segment]
     _command_topic: str | None
     _set_fan_speed_topic: str | None
     _send_command_topic: str | None
+    _clean_segments_command_topic: str | None
     _payloads: dict[str, str | None]
     _state_attrs: dict[str, Any]
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     def config_schema() -> VolSchemaType: ...
     _attr_supported_features: Incomplete
+    _clean_segments_command_template: Incomplete
     _attr_fan_speed_list: Incomplete
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_fan_speed: Incomplete
@@ -87,6 +97,8 @@ class MqttStateVacuum(MqttEntity, StateVacuumEntity):
     @callback
     def _prepare_subscribe_topics(self) -> None: ...
     async def _subscribe_topics(self) -> None: ...
+    async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
+    async def async_get_segments(self) -> list[Segment]: ...
     async def _async_publish_command(self, feature: VacuumEntityFeature) -> None: ...
     async def async_start(self) -> None: ...
     async def async_pause(self) -> None: ...

@@ -1,9 +1,8 @@
 from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, DOMAIN as DOMAIN
-from .coordinator import WattTimeCoordinator as WattTimeCoordinator
+from .coordinator import WattTimeConfigEntry as WattTimeConfigEntry, WattTimeCoordinator as WattTimeCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, PERCENTAGE as PERCENTAGE, UnitOfMass as UnitOfMass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -17,7 +16,7 @@ SENSOR_TYPE_REALTIME_EMISSIONS_MOER: str
 SENSOR_TYPE_REALTIME_EMISSIONS_PERCENT: str
 REALTIME_EMISSIONS_SENSOR_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WattTimeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RealtimeEmissionsSensor(CoordinatorEntity[WattTimeCoordinator], SensorEntity):
     _attr_has_entity_name: bool
@@ -25,7 +24,7 @@ class RealtimeEmissionsSensor(CoordinatorEntity[WattTimeCoordinator], SensorEnti
     _entry: Incomplete
     entity_description: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: WattTimeCoordinator, entry: ConfigEntry, description: SensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: WattTimeCoordinator, entry: WattTimeConfigEntry, description: SensorEntityDescription) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @property

@@ -1,7 +1,7 @@
+from . import LiteJetConfigEntry as LiteJetConfigEntry
 from .const import CONF_DEFAULT_TRANSITION as CONF_DEFAULT_TRANSITION, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -11,7 +11,7 @@ from typing import Any
 
 ATTR_NUMBER: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LiteJetConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LiteJetLight(LightEntity):
     _attr_color_mode: Incomplete
@@ -28,7 +28,7 @@ class LiteJetLight(LightEntity):
     _attr_unique_id: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, config_entry: ConfigEntry, system: LiteJet, index: int, name: str) -> None: ...
+    def __init__(self, config_entry: LiteJetConfigEntry, system: LiteJet, index: int, name: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
     def _on_load_changed(self, level: int | None) -> None: ...

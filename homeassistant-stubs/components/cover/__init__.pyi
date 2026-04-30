@@ -4,7 +4,6 @@ from .trigger import make_cover_closed_trigger as make_cover_closed_trigger, mak
 from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.helpers.entity import Entity, EntityDescription
-from homeassistant.loader import bind_hass
 from propcache.api import cached_property
 from typing import Any, final
 

@@ -5,9 +5,9 @@ from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LAT
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.exceptions import ConditionErrorContainer as ConditionErrorContainer, ConditionErrorMessage as ConditionErrorMessage
 from homeassistant.helpers.automation import move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
-from homeassistant.helpers.condition import Condition as Condition, ConditionCheckParams as ConditionCheckParams, ConditionChecker as ConditionChecker, ConditionConfig as ConditionConfig
+from homeassistant.helpers.condition import Condition as Condition, ConditionCheckParams as ConditionCheckParams, ConditionConfig as ConditionConfig
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, Unpack
 
 _OPTIONS_SCHEMA_DICT: dict[vol.Marker, Any]
 _CONDITION_SCHEMA: Incomplete
@@ -20,8 +20,10 @@ class ZoneCondition(Condition):
     async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     @classmethod
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
+    _entity_ids: Incomplete
+    _zone_entity_ids: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
-    async def async_get_checker(self) -> ConditionChecker: ...
+    def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
 
 CONDITIONS: dict[str, type[Condition]]
 

@@ -5,6 +5,8 @@ from .types import MCPServerConfigEntry as MCPServerConfigEntry
 from _typeshed import Incomplete
 from aiohttp import web
 from anyio.streams.memory import MemoryObjectReceiveStream as MemoryObjectReceiveStream, MemoryObjectSendStream as MemoryObjectSendStream
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from homeassistant.components import conversation as conversation
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
@@ -31,8 +33,10 @@ class Streams:
     read_stream_writer: MemoryObjectSendStream[SessionMessage | Exception]
     write_stream: MemoryObjectSendStream[SessionMessage]
     write_stream_reader: MemoryObjectReceiveStream[SessionMessage]
+    async def aclose(self) -> None: ...
 
-def create_streams() -> Streams: ...
+@asynccontextmanager
+async def create_streams() -> AsyncGenerator[Streams]: ...
 async def create_mcp_server(hass: HomeAssistant, context: Context, entry: MCPServerConfigEntry) -> tuple[Server, InitializationOptions]: ...
 
 class ModelContextProtocolSSEView(HomeAssistantView):

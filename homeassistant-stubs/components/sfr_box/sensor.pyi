@@ -7,7 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from sfrbox_api.models import DslInfo, SystemInfo, WanInfo
+from sfrbox_api.models import DslInfo, SystemInfo, VoipInfo, WanInfo
 
 PARALLEL_UPDATES: int
 
@@ -17,6 +17,7 @@ class SFRBoxSensorEntityDescription[_T](SensorEntityDescription):
 
 DSL_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[DslInfo], ...]
 SYSTEM_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[SystemInfo], ...]
+VOIP_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[VoipInfo], ...]
 WAN_SENSOR_TYPES: tuple[SFRBoxSensorEntityDescription[WanInfo], ...]
 
 def _value_to_option(value: str | None) -> str | None: ...

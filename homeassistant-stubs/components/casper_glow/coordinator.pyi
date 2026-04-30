@@ -1,4 +1,4 @@
-from .const import STATE_POLL_INTERVAL as STATE_POLL_INTERVAL
+from .const import SORTED_BRIGHTNESS_LEVELS as SORTED_BRIGHTNESS_LEVELS, STATE_POLL_INTERVAL as STATE_POLL_INTERVAL
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import BluetoothChange as BluetoothChange, BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.components.bluetooth.active_update_coordinator import ActiveBluetoothDataUpdateCoordinator as ActiveBluetoothDataUpdateCoordinator
@@ -13,6 +13,7 @@ class CasperGlowCoordinator(ActiveBluetoothDataUpdateCoordinator[None]):
     device: Incomplete
     last_dimming_time_minutes: int | None
     title: Incomplete
+    last_brightness_pct: int
     def __init__(self, hass: HomeAssistant, device: CasperGlow, title: str) -> None: ...
     @callback
     def _needs_poll(self, service_info: BluetoothServiceInfoBleak, seconds_since_last_poll: float | None) -> bool: ...

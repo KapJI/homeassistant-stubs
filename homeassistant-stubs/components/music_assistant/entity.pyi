@@ -1,10 +1,11 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from music_assistant_client import MusicAssistantClient as MusicAssistantClient
 from music_assistant_models.event import MassEvent as MassEvent
-from music_assistant_models.player import Player as Player
+from music_assistant_models.player import Player as Player, PlayerOption as PlayerOption
 
 class MusicAssistantEntity(Entity):
     _attr_has_entity_name: bool
@@ -22,3 +23,12 @@ class MusicAssistantEntity(Entity):
     def available(self) -> bool: ...
     async def __on_mass_update(self, event: MassEvent) -> None: ...
     async def async_on_update(self) -> None: ...
+
+class MusicAssistantPlayerOptionEntity(MusicAssistantEntity):
+    _attr_entity_category: Incomplete
+    mass_option_key: Incomplete
+    mass_type: Incomplete
+    def __init__(self, mass: MusicAssistantClient, player_id: str, player_option: PlayerOption) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    def __on_mass_player_options_update(self, event: MassEvent) -> None: ...
+    def on_player_option_update(self, player_option: PlayerOption) -> None: ...

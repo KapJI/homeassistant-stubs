@@ -1,16 +1,14 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import SurePetcareDataCoordinator as SurePetcareDataCoordinator
+from .coordinator import SurePetcareConfigEntry as SurePetcareConfigEntry, SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from .entity import SurePetcareEntity as SurePetcareEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockState as LockState
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from surepy.entities import SurepyEntity as SurepyEntity
 from surepy.enums import LockState as SurepyLockState
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SurePetcareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SurePetcareLock(SurePetcareEntity, LockEntity):
     _lock_state: Incomplete

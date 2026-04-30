@@ -1,11 +1,10 @@
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
-from .helpers import get_matter as get_matter
+from .helpers import MatterConfigEntry as MatterConfigEntry
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.update import ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -26,7 +25,7 @@ class MatterUpdateExtraStoredData(ExtraStoredData):
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> MatterUpdateExtraStoredData: ...
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MatterUpdateEntityDescription(UpdateEntityDescription, MatterEntityDescription): ...

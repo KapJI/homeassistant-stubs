@@ -1,9 +1,7 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import SwitchBeeCoordinator as SwitchBeeCoordinator
+from .coordinator import SwitchBeeConfigEntry as SwitchBeeConfigEntry, SwitchBeeCoordinator as SwitchBeeCoordinator
 from .entity import SwitchBeeDeviceEntity as SwitchBeeDeviceEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACAction as HVACAction, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -19,7 +17,7 @@ HVAC_ACTION_SB_TO_HASS: Incomplete
 HVAC_UNIT_SB_TO_HASS: Incomplete
 SUPPORTED_FAN_MODES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SwitchBeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBeeClimateEntity(SwitchBeeDeviceEntity[SwitchBeeThermostat], ClimateEntity):
     _attr_fan_modes = SUPPORTED_FAN_MODES

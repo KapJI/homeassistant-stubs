@@ -1,6 +1,5 @@
-from .const import StackType as StackType
-from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerStackData as PortainerStackData
-from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity
+from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerStackData as PortainerStackData, PortainerVolumeData as PortainerVolumeData
+from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity, PortainerVolumeEntity as PortainerVolumeEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
@@ -22,9 +21,14 @@ class PortainerEndpointSensorEntityDescription(SensorEntityDescription):
 class PortainerStackSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[PortainerStackData], StateType]
 
+@dataclass(frozen=True, kw_only=True)
+class PortainerVolumeSensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[PortainerVolumeData], StateType]
+
 CONTAINER_SENSORS: tuple[PortainerContainerSensorEntityDescription, ...]
 ENDPOINT_SENSORS: tuple[PortainerEndpointSensorEntityDescription, ...]
 STACK_SENSORS: tuple[PortainerStackSensorEntityDescription, ...]
+VOLUME_SENSORS: tuple[PortainerVolumeSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -40,5 +44,10 @@ class PortainerEndpointSensor(PortainerEndpointEntity, SensorEntity):
 
 class PortainerStackSensor(PortainerStackEntity, SensorEntity):
     entity_description: PortainerStackSensorEntityDescription
+    @property
+    def native_value(self) -> StateType: ...
+
+class PortainerVolumeSensor(PortainerVolumeEntity, SensorEntity):
+    entity_description: PortainerVolumeSensorEntityDescription
     @property
     def native_value(self) -> StateType: ...

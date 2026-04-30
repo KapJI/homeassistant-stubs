@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
+from .coordinator import PrusaLinkConfigEntry as PrusaLinkConfigEntry, PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
 from .entity import PrusaLinkEntity as PrusaLinkEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -24,7 +22,7 @@ class PrusaLinkButtonEntityDescription(ButtonEntityDescription, PrusaLinkButtonE
 
 BUTTONS: dict[str, tuple[PrusaLinkButtonEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PrusaLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PrusaLinkButtonEntity(PrusaLinkEntity, ButtonEntity):
     entity_description: PrusaLinkButtonEntityDescription

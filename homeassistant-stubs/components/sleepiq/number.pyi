@@ -1,12 +1,11 @@
-from .const import ACTUATOR as ACTUATOR, CORE_CLIMATE_TIMER as CORE_CLIMATE_TIMER, DOMAIN as DOMAIN, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, FOOT_WARMING_TIMER as FOOT_WARMING_TIMER, ICON_OCCUPIED as ICON_OCCUPIED
-from .coordinator import SleepIQData as SleepIQData, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator
+from .const import ACTUATOR as ACTUATOR, CORE_CLIMATE_TIMER as CORE_CLIMATE_TIMER, ENTITY_TYPES as ENTITY_TYPES, FIRMNESS as FIRMNESS, FOOT_WARMING_TIMER as FOOT_WARMING_TIMER, ICON_OCCUPIED as ICON_OCCUPIED
+from .coordinator import SleepIQConfigEntry as SleepIQConfigEntry, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator
 from .entity import SleepIQBedEntity as SleepIQBedEntity, sleeper_for_side as sleeper_for_side
 from _typeshed import Incomplete
 from asyncsleepiq import SleepIQActuator as SleepIQActuator, SleepIQBed as SleepIQBed, SleepIQCoreClimate, SleepIQFootWarmer as SleepIQFootWarmer, SleepIQSleeper as SleepIQSleeper
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -34,7 +33,7 @@ def _get_core_climate_unique_id(bed: SleepIQBed, core_climate: SleepIQCoreClimat
 
 NUMBER_DESCRIPTIONS: dict[str, SleepIQNumberEntityDescription]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SleepIQConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SleepIQNumberEntity(SleepIQBedEntity[SleepIQDataUpdateCoordinator], NumberEntity):
     entity_description: SleepIQNumberEntityDescription

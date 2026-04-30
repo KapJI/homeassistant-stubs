@@ -1,15 +1,16 @@
 import evohomeasync2 as evo
-from .const import DOMAIN as DOMAIN
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from evohomeasync2.schemas.typedefs import DayOfWeekDhwT as DayOfWeekDhwT
 from homeassistant.core import callback as callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
 _LOGGER: Incomplete
+
+def is_valid_zone(zone: evo.Zone) -> bool: ...
+def unique_zone_id(evo_device: evo.Zone) -> str: ...
 
 class EvoEntity(CoordinatorEntity[EvoDataUpdateCoordinator]):
     _evo_device: evo.ControlSystem | evo.HotWater | evo.Zone
@@ -17,13 +18,11 @@ class EvoEntity(CoordinatorEntity[EvoDataUpdateCoordinator]):
     _evo_state_attr_names: tuple[str, ...]
     _device_state_attrs: dict[str, Any]
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.ControlSystem | evo.HotWater | evo.Zone) -> None: ...
-    async def process_signal(self, payload: dict | None = None) -> None: ...
-    async def async_tcs_svc_request(self, service: str, data: dict[str, Any]) -> None: ...
     @property
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
-    async def async_added_to_hass(self) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
+    async def update_attrs(self) -> None: ...
 
 class EvoChild(EvoEntity):
     _evo_device: evo.HotWater | evo.Zone

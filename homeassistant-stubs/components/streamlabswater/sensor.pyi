@@ -1,11 +1,8 @@
-from . import StreamlabsCoordinator as StreamlabsCoordinator
-from .const import DOMAIN as DOMAIN
-from .coordinator import StreamlabsData as StreamlabsData
+from .coordinator import StreamlabsConfigEntry as StreamlabsConfigEntry, StreamlabsCoordinator as StreamlabsCoordinator, StreamlabsData as StreamlabsData
 from .entity import StreamlabsWaterEntity as StreamlabsWaterEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -17,7 +14,7 @@ class StreamlabsWaterSensorEntityDescription(SensorEntityDescription):
 
 SENSORS: tuple[StreamlabsWaterSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: StreamlabsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class StreamLabsSensor(StreamlabsWaterEntity, SensorEntity):
     entity_description: StreamlabsWaterSensorEntityDescription

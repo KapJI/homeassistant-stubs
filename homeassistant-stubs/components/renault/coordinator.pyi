@@ -6,13 +6,11 @@ from collections.abc import Awaitable, Callable as Callable
 from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from renault_api.kamereon.models import KamereonVehicleDataAttributes
-from typing import TypeVar
+from renault_api.kamereon.models import KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
 
-T = TypeVar('T', bound=KamereonVehicleDataAttributes)
 _PARALLEL_SEMAPHORE: Incomplete
 
-class RenaultDataUpdateCoordinator(DataUpdateCoordinator[T]):
+class RenaultDataUpdateCoordinator[T: KamereonVehicleDataAttributes](DataUpdateCoordinator[T]):
     config_entry: RenaultConfigEntry
     update_method: Callable[[], Awaitable[T]]
     access_denied: bool

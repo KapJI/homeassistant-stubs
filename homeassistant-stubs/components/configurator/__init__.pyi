@@ -4,8 +4,8 @@ from homeassistant.const import ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR
 from homeassistant.core import HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as async_callback
 from homeassistant.helpers.entity import async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.event import async_call_later as async_call_later
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from typing import Any
 
@@ -27,20 +27,14 @@ STATE_CONFIGURED: str
 type ConfiguratorCallback = Callable[[list[dict[str, str]]], None]
 CONFIG_SCHEMA: Incomplete
 
-@bind_hass
 @async_callback
 def async_request_config(hass: HomeAssistant, name: str, callback: ConfiguratorCallback | None = None, description: str | None = None, description_image: str | None = None, submit_caption: str | None = None, fields: list[dict[str, str]] | None = None, link_name: str | None = None, link_url: str | None = None, entity_picture: str | None = None) -> str: ...
-@bind_hass
 def request_config(hass: HomeAssistant, *args: Any, **kwargs: Any) -> str: ...
-@bind_hass
 @async_callback
 def async_notify_errors(hass: HomeAssistant, request_id: str, error: str) -> None: ...
-@bind_hass
 def notify_errors(hass: HomeAssistant, request_id: str, error: str) -> None: ...
-@bind_hass
 @async_callback
 def async_request_done(hass: HomeAssistant, request_id: str) -> None: ...
-@bind_hass
 def request_done(hass: HomeAssistant, request_id: str) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 def _get_requests(hass: HomeAssistant) -> dict[str, Configurator]: ...

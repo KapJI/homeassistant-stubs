@@ -4,12 +4,11 @@ from homeassistant.components import usb as usb
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_NAME as CONF_NAME
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
-from serial.tools.list_ports_common import ListPortInfo as ListPortInfo
 from typing import Any
 
 DATA_SCHEMA: Incomplete
 
-def _generate_unique_id(port: ListPortInfo) -> str: ...
+def _generate_unique_id(port: usb.USBDevice | usb.SerialDevice) -> str: ...
 
 class PhoneModemFlowHandler(ConfigFlow, domain=DOMAIN):
     _device: str | None

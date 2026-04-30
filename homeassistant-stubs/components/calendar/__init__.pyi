@@ -4,13 +4,17 @@ from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEn
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable, Iterable
+from homeassistant.auth.models import User as User
+from homeassistant.auth.permissions.const import POLICY_CONTROL as POLICY_CONTROL, POLICY_READ as POLICY_READ
 from homeassistant.components import frontend as frontend, http as http, websocket_api as websocket_api
-from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
+from homeassistant.components.http import KEY_HASS_USER as KEY_HASS_USER
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_INVALID_FORMAT as ERR_INVALID_FORMAT, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time
@@ -24,6 +28,7 @@ ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
+EVENT_LISTENER_DEBOUNCE_COOLDOWN: float
 VALID_FREQS: Incomplete
 MIN_NEW_EVENT_DURATION: Incomplete
 MIN_EVENT_DURATION: Incomplete
@@ -83,6 +88,8 @@ class CalendarEntity(Entity):
     entity_description: CalendarEntityDescription
     _entity_component_unrecorded_attributes: Incomplete
     _alarm_unsubs: list[CALLBACK_TYPE] | None
+    _event_listeners: list[tuple[datetime.datetime, datetime.datetime, Callable[[list[JsonValueType] | None], None]]] | None
+    _event_listener_debouncer: Debouncer[None] | None
     _attr_initial_color: str | None
     @property
     def initial_color(self) -> str | None: ...
@@ -96,8 +103,20 @@ class CalendarEntity(Entity):
     @property
     def state(self) -> str: ...
     @callback
-    def async_write_ha_state(self) -> None: ...
+    def _async_write_ha_state(self) -> None: ...
+    @callback
+    def _async_cancel_event_listener_debouncer(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...
+    @final
+    @callback
+    def async_subscribe_events(self, start_date: datetime.datetime, end_date: datetime.datetime, event_listener: Callable[[list[JsonValueType] | None], None]) -> CALLBACK_TYPE: ...
+    @final
+    @callback
+    def async_update_event_listeners(self) -> None: ...
+    @final
+    @callback
+    def async_update_single_event_listener(self, start_date: datetime.datetime, end_date: datetime.datetime, listener: Callable[[list[JsonValueType] | None], None]) -> None: ...
+    async def _async_update_listener(self, start_date: datetime.datetime, end_date: datetime.datetime, listener: Callable[[list[JsonValueType] | None], None]) -> None: ...
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime.datetime, end_date: datetime.datetime) -> list[CalendarEvent]: ...
     async def async_create_event(self, **kwargs: Any) -> None: ...
     async def async_delete_event(self, uid: str, recurrence_id: str | None = None, recurrence_range: str | None = None) -> None: ...
@@ -123,6 +142,8 @@ async def handle_calendar_event_create(hass: HomeAssistant, connection: ActiveCo
 async def handle_calendar_event_delete(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.async_response
 async def handle_calendar_event_update(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.async_response
+async def handle_calendar_event_subscribe(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 def _validate_timespan(values: dict[str, Any]) -> tuple[datetime.datetime | datetime.date, datetime.datetime | datetime.date]: ...
 async def async_create_event(entity: CalendarEntity, call: ServiceCall) -> None: ...
 async def async_get_events_service(calendar: CalendarEntity, service_call: ServiceCall) -> ServiceResponse: ...

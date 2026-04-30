@@ -1,13 +1,13 @@
 import asyncio
 from . import AmcrestDevice as AmcrestDevice
-from .const import CAMERAS as CAMERAS, CAMERA_WEB_SESSION_TIMEOUT as CAMERA_WEB_SESSION_TIMEOUT, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, RESOLUTION_TO_STREAM as RESOLUTION_TO_STREAM, SERVICE_UPDATE as SERVICE_UPDATE, SNAPSHOT_TIMEOUT as SNAPSHOT_TIMEOUT
+from .const import ATTR_COLOR_BW as ATTR_COLOR_BW, CAMERA_WEB_SESSION_TIMEOUT as CAMERA_WEB_SESSION_TIMEOUT, CBW as CBW, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, MOV as MOV, RESOLUTION_TO_STREAM as RESOLUTION_TO_STREAM, SERVICE_UPDATE as SERVICE_UPDATE, SNAPSHOT_TIMEOUT as SNAPSHOT_TIMEOUT
 from .helpers import log_update_error as log_update_error, service_signal as service_signal
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Callable as Callable
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.components.ffmpeg import FFmpegManager as FFmpegManager, get_ffmpeg_manager as get_ffmpeg_manager
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_NAME as CONF_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import CONF_NAME as CONF_NAME, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream, async_aiohttp_proxy_web as async_aiohttp_proxy_web, async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -18,25 +18,10 @@ from typing import Any
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
 STREAM_SOURCE_LIST: Incomplete
-_ATTR_PTZ_TT: str
-_ATTR_PTZ_MOV: str
-_MOV: Incomplete
 _ZOOM_ACTIONS: Incomplete
 _MOVE_1_ACTIONS: Incomplete
 _MOVE_2_ACTIONS: Incomplete
 _ACTION: Incomplete
-_DEFAULT_TT: float
-_ATTR_PRESET: str
-_ATTR_COLOR_BW: str
-_CBW_COLOR: str
-_CBW_AUTO: str
-_CBW_BW: str
-_CBW: Incomplete
-_SRV_SCHEMA: Incomplete
-_SRV_GOTO_SCHEMA: Incomplete
-_SRV_CBW_SCHEMA: Incomplete
-_SRV_PTZ_SCHEMA: Incomplete
-CAMERA_SERVICES: Incomplete
 _BOOL_TO_STATE: Incomplete
 
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...

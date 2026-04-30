@@ -15,6 +15,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True)
 class ForecastSolarSensorEntityDescription(SensorEntityDescription):
     state: Callable[[Estimate], Any] | None = ...

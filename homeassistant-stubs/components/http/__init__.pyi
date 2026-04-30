@@ -31,7 +31,6 @@ from homeassistant.helpers.http import HomeAssistantView as HomeAssistantView, K
 from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.setup import SetupPhases as SetupPhases, async_start_setup as async_start_setup, async_when_setup_or_start as async_when_setup_or_start
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.json import json_loads as json_loads
@@ -91,7 +90,6 @@ class ConfData(TypedDict, total=False):
     ip_ban_enabled: bool
     ssl_profile: str
 
-@bind_hass
 async def async_get_last_config(hass: HomeAssistant) -> dict[str, Any] | None: ...
 
 class ApiConfig:

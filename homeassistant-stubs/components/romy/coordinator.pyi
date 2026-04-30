@@ -5,8 +5,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from romy import RomyRobot as RomyRobot
 
+type RomyConfigEntry = ConfigEntry[RomyVacuumCoordinator]
 class RomyVacuumCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: RomyConfigEntry
     romy: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, romy: RomyRobot) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: RomyConfigEntry, romy: RomyRobot) -> None: ...
     async def _async_update_data(self) -> None: ...

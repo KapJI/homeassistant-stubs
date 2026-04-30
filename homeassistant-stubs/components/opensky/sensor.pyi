@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
-from .coordinator import OpenSkyDataUpdateCoordinator as OpenSkyDataUpdateCoordinator
+from .coordinator import OpenSkyConfigEntry as OpenSkyConfigEntry, OpenSkyDataUpdateCoordinator as OpenSkyDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: OpenSkyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OpenSkySensor(CoordinatorEntity[OpenSkyDataUpdateCoordinator], SensorEntity):
     _attr_attribution: str

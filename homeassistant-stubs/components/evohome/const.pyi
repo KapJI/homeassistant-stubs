@@ -9,12 +9,13 @@ EVOHOME_DATA: HassKey[EvoData]
 STORAGE_VER: Final[int]
 STORAGE_KEY: Final[Incomplete]
 CONF_LOCATION_IDX: Final[str]
-USER_DATA: Final[str]
 SCAN_INTERVAL_DEFAULT: Final[Incomplete]
 SCAN_INTERVAL_MINIMUM: Final[Incomplete]
-ATTR_PERIOD: Final[str]
 ATTR_DURATION: Final[str]
+ATTR_PERIOD: Final[str]
 ATTR_SETPOINT: Final[str]
+RESET_BREAKS_IN_HA_VERSION: Final[str]
+SERVICE_BREAKS_IN_HA_VERSION: Final[str]
 
 class EvoService(StrEnum):
     REFRESH_SYSTEM = 'refresh_system'
@@ -22,3 +23,4 @@ class EvoService(StrEnum):
     RESET_SYSTEM = 'reset_system'
     SET_ZONE_OVERRIDE = 'set_zone_override'
     CLEAR_ZONE_OVERRIDE = 'clear_zone_override'
+    SET_DHW_OVERRIDE = 'set_dhw_override'

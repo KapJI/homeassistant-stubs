@@ -1,12 +1,11 @@
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
-from .helpers import get_matter as get_matter
+from .helpers import MatterConfigEntry as MatterConfigEntry
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
 from dataclasses import dataclass
 from enum import IntEnum
 from homeassistant.components.vacuum import Segment as Segment, StateVacuumEntity as StateVacuumEntity, StateVacuumEntityDescription as StateVacuumEntityDescription, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -29,7 +28,7 @@ class ModeTag(IntEnum):
     CLEANING = 16385
     MAPPING = 16386
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MatterStateVacuumEntityDescription(StateVacuumEntityDescription, MatterEntityDescription): ...

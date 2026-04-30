@@ -1,0 +1,2 @@
+DOMAIN: str
+CONF_SERIAL_PORT: str

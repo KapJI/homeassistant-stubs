@@ -1,12 +1,10 @@
-from . import StreamlabsCoordinator as StreamlabsCoordinator
-from .const import DOMAIN as DOMAIN
+from .coordinator import StreamlabsConfigEntry as StreamlabsConfigEntry, StreamlabsCoordinator as StreamlabsCoordinator
 from .entity import StreamlabsWaterEntity as StreamlabsWaterEntity
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: StreamlabsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class StreamlabsAwayMode(StreamlabsWaterEntity, BinarySensorEntity):
     _attr_translation_key: str

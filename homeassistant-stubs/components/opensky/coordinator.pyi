@@ -6,12 +6,13 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from python_opensky import OpenSky, StateVector as StateVector
 
+type OpenSkyConfigEntry = ConfigEntry[OpenSkyDataUpdateCoordinator]
 class OpenSkyDataUpdateCoordinator(DataUpdateCoordinator[int]):
-    config_entry: ConfigEntry
+    config_entry: OpenSkyConfigEntry
     _opensky: Incomplete
     _previously_tracked: set[str] | None
     _bounding_box: Incomplete
     _altitude: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, opensky: OpenSky) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: OpenSkyConfigEntry, opensky: OpenSky) -> None: ...
     async def _async_update_data(self) -> int: ...
     def _handle_boundary(self, flights: set[str], event: str, metadata: dict[str, StateVector]) -> None: ...

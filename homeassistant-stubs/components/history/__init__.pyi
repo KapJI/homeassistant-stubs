@@ -4,8 +4,10 @@ from .helpers import entities_may_have_state_changes_after as entities_may_have_
 from _typeshed import Incomplete
 from aiohttp import web
 from datetime import datetime as dt
+from homeassistant.auth.permissions import filter_entity_ids_by_permission as filter_entity_ids_by_permission
+from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.components import frontend as frontend
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.recorder.util import session_scope as session_scope
 from homeassistant.const import CONF_EXCLUDE as CONF_EXCLUDE, CONF_INCLUDE as CONF_INCLUDE

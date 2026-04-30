@@ -1,12 +1,15 @@
+from ..models import User
 from .merge import merge_policies as merge_policies
 from .models import PermissionLookup as PermissionLookup
 from .types import PolicyType as PolicyType
 from _typeshed import Incomplete
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 
-__all__ = ['POLICY_SCHEMA', 'AbstractPermissions', 'OwnerPermissions', 'PermissionLookup', 'PolicyPermissions', 'PolicyType', 'merge_policies']
+__all__ = ['POLICY_SCHEMA', 'AbstractPermissions', 'OwnerPermissions', 'PermissionLookup', 'PolicyPermissions', 'PolicyType', 'filter_entity_ids_by_permission', 'merge_policies']
 
 POLICY_SCHEMA: Incomplete
+
+def filter_entity_ids_by_permission(user: User, entity_ids: Iterable[str], key: str) -> list[str]: ...
 
 class AbstractPermissions:
     _cached_entity_func: Callable[[str, str], bool] | None

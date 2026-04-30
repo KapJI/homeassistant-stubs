@@ -116,6 +116,28 @@ class AttributeSelector(Selector[AttributeSelectorConfig]):
     def __init__(self, config: AttributeSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
+class AutomationBehavior(StrEnum):
+    ALL = 'all'
+    FIRST = 'first'
+    LAST = 'last'
+    ANY = 'any'
+
+class AutomationBehaviorSelectorMode(StrEnum):
+    TRIGGER = 'trigger'
+    CONDITION = 'condition'
+
+_AUTOMATION_BEHAVIOR_MODES: dict[AutomationBehaviorSelectorMode, list[str]]
+
+class AutomationBehaviorConfig(BaseSelectorConfig, total=False):
+    mode: Required[AutomationBehaviorSelectorMode]
+    translation_key: str
+
+class AutomationBehaviorSelector(Selector[AutomationBehaviorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: AutomationBehaviorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 class BackupLocationSelectorConfig(BaseSelectorConfig, total=False): ...
 
 class BackupLocationSelector(Selector[BackupLocationSelectorConfig]):
@@ -465,6 +487,15 @@ class SelectSelector(Selector[SelectSelectorConfig]):
     def __init__(self, config: SelectSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
+class SerialPortSelectorConfig(BaseSelectorConfig, total=False):
+    extra_recommended_domains: list[str]
+
+class SerialPortSelector(Selector[SerialPortSelectorConfig]):
+    selector_type: str
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: SerialPortSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> str: ...
+
 class StateSelectorConfig(BaseSelectorConfig, total=False):
     entity_id: str
     hide_states: list[str]
@@ -490,6 +521,7 @@ class StatisticSelector(Selector[StatisticSelectorConfig]):
 class TargetSelectorConfig(BaseSelectorConfig, total=False):
     entity: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
     device: DeviceFilterSelectorConfig | list[DeviceFilterSelectorConfig]
+    primary_entities_only: bool
 
 class TargetSelector(Selector[TargetSelectorConfig]):
     selector_type: str

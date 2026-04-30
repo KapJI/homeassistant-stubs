@@ -12,13 +12,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer import Portainer as Portainer
+from pyportainer.models.docker import DockerContainer as DockerContainer
 from typing import Any
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerButtonDescription(ButtonEntityDescription):
-    press_action: Callable[[Portainer, int, str], Coroutine[Any, Any, None]]
+    press_action: Callable[[Portainer, int, str], Coroutine[Any, Any, None | DockerContainer]]
 
 ENDPOINT_BUTTONS: tuple[PortainerButtonDescription, ...]
 CONTAINER_BUTTONS: tuple[PortainerButtonDescription, ...]

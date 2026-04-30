@@ -1,9 +1,8 @@
 from .const import ATTR_END_DATETIME as ATTR_END_DATETIME, ATTR_HEATING_POWER_REQUEST as ATTR_HEATING_POWER_REQUEST, ATTR_SCHEDULE_NAME as ATTR_SCHEDULE_NAME, ATTR_SELECTED_SCHEDULE as ATTR_SELECTED_SCHEDULE, ATTR_SELECTED_SCHEDULE_ID as ATTR_SELECTED_SCHEDULE_ID, ATTR_TARGET_TEMPERATURE as ATTR_TARGET_TEMPERATURE, ATTR_TIME_PERIOD as ATTR_TIME_PERIOD, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_CANCEL_SET_POINT as EVENT_TYPE_CANCEL_SET_POINT, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, EVENT_TYPE_SET_POINT as EVENT_TYPE_SET_POINT, EVENT_TYPE_THERM_MODE as EVENT_TYPE_THERM_MODE, NETATMO_CREATE_CLIMATE as NETATMO_CREATE_CLIMATE, SERVICE_CLEAR_TEMPERATURE_SETTING as SERVICE_CLEAR_TEMPERATURE_SETTING, SERVICE_SET_PRESET_MODE_WITH_END_DATETIME as SERVICE_SET_PRESET_MODE_WITH_END_DATETIME, SERVICE_SET_SCHEDULE as SERVICE_SET_SCHEDULE, SERVICE_SET_TEMPERATURE_WITH_END_DATETIME as SERVICE_SET_TEMPERATURE_WITH_END_DATETIME, SERVICE_SET_TEMPERATURE_WITH_TIME_PERIOD as SERVICE_SET_TEMPERATURE_WITH_TIME_PERIOD
-from .data_handler import HOME as HOME, NetatmoRoom as NetatmoRoom, SIGNAL_NAME as SIGNAL_NAME
+from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoRoom as NetatmoRoom, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoRoomEntity as NetatmoRoomEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_BOOST as PRESET_BOOST, PRESET_HOME as PRESET_HOME
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_platform as entity_platform
@@ -33,7 +32,7 @@ DEFAULT_MAX_TEMP: int
 NA_THERM: Incomplete
 NA_VALVE: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NetatmoThermostat(NetatmoRoomEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete

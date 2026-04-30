@@ -1,8 +1,7 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import OpenexchangeratesCoordinator as OpenexchangeratesCoordinator
+from .coordinator import OpenexchangeratesConfigEntry as OpenexchangeratesConfigEntry, OpenexchangeratesCoordinator as OpenexchangeratesCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_QUOTE as CONF_QUOTE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -11,7 +10,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 
 ATTRIBUTION: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: OpenexchangeratesConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OpenexchangeratesSensor(CoordinatorEntity[OpenexchangeratesCoordinator], SensorEntity):
     _attr_has_entity_name: bool
@@ -22,6 +21,6 @@ class OpenexchangeratesSensor(CoordinatorEntity[OpenexchangeratesCoordinator], S
     _attr_native_unit_of_measurement: Incomplete
     _attr_unique_id: Incomplete
     _quote: Incomplete
-    def __init__(self, config_entry: ConfigEntry, coordinator: OpenexchangeratesCoordinator, quote: str, enabled: bool) -> None: ...
+    def __init__(self, config_entry: OpenexchangeratesConfigEntry, coordinator: OpenexchangeratesCoordinator, quote: str, enabled: bool) -> None: ...
     @property
     def native_value(self) -> float: ...

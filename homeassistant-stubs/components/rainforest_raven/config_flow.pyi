@@ -4,11 +4,10 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
-from serial.tools.list_ports_common import ListPortInfo as ListPortInfo
 from typing import Any
 
-def _format_id(value: str | int) -> str: ...
-def _generate_unique_id(info: ListPortInfo | UsbServiceInfo) -> str: ...
+def _format_id(value: str | int | None) -> str: ...
+def _generate_unique_id(info: usb.USBDevice | usb.SerialDevice | UsbServiceInfo) -> str: ...
 
 class RainforestRavenConfigFlow(ConfigFlow, domain=DOMAIN):
     _dev_path: str | None

@@ -1,7 +1,7 @@
 from .const import CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, ROLE_GENERIC as ROLE_GENERIC
 from .coordinator import ShellyBlockCoordinator as ShellyBlockCoordinator, ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import BlockEntityDescription as BlockEntityDescription, RestEntityDescription as RestEntityDescription, RpcEntityDescription as RpcEntityDescription, ShellyBlockAttributeEntity as ShellyBlockAttributeEntity, ShellyRestAttributeEntity as ShellyRestAttributeEntity, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, ShellySleepingBlockAttributeEntity as ShellySleepingBlockAttributeEntity, ShellySleepingRpcAttributeEntity as ShellySleepingRpcAttributeEntity, async_setup_entry_block as async_setup_entry_block, async_setup_entry_rest as async_setup_entry_rest, async_setup_entry_rpc as async_setup_entry_rpc, get_entity_rpc_device_info as get_entity_rpc_device_info
-from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_device_uptime as get_device_uptime, get_shelly_air_lamp_life as get_shelly_air_lamp_life, get_virtual_component_unit as get_virtual_component_unit, is_rpc_wifi_stations_disabled as is_rpc_wifi_stations_disabled, is_view_for_platform as is_view_for_platform
+from .utils import async_remove_orphaned_entities as async_remove_orphaned_entities, get_blu_trv_device_info as get_blu_trv_device_info, get_device_entry_gen as get_device_entry_gen, get_shelly_air_lamp_life as get_shelly_air_lamp_life, get_virtual_component_unit as get_virtual_component_unit, is_rpc_wifi_stations_disabled as is_rpc_wifi_stations_disabled, is_view_for_platform as is_view_for_platform
 from _typeshed import Incomplete
 from aioshelly.block_device import Block as Block
 from dataclasses import dataclass
@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util.dt import utcnow as utcnow
 from typing import Final
 
 PARALLEL_UPDATES: int

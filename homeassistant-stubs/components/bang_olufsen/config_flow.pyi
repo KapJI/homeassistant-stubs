@@ -20,6 +20,7 @@ _exception_map: Incomplete
 class BeoConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     _beolink_jid: str
     _client: MozartClient
+    _friendly_name: str
     _host: str
     _model: str
     _name: str

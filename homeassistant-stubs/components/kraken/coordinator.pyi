@@ -8,6 +8,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 
 CALL_RATE_LIMIT_SLEEP: int
 _LOGGER: Incomplete
+type KrakenConfigEntry = ConfigEntry[KrakenData]
 
 class KrakenData:
     _hass: Incomplete
@@ -15,7 +16,7 @@ class KrakenData:
     _api: Incomplete
     tradable_asset_pairs: dict[str, str]
     coordinator: DataUpdateCoordinator[KrakenResponse | None] | None
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: KrakenConfigEntry) -> None: ...
     async def async_update(self) -> KrakenResponse | None: ...
     def _get_kraken_data(self) -> KrakenResponse: ...
     async def _async_refresh_tradable_asset_pairs(self) -> None: ...

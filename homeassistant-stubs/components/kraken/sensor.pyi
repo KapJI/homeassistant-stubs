@@ -1,10 +1,9 @@
 from .const import CONF_TRACKED_ASSET_PAIRS as CONF_TRACKED_ASSET_PAIRS, DISPATCH_CONFIG_UPDATED as DISPATCH_CONFIG_UPDATED, DOMAIN as DOMAIN, KrakenResponse as KrakenResponse
-from .coordinator import KrakenData as KrakenData
+from .coordinator import KrakenConfigEntry as KrakenConfigEntry, KrakenData as KrakenData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -19,7 +18,7 @@ class KrakenSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: tuple[KrakenSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: KrakenConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class KrakenSensor(CoordinatorEntity[DataUpdateCoordinator[KrakenResponse | None]], SensorEntity):
     entity_description: KrakenSensorEntityDescription

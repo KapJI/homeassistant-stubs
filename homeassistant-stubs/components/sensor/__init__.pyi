@@ -1,6 +1,7 @@
 import asyncio
 from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from _typeshed import Incomplete
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal
@@ -29,6 +30,7 @@ class SensorEntityDescription(EntityDescription, frozen_or_thawed=True):
     unit_of_measurement: None = ...
 
 class SensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
+    _attr_uptime_drift_tolerance: int
     _entity_component_unrecorded_attributes: Incomplete
     entity_description: SensorEntityDescription
     _attr_device_class: SensorDeviceClass | None
@@ -47,6 +49,8 @@ class SensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _sensor_option_display_precision: int | None
     _sensor_option_unit_of_measurement: str | None | UndefinedType
     _invalid_suggested_unit_of_measurement_reported: bool
+    _get_uptime: Callable[[datetime], datetime] | None
+    def _normalize_uptime(self, current_uptime: datetime) -> datetime: ...
     registry_entry: Incomplete
     @callback
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...

@@ -1,14 +1,25 @@
 import transmission_rpc
-from .const import CONF_LIMIT as CONF_LIMIT, CONF_ORDER as CONF_ORDER, DEFAULT_LIMIT as DEFAULT_LIMIT, DEFAULT_ORDER as DEFAULT_ORDER, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, EVENT_DOWNLOADED_TORRENT as EVENT_DOWNLOADED_TORRENT, EVENT_REMOVED_TORRENT as EVENT_REMOVED_TORRENT, EVENT_STARTED_TORRENT as EVENT_STARTED_TORRENT
+from .const import ATTR_DOWNLOAD_PATH as ATTR_DOWNLOAD_PATH, ATTR_LABELS as ATTR_LABELS, CONF_LIMIT as CONF_LIMIT, CONF_ORDER as CONF_ORDER, DEFAULT_LIMIT as DEFAULT_LIMIT, DEFAULT_ORDER as DEFAULT_ORDER, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, EVENT_DOWNLOADED_TORRENT as EVENT_DOWNLOADED_TORRENT, EVENT_REMOVED_TORRENT as EVENT_REMOVED_TORRENT, EVENT_STARTED_TORRENT as EVENT_STARTED_TORRENT, EVENT_TYPE_DOWNLOADED as EVENT_TYPE_DOWNLOADED, EVENT_TYPE_REMOVED as EVENT_TYPE_REMOVED, EVENT_TYPE_STARTED as EVENT_TYPE_STARTED
 from _typeshed import Incomplete
+from collections.abc import Callable
+from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.const import ATTR_ID as ATTR_ID, ATTR_NAME as ATTR_NAME, CONF_HOST as CONF_HOST
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from transmission_rpc.session import SessionStats
 
 _LOGGER: Incomplete
+type EventCallback = Callable[[TransmissionEventData], None]
 type TransmissionConfigEntry = ConfigEntry[TransmissionDataUpdateCoordinator]
+
+@dataclass
+class TransmissionEventData:
+    event_type: str
+    name: str
+    id: int
+    download_path: str
+    labels: list[str]
 
 class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
     config_entry: TransmissionConfigEntry
@@ -18,12 +29,18 @@ class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
     _all_torrents: list[transmission_rpc.Torrent]
     _completed_torrents: list[transmission_rpc.Torrent]
     _started_torrents: list[transmission_rpc.Torrent]
+    _event_listeners: dict[str, EventCallback]
     torrents: list[transmission_rpc.Torrent]
     def __init__(self, hass: HomeAssistant, entry: TransmissionConfigEntry, api: transmission_rpc.Client) -> None: ...
     @property
     def limit(self) -> int: ...
     @property
     def order(self) -> str: ...
+    @callback
+    def async_add_event_listener(self, update_callback: EventCallback, target_event_id: str) -> Callable[[], None]: ...
+    def __async_remove_listener_internal(self, listener_id: str) -> None: ...
+    @callback
+    def _async_notify_event_listeners(self, event: TransmissionEventData) -> None: ...
     async def _async_update_data(self) -> SessionStats: ...
     def update(self) -> SessionStats: ...
     def init_torrent_list(self) -> None: ...

@@ -7,9 +7,10 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from vallox_websocket_api import MetricData, Vallox as Vallox
 
 _LOGGER: Incomplete
+type ValloxConfigEntry = ConfigEntry[ValloxDataUpdateCoordinator]
 
 class ValloxDataUpdateCoordinator(DataUpdateCoordinator[MetricData]):
-    config_entry: ConfigEntry
+    config_entry: ValloxConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, client: Vallox) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: ValloxConfigEntry, client: Vallox) -> None: ...
     async def _async_update_data(self) -> MetricData: ...

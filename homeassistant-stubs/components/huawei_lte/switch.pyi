@@ -1,8 +1,8 @@
-from .const import DOMAIN as DOMAIN, KEY_DIALUP_MOBILE_DATASWITCH as KEY_DIALUP_MOBILE_DATASWITCH, KEY_WLAN_WIFI_GUEST_NETWORK_SWITCH as KEY_WLAN_WIFI_GUEST_NETWORK_SWITCH
+from . import HuaweiLteConfigEntry as HuaweiLteConfigEntry
+from .const import KEY_DIALUP_MOBILE_DATASWITCH as KEY_DIALUP_MOBILE_DATASWITCH, KEY_WLAN_WIFI_GUEST_NETWORK_SWITCH as KEY_WLAN_WIFI_GUEST_NETWORK_SWITCH
 from .entity import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -10,7 +10,7 @@ from typing import Any
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HuaweiLteConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HuaweiLteBaseSwitch(HuaweiLteBaseEntityWithDevice, SwitchEntity):
     key: str

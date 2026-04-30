@@ -1,12 +1,10 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
+from .coordinator import PrusaLinkConfigEntry as PrusaLinkConfigEntry, PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
 from .entity import PrusaLinkEntity as PrusaLinkEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import PERCENTAGE as PERCENTAGE, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -29,7 +27,7 @@ class PrusaLinkSensorEntityDescription(SensorEntityDescription, PrusaLinkSensorE
 
 SENSORS: dict[str, tuple[PrusaLinkSensorEntityDescription, ...]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: PrusaLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PrusaLinkSensorEntity(PrusaLinkEntity, SensorEntity):
     entity_description: PrusaLinkSensorEntityDescription

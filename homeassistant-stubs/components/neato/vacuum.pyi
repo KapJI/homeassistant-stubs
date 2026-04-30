@@ -1,9 +1,9 @@
-from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as MODE, NEATO_LOGIN as NEATO_LOGIN, NEATO_MAP_DATA as NEATO_MAP_DATA, NEATO_PERSISTENT_MAPS as NEATO_PERSISTENT_MAPS, NEATO_ROBOTS as NEATO_ROBOTS, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
+from . import NeatoConfigEntry as NeatoConfigEntry
+from .const import ACTION as ACTION, ALERTS as ALERTS, ERRORS as ERRORS, MODE as MODE, SCAN_INTERVAL_MINUTES as SCAN_INTERVAL_MINUTES
 from .entity import NeatoEntity as NeatoEntity
 from .hub import NeatoHub as NeatoHub
 from _typeshed import Incomplete
 from homeassistant.components.vacuum import ATTR_STATUS as ATTR_STATUS, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -23,7 +23,7 @@ ATTR_CLEAN_PAUSE_TIME: str
 ATTR_CLEAN_ERROR_TIME: str
 ATTR_LAUNCHED_FROM: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NeatoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _attr_supported_features: Incomplete

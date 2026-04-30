@@ -104,6 +104,9 @@ def setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 class APISpaceApiView(HomeAssistantView):
     url = URL_API_SPACEAPI
     name: str
+    requires_auth: bool
+    cors_allowed: bool
+    def __init__(self) -> None: ...
     @staticmethod
     def get_sensor_data(hass: HomeAssistant, spaceapi: dict[str, Any], entity_id: str) -> dict[str, str | float | dict[str, str]] | None: ...
     @ha.callback

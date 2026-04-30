@@ -9,13 +9,14 @@ from switchbee.api import CentralUnitPolling as CentralUnitPolling, CentralUnitW
 from switchbee.device import SwitchBeeBaseDevice
 
 _LOGGER: Incomplete
+type SwitchBeeConfigEntry = ConfigEntry[SwitchBeeCoordinator]
 
 class SwitchBeeCoordinator(DataUpdateCoordinator[Mapping[int, SwitchBeeBaseDevice]]):
-    config_entry: ConfigEntry
+    config_entry: SwitchBeeConfigEntry
     api: CentralUnitPolling | CentralUnitWsRPC
     _reconnect_counts: int
     unique_id: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, swb_api: CentralUnitPolling | CentralUnitWsRPC) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SwitchBeeConfigEntry, swb_api: CentralUnitPolling | CentralUnitWsRPC) -> None: ...
     @callback
     def _async_handle_update(self, push_data: dict) -> None: ...
     async def _async_update_data(self) -> Mapping[int, SwitchBeeBaseDevice]: ...

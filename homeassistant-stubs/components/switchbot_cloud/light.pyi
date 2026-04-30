@@ -1,9 +1,8 @@
-from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudData as SwitchbotCloudData
-from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, DOMAIN as DOMAIN
+from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
+from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
@@ -11,7 +10,7 @@ from typing import Any
 
 def value_map_brightness(value: int) -> int: ...
 def brightness_map_value(value: int) -> int: ...
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudLight(SwitchBotCloudEntity, LightEntity):
     _attr_is_on: bool | None

@@ -37,7 +37,6 @@ class JellyfinMediaPlayer(JellyfinClientEntity, MediaPlayerEntity):
     _attr_media_duration: Incomplete
     _attr_media_position: Incomplete
     _attr_media_position_updated_at: Incomplete
-    _attr_media_image_remotely_accessible: bool
     @callback
     def _update_from_session_data(self) -> None: ...
     @property

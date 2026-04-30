@@ -1,4 +1,5 @@
 from .const import CONF_TLS as CONF_TLS, CONF_VLP_FILE as CONF_VLP_FILE, DOMAIN as DOMAIN
+from homeassistant.components import usb as usb
 from homeassistant.components.file_upload import process_uploaded_file as process_uploaded_file
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT

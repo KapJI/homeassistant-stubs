@@ -10,17 +10,14 @@ from homeassistant.core import Context as Context, HomeAssistant as HomeAssistan
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA, convert_include_exclude_filter as convert_include_exclude_filter
 from homeassistant.helpers.integration_platform import async_process_integration_platforms as async_process_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.event_type import EventType as EventType
 from typing import Any
 
 CONFIG_SCHEMA: Incomplete
 LOG_MESSAGE_SCHEMA: Incomplete
 
-@bind_hass
 def log_entry(hass: HomeAssistant, name: str, message: str, domain: str | None = None, entity_id: str | None = None, context: Context | None = None) -> None: ...
 @callback
-@bind_hass
 def async_log_entry(hass: HomeAssistant, name: str, message: str, domain: str | None = None, entity_id: str | None = None, context: Context | None = None) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 @callback

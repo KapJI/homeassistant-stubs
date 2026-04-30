@@ -5,7 +5,6 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client, integration_platform as integration_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from typing import Any, Protocol
 
 _LOGGER: Incomplete
@@ -16,7 +15,6 @@ CONFIG_SCHEMA: Incomplete
 class SystemHealthProtocol(Protocol):
     def async_register(self, hass: HomeAssistant, register: SystemHealthRegistration) -> None: ...
 
-@bind_hass
 @callback
 def async_register_info(hass: HomeAssistant, domain: str, info_callback: Callable[[HomeAssistant], Awaitable[dict]]) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

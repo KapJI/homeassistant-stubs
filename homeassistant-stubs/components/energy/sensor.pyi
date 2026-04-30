@@ -110,9 +110,9 @@ class EnergyPowerSensor(SensorEntity):
     @property
     def available(self) -> bool: ...
     _attr_native_value: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     @callback
     def _update_state(self) -> None: ...
-    _attr_native_unit_of_measurement: Incomplete
     _attr_name: Incomplete
     async def async_added_to_hass(self) -> None: ...
     @callback

@@ -1,10 +1,9 @@
-from .const import API_WS_URL as API_WS_URL, All_LIGHT_TYPES as All_LIGHT_TYPES, BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, COIOT_UNCONFIGURED_ISSUE_ID as COIOT_UNCONFIGURED_ISSUE_ID, COMPONENT_ID_PATTERN as COMPONENT_ID_PATTERN, CONF_COAP_PORT as CONF_COAP_PORT, CONF_GEN as CONF_GEN, DEVICES_WITHOUT_FIRMWARE_CHANGELOG as DEVICES_WITHOUT_FIRMWARE_CHANGELOG, DEVICE_UNIT_MAP as DEVICE_UNIT_MAP, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, GEN1_RELEASE_URL as GEN1_RELEASE_URL, GEN2_BETA_RELEASE_URL as GEN2_BETA_RELEASE_URL, GEN2_RELEASE_URL as GEN2_RELEASE_URL, LOGGER as LOGGER, MAX_SCRIPT_SIZE as MAX_SCRIPT_SIZE, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID, ROLE_GENERIC as ROLE_GENERIC, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHELLY_EMIT_EVENT_PATTERN as SHELLY_EMIT_EVENT_PATTERN, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, UPTIME_DEVIATION as UPTIME_DEVIATION, VIRTUAL_COMPONENTS as VIRTUAL_COMPONENTS, VIRTUAL_COMPONENTS_MAP as VIRTUAL_COMPONENTS_MAP
+from .const import API_WS_URL as API_WS_URL, All_LIGHT_TYPES as All_LIGHT_TYPES, BASIC_INPUTS_EVENTS_TYPES as BASIC_INPUTS_EVENTS_TYPES, COIOT_UNCONFIGURED_ISSUE_ID as COIOT_UNCONFIGURED_ISSUE_ID, COMPONENT_ID_PATTERN as COMPONENT_ID_PATTERN, CONF_COAP_PORT as CONF_COAP_PORT, CONF_GEN as CONF_GEN, DEVICES_WITHOUT_FIRMWARE_CHANGELOG as DEVICES_WITHOUT_FIRMWARE_CHANGELOG, DEVICE_UNIT_MAP as DEVICE_UNIT_MAP, DOMAIN as DOMAIN, FIRMWARE_UNSUPPORTED_ISSUE_ID as FIRMWARE_UNSUPPORTED_ISSUE_ID, GEN1_RELEASE_URL as GEN1_RELEASE_URL, GEN2_BETA_RELEASE_URL as GEN2_BETA_RELEASE_URL, GEN2_RELEASE_URL as GEN2_RELEASE_URL, LOGGER as LOGGER, MAX_SCRIPT_SIZE as MAX_SCRIPT_SIZE, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID, ROLE_GENERIC as ROLE_GENERIC, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, SHAIR_MAX_WORK_HOURS as SHAIR_MAX_WORK_HOURS, SHBTN_INPUTS_EVENTS_TYPES as SHBTN_INPUTS_EVENTS_TYPES, SHBTN_MODELS as SHBTN_MODELS, SHELLY_EMIT_EVENT_PATTERN as SHELLY_EMIT_EVENT_PATTERN, SHELLY_WALL_DISPLAY_MODELS as SHELLY_WALL_DISPLAY_MODELS, SHIX3_1_INPUTS_EVENTS_TYPES as SHIX3_1_INPUTS_EVENTS_TYPES, VIRTUAL_COMPONENTS as VIRTUAL_COMPONENTS, VIRTUAL_COMPONENTS_MAP as VIRTUAL_COMPONENTS_MAP, WALL_DISPLAY_RELEASE_URL as WALL_DISPLAY_RELEASE_URL
 from _typeshed import Incomplete
 from aiohttp.web import Request as Request, WebSocketResponse as WebSocketResponse
 from aioshelly.block_device import Block as Block, BlockDevice as BlockDevice, COAP
 from aioshelly.rpc_device import RpcDevice, WsServer
 from collections.abc import Iterable, Mapping
-from datetime import datetime
 from homeassistant.components import network as network
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
@@ -14,7 +13,6 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.helpers import entity_registry as er, singleton as singleton
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
-from homeassistant.util.dt import utcnow as utcnow
 from typing import Any
 from yarl import URL
 
@@ -26,7 +24,6 @@ def get_block_channel(block: Block | None, base: str = '1') -> str: ...
 def get_block_sub_device_name(device: BlockDevice, block: Block) -> str: ...
 def is_block_momentary_input(settings: dict[str, Any], block: Block, include_detached: bool = False) -> bool: ...
 def is_block_exclude_from_relay(settings: dict[str, Any], block: Block) -> bool: ...
-def get_device_uptime(uptime: float, last_uptime: datetime | None) -> datetime: ...
 def get_block_input_triggers(device: BlockDevice, block: Block) -> list[tuple[str, str]]: ...
 def get_shbtn_input_triggers() -> list[tuple[str, str]]: ...
 def get_coiot_port(hass: HomeAssistant) -> int: ...

@@ -9,9 +9,10 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
 DEFAULT_UPDATE_INTERVAL: Incomplete
+type WattTimeConfigEntry = ConfigEntry[WattTimeCoordinator]
 
 class WattTimeCoordinator(DataUpdateCoordinator[RealTimeEmissionsResponseType]):
-    config_entry: ConfigEntry
+    config_entry: WattTimeConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, client: Client) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: WattTimeConfigEntry, client: Client) -> None: ...
     async def _async_update_data(self) -> RealTimeEmissionsResponseType: ...

@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, MAP_SLEEP as MAP_SLEEP
-from .coordinator import RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01
-from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
+from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01
+from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -85,3 +85,15 @@ class RoborockSelectEntityA01(RoborockCoordinatedEntityA01, SelectEntity):
     async def async_select_option(self, option: str) -> None: ...
     @property
     def current_option(self) -> str | None: ...
+
+class RoborockQ10CleanModeSelectEntity(RoborockCoordinatedEntityB01Q10, SelectEntity):
+    _attr_entity_category: Incomplete
+    _attr_translation_key: str
+    coordinator: RoborockB01Q10UpdateCoordinator
+    def __init__(self, coordinator: RoborockB01Q10UpdateCoordinator) -> None: ...
+    async def async_added_to_hass(self) -> None: ...
+    @property
+    def options(self) -> list[str]: ...
+    @property
+    def current_option(self) -> str | None: ...
+    async def async_select_option(self, option: str) -> None: ...

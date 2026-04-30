@@ -13,10 +13,11 @@ class StreamlabsData:
     daily_usage: float
     monthly_usage: float
     yearly_usage: float
+type StreamlabsConfigEntry = ConfigEntry[StreamlabsCoordinator]
 
 class StreamlabsCoordinator(DataUpdateCoordinator[dict[str, StreamlabsData]]):
-    config_entry: ConfigEntry
+    config_entry: StreamlabsConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, client: StreamlabsClient) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: StreamlabsConfigEntry, client: StreamlabsClient) -> None: ...
     async def _async_update_data(self) -> dict[str, StreamlabsData]: ...
     def _update_data(self) -> dict[str, StreamlabsData]: ...

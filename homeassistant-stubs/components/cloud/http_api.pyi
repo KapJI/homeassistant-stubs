@@ -86,6 +86,7 @@ class DownloadSupportPackageView(HomeAssistantView):
     name: str
     async def _get_integration_info(self, hass: HomeAssistant) -> dict[str, Any]: ...
     async def _generate_markdown(self, hass: HomeAssistant, hass_info: dict[str, Any], domains_info: dict[str, dict[str, str]]) -> str: ...
+    @require_admin
     async def get(self, request: web.Request) -> web.Response: ...
 
 @websocket_api.require_admin
@@ -94,17 +95,21 @@ async def websocket_cloud_remove_data(hass: HomeAssistant, connection: websocket
 @websocket_api.async_response
 async def websocket_cloud_status(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 def _require_cloud_login(handler: Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], None]) -> Callable[[HomeAssistant, websocket_api.ActiveConnection, dict[str, Any]], None]: ...
+@websocket_api.require_admin
 @_require_cloud_login
 @websocket_api.async_response
 async def websocket_subscription(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 def validate_language_voice(value: tuple[str, str]) -> tuple[str, str]: ...
+@websocket_api.require_admin
 @_require_cloud_login
 @websocket_api.async_response
 async def websocket_update_prefs(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
 @_require_cloud_login
 @websocket_api.async_response
 @_ws_handle_cloud_errors
 async def websocket_hook_create(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
+@websocket_api.require_admin
 @_require_cloud_login
 @websocket_api.async_response
 @_ws_handle_cloud_errors

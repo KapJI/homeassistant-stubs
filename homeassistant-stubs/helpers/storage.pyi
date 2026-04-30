@@ -4,7 +4,6 @@ from collections.abc import Callable as Callable, Iterable, Mapping, Sequence as
 from homeassistant.const import EVENT_HOMEASSISTANT_FINAL_WRITE as EVENT_HOMEASSISTANT_FINAL_WRITE, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, UnsupportedStorageVersionError as UnsupportedStorageVersionError
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import json as json_util
 from homeassistant.util.file import WriteError as WriteError, write_utf8_file as write_utf8_file, write_utf8_file_atomic as write_utf8_file_atomic
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -20,7 +19,6 @@ STORAGE_SEMAPHORE: HassKey[asyncio.Semaphore]
 STORAGE_MANAGER: HassKey[_StoreManager]
 MANAGER_CLEANUP_DELAY: int
 
-@bind_hass
 async def async_migrator[_T: Mapping[str, Any] | Sequence[Any]](hass: HomeAssistant, old_path: str, store: Store[_T], *, old_conf_load_func: Callable | None = None, old_conf_migrate_func: Callable | None = None) -> _T | None: ...
 def get_internal_store_manager(hass: HomeAssistant) -> _StoreManager: ...
 

@@ -1,5 +1,6 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
+from .const import DOMAIN as DOMAIN
 from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
 from .hub import UnifiHub as UnifiHub
 from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent as ItemEvent
@@ -9,8 +10,11 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 @callback
 def async_port_power_cycle_available_fn(hub: UnifiHub, obj_id: str) -> bool: ...

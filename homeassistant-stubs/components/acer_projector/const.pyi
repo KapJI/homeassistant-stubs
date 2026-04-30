@@ -1,9 +1,10 @@
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from typing import Final
 
+CONF_READ_TIMEOUT: Final[str]
 CONF_WRITE_TIMEOUT: Final[str]
 DEFAULT_NAME: Final[str]
-DEFAULT_TIMEOUT: Final[int]
+DEFAULT_READ_TIMEOUT: Final[int]
 DEFAULT_WRITE_TIMEOUT: Final[int]
 ECO_MODE: Final[str]
 ICON: Final[str]

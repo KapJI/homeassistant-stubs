@@ -3,7 +3,7 @@ from .const import CONF_ALLOW_SINGLE_WORD as CONF_ALLOW_SINGLE_WORD, CONF_ICON a
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.frontend import DATA_PANELS as DATA_PANELS
+from homeassistant.components.frontend import async_panel_exists as async_panel_exists
 from homeassistant.const import CONF_FILENAME as CONF_FILENAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

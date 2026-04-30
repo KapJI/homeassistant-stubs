@@ -1,11 +1,10 @@
-from . import YouTubeDataUpdateCoordinator as YouTubeDataUpdateCoordinator
-from .const import ATTR_LATEST_VIDEO as ATTR_LATEST_VIDEO, ATTR_PUBLISHED_AT as ATTR_PUBLISHED_AT, ATTR_SUBSCRIBER_COUNT as ATTR_SUBSCRIBER_COUNT, ATTR_THUMBNAIL as ATTR_THUMBNAIL, ATTR_TITLE as ATTR_TITLE, ATTR_TOTAL_VIEWS as ATTR_TOTAL_VIEWS, ATTR_VIDEO_ID as ATTR_VIDEO_ID, COORDINATOR as COORDINATOR, DOMAIN as DOMAIN
+from .const import ATTR_LATEST_VIDEO as ATTR_LATEST_VIDEO, ATTR_PUBLISHED_AT as ATTR_PUBLISHED_AT, ATTR_SUBSCRIBER_COUNT as ATTR_SUBSCRIBER_COUNT, ATTR_THUMBNAIL as ATTR_THUMBNAIL, ATTR_TITLE as ATTR_TITLE, ATTR_TOTAL_VIEWS as ATTR_TOTAL_VIEWS, ATTR_VIDEO_ID as ATTR_VIDEO_ID
+from .coordinator import YouTubeConfigEntry as YouTubeConfigEntry
 from .entity import YouTubeChannelEntity as YouTubeChannelEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ICON as ATTR_ICON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -21,7 +20,7 @@ class YouTubeSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: YouTubeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class YouTubeSensor(YouTubeChannelEntity, SensorEntity):
     entity_description: YouTubeSensorEntityDescription

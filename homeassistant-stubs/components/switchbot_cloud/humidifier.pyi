@@ -1,9 +1,8 @@
-from . import SwitchbotCloudData as SwitchbotCloudData
-from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, DOMAIN as DOMAIN, HUMIDITY_LEVELS as HUMIDITY_LEVELS, Humidifier2Mode as Humidifier2Mode
+from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
+from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, HUMIDITY_LEVELS as HUMIDITY_LEVELS, Humidifier2Mode as Humidifier2Mode
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.humidifier import HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_NORMAL as MODE_NORMAL
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -11,7 +10,7 @@ from typing import Any
 
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotHumidifier(SwitchBotCloudEntity, HumidifierEntity):
     _attr_supported_features: Incomplete

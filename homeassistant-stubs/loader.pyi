@@ -160,6 +160,7 @@ class Integration:
     pkg_path: Incomplete
     file_path: Incomplete
     manifest: Incomplete
+    logger: Incomplete
     _all_dependencies: set[str] | Exception | None
     _platforms_to_preload: Incomplete
     _component_future: asyncio.Future[ComponentProtocol] | None

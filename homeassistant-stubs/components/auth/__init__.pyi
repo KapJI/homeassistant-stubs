@@ -13,7 +13,6 @@ from homeassistant.components.http.view import HomeAssistantView as HomeAssistan
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2AuthorizeCallbackView as OAuth2AuthorizeCallbackView
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from multidict import MultiDictProxy
 from typing import Any
@@ -25,7 +24,6 @@ DATA_STORE: HassKey[StoreResultType]
 CONFIG_SCHEMA: Incomplete
 DELETE_CURRENT_TOKEN_DELAY: int
 
-@bind_hass
 def create_auth_code(hass: HomeAssistant, client_id: str, credential: Credentials) -> str: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 

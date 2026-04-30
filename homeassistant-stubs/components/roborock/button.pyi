@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator
 from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockEntity as RoborockEntity, RoborockEntityV1 as RoborockEntityV1
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
@@ -18,6 +19,10 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class RoborockButtonDescription(ButtonEntityDescription):
     attribute: ConsumableAttribute
+    is_dock_entity: bool = ...
+    is_supported: Callable[[RoborockDataUpdateCoordinator], bool] = ...
+
+def _supports_dock_consumables(coordinator: RoborockDataUpdateCoordinator) -> bool: ...
 
 CONSUMABLE_BUTTON_DESCRIPTIONS: Incomplete
 

@@ -22,6 +22,7 @@ ATTR_REMAINING: str
 ATTR_FINISHES_AT: str
 ATTR_RESTORE: str
 ATTR_FINISHED_AT: str
+ATTR_LAST_TRANSITION: str
 CONF_DURATION: str
 CONF_RESTORE: str
 STATUS_IDLE: str
@@ -60,6 +61,7 @@ class TimerStorageCollection(collection.DictStorageCollection):
 class Timer(collection.CollectionEntity, RestoreEntity):
     editable: bool
     _config: dict
+    _last_transition: str | None
     _state: str
     _configured_duration: Incomplete
     _running_duration: timedelta
@@ -98,3 +100,4 @@ class Timer(collection.CollectionEntity, RestoreEntity):
     @callback
     def _async_finished(self, time: datetime) -> None: ...
     async def async_update_config(self, config: ConfigType) -> None: ...
+    def _fire_event_and_write_state(self, event: str, *, extra_attrs: dict[str, Any] | None = None) -> None: ...

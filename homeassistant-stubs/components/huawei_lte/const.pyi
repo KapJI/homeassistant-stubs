@@ -1,6 +1,9 @@
 from _typeshed import Incomplete
+from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.util.hass_dict import HassKey as HassKey
 
 DOMAIN: str
+HUAWEI_LTE_CONFIG: HassKey[ConfigType]
 CONF_MANUFACTURER: str
 CONF_TRACK_WIRED_CLIENTS: str
 CONF_UNAUTHENTICATED_MODE: str

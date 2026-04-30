@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK, WIFI_STANDARD as WIFI_STANDARD
+from .const import DOMAIN as DOMAIN, MeshRoles as MeshRoles, Platform as Platform, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK
 from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity
 from .helpers import device_filter_out_from_trackers as device_filter_out_from_trackers
@@ -18,7 +18,12 @@ from typing import Any
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
+WIFI_STANDARD: Incomplete
+WIFI_BAND: Incomplete
 
+def _wifi_naming(network_info: dict[str, Any], wifi_index: int, wifi_count: int) -> str | None: ...
+async def _get_wifi_networks_list(avm_wrapper: AvmWrapper) -> dict[int, dict[str, Any]]: ...
+async def _migrate_to_new_unique_id(hass: HomeAssistant, avm_wrapper: AvmWrapper) -> None: ...
 async def _async_deflection_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str) -> list[FritzBoxDeflectionSwitch]: ...
 async def _async_port_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str, local_ip: str) -> list[FritzBoxPortSwitch]: ...
 async def _async_wifi_entities_list(avm_wrapper: AvmWrapper, device_friendly_name: str) -> list[FritzBoxWifiSwitch]: ...
@@ -118,6 +123,7 @@ class FritzBoxWifiSwitch(FritzBoxBaseSwitch):
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _network_num: Incomplete
+    _attr_translation_key: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, network_num: int, network_data: dict[str, Any]) -> None: ...
     _is_available: bool
     _attr_is_on: Incomplete

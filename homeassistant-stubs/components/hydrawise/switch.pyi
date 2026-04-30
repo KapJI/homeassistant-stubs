@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pydrawise import Controller as Controller, HydrawiseBase as HydrawiseBase, Zone as Zone
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class HydrawiseSwitchEntityDescription(SwitchEntityDescription):
     turn_on_fn: Callable[[HydrawiseBase, Zone], Coroutine[Any, Any, None]]

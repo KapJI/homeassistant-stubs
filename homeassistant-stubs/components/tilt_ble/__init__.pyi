@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode
 from homeassistant.components.bluetooth.passive_update_processor import PassiveBluetoothProcessorCoordinator as PassiveBluetoothProcessorCoordinator
@@ -8,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 
 PLATFORMS: list[Platform]
 _LOGGER: Incomplete
+type TiltBLEConfigEntry = ConfigEntry[PassiveBluetoothProcessorCoordinator]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: TiltBLEConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: TiltBLEConfigEntry) -> bool: ...

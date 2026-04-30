@@ -18,7 +18,7 @@ from homeassistant.helpers.json import json_dumps_sorted as json_dumps_sorted
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.translation import async_get_translations as async_get_translations
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
+from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any, TypedDict
@@ -102,12 +102,12 @@ class Panel:
     @callback
     def to_response(self, config_override: dict[str, Any] | None = None) -> PanelResponse: ...
 
-@bind_hass
 @callback
 def async_register_built_in_panel(hass: HomeAssistant, component_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, sidebar_default_visible: bool = True, frontend_url_path: str | None = None, config: dict[str, Any] | None = None, require_admin: bool = False, *, update: bool = False, config_panel_domain: str | None = None, show_in_sidebar: bool = True) -> None: ...
-@bind_hass
 @callback
 def async_remove_panel(hass: HomeAssistant, frontend_url_path: str, *, warn_if_unknown: bool = True) -> None: ...
+@callback
+def async_panel_exists(hass: HomeAssistant, frontend_url_path: str) -> bool: ...
 def add_extra_js_url(hass: HomeAssistant, url: str, es5: bool = False) -> None: ...
 def remove_extra_js_url(hass: HomeAssistant, url: str, es5: bool = False) -> None: ...
 def add_manifest_json_key(key: str, val: Any) -> None: ...

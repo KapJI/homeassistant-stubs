@@ -6,10 +6,6 @@ from homeassistant.data_entry_flow import FlowContext as FlowContext
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
-WS_TYPE_SETUP_MFA: str
-SCHEMA_WS_SETUP_MFA: Incomplete
-WS_TYPE_DEPOSE_MFA: str
-SCHEMA_WS_DEPOSE_MFA: Incomplete
 DATA_SETUP_FLOW_MGR: HassKey[MfaFlowManager]
 _LOGGER: Incomplete
 

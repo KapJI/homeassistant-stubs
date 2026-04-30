@@ -1,11 +1,10 @@
 from .const import CONF_URL_SECURITY as CONF_URL_SECURITY, DOORTAG_CATEGORY_DOOR as DOORTAG_CATEGORY_DOOR, DOORTAG_CATEGORY_FURNITURE as DOORTAG_CATEGORY_FURNITURE, DOORTAG_CATEGORY_GARAGE as DOORTAG_CATEGORY_GARAGE, DOORTAG_CATEGORY_GATE as DOORTAG_CATEGORY_GATE, DOORTAG_CATEGORY_OTHER as DOORTAG_CATEGORY_OTHER, DOORTAG_CATEGORY_WINDOW as DOORTAG_CATEGORY_WINDOW, DOORTAG_STATUS_CALIBRATING as DOORTAG_STATUS_CALIBRATING, DOORTAG_STATUS_CALIBRATION_FAILED as DOORTAG_STATUS_CALIBRATION_FAILED, DOORTAG_STATUS_CLOSED as DOORTAG_STATUS_CLOSED, DOORTAG_STATUS_MAINTENANCE as DOORTAG_STATUS_MAINTENANCE, DOORTAG_STATUS_NO_NEWS as DOORTAG_STATUS_NO_NEWS, DOORTAG_STATUS_OPEN as DOORTAG_STATUS_OPEN, DOORTAG_STATUS_UNDEFINED as DOORTAG_STATUS_UNDEFINED, DOORTAG_STATUS_WEAK_SIGNAL as DOORTAG_STATUS_WEAK_SIGNAL, NETATMO_CREATE_CONNECTIVITY_BINARY_SENSOR as NETATMO_CREATE_CONNECTIVITY_BINARY_SENSOR, NETATMO_CREATE_OPENING_BINARY_SENSOR as NETATMO_CREATE_OPENING_BINARY_SENSOR, NETATMO_CREATE_WEATHER_BINARY_SENSOR as NETATMO_CREATE_WEATHER_BINARY_SENSOR
-from .data_handler import NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
+from .data_handler import NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoModuleEntity as NetatmoModuleEntity, NetatmoWeatherModuleEntity as NetatmoWeatherModuleEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -34,7 +33,7 @@ DEVICE_CATEGORY_CONNECTIVITY_BINARY_SENSORS: Final[dict[NetatmoDeviceCategory, l
 DEVICE_CATEGORY_OPENING_BINARY_SENSORS: Final[dict[NetatmoDeviceCategory, list[NetatmoBinarySensorEntityDescription]]]
 DEVICE_CATEGORY_BINARY_PUBLISHERS: Final[list[NetatmoDeviceCategory]]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NetatmoBinarySensor(NetatmoModuleEntity, BinarySensorEntity):
     entity_description: NetatmoBinarySensorEntityDescription

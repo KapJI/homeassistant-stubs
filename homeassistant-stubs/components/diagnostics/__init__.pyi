@@ -29,4 +29,5 @@ class DownloadDiagnosticsView(http.HomeAssistantView):
     url: str
     extra_urls: Incomplete
     name: str
+    @http.require_admin
     async def get(self, request: web.Request, d_type: str, d_id: str, sub_type: str | None = None, sub_id: str | None = None) -> web.Response: ...

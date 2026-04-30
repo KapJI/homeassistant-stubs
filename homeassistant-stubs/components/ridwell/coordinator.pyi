@@ -8,13 +8,14 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 
+type RidwellConfigEntry = ConfigEntry[RidwellDataUpdateCoordinator]
 UPDATE_INTERVAL: Incomplete
 
 class RidwellDataUpdateCoordinator(DataUpdateCoordinator[dict[str, list[RidwellPickupEvent]]]):
-    config_entry: ConfigEntry
+    config_entry: RidwellConfigEntry
     accounts: dict[str, RidwellAccount]
     dashboard_url: str
     user_id: str
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: RidwellConfigEntry) -> None: ...
     async def _async_update_data(self) -> dict[str, list[RidwellPickupEvent]]: ...
     async def async_initialize(self) -> None: ...

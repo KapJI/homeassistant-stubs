@@ -6,7 +6,6 @@ from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_LATITUDE as
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.helpers import collection as collection, entity_component as entity_component, event as event, service as service, storage as storage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.location import distance as distance
 from typing import Any, Self
@@ -32,7 +31,7 @@ ZONE_ENTITY_IDS: str
 DATA_ZONE_STORAGE_COLLECTION: HassKey[ZoneStorageCollection]
 DATA_ZONE_ENTITY_IDS: HassKey[list[str]]
 
-@bind_hass
+def async_in_zones(hass: HomeAssistant, latitude: float, longitude: float, radius: float = 0) -> tuple[State | None, list[str]]: ...
 def async_active_zone(hass: HomeAssistant, latitude: float, longitude: float, radius: float = 0) -> State | None: ...
 @callback
 def async_setup_track_zone_entity_ids(hass: HomeAssistant) -> None: ...

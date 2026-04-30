@@ -1,7 +1,6 @@
 import voluptuous as vol
 from .const import CONF_ALL_UPDATES as CONF_ALL_UPDATES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_MAX_MEDIA as CONF_MAX_MEDIA, CONF_OVERRIDE_CHOST as CONF_OVERRIDE_CHOST, DEFAULT_MAX_MEDIA as DEFAULT_MAX_MEDIA, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, OUTDATED_LOG_MESSAGE as OUTDATED_LOG_MESSAGE
 from .data import UFPConfigEntry as UFPConfigEntry, async_last_update_was_successful as async_last_update_was_successful
-from .discovery import async_start_discovery as async_start_discovery
 from .utils import _async_resolve as _async_resolve, _async_short_mac as _async_short_mac, _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_create_api_client as async_create_api_client
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -10,8 +9,6 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_HOST as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession, async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
 from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration
@@ -47,9 +44,6 @@ class ProtectFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_device: dict[str, str]
     def __init__(self) -> None: ...
-    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
-    async def async_step_ssdp(self, discovery_info: SsdpServiceInfo) -> ConfigFlowResult: ...
-    async def _async_discovery_handoff(self) -> ConfigFlowResult: ...
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod

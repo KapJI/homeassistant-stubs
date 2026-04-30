@@ -3,7 +3,7 @@ from .coordinator import FritzConfigEntry as FritzConfigEntry
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.service import async_extract_config_entry_ids as async_extract_config_entry_ids
+from homeassistant.helpers.service import async_extract_config_entry_ids as async_extract_config_entry_ids, async_register_admin_service as async_register_admin_service
 
 _LOGGER: Incomplete
 SERVICE_SET_GUEST_WIFI_PW: str

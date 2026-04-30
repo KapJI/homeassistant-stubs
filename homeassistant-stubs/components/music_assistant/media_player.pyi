@@ -30,10 +30,12 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_media_image_remotely_accessible: bool
     _attr_media_content_type: Incomplete
+    _attr_translation_key: str
     _attr_icon: Incomplete
     _attr_device_class: Incomplete
     _prev_time: float
     _source_list_mapping: dict[str, str]
+    _sound_mode_list_mapping: dict[str, str]
     def __init__(self, mass: MusicAssistantClient, player_id: str) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     @property
@@ -43,6 +45,8 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_state: Incomplete
     _attr_source_list: Incomplete
     _attr_source: Incomplete
+    _attr_sound_mode_list: Incomplete
+    _attr_sound_mode: Incomplete
     _attr_group_members: Incomplete
     _attr_volume_level: Incomplete
     _attr_is_volume_muted: Incomplete
@@ -85,6 +89,8 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     async def async_unjoin_player(self) -> None: ...
     @catch_musicassistant_error
     async def async_select_source(self, source: str) -> None: ...
+    @catch_musicassistant_error
+    async def async_select_sound_mode(self, sound_mode: str) -> None: ...
     @catch_musicassistant_error
     async def _async_handle_play_media(self, media_id: list[str], artist: str | None = None, album: str | None = None, enqueue: MediaPlayerEnqueue | QueueOption | None = None, radio_mode: bool | None = None, media_type: str | None = None) -> None: ...
     @catch_musicassistant_error

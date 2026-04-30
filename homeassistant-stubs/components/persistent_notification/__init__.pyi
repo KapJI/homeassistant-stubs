@@ -7,7 +7,6 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers import singleton as singleton
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.signal_type import SignalType as SignalType
 from homeassistant.util.uuid import random_uuid_hex as random_uuid_hex
 from typing import Any, Final, TypedDict
@@ -38,17 +37,13 @@ CONFIG_SCHEMA: Incomplete
 
 @callback
 def async_register_callback(hass: HomeAssistant, _callback: Callable[[UpdateType, dict[str, Notification]], None]) -> CALLBACK_TYPE: ...
-@bind_hass
 def create(hass: HomeAssistant, message: str, title: str | None = None, notification_id: str | None = None) -> None: ...
-@bind_hass
 def dismiss(hass: HomeAssistant, notification_id: str) -> None: ...
 @callback
-@bind_hass
 def async_create(hass: HomeAssistant, message: str, title: str | None = None, notification_id: str | None = None) -> None: ...
 @callback
 def _async_get_or_create_notifications(hass: HomeAssistant) -> dict[str, Notification]: ...
 @callback
-@bind_hass
 def async_dismiss(hass: HomeAssistant, notification_id: str) -> None: ...
 @callback
 def async_dismiss_all(hass: HomeAssistant) -> None: ...

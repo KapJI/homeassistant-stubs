@@ -3,13 +3,13 @@ from . import discovery as discovery, entity as entity, service as service
 from .entity_platform import EntityPlatform as EntityPlatform
 from .typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Iterable, Mapping
+from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ENTITY_NAMESPACE as CONF_ENTITY_NAMESPACE, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
-from homeassistant.core import Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import EntityServiceResponse as EntityServiceResponse, Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import ConfigValidationError as ConfigValidationError, HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.loader import async_get_integration as async_get_integration, bind_hass as bind_hass
+from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.setup import async_prepare_setup_platform as async_prepare_setup_platform
 from homeassistant.util.hass_dict import HassKey as HassKey
 from types import ModuleType
@@ -18,7 +18,6 @@ from typing import Any
 DEFAULT_SCAN_INTERVAL: Incomplete
 DATA_INSTANCES: HassKey[dict[str, EntityComponent]]
 
-@bind_hass
 async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None: ...
 
 class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
@@ -30,7 +29,7 @@ class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
     _platforms: dict[str | tuple[str, timedelta | None, str | None], EntityPlatform]
     async_add_entities: Incomplete
     add_entities: Incomplete
-    _entities: dict[str, entity.Entity]
+    _entities: dict[str, _EntityT]
     def __init__(self, logger: logging.Logger, domain: str, hass: HomeAssistant, scan_interval: timedelta = ...) -> None: ...
     @property
     def entities(self) -> Iterable[_EntityT]: ...
@@ -44,6 +43,8 @@ class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
     async def async_extract_from_service(self, service_call: ServiceCall, expand_group: bool = True) -> list[_EntityT]: ...
     @callback
     def async_register_entity_service(self, name: str, schema: VolDictType | VolSchemaType | None, func: str | Callable[..., Any], required_features: list[int] | None = None, supports_response: SupportsResponse = ..., *, description_placeholders: Mapping[str, str] | None = None) -> None: ...
+    @callback
+    def async_register_batched_entity_service(self, name: str, schema: VolDictType | VolSchemaType | None, func: Callable[[list[_EntityT], ServiceCall], Coroutine[Any, Any, EntityServiceResponse | None]], required_features: Iterable[int] | None = None, supports_response: SupportsResponse = ..., *, description_placeholders: Mapping[str, str] | None = None) -> None: ...
     async def async_setup_platform(self, platform_type: str, platform_config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> None: ...
     async def _async_reset(self) -> None: ...
     async def async_remove_entity(self, entity_id: str) -> None: ...

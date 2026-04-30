@@ -1,6 +1,6 @@
 from . import websocket_api as websocket_api
-from .const import DOMAIN as DOMAIN, ZEROCONF_TYPE as ZEROCONF_TYPE
-from .discovery import DATA_DISCOVERY as DATA_DISCOVERY, ZeroconfDiscovery as ZeroconfDiscovery, build_homekit_model_lookups as build_homekit_model_lookups, info_from_service as info_from_service
+from .const import DATA_DISCOVERY as DATA_DISCOVERY, DATA_INSTANCE as DATA_INSTANCE, DOMAIN as DOMAIN, ZEROCONF_TYPE as ZEROCONF_TYPE
+from .discovery import ZeroconfDiscovery as ZeroconfDiscovery, build_homekit_model_lookups as build_homekit_model_lookups, info_from_service as info_from_service
 from .models import HaAsyncZeroconf as HaAsyncZeroconf, HaZeroconf as HaZeroconf
 from .usage import install_multiple_zeroconf_catcher as install_multiple_zeroconf_catcher
 from _typeshed import Incomplete
@@ -10,7 +10,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.helpers import instance_id as instance_id
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import async_get_homekit as async_get_homekit, async_get_zeroconf as async_get_zeroconf, bind_hass as bind_hass
+from homeassistant.loader import async_get_homekit as async_get_homekit, async_get_zeroconf as async_get_zeroconf
 from homeassistant.setup import async_when_setup_or_start as async_when_setup_or_start
 from typing import Any
 from zeroconf.asyncio import AsyncServiceInfo
@@ -24,9 +24,7 @@ MAX_PROPERTY_VALUE_LEN: int
 MAX_NAME_LEN: int
 CONFIG_SCHEMA: Incomplete
 
-@bind_hass
 async def async_get_instance(hass: HomeAssistant) -> HaZeroconf: ...
-@bind_hass
 async def async_get_async_instance(hass: HomeAssistant) -> HaAsyncZeroconf: ...
 @callback
 def async_get_async_zeroconf(hass: HomeAssistant) -> HaAsyncZeroconf: ...

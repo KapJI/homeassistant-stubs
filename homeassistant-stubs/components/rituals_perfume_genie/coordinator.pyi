@@ -8,9 +8,10 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pyrituals import Account as Account, Diffuser as Diffuser
 
 _LOGGER: Incomplete
+type RitualsConfigEntry = ConfigEntry[dict[str, RitualsDataUpdateCoordinator]]
 
 class RitualsDataUpdateCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: RitualsConfigEntry
     account: Incomplete
     diffuser: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, account: Account, diffuser: Diffuser, update_interval: timedelta) -> None: ...

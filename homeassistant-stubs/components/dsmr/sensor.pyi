@@ -30,6 +30,7 @@ class MbusDeviceType(IntEnum):
     GAS = 3
     HEAT = 4
     WATER = 7
+    HEAT_COOL = 12
 
 SENSORS: tuple[DSMRSensorEntityDescription, ...]
 SENSORS_MBUS_DEVICE_TYPE: dict[int, tuple[DSMRSensorEntityDescription, ...]]

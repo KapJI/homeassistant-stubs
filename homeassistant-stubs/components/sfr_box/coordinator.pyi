@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from sfrbox_api.bridge import SFRBox as SFRBox
-from sfrbox_api.models import DslInfo as DslInfo, FtthInfo as FtthInfo, SystemInfo as SystemInfo, WanInfo as WanInfo
+from sfrbox_api.models import DslInfo as DslInfo, FtthInfo as FtthInfo, SystemInfo as SystemInfo, VoipInfo as VoipInfo, WanInfo as WanInfo
 from typing import Any
 
 _LOGGER: Incomplete
@@ -16,9 +16,11 @@ type SFRConfigEntry = ConfigEntry[SFRRuntimeData]
 @dataclass
 class SFRRuntimeData:
     box: SFRBox
+    has_authentication: bool
     dsl: SFRDataUpdateCoordinator[DslInfo]
     ftth: SFRDataUpdateCoordinator[FtthInfo]
     system: SFRDataUpdateCoordinator[SystemInfo]
+    voip: SFRDataUpdateCoordinator[VoipInfo] | None
     wan: SFRDataUpdateCoordinator[WanInfo]
 
 class SFRDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT]):

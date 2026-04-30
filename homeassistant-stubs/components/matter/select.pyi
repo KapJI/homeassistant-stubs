@@ -1,5 +1,5 @@
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
-from .helpers import get_matter as get_matter
+from .helpers import MatterConfigEntry as MatterConfigEntry
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
@@ -8,7 +8,6 @@ from chip.clusters.Types import Nullable as Nullable
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -21,7 +20,7 @@ PUMP_OPERATION_MODE_MAP: Incomplete
 PUMP_OPERATION_MODE_MAP_REVERSE: Incomplete
 type SelectCluster = clusters.ModeSelect | clusters.OvenMode | clusters.LaundryWasherMode | clusters.RefrigeratorAndTemperatureControlledCabinetMode | clusters.RvcRunMode | clusters.RvcCleanMode | clusters.DishwasherMode | clusters.EnergyEvseMode | clusters.DeviceEnergyManagementMode | clusters.WaterHeaterMode
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MatterSelectEntityDescription(SelectEntityDescription, MatterEntityDescription): ...

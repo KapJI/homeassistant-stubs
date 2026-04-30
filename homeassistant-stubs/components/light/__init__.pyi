@@ -10,7 +10,6 @@ from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEnt
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from homeassistant.loader import bind_hass as bind_hass
 from propcache.api import cached_property
 from typing import Any, Self, final, override
 
@@ -64,7 +63,6 @@ LIGHT_TURN_ON_SCHEMA: VolDictType
 LIGHT_TURN_OFF_SCHEMA: VolDictType
 _LOGGER: Incomplete
 
-@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any]) -> None: ...
 def filter_turn_off_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...

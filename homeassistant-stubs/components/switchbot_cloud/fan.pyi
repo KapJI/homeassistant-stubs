@@ -1,9 +1,8 @@
-from . import SwitchbotCloudData as SwitchbotCloudData
-from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, AirPurifierMode as AirPurifierMode, DOMAIN as DOMAIN
+from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
+from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, AirPurifierMode as AirPurifierMode
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -13,7 +12,7 @@ from typing import Any
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudFan(SwitchBotCloudEntity, FanEntity):
     _attr_name: Incomplete

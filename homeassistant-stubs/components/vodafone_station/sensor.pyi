@@ -13,14 +13,12 @@ from typing import Final
 
 PARALLEL_UPDATES: int
 NOT_AVAILABLE: list
-UPTIME_DEVIATION: int
 
 @dataclass(frozen=True, kw_only=True)
 class VodafoneStationEntityDescription(SensorEntityDescription):
     value: Callable[[VodafoneStationRouter, str | datetime | float | None, str], str | datetime | float | None] = ...
     is_suitable: Callable[[dict], bool] = ...
 
-def _calculate_uptime(coordinator: VodafoneStationRouter, last_value: str | datetime | float | None, key: str) -> datetime: ...
 def _line_connection(coordinator: VodafoneStationRouter, last_value: str | datetime | float | None, key: str) -> str | None: ...
 
 SENSOR_TYPES: Final[Incomplete]

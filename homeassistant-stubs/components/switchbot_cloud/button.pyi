@@ -1,10 +1,8 @@
-from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudData as SwitchbotCloudData
-from .const import DOMAIN as DOMAIN
+from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Commands as SwitchBotCloudBaseCommands, Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
@@ -21,7 +19,7 @@ ART_FRAME_NEXT_BUTTON_DESCRIPTION: Incomplete
 ART_FRAME_PREVIOUS_BUTTON_DESCRIPTION: Incomplete
 BUTTON_DESCRIPTIONS_BY_DEVICE_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudBot(SwitchBotCloudEntity, ButtonEntity):
     entity_description: SwitchbotCloudButtonEntityDescription

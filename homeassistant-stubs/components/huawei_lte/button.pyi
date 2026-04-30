@@ -1,15 +1,14 @@
-from .const import DOMAIN as DOMAIN
+from . import HuaweiLteConfigEntry as HuaweiLteConfigEntry
 from .entity import HuaweiLteBaseEntityWithDevice as HuaweiLteBaseEntityWithDevice
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 
 _LOGGER: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: entity_platform.AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: HuaweiLteConfigEntry, async_add_entities: entity_platform.AddConfigEntryEntitiesCallback) -> None: ...
 
 class BaseButton(HuaweiLteBaseEntityWithDevice, ButtonEntity):
     @property

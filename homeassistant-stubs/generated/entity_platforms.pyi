@@ -28,6 +28,7 @@ class EntityPlatforms(StrEnum):
     MEDIA_PLAYER = 'media_player'
     NOTIFY = 'notify'
     NUMBER = 'number'
+    RADIO_FREQUENCY = 'radio_frequency'
     REMOTE = 'remote'
     SCENE = 'scene'
     SELECT = 'select'

@@ -1,5 +1,5 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
-from .const import APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPERATION_STATE_FINISHED as BSH_OPERATION_STATE_FINISHED, BSH_OPERATION_STATE_PAUSE as BSH_OPERATION_STATE_PAUSE, BSH_OPERATION_STATE_RUN as BSH_OPERATION_STATE_RUN, UNIT_MAP as UNIT_MAP
+from .const import APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPERATION_STATE_DELAYED_START as BSH_OPERATION_STATE_DELAYED_START, BSH_OPERATION_STATE_FINISHED as BSH_OPERATION_STATE_FINISHED, BSH_OPERATION_STATE_PAUSE as BSH_OPERATION_STATE_PAUSE, BSH_OPERATION_STATE_RUN as BSH_OPERATION_STATE_RUN, UNIT_MAP as UNIT_MAP
 from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, constraint_fetcher as constraint_fetcher
 from _typeshed import Incomplete
@@ -38,11 +38,12 @@ class HomeConnectSensor(HomeConnectEntity, SensorEntity):
     async def fetch_unit(self) -> None: ...
 
 class HomeConnectProgramSensor(HomeConnectSensor):
-    program_running: bool
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def _handle_operation_state_event(self) -> None: ...
+    @property
+    def program_running(self) -> bool: ...
     @property
     def available(self) -> bool: ...
     def update_native_value(self) -> None: ...

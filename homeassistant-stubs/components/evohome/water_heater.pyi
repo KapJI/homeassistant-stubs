@@ -3,6 +3,7 @@ from .const import EVOHOME_DATA as EVOHOME_DATA
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .entity import EvoChild as EvoChild
 from _typeshed import Incomplete
+from datetime import timedelta
 from homeassistant.components.water_heater import WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -15,21 +16,20 @@ STATE_AUTO: str
 HA_STATE_TO_EVO: Incomplete
 EVO_STATE_TO_HA: Incomplete
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_platform(hass: HomeAssistant, _: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
 class EvoDHW(EvoChild, WaterHeaterEntity):
-    _attr_name: str
-    _attr_icon: str
     _attr_operation_list: Incomplete
     _attr_supported_features: Incomplete
     _attr_temperature_unit: Incomplete
     _evo_device: evo.HotWater
     _evo_id_attr: str
     _evo_state_attr_names: Incomplete
-    _evo_id: Incomplete
     _attr_unique_id: Incomplete
+    _attr_name: Incomplete
     _attr_precision: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.HotWater) -> None: ...
+    async def async_set_dhw_override(self, state: bool, duration: timedelta | None = None) -> None: ...
     @property
     def current_operation(self) -> str | None: ...
     @property

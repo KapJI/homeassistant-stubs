@@ -1,9 +1,8 @@
-from . import AbodeSystem as AbodeSystem
-from .const import DOMAIN_DATA as DOMAIN_DATA, LOGGER as LOGGER
+from . import AbodeConfigEntry as AbodeConfigEntry, AbodeSystem as AbodeSystem
+from .const import LOGGER as LOGGER
 from .entity import AbodeDevice as AbodeDevice
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -15,7 +14,7 @@ from typing import Any
 
 MIN_TIME_BETWEEN_UPDATES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AbodeCamera(AbodeDevice, Camera):
     _device: AbodeCam

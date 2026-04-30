@@ -1,15 +1,14 @@
-from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudData as SwitchbotCloudData
-from .const import COVER_ENTITY_AFTER_COMMAND_REFRESH as COVER_ENTITY_AFTER_COMMAND_REFRESH, DOMAIN as DOMAIN
+from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
+from .const import COVER_ENTITY_AFTER_COMMAND_REFRESH as COVER_ENTITY_AFTER_COMMAND_REFRESH
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudCover(SwitchBotCloudEntity, CoverEntity):
     _attr_name: Incomplete

@@ -1,6 +1,6 @@
 import voluptuous as vol
 from . import OpenRouterConfigEntry as OpenRouterConfigEntry
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_WEB_SEARCH as CONF_WEB_SEARCH, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable
 from homeassistant.components import conversation as conversation

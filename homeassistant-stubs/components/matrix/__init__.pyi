@@ -42,6 +42,7 @@ class ConfigCommand(TypedDict, total=False):
 COMMAND_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 
+def _read_image_size(image_path: str) -> tuple[int, int]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class MatrixBot:

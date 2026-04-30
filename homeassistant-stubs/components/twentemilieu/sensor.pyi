@@ -1,11 +1,9 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import TwenteMilieuConfigEntry as TwenteMilieuConfigEntry
 from .entity import TwenteMilieuEntity as TwenteMilieuEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import date
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from twentemilieu import WasteType

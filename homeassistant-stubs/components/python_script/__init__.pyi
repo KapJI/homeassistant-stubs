@@ -6,7 +6,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename
 from homeassistant.util.yaml.loader import load_yaml_dict as load_yaml_dict
 from typing import Any
@@ -33,9 +32,7 @@ IOPERATOR_TO_OPERATOR: Incomplete
 
 def guarded_import(name: str, globals: Mapping[str, object] | None = None, locals: Mapping[str, object] | None = None, fromlist: Sequence[str] = (), level: int = 0) -> types.ModuleType: ...
 def guarded_inplacevar(op: str, target: Any, operand: Any) -> Any: ...
-@bind_hass
 def execute_script(hass: HomeAssistant, name: str, data: dict[str, Any] | None = None, return_response: bool = False) -> dict | None: ...
-@bind_hass
 def execute(hass: HomeAssistant, filename: str, source: Any, data: dict[str, Any] | None = None, return_response: bool = False) -> dict | None: ...
 
 class StubPrinter:

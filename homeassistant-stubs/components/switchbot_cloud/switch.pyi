@@ -1,17 +1,16 @@
-from . import SwitchbotCloudData as SwitchbotCloudData
+from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
 from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, DOMAIN as DOMAIN
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote, SwitchBotAPI as SwitchBotAPI
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudSwitch(SwitchBotCloudEntity, SwitchEntity):
     _attr_device_class: Incomplete

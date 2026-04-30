@@ -47,5 +47,8 @@ class BackupManagerError(BackupError):
 class BackupReaderWriterError(BackupError):
     error_code: str
 
+class InvalidBackupFilename(BackupManagerError):
+    error_code: str
+
 class BackupNotFound(BackupAgentError, BackupManagerError):
     error_code: str

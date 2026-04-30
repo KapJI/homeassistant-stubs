@@ -1,5 +1,6 @@
-from .const import DOMAIN as DOMAIN
+from .const import BeoModel as BeoModel, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
 from .services import async_setup_services as async_setup_services
+from .util import get_remotes as get_remotes
 from .websocket import BeoWebsocket as BeoWebsocket
 from _typeshed import Incomplete
 from dataclasses import dataclass

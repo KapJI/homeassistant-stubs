@@ -1,4 +1,4 @@
-from .const import CONFIG_DEFAULT_MAX_TEMP as CONFIG_DEFAULT_MAX_TEMP, CONFIG_DEFAULT_MIN_TEMP as CONFIG_DEFAULT_MIN_TEMP
+from .const import CONFIG_DEFAULT_MAX_TEMP as CONFIG_DEFAULT_MAX_TEMP, CONFIG_DEFAULT_MIN_TEMP as CONFIG_DEFAULT_MIN_TEMP, DOMAIN as DOMAIN
 from .coordinator import HuumConfigEntry as HuumConfigEntry, HuumDataUpdateCoordinator as HuumDataUpdateCoordinator
 from .entity import HuumBaseEntity as HuumBaseEntity
 from _typeshed import Incomplete
@@ -9,7 +9,6 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: HuumConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

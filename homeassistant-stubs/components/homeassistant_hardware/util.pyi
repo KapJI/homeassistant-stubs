@@ -1,5 +1,5 @@
 from . import DATA_COMPONENT as DATA_COMPONENT
-from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
+from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, Z2M_ADDON_NAME as Z2M_ADDON_NAME, Z2M_ADDON_SLUG_REGEX as Z2M_ADDON_SLUG_REGEX, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
 from .helpers import async_firmware_update_context as async_firmware_update_context
 from .silabs_multiprotocol_addon import WaitingAddonManager as WaitingAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager
 from _typeshed import Incomplete
@@ -7,7 +7,7 @@ from collections.abc import AsyncGenerator, Callable as Callable, Sequence
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from enum import StrEnum
-from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
+from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, get_apps_list as get_apps_list
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -32,6 +32,8 @@ class ApplicationType(StrEnum):
 def get_otbr_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
 @callback
 def get_zigbee_flasher_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
+@callback
+def get_z2m_addon_manager(hass: HomeAssistant, slug: str) -> WaitingAddonManager: ...
 
 @dataclass(kw_only=True)
 class OwningAddon:
@@ -58,6 +60,7 @@ class FirmwareInfo:
     async def is_running(self, hass: HomeAssistant) -> bool: ...
 
 async def get_otbr_addon_firmware_info(hass: HomeAssistant, otbr_addon_manager: AddonManager) -> FirmwareInfo | None: ...
+async def get_z2m_addon_firmware_info(hass: HomeAssistant, z2m_addon_manager: AddonManager) -> FirmwareInfo | None: ...
 async def guess_hardware_owners(hass: HomeAssistant, device_path: str) -> list[FirmwareInfo]: ...
 async def guess_firmware_info(hass: HomeAssistant, device_path: str) -> FirmwareInfo: ...
 async def probe_silabs_firmware_info(device: str, *, flasher_cls: type[BaseFlasher], application_probe_methods: Sequence[ApplicationType] | None = None) -> FirmwareInfo | None: ...

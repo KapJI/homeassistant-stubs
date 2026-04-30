@@ -1,15 +1,15 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import RitualsDataUpdateCoordinator as RitualsDataUpdateCoordinator
+from .coordinator import RitualsConfigEntry as RitualsConfigEntry, RitualsDataUpdateCoordinator as RitualsDataUpdateCoordinator
 from .entity import DiffuserEntity as DiffuserEntity
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyrituals import Diffuser as Diffuser
 from typing import Any
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class RitualsSwitchEntityDescription(SwitchEntityDescription):
@@ -19,7 +19,7 @@ class RitualsSwitchEntityDescription(SwitchEntityDescription):
 
 ENTITY_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: RitualsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class RitualsSwitchEntity(DiffuserEntity, SwitchEntity):
     entity_description: RitualsSwitchEntityDescription

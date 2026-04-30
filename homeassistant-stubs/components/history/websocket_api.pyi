@@ -5,6 +5,8 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from datetime import datetime as dt
+from homeassistant.auth.permissions import filter_entity_ids_by_permission as filter_entity_ids_by_permission
+from homeassistant.auth.permissions.const import POLICY_READ as POLICY_READ
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.recorder import get_instance as get_instance, history as history
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, messages as messages

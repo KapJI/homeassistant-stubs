@@ -11,13 +11,14 @@ from homeassistant.util.dt import parse_datetime as parse_datetime, utcnow as ut
 from typing import Any
 
 DEFAULT_DEBOUNCER_COOLDOWN_SECONDS: Incomplete
+type OpenUvConfigEntry = ConfigEntry[dict[str, OpenUvCoordinator]]
 
 class OpenUvCoordinator(DataUpdateCoordinator[dict[str, Any]]):
-    config_entry: ConfigEntry
+    config_entry: OpenUvConfigEntry
     update_method: Callable[[], Awaitable[dict[str, Any]]]
     latitude: Incomplete
     longitude: Incomplete
-    def __init__(self, hass: HomeAssistant, *, entry: ConfigEntry, name: str, latitude: str, longitude: str, update_method: Callable[[], Awaitable[dict[str, Any]]]) -> None: ...
+    def __init__(self, hass: HomeAssistant, *, entry: OpenUvConfigEntry, name: str, latitude: str, longitude: str, update_method: Callable[[], Awaitable[dict[str, Any]]]) -> None: ...
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class OpenUvProtectionWindowCoordinator(OpenUvCoordinator):

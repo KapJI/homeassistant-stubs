@@ -1,9 +1,8 @@
 from .const import ATTR_DURATION as ATTR_DURATION, ATTR_VOLUME as ATTR_VOLUME, DEFAULT_TRANSITION_DURATION as DEFAULT_TRANSITION_DURATION, DOMAIN as DOMAIN, SERVICE_TRANSITION_OFF as SERVICE_TRANSITION_OFF, SERVICE_TRANSITION_ON as SERVICE_TRANSITION_ON
-from .models import SnoozConfigurationData as SnoozConfigurationData
+from .models import SnoozConfigEntry as SnoozConfigEntry, SnoozConfigurationData as SnoozConfigurationData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.fan import ATTR_PERCENTAGE as ATTR_PERCENTAGE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -14,7 +13,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pysnooz.commands import SnoozCommandData as SnoozCommandData
 from typing import Any
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SnoozConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SnoozFan(FanEntity, RestoreEntity):
     _attr_has_entity_name: bool

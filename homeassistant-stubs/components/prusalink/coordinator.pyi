@@ -13,12 +13,13 @@ from typing import TypeVar
 _LOGGER: Incomplete
 _MINIMUM_REFRESH_INTERVAL: float
 T = TypeVar('T', PrinterStatus, LegacyPrinterStatus, JobInfo)
+type PrusaLinkConfigEntry = ConfigEntry[dict[str, PrusaLinkUpdateCoordinator]]
 
 class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.ABCMeta):
-    config_entry: ConfigEntry
+    config_entry: PrusaLinkConfigEntry
     expect_change_until: float
     api: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: PrusaLink) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: PrusaLinkConfigEntry, api: PrusaLink) -> None: ...
     update_interval: Incomplete
     async def _async_update_data(self) -> T: ...
     @abstractmethod

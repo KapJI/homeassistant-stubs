@@ -1,12 +1,11 @@
-from . import SwitchbotCloudData as SwitchbotCloudData
-from .const import DOMAIN as DOMAIN
+from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
+from .const import DOMAIN as DOMAIN, SwitchbotCloudDeviceLockState as SwitchbotCloudDeviceLockState
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -28,6 +27,7 @@ RELAY_SWITCH_2PM_SENSOR_TYPE_POWER: str
 RELAY_SWITCH_2PM_SENSOR_TYPE_VOLTAGE: str
 RELAY_SWITCH_2PM_SENSOR_TYPE_CURRENT: str
 RELAY_SWITCH_2PM_SENSOR_TYPE_ELECTRICITY: str
+LOCK_SENSOR_TYPE_LOCK_STATE: str
 
 @dataclass(frozen=True, kw_only=True)
 class SwitchbotCloudSensorEntityDescription(SensorEntityDescription):
@@ -48,9 +48,10 @@ RELAY_SWITCH_2PM_VOLTAGE_DESCRIPTION: Incomplete
 RELAY_SWITCH_2PM_CURRENT_DESCRIPTION: Incomplete
 RELAY_SWITCH_2PM_ELECTRICITY_DESCRIPTION: Incomplete
 LIGHTLEVEL_DESCRIPTION: Incomplete
+LOCK_SENSOR_TYPE_LOCK_STATE_DESCRIPTION: Incomplete
 SENSOR_DESCRIPTIONS_BY_DEVICE_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SwitchBotCloudSensor(SwitchBotCloudEntity, SensorEntity):
     entity_description: SwitchbotCloudSensorEntityDescription

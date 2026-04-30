@@ -5,7 +5,7 @@ from .helpers import async_get_blueprints as async_get_blueprints
 from .trace import trace_automation as trace_automation
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from collections.abc import Callable as Callable, Mapping
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components import labs as labs, websocket_api as websocket_api
 from homeassistant.components.blueprint import CONF_USE_BLUEPRINT as CONF_USE_BLUEPRINT
@@ -13,6 +13,7 @@ from homeassistant.components.labs import async_subscribe_preview_feature as asy
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, ATTR_MODE as ATTR_MODE, ATTR_NAME as ATTR_NAME, CONF_ACTIONS as CONF_ACTIONS, CONF_ALIAS as CONF_ALIAS, CONF_CONDITIONS as CONF_CONDITIONS, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_PATH as CONF_PATH, CONF_TRIGGERS as CONF_TRIGGERS, CONF_VARIABLES as CONF_VARIABLES, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, SERVICE_RELOAD as SERVICE_RELOAD, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError
+from homeassistant.helpers import condition as condition_helper
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
@@ -22,11 +23,10 @@ from homeassistant.helpers.script_variables import ScriptVariables as ScriptVari
 from homeassistant.helpers.service import ReloadServiceHelper as ReloadServiceHelper, async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_get as trace_get, trace_path as trace_path
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.dt import parse_datetime as parse_datetime
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, Protocol
+from typing import Any
 
 DATA_COMPONENT: HassKey[EntityComponent[BaseAutomationEntity]]
 ENTITY_ID_FORMAT: Incomplete
@@ -48,11 +48,9 @@ def is_disabled_experimental_condition(hass: HomeAssistant, platform: str) -> bo
 @callback
 def is_disabled_experimental_trigger(hass: HomeAssistant, platform: str) -> bool: ...
 
-class IfAction(Protocol):
+class IfAction(condition_helper.ConditionsChecker):
     config: list[ConfigType]
-    def __call__(self, variables: Mapping[str, Any] | None = None) -> bool: ...
 
-@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 def _automations_with_x(hass: HomeAssistant, referenced_id: str, property_name: str) -> list[str]: ...
 def _x_in_automation(hass: HomeAssistant, entity_id: str, property_name: str) -> list[str]: ...
@@ -194,4 +192,5 @@ async def _async_process_config(hass: HomeAssistant, config: dict[str, Any], com
 def _automation_matches_config(automation: BaseAutomationEntity | None, config: AutomationEntityConfig | None) -> bool: ...
 async def _async_process_single_config(hass: HomeAssistant, config: dict[str, Any], component: EntityComponent[BaseAutomationEntity], automation_id: str) -> None: ...
 async def _async_process_if(hass: HomeAssistant, name: str, config: dict[str, Any]) -> IfAction | None: ...
+@websocket_api.require_admin
 def websocket_config(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...

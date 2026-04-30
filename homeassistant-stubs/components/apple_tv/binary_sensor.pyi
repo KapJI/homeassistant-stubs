@@ -9,6 +9,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pyatv.const import KeyboardFocusState
 from pyatv.interface import AppleTV as AppleTV, KeyboardListener
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, config_entry: AppleTvConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AppleTVKeyboardFocused(AppleTVEntity, BinarySensorEntity, KeyboardListener):

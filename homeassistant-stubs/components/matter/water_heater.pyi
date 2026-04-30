@@ -1,11 +1,10 @@
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
-from .helpers import get_matter as get_matter
+from .helpers import MatterConfigEntry as MatterConfigEntry
 from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from chip.clusters import Objects as clusters
 from dataclasses import dataclass
 from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_HIGH_DEMAND as STATE_HIGH_DEMAND, STATE_OFF as STATE_OFF, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityDescription as WaterHeaterEntityDescription, WaterHeaterEntityFeature as WaterHeaterEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_WHOLE as PRECISION_WHOLE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -16,7 +15,7 @@ TEMPERATURE_SCALING_FACTOR: int
 WATER_HEATER_SYSTEM_MODE_MAP: Incomplete
 DEFAULT_BOOST_DURATION: int
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class MatterWaterHeaterEntityDescription(WaterHeaterEntityDescription, MatterEntityDescription): ...

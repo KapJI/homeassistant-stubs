@@ -4,7 +4,7 @@ import httpx
 import threading
 from .binary_sensor import BINARY_SENSORS as BINARY_SENSORS, BINARY_SENSOR_KEYS as BINARY_SENSOR_KEYS, check_binary_sensors as check_binary_sensors
 from .camera import STREAM_SOURCE_LIST as STREAM_SOURCE_LIST
-from .const import CAMERAS as CAMERAS, COMM_RETRIES as COMM_RETRIES, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, DOMAIN as DOMAIN, RESOLUTION_LIST as RESOLUTION_LIST, SERVICE_EVENT as SERVICE_EVENT, SERVICE_UPDATE as SERVICE_UPDATE
+from .const import COMM_RETRIES as COMM_RETRIES, COMM_TIMEOUT as COMM_TIMEOUT, DATA_AMCREST as DATA_AMCREST, DEVICES as DEVICES, DOMAIN as DOMAIN, RESOLUTION_LIST as RESOLUTION_LIST, SERVICE_EVENT as SERVICE_EVENT, SERVICE_UPDATE as SERVICE_UPDATE
 from .helpers import service_signal as service_signal
 from .sensor import SENSOR_KEYS as SENSOR_KEYS
 from .services import async_setup_services as async_setup_services

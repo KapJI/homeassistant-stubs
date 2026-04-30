@@ -1,6 +1,6 @@
 import tibber
 from .const import AUTH_IMPLEMENTATION as AUTH_IMPLEMENTATION, DATA_HASS_CONFIG as DATA_HASS_CONFIG, DOMAIN as DOMAIN, TibberConfigEntry as TibberConfigEntry
-from .coordinator import TibberDataAPICoordinator as TibberDataAPICoordinator, TibberDataCoordinator as TibberDataCoordinator, TibberPriceCoordinator as TibberPriceCoordinator
+from .coordinator import TibberDataAPICoordinator as TibberDataAPICoordinator, TibberDataCoordinator as TibberDataCoordinator, TibberFetchPriceCoordinator as TibberFetchPriceCoordinator, TibberPriceCoordinator as TibberPriceCoordinator
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass, field
@@ -20,6 +20,7 @@ class TibberRuntimeData:
     session: OAuth2Session
     data_api_coordinator: TibberDataAPICoordinator | None = field(default=None)
     data_coordinator: TibberDataCoordinator | None = field(default=None)
+    fetch_price_coordinator: TibberFetchPriceCoordinator | None = field(default=None)
     price_coordinator: TibberPriceCoordinator | None = field(default=None)
     _client: tibber.Tibber | None = ...
     async def async_get_client(self, hass: HomeAssistant) -> tibber.Tibber: ...

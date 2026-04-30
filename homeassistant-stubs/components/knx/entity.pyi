@@ -3,6 +3,7 @@ from .knx_module import KNXModule as KNXModule
 from .storage.config_store import PlatformControllerBase as PlatformControllerBase
 from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
@@ -10,6 +11,12 @@ from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatfo
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any
 from xknx.devices import Device as XknxDevice
+
+@dataclass(slots=True, frozen=True)
+class KnxEntityIdentifier:
+    platform: str
+    unique_id: str
+    ui: bool
 
 class KnxUiEntityPlatformController(PlatformControllerBase):
     _knx_module: Incomplete
@@ -24,6 +31,7 @@ class _KnxEntityBase(Entity):
     _attr_unique_id: str
     _knx_module: KNXModule
     _device: XknxDevice
+    _knx_entity_identifier: KnxEntityIdentifier | None
     @property
     def available(self) -> bool: ...
     async def async_update(self) -> None: ...

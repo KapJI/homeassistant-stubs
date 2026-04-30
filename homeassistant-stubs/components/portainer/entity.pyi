@@ -1,5 +1,5 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
-from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData, PortainerStackData as PortainerStackData
+from .coordinator import DockerVolume as DockerVolume, PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData, PortainerStackData as PortainerStackData, PortainerVolumeData as PortainerVolumeData
 from _typeshed import Incomplete
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -47,3 +47,17 @@ class PortainerStackEntity(PortainerCoordinatorEntity):
     def available(self) -> bool: ...
     @property
     def stack_data(self) -> PortainerStackData: ...
+
+class PortainerVolumeEntity(PortainerCoordinatorEntity):
+    entity_description: Incomplete
+    _device_info: Incomplete
+    volume_name: Incomplete
+    endpoint_id: Incomplete
+    endpoint_name: Incomplete
+    _attr_device_info: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: PortainerCoordinator, entity_description: EntityDescription, device_info: DockerVolume, via_device: PortainerCoordinatorData) -> None: ...
+    @property
+    def available(self) -> bool: ...
+    @property
+    def volume_data(self) -> PortainerVolumeData: ...

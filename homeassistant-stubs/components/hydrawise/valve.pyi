@@ -7,6 +7,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pydrawise.schema import Controller as Controller, Zone as Zone
 from typing import Any
 
+PARALLEL_UPDATES: int
 VALVE_TYPES: tuple[ValveEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

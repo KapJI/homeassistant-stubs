@@ -4,18 +4,21 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any
 
 class ElgatoFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     host: str
-    port: int
     serial_number: str
     mac: str | None
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, _: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     @callback
     def _async_show_setup_form(self, errors: dict[str, str] | None = None) -> ConfigFlowResult: ...
     @callback

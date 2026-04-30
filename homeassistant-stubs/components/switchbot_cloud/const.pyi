@@ -37,3 +37,16 @@ class Humidifier2Mode(Enum):
     DRYING_FILTER = 8
     @classmethod
     def get_modes(cls) -> list[str]: ...
+
+class SwitchbotCloudDeviceLockState(Enum):
+    LOCKED = 'locked'
+    UNLOCKED = 'unlocked'
+    LOCKING = 'locking'
+    UNLOCKING = 'unlocking'
+    JAMMED = 'jammed'
+    LATCH_BOLT_LOCKED = 'latchBoltLocked'
+    HALF_LOCKED = 'halfLocked'
+    @classmethod
+    def get_states(cls) -> list[SwitchbotCloudDeviceLockState]: ...
+    @classmethod
+    def get_values(cls) -> list[str]: ...

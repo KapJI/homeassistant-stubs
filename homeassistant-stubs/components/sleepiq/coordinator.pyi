@@ -10,23 +10,24 @@ _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
 LONGER_UPDATE_INTERVAL: Incomplete
 SLEEP_DATA_UPDATE_INTERVAL: Incomplete
+type SleepIQConfigEntry = ConfigEntry[SleepIQData]
 
 class SleepIQDataUpdateCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: SleepIQConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, client: AsyncSleepIQ) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SleepIQConfigEntry, client: AsyncSleepIQ) -> None: ...
     async def _async_update_data(self) -> None: ...
 
 class SleepIQPauseUpdateCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: SleepIQConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, client: AsyncSleepIQ) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SleepIQConfigEntry, client: AsyncSleepIQ) -> None: ...
     async def _async_update_data(self) -> None: ...
 
 class SleepIQSleepDataCoordinator(DataUpdateCoordinator[None]):
-    config_entry: ConfigEntry
+    config_entry: SleepIQConfigEntry
     client: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, client: AsyncSleepIQ) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: SleepIQConfigEntry, client: AsyncSleepIQ) -> None: ...
     async def _async_update_data(self) -> None: ...
 
 @dataclass

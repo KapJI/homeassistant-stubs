@@ -11,7 +11,6 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 async def async_setup_entry(hass: HomeAssistant, entry: TwenteMilieuConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TwenteMilieuCalendar(TwenteMilieuEntity, CalendarEntity):
-    _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_translation_key: str
     _attr_unique_id: Incomplete

@@ -21,6 +21,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import slugify as slugify
 from typing import Literal
 
+PARALLEL_UPDATES: int
+
 @callback
 def async_bandwidth_sensor_allowed_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 @callback

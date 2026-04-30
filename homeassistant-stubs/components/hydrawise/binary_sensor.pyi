@@ -12,6 +12,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from pydrawise import Controller as Controller, Zone as Zone
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class HydrawiseBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[HydrawiseBinarySensor], bool | None]

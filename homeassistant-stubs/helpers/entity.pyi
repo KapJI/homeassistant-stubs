@@ -18,7 +18,7 @@ from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_A
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, get_release_channel as get_release_channel
 from homeassistant.core_config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
-from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue, bind_hass as bind_hass
+from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from homeassistant.util.frozen_dataclass_compat import FrozenOrThawed as FrozenOrThawed
 from propcache.api import cached_property
@@ -35,7 +35,6 @@ CONTEXT_RECENT_TIME_SECONDS: int
 @callback
 def async_setup(hass: HomeAssistant) -> None: ...
 @callback
-@bind_hass
 def entity_sources(hass: HomeAssistant) -> dict[str, EntityInfo]: ...
 def generate_entity_id(entity_id_format: str, name: str | None, current_ids: list[str] | None = None, hass: HomeAssistant | None = None) -> str: ...
 @callback
@@ -220,6 +219,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def _async_verify_state_writable(self) -> None: ...
     @callback
     def _async_write_ha_state_from_call_soon_threadsafe(self) -> None: ...
+    @final
     @callback
     def async_write_ha_state(self) -> None: ...
     def _stringify_state(self, available: bool) -> str: ...

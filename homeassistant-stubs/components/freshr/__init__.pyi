@@ -1,6 +1,6 @@
 from .coordinator import FreshrConfigEntry as FreshrConfigEntry, FreshrData as FreshrData, FreshrDevicesCoordinator as FreshrDevicesCoordinator, FreshrReadingsCoordinator as FreshrReadingsCoordinator
 from homeassistant.const import Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 
 _PLATFORMS: list[Platform]
 

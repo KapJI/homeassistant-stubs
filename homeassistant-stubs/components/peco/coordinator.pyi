@@ -12,18 +12,24 @@ class PECOCoordinatorData:
     outages: OutageResults
     alerts: AlertResults
 
+@dataclass
+class PecoRuntimeData:
+    outage_coordinator: PecoOutageCoordinator
+    meter_coordinator: PecoSmartMeterCoordinator | None = ...
+type PecoConfigEntry = ConfigEntry[PecoRuntimeData]
+
 class PecoOutageCoordinator(DataUpdateCoordinator[PECOCoordinatorData]):
-    config_entry: ConfigEntry
+    config_entry: PecoConfigEntry
     _api: Incomplete
     _websession: Incomplete
     _county: str
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: PecoConfigEntry) -> None: ...
     async def _async_update_data(self) -> PECOCoordinatorData: ...
 
 class PecoSmartMeterCoordinator(DataUpdateCoordinator[bool]):
-    config_entry: ConfigEntry
+    config_entry: PecoConfigEntry
     _api: Incomplete
     _websession: Incomplete
     _phone_number: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, phone_number: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: PecoConfigEntry, phone_number: str) -> None: ...
     async def _async_update_data(self) -> bool: ...

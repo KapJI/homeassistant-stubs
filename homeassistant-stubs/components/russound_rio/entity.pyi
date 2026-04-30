@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN, RUSSOUND_RIO_EXCEPTIONS as RUSSOUND_RIO_EXCEPTIONS
 from _typeshed import Incomplete
-from aiorussound import Controller as Controller, RussoundClient as RussoundClient
-from aiorussound.models import CallbackType
-from aiorussound.rio import ZoneControlSurface as ZoneControlSurface
+from aiorussound.rio import RussoundRIOClient as RussoundRIOClient
+from aiorussound.rio.client import Controller as Controller, ZoneControlSurface as ZoneControlSurface
+from aiorussound.rio.models import CallbackType
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -24,6 +24,6 @@ class RussoundBaseEntity(Entity):
     @property
     def _zone(self) -> ZoneControlSurface: ...
     _attr_available: Incomplete
-    async def _state_update_callback(self, _client: RussoundClient, _callback_type: CallbackType) -> None: ...
+    async def _state_update_callback(self, _client: RussoundRIOClient, _callback_type: CallbackType) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

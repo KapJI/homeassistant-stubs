@@ -1,12 +1,10 @@
-from . import SimpliSafe as SimpliSafe
-from .const import DOMAIN as DOMAIN
+from . import SimpliSafe as SimpliSafe, SimpliSafeConfigEntry as SimpliSafeConfigEntry
 from .entity import SimpliSafeEntity as SimpliSafeEntity
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -23,7 +21,7 @@ async def _async_clear_notifications(system: System) -> None: ...
 
 BUTTON_DESCRIPTIONS: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SimpliSafeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SimpliSafeButton(SimpliSafeEntity, ButtonEntity):
     _attr_entity_category: Incomplete

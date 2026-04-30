@@ -19,6 +19,7 @@ class BondButtonEntityDescription(ButtonEntityDescription):
 
 STOP_BUTTON: Incomplete
 BUTTONS: tuple[BondButtonEntityDescription, ...]
+PRESET_BUTTON: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

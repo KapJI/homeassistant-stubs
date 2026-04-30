@@ -5,4 +5,6 @@ from homeassistant.helpers import llm as llm
 DOMAIN: str
 LOGGER: Incomplete
 CONF_RECOMMENDED: str
+CONF_WEB_SEARCH: str
+RECOMMENDED_WEB_SEARCH: bool
 RECOMMENDED_CONVERSATION_OPTIONS: Incomplete

@@ -20,7 +20,6 @@ class VeluxEntity(Entity):
     _unavailable_logged: bool
     node: Incomplete
     _attr_unique_id: Incomplete
-    unsubscribe: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, node: Node, config_entry_id: str) -> None: ...
     async def after_update_callback(self, _: Node) -> None: ...

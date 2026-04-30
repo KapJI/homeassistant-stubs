@@ -1,9 +1,8 @@
-from .const import ATTR_CAMERA_LIGHT_MODE as ATTR_CAMERA_LIGHT_MODE, ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_PERSON as ATTR_PERSON, ATTR_PERSONS as ATTR_PERSONS, CAMERA_LIGHT_MODES as CAMERA_LIGHT_MODES, CAMERA_TRIGGERS as CAMERA_TRIGGERS, CONF_URL_SECURITY as CONF_URL_SECURITY, DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DOMAIN as DOMAIN, EVENT_TYPE_CONNECTION as EVENT_TYPE_CONNECTION, EVENT_TYPE_DISCONNECTION as EVENT_TYPE_DISCONNECTION, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, EVENT_TYPE_OFF as EVENT_TYPE_OFF, EVENT_TYPE_ON as EVENT_TYPE_ON, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_CAMERA as NETATMO_CREATE_CAMERA, SERVICE_SET_CAMERA_LIGHT as SERVICE_SET_CAMERA_LIGHT, SERVICE_SET_PERSONS_HOME as SERVICE_SET_PERSONS_HOME, SERVICE_SET_PERSON_AWAY as SERVICE_SET_PERSON_AWAY, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
-from .data_handler import EVENT as EVENT, HOME as HOME, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
+from .const import ATTR_CAMERA_LIGHT_MODE as ATTR_CAMERA_LIGHT_MODE, ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_PERSON as ATTR_PERSON, ATTR_PERSONS as ATTR_PERSONS, CAMERA_LIGHT_MODES as CAMERA_LIGHT_MODES, CAMERA_TRIGGERS as CAMERA_TRIGGERS, CONF_URL_SECURITY as CONF_URL_SECURITY, DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DOMAIN as DOMAIN, EVENT_TYPE_CONNECTION as EVENT_TYPE_CONNECTION, EVENT_TYPE_DISCONNECTION as EVENT_TYPE_DISCONNECTION, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, EVENT_TYPE_OFF as EVENT_TYPE_OFF, EVENT_TYPE_ON as EVENT_TYPE_ON, MANUFACTURER as MANUFACTURER, NETATMO_ALIM_STATUS_ONLINE as NETATMO_ALIM_STATUS_ONLINE, NETATMO_CREATE_CAMERA as NETATMO_CREATE_CAMERA, SERVICE_SET_CAMERA_LIGHT as SERVICE_SET_CAMERA_LIGHT, SERVICE_SET_PERSONS_HOME as SERVICE_SET_PERSONS_HOME, SERVICE_SET_PERSON_AWAY as SERVICE_SET_PERSON_AWAY, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
+from .data_handler import EVENT as EVENT, HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoModuleEntity as NetatmoModuleEntity
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
@@ -16,7 +15,7 @@ from typing import Any
 _LOGGER: Incomplete
 DEFAULT_QUALITY: str
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NetatmoCamera(NetatmoModuleEntity, Camera):
     _attr_brand = MANUFACTURER
@@ -36,6 +35,8 @@ class NetatmoCamera(NetatmoModuleEntity, Camera):
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     @property
     def supported_features(self) -> CameraEntityFeature: ...
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]: ...
     async def async_turn_off(self) -> None: ...
     async def async_turn_on(self) -> None: ...
     async def stream_source(self) -> str: ...

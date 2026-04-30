@@ -1,7 +1,9 @@
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from transmission_rpc import Torrent as Torrent
 
 DOMAIN: str
+MIN_REQUIRED_TRANSMISSION_VERSION: Incomplete
 ORDER_NEWEST_FIRST: str
 ORDER_OLDEST_FIRST: str
 ORDER_BEST_RATIO_FIRST: str
@@ -33,6 +35,9 @@ SERVICE_STOP_TORRENT: str
 EVENT_STARTED_TORRENT: str
 EVENT_REMOVED_TORRENT: str
 EVENT_DOWNLOADED_TORRENT: str
+EVENT_TYPE_STARTED: str
+EVENT_TYPE_REMOVED: str
+EVENT_TYPE_DOWNLOADED: str
 STATE_UP_DOWN: str
 STATE_SEEDING: str
 STATE_DOWNLOADING: str

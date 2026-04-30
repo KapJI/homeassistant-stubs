@@ -1,11 +1,10 @@
 from .const import ATTR_EXPIRES as ATTR_EXPIRES, ATTR_NAME_SERVERS as ATTR_NAME_SERVERS, ATTR_REGISTRAR as ATTR_REGISTRAR, ATTR_UPDATED as ATTR_UPDATED, DOMAIN as DOMAIN, STATUS_TYPES as STATUS_TYPES
-from .coordinator import WhoisCoordinator as WhoisCoordinator
+from .coordinator import WhoisConfigEntry as WhoisConfigEntry, WhoisCoordinator as WhoisCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -23,7 +22,7 @@ def _get_status_type(status: str | None) -> str | None: ...
 
 SENSORS: tuple[WhoisSensorEntityDescription, ...]
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: WhoisConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WhoisSensorEntity(CoordinatorEntity[WhoisCoordinator], SensorEntity):
     entity_description: WhoisSensorEntityDescription

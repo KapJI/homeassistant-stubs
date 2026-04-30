@@ -12,6 +12,8 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 @callback
 def async_wlan_qr_code_image_fn(hub: UnifiHub, wlan: Wlan) -> bytes: ...
 

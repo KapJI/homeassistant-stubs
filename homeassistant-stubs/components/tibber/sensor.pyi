@@ -54,7 +54,7 @@ class TibberSensor(SensorEntity):
 class TibberSensorElPrice(TibberSensor, CoordinatorEntity[TibberPriceCoordinator]):
     _attr_state_class: Incomplete
     _attr_translation_key: str
-    _attr_available: bool
+    _price_data_available: bool
     _attr_native_unit_of_measurement: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_icon: Incomplete
@@ -62,6 +62,8 @@ class TibberSensorElPrice(TibberSensor, CoordinatorEntity[TibberPriceCoordinator
     _model: str
     _device_name: Incomplete
     def __init__(self, coordinator: TibberPriceCoordinator, tibber_home: TibberHome) -> None: ...
+    @property
+    def available(self) -> bool: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete

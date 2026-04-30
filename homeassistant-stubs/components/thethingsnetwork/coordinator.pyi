@@ -8,10 +8,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from ttn_client import TTNClient
 
 _LOGGER: Incomplete
+type TTNConfigEntry = ConfigEntry[TTNCoordinator]
 
 class TTNCoordinator(DataUpdateCoordinator[TTNClient.DATA_TYPE]):
-    config_entry: ConfigEntry
+    config_entry: TTNConfigEntry
     _client: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: TTNConfigEntry) -> None: ...
     async def _async_update_data(self) -> TTNClient.DATA_TYPE: ...
     async def _push_callback(self, data: TTNClient.DATA_TYPE) -> None: ...

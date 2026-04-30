@@ -4,7 +4,7 @@ from .coordinator import SimpliSafeDataUpdateCoordinator as SimpliSafeDataUpdate
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_CODE as CONF_CODE, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
@@ -17,6 +17,7 @@ from simplipy.system import SystemNotification as SystemNotification
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
 from typing import Any
 
+type SimpliSafeConfigEntry = ConfigEntry[SimpliSafe]
 ATTR_CATEGORY: str
 ATTR_LAST_EVENT_CHANGED_BY: str
 ATTR_LAST_EVENT_SENSOR_SERIAL: str
@@ -48,8 +49,8 @@ def _async_get_system_for_service_call(hass: HomeAssistant, call: ServiceCall) -
 def _async_register_base_station(hass: HomeAssistant, entry: ConfigEntry, system: SystemType) -> None: ...
 @callback
 def _async_standardize_config_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SimpliSafeConfigEntry) -> bool: ...
+async def async_unload_entry(hass: HomeAssistant, entry: SimpliSafeConfigEntry) -> bool: ...
 
 class SimpliSafe:
     _api: Incomplete

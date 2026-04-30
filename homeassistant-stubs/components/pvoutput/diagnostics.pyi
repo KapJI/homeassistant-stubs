@@ -1,7 +1,5 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import PVOutputDataUpdateCoordinator as PVOutputDataUpdateCoordinator
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from .coordinator import PvOutputConfigEntry as PvOutputConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
-async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any]: ...
+async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: PvOutputConfigEntry) -> dict[str, Any]: ...

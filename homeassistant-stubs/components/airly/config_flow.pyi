@@ -1,8 +1,8 @@
-from .const import CONF_USE_NEAREST as CONF_USE_NEAREST, DOMAIN as DOMAIN, NO_AIRLY_SENSORS as NO_AIRLY_SENSORS
+from .const import CONF_USE_NEAREST as CONF_USE_NEAREST, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, NO_AIRLY_SENSORS as NO_AIRLY_SENSORS
 from _typeshed import Incomplete
 from aiohttp import ClientSession as ClientSession
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any
 

@@ -1,7 +1,6 @@
-from .const import DOMAIN as DOMAIN
+from . import HuaweiLteConfigEntry as HuaweiLteConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
@@ -15,4 +14,4 @@ WLAN_WIFI_GUEST_NETWORK_SWITCH_DATA_TO_REDACT: Incomplete
 WLAN_MULTI_BASIC_SETTINGS_DATA_TO_REDACT: Incomplete
 TO_REDACT: Incomplete
 
-async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any]: ...
+async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: HuaweiLteConfigEntry) -> dict[str, Any]: ...

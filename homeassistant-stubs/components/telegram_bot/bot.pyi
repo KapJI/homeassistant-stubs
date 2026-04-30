@@ -11,6 +11,7 @@ from homeassistant.core import Context as Context, HomeAssistant as HomeAssistan
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename, raise_if_invalid_path as raise_if_invalid_path
 from homeassistant.util.json import JsonValueType as JsonValueType
 from telegram import Bot, CallbackQuery as CallbackQuery, File as File, InputMedia as InputMedia, InputPollOption as InputPollOption, Message, Update as Update, User as User
 from telegram.ext import CallbackContext as CallbackContext
@@ -43,6 +44,7 @@ class BaseTelegramBot(metaclass=abc.ABCMeta):
 class TelegramNotificationService:
     app: Incomplete
     config: Incomplete
+    old_config_data: Incomplete
     _parsers: dict[str, str | None]
     parse_mode: Incomplete
     bot: Incomplete
@@ -66,6 +68,7 @@ class TelegramNotificationService:
     async def send_poll(self, question: str, options: Sequence[str | InputPollOption], is_anonymous: bool | None, allows_multiple_answers: bool | None, context: Context | None = None, **kwargs: dict[str, Any]) -> dict[str, JsonValueType]: ...
     async def leave_chat(self, chat_id: int, context: Context | None = None, **kwargs: dict[str, Any]) -> Any: ...
     async def set_message_reaction(self, reaction: str, chat_id: int, is_big: bool = False, context: Context | None = None, **kwargs: dict[str, Any]) -> None: ...
+    async def send_message_draft(self, message: str, chat_id: int, draft_id: int, context: Context | None = None, **kwargs: dict[str, Any]) -> None: ...
     async def download_file(self, file_id: str, directory_path: str | None = None, file_name: str | None = None, context: Context | None = None, **kwargs: dict[str, Any]) -> dict[str, JsonValueType]: ...
     @staticmethod
     def _prepare_download_directory(directory_path: str) -> None: ...

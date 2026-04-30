@@ -1,21 +1,20 @@
-from . import SimpliSafe as SimpliSafe
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from . import SimpliSafe as SimpliSafe, SimpliSafeConfigEntry as SimpliSafeConfigEntry
+from .const import LOGGER as LOGGER
 from .entity import SimpliSafeEntity as SimpliSafeEntity
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from simplipy.device import DeviceV3 as DeviceV3
-from simplipy.device.sensor.v3 import SensorV3 as SensorV3
-from simplipy.system.v3 import SystemV3 as SystemV3
+from simplipy.device import DeviceV3
+from simplipy.device.sensor.v3 import SensorV3
+from simplipy.system.v3 import SystemV3
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
 
 SUPPORTED_BATTERY_SENSOR_TYPES: Incomplete
 TRIGGERED_SENSOR_TYPES: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: SimpliSafeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete

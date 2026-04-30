@@ -1,7 +1,7 @@
+from . import LiteJetConfigEntry as LiteJetConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.scene import Scene as Scene
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -12,7 +12,7 @@ from typing import Any
 _LOGGER: Incomplete
 ATTR_NUMBER: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LiteJetConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LiteJetScene(Scene):
     _attr_has_entity_name: bool

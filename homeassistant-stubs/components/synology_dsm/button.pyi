@@ -23,8 +23,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: SynologyDSMConfigEntry, 
 
 class SynologyDSMButton(ButtonEntity):
     entity_description: SynologyDSMbuttonDescription
+    _attr_has_entity_name: bool
     syno_api: Incomplete
-    _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, api: SynoApi, description: SynologyDSMbuttonDescription) -> None: ...

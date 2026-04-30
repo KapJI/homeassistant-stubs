@@ -1,8 +1,7 @@
 from .const import DOMAIN as DOMAIN, ID_TYPE_DEVICE_ID as ID_TYPE_DEVICE_ID, ID_TYPE_SERIAL as ID_TYPE_SERIAL, LOGGER as LOGGER
 from .discovery import async_discover_entities as async_discover_entities
-from .helpers import get_device_id as get_device_id
+from .helpers import MatterConfigEntry as MatterConfigEntry, get_device_id as get_device_id
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
@@ -17,7 +16,7 @@ class MatterAdapter:
     config_entry: Incomplete
     platform_handlers: dict[Platform, AddEntitiesCallback]
     discovered_entities: set[str]
-    def __init__(self, hass: HomeAssistant, matter_client: MatterClient, config_entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, matter_client: MatterClient, config_entry: MatterConfigEntry) -> None: ...
     def register_platform_handler(self, platform: Platform, add_entities: AddEntitiesCallback) -> None: ...
     async def setup_nodes(self) -> None: ...
     def _setup_node(self, node: MatterNode) -> None: ...

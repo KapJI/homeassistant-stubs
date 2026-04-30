@@ -1,4 +1,4 @@
-from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN
+from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN, DoorbellEventType as DoorbellEventType
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
@@ -8,7 +8,7 @@ from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
 from typing import Any, Self, final
 
-__all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'EventDeviceClass', 'EventEntity', 'EventEntityDescription']
+__all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'DoorbellEventType', 'EventDeviceClass', 'EventEntity', 'EventEntityDescription']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

@@ -8,8 +8,9 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pvo import Status
 
+type PvOutputConfigEntry = ConfigEntry[PVOutputDataUpdateCoordinator]
 class PVOutputDataUpdateCoordinator(DataUpdateCoordinator[Status]):
-    config_entry: ConfigEntry
+    config_entry: PvOutputConfigEntry
     pvoutput: Incomplete
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: PvOutputConfigEntry) -> None: ...
     async def _async_update_data(self) -> Status: ...

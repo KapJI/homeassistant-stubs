@@ -2,6 +2,7 @@ import RFXtrx as rfxtrxmod
 from . import DOMAIN as DOMAIN, DeviceTuple as DeviceTuple, get_device_id as get_device_id, get_device_tuple_from_identifiers as get_device_tuple_from_identifiers, get_rfx_object as get_rfx_object
 from .const import CONF_AUTOMATIC_ADD as CONF_AUTOMATIC_ADD, CONF_DATA_BITS as CONF_DATA_BITS, CONF_OFF_DELAY as CONF_OFF_DELAY, CONF_PROTOCOLS as CONF_PROTOCOLS, CONF_REPLACE_DEVICE as CONF_REPLACE_DEVICE, CONF_VENETIAN_BLIND_MODE as CONF_VENETIAN_BLIND_MODE, CONST_VENETIAN_BLIND_MODE_DEFAULT as CONST_VENETIAN_BLIND_MODE_DEFAULT, CONST_VENETIAN_BLIND_MODE_EU as CONST_VENETIAN_BLIND_MODE_EU, CONST_VENETIAN_BLIND_MODE_US as CONST_VENETIAN_BLIND_MODE_US, DEVICE_PACKET_TYPE_LIGHTING4 as DEVICE_PACKET_TYPE_LIGHTING4
 from _typeshed import Incomplete
+from homeassistant.components import usb as usb
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_COMMAND_OFF as CONF_COMMAND_OFF, CONF_COMMAND_ON as CONF_COMMAND_ON, CONF_DEVICE as CONF_DEVICE, CONF_DEVICES as CONF_DEVICES, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, callback as callback
@@ -53,6 +54,5 @@ class RfxtrxConfigFlow(ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry: ConfigEntry) -> RfxtrxOptionsFlow: ...
 
 def _test_transport(host: str | None, port: int | None, device: str | None) -> bool: ...
-def get_serial_by_id(dev_path: str) -> str: ...
 
 class CannotConnect(HomeAssistantError): ...

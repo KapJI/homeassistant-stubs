@@ -18,6 +18,7 @@ from propcache.api import cached_property
 from typing import Any
 
 LOGGER: Incomplete
+PARALLEL_UPDATES: int
 CLIENT_TRACKER: str
 DEVICE_TRACKER: str
 CLIENT_CONNECTED_ATTRIBUTES: Incomplete

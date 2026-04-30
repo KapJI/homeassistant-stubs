@@ -1,5 +1,5 @@
 from . import BeoConfigEntry as BeoConfigEntry
-from .const import BEO_REMOTE_KEY_EVENTS as BEO_REMOTE_KEY_EVENTS, BeoModel as BeoModel, CONNECTION_STATUS as CONNECTION_STATUS, DEVICE_BUTTON_EVENTS as DEVICE_BUTTON_EVENTS, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, WebsocketNotification as WebsocketNotification
+from .const import BEO_REMOTE_KEY_EVENTS as BEO_REMOTE_KEY_EVENTS, BeoModel as BeoModel, CONNECTION_STATUS as CONNECTION_STATUS, DEVICE_BUTTON_EVENTS as DEVICE_BUTTON_EVENTS, DOMAIN as DOMAIN, WebsocketNotification as WebsocketNotification
 from .entity import BeoEntity as BeoEntity
 from .util import get_device_buttons as get_device_buttons, get_remote_keys as get_remote_keys, get_remotes as get_remotes
 from _typeshed import Incomplete

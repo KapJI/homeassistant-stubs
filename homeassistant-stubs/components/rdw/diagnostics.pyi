@@ -1,7 +1,5 @@
-from .const import DOMAIN as DOMAIN
-from .coordinator import RDWDataUpdateCoordinator as RDWDataUpdateCoordinator
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from .coordinator import RDWConfigEntry as RDWConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any
 
-async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: ConfigEntry) -> dict[str, Any]: ...
+async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: RDWConfigEntry) -> dict[str, Any]: ...

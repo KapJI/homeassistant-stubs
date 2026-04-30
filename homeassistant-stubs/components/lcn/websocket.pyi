@@ -3,6 +3,7 @@ from .helpers import LcnConfigEntry as LcnConfigEntry, async_update_device_confi
 from .schemas import ADDRESS_SCHEMA as ADDRESS_SCHEMA, DOMAIN_DATA_BINARY_SENSOR as DOMAIN_DATA_BINARY_SENSOR, DOMAIN_DATA_CLIMATE as DOMAIN_DATA_CLIMATE, DOMAIN_DATA_COVER as DOMAIN_DATA_COVER, DOMAIN_DATA_LIGHT as DOMAIN_DATA_LIGHT, DOMAIN_DATA_SCENE as DOMAIN_DATA_SCENE, DOMAIN_DATA_SENSOR as DOMAIN_DATA_SENSOR, DOMAIN_DATA_SWITCH as DOMAIN_DATA_SWITCH
 from collections.abc import Awaitable, Callable
 from homeassistant.components import panel_custom as panel_custom, websocket_api as websocket_api
+from homeassistant.components.frontend import async_panel_exists as async_panel_exists
 from homeassistant.components.http import StaticPathConfig as StaticPathConfig
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, AsyncWebSocketCommandHandler as AsyncWebSocketCommandHandler
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DEVICES as CONF_DEVICES, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME

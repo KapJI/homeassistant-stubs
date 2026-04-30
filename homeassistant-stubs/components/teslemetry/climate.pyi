@@ -29,7 +29,6 @@ class TeslemetryClimateEntity(TeslemetryRootEntity, ClimateEntity):
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
     _attr_fan_modes: Incomplete
-    _enable_turn_on_off_backwards_compatibility: bool
     _attr_hvac_mode: Incomplete
     async def async_turn_on(self) -> None: ...
     _attr_preset_mode: Incomplete

@@ -10,6 +10,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pydrawise.schema import Controller as Controller, ControllerWaterUseSummary, Zone as Zone
 from typing import Any
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class HydrawiseSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[HydrawiseSensor], Any]

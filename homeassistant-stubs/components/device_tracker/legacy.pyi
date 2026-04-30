@@ -22,6 +22,7 @@ from propcache.api import cached_property
 from types import ModuleType
 from typing import Any, Final, Protocol, final
 
+_LOGGER: Incomplete
 SERVICE_SEE: Final[str]
 SOURCE_TYPES: Incomplete
 NEW_DEVICE_DEFAULTS_SCHEMA: Incomplete
@@ -30,6 +31,7 @@ PLATFORM_SCHEMA_BASE: Final[vol.Schema]
 SERVICE_SEE_PAYLOAD_SCHEMA: Final[vol.Schema]
 YAML_DEVICES: Final[str]
 EVENT_NEW_DEVICE: Final[str]
+DATA_LEGACY_TRACKERS: Final[str]
 
 class SeeCallback(Protocol):
     def __call__(self, mac: str | None = None, dev_id: str | None = None, host_name: str | None = None, location_name: str | None = None, gps: GPSType | None = None, gps_accuracy: int | None = None, battery: int | None = None, attributes: dict[str, Any] | None = None, source_type: SourceType | str = ..., picture: str | None = None, icon: str | None = None, consider_home: timedelta | None = None) -> None: ...

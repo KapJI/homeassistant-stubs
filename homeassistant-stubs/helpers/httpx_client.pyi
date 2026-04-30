@@ -4,7 +4,6 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.const import APPLICATION_NAME as APPLICATION_NAME, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, __version__ as __version__
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ssl import SSLALPNProtocols as SSLALPNProtocols, SSLCipherList as SSLCipherList, SSL_ALPN_HTTP11 as SSL_ALPN_HTTP11, SSL_ALPN_HTTP11_HTTP2 as SSL_ALPN_HTTP11_HTTP2, client_context as client_context, create_no_verify_ssl_context as create_no_verify_ssl_context
 from types import TracebackType
@@ -18,7 +17,6 @@ SERVER_SOFTWARE: Incomplete
 USER_AGENT: str
 
 @callback
-@bind_hass
 def get_async_client(hass: HomeAssistant, verify_ssl: bool = True, alpn_protocols: SSLALPNProtocols = ...) -> httpx.AsyncClient: ...
 
 class HassHttpXAsyncClient(httpx.AsyncClient):

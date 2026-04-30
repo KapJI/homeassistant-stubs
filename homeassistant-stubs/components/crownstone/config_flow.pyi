@@ -9,7 +9,6 @@ from homeassistant.config_entries import ConfigEntryBaseFlow as ConfigEntryBaseF
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from serial.tools.list_ports_common import ListPortInfo as ListPortInfo
 from typing import Any
 
 CONFIG_FLOW: str

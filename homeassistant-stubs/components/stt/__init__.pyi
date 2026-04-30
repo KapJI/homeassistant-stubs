@@ -1,7 +1,7 @@
 import abc
 from .const import AudioBitRates as AudioBitRates, AudioChannels as AudioChannels, AudioCodecs as AudioCodecs, AudioFormats as AudioFormats, AudioSampleRates as AudioSampleRates, DOMAIN as DOMAIN, SpeechResultState as SpeechResultState
 from .legacy import Provider as Provider, async_get_provider as async_get_provider
-from .models import SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult
+from .models import SpeechAudioProcessing, SpeechMetadata as SpeechMetadata, SpeechResult as SpeechResult
 from _typeshed import Incomplete
 from abc import abstractmethod
 from aiohttp import web
@@ -42,6 +42,8 @@ class SpeechToTextEntity(RestoreEntity, metaclass=abc.ABCMeta):
     @property
     @abstractmethod
     def supported_channels(self) -> list[AudioChannels]: ...
+    @property
+    def audio_processing(self) -> SpeechAudioProcessing: ...
     async def async_internal_added_to_hass(self) -> None: ...
     @final
     async def internal_async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...

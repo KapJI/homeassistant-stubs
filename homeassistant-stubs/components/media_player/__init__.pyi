@@ -22,7 +22,6 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import bind_hass as bind_hass
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any, Final, Required, TypedDict, final
@@ -70,7 +69,6 @@ class _ImageCache(TypedDict):
 
 _ENTITY_IMAGE_CACHE: Incomplete
 
-@bind_hass
 def is_on(hass: HomeAssistant, entity_id: str | None = None) -> bool: ...
 def _rename_keys(**keys: Any) -> Callable[[dict[str, Any]], dict[str, Any]]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

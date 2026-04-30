@@ -1,7 +1,7 @@
+from . import LiteJetConfigEntry as LiteJetConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -11,7 +11,7 @@ from typing import Any
 
 ATTR_NUMBER: str
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: LiteJetConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LiteJetSwitch(SwitchEntity):
     _attr_should_poll: bool

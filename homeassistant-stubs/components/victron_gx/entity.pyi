@@ -19,9 +19,9 @@ class VictronBaseEntity(Entity, metaclass=abc.ABCMeta):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     _attr_suggested_display_precision: Incomplete
-    _attr_name: Incomplete
     _attr_translation_key: Incomplete
     _attr_translation_placeholders: Incomplete
+    _attr_name: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete

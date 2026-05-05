@@ -2,6 +2,7 @@ from . import SynoApi as SynoApi
 from .const import CONF_VOLUMES as CONF_VOLUMES, ENTITY_UNIT_LOAD as ENTITY_UNIT_LOAD
 from .coordinator import SynologyDSMCentralUpdateCoordinator as SynologyDSMCentralUpdateCoordinator, SynologyDSMConfigEntry as SynologyDSMConfigEntry
 from .entity import SynologyDSMBaseEntity as SynologyDSMBaseEntity, SynologyDSMDeviceEntity as SynologyDSMDeviceEntity, SynologyDSMEntityDescription as SynologyDSMEntityDescription
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -9,10 +10,14 @@ from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_DISKS as CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util.dt import utcnow as utcnow
 from synology_dsm.api.core.external_usb import SynoCoreExternalUSBDevice as SynoCoreExternalUSBDevice
+from synology_dsm.api.dsm.information import SynoDSMInformation
+from typing import Any
 
 @dataclass(frozen=True, kw_only=True)
-class SynologyDSMSensorEntityDescription(SensorEntityDescription, SynologyDSMEntityDescription): ...
+class SynologyDSMSensorEntityDescription(SensorEntityDescription, SynologyDSMEntityDescription):
+    value_fn: Callable[[SynoDSMInformation, str], Any] = ...
 
 UTILISATION_SENSORS: tuple[SynologyDSMSensorEntityDescription, ...]
 STORAGE_VOL_SENSORS: tuple[SynologyDSMSensorEntityDescription, ...]

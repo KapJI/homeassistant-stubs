@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from google_nest_sdm.device import Device as Device
 from google_nest_sdm.event import EventMessage as EventMessage, EventType
 from google_nest_sdm.traits import TraitType
-from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
+from homeassistant.components.event import DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 

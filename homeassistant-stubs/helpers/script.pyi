@@ -41,7 +41,7 @@ _MAX_EXCEEDED_CHOICES: Incomplete
 DEFAULT_MAX_EXCEEDED: str
 ATTR_CUR: str
 ATTR_MAX: str
-DATA_SCRIPTS: HassKey[list[ScriptData]]
+DATA_SCRIPTS: HassKey[dict[int, ScriptData]]
 DATA_SCRIPT_BREAKPOINTS: HassKey[dict[str, dict[str, set[str]]]]
 DATA_NEW_SCRIPT_RUNS_NOT_ALLOWED: HassKey[None]
 RUN_ID_ANY: str

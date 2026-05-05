@@ -86,7 +86,6 @@ ATTR_BEHAVIOR: Final[str]
 BEHAVIOR_ANY: Final[str]
 BEHAVIOR_ALL: Final[str]
 ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL: Incomplete
-ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL_FOR: Incomplete
 
 class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     _domain_specs: Mapping[str, DomainSpec]
@@ -125,7 +124,7 @@ class EntityStateConditionBase(EntityConditionBase):
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 def _normalize_domain_specs(domain_specs: Mapping[str, DomainSpec] | str) -> Mapping[str, DomainSpec]: ...
-def make_entity_state_condition(domain_specs: Mapping[str, DomainSpec] | str, states: str | bool | set[str | bool], *, support_duration: bool = False, primary_entities_only: bool = True) -> type[EntityStateConditionBase]: ...
+def make_entity_state_condition(domain_specs: Mapping[str, DomainSpec] | str, states: str | bool | set[str | bool], *, primary_entities_only: bool = True) -> type[EntityStateConditionBase]: ...
 
 NUMERICAL_CONDITION_SCHEMA: Incomplete
 

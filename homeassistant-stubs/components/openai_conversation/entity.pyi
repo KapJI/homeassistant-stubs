@@ -13,6 +13,7 @@ from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.util import slugify as slugify
 from openai._streaming import AsyncStream as AsyncStream
 from openai.types.responses import FunctionToolParam, ResponseInputMessageContentListParam as ResponseInputMessageContentListParam, ResponseInputParam as ResponseInputParam, ResponseStreamEvent as ResponseStreamEvent, ToolParam as ToolParam
+from openai.types.responses.response_create_params import Reasoning as Reasoning
 from pathlib import Path
 from typing import Any
 

@@ -1,10 +1,9 @@
-from .const import DOMAIN as DOMAIN, STATUS_DOWN as STATUS_DOWN, STATUS_UP as STATUS_UP
+from .const import STATUS_UP as STATUS_UP
 from .coordinator import UptimeRobotConfigEntry as UptimeRobotConfigEntry
 from .entity import UptimeRobotEntity as UptimeRobotEntity
-from .utils import new_device_listener as new_device_listener
+from .utils import new_device_listener as new_device_listener, uptimerobot_api_call as uptimerobot_api_call
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
 from typing import Any
@@ -17,6 +16,7 @@ class UptimeRobotSwitch(UptimeRobotEntity, SwitchEntity):
     _attr_translation_key: str
     @property
     def is_on(self) -> bool: ...
-    async def _async_edit_monitor(self, **kwargs: Any) -> None: ...
+    @uptimerobot_api_call
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @uptimerobot_api_call
     async def async_turn_on(self, **kwargs: Any) -> None: ...

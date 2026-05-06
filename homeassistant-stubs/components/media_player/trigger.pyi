@@ -1,7 +1,20 @@
-from . import MediaPlayerState as MediaPlayerState
+from . import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED, MediaPlayerState as MediaPlayerState
 from .const import DOMAIN as DOMAIN
-from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.trigger import Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
+from _typeshed import Incomplete
+from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State
+from homeassistant.helpers.automation import DomainSpec as DomainSpec
+from homeassistant.helpers.trigger import EntityTriggerBase as EntityTriggerBase, Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
+
+class MediaPlayerMutedTrigger(EntityTriggerBase):
+    _domain_specs: Incomplete
+    def _has_volume_attributes(self, state: State) -> bool: ...
+    def _should_include(self, state: State) -> bool: ...
+    def check_all_match(self, entity_ids: set[str]) -> bool: ...
+    def count_matches(self, entity_ids: set[str]) -> int: ...
+    def is_muted(self, state: State) -> bool: ...
+    def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
+    def is_valid_state(self, state: State) -> bool: ...
 
 TRIGGERS: dict[str, type[Trigger]]
 

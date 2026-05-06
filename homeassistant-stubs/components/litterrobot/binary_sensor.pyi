@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pylitterbot import Robot
+from pylitterbot import Robot as Robot
 from typing import Generic
 
 PARALLEL_UPDATES: int
@@ -15,7 +15,7 @@ PARALLEL_UPDATES: int
 class RobotBinarySensorEntityDescription(BinarySensorEntityDescription, Generic[_WhiskerEntityT]):
     is_on_fn: Callable[[_WhiskerEntityT], bool]
 
-BINARY_SENSOR_MAP: dict[type[Robot], tuple[RobotBinarySensorEntityDescription, ...]]
+BINARY_SENSOR_MAP: dict[type[Robot] | tuple[type[Robot], ...], tuple[RobotBinarySensorEntityDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

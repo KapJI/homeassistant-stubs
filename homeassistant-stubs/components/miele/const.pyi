@@ -340,6 +340,7 @@ class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     down_filled_items: int
     cottons_eco: int
     quick_power_wash: Incomplete
+    quick_intense: int
     eco_40_60: Incomplete
     bed_linen: int
     easy_care: int

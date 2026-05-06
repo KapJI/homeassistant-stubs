@@ -24,6 +24,7 @@ class WaterHeaterTargetTemperatureCondition(EntityNumericalConditionWithUnitBase
     _base_unit: Incomplete
     _domain_specs: Incomplete
     _unit_converter = TemperatureConverter
+    def _should_include(self, state: State) -> bool: ...
     def _get_entity_unit(self, entity_state: State) -> str | None: ...
 
 CONDITIONS: dict[str, type[Condition]]

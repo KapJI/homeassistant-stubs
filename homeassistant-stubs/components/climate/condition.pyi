@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_OPTIONS as CONF_OPTIONS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
-from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityConditionBase as EntityConditionBase, EntityNumericalConditionWithUnitBase as EntityNumericalConditionWithUnitBase, make_entity_numerical_condition as make_entity_numerical_condition, make_entity_state_condition as make_entity_state_condition
+from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityConditionBase as EntityConditionBase, EntityNumericalConditionBase as EntityNumericalConditionBase, EntityNumericalConditionWithUnitBase as EntityNumericalConditionWithUnitBase, make_entity_state_condition as make_entity_state_condition
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 
 CONF_HVAC_MODE: str
@@ -21,6 +21,11 @@ class ClimateTargetTemperatureCondition(EntityNumericalConditionWithUnitBase):
     _domain_specs: Incomplete
     _unit_converter = TemperatureConverter
     def _get_entity_unit(self, entity_state: State) -> str | None: ...
+
+class ClimateTargetHumidityCondition(EntityNumericalConditionBase):
+    _domain_specs: Incomplete
+    _valid_unit: str
+    def _should_include(self, state: State) -> bool: ...
 
 CONDITIONS: dict[str, type[Condition]]
 

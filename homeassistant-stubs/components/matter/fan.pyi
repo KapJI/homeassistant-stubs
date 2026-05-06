@@ -45,7 +45,7 @@ class MatterFan(MatterEntity, FanEntity):
     @callback
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
-    _attr_speed_count: Incomplete
+    _attr_speed_count: int
     _attr_preset_modes: Incomplete
     @callback
     def _calculate_features(self) -> None: ...

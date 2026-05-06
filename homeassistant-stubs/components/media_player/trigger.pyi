@@ -1,20 +1,37 @@
+import abc
 from . import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED, MediaPlayerState as MediaPlayerState
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
-from homeassistant.helpers.trigger import EntityTriggerBase as EntityTriggerBase, Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
+from homeassistant.helpers.trigger import EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityTriggerBase as EntityTriggerBase, Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
 
-class MediaPlayerMutedTrigger(EntityTriggerBase):
+VOLUME_DOMAIN_SPECS: Incomplete
+
+class _MediaPlayerMutedStateTriggerBase(EntityTriggerBase):
     _domain_specs: Incomplete
+    _target_muted: bool
     def _has_volume_attributes(self, state: State) -> bool: ...
     def _should_include(self, state: State) -> bool: ...
-    def check_all_match(self, entity_ids: set[str]) -> bool: ...
-    def count_matches(self, entity_ids: set[str]) -> int: ...
     def is_muted(self, state: State) -> bool: ...
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     def is_valid_state(self, state: State) -> bool: ...
+
+class MediaPlayerMutedTrigger(_MediaPlayerMutedStateTriggerBase):
+    _target_muted: bool
+
+class MediaPlayerUnmutedTrigger(_MediaPlayerMutedStateTriggerBase):
+    _target_muted: bool
+
+class VolumeTriggerMixin(EntityNumericalStateTriggerBase, metaclass=abc.ABCMeta):
+    _domain_specs = VOLUME_DOMAIN_SPECS
+    _valid_unit: str
+    def _get_tracked_value(self, state: State) -> float | None: ...
+    def _should_include(self, state: State) -> bool: ...
+
+class VolumeChangedTrigger(EntityNumericalStateChangedTriggerBase, VolumeTriggerMixin): ...
+class VolumeCrossedThresholdTrigger(EntityNumericalStateCrossedThresholdTriggerBase, VolumeTriggerMixin): ...
 
 TRIGGERS: dict[str, type[Trigger]]
 

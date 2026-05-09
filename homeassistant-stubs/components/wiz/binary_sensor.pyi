@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, SIGNAL_WIZ_PIR as SIGNAL_WIZ_PIR
+from .const import DOMAIN as DOMAIN, OCCUPANCY_SOURCES as OCCUPANCY_SOURCES, SIGNAL_WIZ_PIR as SIGNAL_WIZ_PIR
 from .coordinator import WizConfigEntry as WizConfigEntry, WizData as WizData
 from .entity import WizEntity as WizEntity
 from _typeshed import Incomplete

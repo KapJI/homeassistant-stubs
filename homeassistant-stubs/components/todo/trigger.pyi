@@ -5,7 +5,7 @@ from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, TodoItemS
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_TARGET as CONF_TARGET
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent

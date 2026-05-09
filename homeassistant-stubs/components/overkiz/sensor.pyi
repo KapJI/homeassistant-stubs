@@ -5,7 +5,7 @@ from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity, Overki
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -28,6 +28,7 @@ class OverkizStateSensor(OverkizDescriptiveEntity, SensorEntity):
     def native_value(self) -> StateType: ...
     @property
     def native_unit_of_measurement(self) -> str | None: ...
+    def _is_unit_valid_for_device_class(self, unit: str) -> bool: ...
 
 class OverkizHomeKitSetupCodeSensor(OverkizEntity, SensorEntity):
     _attr_icon: str

@@ -1,4 +1,4 @@
-from .const import DISCOVERY_INTERVAL as DISCOVERY_INTERVAL, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, SIGNAL_WIZ_PIR as SIGNAL_WIZ_PIR, WIZ_CONNECT_EXCEPTIONS as WIZ_CONNECT_EXCEPTIONS
+from .const import DISCOVERY_INTERVAL as DISCOVERY_INTERVAL, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, OCCUPANCY_SOURCES as OCCUPANCY_SOURCES, SIGNAL_WIZ_PIR as SIGNAL_WIZ_PIR, WIZ_CONNECT_EXCEPTIONS as WIZ_CONNECT_EXCEPTIONS
 from .coordinator import WizConfigEntry as WizConfigEntry, WizCoordinator as WizCoordinator, WizData as WizData
 from .discovery import async_discover_devices as async_discover_devices, async_trigger_discovery as async_trigger_discovery
 from _typeshed import Incomplete

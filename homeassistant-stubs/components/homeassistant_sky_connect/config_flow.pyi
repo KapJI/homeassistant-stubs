@@ -6,7 +6,7 @@ from homeassistant.components import usb as usb
 from homeassistant.components.homeassistant_hardware import firmware_config_flow as firmware_config_flow, silabs_multiprotocol_addon as silabs_multiprotocol_addon
 from homeassistant.components.homeassistant_hardware.helpers import HardwareFirmwareDiscoveryInfo as HardwareFirmwareDiscoveryInfo
 from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo
-from homeassistant.components.usb import usb_service_info_from_device as usb_service_info_from_device, usb_unique_id_from_service_info as usb_unique_id_from_service_info
+from homeassistant.components.usb import usb_service_info_from_device as usb_service_info_from_device
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlowContext as ConfigFlowContext, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import callback as callback
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo

@@ -6,7 +6,7 @@ from .entities import AlexaEntity as AlexaEntity, ENTITY_ADAPTERS as ENTITY_ADAP
 from .errors import AlexaInvalidEndpointError as AlexaInvalidEndpointError, NoTokenAvailable as NoTokenAvailable, RequireRelink as RequireRelink
 from _typeshed import Incomplete
 from homeassistant.components import event as event
-from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, STATE_ON as STATE_ON
+from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.significant_change import create_checker as create_checker
@@ -16,6 +16,8 @@ from typing import Any
 _LOGGER: Incomplete
 DEFAULT_TIMEOUT: int
 TO_REDACT: Incomplete
+
+def valid_doorbell_timestamp(entity_id: str, event_state: str) -> bool: ...
 
 class AlexaDirective:
     entity: State

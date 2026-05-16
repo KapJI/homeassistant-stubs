@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from homeassistant.components.homeassistant_hardware.coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from homeassistant.components.homeassistant_hardware.util import guess_firmware_info as guess_firmware_info
 from homeassistant.components.usb import USBDevice as USBDevice, async_register_port_event_callback as async_register_port_event_callback, async_scan_serial_ports as async_scan_serial_ports
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IGNORE as SOURCE_IGNORE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_HEATING_CIRCUITS as CONF_HEATING_CIRCUITS, CONF_PASSKEY as CONF_PASSKEY, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_HEATING_CIRCUITS as CONF_HEATING_CIRCUITS, CONF_PASSKEY as CONF_PASSKEY, DEFAULT_HEATING_CIRCUITS as DEFAULT_HEATING_CIRCUITS, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME

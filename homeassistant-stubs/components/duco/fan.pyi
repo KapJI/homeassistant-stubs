@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import DucoConfigEntry as DucoConfigEntry, DucoCoordinator as DucoCoordinator
 from .entity import DucoEntity as DucoEntity
 from _typeshed import Incomplete
-from duco.models import Node as Node, VentilationState
+from duco_connectivity.models import Node as Node, VentilationState
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

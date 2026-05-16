@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from duco import DucoClient as DucoClient
-from duco.models import BoardInfo as BoardInfo, Node as Node
+from duco_connectivity import DucoClient as DucoClient
+from duco_connectivity.models import BoardInfo as BoardInfo, Node as Node
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryError as ConfigEntryError

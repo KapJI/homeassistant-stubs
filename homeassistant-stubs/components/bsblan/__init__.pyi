@@ -1,5 +1,5 @@
 import dataclasses
-from .const import CONF_HEATING_CIRCUITS as CONF_HEATING_CIRCUITS, CONF_PASSKEY as CONF_PASSKEY, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_HEATING_CIRCUITS as CONF_HEATING_CIRCUITS, CONF_PASSKEY as CONF_PASSKEY, DEFAULT_HEATING_CIRCUITS as DEFAULT_HEATING_CIRCUITS, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import BSBLanFastCoordinator as BSBLanFastCoordinator, BSBLanSlowCoordinator as BSBLanSlowCoordinator
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete

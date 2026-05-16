@@ -4,9 +4,10 @@ from .entity import DucoEntity as DucoEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from duco.models import Node as Node, NodeType
+from datetime import datetime
+from duco_connectivity.models import Node as Node, NodeType
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
@@ -15,7 +16,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class DucoSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[Node], int | float | str | None]
+    value_fn: Callable[[Node], datetime | int | float | str | None]
     node_types: tuple[NodeType, ...]
 
 @dataclass(frozen=True, kw_only=True)
@@ -32,7 +33,7 @@ class DucoSensorEntity(DucoEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: DucoCoordinator, node: Node, description: DucoSensorEntityDescription) -> None: ...
     @property
-    def native_value(self) -> int | float | str | None: ...
+    def native_value(self) -> datetime | int | float | str | None: ...
 
 class DucoBoxSensorEntity(DucoEntity, SensorEntity):
     entity_description: DucoBoxSensorEntityDescription

@@ -105,12 +105,12 @@ class EnergyPowerSensor(SensorEntity):
     _source_sensors: list[str]
     _is_inverted: Incomplete
     _is_combined: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     add_finished: asyncio.Future[None]
     def __init__(self, source_type: str, config: PowerConfig, unique_id: str, entity_id: str) -> None: ...
     @property
     def available(self) -> bool: ...
     _attr_native_value: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
     @callback
     def _update_state(self) -> None: ...
     _attr_name: Incomplete

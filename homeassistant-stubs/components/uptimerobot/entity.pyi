@@ -11,9 +11,11 @@ class UptimeRobotEntity(CoordinatorEntity[UptimeRobotDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     entity_description: Incomplete
-    _monitor: Incomplete
+    _monitor_id: Incomplete
     _attr_device_info: Incomplete
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     api: Incomplete
-    def __init__(self, coordinator: UptimeRobotDataUpdateCoordinator, description: EntityDescription, monitor: UptimeRobotMonitor) -> None: ...
+    def __init__(self, coordinator: UptimeRobotDataUpdateCoordinator, description: EntityDescription) -> None: ...
+    @property
+    def _monitor(self) -> UptimeRobotMonitor: ...

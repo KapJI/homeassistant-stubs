@@ -1,6 +1,7 @@
 import jinja2
 import weakref
 from .context import render_with_context as render_with_context, template_context_manager as template_context_manager, template_cv as template_cv
+from .extensions import AreaExtension as AreaExtension, Base64Extension as Base64Extension, CollectionExtension as CollectionExtension, ConfigEntryExtension as ConfigEntryExtension, CryptoExtension as CryptoExtension, DateTimeExtension as DateTimeExtension, DeviceExtension as DeviceExtension, EntityExtension as EntityExtension, FloorExtension as FloorExtension, FunctionalExtension as FunctionalExtension, IssuesExtension as IssuesExtension, LabelExtension as LabelExtension, MathExtension as MathExtension, RegexExtension as RegexExtension, SerializationExtension as SerializationExtension, StateExtension as StateExtension, StringExtension as StringExtension, TypeCastExtension as TypeCastExtension, VersionExtension as VersionExtension
 from .render_info import RenderInfo as RenderInfo, render_info_cv as render_info_cv
 from .states import AllStates as AllStates, CACHED_TEMPLATE_LRU as CACHED_TEMPLATE_LRU, CACHED_TEMPLATE_NO_COLLECT_LRU as CACHED_TEMPLATE_NO_COLLECT_LRU, DomainStates as DomainStates, ENTITY_COUNT_GROWTH_FACTOR as ENTITY_COUNT_GROWTH_FACTOR, StateAttrTranslated as StateAttrTranslated, StateTranslated as StateTranslated
 from _typeshed import Incomplete, OptExcInfo as OptExcInfo

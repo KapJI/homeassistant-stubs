@@ -13,6 +13,7 @@ from typing import Any, Final
 
 CONTENT_TYPE_AUDIO: str
 CONTENT_TYPE_RADIO: str
+ALLOWED_IMAGE_MIME_TYPES: Final[Incomplete]
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
@@ -31,6 +32,8 @@ class ShellyRpcMediaPlayer(ShellyRpcAttributeEntity, MediaPlayerEntity):
     entity_description: RpcMediaPlayerDescription
     _last_media_position: int | None
     _last_media_position_updated_at: datetime.datetime | None
+    _cached_thumb: str | None
+    _cached_thumb_result: tuple[bytes, str] | None
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcMediaPlayerDescription) -> None: ...
     @property
     def _media_meta(self) -> dict[str, Any]: ...
@@ -78,3 +81,4 @@ class ShellyRpcMediaPlayer(ShellyRpcAttributeEntity, MediaPlayerEntity):
     async def _async_browse_radio_stations(self, expanded: bool = False) -> BrowseMedia: ...
     @rpc_call
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
+    def _decode_image_data(self, thumb: str) -> tuple[bytes, str] | None: ...

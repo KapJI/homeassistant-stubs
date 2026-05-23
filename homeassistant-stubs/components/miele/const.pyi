@@ -369,7 +369,9 @@ class DishWasherProgramId(MieleEnum, missing_to_none=True):
     tall_items: Incomplete
     glasses_warm: int
     quick_intense: int
-    normal: int
+    normal: Incomplete
+    pre_wash: int
+    pot_rests_and_filters: int
     power_wash: Incomplete
     comfort_wash: int
     comfort_wash_plus: int

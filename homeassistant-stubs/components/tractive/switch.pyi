@@ -1,11 +1,12 @@
 from . import Trackables as Trackables, TractiveClient as TractiveClient, TractiveConfigEntry as TractiveConfigEntry
-from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, ATTR_POWER_SAVING as ATTR_POWER_SAVING, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
+from .const import ATTR_BUZZER as ATTR_BUZZER, ATTR_LED as ATTR_LED, ATTR_LIVE_TRACKING as ATTR_LIVE_TRACKING, ATTR_POWER_SAVING as ATTR_POWER_SAVING, DOMAIN as DOMAIN, TRACKER_SWITCH_STATUS_UPDATED as TRACKER_SWITCH_STATUS_UPDATED
 from .entity import TractiveEntity as TractiveEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Literal
 

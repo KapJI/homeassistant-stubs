@@ -7,15 +7,17 @@ from typing import Any
 
 STORED_MESSAGES: int
 
-@dataclass
+@dataclass(frozen=True, slots=True)
 class TimestampedPublishMessage:
     topic: str
     payload: PublishPayloadType
     qos: int
     retain: bool
     timestamp: float
+    encoding: str | None
+    kwargs: dict[str, Any]
 
-def log_message(hass: HomeAssistant, entity_id: str, topic: str, payload: PublishPayloadType, qos: int, retain: bool) -> None: ...
+def log_message(hass: HomeAssistant, entity_id: str, topic: str, payload: PublishPayloadType, qos: int, retain: bool, encoding: str | None, **kwargs: Any) -> None: ...
 def add_subscription(hass: HomeAssistant, subscription: str, entity_id: str | None) -> None: ...
 def remove_subscription(hass: HomeAssistant, subscription: str, entity_id: str | None) -> None: ...
 def add_entity_discovery_data(hass: HomeAssistant, discovery_data: DiscoveryInfoType, entity_id: str) -> None: ...

@@ -3,6 +3,7 @@ import asyncio
 import voluptuous as vol
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
+from .helpers.deprecation import deprecated_function as deprecated_function
 from .helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .loader import async_suggest_report_issue as async_suggest_report_issue
 from _typeshed import Incomplete
@@ -49,7 +50,6 @@ class AbortFlow(FlowError):
     def __init__(self, reason: str, description_placeholders: Mapping[str, str] | None = None) -> None: ...
 
 class FlowContext(TypedDict, total=False):
-    show_advanced_options: bool
     source: str
 
 class FlowResult(TypedDict, Generic[_FlowContextT, _HandlerT], total=False):

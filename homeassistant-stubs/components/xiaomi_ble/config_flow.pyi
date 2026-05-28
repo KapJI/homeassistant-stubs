@@ -2,7 +2,7 @@ import dataclasses
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components import onboarding as onboarding
+from homeassistant.components import bluetooth as bluetooth, onboarding as onboarding
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfo as BluetoothServiceInfo, async_discovered_service_info as async_discovered_service_info, async_process_advertisements as async_process_advertisements
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME

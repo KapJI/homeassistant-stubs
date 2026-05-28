@@ -1,11 +1,9 @@
-import asyncio
 from . import entity_registry as entity_registry, storage as storage, translation as translation
 from .debounce import Debouncer as Debouncer
 from .deprecation import deprecated_function as deprecated_function
 from .frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from .json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
 from .registry import BaseRegistry as BaseRegistry, BaseRegistryItems as BaseRegistryItems, RegistryIndexType as RegistryIndexType
-from .singleton import singleton as singleton
 from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
@@ -21,7 +19,7 @@ from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from propcache.api import cached_property as under_cached_property
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, Unpack
 from yarl import URL
 
 _LOGGER: Incomplete
@@ -101,11 +99,21 @@ class DeviceIdentifierCollisionError(DeviceCollisionError):
 class DeviceConnectionCollisionError(DeviceCollisionError):
     def __init__(self, normalized_connections: set[tuple[str, str]], existing_device: DeviceEntry) -> None: ...
 
-def _validate_device_info(config_entry: ConfigEntry, device_info: DeviceInfo) -> str: ...
+def _determine_device_info_type(config_entry: ConfigEntry, device_info: DeviceInfo) -> str: ...
+
+class _ValidatedDeviceInfoFields(TypedDict):
+    configuration_url: str | URL | None | UndefinedType
+    hw_version: str | None | UndefinedType
+    manufacturer: str | None | UndefinedType
+    model: str | None | UndefinedType
+    model_id: str | None | UndefinedType
+    serial_number: str | None | UndefinedType
+    sw_version: str | None | UndefinedType
 
 _cached_parse_url: Incomplete
 
-def _validate_configuration_url(value: Any) -> str | None: ...
+def _validate_str(name: str, value: Any) -> str | None | UndefinedType: ...
+def _validate_device_info_fields(**fields: Unpack[_ValidatedDeviceInfoFields]) -> _ValidatedDeviceInfoFields: ...
 def format_mac(mac: str) -> str: ...
 def _normalize_connections(connections: Iterable[tuple[str, str]]) -> set[tuple[str, str]]: ...
 def _normalize_connections_validator(instance: Any, attribute: Any, connections: Iterable[tuple[str, str]]) -> None: ...
@@ -201,12 +209,10 @@ class DeviceRegistry(BaseRegistry[dict[str, list[dict[str, Any]]]]):
     devices: ActiveDeviceRegistryItems
     deleted_devices: DeviceRegistryItems[DeletedDeviceEntry]
     _device_data: dict[str, DeviceEntry]
-    _loaded_event: asyncio.Event | None
     hass: Incomplete
+    _loaded_event: Incomplete
     _store: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
-    @callback
-    def async_setup(self) -> None: ...
     @callback
     def async_get(self, device_id: str) -> DeviceEntry | None: ...
     @callback

@@ -1,10 +1,10 @@
 import voluptuous as vol
-from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_TLS_VER as CONF_TLS_VER, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_RESTORE_LIGHT_STATE as DEFAULT_RESTORE_LIGHT_STATE, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_TLS_VERSION as DEFAULT_TLS_VERSION, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DOMAIN as DOMAIN, HTTPS_PORT as HTTPS_PORT, HTTP_PORT as HTTP_PORT, ISY_CONF_NAME as ISY_CONF_NAME, ISY_CONF_UUID as ISY_CONF_UUID, ISY_URL_POSTFIX as ISY_URL_POSTFIX, SCHEME_HTTP as SCHEME_HTTP, SCHEME_HTTPS as SCHEME_HTTPS, UDN_UUID_PREFIX as UDN_UUID_PREFIX
+from .const import CONF_IGNORE_STRING as CONF_IGNORE_STRING, CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, CONF_SENSOR_STRING as CONF_SENSOR_STRING, CONF_VAR_SENSOR_STRING as CONF_VAR_SENSOR_STRING, DEFAULT_IGNORE_STRING as DEFAULT_IGNORE_STRING, DEFAULT_RESTORE_LIGHT_STATE as DEFAULT_RESTORE_LIGHT_STATE, DEFAULT_SENSOR_STRING as DEFAULT_SENSOR_STRING, DEFAULT_VAR_SENSOR_STRING as DEFAULT_VAR_SENSOR_STRING, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, HTTPS_PORT as HTTPS_PORT, HTTP_PORT as HTTP_PORT, ISY_CONF_NAME as ISY_CONF_NAME, ISY_CONF_UUID as ISY_CONF_UUID, ISY_URL_POSTFIX as ISY_URL_POSTFIX, SCHEME_HTTP as SCHEME_HTTP, SCHEME_HTTPS as SCHEME_HTTPS, UDN_UUID_PREFIX as UDN_UUID_PREFIX
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_IGNORE as SOURCE_IGNORE
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -20,6 +20,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
 class Isy994ConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     discovered_conf: dict[str, str]
     _existing_entry: IsyConfigEntry | None
     def __init__(self) -> None: ...
@@ -38,4 +39,5 @@ class OptionsFlowHandler(OptionsFlowWithReload):
 
 class InvalidHost(HomeAssistantError): ...
 class CannotConnect(HomeAssistantError): ...
+class SslError(HomeAssistantError): ...
 class InvalidAuth(HomeAssistantError): ...

@@ -1,6 +1,6 @@
-from .const import TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
+from .const import DOMAIN as DOMAIN, TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectNVREntity as ProtectNVREntity, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
 from .utils import async_get_light_motion_current as async_get_light_motion_current, async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
@@ -9,10 +9,12 @@ from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 from uiprotect.api import ProtectApiClient as ProtectApiClient
-from uiprotect.data import Camera, Doorlock, Light, ModelType, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
+from uiprotect.data import Camera, Doorlock, Light, ModelType, NVR as NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
@@ -49,6 +51,10 @@ async def _set_doorbell_message(obj: Camera, message: str) -> None: ...
 async def _set_liveview(obj: Viewer, liveview_id: str) -> None: ...
 async def _set_ptz_patrol(obj: Camera, patrol_slot: str) -> None: ...
 
+_HDR_MODE_MAP: Incomplete
+
+async def _set_hdr_mode(obj: Camera, mode: str) -> None: ...
+
 PTZ_PATROL_DESCRIPTION: Incomplete
 CAMERA_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 LIGHT_SELECTS: tuple[ProtectSelectEntityDescription, ...]
@@ -84,6 +90,22 @@ class ProtectPTZPatrolSelect(ProtectDeviceEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, data: ProtectData, device: Camera, patrols: list[PTZPatrol]) -> None: ...
     def _update_patrol_state(self) -> None: ...
+    @callback
+    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @async_ufp_instance_command
+    async def async_select_option(self, option: str) -> None: ...
+
+class ProtectNVRArmProfileSelect(ProtectNVREntity, SelectEntity):
+    _attr_translation_key: str
+    _attr_current_option: str | None
+    _state_attrs: Incomplete
+    _id_to_name: dict[str, str]
+    _name_to_id: dict[str, str]
+    def __init__(self, data: ProtectData, device: NVR) -> None: ...
+    _attr_available: bool
+    _attr_options: Incomplete
+    @callback
+    def _refresh_arm_profile_state(self) -> None: ...
     @callback
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command

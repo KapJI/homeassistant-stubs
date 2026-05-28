@@ -10,6 +10,8 @@ from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySel
 from homeassistant.util.json import JsonValueType as JsonValueType
 from pynordpool import DeliveryPeriodData as DeliveryPeriodData, NordPoolClient as NordPoolClient, PriceIndicesData as PriceIndicesData
 
+def _validate_areas(areas: list[str]) -> list[str]: ...
+
 _LOGGER: Incomplete
 ATTR_CONFIG_ENTRY: str
 ATTR_AREAS: str

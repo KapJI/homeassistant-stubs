@@ -6,7 +6,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from powerfox import Device as Device, DeviceReport, Powerfox as Powerfox, Poweropti
 
-type PowerfoxCoordinator = 'PowerfoxDataUpdateCoordinator' | 'PowerfoxReportDataUpdateCoordinator'
+type PowerfoxCoordinator = PowerfoxDataUpdateCoordinator | PowerfoxReportDataUpdateCoordinator
 type PowerfoxConfigEntry = ConfigEntry[list[PowerfoxCoordinator]]
 class PowerfoxBaseCoordinator[T](DataUpdateCoordinator[T]):
     config_entry: PowerfoxConfigEntry

@@ -1,15 +1,16 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, PYVLX_FROM_CONFIG_FLOW as PYVLX_FROM_CONFIG_FLOW
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
+from pyvlx import PyVLX
 from typing import Any
 
 USER_SCHEMA: Incomplete
 
-async def _check_connection(host: str, password: str) -> dict[str, Any]: ...
+async def _check_connection(host: str, password: str) -> tuple[PyVLX | None, dict[str, str]]: ...
 
 class VeluxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

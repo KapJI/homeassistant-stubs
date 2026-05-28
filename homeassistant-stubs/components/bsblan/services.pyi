@@ -5,11 +5,11 @@ from _typeshed import Incomplete
 from bsblan import DaySchedule
 from datetime import time
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 
 LOGGER: Incomplete
-ATTR_DEVICE_ID: str
 ATTR_MONDAY_SLOTS: str
 ATTR_TUESDAY_SLOTS: str
 ATTR_WEDNESDAY_SLOTS: str

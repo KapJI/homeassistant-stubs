@@ -1,5 +1,6 @@
 from .domain_data import DomainData as DomainData
 from _typeshed import Incomplete
+from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
@@ -10,8 +11,10 @@ CONF_SUBSCRIBE_LOGS: str
 CONF_DEVICE_NAME: str
 CONF_NOISE_PSK: str
 CONF_BLUETOOTH_MAC_ADDRESS: str
+CONF_BLUETOOTH_SCANNING_MODE: str
 DEFAULT_ALLOW_SERVICE_CALLS: bool
 DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS: bool
+DEFAULT_BLUETOOTH_SCANNING_MODE: Incomplete
 DEFAULT_PORT: Final[int]
 STABLE_BLE_VERSION_STR: str
 STABLE_BLE_VERSION: Incomplete

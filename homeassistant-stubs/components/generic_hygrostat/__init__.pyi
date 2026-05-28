@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant.components.humidifier import HumidifierDeviceClass as HumidifierDeviceClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, Platform as Platform
+from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.device import async_entity_id_to_device_id as async_entity_id_to_device_id
@@ -15,7 +15,6 @@ CONF_SENSOR: str
 CONF_MIN_HUMIDITY: str
 CONF_MAX_HUMIDITY: str
 CONF_TARGET_HUMIDITY: str
-CONF_DEVICE_CLASS: str
 CONF_MIN_DUR: str
 CONF_DRY_TOLERANCE: str
 CONF_WET_TOLERANCE: str

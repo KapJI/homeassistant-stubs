@@ -1,5 +1,5 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
-from .coordinator import DockerVolume as DockerVolume, PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData, PortainerStackData as PortainerStackData, PortainerVolumeData as PortainerVolumeData
+from .coordinator import DockerVolume as DockerVolume, PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData, PortainerDockerDiskSpaceCoordinator as PortainerDockerDiskSpaceCoordinator, PortainerStackData as PortainerStackData, PortainerVolumeData as PortainerVolumeData
 from _typeshed import Incomplete
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -7,6 +7,9 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class PortainerCoordinatorEntity(CoordinatorEntity[PortainerCoordinator]):
+    _attr_has_entity_name: bool
+
+class PortainerDockerDiskSpaceCoordinatorEntity(CoordinatorEntity[PortainerDockerDiskSpaceCoordinator]):
     _attr_has_entity_name: bool
 
 class PortainerEndpointEntity(PortainerCoordinatorEntity):
@@ -47,6 +50,16 @@ class PortainerStackEntity(PortainerCoordinatorEntity):
     def available(self) -> bool: ...
     @property
     def stack_data(self) -> PortainerStackData: ...
+
+class PortainerDockerSystemDiskSpaceEndpointEntity(PortainerDockerDiskSpaceCoordinatorEntity):
+    entity_description: Incomplete
+    endpoint_id: Incomplete
+    _device_info: Incomplete
+    _attr_device_info: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: PortainerDockerDiskSpaceCoordinator, entity_description: EntityDescription, device_info: PortainerCoordinatorData) -> None: ...
+    @property
+    def available(self) -> bool: ...
 
 class PortainerVolumeEntity(PortainerCoordinatorEntity):
     entity_description: Incomplete

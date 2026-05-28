@@ -4,7 +4,7 @@ from .discovery import _short_mac as _short_mac, async_discover_device as async_
 from _typeshed import Incomplete
 from elkm1_lib.discovery import ElkSystem
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PREFIX as CONF_PREFIX, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PREFIX as CONF_PREFIX, CONF_PROTOCOL as CONF_PROTOCOL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType, VolDictType as VolDictType
@@ -12,7 +12,6 @@ from homeassistant.util import slugify as slugify
 from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any, Self
 
-CONF_DEVICE: str
 NON_SECURE_PORT: int
 SECURE_PORT: int
 STANDARD_PORTS: Incomplete

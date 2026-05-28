@@ -1,4 +1,4 @@
-from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_NOISE_PSK as CONF_NOISE_PSK, CONF_SUBSCRIBE_LOGS as CONF_SUBSCRIBE_LOGS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS as DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
+from .const import CONF_ALLOW_SERVICE_CALLS as CONF_ALLOW_SERVICE_CALLS, CONF_BLUETOOTH_SCANNING_MODE as CONF_BLUETOOTH_SCANNING_MODE, CONF_DEVICE_NAME as CONF_DEVICE_NAME, CONF_NOISE_PSK as CONF_NOISE_PSK, CONF_SUBSCRIBE_LOGS as CONF_SUBSCRIBE_LOGS, DEFAULT_ALLOW_SERVICE_CALLS as DEFAULT_ALLOW_SERVICE_CALLS, DEFAULT_BLUETOOTH_SCANNING_MODE as DEFAULT_BLUETOOTH_SCANNING_MODE, DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS as DEFAULT_NEW_CONFIG_ALLOW_ALLOW_SERVICE_CALLS, DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
 from .dashboard import async_get_or_create_dashboard_manager as async_get_or_create_dashboard_manager, async_set_dashboard_info as async_set_dashboard_info
 from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry
@@ -7,6 +7,7 @@ from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as DeviceInfo
 from collections.abc import Mapping
 from homeassistant.components import zeroconf as zeroconf
+from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, FlowType as FlowType, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_ESPHOME as SOURCE_ESPHOME, SOURCE_IGNORE as SOURCE_IGNORE, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
@@ -14,6 +15,7 @@ from homeassistant.data_entry_flow import AbortFlow as AbortFlow, FlowResultType
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.importlib import async_import_module as async_import_module
+from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.helpers.service_info.esphome import ESPHomeServiceInfo as ESPHomeServiceInfo
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
@@ -28,6 +30,7 @@ ERROR_INVALID_PASSWORD_AUTH: str
 _LOGGER: Incomplete
 ZERO_NOISE_PSK: str
 DEFAULT_NAME: str
+_BLUETOOTH_SCANNING_MODE_SELECTOR: Incomplete
 
 class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
@@ -91,3 +94,6 @@ class EsphomeFlowHandler(ConfigFlow, domain=DOMAIN):
 
 class OptionsFlowHandler(OptionsFlowWithReload):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+
+@callback
+def _entry_has_bluetooth_scanner(entry: ESPHomeConfigEntry) -> bool: ...

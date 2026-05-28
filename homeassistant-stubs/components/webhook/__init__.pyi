@@ -1,13 +1,15 @@
 from _typeshed import Incomplete
 from aiohttp import StreamReader as StreamReader
-from aiohttp.web import Request as Request, Response
-from collections.abc import Awaitable, Callable as Callable, Iterable
+from aiohttp.web import Request, Response
+from collections.abc import Awaitable, Callable, Iterable
+from dataclasses import dataclass
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.network import get_url as get_url, is_cloud_connection as is_cloud_connection
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.aiohttp import MockRequest as MockRequest, MockStreamReader as MockStreamReader, serialize_response as serialize_response
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any
 
 _LOGGER: Incomplete
@@ -16,9 +18,20 @@ DEFAULT_METHODS: Incomplete
 SUPPORTED_METHODS: Incomplete
 URL_WEBHOOK_PATH: str
 CONFIG_SCHEMA: Incomplete
+type HandlerType = Callable[[HomeAssistant, str, Request], Awaitable[Response | None]]
+
+@dataclass(frozen=True, slots=True)
+class WebhookData:
+    domain: str
+    name: str
+    handler: HandlerType
+    local_only: bool
+    allowed_methods: frozenset[str]
+
+_HANDLERS: HassKey[dict[str, WebhookData]]
 
 @callback
-def async_register(hass: HomeAssistant, domain: str, name: str, webhook_id: str, handler: Callable[[HomeAssistant, str, Request], Awaitable[Response | None]], *, local_only: bool = False, allowed_methods: Iterable[str] | None = None) -> None: ...
+def async_register(hass: HomeAssistant, domain: str, name: str, webhook_id: str, handler: HandlerType, *, local_only: bool = False, allowed_methods: Iterable[str] | None = None) -> None: ...
 @callback
 def async_unregister(hass: HomeAssistant, webhook_id: str) -> None: ...
 @callback
@@ -41,6 +54,7 @@ class WebhookView(HomeAssistantView):
     post = _handle
     put = _handle
 
+@websocket_api.require_admin
 @callback
 def websocket_list(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 @websocket_api.async_response

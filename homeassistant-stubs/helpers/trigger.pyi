@@ -59,14 +59,15 @@ class Trigger(abc.ABC, metaclass=abc.ABCMeta):
 
 ATTR_BEHAVIOR: Final[str]
 BEHAVIOR_FIRST: Final[str]
-BEHAVIOR_LAST: Final[str]
-BEHAVIOR_ANY: Final[str]
+BEHAVIOR_ALL: Final[str]
+BEHAVIOR_EACH: Final[str]
 ENTITY_STATE_TRIGGER_SCHEMA: Incomplete
-ENTITY_STATE_TRIGGER_SCHEMA_FIRST_LAST: Incomplete
+ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR: Incomplete
 
-class EntityTriggerBase(Trigger, metaclass=abc.ABCMeta):
+class EntityTriggerBase(Trigger):
     _domain_specs: Mapping[str, DomainSpec]
     _excluded_states: Final[frozenset[str]]
+    _excluded_from_states: ClassVar[frozenset[str]]
     _schema: vol.Schema
     _primary_entities_only: ClassVar[bool]
     @override
@@ -78,9 +79,7 @@ class EntityTriggerBase(Trigger, metaclass=abc.ABCMeta):
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
     def entity_filter(self, entities: set[str]) -> set[str]: ...
     def _get_tracked_value(self, state: State) -> Any: ...
-    @abc.abstractmethod
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
-    @abc.abstractmethod
     def is_valid_state(self, state: State) -> bool: ...
     def _should_include(self, state: State) -> bool: ...
     def count_matches(self, entity_ids: set[str]) -> tuple[int, int]: ...
@@ -103,9 +102,13 @@ class EntityOriginStateTriggerBase(EntityTriggerBase):
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     def is_valid_state(self, state: State) -> bool: ...
 
+class StatelessEntityTriggerBase(EntityTriggerBase):
+    _schema: vol.Schema
+    _excluded_from_states: ClassVar[frozenset[str]]
+
 NUMERICAL_ATTRIBUTE_CHANGED_TRIGGER_SCHEMA: Incomplete
 
-class EntityNumericalStateTriggerBase(EntityTriggerBase, metaclass=abc.ABCMeta):
+class EntityNumericalStateTriggerBase(EntityTriggerBase):
     _valid_unit: str | None | UndefinedType
     _threshold_type: NumericThresholdType
     threshold: Incomplete
@@ -117,7 +120,7 @@ class EntityNumericalStateTriggerBase(EntityTriggerBase, metaclass=abc.ABCMeta):
     def _get_tracked_value(self, state: State) -> float | None: ...
     def is_valid_state(self, state: State) -> bool: ...
 
-class EntityNumericalStateTriggerWithUnitBase(EntityNumericalStateTriggerBase, metaclass=abc.ABCMeta):
+class EntityNumericalStateTriggerWithUnitBase(EntityNumericalStateTriggerBase):
     _base_unit: str | None
     _unit_converter: type[BaseUnitConverter]
     def _get_entity_unit(self, state: State) -> str | None: ...

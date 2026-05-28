@@ -15,17 +15,22 @@ from homeassistant.util import slugify as slugify
 
 AIR_QUALITY_MAP: Incomplete
 CONTAMINATION_STATE_MAP: Incomplete
+_tvoc: Incomplete
 CONCENTRATION_LEVEL_MAP: Incomplete
 EVE_CLUSTER_WEATHER_MAP: Incomplete
 OPERATIONAL_STATE_MAP: Incomplete
+_op_err: Incomplete
 OPERATIONAL_STATE_ERROR_MAP: Incomplete
+_rvc_op: Incomplete
 RVC_OPERATIONAL_STATE_MAP: Incomplete
+_rvc_err: Incomplete
 RVC_OPERATIONAL_STATE_ERROR_MAP: Incomplete
 BOOST_STATE_MAP: Incomplete
 CHARGE_STATE_MAP: Incomplete
 DEM_OPT_OUT_STATE_MAP: Incomplete
 ESA_STATE_MAP: Incomplete
 EVSE_FAULT_STATE_MAP: Incomplete
+_pump_ctrl: Incomplete
 PUMP_CONTROL_MODE_MAP: Incomplete
 MATTER_2000_TO_UNIX_EPOCH_OFFSET: int
 HUMIDITY_SCALING_FACTOR: int

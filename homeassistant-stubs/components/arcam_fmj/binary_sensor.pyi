@@ -8,6 +8,8 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class ArcamFmjBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[State], bool | None]

@@ -13,6 +13,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OmadaClientScannerEntity(CoordinatorEntity[OmadaClientsCoordinator], ScannerEntity):
+    _attr_has_entity_name: bool
     _client_details: OmadaWirelessClient | None
     _site_id: Incomplete
     _client_id: Incomplete

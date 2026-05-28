@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from homeassistant.components import conversation as conversation
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
-from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API
+from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API, CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import llm as llm
 from mcp.server import InitializationOptions as InitializationOptions, Server as Server
@@ -19,7 +19,6 @@ from mcp.shared.message import SessionMessage
 _LOGGER: Incomplete
 STREAMABLE_API: str
 TIMEOUT: int
-CONTENT_TYPE_JSON: str
 SSE_API: Incomplete
 MESSAGES_API: Incomplete
 

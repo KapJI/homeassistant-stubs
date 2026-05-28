@@ -1,7 +1,7 @@
-from .const import ATTR_FLAP_ID as ATTR_FLAP_ID, ATTR_LOCATION as ATTR_LOCATION, ATTR_LOCK_STATE as ATTR_LOCK_STATE, ATTR_PET_NAME as ATTR_PET_NAME, DOMAIN as DOMAIN, SERVICE_SET_LOCK_STATE as SERVICE_SET_LOCK_STATE, SERVICE_SET_PET_LOCATION as SERVICE_SET_PET_LOCATION
+from .const import ATTR_FLAP_ID as ATTR_FLAP_ID, ATTR_LOCK_STATE as ATTR_LOCK_STATE, ATTR_PET_NAME as ATTR_PET_NAME, DOMAIN as DOMAIN, SERVICE_SET_LOCK_STATE as SERVICE_SET_LOCK_STATE, SERVICE_SET_PET_LOCATION as SERVICE_SET_PET_LOCATION
 from .coordinator import SurePetcareConfigEntry as SurePetcareConfigEntry, SurePetcareDataCoordinator as SurePetcareDataCoordinator
 from _typeshed import Incomplete
-from homeassistant.const import Platform as Platform
+from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 

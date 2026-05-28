@@ -1,8 +1,11 @@
+from _typeshed import Incomplete
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Protocol
 
-class RepairsFlow(data_entry_flow.FlowHandler):
+RepairsFlowResult: Incomplete
+
+class RepairsFlow(data_entry_flow.FlowHandler[data_entry_flow.FlowContext, RepairsFlowResult, str]):
     issue_id: str
     data: dict[str, str | int | float | None] | None
 

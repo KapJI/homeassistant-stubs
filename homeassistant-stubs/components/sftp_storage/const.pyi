@@ -5,10 +5,6 @@ from typing import Final
 
 DOMAIN: Final[str]
 LOGGER: Incomplete
-CONF_HOST: Final[str]
-CONF_PORT: Final[str]
-CONF_USERNAME: Final[str]
-CONF_PASSWORD: Final[str]
 CONF_PRIVATE_KEY_FILE: Final[str]
 CONF_BACKUP_LOCATION: Final[str]
 BUF_SIZE: Incomplete

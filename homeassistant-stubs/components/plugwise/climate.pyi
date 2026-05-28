@@ -15,6 +15,8 @@ from typing import Any
 ERROR_NO_SCHEDULE: str
 PARALLEL_UPDATES: int
 
+def _check_for_schedule(active: bool, last_active: str | None) -> None: ...
+
 @dataclass
 class PlugwiseClimateExtraStoredData(ExtraStoredData):
     last_active_schedule: str | None
@@ -29,22 +31,23 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity, RestoreEntity):
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
-    _last_active_schedule: str | None
-    _previous_action_mode: str | None
-    async def async_added_to_hass(self) -> None: ...
     _attr_unique_id: Incomplete
+    _api: Incomplete
     _gateway_data: Incomplete
+    _last_active_schedule: str | None
     _location: Incomplete
+    _previous_action_mode: Incomplete
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str) -> None: ...
-    @property
-    def current_temperature(self) -> float: ...
+    async def async_added_to_hass(self) -> None: ...
     @property
     def extra_restore_state_data(self) -> PlugwiseClimateExtraStoredData: ...
+    @property
+    def current_temperature(self) -> float: ...
     @property
     def target_temperature(self) -> float: ...
     @property
@@ -61,7 +64,7 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity, RestoreEntity):
     def preset_mode(self) -> str | None: ...
     @plugwise_command
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
-    def _regulation_mode_for_hvac(self, hvac_mode: HVACMode) -> str | None: ...
+    def _regulation_mode_for_hvac(self, hvac_mode: HVACMode) -> str: ...
     @plugwise_command
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @plugwise_command

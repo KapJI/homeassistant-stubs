@@ -17,9 +17,7 @@ CIPHER_SELECTOR: Incomplete
 TEMPLATE_SELECTOR: Incomplete
 EVENT_MESSAGE_DATA_SELECTOR: Incomplete
 CONFIG_SCHEMA: Incomplete
-CONFIG_SCHEMA_ADVANCED: Incomplete
 OPTIONS_SCHEMA: Incomplete
-OPTIONS_SCHEMA_ADVANCED: Incomplete
 
 async def validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> dict[str, str]: ...
 

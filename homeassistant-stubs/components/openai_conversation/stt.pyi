@@ -1,9 +1,10 @@
 from . import OpenAIConfigEntry as OpenAIConfigEntry
-from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_PROMPT as CONF_PROMPT, DEFAULT_STT_PROMPT as DEFAULT_STT_PROMPT, RECOMMENDED_STT_MODEL as RECOMMENDED_STT_MODEL
+from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, DEFAULT_STT_PROMPT as DEFAULT_STT_PROMPT, RECOMMENDED_STT_MODEL as RECOMMENDED_STT_MODEL
 from .entity import OpenAIBaseLLMEntity as OpenAIBaseLLMEntity
 from _typeshed import Incomplete
 from collections.abc import AsyncIterable
 from homeassistant.components import stt as stt
+from homeassistant.const import CONF_PROMPT as CONF_PROMPT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 

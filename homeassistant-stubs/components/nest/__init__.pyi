@@ -3,6 +3,7 @@ from . import api as api
 from .const import CONF_CLOUD_PROJECT_ID as CONF_CLOUD_PROJECT_ID, CONF_PROJECT_ID as CONF_PROJECT_ID, CONF_SUBSCRIBER_ID as CONF_SUBSCRIBER_ID, CONF_SUBSCRIBER_ID_IMPORTED as CONF_SUBSCRIBER_ID_IMPORTED, CONF_SUBSCRIPTION_NAME as CONF_SUBSCRIPTION_NAME, DATA_SDM as DATA_SDM, DOMAIN as DOMAIN
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, NEST_EVENT as NEST_EVENT
 from .media_source import EVENT_MEDIA_API_URL_FORMAT as EVENT_MEDIA_API_URL_FORMAT, EVENT_THUMBNAIL_URL_FORMAT as EVENT_THUMBNAIL_URL_FORMAT, async_get_media_event_store as async_get_media_event_store, async_get_media_source_devices as async_get_media_source_devices, async_get_transcoder as async_get_transcoder
+from .services import async_setup_services as async_setup_services
 from .types import DevicesAddedListener as DevicesAddedListener, NestConfigEntry as NestConfigEntry, NestData as NestData
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod

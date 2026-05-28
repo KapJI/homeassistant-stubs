@@ -2,6 +2,8 @@ from .const import DESCRIPTION as DESCRIPTION, DEVICE as DEVICE, DOMAIN as DOMAI
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.homeassistant_hardware.coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
+from homeassistant.components.homeassistant_hardware.repair_helpers import async_create_multi_pan_migration_issue as async_create_multi_pan_migration_issue, async_delete_multi_pan_migration_issue as async_delete_multi_pan_migration_issue
+from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import multi_pan_addon_using_device as multi_pan_addon_using_device
 from homeassistant.components.homeassistant_hardware.util import guess_firmware_info as guess_firmware_info
 from homeassistant.components.usb import USBDevice as USBDevice, async_register_port_event_callback as async_register_port_event_callback, async_scan_serial_ports as async_scan_serial_ports
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IGNORE as SOURCE_IGNORE

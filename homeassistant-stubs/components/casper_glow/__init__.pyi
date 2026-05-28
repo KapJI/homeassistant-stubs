@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import CasperGlowConfigEntry as CasperGlowConfigEntry, CasperGlowCoordinator as CasperGlowCoordinator
 from homeassistant.components import bluetooth as bluetooth
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, Platform as Platform

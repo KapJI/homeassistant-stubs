@@ -1,6 +1,6 @@
 from .config_flow import LunatoneConfigFlow as LunatoneConfigFlow
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
-from .coordinator import LunatoneConfigEntry as LunatoneConfigEntry, LunatoneData as LunatoneData, LunatoneDevicesDataUpdateCoordinator as LunatoneDevicesDataUpdateCoordinator, LunatoneInfoDataUpdateCoordinator as LunatoneInfoDataUpdateCoordinator
+from .coordinator import LunatoneConfigEntry as LunatoneConfigEntry, LunatoneData as LunatoneData, LunatoneDevicesDataUpdateCoordinator as LunatoneDevicesDataUpdateCoordinator, LunatoneInfoDataUpdateCoordinator as LunatoneInfoDataUpdateCoordinator, LunatoneSensorsDataUpdateCoordinator as LunatoneSensorsDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_URL as CONF_URL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

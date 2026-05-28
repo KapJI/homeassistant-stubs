@@ -7,7 +7,6 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_MODEL_NAME as ATTR_UPNP_MODEL_NAME, ATTR_UPNP_UDN as ATTR_UPNP_UDN, SsdpServiceInfo as SsdpServiceInfo
-from homeassistant.helpers.typing import VolDictType as VolDictType
 from typing import Any, Self
 from urllib.parse import ParseResult as ParseResult
 

@@ -1,26 +1,25 @@
-from .const import EVENT_TURN_ON as EVENT_TURN_ON
+from .const import DOMAIN as DOMAIN, EVENT_TURN_ON as EVENT_TURN_ON
 from .coordinator import ArcamFmjConfigEntry as ArcamFmjConfigEntry, ArcamFmjCoordinator as ArcamFmjCoordinator
-from .entity import ArcamFmjEntity as ArcamFmjEntity
+from .entity import ArcamFmjEntity as ArcamFmjEntity, convert_exception as convert_exception
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ArcamFmjConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-def convert_exception[**_P, _R](func: Callable[_P, Coroutine[Any, Any, _R]]) -> Callable[_P, Coroutine[Any, Any, _R]]: ...
 
 class ArcamFmj(ArcamFmjEntity, MediaPlayerEntity):
     _state: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, coordinator: ArcamFmjCoordinator) -> None: ...
     @property
-    def state(self) -> MediaPlayerState: ...
+    def state(self) -> MediaPlayerState | None: ...
     @convert_exception
     async def async_mute_volume(self, mute: bool) -> None: ...
     @convert_exception

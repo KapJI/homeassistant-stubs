@@ -1,6 +1,6 @@
 import logging
 from _typeshed import Incomplete
-from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API
+from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API, CONF_PROMPT as CONF_PROMPT
 from homeassistant.helpers import llm as llm
 from typing import Any
 
@@ -16,7 +16,6 @@ CONF_IMAGE_MODEL: str
 CONF_CODE_INTERPRETER: str
 CONF_FILENAMES: str
 CONF_MAX_TOKENS: str
-CONF_PROMPT: str
 CONF_REASONING_EFFORT: str
 CONF_REASONING_SUMMARY: str
 CONF_RECOMMENDED: str

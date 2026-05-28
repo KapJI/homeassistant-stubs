@@ -1,8 +1,7 @@
 from .binary_sensor import is_valid_notification_binary_sensor as is_valid_notification_binary_sensor
 from .const import ATTR_METER_TYPE as ATTR_METER_TYPE, ATTR_METER_TYPE_NAME as ATTR_METER_TYPE_NAME, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, ENTITY_DESC_KEY_BATTERY_LIST_STATE as ENTITY_DESC_KEY_BATTERY_LIST_STATE, ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY as ENTITY_DESC_KEY_BATTERY_MAXIMUM_CAPACITY, ENTITY_DESC_KEY_BATTERY_TEMPERATURE as ENTITY_DESC_KEY_BATTERY_TEMPERATURE, ENTITY_DESC_KEY_CO as ENTITY_DESC_KEY_CO, ENTITY_DESC_KEY_CO2 as ENTITY_DESC_KEY_CO2, ENTITY_DESC_KEY_CURRENT as ENTITY_DESC_KEY_CURRENT, ENTITY_DESC_KEY_ENERGY_MEASUREMENT as ENTITY_DESC_KEY_ENERGY_MEASUREMENT, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TIME, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY, ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL as ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL, ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING as ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING, ENTITY_DESC_KEY_HUMIDITY as ENTITY_DESC_KEY_HUMIDITY, ENTITY_DESC_KEY_ILLUMINANCE as ENTITY_DESC_KEY_ILLUMINANCE, ENTITY_DESC_KEY_MEASUREMENT as ENTITY_DESC_KEY_MEASUREMENT, ENTITY_DESC_KEY_POWER as ENTITY_DESC_KEY_POWER, ENTITY_DESC_KEY_POWER_FACTOR as ENTITY_DESC_KEY_POWER_FACTOR, ENTITY_DESC_KEY_PRESSURE as ENTITY_DESC_KEY_PRESSURE, ENTITY_DESC_KEY_SIGNAL_STRENGTH as ENTITY_DESC_KEY_SIGNAL_STRENGTH, ENTITY_DESC_KEY_TARGET_TEMPERATURE as ENTITY_DESC_KEY_TARGET_TEMPERATURE, ENTITY_DESC_KEY_TOTAL_INCREASING as ENTITY_DESC_KEY_TOTAL_INCREASING, ENTITY_DESC_KEY_UV_INDEX as ENTITY_DESC_KEY_UV_INDEX, ENTITY_DESC_KEY_VOLTAGE as ENTITY_DESC_KEY_VOLTAGE, LOGGER as LOGGER, SERVICE_RESET_METER as SERVICE_RESET_METER
 from .discovery_data_template import NumericSensorDataTemplate as NumericSensorDataTemplate, NumericSensorDataTemplateData as NumericSensorDataTemplateData
-from .entity import NewZwaveDiscoveryInfo as NewZwaveDiscoveryInfo, ZWaveBaseEntity as ZWaveBaseEntity
-from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .entity import NewZwaveDiscoveryInfo as NewZwaveDiscoveryInfo, ZWaveBaseEntity as ZWaveBaseEntity, ZWaveNodeBaseEntity as ZWaveNodeBaseEntity
 from .migrate import async_migrate_statistics_sensors as async_migrate_statistics_sensors
 from .models import NewZWaveDiscoverySchema as NewZWaveDiscoverySchema, ValueType as ValueType, ZWaveValueDiscoverySchema as ZWaveValueDiscoverySchema, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
@@ -103,52 +102,36 @@ class ZWaveConfigParameterSensor(ZWaveListSensor):
     @property
     def extra_state_attributes(self) -> dict[str, str] | None: ...
 
-class ZWaveNodeStatusSensor(SensorEntity):
-    _attr_should_poll: bool
+class ZWaveNodeStatusSensor(ZWaveNodeBaseEntity, SensorEntity):
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_translation_key: str
     config_entry: Incomplete
-    node: Incomplete
-    _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, node: ZwaveNode) -> None: ...
-    async def async_poll_value(self, _: bool) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def _status_changed(self, _: dict) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
-class ZWaveControllerStatusSensor(SensorEntity):
-    _attr_should_poll: bool
+class ZWaveControllerStatusSensor(ZWaveNodeBaseEntity, SensorEntity):
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_translation_key: str
-    config_entry: Incomplete
     controller: Incomplete
-    _base_unique_id: Incomplete
+    config_entry: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver) -> None: ...
-    async def async_poll_value(self, _: bool) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def _status_changed(self, _: dict) -> None: ...
     async def async_added_to_hass(self) -> None: ...
 
-class ZWaveStatisticsSensor(SensorEntity):
+class ZWaveStatisticsSensor(ZWaveNodeBaseEntity, SensorEntity):
     entity_description: ZWaveJSStatisticsSensorEntityDescription
-    _attr_should_poll: bool
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
-    config_entry: Incomplete
     statistics_src: Incomplete
-    _base_unique_id: Incomplete
+    config_entry: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, statistics_src: Controller | ZwaveNode, description: ZWaveJSStatisticsSensorEntityDescription) -> None: ...
-    async def async_poll_value(self, _: bool) -> None: ...
     @callback
     def _statistics_updated(self, event_data: dict) -> None: ...
     _attr_native_value: Incomplete

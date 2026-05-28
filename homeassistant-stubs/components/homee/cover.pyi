@@ -12,6 +12,7 @@ _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 OPEN_CLOSE_ATTRIBUTES: Incomplete
 POSITION_ATTRIBUTES: Incomplete
+COVER_DEVICE_PROFILES: Incomplete
 
 def get_open_close_attribute(node: HomeeNode) -> HomeeAttribute | None: ...
 def get_cover_features(node: HomeeNode, open_close_attribute: HomeeAttribute | None) -> CoverEntityFeature: ...

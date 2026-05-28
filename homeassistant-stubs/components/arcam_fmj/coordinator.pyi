@@ -22,6 +22,7 @@ class ArcamFmjCoordinator(DataUpdateCoordinator[None]):
     client: Incomplete
     state: Incomplete
     update_in_progress: bool
+    device_name: Incomplete
     device_info: Incomplete
     zone_unique_id: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ArcamFmjConfigEntry, client: Client, zone: int) -> None: ...

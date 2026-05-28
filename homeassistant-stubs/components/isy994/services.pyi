@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
-from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
+from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_CODE as CONF_CODE, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import async_get_platforms as async_get_platforms
@@ -20,7 +20,6 @@ SERVICE_DELETE_ZWAVE_LOCK_USER_CODE: str
 CONF_PARAMETER: str
 CONF_PARAMETERS: str
 CONF_USER_NUM: str
-CONF_CODE: str
 CONF_VALUE: str
 CONF_INIT: str
 CONF_ISY: str

@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL
+from .validation import UnsupportedBoardError as UnsupportedBoardError, async_get_supported_board_info as async_get_supported_board_info
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from duco_connectivity import DucoClient as DucoClient

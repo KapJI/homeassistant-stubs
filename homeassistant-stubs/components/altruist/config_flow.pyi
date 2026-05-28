@@ -1,7 +1,8 @@
-from .const import CONF_HOST as CONF_HOST, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from altruistclient import AltruistDeviceModel as AltruistDeviceModel
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any

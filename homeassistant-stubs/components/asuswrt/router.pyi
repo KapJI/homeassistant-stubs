@@ -19,6 +19,7 @@ CONF_REQ_RELOAD: Incomplete
 SCAN_INTERVAL: Incomplete
 SENSORS_TYPE_COUNT: str
 _LOGGER: Incomplete
+_ENTITY_MIGRATION_ID: Incomplete
 
 class AsusWrtSensorDataHandler:
     _hass: Incomplete

@@ -1,5 +1,5 @@
 from . import format_discovered_event_class as format_discovered_event_class, format_event_dispatcher_name as format_event_dispatcher_name
-from .const import BTHomeBleEvent as BTHomeBleEvent, DOMAIN as DOMAIN, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_DIMMER as EVENT_CLASS_DIMMER, EVENT_PROPERTIES as EVENT_PROPERTIES, EVENT_TYPE as EVENT_TYPE
+from .const import BTHomeBleEvent as BTHomeBleEvent, DOMAIN as DOMAIN, EVENT_CLASS_BUTTON as EVENT_CLASS_BUTTON, EVENT_CLASS_COMMAND as EVENT_CLASS_COMMAND, EVENT_CLASS_DIMMER as EVENT_CLASS_DIMMER, EVENT_PROPERTIES as EVENT_PROPERTIES, EVENT_TYPE as EVENT_TYPE
 from .types import BTHomeConfigEntry as BTHomeConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription

@@ -70,6 +70,7 @@ class FitbitSensor(SensorEntity):
 class FitbitBatterySensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEntity):
     entity_description: FitbitSensorEntityDescription
     _attr_attribution = ATTRIBUTION
+    _attr_has_entity_name: bool
     device: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
@@ -86,6 +87,7 @@ class FitbitBatterySensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEnti
 
 class FitbitBatteryLevelSensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEntity):
     entity_description: FitbitSensorEntityDescription
+    _attr_has_entity_name: bool
     _attr_attribution = ATTRIBUTION
     device: Incomplete
     _attr_unique_id: Incomplete

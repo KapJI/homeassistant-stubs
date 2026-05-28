@@ -1,8 +1,8 @@
-from .const import CONF_INSTALLATION_ID as CONF_INSTALLATION_ID, CONF_MODEL as CONF_MODEL, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
+from .const import CONF_INSTALLATION_ID as CONF_INSTALLATION_ID, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -14,7 +14,7 @@ _LOGGER: Incomplete
 UPDATE_INTERVAL_SECONDS: int
 TO_REDACT: Incomplete
 type VictronGxConfigEntry = ConfigEntry[Hub]
-NewMetricCallback = Callable[[VictronVenusDevice, VictronVenusMetric, DeviceInfo, str], None]
+type NewMetricCallback = Callable[[VictronVenusDevice, VictronVenusMetric, DeviceInfo, str], None]
 
 class Hub:
     hass: Incomplete

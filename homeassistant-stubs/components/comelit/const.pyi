@@ -2,7 +2,7 @@ from _typeshed import Incomplete
 from aiocomelit.api import ComelitSerialBridgeObject, ComelitVedoAreaObject, ComelitVedoZoneObject
 
 _LOGGER: Incomplete
-ObjectClassType = ComelitSerialBridgeObject | ComelitVedoAreaObject | ComelitVedoZoneObject
+type ObjectClassType = ComelitSerialBridgeObject | ComelitVedoAreaObject | ComelitVedoZoneObject
 DOMAIN: str
 DEFAULT_PORT: int
 DEVICE_TYPE_LIST: Incomplete

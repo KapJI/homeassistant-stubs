@@ -1,6 +1,7 @@
-from .const import LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import TemplateError as TemplateError
+from homeassistant.helpers.entity_platform import async_create_platform_config_not_supported_issue as async_create_platform_config_not_supported_issue
 from homeassistant.helpers.template import Template as Template
 
 _EXEC_FAILED_CODE: int
@@ -8,3 +9,4 @@ _EXEC_FAILED_CODE: int
 async def async_call_shell_with_timeout(command: str, timeout: int, *, log_return_code: bool = True) -> int: ...
 async def async_check_output_or_log(command: str, timeout: int) -> str | None: ...
 def render_template_args(hass: HomeAssistant, command: str) -> str | None: ...
+def create_platform_yaml_not_supported_issue(hass: HomeAssistant, platform_domain: str) -> None: ...

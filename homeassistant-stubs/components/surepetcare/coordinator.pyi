@@ -1,7 +1,7 @@
-from .const import ATTR_FLAP_ID as ATTR_FLAP_ID, ATTR_LOCATION as ATTR_LOCATION, ATTR_LOCK_STATE as ATTR_LOCK_STATE, ATTR_PET_NAME as ATTR_PET_NAME, DOMAIN as DOMAIN, SURE_API_TIMEOUT as SURE_API_TIMEOUT
+from .const import ATTR_FLAP_ID as ATTR_FLAP_ID, ATTR_LOCK_STATE as ATTR_LOCK_STATE, ATTR_PET_NAME as ATTR_PET_NAME, DOMAIN as DOMAIN, SURE_API_TIMEOUT as SURE_API_TIMEOUT
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

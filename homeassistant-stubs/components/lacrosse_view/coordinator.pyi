@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL
+from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL, STALE_DATA_THRESHOLD as STALE_DATA_THRESHOLD
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -1,8 +1,6 @@
-import abc
 from . import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED, MediaPlayerState as MediaPlayerState
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.trigger import EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityTriggerBase as EntityTriggerBase, Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
@@ -24,7 +22,7 @@ class MediaPlayerMutedTrigger(_MediaPlayerMutedStateTriggerBase):
 class MediaPlayerUnmutedTrigger(_MediaPlayerMutedStateTriggerBase):
     _target_muted: bool
 
-class VolumeTriggerMixin(EntityNumericalStateTriggerBase, metaclass=abc.ABCMeta):
+class VolumeTriggerMixin(EntityNumericalStateTriggerBase):
     _domain_specs = VOLUME_DOMAIN_SPECS
     _valid_unit: str
     def _get_tracked_value(self, state: State) -> float | None: ...

@@ -9,7 +9,7 @@ from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, BooleanSelectorConfig as BooleanSelectorConfig, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 TITLE: str
@@ -22,12 +22,15 @@ async def async_try_connect_gateway(hass: HomeAssistant, config: dict[str, Any])
 
 class InComfortConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_host: str
+    @override
     @staticmethod
     @callback
     def async_get_options_flow(config_entry: InComfortConfigEntry) -> InComfortOptionsFlowHandler: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_dhcp_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_dhcp_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

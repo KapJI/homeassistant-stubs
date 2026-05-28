@@ -2,6 +2,7 @@ from .const import CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN, SERVICES as SER
 from .coordinator import SynologyDSMConfigEntry as SynologyDSMConfigEntry
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 LOGGER: Incomplete
 

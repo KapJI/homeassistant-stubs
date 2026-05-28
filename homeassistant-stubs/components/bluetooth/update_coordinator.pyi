@@ -15,10 +15,12 @@ class BasePassiveBluetoothCoordinator(ABC, metaclass=abc.ABCMeta):
     connectable: Incomplete
     _on_stop: list[CALLBACK_TYPE]
     mode: Incomplete
+    _scan_interval: Incomplete
+    _scan_duration: Incomplete
     _last_unavailable_time: float
     _last_name: Incomplete
     _available: Incomplete
-    def __init__(self, hass: HomeAssistant, logger: logging.Logger, address: str, mode: BluetoothScanningMode, connectable: bool) -> None: ...
+    def __init__(self, hass: HomeAssistant, logger: logging.Logger, address: str, mode: BluetoothScanningMode, connectable: bool, scan_interval: float | None = None, scan_duration: float | None = None) -> None: ...
     @callback
     def async_start(self) -> CALLBACK_TYPE: ...
     @callback

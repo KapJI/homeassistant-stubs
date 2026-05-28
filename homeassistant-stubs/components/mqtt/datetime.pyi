@@ -1,7 +1,7 @@
 import datetime as datetime_library
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
-from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
+from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_TOPIC as CONF_STATE_TOPIC, CONF_TIMEZONE as CONF_TIMEZONE, PAYLOAD_NONE as PAYLOAD_NONE
 from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
 from .models import MqttCommandTemplate as MqttCommandTemplate, MqttValueTemplate as MqttValueTemplate, PublishPayloadType as PublishPayloadType, ReceiveMessage as ReceiveMessage
 from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
@@ -20,7 +20,6 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 _LOGGER: Incomplete
-CONF_TIMEZONE: str
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
 MQTT_DATETIME_ATTRIBUTES_BLOCKED: frozenset[str]

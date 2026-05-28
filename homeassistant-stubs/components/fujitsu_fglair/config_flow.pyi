@@ -1,8 +1,8 @@
-from .const import API_TIMEOUT as API_TIMEOUT, CONF_REGION as CONF_REGION, DOMAIN as DOMAIN, REGION_DEFAULT as REGION_DEFAULT, REGION_EU as REGION_EU
+from .const import API_TIMEOUT as API_TIMEOUT, DOMAIN as DOMAIN, REGION_DEFAULT as REGION_DEFAULT, REGION_EU as REGION_EU
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_REGION as CONF_REGION, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
 from typing import Any

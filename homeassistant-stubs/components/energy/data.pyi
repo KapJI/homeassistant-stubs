@@ -53,12 +53,14 @@ class GridSourceType(TypedDict):
     stat_rate: NotRequired[str]
     power_config: NotRequired[PowerConfig]
     cost_adjustment_day: float
+    name: NotRequired[str]
 
 class SolarSourceType(TypedDict):
     type: Literal['solar']
     stat_energy_from: str
     stat_rate: NotRequired[str]
     config_entry_solar_forecast: list[str] | None
+    name: NotRequired[str]
 
 class BatterySourceType(TypedDict):
     type: Literal['battery']
@@ -66,6 +68,8 @@ class BatterySourceType(TypedDict):
     stat_energy_to: str
     stat_rate: NotRequired[str]
     power_config: NotRequired[PowerConfig]
+    stat_soc: NotRequired[str]
+    name: NotRequired[str]
 
 class GasSourceType(TypedDict):
     type: Literal['gas']
@@ -74,6 +78,7 @@ class GasSourceType(TypedDict):
     stat_cost: str | None
     entity_energy_price: str | None
     number_energy_price: float | None
+    name: NotRequired[str]
 
 class WaterSourceType(TypedDict):
     type: Literal['water']
@@ -82,12 +87,13 @@ class WaterSourceType(TypedDict):
     stat_cost: str | None
     entity_energy_price: str | None
     number_energy_price: float | None
+    name: NotRequired[str]
 type SourceType = GridSourceType | SolarSourceType | BatterySourceType | GasSourceType | WaterSourceType
 
 class DeviceConsumption(TypedDict):
     stat_consumption: str
     stat_rate: NotRequired[str]
-    name: str | None
+    name: NotRequired[str]
     included_in_stat: NotRequired[str]
 
 class EnergyPreferences(TypedDict):

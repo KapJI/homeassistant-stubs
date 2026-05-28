@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, SUPPORTED_DEVICE_TYPES as SUPPORTED_DEVICE_TYPES
 from .coordinator import WattsVisionDeviceCoordinator as WattsVisionDeviceCoordinator, WattsVisionDeviceData as WattsVisionDeviceData, WattsVisionHubCoordinator as WattsVisionHubCoordinator
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -8,11 +9,15 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from visionpluspython.auth import WattsVisionAuth
 from visionpluspython.client import WattsVisionClient
 
 _LOGGER: Incomplete
 PLATFORMS: list[Platform]
+CONFIG_SCHEMA: Incomplete
+
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 @dataclass
 class WattsVisionRuntimeData:

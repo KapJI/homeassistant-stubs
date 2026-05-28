@@ -1,5 +1,5 @@
 from . import QubeConfigEntry as QubeConfigEntry
-from .coordinator import QubeCoordinator as QubeCoordinator
+from .coordinator import QubeCoordinator as QubeCoordinator, QubeData as QubeData
 from .entity import QubeEntity as QubeEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -8,13 +8,12 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from python_qube_heatpump.models import QubeState as QubeState
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class QubeBinarySensorEntityDescription(BinarySensorEntityDescription):
-    value_fn: Callable[[QubeState], bool | None]
+    value_fn: Callable[[QubeData], bool | None]
 
 BINARY_SENSOR_TYPES: tuple[QubeBinarySensorEntityDescription, ...]
 

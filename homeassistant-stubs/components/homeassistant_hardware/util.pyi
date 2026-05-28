@@ -1,13 +1,12 @@
 from . import DATA_COMPONENT as DATA_COMPONENT
 from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, Z2M_ADDON_NAME as Z2M_ADDON_NAME, Z2M_ADDON_SLUG_REGEX as Z2M_ADDON_SLUG_REGEX, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
 from .helpers import async_firmware_update_context as async_firmware_update_context
-from .silabs_multiprotocol_addon import WaitingAddonManager as WaitingAddonManager, get_multiprotocol_addon_manager as get_multiprotocol_addon_manager
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable, Sequence
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from enum import StrEnum
-from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, get_apps_list as get_apps_list
+from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, HassioNotReadyError as HassioNotReadyError, get_apps_list as get_apps_list
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -17,6 +16,14 @@ from universal_silabs_flasher.const import ApplicationType as FlasherApplication
 from universal_silabs_flasher.flasher import BaseFlasher as BaseFlasher, DeviceSpecificFlasher as DeviceSpecificFlasher
 
 _LOGGER: Incomplete
+ADDON_STATE_POLL_INTERVAL: int
+ADDON_INFO_POLL_TIMEOUT: Incomplete
+
+class WaitingAddonManager(AddonManager):
+    async def async_wait_until_addon_state(self, *states: AddonState) -> None: ...
+    async def async_start_addon_waiting(self) -> None: ...
+    async def async_install_addon_waiting(self) -> None: ...
+    async def async_uninstall_addon_waiting(self) -> None: ...
 
 class ApplicationType(StrEnum):
     GECKO_BOOTLOADER = 'bootloader'

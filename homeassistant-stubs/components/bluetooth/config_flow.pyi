@@ -1,15 +1,22 @@
-from .const import CONF_ADAPTER as CONF_ADAPTER, CONF_DETAILS as CONF_DETAILS, CONF_PASSIVE as CONF_PASSIVE, CONF_SOURCE as CONF_SOURCE, CONF_SOURCE_CONFIG_ENTRY_ID as CONF_SOURCE_CONFIG_ENTRY_ID, CONF_SOURCE_DEVICE_ID as CONF_SOURCE_DEVICE_ID, CONF_SOURCE_DOMAIN as CONF_SOURCE_DOMAIN, CONF_SOURCE_MODEL as CONF_SOURCE_MODEL, DOMAIN as DOMAIN
-from .util import adapter_title as adapter_title
+import voluptuous as vol
+from .const import CONF_ADAPTER as CONF_ADAPTER, CONF_DETAILS as CONF_DETAILS, CONF_MODE as CONF_MODE, CONF_PASSIVE as CONF_PASSIVE, CONF_SOURCE_CONFIG_ENTRY_ID as CONF_SOURCE_CONFIG_ENTRY_ID, CONF_SOURCE_DEVICE_ID as CONF_SOURCE_DEVICE_ID, CONF_SOURCE_DOMAIN as CONF_SOURCE_DOMAIN, CONF_SOURCE_MODEL as CONF_SOURCE_MODEL, DOMAIN as DOMAIN
+from .util import adapter_title as adapter_title, resolve_scanning_mode as resolve_scanning_mode
 from _typeshed import Incomplete
 from bluetooth_adapters import AdapterDetails
 from homeassistant.components import onboarding as onboarding
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
+from homeassistant.const import CONF_SOURCE as CONF_SOURCE
 from homeassistant.core import callback as callback
-from homeassistant.helpers.schema_config_entry_flow import SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
+from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
+from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from typing import Any
 
-OPTIONS_SCHEMA: Incomplete
+_MODE_SELECTOR: Incomplete
+
+async def _options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def _validate_options(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
+
 OPTIONS_FLOW: Incomplete
 
 def adapter_display_info(adapter: str, details: AdapterDetails) -> str: ...

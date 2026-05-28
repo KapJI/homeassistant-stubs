@@ -1,8 +1,9 @@
-from .const import DOMAIN as DOMAIN, I18N_KEY_TO_VALLOX_PROFILE as I18N_KEY_TO_VALLOX_PROFILE
+from .const import DOMAIN as DOMAIN, I18N_KEY_TO_VALLOX_PROFILE as I18N_KEY_TO_VALLOX_PROFILE, PROFILE_DURATION_INDEFINITE as PROFILE_DURATION_INDEFINITE
 from .coordinator import ValloxConfigEntry as ValloxConfigEntry, ValloxDataUpdateCoordinator as ValloxDataUpdateCoordinator
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from vallox_websocket_api import Profile
 
 _LOGGER: Incomplete

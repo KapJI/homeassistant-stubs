@@ -1,7 +1,7 @@
-from .const import CONF_HAS_PWD as CONF_HAS_PWD, DEFAULT_HOST as DEFAULT_HOST, DOMAIN as DOMAIN
+from .const import CONF_HAS_PWD as CONF_HAS_PWD, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DOMAIN as DOMAIN
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_TIMEOUT as CONF_TIMEOUT
 from typing import Any
 
 class SolarLogConfigFlow(ConfigFlow, domain=DOMAIN):

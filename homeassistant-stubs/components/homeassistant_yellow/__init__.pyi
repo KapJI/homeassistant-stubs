@@ -1,9 +1,10 @@
-from .const import FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, MANUFACTURER as MANUFACTURER, NABU_CASA_FIRMWARE_RELEASES_URL as NABU_CASA_FIRMWARE_RELEASES_URL, RADIO_DEVICE as RADIO_DEVICE, ZHA_HW_DISCOVERY_DATA as ZHA_HW_DISCOVERY_DATA
+from .const import DOMAIN as DOMAIN, FIRMWARE as FIRMWARE, FIRMWARE_VERSION as FIRMWARE_VERSION, MANUFACTURER as MANUFACTURER, NABU_CASA_FIRMWARE_RELEASES_URL as NABU_CASA_FIRMWARE_RELEASES_URL, RADIO_DEVICE as RADIO_DEVICE, ZHA_HW_DISCOVERY_DATA as ZHA_HW_DISCOVERY_DATA
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.hassio import get_os_info as get_os_info
+from homeassistant.components.hassio import HassioNotReadyError as HassioNotReadyError, get_os_info as get_os_info
 from homeassistant.components.homeassistant_hardware.coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
-from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import check_multi_pan_addon as check_multi_pan_addon
+from homeassistant.components.homeassistant_hardware.repair_helpers import async_create_multi_pan_migration_issue as async_create_multi_pan_migration_issue, async_delete_multi_pan_migration_issue as async_delete_multi_pan_migration_issue
+from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import check_multi_pan_addon as check_multi_pan_addon, multi_pan_addon_using_device as multi_pan_addon_using_device
 from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, guess_firmware_info as guess_firmware_info
 from homeassistant.components.usb import SerialDevice as SerialDevice, USBDevice as USBDevice, async_register_serial_port_scanner as async_register_serial_port_scanner
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_HARDWARE as SOURCE_HARDWARE

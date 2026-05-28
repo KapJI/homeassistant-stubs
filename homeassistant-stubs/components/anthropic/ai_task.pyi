@@ -8,6 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.json import json_loads as json_loads
 
+PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AnthropicConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

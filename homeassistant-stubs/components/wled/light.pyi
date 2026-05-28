@@ -6,6 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.group import IntegrationSpecificGroup as IntegrationSpecificGroup
 from typing import Any
 
 PARALLEL_UPDATES: int
@@ -17,8 +18,10 @@ class WLEDMainLight(WLEDEntity, LightEntity):
     _attr_translation_key: str
     _attr_supported_features: Incomplete
     _attr_supported_color_modes: Incomplete
+    group: IntegrationSpecificGroup
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
+    def _update_group_member(self) -> None: ...
     @property
     def brightness(self) -> int | None: ...
     @property
@@ -29,6 +32,8 @@ class WLEDMainLight(WLEDEntity, LightEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @callback
+    def _handle_coordinator_update(self) -> None: ...
 
 class WLEDSegmentLight(WLEDEntity, LightEntity):
     _attr_supported_features: Incomplete

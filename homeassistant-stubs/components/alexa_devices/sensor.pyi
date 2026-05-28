@@ -1,10 +1,9 @@
-from .const import CATEGORY_NOTIFICATIONS as CATEGORY_NOTIFICATIONS, CATEGORY_SENSORS as CATEGORY_SENSORS
-from .coordinator import AmazonConfigEntry as AmazonConfigEntry
+from .coordinator import AmazonConfigEntry as AmazonConfigEntry, AmazonDevicesCoordinator as AmazonDevicesCoordinator
 from .entity import AmazonEntity as AmazonEntity
 from .utils import async_remove_unsupported_notification_sensors as async_remove_unsupported_notification_sensors
 from _typeshed import Incomplete
-from aioamazondevices.structures import AmazonDevice as AmazonDevice
-from collections.abc import Callable as Callable
+from aioamazondevices.structures import AmazonDevice
+from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
@@ -15,18 +14,23 @@ from homeassistant.helpers.typing import StateType as StateType
 from typing import Final
 
 PARALLEL_UPDATES: int
+type ValueFn = Callable[[AmazonDevice, str, AmazonDevicesCoordinator], StateType | datetime]
 
 @dataclass(frozen=True, kw_only=True)
-class AmazonSensorEntityDescription(SensorEntityDescription):
+class AmazonBaseEntityDescription(SensorEntityDescription):
     native_unit_of_measurement_fn: Callable[[AmazonDevice, str], str] | None = ...
     is_available_fn: Callable[[AmazonDevice, str], bool] = ...
-    category: str = ...
+    value_fn: ValueFn
 
 @dataclass(frozen=True, kw_only=True)
-class AmazonNotificationEntityDescription(SensorEntityDescription):
-    native_unit_of_measurement_fn: Callable[[AmazonDevice, str], str] | None = ...
+class AmazonSensorEntityDescription(AmazonBaseEntityDescription):
     is_available_fn: Callable[[AmazonDevice, str], bool] = ...
-    category: str = ...
+    value_fn: ValueFn = ...
+
+@dataclass(frozen=True, kw_only=True)
+class AmazonNotificationEntityDescription(AmazonBaseEntityDescription):
+    is_available_fn: Callable[[AmazonDevice, str], bool] = ...
+    value_fn: ValueFn = ...
 
 SENSORS: Final[Incomplete]
 NOTIFICATIONS: Final[Incomplete]

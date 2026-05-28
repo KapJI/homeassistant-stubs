@@ -1,5 +1,8 @@
 from dataclasses import dataclass
+from pyatmo.modules.device_types import DeviceType as NetatmoDeviceType
 from uuid import UUID
+
+def device_type_to_str(device_type: NetatmoDeviceType) -> str: ...
 
 @dataclass
 class NetatmoArea:

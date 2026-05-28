@@ -6,14 +6,13 @@ from _typeshed import Incomplete
 from aioautomower.model import SingleMessageData as SingleMessageData
 from collections.abc import Callable as Callable
 from homeassistant.components.event import EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
+from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 ATTR_SEVERITY: str
-ATTR_LATITUDE: str
-ATTR_LONGITUDE: str
 ATTR_DATE_TIME: str
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AutomowerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

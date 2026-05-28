@@ -1,4 +1,4 @@
-from .const import CONF_KAMEREON_ACCOUNT_ID as CONF_KAMEREON_ACCOUNT_ID, CONF_LOCALE as CONF_LOCALE, DOMAIN as DOMAIN
+from .const import CONF_KAMEREON_ACCOUNT_ID as CONF_KAMEREON_ACCOUNT_ID, CONF_LOCALE as CONF_LOCALE, CONF_LOGIN_TOKEN as CONF_LOGIN_TOKEN, DOMAIN as DOMAIN
 from .renault_hub import RenaultHub as RenaultHub
 from _typeshed import Incomplete
 from collections.abc import Mapping

@@ -1,7 +1,7 @@
 from .entity import VictronBaseEntity as VictronBaseEntity
 from .hub import VictronGxConfigEntry as VictronGxConfigEntry
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
+from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -17,7 +17,6 @@ ATTR_SPEED: str
 async def async_setup_entry(hass: HomeAssistant, config_entry: VictronGxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VictronDeviceTracker(VictronBaseEntity, TrackerEntity):
-    _attr_source_type: Incomplete
     _altitude: float | None
     _course: float | None
     _speed: float | None

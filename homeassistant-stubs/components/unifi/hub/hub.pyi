@@ -7,6 +7,7 @@ from .entity_loader import UnifiEntityLoader as UnifiEntityLoader
 from .websocket import UnifiWebsocket as UnifiWebsocket
 from _typeshed import Incomplete
 from datetime import datetime
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

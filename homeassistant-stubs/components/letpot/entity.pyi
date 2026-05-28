@@ -7,15 +7,16 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus
 from typing import Any, Concatenate
 
 @dataclass(frozen=True, kw_only=True)
 class LetPotEntityDescription(EntityDescription):
     supported_fn: Callable[[LetPotDeviceCoordinator], bool] = ...
 
-class LetPotEntity(CoordinatorEntity[LetPotDeviceCoordinator]):
+class LetPotEntity[_DataT: LetPotDeviceStatus](CoordinatorEntity[LetPotDeviceCoordinator[_DataT]]):
     _attr_has_entity_name: bool
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: LetPotDeviceCoordinator) -> None: ...
+    def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT]) -> None: ...
 
 def exception_handler[_EntityT: LetPotEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...

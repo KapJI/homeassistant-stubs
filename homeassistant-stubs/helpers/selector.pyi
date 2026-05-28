@@ -119,7 +119,7 @@ class AttributeSelector(Selector[AttributeSelectorConfig]):
 class AutomationBehavior(StrEnum):
     ALL = 'all'
     FIRST = 'first'
-    LAST = 'last'
+    EACH = 'each'
     ANY = 'any'
 
 class AutomationBehaviorSelectorMode(StrEnum):

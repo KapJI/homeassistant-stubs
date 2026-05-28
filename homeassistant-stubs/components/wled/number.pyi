@@ -18,6 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: WLEDConfigEntry, async_a
 @dataclass(frozen=True, kw_only=True)
 class WLEDNumberEntityDescription(NumberEntityDescription):
     value_fn: Callable[[Segment], int | None]
+    segment_translation_key: str
 
 NUMBERS: Incomplete
 

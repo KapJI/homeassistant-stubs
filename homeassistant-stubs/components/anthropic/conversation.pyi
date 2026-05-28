@@ -1,13 +1,15 @@
 from . import AnthropicConfigEntry as AnthropicConfigEntry
-from .const import CONF_PROMPT as CONF_PROMPT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from .entity import AnthropicBaseLLMEntity as AnthropicBaseLLMEntity
 from _typeshed import Incomplete
 from homeassistant.components import conversation as conversation
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
-from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API, MATCH_ALL as MATCH_ALL
+from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API, CONF_PROMPT as CONF_PROMPT, MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Literal
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AnthropicConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

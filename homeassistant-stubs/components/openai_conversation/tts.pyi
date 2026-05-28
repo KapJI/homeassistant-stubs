@@ -1,10 +1,11 @@
 from . import OpenAIConfigEntry as OpenAIConfigEntry
-from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_PROMPT as CONF_PROMPT, CONF_TTS_SPEED as CONF_TTS_SPEED, RECOMMENDED_TTS_SPEED as RECOMMENDED_TTS_SPEED
+from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_TTS_SPEED as CONF_TTS_SPEED, RECOMMENDED_TTS_SPEED as RECOMMENDED_TTS_SPEED
 from .entity import OpenAIBaseLLMEntity as OpenAIBaseLLMEntity
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.tts import ATTR_PREFERRED_FORMAT as ATTR_PREFERRED_FORMAT, ATTR_VOICE as ATTR_VOICE, TextToSpeechEntity as TextToSpeechEntity, TtsAudioType as TtsAudioType, Voice as Voice
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
+from homeassistant.const import CONF_PROMPT as CONF_PROMPT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

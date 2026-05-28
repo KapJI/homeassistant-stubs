@@ -1,13 +1,11 @@
-from _typeshed import Incomplete
 from collections.abc import Mapping
 from functools import cache
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
 from homeassistant.const import UnitOfReactiveEnergy as UnitOfReactiveEnergy
-from typing import TypedDict
+from typing import Literal, TypedDict
 from xknx.dpt import DPTBase
 
-HaDptClass: Incomplete
-
+type HaDptClass = Literal['numeric', 'enum', 'complex', 'string']
 class DPTInfo(TypedDict):
     dpt_class: HaDptClass
     main: int

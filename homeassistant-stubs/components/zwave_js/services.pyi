@@ -1,6 +1,7 @@
 from . import const as const
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA, VALUE_SCHEMA as VALUE_SCHEMA
 from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, async_get_node_from_entity_id as async_get_node_from_entity_id, async_get_nodes_from_area_id as async_get_nodes_from_area_id, async_get_nodes_from_targets as async_get_nodes_from_targets, get_value_id_from_unique_id as get_value_id_from_unique_id
+from .lock_helpers import CREDENTIAL_RULE_REVERSE_MAP as CREDENTIAL_RULE_REVERSE_MAP, USER_TYPE_REVERSE_MAP as USER_TYPE_REVERSE_MAP
 from _typeshed import Incomplete
 from collections.abc import Collection, Generator, Sequence
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID
@@ -22,6 +23,8 @@ TARGET_VALIDATORS: Incomplete
 
 @callback
 def async_setup_services(hass: HomeAssistant) -> None: ...
+@callback
+def _async_register_credential_services(hass: HomeAssistant) -> None: ...
 def parameter_name_does_not_need_bitmask(val: dict[str, int | str | list[str]]) -> dict[str, int | str | list[str]]: ...
 def check_base_2(val: int) -> int: ...
 def broadcast_command(val: dict[str, Any]) -> dict[str, Any]: ...

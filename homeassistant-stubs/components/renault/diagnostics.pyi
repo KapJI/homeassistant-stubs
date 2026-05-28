@@ -1,5 +1,5 @@
 from . import RenaultConfigEntry as RenaultConfigEntry
-from .const import CONF_KAMEREON_ACCOUNT_ID as CONF_KAMEREON_ACCOUNT_ID
+from .const import CONF_KAMEREON_ACCOUNT_ID as CONF_KAMEREON_ACCOUNT_ID, CONF_LOGIN_TOKEN as CONF_LOGIN_TOKEN
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from _typeshed import Incomplete
 from homeassistant.components.diagnostics import async_redact_data as async_redact_data

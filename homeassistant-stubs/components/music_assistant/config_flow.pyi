@@ -1,8 +1,8 @@
-from .const import AUTH_SCHEMA_VERSION as AUTH_SCHEMA_VERSION, CONF_TOKEN as CONF_TOKEN, DOMAIN as DOMAIN, HASSIO_DISCOVERY_SCHEMA_VERSION as HASSIO_DISCOVERY_SCHEMA_VERSION, LOGGER as LOGGER
+from .const import AUTH_SCHEMA_VERSION as AUTH_SCHEMA_VERSION, DOMAIN as DOMAIN, HASSIO_DISCOVERY_SCHEMA_VERSION as HASSIO_DISCOVERY_SCHEMA_VERSION, LOGGER as LOGGER
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
-from homeassistant.const import CONF_URL as CONF_URL
+from homeassistant.const import CONF_TOKEN as CONF_TOKEN, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.config_entry_oauth2_flow import _encode_jwt as _encode_jwt, async_get_redirect_uri as async_get_redirect_uri

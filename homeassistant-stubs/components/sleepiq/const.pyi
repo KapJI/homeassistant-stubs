@@ -1,4 +1,5 @@
 from _typeshed import Incomplete
+from homeassistant.const import PRESSURE as PRESSURE
 
 DATA_SLEEPIQ: str
 DOMAIN: str
@@ -10,7 +11,6 @@ FIRMNESS: str
 ICON_EMPTY: str
 ICON_OCCUPIED: str
 IS_IN_BED: str
-PRESSURE: str
 SLEEP_NUMBER: str
 FOOT_WARMING_TIMER: str
 FOOT_WARMER: str

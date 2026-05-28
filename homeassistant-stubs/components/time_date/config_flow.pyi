@@ -1,8 +1,9 @@
-from .const import CONF_DISPLAY_OPTIONS as CONF_DISPLAY_OPTIONS, DOMAIN as DOMAIN, OPTION_TYPES as OPTION_TYPES
+from .const import DOMAIN as DOMAIN, OPTION_TYPES as OPTION_TYPES
 from .sensor import TimeDateSensor as TimeDateSensor
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import websocket_api as websocket_api
+from homeassistant.const import CONF_DISPLAY_OPTIONS as CONF_DISPLAY_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import PlatformData as PlatformData
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep

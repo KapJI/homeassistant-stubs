@@ -6,7 +6,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from incomfortclient import Heater as InComfortHeater
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 HEATER_ATTRS: Incomplete
@@ -24,8 +24,11 @@ class IncomfortWaterHeater(IncomfortBoilerEntity, WaterHeaterEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: InComfortDataCoordinator, heater: InComfortHeater) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def current_operation(self) -> str | None: ...

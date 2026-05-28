@@ -107,6 +107,8 @@ class ProgramPhaseWashingMachine(MieleEnum, missing_to_none=True):
     disinfecting: int
     flex_load_active: int
     automatic_start: int
+    paused: int
+    cancelled: int
 
 class ProgramPhaseTumbleDryer(MieleEnum, missing_to_none=True):
     not_running: Incomplete

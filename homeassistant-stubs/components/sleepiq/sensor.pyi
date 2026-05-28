@@ -1,4 +1,4 @@
-from .const import HEART_RATE as HEART_RATE, HRV as HRV, PRESSURE as PRESSURE, RESPIRATORY_RATE as RESPIRATORY_RATE, SLEEP_DURATION as SLEEP_DURATION, SLEEP_NUMBER as SLEEP_NUMBER, SLEEP_SCORE as SLEEP_SCORE
+from .const import HEART_RATE as HEART_RATE, HRV as HRV, RESPIRATORY_RATE as RESPIRATORY_RATE, SLEEP_DURATION as SLEEP_DURATION, SLEEP_NUMBER as SLEEP_NUMBER, SLEEP_SCORE as SLEEP_SCORE
 from .coordinator import SleepIQConfigEntry as SleepIQConfigEntry, SleepIQDataUpdateCoordinator as SleepIQDataUpdateCoordinator, SleepIQSleepDataCoordinator as SleepIQSleepDataCoordinator
 from .entity import SleepIQSleeperEntity as SleepIQSleeperEntity
 from _typeshed import Incomplete
@@ -6,7 +6,7 @@ from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSlee
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import UnitOfTime as UnitOfTime
+from homeassistant.const import PRESSURE as PRESSURE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 

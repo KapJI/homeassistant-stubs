@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components.script import CONF_MODE as CONF_MODE
-from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_TYPE as CONF_TYPE, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.const import CONF_ACTION as CONF_ACTION, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_TYPE as CONF_TYPE, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import intent as intent, script as script, service as service, template as template
@@ -15,7 +15,6 @@ CONF_PLATFORMS: str
 CONF_INTENTS: str
 CONF_SPEECH: str
 CONF_REPROMPT: str
-CONF_ACTION: str
 CONF_CARD: str
 CONF_TITLE: str
 CONF_CONTENT: str

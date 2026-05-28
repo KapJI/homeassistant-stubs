@@ -4,7 +4,6 @@ from typing import Final
 ATTR_CID: Final[str]
 ATTR_MAC: Final[str]
 ATTR_MANUFACTURER: Final[str]
-ATTR_MODEL: Final[str]
 CONF_NICKNAME: Final[str]
 CONF_USE_PSK: Final[str]
 CONF_USE_SSL: Final[str]

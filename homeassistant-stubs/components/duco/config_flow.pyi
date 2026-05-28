@@ -1,4 +1,5 @@
 from .const import DOMAIN as DOMAIN
+from .validation import UnsupportedBoardError as UnsupportedBoardError, async_get_supported_board_info as async_get_supported_board_info
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST

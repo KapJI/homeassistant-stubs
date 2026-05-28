@@ -3,7 +3,7 @@ from . import OnkyoConfigEntry as OnkyoConfigEntry
 from .const import DOMAIN as DOMAIN
 from .receiver import ReceiverManager as ReceiverManager
 from _typeshed import Incomplete
-from aioonkyo import Status as Status, command
+from aioonkyo import Status as Status, command, status
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
@@ -26,15 +26,14 @@ class Channel(StrEnum):
     HEIGHT_2_LEFT = 'height_2_left'
     HEIGHT_2_RIGHT = 'height_2_right'
     SUBWOOFER_2 = 'subwoofer_2'
-
-ChannelMutingData: Incomplete
-ChannelMutingDesired: Incomplete
+type ChannelMutingData = dict[Channel, status.ChannelMuting.Param]
+type ChannelMutingDesired = dict[Channel, command.ChannelMuting.Param]
 
 class ChannelMutingCoordinator(DataUpdateCoordinator[ChannelMutingData]):
     config_entry: OnkyoConfigEntry
     manager: Incomplete
-    data: Incomplete
-    _desired: Incomplete
+    data: ChannelMutingData
+    _desired: ChannelMutingDesired
     _entities_added: bool
     _query_state_task: asyncio.Task[None] | None
     def __init__(self, hass: HomeAssistant, config_entry: OnkyoConfigEntry, manager: ReceiverManager) -> None: ...

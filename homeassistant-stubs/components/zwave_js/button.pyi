@@ -1,7 +1,6 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN
 from .discovery import ZwaveDiscoveryInfo as ZwaveDiscoveryInfo
-from .entity import ZWaveBaseEntity as ZWaveBaseEntity
-from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .entity import ZWaveBaseEntity as ZWaveBaseEntity, ZWaveNodeBaseEntity as ZWaveNodeBaseEntity
 from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
@@ -21,18 +20,11 @@ class ZwaveBooleanNodeButton(ZWaveBaseEntity, ButtonEntity):
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     async def async_press(self) -> None: ...
 
-class ZWaveNodePingButton(ButtonEntity):
-    _attr_should_poll: bool
+class ZWaveNodePingButton(ZWaveNodeBaseEntity, ButtonEntity):
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_translation_key: str
-    node: Incomplete
-    _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, driver: Driver, node: ZwaveNode) -> None: ...
-    async def async_poll_value(self, _: bool) -> None: ...
-    async def async_added_to_hass(self) -> None: ...
     async def async_press(self) -> None: ...
 
 class ZWaveNotificationIdleButton(ZWaveBaseEntity, ButtonEntity):

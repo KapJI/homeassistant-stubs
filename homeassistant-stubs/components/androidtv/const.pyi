@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 CONF_ADB_SERVER_IP: str
+CONF_MORE_OPTIONS: str
 CONF_ADB_SERVER_PORT: str
 CONF_ADBKEY: str
 CONF_APPS: str

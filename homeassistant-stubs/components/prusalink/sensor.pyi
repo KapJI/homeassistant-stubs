@@ -1,5 +1,5 @@
 from .coordinator import PrusaLinkConfigEntry as PrusaLinkConfigEntry, PrusaLinkUpdateCoordinator as PrusaLinkUpdateCoordinator
-from .entity import PrusaLinkEntity as PrusaLinkEntity
+from .entity import PrusaLinkEntity as PrusaLinkEntity, PrusaLinkEntityDescription as PrusaLinkEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -13,17 +13,10 @@ from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from pyprusalink.types import JobInfo, PrinterInfo, PrinterStatus
 from pyprusalink.types_legacy import LegacyPrinterStatus
-from typing import Generic, TypeVar
 
-T = TypeVar('T', PrinterStatus, LegacyPrinterStatus, JobInfo, PrinterInfo)
-
-@dataclass(frozen=True)
-class PrusaLinkSensorEntityDescriptionMixin(Generic[T]):
+@dataclass(frozen=True, kw_only=True)
+class PrusaLinkSensorEntityDescription[T: (PrinterStatus, LegacyPrinterStatus, JobInfo, PrinterInfo)](SensorEntityDescription, PrusaLinkEntityDescription):
     value_fn: Callable[[T], datetime | StateType]
-
-@dataclass(frozen=True)
-class PrusaLinkSensorEntityDescription(SensorEntityDescription, PrusaLinkSensorEntityDescriptionMixin[T], Generic[T]):
-    available_fn: Callable[[T], bool] = ...
 
 SENSORS: dict[str, tuple[PrusaLinkSensorEntityDescription, ...]]
 
@@ -35,5 +28,3 @@ class PrusaLinkSensorEntity(PrusaLinkEntity, SensorEntity):
     def __init__(self, coordinator: PrusaLinkUpdateCoordinator, description: PrusaLinkSensorEntityDescription) -> None: ...
     @property
     def native_value(self) -> datetime | StateType: ...
-    @property
-    def available(self) -> bool: ...

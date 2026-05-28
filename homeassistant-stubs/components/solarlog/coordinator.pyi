@@ -3,6 +3,7 @@ from .models import SolarlogIntegrationData as SolarlogIntegrationData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_TIMEOUT as CONF_TIMEOUT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -37,4 +38,5 @@ class SolarLogLongtimeDataCoordinator(DataUpdateCoordinator[EnergyData]):
     solarlog: Incomplete
     connection_timeout: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SolarlogConfigEntry, api: SolarLogConnector, timeout: float) -> None: ...
+    async def _async_setup(self) -> None: ...
     async def _async_update_data(self) -> EnergyData: ...

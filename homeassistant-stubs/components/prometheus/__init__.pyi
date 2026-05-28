@@ -10,7 +10,7 @@ from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.humidifier import ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_HUMIDITY as ATTR_HUMIDITY
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, PERCENTAGE as PERCENTAGE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, PERCENTAGE as PERCENTAGE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers import area_registry as ar, device_registry as dr, entity_registry as er, entityfilter as entityfilter, floor_registry as fr
 from homeassistant.helpers.area_registry import AreaEntry as AreaEntry, EVENT_AREA_REGISTRY_UPDATED as EVENT_AREA_REGISTRY_UPDATED, EventAreaRegistryUpdatedData as EventAreaRegistryUpdatedData
@@ -20,7 +20,7 @@ from homeassistant.helpers.entity_values import EntityValues as EntityValues
 from homeassistant.helpers.floor_registry import EVENT_FLOOR_REGISTRY_UPDATED as EVENT_FLOOR_REGISTRY_UPDATED, EventFloorRegistryUpdatedData as EventFloorRegistryUpdatedData, FloorEntry as FloorEntry
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.dt import as_timestamp as as_timestamp
-from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
+from homeassistant.util.unit_conversion import DistanceConverter as DistanceConverter, TemperatureConverter as TemperatureConverter
 from prometheus_client.metrics import MetricWrapperBase as MetricWrapperBase
 from typing import Any
 
@@ -97,6 +97,7 @@ class PrometheusMetrics:
     def _handle_number(self, state: State) -> None: ...
     def _handle_device_tracker(self, state: State) -> None: ...
     def _handle_person(self, state: State) -> None: ...
+    def _handle_geo_location(self, state: State) -> None: ...
     def _handle_lock(self, state: State) -> None: ...
     def _handle_cover(self, state: State) -> None: ...
     def _handle_light(self, state: State) -> None: ...

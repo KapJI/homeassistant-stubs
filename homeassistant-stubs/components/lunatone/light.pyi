@@ -54,6 +54,8 @@ class LunatoneLineBroadcastLight(CoordinatorEntity[LunatoneInfoDataUpdateCoordin
     BRIGHTNESS_SCALE: Incomplete
     _attr_assumed_state: bool
     _attr_color_mode: Incomplete
+    _attr_has_entity_name: bool
+    _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
     _coordinator_devices: Incomplete
     _broadcast: Incomplete

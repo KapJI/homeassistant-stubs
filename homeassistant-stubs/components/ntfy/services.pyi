@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE
+from homeassistant.const import ATTR_ICON as ATTR_ICON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import service as service
 from homeassistant.helpers.selector import MediaSelector as MediaSelector
@@ -14,7 +15,6 @@ ATTR_CALL: str
 ATTR_CLICK: str
 ATTR_DELAY: str
 ATTR_EMAIL: str
-ATTR_ICON: str
 ATTR_MARKDOWN: str
 ATTR_PRIORITY: str
 ATTR_TAGS: str

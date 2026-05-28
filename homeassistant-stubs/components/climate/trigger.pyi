@@ -1,10 +1,9 @@
-import abc
 from .const import ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_HVAC_ACTION as ATTR_HVAC_ACTION, DOMAIN as DOMAIN, HVACAction as HVACAction, HVACMode as HVACMode
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_OPTIONS as CONF_OPTIONS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
-from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_FIRST_LAST as ENTITY_STATE_TRIGGER_SCHEMA_FIRST_LAST, EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateChangedTriggerWithUnitBase as EntityNumericalStateChangedTriggerWithUnitBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateCrossedThresholdTriggerWithUnitBase as EntityNumericalStateCrossedThresholdTriggerWithUnitBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityNumericalStateTriggerWithUnitBase as EntityNumericalStateTriggerWithUnitBase, EntityTargetStateTriggerBase as EntityTargetStateTriggerBase, Trigger as Trigger, TriggerConfig as TriggerConfig, make_entity_target_state_trigger as make_entity_target_state_trigger, make_entity_transition_trigger as make_entity_transition_trigger
+from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR as ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR, EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateChangedTriggerWithUnitBase as EntityNumericalStateChangedTriggerWithUnitBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateCrossedThresholdTriggerWithUnitBase as EntityNumericalStateCrossedThresholdTriggerWithUnitBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityNumericalStateTriggerWithUnitBase as EntityNumericalStateTriggerWithUnitBase, EntityTargetStateTriggerBase as EntityTargetStateTriggerBase, Trigger as Trigger, TriggerConfig as TriggerConfig, make_entity_target_state_trigger as make_entity_target_state_trigger, make_entity_transition_trigger as make_entity_transition_trigger
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 
 CONF_HVAC_MODE: str
@@ -16,7 +15,7 @@ class HVACModeChangedTrigger(EntityTargetStateTriggerBase):
     _to_states: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
 
-class _ClimateTargetTemperatureTriggerMixin(EntityNumericalStateTriggerWithUnitBase, metaclass=abc.ABCMeta):
+class _ClimateTargetTemperatureTriggerMixin(EntityNumericalStateTriggerWithUnitBase):
     _base_unit: Incomplete
     _domain_specs: Incomplete
     _unit_converter = TemperatureConverter
@@ -26,7 +25,7 @@ class _ClimateTargetTemperatureTriggerMixin(EntityNumericalStateTriggerWithUnitB
 class ClimateTargetTemperatureChangedTrigger(_ClimateTargetTemperatureTriggerMixin, EntityNumericalStateChangedTriggerWithUnitBase): ...
 class ClimateTargetTemperatureCrossedThresholdTrigger(_ClimateTargetTemperatureTriggerMixin, EntityNumericalStateCrossedThresholdTriggerWithUnitBase): ...
 
-class _ClimateTargetHumidityTriggerMixin(EntityNumericalStateTriggerBase, metaclass=abc.ABCMeta):
+class _ClimateTargetHumidityTriggerMixin(EntityNumericalStateTriggerBase):
     _domain_specs: Incomplete
     _valid_unit: str
     def _should_include(self, state: State) -> bool: ...

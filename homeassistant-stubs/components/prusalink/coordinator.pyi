@@ -7,12 +7,12 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterInfo, PrinterStatus, PrusaLink as PrusaLink
+from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterInfo, PrinterStatus, PrusaLink as PrusaLink, VersionInfo
 from typing import TypeVar
 
 _LOGGER: Incomplete
 _MINIMUM_REFRESH_INTERVAL: float
-T = TypeVar('T', PrinterStatus, LegacyPrinterStatus, JobInfo)
+T = TypeVar('T', bound=PrinterStatus | LegacyPrinterStatus | JobInfo | None | PrinterInfo | VersionInfo)
 type PrusaLinkConfigEntry = ConfigEntry[dict[str, PrusaLinkUpdateCoordinator]]
 
 class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.ABCMeta):
@@ -26,7 +26,7 @@ class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.AB
     async def _fetch_data(self) -> T: ...
     @callback
     def expect_change(self) -> None: ...
-    def _get_update_interval(self, data: T) -> timedelta: ...
+    def _get_update_interval(self, data: T | None) -> timedelta: ...
 
 class StatusCoordinator(PrusaLinkUpdateCoordinator[PrinterStatus]):
     async def _fetch_data(self) -> PrinterStatus: ...
@@ -34,8 +34,11 @@ class StatusCoordinator(PrusaLinkUpdateCoordinator[PrinterStatus]):
 class LegacyStatusCoordinator(PrusaLinkUpdateCoordinator[LegacyPrinterStatus]):
     async def _fetch_data(self) -> LegacyPrinterStatus: ...
 
-class JobUpdateCoordinator(PrusaLinkUpdateCoordinator[JobInfo]):
-    async def _fetch_data(self) -> JobInfo: ...
+class JobUpdateCoordinator(PrusaLinkUpdateCoordinator[JobInfo | None]):
+    async def _fetch_data(self) -> JobInfo | None: ...
 
 class InfoUpdateCoordinator(PrusaLinkUpdateCoordinator[PrinterInfo]):
     async def _fetch_data(self) -> PrinterInfo: ...
+
+class VersionUpdateCoordinator(PrusaLinkUpdateCoordinator[VersionInfo]):
+    async def _fetch_data(self) -> VersionInfo: ...

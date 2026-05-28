@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 def _enum_options(value: type[IntOrTypeEnum]) -> list[str]: ...
 def _enum_value(value: IntOrTypeEnum | None) -> str | None: ...

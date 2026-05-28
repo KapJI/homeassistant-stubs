@@ -17,7 +17,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_
 class FritzGuestWifiQRImage(FritzBoxBaseEntity, ImageEntity):
     _attr_content_type: str
     _attr_entity_category: Incomplete
-    _attr_has_entity_name: bool
     _attr_should_poll: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

@@ -1,5 +1,6 @@
 from .const import CONF_DEVICE_TYPE as CONF_DEVICE_TYPE, DOMAIN as DOMAIN
 from govee_ble import GoveeBluetoothDeviceData as DeviceData
+from homeassistant.components import bluetooth as bluetooth
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_discovered_service_info as async_discovered_service_info
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS

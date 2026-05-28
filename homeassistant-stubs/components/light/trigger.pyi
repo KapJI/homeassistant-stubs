@@ -1,4 +1,3 @@
-import abc
 from . import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
@@ -9,7 +8,7 @@ from homeassistant.helpers.trigger import EntityNumericalStateChangedTriggerBase
 
 BRIGHTNESS_DOMAIN_SPECS: Incomplete
 
-class BrightnessTriggerMixin(EntityNumericalStateTriggerBase, metaclass=abc.ABCMeta):
+class BrightnessTriggerMixin(EntityNumericalStateTriggerBase):
     _domain_specs = BRIGHTNESS_DOMAIN_SPECS
     _valid_unit: str
     def _get_tracked_value(self, state: State) -> float | None: ...

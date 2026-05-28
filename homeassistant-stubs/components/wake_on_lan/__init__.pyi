@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_SECUREON_PASSWORD as CONF_SECUREON_PASSWORD, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_BROADCAST_ADDRESS as CONF_BROADCAST_ADDRESS, CONF_BROADCAST_PORT as CONF_BROADCAST_PORT, CONF_MAC as CONF_MAC

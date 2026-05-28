@@ -1,6 +1,7 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_COVER as NETATMO_CREATE_COVER
 from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoModuleEntity as NetatmoModuleEntity
+from .helper import device_type_to_str as device_type_to_str
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

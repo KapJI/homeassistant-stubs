@@ -1,4 +1,4 @@
-from .const import PLATFORMS as PLATFORMS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import UptimeRobotConfigEntry as UptimeRobotConfigEntry, UptimeRobotDataUpdateCoordinator as UptimeRobotDataUpdateCoordinator
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY
 from homeassistant.core import HomeAssistant as HomeAssistant

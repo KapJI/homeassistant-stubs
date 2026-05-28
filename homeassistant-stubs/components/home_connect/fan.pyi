@@ -8,6 +8,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
+_FAN_SPEED_PERCENTAGE_KEY: Incomplete
+_FAN_SPEED_MODE_KEY: Incomplete
 FAN_SPEED_MODE_OPTIONS: Incomplete
 FAN_SPEED_MODE_OPTIONS_INVERTED: Incomplete
 AIR_CONDITIONER_ENTITY_DESCRIPTION: Incomplete

@@ -25,6 +25,7 @@ class FritzDeviceBase(CoordinatorEntity[AvmWrapper]):
     async def async_process_update(self) -> None: ...
 
 class FritzBoxBaseEntity:
+    _attr_has_entity_name: bool
     _avm_wrapper: Incomplete
     _device_name: Incomplete
     mac_address: Incomplete

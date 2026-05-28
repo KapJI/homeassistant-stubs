@@ -1,6 +1,5 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
-from .const import DOMAIN as DOMAIN
 from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
@@ -45,8 +44,6 @@ class UnifiTrackerEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](Uni
 
 ENTITY_DESCRIPTIONS: tuple[UnifiTrackerEntityDescription, ...]
 
-@callback
-def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class UnifiScannerEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], ScannerEntity):

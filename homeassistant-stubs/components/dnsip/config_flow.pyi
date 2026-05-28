@@ -1,12 +1,12 @@
-from .const import CONF_HOSTNAME as CONF_HOSTNAME, CONF_IPV4 as CONF_IPV4, CONF_IPV6 as CONF_IPV6, CONF_IPV6_V4 as CONF_IPV6_V4, CONF_PORT_IPV6 as CONF_PORT_IPV6, CONF_RESOLVER as CONF_RESOLVER, CONF_RESOLVER_IPV6 as CONF_RESOLVER_IPV6, DEFAULT_HOSTNAME as DEFAULT_HOSTNAME, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_RESOLVER as DEFAULT_RESOLVER, DEFAULT_RESOLVER_IPV6 as DEFAULT_RESOLVER_IPV6, DOMAIN as DOMAIN
+from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_HOSTNAME as CONF_HOSTNAME, CONF_IPV4 as CONF_IPV4, CONF_IPV6 as CONF_IPV6, CONF_IPV6_V4 as CONF_IPV6_V4, CONF_PORT_IPV6 as CONF_PORT_IPV6, CONF_RESOLVER as CONF_RESOLVER, CONF_RESOLVER_IPV6 as CONF_RESOLVER_IPV6, DEFAULT_HOSTNAME as DEFAULT_HOSTNAME, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_RESOLVER as DEFAULT_RESOLVER, DEFAULT_RESOLVER_IPV6 as DEFAULT_RESOLVER_IPV6, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
+from homeassistant.data_entry_flow import SectionConfig as SectionConfig, section as section
 from typing import Any
 
 DATA_SCHEMA: Incomplete
-DATA_SCHEMA_ADV: Incomplete
 
 async def async_validate_hostname(hostname: str, resolver_ipv4: str, resolver_ipv6: str, port: int, port_ipv6: int) -> dict[str, bool]: ...
 

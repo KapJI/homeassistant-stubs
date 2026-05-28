@@ -147,6 +147,7 @@ CONF_MODEL_ID: Final[str]
 CONF_MONITORED_CONDITIONS: Final[str]
 CONF_MONITORED_VARIABLES: Final[str]
 CONF_NAME: Final[str]
+CONF_NOTE: Final[str]
 CONF_OFFSET: Final[str]
 CONF_OPTIMISTIC: Final[str]
 CONF_OPTIONS: Final[str]
@@ -664,7 +665,6 @@ WEEKDAYS: Final[list[str]]
 PRECISION_WHOLE: Final[int]
 PRECISION_HALVES: Final[float]
 PRECISION_TENTHS: Final[float]
-CLOUD_NEVER_EXPOSED_ENTITIES: Final[list[str]]
 
 class EntityCategory(StrEnum):
     CONFIG = 'config'

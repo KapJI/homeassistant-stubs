@@ -4,6 +4,7 @@ from .coordinator import IronOSLiveDataCoordinator as IronOSLiveDataCoordinator
 from .entity import IronOSBaseEntity as IronOSBaseEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from datetime import datetime
 from enum import StrEnum
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
@@ -32,7 +33,7 @@ class PinecilSensor(StrEnum):
 
 @dataclass(frozen=True, kw_only=True)
 class IronOSSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[LiveDataResponse, bool], StateType]
+    value_fn: Callable[[LiveDataResponse, bool], StateType | datetime]
 
 PINECIL_SENSOR_DESCRIPTIONS: tuple[IronOSSensorEntityDescription, ...]
 
@@ -42,4 +43,4 @@ class IronOSSensorEntity(IronOSBaseEntity, SensorEntity):
     entity_description: IronOSSensorEntityDescription
     coordinator: IronOSLiveDataCoordinator
     @property
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> StateType | datetime: ...

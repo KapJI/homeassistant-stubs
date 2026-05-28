@@ -63,6 +63,7 @@ class BLEScannerMode(StrEnum):
     DISABLED = 'disabled'
     ACTIVE = 'active'
     PASSIVE = 'passive'
+    AUTO = 'auto'
 
 BLE_SCANNER_MIN_FIRMWARE: str
 MAX_PUSH_UPDATE_FAILURES: int
@@ -109,3 +110,4 @@ ROLE_GENERIC: str
 TRV_CHANNEL: int
 ATTR_KEY: str
 ATTR_VALUE: str
+DRIVER_MISSING_ERROR: str

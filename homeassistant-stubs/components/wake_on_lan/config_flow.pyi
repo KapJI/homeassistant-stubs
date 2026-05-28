@@ -1,4 +1,4 @@
-from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
+from .const import CONF_SECUREON_PASSWORD as CONF_SECUREON_PASSWORD, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.const import CONF_BROADCAST_ADDRESS as CONF_BROADCAST_ADDRESS, CONF_BROADCAST_PORT as CONF_BROADCAST_PORT, CONF_MAC as CONF_MAC

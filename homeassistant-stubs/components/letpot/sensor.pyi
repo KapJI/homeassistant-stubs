@@ -8,24 +8,24 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTemperature as U
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus
+from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus, LetPotGardenStatus
 
 PARALLEL_UPDATES: int
 LETPOT_TEMPERATURE_UNIT_HA_UNIT: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
-class LetPotSensorEntityDescription(LetPotEntityDescription, SensorEntityDescription):
-    native_unit_of_measurement_fn: Callable[[LetPotDeviceStatus], str | None]
-    value_fn: Callable[[LetPotDeviceStatus], StateType]
+class LetPotSensorEntityDescription[_DataT: LetPotDeviceStatus](LetPotEntityDescription, SensorEntityDescription):
+    native_unit_of_measurement_fn: Callable[[_DataT], str | None]
+    value_fn: Callable[[_DataT], StateType]
 
-SENSORS: tuple[LetPotSensorEntityDescription, ...]
+SENSORS: tuple[LetPotSensorEntityDescription[LetPotGardenStatus], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LetPotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class LetPotSensorEntity(LetPotEntity, SensorEntity):
-    entity_description: LetPotSensorEntityDescription
+class LetPotSensorEntity[_DataT: LetPotDeviceStatus](LetPotEntity[_DataT], SensorEntity):
+    entity_description: LetPotSensorEntityDescription[_DataT]
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: LetPotDeviceCoordinator, description: LetPotSensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT], description: LetPotSensorEntityDescription[_DataT]) -> None: ...
     @property
     def native_unit_of_measurement(self) -> str | None: ...
     @property

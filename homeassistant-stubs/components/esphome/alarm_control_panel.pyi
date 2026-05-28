@@ -1,20 +1,13 @@
 from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
-from aioesphomeapi import APIIntEnum, AlarmControlPanelEntityState as ESPHomeAlarmControlPanelEntityState, AlarmControlPanelInfo, AlarmControlPanelState as ESPHomeAlarmControlPanelState, EntityInfo as EntityInfo
+from aioesphomeapi import AlarmControlPanelEntityFeature as ESPHomeAlarmControlPanelEntityFeature, AlarmControlPanelEntityState as ESPHomeAlarmControlPanelEntityState, AlarmControlPanelInfo, AlarmControlPanelState as ESPHomeAlarmControlPanelState, EntityInfo as EntityInfo
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.core import callback as callback
 
 PARALLEL_UPDATES: int
 _ESPHOME_ACP_STATE_TO_HASS_STATE: EsphomeEnumMapper[ESPHomeAlarmControlPanelState, AlarmControlPanelState]
-
-class EspHomeACPFeatures(APIIntEnum):
-    ARM_HOME: int
-    ARM_AWAY: int
-    ARM_NIGHT: int
-    TRIGGER: int
-    ARM_CUSTOM_BYPASS: int
-    ARM_VACATION: int
+_FEATURES: dict[ESPHomeAlarmControlPanelEntityFeature, AlarmControlPanelEntityFeature]
 
 class EsphomeAlarmControlPanel(EsphomeEntity[AlarmControlPanelInfo, ESPHomeAlarmControlPanelEntityState], AlarmControlPanelEntity):
     _attr_supported_features: Incomplete

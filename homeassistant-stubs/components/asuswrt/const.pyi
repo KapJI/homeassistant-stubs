@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 DOMAIN: str
 CONF_DNSMASQ: str
 CONF_INTERFACE: str
+CONF_MORE_OPTIONS: str
 CONF_REQUIRE_IP: str
 CONF_SSH_KEY: str
 CONF_TRACK_UNKNOWN: str

@@ -5,7 +5,6 @@ from collections.abc import Callable as Callable, Mapping
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import CLOUD_NEVER_EXPOSED_ENTITIES as CLOUD_NEVER_EXPOSED_ENTITIES
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er

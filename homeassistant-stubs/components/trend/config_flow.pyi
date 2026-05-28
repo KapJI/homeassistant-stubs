@@ -7,6 +7,8 @@ from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
 from typing import Any
 
+ALLOWED_DOMAINS: Incomplete
+
 async def get_base_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
 async def get_extended_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
 

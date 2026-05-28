@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
+from matter_ble_proxy import MatterBleProxy as MatterBleProxy
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint, MatterNode as MatterNode
 from matter_server.common.models import ServerInfoMessage as ServerInfoMessage
 
@@ -15,6 +16,7 @@ class MissingNode(HomeAssistantError): ...
 class MatterEntryData:
     adapter: MatterAdapter
     listen_task: asyncio.Task
+    ble_proxy: MatterBleProxy | None = ...
 type MatterConfigEntry = ConfigEntry[MatterEntryData]
 
 @callback

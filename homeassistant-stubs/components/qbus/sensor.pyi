@@ -2,7 +2,8 @@ from .coordinator import QbusConfigEntry as QbusConfigEntry
 from .entity import QbusEntity as QbusEntity, create_new_entities as create_new_entities, determine_new_outputs as determine_new_outputs
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from enum import StrEnum
+from homeassistant.components.sensor import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -14,6 +15,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class QbusWeatherDescription(SensorEntityDescription):
     property: str
+    scale_factor: int | None = ...
 
 _WEATHER_DESCRIPTIONS: Incomplete
 _GAUGE_VARIANT_DESCRIPTIONS: Incomplete
@@ -27,9 +29,11 @@ class QbusGaugeVariantSensor(QbusEntity, SensorEntity):
     _attr_name: Incomplete
     _attr_suggested_display_precision: int
     entity_description: Incomplete
+    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...
     _attr_native_value: Incomplete
     async def _handle_state_received(self, state: QbusMqttGaugeState) -> None: ...
+    def _find_matching_unit(self, unit: str | None, allowed_units: set[type[StrEnum] | str | None] | None) -> str | None: ...
 
 class QbusHumiditySensor(QbusEntity, SensorEntity):
     _state_cls = QbusMqttHumidityState

@@ -21,4 +21,6 @@ class MatterBinarySensor(MatterEntity, BinarySensorEntity):
     @callback
     def _update_from_device(self) -> None: ...
 
+_PUMP_STATUS: Incomplete
+_VALVE_FAULT: Incomplete
 DISCOVERY_SCHEMAS: Incomplete

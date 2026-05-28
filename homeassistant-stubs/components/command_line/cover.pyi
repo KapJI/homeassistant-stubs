@@ -1,6 +1,6 @@
 import asyncio
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
-from .utils import async_call_shell_with_timeout as async_call_shell_with_timeout, async_check_output_or_log as async_check_output_or_log
+from .utils import async_call_shell_with_timeout as async_call_shell_with_timeout, async_check_output_or_log as async_check_output_or_log, create_platform_yaml_not_supported_issue as create_platform_yaml_not_supported_issue
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from homeassistant.components.cover import CoverEntity as CoverEntity

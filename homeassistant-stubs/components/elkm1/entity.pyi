@@ -13,6 +13,7 @@ from typing import Any
 _LOGGER: Incomplete
 
 def create_elk_entities(elk_data: ELKM1Data, elk_elements: Iterable[Element], element_type: str, class_: Any, entities: list[ElkEntity]) -> list[ElkEntity] | None: ...
+def generate_unique_id(prefix: str, element: Element) -> str: ...
 
 class ElkEntity(Entity):
     _attr_has_entity_name: bool

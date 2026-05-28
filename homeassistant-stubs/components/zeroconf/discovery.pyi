@@ -4,6 +4,7 @@ from .models import HaZeroconf as HaZeroconf
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
+from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.discovery_flow import DiscoveryKey as DiscoveryKey
@@ -22,8 +23,6 @@ _HOMEKIT_MODEL_SPLITS: Incomplete
 HOMEKIT_PAIRED_STATUS_FLAG: str
 HOMEKIT_MODEL_LOWER: str
 HOMEKIT_MODEL_UPPER: str
-ATTR_DOMAIN: Final[str]
-ATTR_NAME: Final[str]
 ATTR_PROPERTIES: Final[str]
 DUPLICATE_INSTANCE_ID_ISSUE_ID: str
 

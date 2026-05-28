@@ -1,5 +1,6 @@
+from _typeshed import Incomplete
+
 DOMAIN: str
-OPNSENSE_DATA = DOMAIN
 CONF_API_SECRET: str
-CONF_INTERFACE_CLIENT: str
 CONF_TRACKER_INTERFACES: str
+SCAN_INTERVAL: Incomplete

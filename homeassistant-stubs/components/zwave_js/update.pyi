@@ -1,5 +1,5 @@
 from .const import API_KEY_FIRMWARE_UPDATE_SERVICE as API_KEY_FIRMWARE_UPDATE_SERVICE, DOMAIN as DOMAIN, LOGGER as LOGGER
-from .helpers import get_device_info as get_device_info, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .entity import ZWaveNodeBaseEntity as ZWaveNodeBaseEntity
 from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
@@ -41,15 +41,12 @@ class ZWaveFirmwareUpdateExtraStoredData(ExtraStoredData):
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class ZWaveFirmwareUpdateEntity(UpdateEntity):
-    driver: Driver
+class ZWaveFirmwareUpdateEntity(ZWaveNodeBaseEntity, UpdateEntity):
     entity_description: ZWaveUpdateEntityDescription
-    node: ZwaveNode
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
-    _attr_has_entity_name: bool
-    _attr_should_poll: bool
+    _remove_on_reinterview: bool
     _latest_version_firmware: FirmwareUpdateInfo | None
     _poll_unsub: Callable[[], None] | None
     _progress_unsub: Callable[[], None] | None
@@ -58,10 +55,8 @@ class ZWaveFirmwareUpdateEntity(UpdateEntity):
     _result: FirmwareUpdateResult | None
     _delay: Final[timedelta]
     _attr_name: str
-    _base_unique_id: Incomplete
     _attr_unique_id: Incomplete
     _attr_installed_version: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, driver: Driver, node: ZwaveNode, delay: timedelta, entity_description: ZWaveUpdateEntityDescription) -> None: ...
     @property
     def extra_restore_state_data(self) -> ZWaveFirmwareUpdateExtraStoredData: ...
@@ -77,6 +72,5 @@ class ZWaveFirmwareUpdateEntity(UpdateEntity):
     async def _async_update(self, _: HomeAssistant | datetime | None = None) -> None: ...
     async def async_release_notes(self) -> str | None: ...
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
-    async def async_poll_value(self, _: bool) -> None: ...
     async def async_added_to_hass(self) -> None: ...
     async def async_will_remove_from_hass(self) -> None: ...

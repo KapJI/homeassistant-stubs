@@ -1,4 +1,4 @@
-from .coordinator import LetPotConfigEntry as LetPotConfigEntry, LetPotDeviceCoordinator as LetPotDeviceCoordinator
+from .coordinator import LetPotConfigEntry as LetPotConfigEntry, LetPotDeviceCoordinator as LetPotDeviceCoordinator, LetPotGardenStatus as LetPotGardenStatus
 from .entity import LetPotEntity as LetPotEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
@@ -15,18 +15,18 @@ from typing import Any
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class LetPotTimeEntityDescription(TimeEntityDescription):
-    value_fn: Callable[[LetPotDeviceStatus], time | None]
+class LetPotTimeEntityDescription[_DataT: LetPotDeviceStatus](TimeEntityDescription):
+    value_fn: Callable[[_DataT], time | None]
     set_value_fn: Callable[[LetPotDeviceClient, str, time], Coroutine[Any, Any, None]]
 
-TIME_SENSORS: tuple[LetPotTimeEntityDescription, ...]
+TIME_SENSORS: tuple[LetPotTimeEntityDescription[LetPotGardenStatus], ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: LetPotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class LetPotTimeEntity(LetPotEntity, TimeEntity):
-    entity_description: LetPotTimeEntityDescription
+class LetPotTimeEntity[_DataT: LetPotDeviceStatus](LetPotEntity[_DataT], TimeEntity):
+    entity_description: LetPotTimeEntityDescription[_DataT]
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: LetPotDeviceCoordinator, description: LetPotTimeEntityDescription) -> None: ...
+    def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT], description: LetPotTimeEntityDescription[_DataT]) -> None: ...
     @property
     def native_value(self) -> time | None: ...
     @exception_handler

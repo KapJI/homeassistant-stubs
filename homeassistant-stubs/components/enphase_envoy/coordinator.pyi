@@ -1,5 +1,5 @@
 import datetime
-from .const import DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS
+from .const import DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS, OPERATIONAL_RETRY_TIMEOUT as OPERATIONAL_RETRY_TIMEOUT, SETUP_RETRY_TIMEOUT as SETUP_RETRY_TIMEOUT
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -30,6 +30,7 @@ class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     username: Incomplete
     password: Incomplete
     _setup_complete: bool
+    _operational_timeout: bool
     _cancel_token_refresh: CALLBACK_TYPE | None
     _cancel_firmware_refresh: CALLBACK_TYPE | None
     _cancel_mac_verification: CALLBACK_TYPE | None

@@ -1,14 +1,12 @@
 from . import VivotekConfigEntry as VivotekConfigEntry
-from .const import CONF_FRAMERATE as CONF_FRAMERATE, CONF_SECURITY_LEVEL as CONF_SECURITY_LEVEL, CONF_STREAM_PATH as CONF_STREAM_PATH, DOMAIN as DOMAIN, INTEGRATION_TITLE as INTEGRATION_TITLE
+from .const import CONF_FRAMERATE as CONF_FRAMERATE, CONF_STREAM_PATH as CONF_STREAM_PATH, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
-from homeassistant.config_entries import SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, HTTP_BASIC_AUTHENTICATION as HTTP_BASIC_AUTHENTICATION, HTTP_DIGEST_AUTHENTICATION as HTTP_DIGEST_AUTHENTICATION
+from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.data_entry_flow import FlowResultType as FlowResultType
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from libpyvivotek.vivotek import VivotekCamera as VivotekCamera
+from typing import Final
 
 _LOGGER: Incomplete
 DEFAULT_CAMERA_BRAND: str
@@ -17,9 +15,8 @@ DEFAULT_EVENT_0_KEY: str
 DEFAULT_FRAMERATE: int
 DEFAULT_SECURITY_LEVEL: str
 DEFAULT_STREAM_SOURCE: str
-PLATFORM_SCHEMA: Incomplete
+PLATFORM_SCHEMA: Final[Incomplete]
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: VivotekConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VivotekCam(Camera):

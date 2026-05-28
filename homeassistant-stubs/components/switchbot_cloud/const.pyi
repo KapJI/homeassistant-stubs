@@ -1,5 +1,7 @@
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from enum import Enum
+from homeassistant.const import Platform as Platform
 from typing import Final
 
 DOMAIN: Final[str]
@@ -50,3 +52,10 @@ class SwitchbotCloudDeviceLockState(Enum):
     def get_states(cls) -> list[SwitchbotCloudDeviceLockState]: ...
     @classmethod
     def get_values(cls) -> list[str]: ...
+
+@dataclass(frozen=True)
+class SwitchbotCloudDeviceConfig:
+    webhook: bool
+    entity_config: tuple[Platform, ...]
+
+DEVICE_SUPPORT_MAP: Final[dict[str, SwitchbotCloudDeviceConfig]]

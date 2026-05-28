@@ -1,5 +1,5 @@
 from . import OverkizDataConfigEntry as OverkizDataConfigEntry
-from .const import LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinator
 from .entity import OverkizDescriptiveEntity as OverkizDescriptiveEntity
 from _typeshed import Incomplete
@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityDescription as CoverEntityDescription, CoverEntityFeature as CoverEntityFeature
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyoverkiz.enums import OverkizCommand, OverkizState
 from pyoverkiz.types import StateType as OverkizStateType
@@ -54,6 +55,7 @@ class OverkizCover(OverkizDescriptiveEntity, CoverEntity):
     @property
     def current_cover_tilt_position(self) -> int | None: ...
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
+    async def async_set_cover_position_and_tilt(self, **kwargs: Any) -> None: ...
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
     async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...

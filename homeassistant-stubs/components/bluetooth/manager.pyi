@@ -1,4 +1,4 @@
-from .const import CONF_SOURCE as CONF_SOURCE, CONF_SOURCE_CONFIG_ENTRY_ID as CONF_SOURCE_CONFIG_ENTRY_ID, CONF_SOURCE_DEVICE_ID as CONF_SOURCE_DEVICE_ID, CONF_SOURCE_DOMAIN as CONF_SOURCE_DOMAIN, CONF_SOURCE_MODEL as CONF_SOURCE_MODEL, DOMAIN as DOMAIN
+from .const import CONF_SOURCE_CONFIG_ENTRY_ID as CONF_SOURCE_CONFIG_ENTRY_ID, CONF_SOURCE_DEVICE_ID as CONF_SOURCE_DEVICE_ID, CONF_SOURCE_DOMAIN as CONF_SOURCE_DOMAIN, CONF_SOURCE_MODEL as CONF_SOURCE_MODEL, DOMAIN as DOMAIN
 from .match import ADDRESS as ADDRESS, BluetoothCallbackMatcher as BluetoothCallbackMatcher, BluetoothCallbackMatcherIndex as BluetoothCallbackMatcherIndex, BluetoothCallbackMatcherWithCallback as BluetoothCallbackMatcherWithCallback, CALLBACK as CALLBACK, CONNECTABLE as CONNECTABLE, IntegrationMatcher as IntegrationMatcher, ble_device_matches as ble_device_matches
 from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from .storage import BluetoothStorage as BluetoothStorage
@@ -7,9 +7,9 @@ from _typeshed import Incomplete
 from bleak_retry_connector import BleakSlotManager as BleakSlotManager
 from bluetooth_adapters import BluetoothAdapters as BluetoothAdapters
 from collections.abc import Callable as Callable
-from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothManager, HaScanner
+from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothManager, BluetoothScanningMode, HaScanner
 from homeassistant import config_entries as config_entries
-from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
+from homeassistant.const import CONF_SOURCE as CONF_SOURCE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EVENT_LOGGING_CHANGED as EVENT_LOGGING_CHANGED
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as hass_callback
 from homeassistant.helpers import discovery_flow as discovery_flow
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -36,7 +36,7 @@ class HomeAssistantBluetoothManager(BluetoothManager):
     def _discover_service_info(self, service_info: BluetoothServiceInfoBleak) -> None: ...
     def _address_disappeared(self, address: str) -> None: ...
     async def async_setup(self) -> None: ...
-    def async_register_callback(self, callback: BluetoothCallback, matcher: BluetoothCallbackMatcher | None) -> Callable[[], None]: ...
+    def async_register_callback(self, callback: BluetoothCallback, matcher: BluetoothCallbackMatcher | None, mode: BluetoothScanningMode = ..., scan_interval: float | None = None, scan_duration: float | None = None) -> Callable[[], None]: ...
     @hass_callback
     def async_stop(self, event: Event | None = None) -> None: ...
     def _async_save_scanner_histories(self) -> None: ...

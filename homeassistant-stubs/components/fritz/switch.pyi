@@ -48,42 +48,28 @@ class FritzBoxBaseCoordinatorSwitch(CoordinatorEntity[AvmWrapper], SwitchEntity)
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class FritzBoxBaseSwitch(FritzBoxBaseEntity, SwitchEntity):
-    _description: Incomplete
-    _friendly_name: Incomplete
-    _icon: Incomplete
     _type: Incomplete
     _update: Incomplete
     _switch: Incomplete
+    _attr_icon: Incomplete
     _attr_is_on: Incomplete
-    _name: Incomplete
-    _unique_id: Incomplete
-    _attributes: dict[str, str | None]
-    _is_available: bool
+    _attr_name: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_extra_state_attributes: dict[str, Any | None]
+    _attr_available: bool
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, switch_info: SwitchInfo) -> None: ...
-    @property
-    def name(self) -> str: ...
-    @property
-    def icon(self) -> str: ...
-    @property
-    def unique_id(self) -> str: ...
-    @property
-    def available(self) -> bool: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, str | None]: ...
     async def async_update(self) -> None: ...
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
 
 class FritzBoxPortSwitch(FritzBoxBaseSwitch):
-    _avm_wrapper: Incomplete
-    _attributes: Incomplete
     connection_type: Incomplete
     port_mapping: Incomplete
     _idx: Incomplete
     _attr_entity_category: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, port_mapping: dict[str, Any], port_name: str, idx: int, connection_type: str) -> None: ...
-    _is_available: bool
+    _attr_available: bool
     _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...
     async def _async_switch_on_off_executor(self, turn_on: bool) -> None: ...
@@ -117,15 +103,13 @@ class FritzBoxProfileSwitch(FritzBoxBaseCoordinatorSwitch):
     async def _async_handle_turn_on_off(self, turn_on: bool) -> None: ...
 
 class FritzBoxWifiSwitch(FritzBoxBaseSwitch):
-    _avm_wrapper: Incomplete
     _wifi_info: Incomplete
-    _attributes: Incomplete
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     _network_num: Incomplete
     _attr_translation_key: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, network_num: int, network_data: dict[str, Any]) -> None: ...
-    _is_available: bool
+    _attr_available: bool
     _attr_is_on: Incomplete
     async def _async_fetch_update(self) -> None: ...
     async def _async_switch_on_off_executor(self, turn_on: bool) -> None: ...

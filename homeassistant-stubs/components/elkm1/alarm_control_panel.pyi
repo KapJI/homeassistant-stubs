@@ -7,6 +7,7 @@ from elkm1_lib.areas import Area as Area
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
 from homeassistant.components.alarm_control_panel import ATTR_CHANGED_BY as ATTR_CHANGED_BY, AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
+from homeassistant.const import SERVICE_ALARM_ARM_VACATION as SERVICE_ALARM_ARM_VACATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -16,7 +17,6 @@ from typing import Any
 
 DISPLAY_MESSAGE_SERVICE_SCHEMA: VolDictType
 SERVICE_ALARM_DISPLAY_MESSAGE: str
-SERVICE_ALARM_ARM_VACATION: str
 SERVICE_ALARM_ARM_HOME_INSTANT: str
 SERVICE_ALARM_ARM_NIGHT_INSTANT: str
 SERVICE_ALARM_BYPASS: str

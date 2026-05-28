@@ -64,7 +64,6 @@ class FritzDevice:
 
 class SwitchInfo(TypedDict):
     description: str
-    friendly_name: str
     icon: str
     type: str
     callback_update: Callable

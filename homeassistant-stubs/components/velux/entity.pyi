@@ -5,12 +5,11 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from pyvlx import Node as Node
-from typing import Any, ParamSpec
+from typing import Any
 
 _LOGGER: Incomplete
-P = ParamSpec('P')
 
-def wrap_pyvlx_call_exceptions(func: Callable[P, Coroutine[Any, Any, None]]) -> Callable[P, Coroutine[Any, Any, None]]: ...
+def wrap_pyvlx_call_exceptions[**P](func: Callable[P, Coroutine[Any, Any, None]]) -> Callable[P, Coroutine[Any, Any, None]]: ...
 
 class VeluxEntity(Entity):
     _attr_should_poll: bool

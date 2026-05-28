@@ -1,6 +1,7 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_BUTTON as NETATMO_CREATE_BUTTON
 from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoModuleEntity as NetatmoModuleEntity
+from .helper import device_type_to_str as device_type_to_str
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

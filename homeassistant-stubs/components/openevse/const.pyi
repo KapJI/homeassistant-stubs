@@ -1,4 +1,3 @@
-CONF_ID: str
 CONF_SERIAL: str
 DOMAIN: str
 INTEGRATION_TITLE: str

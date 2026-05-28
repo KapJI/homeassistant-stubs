@@ -5,7 +5,6 @@ from _typeshed import Incomplete
 from datetime import datetime
 from holidays import HolidayBase as HolidayBase
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
-from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from typing import Final

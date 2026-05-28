@@ -1,6 +1,7 @@
 import asyncio
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
 from .sensor import CommandSensorData as CommandSensorData
+from .utils import create_platform_yaml_not_supported_issue as create_platform_yaml_not_supported_issue
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity

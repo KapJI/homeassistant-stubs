@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from switchbot_api import Commands as Commands, Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI

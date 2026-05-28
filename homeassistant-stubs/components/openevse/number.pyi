@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import OpenEVSEConfigEntry as OpenEVSEConfigEntry, OpenEVSEDataUpdateCoordinator as OpenEVSEDataUpdateCoordinator
+from .helpers import openevse_exception_handler as openevse_exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass

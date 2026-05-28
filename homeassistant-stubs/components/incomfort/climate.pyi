@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from incomfortclient import Heater as InComfortHeater, Room as InComfortRoom
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -29,12 +29,18 @@ class InComfortClimate(IncomfortEntity, ClimateEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: InComfortDataCoordinator, heater: InComfortHeater, room: InComfortRoom, legacy_setpoint_status: bool) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN, EVENT_METADATA_UPDATED as EVENT_METADATA_UPDATED, EVENT_VALUE_ADDED as EVENT_VALUE_ADDED, EVENT_VALUE_REMOVED as EVENT_VALUE_REMOVED, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER
 from .discovery_data_template import BaseDiscoverySchemaDataTemplate as BaseDiscoverySchemaDataTemplate
-from .helpers import get_device_id as get_device_id, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
+from .helpers import get_device_id as get_device_id, get_device_info as get_device_info, get_unique_id as get_unique_id, get_valueless_base_unique_id as get_valueless_base_unique_id
 from .models import PlatformZwaveDiscoveryInfo as PlatformZwaveDiscoveryInfo, ZwaveDiscoveryInfo as ZwaveDiscoveryInfo, ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Sequence
@@ -13,6 +13,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import Any
 from zwave_js_server.model.driver import Driver as Driver
+from zwave_js_server.model.node import Node as ZwaveNode
 from zwave_js_server.model.value import SetValueResult as SetValueResult, Value as ZwaveValue
 
 @dataclass(kw_only=True)
@@ -60,3 +61,15 @@ class ZWaveBaseEntity(Entity):
     @callback
     def get_zwave_value(self, value_property: str | int, command_class: int | None = None, endpoint: int | None = None, value_property_key: int | str | None = None, add_to_watched_value_ids: bool = True, check_all_endpoints: bool = False) -> ZwaveValue | None: ...
     async def _async_set_value(self, value: ZwaveValue, new_value: Any, options: dict | None = None, wait_for_result: bool | None = None) -> SetValueResult | None: ...
+
+class ZWaveNodeBaseEntity(Entity):
+    _attr_has_entity_name: bool
+    _attr_should_poll: bool
+    _remove_on_reinterview: bool
+    driver: Incomplete
+    node: Incomplete
+    _base_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, driver: Driver, node: ZwaveNode) -> None: ...
+    async def async_poll_value(self, _: bool) -> None: ...
+    async def async_added_to_hass(self) -> None: ...

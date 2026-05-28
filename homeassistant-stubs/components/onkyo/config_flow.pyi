@@ -5,7 +5,7 @@ from .util import get_meaning as get_meaning
 from _typeshed import Incomplete
 from aioonkyo import ReceiverInfo as ReceiverInfo
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
-from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import section as section
 from homeassistant.helpers.selector import NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, Selector as Selector, TextSelector as TextSelector
@@ -13,7 +13,6 @@ from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServi
 from typing import Any
 
 _LOGGER: Incomplete
-CONF_DEVICE: str
 INPUT_SOURCES_DEFAULT: list[InputSource]
 LISTENING_MODES_DEFAULT: list[ListeningMode]
 INPUT_SOURCES_ALL_MEANINGS: Incomplete

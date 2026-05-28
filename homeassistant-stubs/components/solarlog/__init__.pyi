@@ -1,4 +1,4 @@
-from .const import CONF_HAS_PWD as CONF_HAS_PWD
+from .const import CONF_HAS_PWD as CONF_HAS_PWD, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT
 from .coordinator import SolarLogBasicDataCoordinator as SolarLogBasicDataCoordinator, SolarLogDeviceDataCoordinator as SolarLogDeviceDataCoordinator, SolarLogLongtimeDataCoordinator as SolarLogLongtimeDataCoordinator, SolarlogConfigEntry as SolarlogConfigEntry
 from .models import SolarlogIntegrationData as SolarlogIntegrationData
 from _typeshed import Incomplete

@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError, TemplateError as TemplateError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError
 from homeassistant.helpers import template as template
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
@@ -24,6 +24,19 @@ from typing import Any, TypedDict
 class PayloadSentinel(StrEnum):
     NONE = 'none'
     DEFAULT = 'default'
+
+MAX_28BIT: int
+
+class SubscriptionID:
+    _next_id: int
+    _used_ids: set[int]
+    _available_ids: set[int]
+    _registered_subscriptions: dict[str, int]
+    def __init__(self) -> None: ...
+    def _generate(self, topic: str) -> int: ...
+    def get_subscription_id(self, topic: str) -> int: ...
+    def get_or_generate(self, topic: str) -> int: ...
+    def release(self, topic: str) -> None: ...
 
 _LOGGER: Incomplete
 ATTR_THIS: str
@@ -132,6 +145,7 @@ class MqttData:
     state_write_requests: EntityTopicState = field(default_factory=EntityTopicState)
     subscriptions_to_restore: set[Subscription] = field(default_factory=set)
     tags: dict[str, dict[str, MQTTTagScanner]] = field(default_factory=dict)
+    subscription_id_generator: SubscriptionID = field(default_factory=SubscriptionID)
 
 @dataclass(slots=True)
 class MqttComponentConfig:
@@ -140,8 +154,15 @@ class MqttComponentConfig:
     node_id: str | None
     discovery_payload: MQTTDiscoveryPayload
 
+class MessageExpiryInterval(TypedDict, total=False):
+    days: float
+    hours: float
+    minutes: float
+    seconds: float
+
 class DeviceMqttOptions(TypedDict, total=False):
     qos: int
+    message_expiry_interval: MessageExpiryInterval
 
 class MqttDeviceData(TypedDict, total=False):
     name: str

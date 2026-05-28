@@ -12,18 +12,15 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
 from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGateway, OmadaGatewayPortConfig, OmadaGatewayPortStatus, OmadaListDevice as OmadaListDevice, OmadaSwitch, OmadaSwitchPortDetails
-from typing import Any, Generic, TypeVar
+from typing import Any
 
-TPort = TypeVar('TPort')
-TDevice = TypeVar('TDevice', bound='OmadaDevice')
-TCoordinator = TypeVar('TCoordinator', bound='OmadaCoordinator[Any]')
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _get_switch_port_base_name(port: OmadaSwitchPortDetails) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)
-class OmadaDevicePortSwitchEntityDescription(SwitchEntityDescription, Generic[TCoordinator, TDevice, TPort]):
+class OmadaDevicePortSwitchEntityDescription[TCoordinator: OmadaCoordinator[Any], TDevice: OmadaDevice, TPort](SwitchEntityDescription):
     exists_func: Callable[[TDevice, TPort], bool] = ...
     coordinator_update_func: Callable[[TCoordinator, TDevice, TPort], TPort | None]
     set_func: Callable[[OmadaSiteClient, TDevice, TPort, bool], Awaitable[TPort | None]]
@@ -47,7 +44,7 @@ SWITCH_PORT_DETAILS_SWITCHES: list[OmadaSwitchPortSwitchEntityDescription]
 GATEWAY_PORT_STATUS_SWITCHES: list[OmadaGatewayPortStatusSwitchEntityDescription]
 GATEWAY_PORT_CONFIG_SWITCHES: list[OmadaGatewayPortConfigSwitchEntityDescription]
 
-class OmadaDevicePortSwitchEntity(OmadaDeviceEntity[TCoordinator], SwitchEntity, Generic[TCoordinator, TDevice, TPort]):
+class OmadaDevicePortSwitchEntity[TCoordinator: OmadaCoordinator[Any], TDevice: OmadaDevice, TPort](OmadaDeviceEntity[TCoordinator], SwitchEntity):
     entity_description: OmadaDevicePortSwitchEntityDescription[TCoordinator, TDevice, TPort]
     _device: Incomplete
     _port_details: Incomplete

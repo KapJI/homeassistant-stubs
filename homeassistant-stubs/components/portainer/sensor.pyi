@@ -1,11 +1,12 @@
 from .coordinator import PortainerConfigEntry as PortainerConfigEntry, PortainerContainerData as PortainerContainerData, PortainerStackData as PortainerStackData, PortainerVolumeData as PortainerVolumeData
-from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity, PortainerVolumeEntity as PortainerVolumeEntity
+from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerDockerSystemDiskSpaceEndpointEntity as PortainerDockerSystemDiskSpaceEndpointEntity, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity, PortainerVolumeEntity as PortainerVolumeEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyportainer.models.docker import DockerSystemDF as DockerSystemDF
 
 PARALLEL_UPDATES: int
 
@@ -22,11 +23,16 @@ class PortainerStackSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[PortainerStackData], StateType]
 
 @dataclass(frozen=True, kw_only=True)
+class PortainerDockerSystemDiskSpaceSensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[DockerSystemDF], StateType]
+
+@dataclass(frozen=True, kw_only=True)
 class PortainerVolumeSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[PortainerVolumeData], StateType]
 
 CONTAINER_SENSORS: tuple[PortainerContainerSensorEntityDescription, ...]
 ENDPOINT_SENSORS: tuple[PortainerEndpointSensorEntityDescription, ...]
+DOCKER_SYSTEM_DISK_SPACE_SENSORS: tuple[PortainerDockerSystemDiskSpaceSensorEntityDescription, ...]
 STACK_SENSORS: tuple[PortainerStackSensorEntityDescription, ...]
 VOLUME_SENSORS: tuple[PortainerVolumeSensorEntityDescription, ...]
 
@@ -39,6 +45,11 @@ class PortainerContainerSensor(PortainerContainerEntity, SensorEntity):
 
 class PortainerEndpointSensor(PortainerEndpointEntity, SensorEntity):
     entity_description: PortainerEndpointSensorEntityDescription
+    @property
+    def native_value(self) -> StateType: ...
+
+class PortainerDockerSystemDiskSpaceSensor(PortainerDockerSystemDiskSpaceEndpointEntity, SensorEntity):
+    entity_description: PortainerDockerSystemDiskSpaceSensorEntityDescription
     @property
     def native_value(self) -> StateType: ...
 

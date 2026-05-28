@@ -1,3 +1,4 @@
+from .const import CONF_SECUREON_PASSWORD as CONF_SECUREON_PASSWORD
 from _typeshed import Incomplete
 from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -12,9 +13,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
 class WolButton(ButtonEntity):
     _attr_name: Incomplete
     _mac_address: Incomplete
+    _secureon_password: Incomplete
     _broadcast_address: Incomplete
     _broadcast_port: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, name: str, mac_address: str, broadcast_address: str | None, broadcast_port: int | None) -> None: ...
+    def __init__(self, name: str, mac_address: str, secureon_password: str | None, broadcast_address: str | None, broadcast_port: int | None) -> None: ...
     async def async_press(self) -> None: ...

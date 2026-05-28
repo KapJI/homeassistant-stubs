@@ -3,7 +3,6 @@ from .renault_hub import RenaultHub as RenaultHub
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr

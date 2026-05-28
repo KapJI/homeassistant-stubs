@@ -3,7 +3,6 @@ from .util.event_type import EventType as EventType
 from _typeshed import Incomplete
 from aiohttp import ClientResponse as ClientResponse, ClientResponseError, RequestInfo as RequestInfo
 from collections.abc import Callable as Callable, Generator, Sequence
-from dataclasses import dataclass
 from multidict import MultiMapping
 from typing import Any
 
@@ -14,9 +13,9 @@ def import_async_get_exception_message() -> Callable[[str, str, dict[str, str] |
 class HomeAssistantError(Exception):
     _message: str | None
     generate_message: bool
-    translation_domain: Incomplete
-    translation_key: Incomplete
-    translation_placeholders: Incomplete
+    translation_domain: str | None
+    translation_key: str | None
+    translation_placeholders: dict[str, str] | None
     def __init__(self, *args: object, translation_domain: str | None = None, translation_key: str | None = None, translation_placeholders: dict[str, str] | None = None) -> None: ...
     def __str__(self) -> str: ...
 
@@ -31,29 +30,29 @@ class NoEntitySpecifiedError(HomeAssistantError): ...
 class TemplateError(HomeAssistantError):
     def __init__(self, exception: Exception | str) -> None: ...
 
-@dataclass(slots=True)
 class ConditionError(HomeAssistantError):
-    type: str
+    type: Incomplete
+    def __init__(self, type: str) -> None: ...
     @staticmethod
     def _indent(indent: int, message: str) -> str: ...
     def output(self, indent: int) -> Generator[str]: ...
     def __str__(self) -> str: ...
 
-@dataclass(slots=True)
 class ConditionErrorMessage(ConditionError):
-    message: str
+    message: Incomplete
+    def __init__(self, type: str, message: str) -> None: ...
     def output(self, indent: int) -> Generator[str]: ...
 
-@dataclass(slots=True)
 class ConditionErrorIndex(ConditionError):
-    index: int
-    total: int
-    error: ConditionError
+    index: Incomplete
+    total: Incomplete
+    error: Incomplete
+    def __init__(self, type: str, *, index: int, total: int, error: ConditionError) -> None: ...
     def output(self, indent: int) -> Generator[str]: ...
 
-@dataclass(slots=True)
 class ConditionErrorContainer(ConditionError):
-    errors: Sequence[ConditionError]
+    errors: Incomplete
+    def __init__(self, type: str, *, errors: Sequence[ConditionError]) -> None: ...
     def output(self, indent: int) -> Generator[str]: ...
 
 class IntegrationError(HomeAssistantError):

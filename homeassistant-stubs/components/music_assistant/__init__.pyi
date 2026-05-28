@@ -1,12 +1,12 @@
 import asyncio
-from .const import ATTR_CONF_EXPOSE_PLAYER_TO_HA as ATTR_CONF_EXPOSE_PLAYER_TO_HA, CONF_TOKEN as CONF_TOKEN, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import ATTR_CONF_EXPOSE_PLAYER_TO_HA as ATTR_CONF_EXPOSE_PLAYER_TO_HA, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import get_music_assistant_client as get_music_assistant_client
 from .services import register_actions as register_actions
 from _typeshed import Incomplete
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
-from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
+from homeassistant.const import CONF_TOKEN as CONF_TOKEN, CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr

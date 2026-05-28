@@ -1,7 +1,8 @@
-from .const import CONF_ID as CONF_ID, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
+from .const import CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info import zeroconf as zeroconf
 from typing import Any
@@ -21,3 +22,5 @@ class OpenEVSEConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_zeroconf(self, discovery_info: zeroconf.ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
+    async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

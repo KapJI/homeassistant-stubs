@@ -1,7 +1,7 @@
-from .const import CONF_HOST as CONF_HOST
 from _typeshed import Incomplete
 from altruistclient import AltruistClient
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

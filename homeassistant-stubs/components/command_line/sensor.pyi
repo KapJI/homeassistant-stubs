@@ -1,6 +1,6 @@
 import asyncio
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, CONF_JSON_ATTRIBUTES as CONF_JSON_ATTRIBUTES, CONF_JSON_ATTRIBUTES_PATH as CONF_JSON_ATTRIBUTES_PATH, LOGGER as LOGGER, TRIGGER_ENTITY_OPTIONS as TRIGGER_ENTITY_OPTIONS
-from .utils import async_check_output_or_log as async_check_output_or_log, render_template_args as render_template_args
+from .utils import async_check_output_or_log as async_check_output_or_log, create_platform_yaml_not_supported_issue as create_platform_yaml_not_supported_issue, render_template_args as render_template_args
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
 from homeassistant.const import CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE

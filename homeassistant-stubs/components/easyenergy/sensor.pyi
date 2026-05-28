@@ -11,6 +11,8 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class EasyEnergySensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EasyEnergyData], float | datetime | None]

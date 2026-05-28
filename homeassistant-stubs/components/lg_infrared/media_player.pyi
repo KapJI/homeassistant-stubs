@@ -1,6 +1,7 @@
 from .const import CONF_DEVICE_TYPE as CONF_DEVICE_TYPE, CONF_INFRARED_ENTITY_ID as CONF_INFRARED_ENTITY_ID, LGDeviceType as LGDeviceType
 from .entity import LgIrEntity as LgIrEntity
 from _typeshed import Incomplete
+from homeassistant.components.infrared import InfraredEmitterConsumerEntity as InfraredEmitterConsumerEntity
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -10,11 +11,12 @@ PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class LgIrTvMediaPlayer(LgIrEntity, MediaPlayerEntity):
+class LgIrTvMediaPlayer(LgIrEntity, InfraredEmitterConsumerEntity, MediaPlayerEntity):
     _attr_name: Incomplete
     _attr_assumed_state: bool
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    _infrared_emitter_entity_id: Incomplete
     _attr_state: Incomplete
     def __init__(self, entry: ConfigEntry, infrared_entity_id: str) -> None: ...
     async def async_turn_on(self) -> None: ...

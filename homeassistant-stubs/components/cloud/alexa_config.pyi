@@ -11,7 +11,6 @@ from homeassistant.components.alexa import config as alexa_config
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.components.homeassistant.exposed_entities import async_expose_entity as async_expose_entity, async_get_assistant_settings as async_get_assistant_settings, async_listen_entity_updates as async_listen_entity_updates, async_should_expose as async_should_expose
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import CLOUD_NEVER_EXPOSED_ENTITIES as CLOUD_NEVER_EXPOSED_ENTITIES
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er, start as start

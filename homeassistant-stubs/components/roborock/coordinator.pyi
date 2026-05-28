@@ -20,7 +20,7 @@ from roborock.devices.traits.a01 import DyadApi as DyadApi, ZeoApi as ZeoApi
 from roborock.devices.traits.b01 import Q10PropertiesApi as Q10PropertiesApi, Q7PropertiesApi as Q7PropertiesApi
 from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
 from roborock.roborock_message import RoborockB01Props, RoborockDyadDataProtocol, RoborockZeoProtocol
-from typing import Any, TypeVar
+from typing import Any
 
 SCAN_INTERVAL: Incomplete
 MIN_UNAVAILABLE_DURATION: Incomplete
@@ -65,9 +65,8 @@ class RoborockDataUpdateCoordinator(DataUpdateCoordinator[DeviceState | None]):
     def device(self) -> RoborockDevice: ...
 
 async def _refresh_traits(traits: list[Any]) -> None: ...
-_V = TypeVar('_V', bound=RoborockDyadDataProtocol | RoborockZeoProtocol)
 
-class RoborockDataUpdateCoordinatorA01(DataUpdateCoordinator[dict[_V, StateType]]):
+class RoborockDataUpdateCoordinatorA01[_V: RoborockDyadDataProtocol | RoborockZeoProtocol](DataUpdateCoordinator[dict[_V, StateType]]):
     config_entry: RoborockConfigEntry
     _device: Incomplete
     device_info: Incomplete

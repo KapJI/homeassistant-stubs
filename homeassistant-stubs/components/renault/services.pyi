@@ -2,12 +2,12 @@ from . import RenaultConfigEntry as RenaultConfigEntry
 from .const import DOMAIN as DOMAIN
 from .renault_vehicle import RenaultVehicleProxy as RenaultVehicleProxy
 from _typeshed import Incomplete
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 
 LOGGER: Incomplete
 ATTR_SCHEDULES: str
-ATTR_TEMPERATURE: str
 ATTR_VEHICLE: str
 ATTR_WHEN: str
 SERVICE_VEHICLE_SCHEMA: Incomplete

@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from incomfortclient import Heater as InComfortHeater
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,6 +27,8 @@ class IncomfortBinarySensor(IncomfortBoilerEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: InComfortDataCoordinator, heater: InComfortHeater, description: IncomfortBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

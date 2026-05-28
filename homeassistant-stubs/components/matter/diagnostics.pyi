@@ -1,11 +1,12 @@
 from .helpers import MatterConfigEntry as MatterConfigEntry, get_matter as get_matter, get_node_from_device_entry as get_node_from_device_entry
 from _typeshed import Incomplete
-from homeassistant.components.diagnostics import REDACTED as REDACTED
+from homeassistant.components.diagnostics import REDACTED as REDACTED, async_redact_data as async_redact_data
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import device_registry as dr
 from typing import Any
 
 ATTRIBUTES_TO_REDACT: Incomplete
+SERVER_INFO_TO_REDACT: Incomplete
 
 def redact_matter_attributes(node_data: dict[str, Any]) -> dict[str, Any]: ...
 def remove_serialization_type(data: dict[str, Any]) -> dict[str, Any]: ...

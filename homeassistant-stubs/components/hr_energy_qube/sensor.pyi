@@ -1,5 +1,5 @@
 from . import QubeConfigEntry as QubeConfigEntry
-from .coordinator import QubeCoordinator as QubeCoordinator
+from .coordinator import QubeCoordinator as QubeCoordinator, QubeData as QubeData
 from .entity import QubeEntity as QubeEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -9,16 +9,15 @@ from homeassistant.const import REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from python_qube_heatpump.models import QubeState as QubeState
 
 PARALLEL_UPDATES: int
 STATUS_MAP: dict[int, str]
 
 @dataclass(frozen=True, kw_only=True)
 class QubeSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[QubeState], StateType]
+    value_fn: Callable[[QubeData], StateType]
 
-def _status_value(data: QubeState) -> StateType: ...
+def _status_value(data: QubeData) -> StateType: ...
 
 SENSOR_TYPES: tuple[QubeSensorEntityDescription, ...]
 

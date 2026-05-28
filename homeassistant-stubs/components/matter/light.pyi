@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any
 
+_CC_COLOR_MODE: Incomplete
 COLOR_MODE_MAP: Incomplete
 MATTER_MAX_MIREDS: int
 TRANSITION_BLOCKLIST: Incomplete

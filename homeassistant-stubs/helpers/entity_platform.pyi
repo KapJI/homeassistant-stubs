@@ -33,6 +33,9 @@ DATA_DOMAIN_PLATFORM_ENTITIES: HassKey[dict[tuple[str, str], dict[str, Entity]]]
 PLATFORM_NOT_READY_BASE_WAIT_TIME: int
 _LOGGER: Incomplete
 
+@callback
+def async_create_platform_config_not_supported_issue(hass: HomeAssistant, integration_domain: str, platform_domain: str, *, yaml_config_under_integration_supported: bool = False, learn_more_url: str | None = None, logger: Logger = ...) -> None: ...
+
 class AddEntitiesCallback(Protocol):
     def __call__(self, new_entities: Iterable[Entity], update_before_add: bool = False) -> None: ...
 

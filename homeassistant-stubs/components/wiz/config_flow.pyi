@@ -4,7 +4,7 @@ from .utils import _short_mac as _short_mac, name_from_bulb_type_and_mac as name
 from _typeshed import Incomplete
 from homeassistant.components import onboarding as onboarding
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from homeassistant.util.network import is_ip_address as is_ip_address
@@ -12,7 +12,6 @@ from pywizlight.discovery import DiscoveredBulb
 from typing import Any
 
 _LOGGER: Incomplete
-CONF_DEVICE: str
 
 class WizConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

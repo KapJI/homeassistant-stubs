@@ -1,10 +1,12 @@
 from . import http as http
 from .hassio import is_hassio as is_hassio
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.network import is_ip_address as is_ip_address, is_loopback as is_loopback, normalize_url as normalize_url
 
+_LOGGER: Incomplete
 TYPE_URL_INTERNAL: str
 TYPE_URL_EXTERNAL: str
 SUPERVISOR_NETWORK_HOST: str

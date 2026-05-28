@@ -56,8 +56,6 @@ class UnifiSwitchEntityDescription[HandlerT: APIHandler, ApiItemT: ApiItem](Swit
 
 ENTITY_DESCRIPTIONS: tuple[UnifiSwitchEntityDescription, ...]
 
-@callback
-def async_update_unique_id(hass: HomeAssistant, config_entry: UnifiConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class UnifiSwitchEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], SwitchEntity):

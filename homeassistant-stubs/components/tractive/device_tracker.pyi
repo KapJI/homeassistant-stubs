@@ -12,6 +12,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: TractiveConfigEntry, asy
 
 class TractiveDeviceTracker(TractiveEntity, TrackerEntity):
     _attr_translation_key: str
+    _attr_name: Incomplete
     _battery_level: int | None
     _attr_latitude: Incomplete
     _attr_longitude: Incomplete

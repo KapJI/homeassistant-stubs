@@ -5,7 +5,7 @@ from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as B
 from bleak import BleakScanner
 from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import Callable as Callable, Iterable
-from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode as BluetoothScanningMode
+from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothReachabilityIntent as BluetoothReachabilityIntent, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode as BluetoothScanningMode
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as hass_callback
 from homeassistant.helpers.singleton import singleton as singleton
@@ -25,6 +25,8 @@ def async_discovered_service_info(hass: HomeAssistant, connectable: bool = True)
 def async_last_service_info(hass: HomeAssistant, address: str, connectable: bool = True) -> BluetoothServiceInfoBleak | None: ...
 @hass_callback
 def async_ble_device_from_address(hass: HomeAssistant, address: str, connectable: bool = True) -> BLEDevice | None: ...
+@hass_callback
+def async_address_reachability_diagnostics(hass: HomeAssistant, address: str, intent: BluetoothReachabilityIntent) -> str: ...
 @hass_callback
 def async_scanner_devices_by_address(hass: HomeAssistant, address: str, connectable: bool = True) -> list[BluetoothScannerDevice]: ...
 @hass_callback

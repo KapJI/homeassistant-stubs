@@ -3,7 +3,7 @@ import asyncio
 import tarfile
 import threading
 from .const import BUF_SIZE as BUF_SIZE, LOGGER as LOGGER, SECURETAR_CREATE_VERSION as SECURETAR_CREATE_VERSION
-from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, Folder as Folder
+from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, Folder as Folder, InvalidBackupFilename as InvalidBackupFilename
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from dataclasses import dataclass

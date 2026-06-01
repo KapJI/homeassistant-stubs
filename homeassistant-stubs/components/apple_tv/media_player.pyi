@@ -1,5 +1,6 @@
 from . import AppleTVManager as AppleTVManager, AppleTvConfigEntry as AppleTvConfigEntry
 from .browse_media import build_app_list as build_app_list
+from .const import DOMAIN as DOMAIN
 from .entity import AppleTVEntity as AppleTVEntity
 from _typeshed import Incomplete
 from datetime import datetime
@@ -7,6 +8,7 @@ from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import BrowseMedia as BrowseMedia, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatv.const import FeatureName, PowerState
 from pyatv.interface import AppleTV as AppleTV, AudioListener, OutputDevice as OutputDevice, Playing as Playing, PowerListener, PushListener, PushUpdater as PushUpdater

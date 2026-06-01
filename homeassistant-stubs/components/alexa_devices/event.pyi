@@ -16,6 +16,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async
 class AlexaVoiceEvent(AmazonEntity, EventEntity):
     _attr_event_types: Incomplete
     coordinator: AmazonDevicesCoordinator
-    _last_seen_timestamp: int | None
+    _last_seen_timestamp: int
     @callback
     def _handle_coordinator_update(self) -> None: ...

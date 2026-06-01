@@ -26,6 +26,7 @@ from homeassistant.util.logging import catch_log_exception as catch_log_exceptio
 from typing import Any
 
 _LOGGER: Incomplete
+MQTT_TIMEOUT: int
 MIN_BUFFER_SIZE: int
 PREFERRED_BUFFER_SIZE: Incomplete
 DISCOVERY_COOLDOWN: int
@@ -67,6 +68,8 @@ class MqttClientSetup:
     def setup(self) -> None: ...
     @property
     def client(self) -> AsyncMQTTClient: ...
+
+def try_connection(user_input: dict[str, Any]) -> bool: ...
 
 class MQTT:
     _mqttc: AsyncMQTTClient

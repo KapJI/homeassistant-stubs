@@ -11,6 +11,7 @@ _LOGGER: Incomplete
 
 class IndevoltConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     _discovered_host: str | None
     _discovered_device_data: dict[str, Any] | None
     def __init__(self) -> None: ...

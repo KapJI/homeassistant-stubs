@@ -1,5 +1,5 @@
 import feedparser
-from .const import CONF_MAX_ENTRIES as CONF_MAX_ENTRIES, DEFAULT_MAX_ENTRIES as DEFAULT_MAX_ENTRIES, DOMAIN as DOMAIN
+from .const import CONF_MAX_ENTRIES as CONF_MAX_ENTRIES, DEFAULT_MAX_ENTRIES as DEFAULT_MAX_ENTRIES, DOMAIN as DOMAIN, USER_AGENT as USER_AGENT
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_URL as CONF_URL

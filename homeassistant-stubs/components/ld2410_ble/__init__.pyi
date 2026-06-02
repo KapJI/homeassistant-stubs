@@ -1,7 +1,9 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import LD2410BLECoordinator as LD2410BLECoordinator
 from .models import LD2410BLEConfigEntry as LD2410BLEConfigEntry, LD2410BLEData as LD2410BLEData
 from _typeshed import Incomplete
 from homeassistant.components import bluetooth as bluetooth
+from homeassistant.components.bluetooth import BluetoothReachabilityIntent as BluetoothReachabilityIntent
 from homeassistant.components.bluetooth.match import ADDRESS as ADDRESS, BluetoothCallbackMatcher as BluetoothCallbackMatcher
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback

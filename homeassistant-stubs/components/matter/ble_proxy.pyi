@@ -2,7 +2,7 @@ from _typeshed import Incomplete
 from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import Callable as Callable
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
-from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, async_ble_device_from_address as async_ble_device_from_address, async_register_callback as async_register_callback
+from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, MONOTONIC_TIME as MONOTONIC_TIME, async_ble_device_from_address as async_ble_device_from_address, async_register_callback as async_register_callback
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from matter_ble_proxy import AdvertisementData, BleDeviceResolver, BleScanSource, MatterBleProxy
 

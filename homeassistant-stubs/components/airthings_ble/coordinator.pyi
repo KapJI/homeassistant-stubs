@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from airthings_ble import AirthingsDevice
 from bleak.backends.device import BLEDevice as BLEDevice
 from homeassistant.components import bluetooth as bluetooth
+from homeassistant.components.bluetooth import BluetoothReachabilityIntent as BluetoothReachabilityIntent
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady

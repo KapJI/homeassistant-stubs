@@ -1,7 +1,8 @@
-from .const import SIGNAL_THERMOSTAT_CONNECTED as SIGNAL_THERMOSTAT_CONNECTED, SIGNAL_THERMOSTAT_DISCONNECTED as SIGNAL_THERMOSTAT_DISCONNECTED
+from .const import DOMAIN as DOMAIN, SIGNAL_THERMOSTAT_CONNECTED as SIGNAL_THERMOSTAT_CONNECTED, SIGNAL_THERMOSTAT_DISCONNECTED as SIGNAL_THERMOSTAT_DISCONNECTED
 from .models import Eq3Config as Eq3Config, Eq3ConfigEntryData as Eq3ConfigEntryData
 from _typeshed import Incomplete
 from homeassistant.components import bluetooth as bluetooth
+from homeassistant.components.bluetooth import BluetoothReachabilityIntent as BluetoothReachabilityIntent
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -61,6 +61,9 @@ ATTR_BEHAVIOR: Final[str]
 BEHAVIOR_FIRST: Final[str]
 BEHAVIOR_ALL: Final[str]
 BEHAVIOR_EACH: Final[str]
+
+def _backwards_compatible_behavior(value: Any) -> Any: ...
+
 ENTITY_STATE_TRIGGER_SCHEMA: Incomplete
 ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR: Incomplete
 

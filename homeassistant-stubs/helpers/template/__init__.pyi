@@ -10,6 +10,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.singleton import singleton as singleton
+from homeassistant.helpers.trace import record_template_errors_cv as record_template_errors_cv, trace_stack_cv as trace_stack_cv, trace_stack_top as trace_stack_top
 from homeassistant.helpers.typing import TemplateVarsType as TemplateVarsType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.hass_dict import HassKey as HassKey

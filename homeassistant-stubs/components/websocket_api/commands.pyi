@@ -11,7 +11,7 @@ from homeassistant.auth.permissions.events import SUBSCRIBE_ALLOWLIST as SUBSCRI
 from homeassistant.const import CONF_EXTERNAL_URL as CONF_EXTERNAL_URL, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, MATCH_ALL as MATCH_ALL, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
 from homeassistant.core import Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceNotFound as ServiceNotFound, ServiceValidationError as ServiceValidationError, TemplateError as TemplateError, Unauthorized as Unauthorized
-from homeassistant.helpers import entity as entity, template as template
+from homeassistant.helpers import entity as entity, template as template, trace as trace
 from homeassistant.helpers.condition import async_validate_condition_config as async_validate_condition_config, async_validate_conditions_config as async_validate_conditions_config
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA, convert_include_exclude_filter as convert_include_exclude_filter

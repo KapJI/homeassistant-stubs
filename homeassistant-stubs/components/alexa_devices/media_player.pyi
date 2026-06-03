@@ -4,30 +4,23 @@ from .entity import AmazonEntity as AmazonEntity
 from .utils import alexa_api_call as alexa_api_call
 from _typeshed import Incomplete
 from aioamazondevices.structures import AmazonMediaControls, AmazonMediaState as AmazonMediaState, AmazonVolumeState as AmazonVolumeState
-from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityDescription as MediaPlayerEntityDescription, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any
 
 PARALLEL_UPDATES: int
 STANDARD_SUPPORTED_FEATURES: Incomplete
 
-@dataclass(frozen=True, kw_only=True)
-class AmazonDevicesMediaPlayerEntityDescription(MediaPlayerEntityDescription): ...
-
-MEDIA_PLAYERS: Final[Incomplete]
-
 async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AlexaDevicesMediaPlayer(AmazonEntity, MediaPlayerEntity):
-    entity_description: AmazonDevicesMediaPlayerEntityDescription
     _attr_name: Incomplete
     _attr_device_class: Incomplete
     _attr_volume_step: float
     _prev_volume: int | None
-    def __init__(self, coordinator: AmazonDevicesCoordinator, serial_num: str, description: AmazonDevicesMediaPlayerEntityDescription) -> None: ...
+    def __init__(self, coordinator: AmazonDevicesCoordinator, serial_num: str, description: MediaPlayerEntityDescription) -> None: ...
     @property
     def media_state(self) -> AmazonMediaState | None: ...
     @property

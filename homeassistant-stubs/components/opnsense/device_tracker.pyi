@@ -5,7 +5,6 @@ from homeassistant.components.device_tracker import ScannerEntity as ScannerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
 
 async def async_setup_entry(hass: HomeAssistant, entry: OPNsenseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,5 +21,3 @@ class OPNsenseDeviceTrackerEntity(CoordinatorEntity[OPNsenseDeviceTrackerCoordin
     def ip_address(self) -> str | None: ...
     @property
     def hostname(self) -> str | None: ...
-    @property
-    def extra_state_attributes(self) -> dict[str, Any]: ...

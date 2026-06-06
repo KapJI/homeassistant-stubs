@@ -5,7 +5,7 @@ from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as B
 from bleak import BleakScanner
 from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import Callable as Callable, Iterable
-from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothReachabilityIntent as BluetoothReachabilityIntent, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode as BluetoothScanningMode
+from habluetooth import BaseHaScanner as BaseHaScanner, BluetoothReachabilityIntent as BluetoothReachabilityIntent, BluetoothScannerDevice as BluetoothScannerDevice, BluetoothScanningMode
 from home_assistant_bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as hass_callback
 from homeassistant.helpers.singleton import singleton as singleton

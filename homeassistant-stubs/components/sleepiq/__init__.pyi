@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, PRESSURE as PRESSURE, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
-from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
 _LOGGER: Incomplete

@@ -58,6 +58,7 @@ class RuntimeEntryData:
     static_info_update_subscriptions: set[Callable[[list[EntityInfo]], None]] = field(default_factory=set)
     loaded_platforms: set[Platform] = field(default_factory=set)
     platform_load_lock: asyncio.Lock = field(default_factory=asyncio.Lock)
+    first_connect_done: asyncio.Event = field(default_factory=asyncio.Event)
     _storage_contents: StoreData | None = ...
     _pending_storage: Callable[[], StoreData] | None = ...
     assist_pipeline_update_callbacks: list[CALLBACK_TYPE] = field(default_factory=list)

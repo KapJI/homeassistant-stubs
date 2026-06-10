@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 @dataclass(kw_only=True, frozen=True)
 class ZinvoltBatteryStateDescription(SensorEntityDescription):
-    value_fn: Callable[[ZinvoltData], float]
+    value_fn: Callable[[ZinvoltData], float | None]
 
 SENSORS: tuple[ZinvoltBatteryStateDescription, ...]
 
@@ -21,4 +21,4 @@ class ZinvoltBatteryStateSensor(ZinvoltEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator, description: ZinvoltBatteryStateDescription) -> None: ...
     @property
-    def native_value(self) -> float: ...
+    def native_value(self) -> float | None: ...

@@ -1,6 +1,5 @@
-from .coordinator import AmazonConfigEntry as AmazonConfigEntry
+from .coordinator import AmazonConfigEntry as AmazonConfigEntry, alexa_api_call as alexa_api_call
 from .entity import AmazonEntity as AmazonEntity
-from .utils import alexa_api_call as alexa_api_call
 from _typeshed import Incomplete
 from aioamazondevices.api import AmazonEchoApi as AmazonEchoApi
 from aioamazondevices.structures import AmazonDevice as AmazonDevice
@@ -25,5 +24,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async
 
 class AmazonNotifyEntity(AmazonEntity, NotifyEntity):
     entity_description: AmazonNotifyEntityDescription
-    @alexa_api_call
     async def async_send_message(self, message: str, title: str | None = None, **kwargs: Any) -> None: ...

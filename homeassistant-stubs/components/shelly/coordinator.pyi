@@ -83,6 +83,7 @@ class ShellyRestCoordinator(ShellyCoordinatorBase[BlockDevice]):
 
 class ShellyRpcCoordinator(ShellyCoordinatorBase[RpcDevice]):
     connected: bool
+    ble_scanner_setup_done: Incomplete
     _disconnected_callbacks: list[CALLBACK_TYPE]
     _connection_lock: Incomplete
     _event_listeners: list[Callable[[dict[str, Any]], None]]

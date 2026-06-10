@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN, INFO_SKILLS_MAPPING as INFO_SKILLS_MAPPING
-from .coordinator import AmazonConfigEntry as AmazonConfigEntry
+from .coordinator import AmazonConfigEntry as AmazonConfigEntry, alexa_api_call as alexa_api_call
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID

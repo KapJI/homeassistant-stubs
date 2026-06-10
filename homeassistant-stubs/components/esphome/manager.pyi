@@ -19,11 +19,12 @@ from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity,
 from homeassistant.helpers.service import async_set_service_schema as async_set_service_schema
 from homeassistant.helpers.template import Template as Template
 from homeassistant.util.json import json_loads_object as json_loads_object
-from typing import Any, NamedTuple
+from typing import Any, Final, NamedTuple
 
 DEVICE_CONFLICT_ISSUE_FORMAT: str
 UNPACK_UINT32_BE: Incomplete
 _LOGGER: Incomplete
+STARTUP_SCANNER_WAIT: Final[float]
 LOG_LEVEL_TO_LOGGER: Incomplete
 LOGGER_TO_LOG_LEVEL: Incomplete
 

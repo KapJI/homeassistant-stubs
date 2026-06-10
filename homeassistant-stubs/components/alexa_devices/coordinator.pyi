@@ -2,15 +2,22 @@ from .const import CONF_LOGIN_DATA as CONF_LOGIN_DATA, DOMAIN as DOMAIN, _LOGGER
 from _typeshed import Incomplete
 from aioamazondevices.structures import AmazonDevice, AmazonMediaState as AmazonMediaState, AmazonVocalRecord as AmazonVocalRecord, AmazonVolumeState as AmazonVolumeState
 from aiohttp import ClientSession as ClientSession
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import slugify as slugify
 
 SCAN_INTERVAL: int
+
+@asynccontextmanager
+async def alexa_api_call(coordinator: DataUpdateCoordinator | None = None) -> AsyncGenerator[None]: ...
+@asynccontextmanager
+async def alexa_config_entry_errors() -> AsyncGenerator[None]: ...
 type AmazonConfigEntry = ConfigEntry[AmazonDevicesCoordinator]
 
 class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):

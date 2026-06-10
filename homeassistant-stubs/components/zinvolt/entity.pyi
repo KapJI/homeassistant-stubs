@@ -10,6 +10,8 @@ class ZinvoltEntity(CoordinatorEntity[ZinvoltDeviceCoordinator]):
     _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator) -> None: ...
+    @property
+    def available(self) -> bool: ...
 
 class ZinvoltUnitEntity(ZinvoltEntity):
     unit_serial_number: Incomplete

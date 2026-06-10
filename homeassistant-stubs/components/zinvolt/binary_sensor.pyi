@@ -12,7 +12,7 @@ POINT_ENTITIES: Incomplete
 
 @dataclass(kw_only=True, frozen=True)
 class ZinvoltBatteryStateDescription(BinarySensorEntityDescription):
-    is_on_fn: Callable[[ZinvoltData], bool]
+    is_on_fn: Callable[[ZinvoltData], bool | None]
 
 SENSORS: tuple[ZinvoltBatteryStateDescription, ...]
 
@@ -23,7 +23,7 @@ class ZinvoltBatteryStateBinarySensor(ZinvoltEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator, description: ZinvoltBatteryStateDescription) -> None: ...
     @property
-    def is_on(self) -> bool: ...
+    def is_on(self) -> bool | None: ...
 
 class ZinvoltPointBinarySensor(ZinvoltUnitEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete

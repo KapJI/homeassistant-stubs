@@ -4,11 +4,11 @@ from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
 from aiohttp.web import AppKey, Request as Request
 from aiohttp.web_urldispatcher import AbstractResource, AbstractRoute
-from collections.abc import Awaitable, Callable, Container, Mapping
+from collections.abc import Awaitable, Callable
 from contextvars import ContextVar
 from homeassistant import exceptions as exceptions
 from homeassistant.const import CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
-from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback, is_callback as is_callback
+from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, is_callback as is_callback
 from homeassistant.util.json import JSON_ENCODE_EXCEPTIONS as JSON_ENCODE_EXCEPTIONS, format_unserializable_data as format_unserializable_data
 from http import HTTPStatus
 from typing import Any, Final
@@ -27,7 +27,6 @@ class HomeAssistantView:
     url: str | None
     extra_urls: list[str]
     requires_auth: bool
-    use_query_token_for_auth: bool
     cors_allowed: bool
     @staticmethod
     def context(request: web.Request) -> Context: ...
@@ -35,5 +34,3 @@ class HomeAssistantView:
     def json(result: Any, status_code: HTTPStatus | int = ..., headers: LooseHeaders | None = None) -> web.Response: ...
     def json_message(self, message: str, status_code: HTTPStatus | int = ..., message_code: str | None = None, headers: LooseHeaders | None = None) -> web.Response: ...
     def register(self, hass: HomeAssistant, app: web.Application, router: web.UrlDispatcher) -> None: ...
-    @callback
-    def get_valid_auth_tokens(self, match_info: Mapping[str, str]) -> Container[str]: ...

@@ -8,15 +8,15 @@ from .errors import BrowseError as BrowseError, SearchError as SearchError
 from _typeshed import Incomplete
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders as LooseHeaders
-from collections.abc import Callable as Callable, Container, Mapping
+from collections.abc import Callable as Callable
 from enum import StrEnum
 from functools import lru_cache
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.websocket_api import ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED, ERR_UNKNOWN_ERROR as ERR_UNKNOWN_ERROR
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, SERVICE_MEDIA_NEXT_TRACK as SERVICE_MEDIA_NEXT_TRACK, SERVICE_MEDIA_PAUSE as SERVICE_MEDIA_PAUSE, SERVICE_MEDIA_PLAY as SERVICE_MEDIA_PLAY, SERVICE_MEDIA_PLAY_PAUSE as SERVICE_MEDIA_PLAY_PAUSE, SERVICE_MEDIA_PREVIOUS_TRACK as SERVICE_MEDIA_PREVIOUS_TRACK, SERVICE_MEDIA_SEEK as SERVICE_MEDIA_SEEK, SERVICE_MEDIA_STOP as SERVICE_MEDIA_STOP, SERVICE_REPEAT_SET as SERVICE_REPEAT_SET, SERVICE_SHUFFLE_SET as SERVICE_SHUFFLE_SET, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, SERVICE_VOLUME_DOWN as SERVICE_VOLUME_DOWN, SERVICE_VOLUME_MUTE as SERVICE_VOLUME_MUTE, SERVICE_VOLUME_SET as SERVICE_VOLUME_SET, SERVICE_VOLUME_UP as SERVICE_VOLUME_UP, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_PLAYING as STATE_PLAYING, STATE_STANDBY as STATE_STANDBY
-from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -24,7 +24,7 @@ from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, Final, Required, TypedDict, final, override
+from typing import Any, Final, Required, TypedDict, final
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[MediaPlayerEntity]]
@@ -290,15 +290,12 @@ class MediaPlayerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def get_browse_image_url(self, media_content_type: str, media_content_id: str, media_image_id: str | None = None) -> str: ...
 
 class MediaPlayerImageView(HomeAssistantView):
-    use_query_token_for_auth: bool
+    requires_auth: bool
     url: str
     name: str
     extra_urls: Incomplete
     component: Incomplete
     def __init__(self, component: EntityComponent[MediaPlayerEntity]) -> None: ...
-    @callback
-    @override
-    def get_valid_auth_tokens(self, match_info: Mapping[str, str]) -> Container[str]: ...
     async def get(self, request: web.Request, entity_id: str, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> web.Response: ...
 
 @websocket_api.async_response

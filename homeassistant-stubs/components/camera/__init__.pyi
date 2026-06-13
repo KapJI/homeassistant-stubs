@@ -7,11 +7,11 @@ from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings
 from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
 from _typeshed import Incomplete
 from aiohttp import web
-from collections.abc import Awaitable, Callable as Callable, Container, Coroutine, Mapping
+from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from enum import IntFlag
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
 from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Orientation as Orientation, Stream as Stream, create_stream as create_stream
 from homeassistant.components.web_rtc import async_get_ice_servers as async_get_ice_servers
@@ -27,7 +27,7 @@ from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from propcache.api import cached_property, under_cached_property
-from typing import Any, Final, final, override
+from typing import Any, Final, final
 from webrtc_models import RTCIceCandidateInit as RTCIceCandidateInit
 
 _LOGGER: Incomplete
@@ -173,12 +173,9 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def _async_write_ha_state(self) -> None: ...
 
 class CameraView(HomeAssistantView):
-    use_query_token_for_auth: bool
+    requires_auth: bool
     component: Incomplete
     def __init__(self, component: EntityComponent[Camera]) -> None: ...
-    @callback
-    @override
-    def get_valid_auth_tokens(self, match_info: Mapping[str, str]) -> Container[str]: ...
     async def get(self, request: web.Request, entity_id: str) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, camera: Camera) -> web.StreamResponse: ...
 

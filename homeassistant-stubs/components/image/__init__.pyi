@@ -3,10 +3,9 @@ import httpx
 from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT
 from _typeshed import Incomplete
 from aiohttp import web
-from collections.abc import Container, Mapping
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
+from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
@@ -17,7 +16,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolDictType as VolDictType
 from propcache.api import cached_property
-from typing import Final, final, override
+from typing import Final, final
 
 _LOGGER: Incomplete
 SERVICE_SNAPSHOT: Final[str]
@@ -90,15 +89,11 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
 
 class ImageView(HomeAssistantView):
     name: str
-    use_query_token_for_auth: bool
+    requires_auth: bool
     url: str
     component: Incomplete
     def __init__(self, component: EntityComponent[ImageEntity]) -> None: ...
-    @callback
-    @override
-    def get_valid_auth_tokens(self, match_info: Mapping[str, str]) -> Container[str]: ...
-    @callback
-    def _get_image_entity(self, entity_id: str) -> ImageEntity: ...
+    async def _authenticate_request(self, request: web.Request, entity_id: str) -> ImageEntity: ...
     async def head(self, request: web.Request, entity_id: str) -> web.Response: ...
     async def get(self, request: web.Request, entity_id: str) -> web.StreamResponse: ...
     async def handle(self, request: web.Request, image_entity: ImageEntity) -> web.StreamResponse: ...

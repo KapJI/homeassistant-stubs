@@ -4,10 +4,13 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import Any
 
 MANUFACTURER: str
 MODEL: str
 MODEL2: str
+
+def _version_string(version: Any) -> str: ...
 
 class DiffuserEntity(CoordinatorEntity[RitualsDataUpdateCoordinator]):
     _attr_has_entity_name: bool

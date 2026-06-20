@@ -1,6 +1,6 @@
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry, alexa_api_call as alexa_api_call
 from .entity import AmazonEntity as AmazonEntity
-from .utils import async_remove_dnd_from_virtual_group as async_remove_dnd_from_virtual_group, async_update_unique_id as async_update_unique_id
+from .utils import async_remove_entity_from_virtual_group as async_remove_entity_from_virtual_group, async_update_unique_id as async_update_unique_id
 from _typeshed import Incomplete
 from aioamazondevices.structures import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable

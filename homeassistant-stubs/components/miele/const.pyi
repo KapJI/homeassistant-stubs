@@ -378,6 +378,7 @@ class DishWasherProgramId(MieleEnum, missing_to_none=True):
     comfort_wash: int
     comfort_wash_plus: int
     rinse_salt: int
+    rinse_and_hold: int
 
 class TumbleDryerProgramId(MieleEnum, missing_to_none=True):
     no_program: Incomplete

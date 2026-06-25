@@ -8,13 +8,14 @@ from dataclasses import dataclass
 from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityDescription as NotifyEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AmazonNotifyEntityDescription(NotifyEntityDescription):
     is_supported: Callable[[AmazonDevice], bool] = ...
+    is_available_fn: Callable[[AmazonDevice], bool] = ...
     method: Callable[[AmazonEchoApi, AmazonDevice, str], Awaitable[None]]
     subkey: str
 
@@ -24,4 +25,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async
 
 class AmazonNotifyEntity(AmazonEntity, NotifyEntity):
     entity_description: AmazonNotifyEntityDescription
+    @property
+    @override
+    def available(self) -> bool: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None, **kwargs: Any) -> None: ...

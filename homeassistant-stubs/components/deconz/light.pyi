@@ -13,7 +13,7 @@ from pydeconz.interfaces.lights import LightHandler as LightHandler
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.group import Group
 from pydeconz.models.light.light import Light, LightAlert, LightEffect
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 DECONZ_GROUP: str
 EFFECT_TO_DECONZ: Incomplete
@@ -32,7 +32,7 @@ class SetStateAttributes(TypedDict, total=False):
     transition_time: int
     xy: tuple[float, float]
 
-def update_color_state(group: Group, lights: list[Light], override: bool = False) -> None: ...
+def update_color_state(group: Group, lights: list[Light], override_raw: bool = False) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT], LightEntity):
@@ -45,28 +45,40 @@ class DeconzBaseLight[_LightDeviceT: Group | Light](DeconzDevice[_LightDeviceT],
     _attr_effect_list: Incomplete
     def __init__(self, device: _LightDeviceT, hub: DeconzHub) -> None: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def xy_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool]: ...
 
 class DeconzLight(DeconzBaseLight[Light]):
     @property
+    @override
     def min_color_temp_kelvin(self) -> int: ...
     @property
+    @override
     def max_color_temp_kelvin(self) -> int: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class DeconzGroup(DeconzBaseLight[Group]):
@@ -75,8 +87,11 @@ class DeconzGroup(DeconzBaseLight[Group]):
     _attr_name: Incomplete
     def __init__(self, device: Group, hub: DeconzHub) -> None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool]: ...

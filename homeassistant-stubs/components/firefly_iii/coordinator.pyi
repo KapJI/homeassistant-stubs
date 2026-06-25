@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyfirefly.models import Account as Account, Bill as Bill, Budget as Budget, Category as Category, Currency as Currency
+from typing import override
 
 _LOGGER: Incomplete
 type FireflyConfigEntry = ConfigEntry[FireflyDataUpdateCoordinator]
@@ -26,5 +27,7 @@ class FireflyDataUpdateCoordinator(DataUpdateCoordinator[FireflyCoordinatorData]
     config_entry: FireflyConfigEntry
     firefly: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FireflyConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> FireflyCoordinatorData: ...

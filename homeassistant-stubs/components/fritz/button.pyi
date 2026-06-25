@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -34,6 +34,7 @@ class FritzButton(ButtonEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str, description: FritzButtonDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...
 
 @callback
@@ -45,4 +46,5 @@ class FritzBoxWOLButton(FritzDeviceBase, ButtonEntity):
     _attr_unique_id: Incomplete
     _is_available: bool
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
+    @override
     async def async_press(self) -> None: ...

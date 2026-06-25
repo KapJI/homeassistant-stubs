@@ -9,7 +9,7 @@ from homeassistant.config_entries import ConfigEntryBaseFlow as ConfigEntryBaseF
 from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from typing import Any
+from typing import Any, override
 
 CONFIG_FLOW: str
 OPTIONS_FLOW: str
@@ -29,10 +29,12 @@ class CrownstoneConfigFlowHandler(BaseCrownstoneFlowHandler, ConfigFlow, domain=
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: CrownstoneConfigEntry) -> CrownstoneOptionsFlowHandler: ...
     login_info: dict[str, Any]
     def __init__(self) -> None: ...
     cloud: Incomplete
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def async_create_new_entry(self) -> ConfigFlowResult: ...
 

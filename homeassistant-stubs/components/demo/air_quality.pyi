@@ -3,6 +3,7 @@ from homeassistant.components.air_quality import AirQualityEntity as AirQualityE
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,8 +16,11 @@ class DemoAirQuality(AirQualityEntity):
     _n2o: Incomplete
     def __init__(self, name: str, pm_2_5: int, pm_10: int, n2o: int | None) -> None: ...
     @property
+    @override
     def particulate_matter_2_5(self) -> int: ...
     @property
+    @override
     def particulate_matter_10(self) -> int: ...
     @property
+    @override
     def nitrogen_oxide(self) -> int | None: ...

@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from nextdns.model import NextDnsData as NextDnsData
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: NextDnsConfigEntry, asyn
 class NextDnsSensor[CoordinatorDataT: NextDnsData](NextDnsEntity[CoordinatorDataT], SensorEntity):
     entity_description: NextDnsSensorEntityDescription[CoordinatorDataT]
     @property
+    @override
     def native_value(self) -> StateType: ...

@@ -6,6 +6,7 @@ from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 VALVE_DESCRIPTIONS: Incomplete
@@ -19,11 +20,16 @@ class HomeeValve(HomeeEntity, ValveEntity):
     _attr_translation_key: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: ValveEntityDescription) -> None: ...
     @property
+    @override
     def supported_features(self) -> ValveEntityFeature: ...
     @property
+    @override
     def current_valve_position(self) -> int | None: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...

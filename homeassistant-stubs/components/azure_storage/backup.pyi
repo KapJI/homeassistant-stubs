@@ -5,7 +5,7 @@ from azure.storage.blob import BlobProperties as BlobProperties
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from homeassistant.components.backup import AgentBackup as AgentBackup, BackupAgent as BackupAgent, BackupAgentError as BackupAgentError, BackupNotFound as BackupNotFound, OnProgressCallback as OnProgressCallback, suggested_filename as suggested_filename
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 METADATA_VERSION: str
@@ -22,13 +22,18 @@ class AzureStorageBackupAgent(BackupAgent):
     unique_id: Incomplete
     def __init__(self, hass: HomeAssistant, entry: AzureStorageConfigEntry) -> None: ...
     @handle_backup_errors
+    @override
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...
     @handle_backup_errors
+    @override
     async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, on_progress: OnProgressCallback, **kwargs: Any) -> None: ...
     @handle_backup_errors
+    @override
     async def async_delete_backup(self, backup_id: str, **kwargs: Any) -> None: ...
     @handle_backup_errors
+    @override
     async def async_list_backups(self, **kwargs: Any) -> list[AgentBackup]: ...
     @handle_backup_errors
+    @override
     async def async_get_backup(self, backup_id: str, **kwargs: Any) -> AgentBackup: ...
     async def _find_blob_by_backup_id(self, backup_id: str) -> BlobProperties | None: ...

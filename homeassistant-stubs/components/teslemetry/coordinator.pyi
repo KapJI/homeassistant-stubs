@@ -8,7 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from tesla_fleet_api.exceptions import TeslaFleetError
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Teslemetry as Teslemetry, Vehicle as Vehicle
-from typing import Any
+from typing import Any, override
 
 RETRY_EXCEPTIONS: Incomplete
 
@@ -26,6 +26,7 @@ class TeslemetryMetadataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: TeslemetryConfigEntry
     teslemetry: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, teslemetry: Teslemetry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class TeslemetryVehicleDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -35,6 +36,7 @@ class TeslemetryVehicleDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     api: Incomplete
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: Vehicle, product: dict[str, Any]) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class TeslemetryEnergySiteLiveCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -43,6 +45,7 @@ class TeslemetryEnergySiteLiveCoordinator(DataUpdateCoordinator[dict[str, Any]])
     api: Incomplete
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: EnergySite, data: dict[str, Any]) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class TeslemetryEnergySiteInfoCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -50,6 +53,7 @@ class TeslemetryEnergySiteInfoCoordinator(DataUpdateCoordinator[dict[str, Any]])
     api: Incomplete
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: EnergySite, product: dict[str, Any]) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class TeslemetryEnergyHistoryCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -57,4 +61,5 @@ class TeslemetryEnergyHistoryCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     api: Incomplete
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: EnergySite) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

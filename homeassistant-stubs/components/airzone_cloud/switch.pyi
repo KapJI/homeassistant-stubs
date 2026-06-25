@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class AirzoneSwitchDescription(SwitchEntityDescription):
@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 class AirzoneBaseSwitch(AirzoneEntity, SwitchEntity, metaclass=abc.ABCMeta):
     entity_description: AirzoneSwitchDescription
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
     @callback
@@ -29,5 +30,7 @@ class AirzoneZoneSwitch(AirzoneZoneEntity, AirzoneBaseSwitch):
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneSwitchDescription, zone_id: str, zone_data: dict[str, Any]) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

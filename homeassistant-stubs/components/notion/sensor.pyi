@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class NotionSensorDescription(SensorEntityDescription, NotionEntityDescription): ...
@@ -17,6 +18,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: NotionConfigEntry, async
 
 class NotionSensor(NotionEntity, SensorEntity):
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...

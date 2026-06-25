@@ -6,6 +6,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _RESTART_KEY: str
 _UNPAIR_REMOTES_KEY: str
@@ -19,4 +20,5 @@ class FluxButton(FluxBaseEntity, ButtonEntity):
     entity_description: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: FluxLedConfigEntry, description: ButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

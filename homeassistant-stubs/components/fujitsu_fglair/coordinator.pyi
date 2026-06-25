@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 type FGLairConfigEntry = ConfigEntry[FGLairCoordinator]
@@ -14,5 +15,7 @@ class FGLairCoordinator(DataUpdateCoordinator[dict[str, FujitsuHVAC]]):
     config_entry: FGLairConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FGLairConfigEntry, api: AylaApi) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, FujitsuHVAC]: ...

@@ -13,7 +13,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 SVG_CLASS: Incomplete
@@ -80,10 +80,13 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEnt
 class HabiticaSensor(HabiticaBase, SensorEntity):
     entity_description: HabiticaSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, float | None] | None: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
 
 class HabiticaPartyMemberSensor(HabiticaSensor, HabiticaPartyMemberBase): ...
@@ -91,8 +94,11 @@ class HabiticaPartyMemberSensor(HabiticaSensor, HabiticaPartyMemberBase): ...
 class HabiticaPartySensor(HabiticaPartyBase, SensorEntity):
     entity_description: HabiticaPartySensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

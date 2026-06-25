@@ -1,5 +1,6 @@
 from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
 from .generated.entity_platforms import EntityPlatforms as EntityPlatforms
+from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
 from .util.hass_dict import HassKey as HassKey
@@ -334,6 +335,20 @@ ATTR_DEVICE_CLASS: Final[str]
 ATTR_TEMPERATURE: Final[str]
 ATTR_PERSONS: Final[str]
 
+class EntityCapabilityAttribute(StrEnum):
+    GROUP_ENTITIES = 'group_entities'
+
+class EntityStateAttribute(StrEnum):
+    ASSUMED_STATE = 'assumed_state'
+    ATTRIBUTION = 'attribution'
+    DEVICE_CLASS = 'device_class'
+    ENTITY_PICTURE = 'entity_picture'
+    FRIENDLY_NAME = 'friendly_name'
+    ICON = 'icon'
+    RESTORED = 'restored'
+    SUPPORTED_FEATURES = 'supported_features'
+    UNIT_OF_MEASUREMENT = 'unit_of_measurement'
+
 class UnitOfApparentPower(StrEnum):
     MILLIVOLT_AMPERE = 'mVA'
     VOLT_AMPERE = 'VA'
@@ -498,7 +513,6 @@ class UnitOfConductivity(StrEnum):
 
 LIGHT_LUX: Final[str]
 UV_INDEX: Final[str]
-PERCENTAGE: Final[str]
 REVOLUTIONS_PER_MINUTE: Final[str]
 
 class UnitOfIrradiance(StrEnum):
@@ -516,13 +530,25 @@ class UnitOfPrecipitationDepth(StrEnum):
     MILLIMETERS = 'mm'
     CENTIMETERS = 'cm'
 
-CONCENTRATION_GRAMS_PER_CUBIC_METER: Final[str]
-CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Final[str]
-CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[str]
-CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[str]
-CONCENTRATION_PARTS_PER_CUBIC_METER: Final[str]
-CONCENTRATION_PARTS_PER_MILLION: Final[str]
-CONCENTRATION_PARTS_PER_BILLION: Final[str]
+class UnitOfDensity(StrEnum):
+    GRAMS_PER_CUBIC_METER = 'g/m³'
+    MILLIGRAMS_PER_CUBIC_METER = 'mg/m³'
+    MICROGRAMS_PER_CUBIC_METER = 'μg/m³'
+    MICROGRAMS_PER_CUBIC_FOOT = 'μg/ft³'
+
+class UnitOfRatio(StrEnum):
+    PARTS_PER_MILLION = 'ppm'
+    PARTS_PER_BILLION = 'ppb'
+    PERCENTAGE = '%'
+
+CONCENTRATION_GRAMS_PER_CUBIC_METER: Final[Incomplete]
+CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Final[Incomplete]
+CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[Incomplete]
+CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[Incomplete]
+_DEPRECATED_CONCENTRATION_PARTS_PER_CUBIC_METER: Incomplete
+CONCENTRATION_PARTS_PER_MILLION: Final[Incomplete]
+CONCENTRATION_PARTS_PER_BILLION: Final[Incomplete]
+PERCENTAGE: Final[Incomplete]
 
 class UnitOfBloodGlucoseConcentration(StrEnum):
     MILLIGRAMS_PER_DECILITER = 'mg/dL'
@@ -680,3 +706,6 @@ FORMAT_DATE: Final[str]
 FORMAT_TIME: Final[str]
 FORMAT_DATETIME: Final[Incomplete]
 MAX_EXPECTED_ENTITY_IDS: Final[int]
+__getattr__: Incomplete
+__dir__: Incomplete
+__all__: Incomplete

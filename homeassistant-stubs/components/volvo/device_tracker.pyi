@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity, TrackerEntityDescription as TrackerEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from volvocarsapi.models import VolvoCarsApiBaseModel as VolvoCarsApiBaseModel
 
 PARALLEL_UPDATES: int
@@ -20,4 +21,5 @@ class VolvoDeviceTracker(VolvoEntity, TrackerEntity):
     entity_description: VolvoTrackerDescription
     _attr_longitude: Incomplete
     _attr_latitude: Incomplete
+    @override
     def _update_state(self, api_field: VolvoCarsApiBaseModel | None) -> None: ...

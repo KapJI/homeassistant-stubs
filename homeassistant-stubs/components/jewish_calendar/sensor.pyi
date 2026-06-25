@@ -8,6 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -37,6 +38,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: JewishCalendarCon
 class JewishCalendarBaseSensor(JewishCalendarEntity, SensorEntity):
     _attr_entity_category: Incomplete
     entity_description: JewishCalendarBaseSensorDescription
+    @override
     def _update_times(self, zmanim: Zmanim) -> list[dt.datetime | None]: ...
     def get_dateinfo(self) -> HDateInfo: ...
 
@@ -45,12 +47,15 @@ class JewishCalendarSensor(JewishCalendarBaseSensor):
     _attr_options: Incomplete
     def __init__(self, config_entry: JewishCalendarConfigEntry, description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | dt.datetime | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...
 
 class JewishCalendarTimeSensor(JewishCalendarBaseSensor):
     _attr_device_class: Incomplete
     entity_description: JewishCalendarTimestampSensorDescription
     @property
+    @override
     def native_value(self) -> dt.datetime | None: ...

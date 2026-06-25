@@ -2,6 +2,7 @@ from . import DOMAIN as DOMAIN, SERVICE_CLEAN_AREA as SERVICE_CLEAN_AREA, SERVIC
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import area_registry as ar, intent as intent
+from typing import override
 
 _LOGGER: Incomplete
 INTENT_VACUUM_START: str
@@ -15,6 +16,8 @@ class CleanAreaIntentHandler(intent.IntentHandler):
     platforms: Incomplete
     description: str
     @property
+    @override
     def slot_schema(self) -> dict: ...
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
     async def _async_handle_service(self, intent_obj: intent.Intent, match_result: intent.MatchTargetsResult, matched_areas: list[ar.AreaEntry]) -> intent.IntentResponse: ...

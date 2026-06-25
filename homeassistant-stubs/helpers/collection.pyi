@@ -15,7 +15,7 @@ from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import slugify as slugify
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 STORAGE_VERSION: int
 SAVE_DELAY: int
@@ -114,14 +114,19 @@ class StorageCollection[_ItemT, _StoreT: SerializedStorageCollection](Observable
     def _hash_item(self, item: dict) -> str: ...
 
 class DictStorageCollection(StorageCollection[dict, SerializedStorageCollection], metaclass=abc.ABCMeta):
+    @override
     def _create_item(self, item_id: str, data: dict) -> dict: ...
+    @override
     def _deserialize_item(self, data: dict) -> dict: ...
+    @override
     def _serialize_item(self, item_id: str, item: dict) -> dict: ...
     @callback
+    @override
     def _data_to_save(self) -> SerializedStorageCollection: ...
 
 class IDLessCollection(YamlCollection):
     counter: int
+    @override
     async def async_load(self, data: list[dict]) -> None: ...
 
 _GROUP_BY_KEY: Incomplete

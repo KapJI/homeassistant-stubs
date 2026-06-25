@@ -5,7 +5,7 @@ from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from enum import Enum as Enum
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UV_INDEX as UV_INDEX, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
-from typing import Any
+from typing import Any, override
 from zwave_js_server.const.command_class.energy_production import EnergyProductionParameter, EnergyProductionScaleType as EnergyProductionScaleType
 from zwave_js_server.const.command_class.meter import MeterScaleType as MeterScaleType
 from zwave_js_server.const.command_class.multilevel_sensor import MultilevelSensorScaleType as MultilevelSensorScaleType, MultilevelSensorType
@@ -23,7 +23,9 @@ _LOGGER: Incomplete
 class DynamicCurrentTempClimateDataTemplate(BaseDiscoverySchemaDataTemplate):
     lookup_table: dict[str | int, ZwaveValueID] = field(default_factory=dict)
     dependent_value: ZwaveValueID | None = ...
+    @override
     def resolve_data(self, value: ZwaveValue) -> dict[str, Any]: ...
+    @override
     def values_to_watch(self, resolved_data: dict[str, Any]) -> Iterable[ZwaveValue | None]: ...
     @staticmethod
     def current_temperature_value(resolved_data: dict[str, Any]) -> ZwaveValue | None: ...
@@ -36,6 +38,7 @@ class NumericSensorDataTemplateData:
 class NumericSensorDataTemplate(BaseDiscoverySchemaDataTemplate):
     @staticmethod
     def find_key_from_matching_set[_T: Enum](enum_value: _T, set_map: Mapping[str, list[_T]]) -> str | None: ...
+    @override
     def resolve_data(self, value: ZwaveValue) -> NumericSensorDataTemplateData: ...
 
 @dataclass
@@ -45,7 +48,9 @@ class TiltValueMix:
 
 @dataclass
 class CoverTiltDataTemplate(BaseDiscoverySchemaDataTemplate, TiltValueMix):
+    @override
     def resolve_data(self, value: ZwaveValue) -> dict[str, ZwaveValue]: ...
+    @override
     def values_to_watch(self, resolved_data: dict[str, Any]) -> Iterable[ZwaveValue | None]: ...
     @staticmethod
     def current_tilt_value(resolved_data: dict[str, ZwaveValue]) -> ZwaveValue: ...
@@ -69,8 +74,11 @@ class ConfigurableFanValueMappingValueMix:
 
 @dataclass
 class ConfigurableFanValueMappingDataTemplate(BaseDiscoverySchemaDataTemplate, FanValueMappingDataTemplate, ConfigurableFanValueMappingValueMix):
+    @override
     def resolve_data(self, value: ZwaveValue) -> dict[str, ZwaveConfigurationValue | None]: ...
+    @override
     def values_to_watch(self, resolved_data: dict[str, ZwaveConfigurationValue | None]) -> Iterable[ZwaveConfigurationValue | None]: ...
+    @override
     def get_fan_value_mapping(self, resolved_data: dict[str, ZwaveConfigurationValue | None]) -> FanValueMapping | None: ...
 
 @dataclass
@@ -79,4 +87,5 @@ class FixedFanValueMappingValueMix:
 
 @dataclass
 class FixedFanValueMappingDataTemplate(BaseDiscoverySchemaDataTemplate, FanValueMappingDataTemplate, FixedFanValueMappingValueMix):
+    @override
     def get_fan_value_mapping(self, resolved_data: dict[str, ZwaveConfigurationValue]) -> FanValueMapping: ...

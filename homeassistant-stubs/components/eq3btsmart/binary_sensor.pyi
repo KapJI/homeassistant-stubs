@@ -9,6 +9,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class Eq3BinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -22,4 +23,5 @@ class Eq3BinarySensorEntity(Eq3Entity, BinarySensorEntity):
     entity_description: Eq3BinarySensorEntityDescription
     def __init__(self, entry: Eq3ConfigEntry, entity_description: Eq3BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

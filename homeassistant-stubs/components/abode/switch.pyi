@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jaraco.abode.devices.switch import Switch as Switch
-from typing import Any
+from typing import Any, override
 
 DEVICE_TYPES: Incomplete
 
@@ -15,16 +15,23 @@ async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_
 class AbodeSwitch(AbodeDevice, SwitchEntity):
     _device: Switch
     _attr_name: Incomplete
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class AbodeAutomationSwitch(AbodeAutomation, SwitchEntity):
     _attr_translation_key: str
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
     def trigger(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

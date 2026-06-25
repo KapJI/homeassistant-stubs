@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, O
 from homeassistant.const import CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_UUID as CONF_UUID
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -16,14 +16,19 @@ class NetatmoFlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, dom
     DOMAIN = DOMAIN
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: NetatmoConfigEntry) -> OptionsFlow: ...
     @property
+    @override
     def logger(self) -> logging.Logger: ...
     @property
+    @override
     def extra_authorize_data(self) -> dict: ...
+    @override
     async def async_step_user(self, user_input: dict | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_oauth_create_entry(self, data: dict) -> ConfigFlowResult: ...
 
 class NetatmoOptionsFlowHandler(OptionsFlow):

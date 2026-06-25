@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PAPERLESS_CHANGELOGS: str
 PARALLEL_UPDATES: int
@@ -15,11 +16,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: PaperlessConfigEntry, as
 class PaperlessUpdate(PaperlessEntity[PaperlessStatusCoordinator], UpdateEntity):
     release_url = PAPERLESS_CHANGELOGS
     @property
+    @override
     def should_poll(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     _attr_available: bool
     _attr_latest_version: Incomplete
+    @override
     async def async_update(self) -> None: ...

@@ -5,11 +5,12 @@ from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from pajgps_api.models.auth import AuthResponse as AuthResponse
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 
 class PajGPSConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _validate_credentials(self, email: str, password: str) -> tuple[str | None, AuthResponse | None]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

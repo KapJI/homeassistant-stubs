@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import SensiboDevice as SensiboDevice
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -33,10 +33,14 @@ class SensiboDeviceSwitch(SensiboDeviceBaseEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @async_handle_api_call
     async def async_turn_on_timer(self, key: str, value: bool) -> bool: ...

@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -31,14 +31,17 @@ class RpcSensor(ShellyRpcAttributeEntity, SensorEntity):
     _attr_options: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class RpcEnergyConsumedSensor(RpcSensor):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class RpcPresenceSensor(RpcSensor):
     @property
+    @override
     def available(self) -> bool: ...
 
 class RpcEmeterPhaseSensor(RpcSensor):
@@ -65,29 +68,37 @@ class BlockSensor(ShellyBlockAttributeEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class RestSensor(ShellyRestAttributeEntity, SensorEntity):
     entity_description: RestSensorDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class BlockSleepingSensor(ShellySleepingBlockAttributeEntity, RestoreSensor):
     entity_description: BlockSensorDescription
     restored_data: SensorExtraStoredData | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockSensorDescription, entry: RegistryEntry | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
 
 class RpcSleepingSensor(ShellySleepingRpcAttributeEntity, RestoreSensor):
     entity_description: RpcSensorDescription
     restored_data: SensorExtraStoredData | None
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSensorDescription, entry: RegistryEntry | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...

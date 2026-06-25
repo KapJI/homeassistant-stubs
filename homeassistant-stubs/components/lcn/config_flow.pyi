@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.const import CONF_BASE as CONF_BASE, CONF_DEVICES as CONF_DEVICES, CONF_ENTITIES as CONF_ENTITIES, CONF_HOST as CONF_HOST, CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONFIG_DATA: Incomplete
@@ -17,5 +17,6 @@ async def validate_connection(data: ConfigType) -> str | None: ...
 class LcnFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> config_entries.ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> config_entries.ConfigFlowResult: ...

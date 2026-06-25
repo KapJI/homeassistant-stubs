@@ -9,6 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfFrequency as UnitOfFrequency
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -27,4 +28,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ArcamFmjConfigEnt
 class ArcamFmjSensorEntity(ArcamFmjEntity, SensorEntity):
     entity_description: ArcamFmjSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | float | str | None: ...

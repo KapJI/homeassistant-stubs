@@ -10,6 +10,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import discovery as discovery, intent as intent
 from homeassistant.helpers.config_entry_oauth2_flow import ImplementationUnavailableError as ImplementationUnavailableError, OAuth2Session as OAuth2Session, async_get_config_entry_implementation as async_get_config_entry_implementation
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 CONFIG_SCHEMA: Incomplete
 
@@ -25,5 +26,7 @@ class GoogleAssistantConversationAgent(conversation.AbstractConversationAgent):
     language: str | None
     def __init__(self, hass: HomeAssistant, entry: GoogleAssistantSDKConfigEntry) -> None: ...
     @property
+    @override
     def supported_languages(self) -> list[str]: ...
+    @override
     async def async_process(self, user_input: conversation.ConversationInput) -> conversation.ConversationResult: ...

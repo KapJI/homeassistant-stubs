@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tesla_powerwall import IslandMode
-from typing import Any
+from typing import Any, override
 
 OFF_GRID_STATUSES: Incomplete
 
@@ -20,8 +20,11 @@ class PowerwallOffGridEnabledEntity(PowerWallEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, powerwall_data: PowerwallRuntimeData) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     async def _async_set_island_mode(self, island_mode: IslandMode) -> None: ...

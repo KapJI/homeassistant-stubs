@@ -12,7 +12,7 @@ from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, final
+from typing import Any, final, override
 
 _LOGGER: Incomplete
 LAST_SCANNED: str
@@ -30,11 +30,13 @@ class TagIDExistsError(HomeAssistantError):
     def __init__(self, item_id: str) -> None: ...
 
 class TagIDManager(collection.IDManager):
+    @override
     def generate_id(self, suggestion: str) -> str: ...
 
 def _create_entry(entity_registry: er.EntityRegistry, tag_id: str, name: str | None) -> er.RegistryEntry: ...
 
 class TagStore(Store[collection.SerializedStorageCollection]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> dict: ...
 
 class TagStorageCollection(collection.DictStorageCollection):
@@ -42,16 +44,21 @@ class TagStorageCollection(collection.DictStorageCollection):
     UPDATE_SCHEMA: Incomplete
     entity_registry: Incomplete
     def __init__(self, store: TagStore, id_manager: collection.IDManager | None = None) -> None: ...
+    @override
     async def _process_create_data(self, data: dict) -> dict: ...
     @callback
+    @override
     def _get_suggested_id(self, info: dict[str, str]) -> str: ...
+    @override
     async def _update_data(self, item: dict, update_data: dict) -> dict: ...
+    @override
     def _serialize_item(self, item_id: str, item: dict) -> dict: ...
 
 class TagDictStorageCollectionWebsocket(collection.StorageCollectionWebsocket[TagStorageCollection]):
     entity_registry: Incomplete
     def __init__(self, storage_collection: TagStorageCollection, api_prefix: str, model_name: str, create_schema: VolDictType, update_schema: VolDictType) -> None: ...
     @callback
+    @override
     def ws_list_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -71,8 +78,12 @@ class TagEntity(Entity):
     def async_handle_event(self, device_id: str | None, last_scanned: str | None) -> None: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

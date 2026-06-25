@@ -4,6 +4,7 @@ from homeassistant.components.media_player import BrowseError as BrowseError, Me
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
+from typing import override
 
 async def async_get_media_source(hass: HomeAssistant) -> ImageMediaSource: ...
 
@@ -11,5 +12,7 @@ class ImageMediaSource(MediaSource):
     name: str
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...

@@ -5,7 +5,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 PRICE_SPIKE_ICONS: Incomplete
 
@@ -16,18 +16,23 @@ class AmberPriceGridSensor(CoordinatorEntity[AmberUpdateCoordinator], BinarySens
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AmberUpdateCoordinator, description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class AmberPriceSpikeBinarySensor(AmberPriceGridSensor):
     @property
+    @override
     def icon(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
 
 class AmberDemandWindowBinarySensor(AmberPriceGridSensor):
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: AmberConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

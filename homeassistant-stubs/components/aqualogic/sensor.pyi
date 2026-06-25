@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 @dataclass(frozen=True)
 class AquaLogicSensorEntityDescription(SensorEntityDescription):
@@ -25,6 +26,7 @@ class AquaLogicSensor(SensorEntity):
     _processor: Incomplete
     _attr_name: Incomplete
     def __init__(self, processor: AquaLogicProcessor, description: AquaLogicSensorEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_unit_of_measurement: Incomplete
     _attr_native_value: Incomplete

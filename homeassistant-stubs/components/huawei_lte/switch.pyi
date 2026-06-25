@@ -6,7 +6,7 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -18,11 +18,16 @@ class HuaweiLteBaseSwitch(HuaweiLteBaseEntityWithDevice, SwitchEntity):
     _attr_device_class: SwitchDeviceClass
     _raw_state: str | None
     def _turn(self, state: bool) -> None: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     _available: bool
+    @override
     async def async_update(self) -> None: ...
 
 class HuaweiLteMobileDataSwitch(HuaweiLteBaseSwitch):
@@ -30,10 +35,13 @@ class HuaweiLteMobileDataSwitch(HuaweiLteBaseSwitch):
     key = KEY_DIALUP_MOBILE_DATASWITCH
     item: str
     @property
+    @override
     def _device_unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     _raw_state: Incomplete
+    @override
     def _turn(self, state: bool) -> None: ...
 
 class HuaweiLteWifiGuestNetworkSwitch(HuaweiLteBaseSwitch):
@@ -41,10 +49,14 @@ class HuaweiLteWifiGuestNetworkSwitch(HuaweiLteBaseSwitch):
     key = KEY_WLAN_WIFI_GUEST_NETWORK_SWITCH
     item: str
     @property
+    @override
     def _device_unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     _raw_state: Incomplete
+    @override
     def _turn(self, state: bool) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str | None]: ...

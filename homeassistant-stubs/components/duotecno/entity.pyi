@@ -5,7 +5,7 @@ from duotecno.unit import BaseUnit as BaseUnit
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 class DuotecnoEntity(Entity):
     _attr_should_poll: bool
@@ -14,9 +14,11 @@ class DuotecnoEntity(Entity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, unit: BaseUnit) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _on_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 def api_call[_T: DuotecnoEntity, **_P](func: Callable[Concatenate[_T, _P], Awaitable[None]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, None]]: ...

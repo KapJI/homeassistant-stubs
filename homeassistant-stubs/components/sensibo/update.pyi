@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import SensiboDevice as SensiboDevice
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,6 +28,8 @@ class SensiboDeviceUpdate(SensiboDeviceBaseEntity, UpdateEntity):
     _attr_title: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceUpdateEntityDescription) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...

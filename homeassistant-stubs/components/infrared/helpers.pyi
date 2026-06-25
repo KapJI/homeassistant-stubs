@@ -28,6 +28,7 @@ class InfraredConsumerEntity(Entity):
 class InfraredEmitterConsumerEntity(InfraredConsumerEntity):
     _attr_should_poll: bool
     _infrared_emitter_entity_id: str
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _send_command(self, command: InfraredCommand) -> None: ...
 
@@ -35,6 +36,7 @@ class InfraredReceiverConsumerEntity(InfraredConsumerEntity, metaclass=abc.ABCMe
     _attr_should_poll: bool
     _infrared_receiver_entity_id: str
     _remove_signal_subscription: CALLBACK_TYPE | None
+    @override
     async def async_added_to_hass(self) -> None: ...
     @override
     @callback

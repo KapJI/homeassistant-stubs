@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any, Final
+from typing import Any, Final, override
 
 LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -42,12 +42,17 @@ class RestUpdateEntity(ShellyRestAttributeEntity, UpdateEntity):
     _in_progress_old_version: str | None
     def __init__(self, block_coordinator: ShellyBlockCoordinator, attribute: str, description: RestUpdateDescription) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def in_progress(self) -> bool: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
+    @override
     def version_is_newer(self, latest_version: str, installed_version: str) -> bool: ...
 
 class RpcUpdateEntity(ShellyRpcAttributeEntity, UpdateEntity):
@@ -57,26 +62,36 @@ class RpcUpdateEntity(ShellyRpcAttributeEntity, UpdateEntity):
     _ota_progress_percentage: int | None
     _attr_release_url: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcUpdateDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _ota_progress_callback(self, event: dict[str, Any]) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def in_progress(self) -> bool: ...
     @property
+    @override
     def update_percentage(self) -> int | None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
 
 class RpcSleepingUpdateEntity(ShellySleepingRpcAttributeEntity, UpdateEntity, RestoreEntity):
     entity_description: RpcUpdateDescription
     last_state: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...

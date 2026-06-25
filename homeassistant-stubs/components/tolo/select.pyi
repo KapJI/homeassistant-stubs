@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tololib import ToloClient as ToloClient, ToloSettings as ToloSettings
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class ToloSelectEntityDescription(SelectEntityDescription):
@@ -26,7 +27,10 @@ class ToloSelectEntity(ToloSaunaCoordinatorEntity, SelectEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ToloConfigEntry, entity_description: ToloSelectEntityDescription) -> None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str: ...
+    @override
     def select_option(self, option: str) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 DHW_BOOST_KEY: str
@@ -29,10 +29,15 @@ class QubeWaterHeater(QubeEntity, WaterHeaterEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: QubeCoordinator, entry: QubeConfigEntry) -> None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def current_operation(self) -> str | None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...

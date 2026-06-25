@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
@@ -16,18 +17,21 @@ class SleepIQDataUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: SleepIQConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SleepIQConfigEntry, client: AsyncSleepIQ) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
 
 class SleepIQPauseUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: SleepIQConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SleepIQConfigEntry, client: AsyncSleepIQ) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
 
 class SleepIQSleepDataCoordinator(DataUpdateCoordinator[None]):
     config_entry: SleepIQConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SleepIQConfigEntry, client: AsyncSleepIQ) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
 
 @dataclass

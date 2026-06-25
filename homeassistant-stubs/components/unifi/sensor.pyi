@@ -19,7 +19,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import slugify as slugify
-from typing import Literal
+from typing import Literal, override
 
 PARALLEL_UPDATES: int
 
@@ -88,6 +88,9 @@ class UnifiSensorEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[Han
     def _make_disconnected(self, *_: core_Event) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

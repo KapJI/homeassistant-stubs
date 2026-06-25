@@ -6,6 +6,7 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class SkybellEntity(CoordinatorEntity[SkybellDataUpdateCoordinator]):
     _attr_attribution: str
@@ -16,4 +17,5 @@ class SkybellEntity(CoordinatorEntity[SkybellDataUpdateCoordinator]):
     def __init__(self, coordinator: SkybellDataUpdateCoordinator, description: EntityDescription) -> None: ...
     @property
     def _device(self) -> SkybellDevice: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STORAGE_KEY: str
@@ -28,14 +28,18 @@ class ImageStorageCollection(collection.DictStorageCollection):
     UPDATE_SCHEMA: Incomplete
     image_dir: Incomplete
     def __init__(self, hass: HomeAssistant, image_dir: pathlib.Path) -> None: ...
+    @override
     async def _process_create_data(self, data: dict[str, Any]) -> dict[str, Any]: ...
     def _move_data(self, data: dict[str, Any]) -> int: ...
     @callback
+    @override
     def _get_suggested_id(self, info: dict[str, Any]) -> str: ...
+    @override
     async def _update_data(self, item: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
     async def _change_listener(self, change_type: str, item_id: str, data: dict[str, Any]) -> None: ...
 
 class ImageUploadStorageCollectionWebsocket(collection.DictStorageCollectionWebsocket):
+    @override
     async def ws_create_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 
 class ImageUploadView(HomeAssistantView):

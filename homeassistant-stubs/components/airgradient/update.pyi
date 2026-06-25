@@ -5,6 +5,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from propcache.api import cached_property
+from typing import override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
@@ -18,11 +19,15 @@ class AirGradientUpdate(AirGradientEntity, UpdateEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirGradientCoordinator) -> None: ...
     @cached_property
+    @override
     def should_poll(self) -> bool: ...
     @property
+    @override
     def installed_version(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     _attr_latest_version: Incomplete
     _attr_available: bool
+    @override
     async def async_update(self) -> None: ...

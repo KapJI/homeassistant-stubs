@@ -8,7 +8,7 @@ from fritzconnection.lib.fritzstatus import FritzStatus as FritzStatus
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 class FritzDeviceBase(CoordinatorEntity[AvmWrapper]):
     _attr_has_entity_name: bool
@@ -43,6 +43,8 @@ class FritzBoxBaseCoordinatorEntity(CoordinatorEntity[AvmWrapper]):
     _device_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, avm_wrapper: AvmWrapper, device_name: str, description: FritzEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

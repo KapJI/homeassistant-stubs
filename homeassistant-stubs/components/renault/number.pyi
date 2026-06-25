@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from renault_api.kamereon.models import KamereonVehicleBatterySocData, KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -26,7 +26,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntr
 class RenaultNumberEntity[T: KamereonVehicleDataAttributes](RenaultDataEntity[T], NumberEntity):
     entity_description: RenaultNumberEntityDescription[T]
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 NUMBER_TYPES: tuple[RenaultNumberEntityDescription, ...]

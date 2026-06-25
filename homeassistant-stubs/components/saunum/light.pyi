@@ -7,7 +7,7 @@ from homeassistant.components.light import ColorMode as ColorMode, LightEntity a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -20,6 +20,9 @@ class LeilSaunaLight(LeilSaunaEntity, LightEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LeilSaunaCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

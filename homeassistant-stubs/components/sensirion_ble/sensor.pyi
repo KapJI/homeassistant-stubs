@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
 from sensor_state_data import DeviceKey as DeviceKey, SensorDescription as SensorDescription, SensorDeviceClass as SSDSensorDeviceClass, SensorUpdate, Units
+from typing import override
 
 SENSOR_DESCRIPTIONS: dict[tuple[SSDSensorDeviceClass, Units | None], SensorEntityDescription]
 
@@ -16,4 +17,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: SensirionBluetoothConfig
 
 class SensirionBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[float | int | None, SensorUpdate]], SensorEntity):
     @property
+    @override
     def native_value(self) -> int | float | None: ...

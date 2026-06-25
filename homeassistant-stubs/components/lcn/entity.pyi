@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from pypck.device import DeviceConnection as DeviceConnection
+from typing import override
 
 class LcnEntity(Entity):
     _attr_has_entity_name: bool
@@ -19,11 +20,16 @@ class LcnEntity(Entity):
     _attr_device_info: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def should_poll(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     def input_received(self, input_obj: InputType) -> None: ...

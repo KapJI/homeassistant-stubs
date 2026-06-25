@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from jellyfin_apiclient_python import JellyfinClient as JellyfinClient
-from typing import Any
+from typing import Any, override
 
 type JellyfinConfigEntry = ConfigEntry[JellyfinDataUpdateCoordinator]
 class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]]]):
@@ -19,4 +19,5 @@ class JellyfinDataUpdateCoordinator(DataUpdateCoordinator[dict[str, dict[str, An
     remote_session_ids: set[str]
     device_ids: set[str]
     def __init__(self, hass: HomeAssistant, config_entry: JellyfinConfigEntry, api_client: JellyfinClient, system_info: dict[str, Any], user_id: str) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, dict[str, Any]]: ...

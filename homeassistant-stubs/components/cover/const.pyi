@@ -6,6 +6,12 @@ ATTR_CURRENT_TILT_POSITION: str
 ATTR_IS_CLOSED: str
 ATTR_POSITION: str
 ATTR_TILT_POSITION: str
+
+class CoverEntityStateAttribute(StrEnum):
+    IS_CLOSED = 'is_closed'
+    CURRENT_POSITION = 'current_position'
+    CURRENT_TILT_POSITION = 'current_tilt_position'
+
 INTENT_OPEN_COVER: str
 INTENT_CLOSE_COVER: str
 

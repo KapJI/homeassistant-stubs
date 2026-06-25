@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.event import DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 DOORBELL_CONFIG: Incomplete
 
@@ -19,4 +20,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AxisConfigEntry, 
 class AxisEvent(AxisEventEntity, EventEntity):
     entity_description: AxisEventPlatformDescription
     @callback
+    @override
     def async_event_callback(self, event: Event) -> None: ...

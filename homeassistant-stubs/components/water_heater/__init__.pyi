@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute, WaterHeaterStateAttribute as WaterHeaterStateAttribute
 from _typeshed import Incomplete
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType a
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 DATA_COMPONENT: HassKey[EntityComponent[WaterHeaterEntity]]
 ENTITY_ID_FORMAT: Incomplete
@@ -78,13 +78,16 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_target_temperature_step: float | None
     @final
     @property
+    @override
     def state(self) -> str | None: ...
     @property
     def precision(self) -> float: ...
     @property
+    @override
     def capability_attributes(self) -> dict[str, Any]: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     @cached_property
     def temperature_unit(self) -> str: ...
@@ -123,6 +126,7 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @property
     def max_temp(self) -> float: ...
     @property
+    @override
     def supported_features(self) -> WaterHeaterEntityFeature: ...
 
 async def async_service_away_mode(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...

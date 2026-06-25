@@ -3,6 +3,7 @@ from .coordinator import ReCollectWasteDataUpdateCoordinator as ReCollectWasteDa
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class ReCollectWasteEntity(CoordinatorEntity[ReCollectWasteDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -11,4 +12,5 @@ class ReCollectWasteEntity(CoordinatorEntity[ReCollectWasteDataUpdateCoordinator
     _attr_extra_state_attributes: Incomplete
     _entry: Incomplete
     def __init__(self, coordinator: ReCollectWasteDataUpdateCoordinator, entry: RecollectWasteConfigEntry) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

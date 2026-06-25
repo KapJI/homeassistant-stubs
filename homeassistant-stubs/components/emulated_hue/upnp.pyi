@@ -6,6 +6,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant import core as core
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
+from typing import override
 
 _LOGGER: Incomplete
 BROADCAST_PORT: int
@@ -29,7 +30,9 @@ class UPNPResponderProtocol(asyncio.Protocol):
     _upnp_root_response: Incomplete
     _upnp_device_response: Incomplete
     def __init__(self, loop: asyncio.AbstractEventLoop, ssdp_socket: socket.socket, advertise_ip: str, advertise_port: int) -> None: ...
+    @override
     def connection_made(self, transport: asyncio.BaseTransport) -> None: ...
+    @override
     def connection_lost(self, exc: Exception | None) -> None: ...
     def datagram_received(self, data: bytes, addr: tuple[str, int]) -> None: ...
     def error_received(self, exc: Exception) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.group import IntegrationSpecificGroup as IntegrationSpecificGroup
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,16 +23,22 @@ class WLEDMainLight(WLEDEntity, LightEntity):
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     def _update_group_member(self) -> None: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
     @wled_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 class WLEDSegmentLight(WLEDEntity, LightEntity):
@@ -48,24 +54,34 @@ class WLEDSegmentLight(WLEDEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def rgb_color(self) -> tuple[int, int, int] | None: ...
     @property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int] | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def effect(self) -> str | None: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def effect_list(self) -> list[str]: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @wled_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 @callback

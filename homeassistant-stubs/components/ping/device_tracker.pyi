@@ -6,6 +6,7 @@ from homeassistant.components.device_tracker import CONF_CONSIDER_HOME as CONF_C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,10 +18,14 @@ class PingDeviceTracker(CoordinatorEntity[PingUpdateCoordinator], ScannerEntity)
     device_entry: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: PingConfigEntry, coordinator: PingUpdateCoordinator) -> None: ...
     @property
+    @override
     def ip_address(self) -> str: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def entity_registry_enabled_default(self) -> bool: ...

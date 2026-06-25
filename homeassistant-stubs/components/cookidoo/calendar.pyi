@@ -8,6 +8,7 @@ from homeassistant.components.calendar import CalendarEntity as CalendarEntity, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -20,6 +21,8 @@ class CookidooCalendarEntity(CookidooBaseEntity, CalendarEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CookidooDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
     async def _fetch_week_plan(self, week_day: date) -> list: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...

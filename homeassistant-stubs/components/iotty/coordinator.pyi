@@ -9,6 +9,7 @@ from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAut
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from iottycloud.device import Device as Device
+from typing import override
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
@@ -30,5 +31,7 @@ class IottyDataUpdateCoordinator(DataUpdateCoordinator[IottyData]):
     _device_registry: dr.DeviceRegistry
     iotty: Incomplete
     def __init__(self, hass: HomeAssistant, entry: IottyConfigEntry, session: OAuth2Session) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> IottyData: ...

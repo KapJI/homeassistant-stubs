@@ -9,7 +9,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_time_interval as async_track_time_interval
 from oauth2client.client import Credentials as Credentials, DeviceFlowInfo as DeviceFlowInfo, OAuth2WebServerFlow
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 EVENT_PAGE_SIZE: int
@@ -20,6 +20,7 @@ class OAuthError(Exception): ...
 class InvalidCredential(OAuthError): ...
 
 class GoogleHybridAuth(AuthImplementation):
+    @override
     async def async_resolve_external_data(self, external_data: Any) -> dict: ...
 
 class DeviceFlow:
@@ -53,9 +54,11 @@ async def async_create_device_flow(hass: HomeAssistant, client_id: str, client_s
 class ApiAuthImpl(AbstractAuth):
     _session: Incomplete
     def __init__(self, websession: aiohttp.ClientSession, session: config_entry_oauth2_flow.OAuth2Session) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...
 
 class AccessTokenAuthImpl(AbstractAuth):
     _access_token: Incomplete
     def __init__(self, websession: aiohttp.ClientSession, access_token: str) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...

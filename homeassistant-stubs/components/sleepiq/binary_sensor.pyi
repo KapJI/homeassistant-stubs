@@ -6,6 +6,7 @@ from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQSleeper as SleepIQSlee
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SleepIQConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,4 +16,5 @@ class IsInBedBinarySensor(SleepIQSleeperEntity[SleepIQDataUpdateCoordinator], Bi
     _attr_is_on: Incomplete
     _attr_icon: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

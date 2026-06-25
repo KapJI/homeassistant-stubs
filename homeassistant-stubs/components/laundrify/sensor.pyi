@@ -8,6 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from laundrify_aio import LaundrifyDevice as LaundrifyDevice
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -37,4 +38,5 @@ class LaundrifyEnergySensor(CoordinatorEntity[LaundrifyUpdateCoordinator], Laund
     _attr_suggested_display_precision: int
     def __init__(self, coordinator: LaundrifyUpdateCoordinator, device: LaundrifyDevice) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...

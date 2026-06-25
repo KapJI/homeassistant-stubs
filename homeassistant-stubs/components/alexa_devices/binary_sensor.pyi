@@ -10,7 +10,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -28,6 +28,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async
 class AmazonBinarySensorEntity(AmazonEntity, BinarySensorEntity):
     entity_description: AmazonBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...

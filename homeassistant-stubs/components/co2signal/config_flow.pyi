@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_COUNTRY_CODE as CONF_COUNTRY_CODE, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 TYPE_USE_HOME: str
 TYPE_SPECIFY_COORDINATES: str
@@ -19,6 +19,7 @@ DESCRIPTION_PLACEHOLDER: Incomplete
 class ElectricityMapsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _data: dict | None
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_coordinates(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_country(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

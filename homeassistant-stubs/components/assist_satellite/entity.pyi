@@ -15,7 +15,7 @@ from homeassistant.core import Context as Context, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import chat_session as chat_session, entity as entity
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from typing import Any, Literal, final
+from typing import Any, Literal, final, override
 
 _LOGGER: Incomplete
 
@@ -71,6 +71,7 @@ class AssistSatelliteEntity(entity.Entity, metaclass=abc.ABCMeta):
     __assist_satellite_state: Incomplete
     @final
     @property
+    @override
     def state(self) -> str | None: ...
     @property
     def pipeline_entity_id(self) -> str | None: ...

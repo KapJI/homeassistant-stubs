@@ -22,6 +22,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.entity_registry import async_entries_for_device as async_entries_for_device
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from http import HTTPStatus
+from typing import override
 
 _LOGGER: Incomplete
 SENSOR_SCHEMA: Incomplete
@@ -63,7 +64,9 @@ class NestEventViewBase(HomeAssistantView, ABC, metaclass=abc.ABCMeta):
 class NestEventMediaView(NestEventViewBase):
     url: str
     name: str
+    @override
     async def load_media(self, nest_device: Device, event_token: str) -> Media | None: ...
+    @override
     async def handle_media(self, media: Media) -> web.StreamResponse: ...
 
 class NestEventMediaThumbnailView(NestEventViewBase):
@@ -72,5 +75,7 @@ class NestEventMediaThumbnailView(NestEventViewBase):
     _lock: Incomplete
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def load_media(self, nest_device: Device, event_token: str) -> Media | None: ...
+    @override
     async def handle_media(self, media: Media) -> web.StreamResponse: ...

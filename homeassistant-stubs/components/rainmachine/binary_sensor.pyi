@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 TYPE_FLOW_SENSOR: str
 TYPE_FREEZE: str
@@ -29,10 +30,12 @@ class CurrentRestrictionsBinarySensor(RainMachineEntity, BinarySensorEntity):
     entity_description: RainMachineBinarySensorDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class ProvisionSettingsBinarySensor(RainMachineEntity, BinarySensorEntity):
     entity_description: RainMachineBinarySensorDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

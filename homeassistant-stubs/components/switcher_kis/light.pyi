@@ -7,7 +7,7 @@ from homeassistant.components.light import ColorMode as ColorMode, LightEntity a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 API_SET_LIGHT: str
@@ -21,8 +21,11 @@ class SwitcherBaseLightEntity(SwitcherEntity, LightEntity):
     _light_id: int
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, light_id: int) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _update_data(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class SwitcherSingleLightEntity(SwitcherBaseLightEntity):

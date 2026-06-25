@@ -11,7 +11,7 @@ from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcn
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ulid import ulid_now as ulid_now
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, override
 
 DATA_REGISTRY: HassKey[CategoryRegistry]
 EVENT_CATEGORY_REGISTRY_UPDATED: EventType[EventCategoryRegistryUpdatedData]
@@ -44,6 +44,7 @@ class CategoryEntry:
     name: str
 
 class CategoryRegistryStore(Store[CategoryRegistryStoreData]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, dict[str, list[dict[str, Any]]]]) -> CategoryRegistryStoreData: ...
 
 class CategoryRegistry(BaseRegistry[CategoryRegistryStoreData]):
@@ -61,8 +62,10 @@ class CategoryRegistry(BaseRegistry[CategoryRegistryStoreData]):
     def async_delete(self, *, scope: str, category_id: str) -> None: ...
     @callback
     def async_update(self, *, scope: str, category_id: str, icon: str | None | UndefinedType = ..., name: str | UndefinedType = ...) -> CategoryEntry: ...
+    @override
     async def _async_load(self) -> None: ...
     @callback
+    @override
     def _data_to_save(self) -> CategoryRegistryStoreData: ...
     @callback
     def _async_ensure_name_is_available(self, scope: str, name: str, category_id: str | None = None) -> None: ...

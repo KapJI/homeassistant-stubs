@@ -14,7 +14,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -34,6 +34,7 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _fixed_color_mode: ColorMode | str | None
     _topics: dict[str, str | None]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
@@ -43,6 +44,7 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     def _update_color_mode(self) -> None: ...
     _attr_is_on: bool
@@ -53,7 +55,11 @@ class MqttLightTemplate(MqttEntity, LightEntity, RestoreEntity):
     @callback
     def _state_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

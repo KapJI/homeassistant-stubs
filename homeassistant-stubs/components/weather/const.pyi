@@ -1,6 +1,6 @@
 from . import WeatherEntity as WeatherEntity
 from collections.abc import Callable as Callable
-from enum import IntFlag
+from enum import IntFlag, StrEnum
 from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -29,6 +29,26 @@ ATTR_WEATHER_WIND_SPEED_UNIT: str
 ATTR_WEATHER_PRECIPITATION_UNIT: str
 ATTR_WEATHER_CLOUD_COVERAGE: str
 ATTR_WEATHER_UV_INDEX: str
+
+class WeatherEntityStateAttribute(StrEnum):
+    TEMPERATURE = 'temperature'
+    APPARENT_TEMPERATURE = 'apparent_temperature'
+    DEW_POINT = 'dew_point'
+    TEMPERATURE_UNIT = 'temperature_unit'
+    HUMIDITY = 'humidity'
+    OZONE = 'ozone'
+    CLOUD_COVERAGE = 'cloud_coverage'
+    UV_INDEX = 'uv_index'
+    PRESSURE = 'pressure'
+    PRESSURE_UNIT = 'pressure_unit'
+    WIND_BEARING = 'wind_bearing'
+    WIND_GUST_SPEED = 'wind_gust_speed'
+    WIND_SPEED = 'wind_speed'
+    WIND_SPEED_UNIT = 'wind_speed_unit'
+    VISIBILITY = 'visibility'
+    VISIBILITY_UNIT = 'visibility_unit'
+    PRECIPITATION_UNIT = 'precipitation_unit'
+
 DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[WeatherEntity]]
 INTENT_GET_WEATHER: str

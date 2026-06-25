@@ -14,6 +14,12 @@ class VacuumActivity(StrEnum):
     RETURNING = 'returning'
     ERROR = 'error'
 
+class VacuumEntityCapabilityAttribute(StrEnum):
+    FAN_SPEED_LIST = 'fan_speed_list'
+
+class VacuumEntityStateAttribute(StrEnum):
+    FAN_SPEED = 'fan_speed'
+
 class VacuumEntityFeature(IntFlag):
     TURN_ON = 1
     TURN_OFF = 2

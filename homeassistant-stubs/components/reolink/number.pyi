@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Chime as Chime, Host as Host
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -53,8 +53,10 @@ class ReolinkNumberEntity(ReolinkChannelCoordinatorEntity, NumberEntity):
     _attr_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @raise_translated_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ReolinkSmartAINumberEntity(ReolinkChannelCoordinatorEntity, NumberEntity):
@@ -65,8 +67,10 @@ class ReolinkSmartAINumberEntity(ReolinkChannelCoordinatorEntity, NumberEntity):
     _attr_translation_placeholders: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, location: int, entity_description: ReolinkSmartAINumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @raise_translated_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ReolinkHostNumberEntity(ReolinkHostCoordinatorEntity, NumberEntity):
@@ -74,8 +78,10 @@ class ReolinkHostNumberEntity(ReolinkHostCoordinatorEntity, NumberEntity):
     _attr_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @raise_translated_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ReolinkChimeNumberEntity(ReolinkChimeCoordinatorEntity, NumberEntity):
@@ -83,8 +89,10 @@ class ReolinkChimeNumberEntity(ReolinkChimeCoordinatorEntity, NumberEntity):
     _attr_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @raise_translated_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ReolinkHostChimeNumberEntity(ReolinkHostChimeCoordinatorEntity, NumberEntity):
@@ -92,6 +100,8 @@ class ReolinkHostChimeNumberEntity(ReolinkHostChimeCoordinatorEntity, NumberEnti
     _attr_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @raise_translated_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

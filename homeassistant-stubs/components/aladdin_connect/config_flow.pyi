@@ -4,15 +4,18 @@ from .const import CONFIG_FLOW_MINOR_VERSION as CONFIG_FLOW_MINOR_VERSION, CONFI
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
-from typing import Any
+from typing import Any, override
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     VERSION = CONFIG_FLOW_VERSION
     MINOR_VERSION = CONFIG_FLOW_MINOR_VERSION
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, user_input: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: Mapping[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_oauth_create_entry(self, data: dict) -> ConfigFlowResult: ...
     @property
+    @override
     def logger(self) -> logging.Logger: ...

@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysaunum import SaunumData as SaunumData
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ class LeilSaunaSensorEntity(LeilSaunaEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LeilSaunaCoordinator, description: LeilSaunaSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | None: ...

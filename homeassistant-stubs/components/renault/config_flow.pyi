@@ -1,10 +1,9 @@
-from .const import CONF_KAMEREON_ACCOUNT_ID as CONF_KAMEREON_ACCOUNT_ID, CONF_LOCALE as CONF_LOCALE, CONF_LOGIN_TOKEN as CONF_LOGIN_TOKEN, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, RenaultConfigurationKeys as RenaultConfigurationKeys
 from .renault_hub import RenaultHub as RenaultHub
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
-from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 USER_SCHEMA: Incomplete
@@ -14,6 +13,7 @@ class RenaultFlowHandler(ConfigFlow, domain=DOMAIN):
     renault_hub: RenaultHub
     renault_config: dict[str, Any]
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_kamereon(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

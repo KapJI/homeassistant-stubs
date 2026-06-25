@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 ATTR_MIN_VALUE: str
@@ -64,12 +64,16 @@ class MinMaxSensor(SensorEntity):
     count_sensors: Incomplete
     states: dict[str, Any]
     def __init__(self, entity_ids: list[str], name: str | None, sensor_type: str, round_digits: int, unique_id: str | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     @callback
     def _async_min_max_sensor_state_listener(self, event: Event[EventStateChangedData], update_state: bool = True) -> None: ...

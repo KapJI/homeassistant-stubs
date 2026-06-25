@@ -9,7 +9,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from pyhap.characteristic import Characteristic as Characteristic
 from pyhap.service import Service as Service
 from pyhap.util import callback as pyhap_callback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CURRENT_STATE_INACTIVE: int
@@ -39,10 +39,13 @@ class AirPurifier(Fan):
     linked_temperature_sensor: Incomplete
     linked_filter_change_indicator_binary_sensor: Incomplete
     linked_filter_life_level_sensor: Incomplete
+    @override
     def create_services(self) -> Service: ...
+    @override
     def should_add_preset_mode_switch(self, preset_mode: str) -> bool: ...
     @callback
     @pyhap_callback
+    @override
     def run(self) -> None: ...
     @callback
     def _async_update_current_humidity_event(self, event: Event[EventStateChangedData]) -> None: ...
@@ -65,5 +68,7 @@ class AirPurifier(Fan):
     @callback
     def _async_update_filter_life_level(self, new_state: State | None) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
+    @override
     def set_chars(self, char_values: dict[str, Any]) -> None: ...

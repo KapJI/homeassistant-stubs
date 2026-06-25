@@ -9,6 +9,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 BOOST_MODE_DURATION_DELAY: int
 OPERATING_MODE_DELAY: int
@@ -34,5 +35,7 @@ class OverkizNumber(OverkizDescriptiveEntity, NumberEntity):
     _attr_native_max_value: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator, description: OverkizNumberDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

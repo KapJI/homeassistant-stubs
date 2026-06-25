@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_RESOURCE_TEMPLATE as CONF_RESOURCE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 XML_MIME_TYPES: Incomplete
@@ -15,4 +15,5 @@ class ScrapeCoordinator(DataUpdateCoordinator[BeautifulSoup]):
     _rest: Incomplete
     _rest_config: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry | None, rest: RestData, rest_config: dict[str, Any], update_interval: timedelta) -> None: ...
+    @override
     async def _async_update_data(self) -> BeautifulSoup: ...

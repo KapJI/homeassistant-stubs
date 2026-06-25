@@ -8,6 +8,7 @@ from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyintelliclima.intelliclima_types import IntelliClimaECO as IntelliClimaECO
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ class IntelliClimaSensor(IntelliClimaECOEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: IntelliClimaCoordinator, device: IntelliClimaECO, description: IntelliClimaSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float | str | None: ...

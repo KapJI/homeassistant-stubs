@@ -6,7 +6,7 @@ from enum import StrEnum
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
-from typing import Any, Self, final
+from typing import Any, Self, final, override
 
 __all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'DoorbellEventType', 'EventDeviceClass', 'EventEntity', 'EventEntityDescription']
 
@@ -26,6 +26,7 @@ class EventEntityDescription(EntityDescription, frozen_or_thawed=True):
 class EventExtraStoredData(ExtraStoredData):
     last_event_type: str | None
     last_event_attributes: dict[str, Any] | None
+    @override
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
     def from_dict(cls, restored: dict[str, Any]) -> Self | None: ...
@@ -40,23 +41,30 @@ class EventEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     __last_event_type: str | None
     __last_event_attributes: dict[str, Any] | None
     @cached_property
+    @override
     def device_class(self) -> EventDeviceClass | None: ...
     @cached_property
     def event_types(self) -> list[str]: ...
     @final
     def _trigger_event(self, event_type: str, event_attributes: dict[str, Any] | None = None) -> None: ...
+    @override
     def _default_to_device_class_name(self) -> bool: ...
     @property
     @final
+    @override
     def capability_attributes(self) -> dict[str, list[str]]: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     @final
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @property
+    @override
     def extra_restore_state_data(self) -> EventExtraStoredData: ...
     async def async_get_last_event_data(self) -> EventExtraStoredData | None: ...

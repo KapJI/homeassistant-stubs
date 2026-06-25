@@ -10,6 +10,7 @@ from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 ATTR_EK_HOP_START: str
@@ -44,6 +45,7 @@ class ElectricKiwiAccountEntity(CoordinatorEntity[ElectricKiwiAccountDataCoordin
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ElectricKiwiAccountDataCoordinator, description: ElectricKiwiAccountSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | datetime: ...
 
 class ElectricKiwiHOPEntity(CoordinatorEntity[ElectricKiwiHOPDataCoordinator], SensorEntity):
@@ -53,4 +55,5 @@ class ElectricKiwiHOPEntity(CoordinatorEntity[ElectricKiwiHOPDataCoordinator], S
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ElectricKiwiHOPDataCoordinator, description: ElectricKiwiHOPSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime: ...

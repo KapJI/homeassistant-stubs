@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_USER as SOURCE_USER
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -16,8 +16,10 @@ class LeilSaunaConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: LeilSaunaConfigEntry) -> LeilSaunaOptionsFlow: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class LeilSaunaOptionsFlow(OptionsFlow):

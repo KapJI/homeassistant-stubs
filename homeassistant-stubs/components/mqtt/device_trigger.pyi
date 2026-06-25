@@ -15,6 +15,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.trigger import TriggerActionType as TriggerActionType, TriggerInfo as TriggerInfo
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 _LOGGER: Incomplete
 CONF_AUTOMATION_TYPE: str
@@ -62,7 +63,9 @@ class MqttDeviceTrigger(MqttDiscoveryDeviceUpdateMixin):
     trigger_id: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType, device_id: str, discovery_data: DiscoveryInfoType, config_entry: ConfigEntry) -> None: ...
     async def async_setup(self) -> None: ...
+    @override
     async def async_update(self, discovery_data: MQTTDiscoveryPayload) -> None: ...
+    @override
     async def async_tear_down(self) -> None: ...
 
 async def async_setup_trigger(hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,6 +18,7 @@ class StarlinkBinarySensorEntityDescription(BinarySensorEntityDescription):
 class StarlinkBinarySensorEntity(StarlinkEntity, BinarySensorEntity):
     entity_description: StarlinkBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 BINARY_SENSORS: Incomplete

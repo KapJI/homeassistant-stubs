@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from technove import Station as TechnoVEStation
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class TechnoVEBinarySensorDescription(BinarySensorEntityDescription):
@@ -21,4 +22,5 @@ class TechnoVEBinarySensorEntity(TechnoVEEntity, BinarySensorEntity):
     entity_description: TechnoVEBinarySensorDescription
     def __init__(self, coordinator: TechnoVEDataUpdateCoordinator, description: TechnoVEBinarySensorDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

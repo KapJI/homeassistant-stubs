@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class AdGuardHomeEntity(Entity):
     _attr_has_entity_name: bool
@@ -15,4 +16,5 @@ class AdGuardHomeEntity(Entity):
     async def async_update(self) -> None: ...
     async def _adguard_update(self) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property
+from typing import override
 from xknx.devices import Notification as XknxNotification
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -19,11 +20,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 class _KnxText(TextEntity, RestoreEntity):
     _device: XknxNotification
     _attr_native_max: int
+    @override
     async def async_added_to_hass(self) -> None: ...
     @cached_property
+    @override
     def pattern(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
+    @override
     async def async_set_value(self, value: str) -> None: ...
 
 class KnxYamlText(_KnxText, KnxYamlEntity):

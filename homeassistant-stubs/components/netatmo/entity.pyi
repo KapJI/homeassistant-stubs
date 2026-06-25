@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from pyatmo import DeviceType, Home as Home, Module as Module, Room as Room
 from pyatmo.modules.base_class import NetatmoBase as NetatmoBase
-from typing import Any
+from typing import Any, override
 
 class NetatmoBaseEntity(Entity):
     _attr_attribution = DEFAULT_ATTRIBUTION
@@ -18,7 +18,9 @@ class NetatmoBaseEntity(Entity):
     _publishers: list[dict[str, Any]]
     _attr_extra_state_attributes: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @callback
     def async_update_callback(self) -> None: ...
@@ -38,8 +40,10 @@ class NetatmoRoomEntity(NetatmoDeviceEntity):
     device: Room
     _attr_device_info: Incomplete
     def __init__(self, room: NetatmoRoom) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def device_type(self) -> DeviceType: ...
 
 class NetatmoModuleEntity(NetatmoDeviceEntity):
@@ -48,10 +52,12 @@ class NetatmoModuleEntity(NetatmoDeviceEntity):
     _attr_device_info: Incomplete
     def __init__(self, device: NetatmoDevice, **kwargs: Any) -> None: ...
     @property
+    @override
     def device_type(self) -> DeviceType: ...
 
 class NetatmoWeatherModuleEntity(NetatmoModuleEntity):
     _attr_configuration_url = CONF_URL_WEATHER
     def __init__(self, device: NetatmoDevice, **kwargs: Any) -> None: ...
     @property
+    @override
     def device_type(self) -> DeviceType: ...

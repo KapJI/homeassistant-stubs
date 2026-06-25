@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from peblar import PeblarUserConfiguration as PeblarUserConfiguration
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 class PeblarSensorEntity(PeblarEntity[PeblarDataUpdateCoordinator], SensorEntity):
     entity_description: PeblarSensorDescription
     @property
+    @override
     def native_value(self) -> datetime | int | str | None: ...

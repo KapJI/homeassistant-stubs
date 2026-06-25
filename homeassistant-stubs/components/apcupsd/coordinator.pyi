@@ -5,7 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, REQUEST_REFRESH_DEFAULT_IMMEDIATE as REQUEST_REFRESH_DEFAULT_IMMEDIATE, UpdateFailed as UpdateFailed
-from typing import Final
+from typing import Final, override
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Final[Incomplete]
@@ -29,4 +29,5 @@ class APCUPSdCoordinator(DataUpdateCoordinator[APCUPSdData]):
     def unique_device_id(self) -> str: ...
     @property
     def device_info(self) -> DeviceInfo: ...
+    @override
     async def _async_update_data(self) -> APCUPSdData: ...

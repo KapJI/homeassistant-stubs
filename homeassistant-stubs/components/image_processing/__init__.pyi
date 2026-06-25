@@ -1,3 +1,4 @@
+from .const import ImageProcessingEntityStateAttribute as ImageProcessingEntityStateAttribute
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components.camera import async_get_image as async_get_image
@@ -8,7 +9,7 @@ from homeassistant.helpers.config_validation import make_entity_service_schema a
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Final, TypedDict, final
+from typing import Any, Final, TypedDict, final, override
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -62,6 +63,7 @@ class ImageProcessingEntity(Entity):
     @property
     def confidence(self) -> float | None: ...
     @property
+    @override
     def device_class(self) -> ImageProcessingDeviceClass | None: ...
     def process_image(self, image: bytes) -> None: ...
     async def async_process_image(self, image: bytes) -> None: ...
@@ -73,9 +75,11 @@ class ImageProcessingFaceEntity(ImageProcessingEntity):
     total_faces: int
     def __init__(self) -> None: ...
     @property
+    @override
     def state(self) -> str | int | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     def process_faces(self, faces: list[FaceInformation], total: int) -> None: ...
     @callback

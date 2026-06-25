@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyairvisual.node import NodeSamba as NodeSamba
-from typing import Any
+from typing import Any, override
 
 UPDATE_INTERVAL: Incomplete
 
@@ -22,4 +22,5 @@ class AirVisualProCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     _node: Incomplete
     reload_task: asyncio.Task[bool] | None
     def __init__(self, hass: HomeAssistant, config_entry: AirVisualProConfigEntry, node: NodeSamba) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

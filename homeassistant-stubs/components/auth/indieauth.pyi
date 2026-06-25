@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.util.network import is_local as is_local
 from html.parser import HTMLParser
+from typing import override
 from urllib.parse import ParseResult as ParseResult
 
 _LOGGER: Incomplete
@@ -12,6 +13,7 @@ class LinkTagParser(HTMLParser):
     rel: Incomplete
     found: list[str | None]
     def __init__(self, rel: str) -> None: ...
+    @override
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None: ...
 
 async def fetch_redirect_uris(hass: HomeAssistant, url: str) -> list[str]: ...

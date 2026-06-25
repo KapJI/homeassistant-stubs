@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from surepy.entities import SurepyEntity as SurepyEntity
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SurePetcareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,10 +20,12 @@ class Hub(SurePetcareBinarySensor):
     _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
     @property
+    @override
     def available(self) -> bool: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class Pet(SurePetcareBinarySensor):
@@ -30,6 +33,7 @@ class Pet(SurePetcareBinarySensor):
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class DeviceConnectivity(SurePetcareBinarySensor):
@@ -41,4 +45,5 @@ class DeviceConnectivity(SurePetcareBinarySensor):
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...

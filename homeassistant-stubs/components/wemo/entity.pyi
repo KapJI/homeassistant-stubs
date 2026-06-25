@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -16,12 +16,15 @@ class WemoEntity(CoordinatorEntity[DeviceCoordinator]):
     @property
     def name_suffix(self) -> str | None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
     def unique_id_suffix(self) -> str | None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     async def _async_wemo_call(self, message: str, action: Callable[[], Any]) -> None: ...
 

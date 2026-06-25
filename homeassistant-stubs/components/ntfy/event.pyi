@@ -8,6 +8,7 @@ from homeassistant.components.event import EventEntity as EventEntity, EventEnti
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -22,8 +23,10 @@ class NtfyEventEntity(NtfyBaseEntity, EventEntity):
     _attr_event_types: Incomplete
     @callback
     def _async_handle_event(self, notification: Notification) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: bool
     async def ws_connect(self) -> None: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...

@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import ChunkAsyncStreamIterator as ChunkAsyncStreamIterator
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -21,8 +21,13 @@ class GoogleDriveBackupAgent(BackupAgent):
     unique_id: Incomplete
     _client: Incomplete
     def __init__(self, config_entry: GoogleDriveConfigEntry) -> None: ...
+    @override
     async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, on_progress: OnProgressCallback, **kwargs: Any) -> None: ...
+    @override
     async def async_list_backups(self, **kwargs: Any) -> list[AgentBackup]: ...
+    @override
     async def async_get_backup(self, backup_id: str, **kwargs: Any) -> AgentBackup: ...
+    @override
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...
+    @override
     async def async_delete_backup(self, backup_id: str, **kwargs: Any) -> None: ...

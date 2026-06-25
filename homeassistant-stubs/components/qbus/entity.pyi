@@ -9,6 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, form
 from homeassistant.helpers.entity import Entity as Entity
 from qbusmqttapi.discovery import QbusMqttDevice as QbusMqttDevice, QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttState
+from typing import override
 
 _REFID_REGEX: Incomplete
 
@@ -29,6 +30,7 @@ class QbusEntity[StateT: QbusMqttState](Entity, ABC, metaclass=abc.ABCMeta):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput, *, id_suffix: str = '', link_to_main_device: bool = False) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _state_received(self, msg: ReceiveMessage) -> None: ...
     @abstractmethod

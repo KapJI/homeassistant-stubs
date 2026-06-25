@@ -5,6 +5,7 @@ from genie_partner_sdk.client import AladdinConnectClient as AladdinConnectClien
 from genie_partner_sdk.model import GarageDoor as GarageDoor
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class AladdinConnectEntity(CoordinatorEntity[AladdinConnectCoordinator]):
     _attr_has_entity_name: bool
@@ -14,6 +15,7 @@ class AladdinConnectEntity(CoordinatorEntity[AladdinConnectCoordinator]):
     _number: Incomplete
     def __init__(self, coordinator: AladdinConnectCoordinator, door_id: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def door(self) -> GarageDoor: ...

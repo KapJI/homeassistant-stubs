@@ -10,7 +10,7 @@ from homeassistant.components.media_source import BrowseMediaSource as BrowseMed
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import entity_registry as er
-from typing import Any, NoReturn
+from typing import Any, NoReturn, override
 from uiprotect.data import Camera as Camera, Event, EventType
 
 VIDEO_FORMAT: str
@@ -54,7 +54,9 @@ class ProtectMediaSource(MediaSource):
     hass: Incomplete
     data_sources: Incomplete
     def __init__(self, hass: HomeAssistant, data_sources: dict[str, ProtectData]) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     def _parse_range(self, parts: list[str]) -> tuple[date, bool, bool]: ...
     async def _resolve_event(self, data: ProtectData, event_id: str, thumbnail_only: bool = False) -> BrowseMediaSource: ...

@@ -8,7 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class PiHoleBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -25,6 +25,8 @@ class PiHoleBinarySensor(PiHoleEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, api: Hole, coordinator: PiHoleUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

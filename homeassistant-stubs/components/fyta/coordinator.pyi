@@ -8,6 +8,7 @@ from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type FytaConfigEntry = ConfigEntry[FytaCoordinator]
@@ -19,6 +20,7 @@ class FytaCoordinator(DataUpdateCoordinator[dict[int, Plant]]):
     new_device_callbacks: list[Callable[[int], None]]
     def __init__(self, hass: HomeAssistant, config_entry: FytaConfigEntry, fyta: FytaConnector) -> None: ...
     data: Incomplete
+    @override
     async def _async_update_data(self) -> dict[int, Plant]: ...
     def _async_add_remove_devices(self) -> None: ...
     async def renew_authentication(self) -> bool: ...

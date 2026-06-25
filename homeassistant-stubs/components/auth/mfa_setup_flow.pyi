@@ -4,13 +4,15 @@ from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowContext as FlowContext
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any
+from typing import Any, override
 
 DATA_SETUP_FLOW_MGR: HassKey[MfaFlowManager]
 _LOGGER: Incomplete
 
 class MfaFlowManager(data_entry_flow.FlowManager):
+    @override
     async def async_create_flow(self, handler_key: str, *, context: FlowContext | None, data: dict[str, Any]) -> data_entry_flow.FlowHandler: ...
+    @override
     async def async_finish_flow(self, flow: data_entry_flow.FlowHandler, result: data_entry_flow.FlowResult) -> data_entry_flow.FlowResult: ...
 
 @callback

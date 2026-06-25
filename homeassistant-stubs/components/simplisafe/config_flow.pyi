@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_CODE as CONF_CODE, CONF_TOKEN as CONF_TOKEN, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
-from typing import Any, NamedTuple
+from typing import Any, NamedTuple, override
 
 CONF_AUTH_CODE: str
 CONF_DOCUMENTATION_URL: str
@@ -27,8 +27,10 @@ class SimpliSafeFlowHandler(ConfigFlow, domain=DOMAIN):
     def __init__(self) -> None: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: SimpliSafeConfigEntry) -> SimpliSafeOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class SimpliSafeOptionsFlowHandler(OptionsFlow):

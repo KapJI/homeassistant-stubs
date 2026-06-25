@@ -14,6 +14,7 @@ from homeassistant.helpers.reload import async_setup_reload_service as async_set
 from homeassistant.helpers.start import async_at_started as async_at_started
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.util.decorator import Registry as Registry
+from typing import override
 
 _LOGGER: Incomplete
 FILTERS: Registry[str, type[Filter]]
@@ -48,8 +49,10 @@ class SensorFilter(SensorEntity):
     _attr_available: bool
     @callback
     def _update_filter_sensor_state(self, new_state: State | None, update_ha: bool = True) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | StateType: ...
 
 class FilterState:
@@ -57,7 +60,9 @@ class FilterState:
     timestamp: Incomplete
     def __init__(self, state: _State) -> None: ...
     def set_precision(self, precision: int | None) -> None: ...
+    @override
     def __str__(self) -> str: ...
+    @override
     def __repr__(self) -> str: ...
 
 @dataclass
@@ -91,6 +96,7 @@ class RangeFilter(Filter, SensorEntity):
     _upper_bound: Incomplete
     _stats_internal: Counter
     def __init__(self, *, entity: str, precision: int | None = None, lower_bound: float | None = None, upper_bound: float | None = None) -> None: ...
+    @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
 
 class OutlierFilter(Filter, SensorEntity):
@@ -98,11 +104,13 @@ class OutlierFilter(Filter, SensorEntity):
     _stats_internal: Counter
     _store_raw: bool
     def __init__(self, *, window_size: int, entity: str, radius: float, precision: int | None = None) -> None: ...
+    @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
 
 class LowPassFilter(Filter, SensorEntity):
     _time_constant: Incomplete
     def __init__(self, *, window_size: int, entity: str, time_constant: int, precision: int = ...) -> None: ...
+    @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
 
 class TimeSMAFilter(Filter, SensorEntity):
@@ -111,12 +119,14 @@ class TimeSMAFilter(Filter, SensorEntity):
     queue: Incomplete
     def __init__(self, *, window_size: timedelta, entity: str, type: str, precision: int = ...) -> None: ...
     def _leak(self, left_boundary: datetime) -> None: ...
+    @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
 
 class ThrottleFilter(Filter, SensorEntity):
     _only_numbers: bool
     def __init__(self, *, window_size: int, entity: str, precision: None = None) -> None: ...
     _skip_processing: bool
+    @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
 
 class TimeThrottleFilter(Filter, SensorEntity):
@@ -125,4 +135,5 @@ class TimeThrottleFilter(Filter, SensorEntity):
     _only_numbers: bool
     def __init__(self, *, window_size: timedelta, entity: str, precision: int | None = None) -> None: ...
     _skip_processing: bool
+    @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...

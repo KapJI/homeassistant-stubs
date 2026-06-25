@@ -6,7 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 ERROR_MESSAGES: Final[Incomplete]
@@ -22,4 +22,5 @@ class MotionMountErrorStatusSensor(MotionMountEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mm: motionmount.MotionMount, config_entry: MotionMountConfigEntry) -> None: ...
     @property
+    @override
     def native_value(self) -> str: ...

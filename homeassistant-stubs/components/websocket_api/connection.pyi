@@ -12,7 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, U
 from homeassistant.helpers.http import current_request as current_request
 from homeassistant.helpers.redact import async_redact_data as async_redact_data
 from homeassistant.util.json import JsonValueType as JsonValueType
-from typing import Any, Literal
+from typing import Any, Literal, override
 
 current_connection: Incomplete
 REDACT_KEYS: Incomplete
@@ -34,6 +34,7 @@ class ActiveConnection:
     handlers: dict[str, tuple[MessageHandler, vol.Schema | Literal[False]]]
     binary_handlers: list[BinaryHandler | None]
     def __init__(self, logger: WebSocketAdapter, hass: HomeAssistant, send_message: Callable[[bytes | str | dict[str, Any]], None], user: User, refresh_token: RefreshToken | None, remote: str | None) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     def set_supported_features(self, features: dict[str, float]) -> None: ...
     def get_description(self, request: web.Request | None) -> str: ...

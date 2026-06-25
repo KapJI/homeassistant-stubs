@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfDataRate as UnitOfDataRate, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from uiprotect.data import Camera, ModelType, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel, Sensor
 
 _LOGGER: Incomplete
@@ -19,6 +19,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class ProtectSensorEntityDescription(ProtectEntityDescription[T], SensorEntityDescription):
     precision: int | None = ...
+    @override
     def __post_init__(self) -> None: ...
     def _rounded_value(self, precision: int, getter: Callable[[T], Any], obj: T) -> Any: ...
 
@@ -34,7 +35,6 @@ ALL_DEVICES_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 CAMERA_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 CAMERA_DISABLED_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 SENSE_SENSORS: tuple[ProtectSensorEntityDescription, ...]
-DOORLOCK_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 NVR_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 NVR_DISABLED_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 LIGHT_SENSORS: tuple[ProtectSensorEntityDescription, ...]
@@ -53,6 +53,7 @@ class BaseProtectSensor(BaseProtectEntity, SensorEntity):
     entity_description: ProtectSensorEntityDescription
     _state_attrs: Incomplete
     _attr_native_value: Incomplete
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDeviceSensor(BaseProtectSensor, ProtectDeviceEntity): ...

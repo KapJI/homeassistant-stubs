@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 AFTER_WRITE_SLEEP: int
@@ -23,6 +23,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfi
 class TransmissionSwitch(TransmissionEntity, SwitchEntity):
     entity_description: TransmissionSwitchEntityDescription
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

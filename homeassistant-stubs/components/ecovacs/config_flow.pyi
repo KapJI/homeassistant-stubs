@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client, selector as selector
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util.ssl import get_default_no_verify_context as get_default_no_verify_context
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -18,5 +18,6 @@ async def _validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> di
 class EcovacsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _mode: InstanceMode
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

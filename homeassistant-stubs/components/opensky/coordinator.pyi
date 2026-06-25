@@ -5,6 +5,7 @@ from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from python_opensky import OpenSky, StateVector as StateVector
+from typing import override
 
 type OpenSkyConfigEntry = ConfigEntry[OpenSkyDataUpdateCoordinator]
 class OpenSkyDataUpdateCoordinator(DataUpdateCoordinator[int]):
@@ -14,5 +15,6 @@ class OpenSkyDataUpdateCoordinator(DataUpdateCoordinator[int]):
     _bounding_box: Incomplete
     _altitude: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: OpenSkyConfigEntry, opensky: OpenSky) -> None: ...
+    @override
     async def _async_update_data(self) -> int: ...
     def _handle_boundary(self, flights: set[str], event: str, metadata: dict[str, StateVector]) -> None: ...

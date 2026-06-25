@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as async_aiohttp_proxy_stream
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 CAMERA_TYPES: tuple[CameraEntityDescription, ...]
 
@@ -14,7 +15,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: SkybellConfigEntry, asyn
 
 class SkybellCamera(SkybellEntity, Camera):
     def __init__(self, coordinator: SkybellDataUpdateCoordinator, description: EntityDescription) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
 
 class SkybellActivityCamera(SkybellCamera):
+    @override
     async def handle_async_mjpeg_stream(self, request: web.Request) -> web.StreamResponse: ...

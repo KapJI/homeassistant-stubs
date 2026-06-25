@@ -7,6 +7,7 @@ from homeassistant.components.media_player import BrowseError as BrowseError, Me
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant
 from pythonxbox.api.provider.titlehub.models import Image as Image, Title as Title
+from typing import override
 
 _LOGGER: Incomplete
 ATTR_GAMECLIPS: str
@@ -27,13 +28,16 @@ class XboxMediaSourceIdentifier:
     media_type: str
     media_id: str
     def __init__(self, item: MediaSourceItem) -> None: ...
+    @override
     def __str__(self) -> str: ...
 
 class XboxSource(MediaSource):
     name: str
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     async def _build_accounts(self, entries: list[XboxConfigEntry]) -> list[BrowseMediaSource]: ...
     async def _build_game_library(self, entry: XboxConfigEntry) -> BrowseMediaSource: ...

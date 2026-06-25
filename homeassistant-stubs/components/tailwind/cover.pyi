@@ -6,7 +6,7 @@ from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -19,6 +19,9 @@ class TailwindDoorCoverEntity(TailwindDoorEntity, CoverEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     @property
+    @override
     def is_closed(self) -> bool: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...

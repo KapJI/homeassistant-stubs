@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -20,5 +20,7 @@ class DemoSwitch(SwitchEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, unique_id: str, device_name: str, state: bool, assumed: bool, translation_key: str | None = None, device_class: SwitchDeviceClass | None = None) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

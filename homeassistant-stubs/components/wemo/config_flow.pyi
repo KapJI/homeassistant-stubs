@@ -4,7 +4,7 @@ from .coordinator import Options as Options, OptionsValidationError as OptionsVa
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.config_entry_flow import DiscoveryFlowHandler as DiscoveryFlowHandler
-from typing import Any
+from typing import Any, override
 
 async def _async_has_devices(hass: HomeAssistant) -> bool: ...
 
@@ -12,6 +12,7 @@ class WemoFlow(DiscoveryFlowHandler, domain=DOMAIN):
     def __init__(self) -> None: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
 
 class WemoOptionsFlow(OptionsFlow):

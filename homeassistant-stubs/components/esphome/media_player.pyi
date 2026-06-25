@@ -6,7 +6,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, MediaPlayerEntityState, Medi
 from homeassistant.components import media_source as media_source
 from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -18,34 +18,48 @@ class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState],
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
+    @override
     def state(self) -> MediaPlayerState | None: ...
     @property
     @esphome_state_property
+    @override
     def is_volume_muted(self) -> bool: ...
     @property
     @esphome_float_state_property
+    @override
     def volume_level(self) -> float: ...
     @convert_api_error_ha_error
+    @override
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     def _get_proxy_url(self, supported_formats: list[MediaPlayerSupportedFormat], url: str, announcement: bool) -> str | None: ...
+    @override
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_volume_level(self, volume: float) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_media_pause(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_media_play(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_media_stop(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_mute_volume(self, mute: bool) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_on(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_off(self) -> None: ...
 
 def _is_url(url: str) -> bool: ...

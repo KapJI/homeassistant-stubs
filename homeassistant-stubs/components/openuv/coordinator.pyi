@@ -8,7 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.dt import parse_datetime as parse_datetime, utcnow as utcnow
-from typing import Any
+from typing import Any, override
 
 DEFAULT_DEBOUNCER_COOLDOWN_SECONDS: Incomplete
 type OpenUvConfigEntry = ConfigEntry[dict[str, OpenUvCoordinator]]
@@ -19,10 +19,12 @@ class OpenUvCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     latitude: Incomplete
     longitude: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: OpenUvConfigEntry, name: str, latitude: str, longitude: str, update_method: Callable[[], Awaitable[dict[str, Any]]]) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class OpenUvProtectionWindowCoordinator(OpenUvCoordinator):
     _reprocess_listener: CALLBACK_TYPE | None
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
     def _parse_data(self, data: dict[str, Any]) -> dict[str, Any]: ...
     def _process_data(self, data: dict[str, Any]) -> dict[str, Any]: ...

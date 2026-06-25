@@ -9,7 +9,7 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 EVSE_SUPPLY_STATE_MAP: Incomplete
 
@@ -23,20 +23,27 @@ class MatterSwitch(MatterEntity, SwitchEntity):
     entity_description: MatterSwitchEntityDescription
     _platform_translation_key: str
     def _get_command_for_value(self, value: bool) -> ClusterCommand: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterGenericCommandSwitch(MatterSwitch):
     entity_description: MatterGenericCommandSwitchEntityDescription
     _platform_translation_key: str
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
+    @override
     async def send_device_command(self, command: ClusterCommand, command_timeout: int | None = None, **kwargs: Any) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -51,10 +58,13 @@ class MatterNumericSwitchEntityDescription(MatterSwitchEntityDescription): ...
 class MatterNumericSwitch(MatterSwitch):
     entity_description: MatterNumericSwitchEntityDescription
     async def _async_set_native_value(self, value: bool) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

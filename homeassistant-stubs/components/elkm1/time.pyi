@@ -7,7 +7,7 @@ from elkm1_lib.settings import Setting
 from homeassistant.components.time import TimeEntity as TimeEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -17,5 +17,7 @@ class ElkTimeSetting(ElkAttachedEntity, TimeEntity):
     _element: Setting
     _attr_native_value: Incomplete
     _attr_available: bool
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
+    @override
     async def async_set_value(self, value: dt_time) -> None: ...

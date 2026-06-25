@@ -6,6 +6,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 class ValloxNumberEntity(ValloxEntity, NumberEntity):
     entity_description: ValloxNumberEntityDescription
@@ -13,7 +14,9 @@ class ValloxNumberEntity(ValloxEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)

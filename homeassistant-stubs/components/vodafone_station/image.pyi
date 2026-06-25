@@ -6,7 +6,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 IMAGE_TYPES: Final[Incomplete]
@@ -25,6 +25,9 @@ class VodafoneGuestWifiQRImage(CoordinatorEntity[VodafoneStationRouter], ImageEn
     @property
     def _qr_code(self) -> bytes: ...
     _attr_image_last_updated: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_image(self) -> bytes | None: ...

@@ -4,13 +4,14 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_PARTS_PER_CUBIC_METER as CONCENTRATION_PARTS_PER_CUBIC_METER, PERCENTAGE as PERCENTAGE, UV_INDEX as UV_INDEX, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.const import PERCENTAGE as PERCENTAGE, UV_INDEX as UV_INDEX, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
+PARTS_PER_CUBIC_METER: str
 
 @dataclass(frozen=True, kw_only=True)
 class AccuWeatherSensorDescription(SensorEntityDescription):
@@ -31,10 +32,13 @@ class AccuWeatherSensor(CoordinatorEntity[AccuWeatherObservationDataUpdateCoordi
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AccuWeatherObservationDataUpdateCoordinator, description: AccuWeatherSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @staticmethod
     def _get_sensor_data(sensors: dict[str, Any], kind: str) -> Any: ...
@@ -50,10 +54,13 @@ class AccuWeatherForecastSensor(CoordinatorEntity[AccuWeatherDailyForecastDataUp
     forecast_day: Incomplete
     def __init__(self, coordinator: AccuWeatherDailyForecastDataUpdateCoordinator, description: AccuWeatherSensorDescription, forecast_day: int) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @staticmethod
     def _get_sensor_data(sensors: list[dict[str, Any]], kind: str, forecast_day: int) -> Any: ...

@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from trmnl.models import Device as Device
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,8 +27,11 @@ class TRMNLSwitchEntity(TRMNLEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: TRMNLCoordinator, device_id: int, description: TRMNLSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

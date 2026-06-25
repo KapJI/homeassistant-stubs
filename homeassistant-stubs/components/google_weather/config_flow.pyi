@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import section as section
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import LocationSelector as LocationSelector, LocationSelectorConfig as LocationSelectorConfig
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -20,11 +20,13 @@ def _is_location_already_configured(hass: HomeAssistant, new_data: dict[str, flo
 
 class GoogleWeatherConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
 
 class LocationSubentryFlowHandler(ConfigSubentryFlow):

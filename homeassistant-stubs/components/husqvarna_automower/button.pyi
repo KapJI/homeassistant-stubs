@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -33,6 +33,8 @@ class AutomowerButtonEntity(AutomowerControlEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, description: AutomowerButtonEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @handle_sending_exception
+    @override
     async def async_press(self) -> None: ...

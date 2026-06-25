@@ -7,7 +7,7 @@ from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -20,7 +20,10 @@ class ComelitSwitchEntity(ComelitBridgeBaseEntity, SwitchEntity):
     def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...
     @bridge_api_call
     async def _switch_set_state(self, state: int) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

@@ -5,7 +5,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as C
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 _API_KEY_URL: str
@@ -14,9 +14,11 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> bool: ...
 
 class AirNowConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> AirNowOptionsFlowHandler: ...
 
 class AirNowOptionsFlowHandler(OptionsFlowWithReload):

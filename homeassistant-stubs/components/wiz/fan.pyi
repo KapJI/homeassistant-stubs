@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import ToggleEntity as ToggleEntity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from pywizlight.bulblibrary import BulbType as BulbType, Features as Features
-from typing import Any, ClassVar
+from typing import Any, ClassVar, override
 
 PRESET_MODE_BREEZE: str
 
@@ -25,9 +25,15 @@ class WizFanEntity(WizEntity, FanEntity):
     _attr_preset_mode: Incomplete
     _attr_current_direction: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_direction(self, direction: str) -> None: ...

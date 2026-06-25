@@ -5,6 +5,7 @@ from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type AirlyConfigEntry = ConfigEntry[AirlyDataUpdateCoordinator]
@@ -19,4 +20,5 @@ class AirlyDataUpdateCoordinator(DataUpdateCoordinator[dict[str, str | float | i
     use_nearest: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AirlyConfigEntry, session: ClientSession, api_key: str, latitude: float, longitude: float, update_interval: timedelta, use_nearest: bool) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> dict[str, str | float | int]: ...

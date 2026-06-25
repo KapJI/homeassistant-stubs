@@ -9,6 +9,7 @@ from homeassistant.components.event import EventEntity as EventEntity, EventEnti
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -26,9 +27,12 @@ class AutomowerMessageEventEntity(AutomowerBaseEntity, EventEntity):
     websocket_alive: bool
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, *, websocket_alive: bool | None = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
     def _handle(self, msg: SingleMessageData) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     def _handle_websocket_update(self, is_alive: bool) -> None: ...

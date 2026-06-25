@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -14,4 +15,5 @@ class HuumDoorSensor(HuumBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HuumDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

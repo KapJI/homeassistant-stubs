@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from yalesmartalarmclient import YaleLock as YaleLock
 
 VOLUME_OPTIONS: Incomplete
@@ -17,6 +18,8 @@ class YaleLockVolumeSelect(YaleLockEntity, SelectEntity):
     _attr_current_option: Incomplete
     _attr_options: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, lock: YaleLock) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

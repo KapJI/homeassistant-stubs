@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from sfrbox_api.models import DslInfo, SystemInfo, VoipInfo, WanInfo
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,4 +28,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: SFRConfigEntry, async_ad
 class SFRBoxSensor[_T](SFRCoordinatorEntity[_T], SensorEntity):
     entity_description: SFRBoxSensorEntityDescription[_T]
     @property
+    @override
     def native_value(self) -> StateType: ...

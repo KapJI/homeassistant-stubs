@@ -7,7 +7,7 @@ from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_CLI
 from homeassistant.helpers.selector import TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.util import slugify as slugify
 from mastodon.Mastodon import Account as Account, Instance as Instance, InstanceV2 as InstanceV2
-from typing import Any
+from typing import Any, override
 
 STEP_USER_DATA_SCHEMA: Incomplete
 REAUTH_SCHEMA: Incomplete
@@ -26,6 +26,7 @@ class MastodonConfigFlow(ConfigFlow, domain=DOMAIN):
     access_token: str
     def check_connection(self) -> tuple[InstanceV2 | Instance | None, Account | None, dict[str, str]]: ...
     def show_user_form(self, user_input: dict[str, Any] | None = None, errors: dict[str, str] | None = None, description_placeholders: dict[str, str] | None = None, step_id: str = 'user') -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

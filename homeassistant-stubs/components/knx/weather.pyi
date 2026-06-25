@@ -9,6 +9,7 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 from xknx import XKNX as XKNX
 from xknx.devices import Weather as XknxWeather
 
@@ -22,14 +23,20 @@ class KNXWeather(KnxYamlEntity, WeatherEntity):
     _attr_native_wind_speed_unit: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
     @property
+    @override
     def native_temperature(self) -> float | None: ...
     @property
+    @override
     def native_pressure(self) -> float | None: ...
     @property
+    @override
     def condition(self) -> str: ...
     @property
+    @override
     def humidity(self) -> float | None: ...
     @property
+    @override
     def wind_bearing(self) -> int | None: ...
     @property
+    @override
     def native_wind_speed(self) -> float | None: ...

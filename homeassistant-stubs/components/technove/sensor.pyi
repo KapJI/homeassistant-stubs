@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from technove import Station as TechnoVEStation
+from typing import override
 
 STATUS_TYPE: Incomplete
 
@@ -24,4 +25,5 @@ class TechnoVESensorEntity(TechnoVEEntity, SensorEntity):
     entity_description: TechnoVESensorEntityDescription
     def __init__(self, coordinator: TechnoVEDataUpdateCoordinator, description: TechnoVESensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

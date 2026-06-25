@@ -16,7 +16,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 CLIENT_BLOCKED: Incomplete
@@ -61,13 +61,19 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry,
 class UnifiSwitchEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], SwitchEntity):
     entity_description: UnifiSwitchEntityDescription[HandlerT, ApiItemT]
     @callback
+    @override
     def async_initiate_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str, first_update: bool = False) -> None: ...
     _attr_available: Incomplete
     @callback
+    @override
     def async_event_callback(self, event: Event) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

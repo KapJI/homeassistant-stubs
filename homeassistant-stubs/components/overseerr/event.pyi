@@ -8,7 +8,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -24,12 +24,15 @@ class OverseerrEvent(OverseerrEntity, EventEntity):
     entity_description: OverseerrEventEntityDescription
     _attr_available: bool
     def __init__(self, coordinator: OverseerrCoordinator, description: OverseerrEventEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_entity_picture: Incomplete
     async def _handle_update(self, event: dict[str, Any]) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 def parse_event(event: dict[str, Any], nullable_fields: list[str]) -> dict[str, Any]: ...

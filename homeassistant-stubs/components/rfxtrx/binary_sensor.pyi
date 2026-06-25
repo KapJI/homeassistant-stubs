@@ -9,6 +9,7 @@ from homeassistant.const import CONF_COMMAND_OFF as CONF_COMMAND_OFF, CONF_COMMA
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 SENSOR_STATUS_ON: Incomplete
@@ -30,9 +31,12 @@ class RfxtrxBinarySensor(RfxtrxEntity, BinarySensorEntity):
     _cmd_off: Incomplete
     def __init__(self, device: rfxtrxmod.RFXtrxDevice, device_id: DeviceTuple, entity_description: BinarySensorEntityDescription, off_delay: float | None = None, data_bits: int | None = None, cmd_on: int | None = None, cmd_off: int | None = None, event: rfxtrxmod.RFXtrxEvent | None = None) -> None: ...
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _apply_event_lighting4(self, event: rfxtrxmod.RFXtrxEvent) -> None: ...
     def _apply_event_standard(self, event: rfxtrxmod.RFXtrxEvent) -> None: ...
+    @override
     def _apply_event(self, event: rfxtrxmod.RFXtrxEvent) -> None: ...
     @callback
+    @override
     def _handle_event(self, event: rfxtrxmod.RFXtrxEvent, device_id: DeviceTuple) -> None: ...

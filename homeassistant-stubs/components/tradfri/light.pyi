@@ -7,7 +7,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pytradfri.command import Command as Command
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: TradfriConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -23,16 +23,24 @@ class TradfriLight(TradfriBaseEntity, LightEntity):
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str) -> None: ...
+    @override
     def _refresh(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float] | None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

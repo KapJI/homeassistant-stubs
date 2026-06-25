@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -22,15 +22,22 @@ class HuumDevice(HuumBaseEntity, ClimateEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HuumDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def min_temp(self) -> int: ...
     @property
+    @override
     def max_temp(self) -> int: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def current_temperature(self) -> int | None: ...
     @property
+    @override
     def target_temperature(self) -> int: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     async def _turn_on(self, temperature: int) -> None: ...

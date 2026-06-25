@@ -6,6 +6,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 ENTITY_TYPES: tuple[NumberEntityDescription, ...]
 
@@ -16,5 +17,7 @@ class FullyNumberEntity(FullyKioskEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator, description: NumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

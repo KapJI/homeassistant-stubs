@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import RabbitAirConfigEntry as RabbitAirConfigEntry, RabbitAirDataUpdateCoordinator as RabbitAirDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_MAC as CONF_MAC
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from rabbitair import Model
 from typing import Any
@@ -11,7 +11,7 @@ _LOGGER: Incomplete
 MODELS: Incomplete
 
 class RabbitAirBaseEntity(CoordinatorEntity[RabbitAirDataUpdateCoordinator]):
-    _attr_name: Incomplete
+    _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: RabbitAirDataUpdateCoordinator, entry: RabbitAirConfigEntry) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from roborock.devices.traits.v1.command import CommandTrait as CommandTrait
 from roborock.roborock_typing import RoborockCommand
-from typing import Any
+from typing import Any, override
 
 class RoborockEntity(Entity):
     _attr_has_entity_name: bool
@@ -24,6 +24,7 @@ class RoborockCoordinatedEntityV1(RoborockEntityV1, CoordinatorEntity[RoborockDa
     _attr_has_entity_name: bool
     _attr_unique_id: Incomplete
     def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, is_dock_entity: bool = False) -> None: ...
+    @override
     async def send(self, command: RoborockCommand | str, params: dict[str, Any] | list[Any] | int | None = None) -> dict: ...
 
 class RoborockCoordinatedEntityA01(RoborockEntity, CoordinatorEntity[RoborockDataUpdateCoordinatorA01]):

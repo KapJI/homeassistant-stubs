@@ -6,7 +6,7 @@ from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
-from typing import Any
+from typing import Any, override
 from zwave_js_server.client import Client as ZwaveClient
 from zwave_js_server.const import LogLevel as LogLevel
 from zwave_js_server.model.node import Node as ZwaveNode
@@ -41,6 +41,7 @@ class FirmwareVersionRange(DataclassMustHaveAtLeastOne):
     max: str | None = ...
     min_ver: AwesomeVersion | None = field(default=None, init=False)
     max_ver: AwesomeVersion | None = field(default=None, init=False)
+    @override
     def __post_init__(self) -> None: ...
 
 @dataclass

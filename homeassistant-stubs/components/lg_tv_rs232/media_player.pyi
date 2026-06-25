@@ -7,7 +7,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lg_rs232_tv import InputSource, TVState as TVState
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
@@ -28,6 +28,7 @@ class LGTVRS232MediaPlayer(MediaPlayerEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, config_entry: LGTVRS232ConfigEntry) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def async_update(self) -> None: ...
     _attr_available: bool
@@ -41,12 +42,17 @@ class LGTVRS232MediaPlayer(MediaPlayerEntity):
     @callback
     def _async_update_from_state(self, state: TVState) -> None: ...
     @catch_command_errors
+    @override
     async def async_turn_on(self) -> None: ...
     @catch_command_errors
+    @override
     async def async_turn_off(self) -> None: ...
     @catch_command_errors
+    @override
     async def async_set_volume_level(self, volume: float) -> None: ...
     @catch_command_errors
+    @override
     async def async_mute_volume(self, mute: bool) -> None: ...
     @catch_command_errors
+    @override
     async def async_select_source(self, source: str) -> None: ...

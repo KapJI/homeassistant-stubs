@@ -5,7 +5,7 @@ from homeassistant.const import COMPRESSED_STATE_ATTRIBUTES as COMPRESSED_STATE_
 from homeassistant.core import Context as Context, State as State
 from propcache.api import cached_property
 from sqlalchemy.engine.row import Row as Row
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 EMPTY_CONTEXT: Incomplete
@@ -22,23 +22,31 @@ class LazyState(State):
     context: Incomplete
     def __init__(self, row: Row, attr_cache: dict[str, dict[str, Any]], start_time_ts: float | None, entity_id: str, state: str, last_updated_ts: float | None, no_attributes: bool) -> None: ...
     @cached_property
+    @override
     def attributes(self) -> dict[str, Any]: ...
     @cached_property
     def _last_changed_ts(self) -> float | None: ...
     @cached_property
+    @override
     def last_changed(self) -> datetime: ...
     @cached_property
     def _last_reported_ts(self) -> float | None: ...
     @cached_property
+    @override
     def last_reported(self) -> datetime: ...
     @cached_property
+    @override
     def last_updated(self) -> datetime: ...
     @cached_property
+    @override
     def last_updated_timestamp(self) -> float: ...
     @cached_property
+    @override
     def last_changed_timestamp(self) -> float: ...
     @cached_property
+    @override
     def last_reported_timestamp(self) -> float: ...
+    @override
     def as_dict(self) -> dict[str, Any]: ...
 
 def row_to_compressed_state(row: Row, attr_cache: dict[str, dict[str, Any]], start_time_ts: float | None, entity_id: str, state: str, last_updated_ts: float | None, no_attributes: bool) -> dict[str, Any]: ...

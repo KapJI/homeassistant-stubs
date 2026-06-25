@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from typing import Self
+from typing import Self, override
 
 DOMAIN: str
 _LOGGER: Incomplete
@@ -19,9 +19,12 @@ STORAGE_VERSION: int
 
 class InputButtonStorageCollection(collection.DictStorageCollection):
     CREATE_UPDATE_SCHEMA: Incomplete
+    @override
     async def _process_create_data(self, data: dict) -> dict[str, str]: ...
     @callback
+    @override
     def _get_suggested_id(self, info: dict) -> str: ...
+    @override
     async def _update_data(self, item: dict, update_data: dict) -> dict: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -34,14 +37,21 @@ class InputButton(collection.CollectionEntity, ButtonEntity, RestoreEntity):
     _attr_unique_id: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
     @classmethod
+    @override
     def from_storage(cls, config: ConfigType) -> Self: ...
     @classmethod
+    @override
     def from_yaml(cls, config: ConfigType) -> Self: ...
     @property
+    @override
     def name(self) -> str | None: ...
     @property
+    @override
     def icon(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool]: ...
+    @override
     async def async_press(self) -> None: ...
+    @override
     async def async_update_config(self, config: ConfigType) -> None: ...

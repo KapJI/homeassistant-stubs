@@ -4,7 +4,7 @@ from homeassistant.components.device_tracker import ScannerEntity as ScannerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MikrotikConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
@@ -16,12 +16,17 @@ class MikrotikDataUpdateCoordinatorTracker(CoordinatorEntity[MikrotikDataUpdateC
     _attr_unique_id: Incomplete
     def __init__(self, device: Device, coordinator: MikrotikDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def hostname(self) -> str: ...
     @property
+    @override
     def mac_address(self) -> str: ...
     @property
+    @override
     def ip_address(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

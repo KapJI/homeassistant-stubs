@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAuth2Session
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type GeocachingConfigEntry = ConfigEntry[GeocachingDataUpdateCoordinator]
 class GeocachingDataUpdateCoordinator(DataUpdateCoordinator[GeocachingStatus]):
@@ -13,4 +14,5 @@ class GeocachingDataUpdateCoordinator(DataUpdateCoordinator[GeocachingStatus]):
     session: Incomplete
     geocaching: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: GeocachingConfigEntry, session: OAuth2Session) -> None: ...
+    @override
     async def _async_update_data(self) -> GeocachingStatus: ...

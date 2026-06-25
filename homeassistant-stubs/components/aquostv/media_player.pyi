@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 DEFAULT_NAME: str
@@ -37,21 +37,30 @@ class SharpAquosTVDevice(MediaPlayerEntity):
     @_retry
     def update(self) -> None: ...
     @_retry
+    @override
     def turn_off(self) -> None: ...
     @_retry
+    @override
     def set_volume_level(self, volume: float) -> None: ...
     @_retry
+    @override
     def mute_volume(self, mute: bool) -> None: ...
     @_retry
+    @override
     def turn_on(self) -> None: ...
     @_retry
     def media_play_pause(self) -> None: ...
     @_retry
+    @override
     def media_play(self) -> None: ...
     @_retry
+    @override
     def media_pause(self) -> None: ...
     @_retry
+    @override
     def media_next_track(self) -> None: ...
     @_retry
+    @override
     def media_previous_track(self) -> None: ...
+    @override
     def select_source(self, source: str) -> None: ...

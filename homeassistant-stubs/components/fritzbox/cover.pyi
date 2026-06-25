@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -14,10 +14,16 @@ class FritzboxCover(FritzBoxDeviceEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     @property
+    @override
     def current_cover_position(self) -> int | None: ...
     @property
+    @override
     def is_closed(self) -> bool | None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...

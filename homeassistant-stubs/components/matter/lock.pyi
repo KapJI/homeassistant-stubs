@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from matter_server.common.models import EventType, MatterNodeEvent as MatterNodeEvent
-from typing import Any
+from typing import Any, override
 
 _OperationSource: Incomplete
 DOOR_LOCK_OPERATION_SOURCE: dict[int, str]
@@ -27,20 +27,26 @@ class MatterLock(MatterEntity, LockEntity):
     _optimistic_timer: asyncio.TimerHandle | None
     _platform_translation_key: str
     _attr_changed_by: str
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _on_matter_node_event(self, event: EventType, node_event: MatterNodeEvent) -> None: ...
     @property
+    @override
     def code_format(self) -> str | None: ...
     _attr_is_locking: bool
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
     _attr_is_unlocking: bool
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     _attr_is_opening: bool
+    @override
     async def async_open(self, **kwargs: Any) -> None: ...
     _attr_is_locked: bool
     _attr_is_open: bool
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     @callback
     def _reset_optimistic_state(self, write_state: bool = True) -> None: ...

@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDescription as LockEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 LOCK_TYPES: dict[str, LockEntityDescription]
 
@@ -18,6 +18,9 @@ class WallboxLock(WallboxEntity, LockEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WallboxCoordinator, description: LockEntityDescription) -> None: ...
     @property
+    @override
     def is_locked(self) -> bool: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...

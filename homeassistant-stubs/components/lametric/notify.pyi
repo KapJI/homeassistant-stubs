@@ -8,11 +8,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
+from typing import Any, override
 
 async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_info: DiscoveryInfoType | None = None) -> LaMetricNotificationService | None: ...
 
 class LaMetricNotificationService(BaseNotificationService):
     lametric: Incomplete
     def __init__(self, lametric: LaMetricDevice) -> None: ...
+    @override
     async def async_send_message(self, message: str = '', **kwargs: Any) -> None: ...

@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 BINARY_SENSOR_TYPES: tuple[BinarySensorEntityDescription, ...]
 
@@ -14,4 +15,5 @@ class SkybellBinarySensor(SkybellEntity, BinarySensorEntity):
     def __init__(self, coordinator: SkybellDataUpdateCoordinator, description: BinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

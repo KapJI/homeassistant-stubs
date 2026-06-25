@@ -8,6 +8,7 @@ from homeassistant.components.bluetooth.passive_update_processor import PassiveB
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
+from typing import override
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 
@@ -17,6 +18,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: config_entries.ConfigEnt
 class GoveeBluetoothBinarySensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[bool | None, SensorUpdate]], BinarySensorEntity):
     processor: GoveeBLEPassiveBluetoothDataProcessor[bool | None]
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

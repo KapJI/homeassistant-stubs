@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from infrared_protocols.codes.lg.tv import LGTVCode
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +24,5 @@ class LgIrButton(LgIrEntity, InfraredEmitterConsumerEntity, ButtonEntity):
     entity_description: LgIrButtonEntityDescription
     _infrared_emitter_entity_id: Incomplete
     def __init__(self, entry: ConfigEntry, infrared_entity_id: str, description: LgIrButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

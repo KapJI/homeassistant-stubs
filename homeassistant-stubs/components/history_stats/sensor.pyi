@@ -17,7 +17,7 @@ from homeassistant.helpers.reload import async_setup_reload_service as async_set
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 UNITS: dict[str, str]
 ICON: str
@@ -35,7 +35,9 @@ class HistoryStatsSensorBase(CoordinatorEntity[HistoryStatsUpdateCoordinator], S
     _attr_icon = ICON
     _attr_name: Incomplete
     def __init__(self, coordinator: HistoryStatsUpdateCoordinator, name: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @callback
     @abstractmethod
@@ -53,5 +55,6 @@ class HistoryStatsSensor(HistoryStatsSensorBase):
     def __init__(self, hass: HomeAssistant, *, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, source_entity_id: str, state_class: SensorStateClass | None) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _process_update(self) -> None: ...
     async def async_start_preview(self, preview_callback: Callable[[BaseException | None, str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...

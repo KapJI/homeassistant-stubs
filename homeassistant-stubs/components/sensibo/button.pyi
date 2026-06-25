@@ -7,7 +7,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,6 +23,7 @@ class SensiboDeviceButton(SensiboDeviceBaseEntity, ButtonEntity):
     entity_description: SensiboButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...
     @async_handle_api_call
     async def async_send_api_call(self, key: str, value: Any) -> bool: ...

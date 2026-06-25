@@ -4,6 +4,7 @@ from aiowaqi import WAQIAirQuality, WAQIClient as WAQIClient
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigSubentry as ConfigSubentry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type WAQIConfigEntry = ConfigEntry[dict[str, WAQIDataUpdateCoordinator]]
 class WAQIDataUpdateCoordinator(DataUpdateCoordinator[WAQIAirQuality]):
@@ -11,4 +12,5 @@ class WAQIDataUpdateCoordinator(DataUpdateCoordinator[WAQIAirQuality]):
     _client: Incomplete
     subentry: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: WAQIConfigEntry, subentry: ConfigSubentry, client: WAQIClient) -> None: ...
+    @override
     async def _async_update_data(self) -> WAQIAirQuality: ...

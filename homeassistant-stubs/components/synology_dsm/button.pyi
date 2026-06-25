@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 LOGGER: Incomplete
 
@@ -28,4 +28,5 @@ class SynologyDSMButton(ButtonEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, api: SynoApi, description: SynologyDSMbuttonDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

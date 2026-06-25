@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: IBeaconConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,9 +20,12 @@ class IBeaconTrackerEntity(IBeaconEntity, BaseScannerEntity):
     _active: bool
     def __init__(self, coordinator: IBeaconCoordinator, identifier: str, device_unique_id: str, ibeacon_advertisement: iBeaconAdvertisement) -> None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     _ibeacon_advertisement: Incomplete
     @callback
+    @override
     def _async_seen(self, ibeacon_advertisement: iBeaconAdvertisement) -> None: ...
     @callback
+    @override
     def _async_unavailable(self) -> None: ...

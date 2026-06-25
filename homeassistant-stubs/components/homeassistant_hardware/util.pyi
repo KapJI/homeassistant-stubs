@@ -2,11 +2,12 @@ from . import DATA_COMPONENT as DATA_COMPONENT
 from .const import OTBR_ADDON_MANAGER_DATA as OTBR_ADDON_MANAGER_DATA, OTBR_ADDON_NAME as OTBR_ADDON_NAME, OTBR_ADDON_SLUG as OTBR_ADDON_SLUG, Z2M_ADDON_NAME as Z2M_ADDON_NAME, Z2M_ADDON_SLUG_REGEX as Z2M_ADDON_SLUG_REGEX, ZIGBEE_FLASHER_ADDON_MANAGER_DATA as ZIGBEE_FLASHER_ADDON_MANAGER_DATA, ZIGBEE_FLASHER_ADDON_NAME as ZIGBEE_FLASHER_ADDON_NAME, ZIGBEE_FLASHER_ADDON_SLUG as ZIGBEE_FLASHER_ADDON_SLUG
 from .helpers import async_firmware_update_context as async_firmware_update_context
 from _typeshed import Incomplete
+from aiohasupervisor.models import RaspberryPiFirmwareInfo as RaspberryPiFirmwareInfo
 from collections.abc import AsyncGenerator, Callable as Callable, Sequence
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from enum import StrEnum
-from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, HassioNotReadyError as HassioNotReadyError, get_apps_list as get_apps_list
+from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, HassioNotReadyError as HassioNotReadyError, get_apps_list as get_apps_list, get_supervisor_client as get_supervisor_client
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -75,3 +76,12 @@ async def probe_silabs_firmware_type(device: str, *, application_probe_methods: 
 @asynccontextmanager
 async def async_firmware_flashing_context(hass: HomeAssistant, device: str, source_domain: str) -> AsyncGenerator[None]: ...
 async def async_flash_silabs_firmware(hass: HomeAssistant, device: str, fw_data: bytes, flasher_cls: type[DeviceSpecificFlasher], expected_installed_firmware_type: ApplicationType, progress_callback: Callable[[int, int], None] | None = None) -> FirmwareInfo: ...
+
+BOARDS_WITH_RASPBERRYPI_FIRMWARE: Incomplete
+RPI_FIRMWARE_RELEASE_URL_DEFAULT: str
+_RPI_FIRMWARE_RELEASE_URLS: Incomplete
+
+def rpi_firmware_release_url(board: str) -> str: ...
+def humanize_rpi_firmware_version(version: str | None) -> str | None: ...
+async def async_get_raspberry_pi_firmware_info(hass: HomeAssistant) -> RaspberryPiFirmwareInfo | None: ...
+async def async_update_raspberry_pi_firmware(hass: HomeAssistant) -> None: ...

@@ -15,6 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -41,6 +42,7 @@ class MqttValve(MqttEntity, ValveEntity):
     _range: tuple[int, int]
     _tilt_optimistic: bool
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_reports_position: Incomplete
     _attr_assumed_state: Incomplete
@@ -48,6 +50,7 @@ class MqttValve(MqttEntity, ValveEntity):
     _command_template: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_opening: Incomplete
     _attr_is_closing: Incomplete
@@ -61,9 +64,15 @@ class MqttValve(MqttEntity, ValveEntity):
     @callback
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_open_valve(self) -> None: ...
+    @override
     async def async_close_valve(self) -> None: ...
+    @override
     async def async_stop_valve(self) -> None: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...

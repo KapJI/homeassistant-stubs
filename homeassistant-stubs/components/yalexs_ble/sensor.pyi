@@ -8,6 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricPotential as UnitOfElectricPotential
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
 @dataclass(frozen=True, kw_only=True)
@@ -24,4 +25,5 @@ class YaleXSBLESensor(YALEXSBLEEntity, SensorEntity):
     def __init__(self, description: YaleXSBLESensorEntityDescription, data: YaleXSBLEData) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_state(self, new_state: LockState, lock_info: LockInfo, connection_info: ConnectionInfo) -> None: ...

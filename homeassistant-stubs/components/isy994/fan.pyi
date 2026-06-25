@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
-from typing import Any
+from typing import Any, override
 
 SPEED_RANGE: Incomplete
 
@@ -17,21 +17,32 @@ async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_ad
 class ISYFanEntity(ISYNodeEntity, FanEntity):
     _attr_supported_features: Incomplete
     @property
+    @override
     def percentage(self) -> int | None: ...
     @property
+    @override
     def speed_count(self) -> int: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ISYFanProgramEntity(ISYProgramEntity, FanEntity):
     @property
+    @override
     def percentage(self) -> int | None: ...
     @property
+    @override
     def speed_count(self) -> int: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...

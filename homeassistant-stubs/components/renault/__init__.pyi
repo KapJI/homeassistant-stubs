@@ -1,4 +1,4 @@
-from .const import CONF_LOCALE as CONF_LOCALE, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, RenaultConfigurationKeys as RenaultConfigurationKeys
 from .renault_hub import RenaultHub as RenaultHub
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete

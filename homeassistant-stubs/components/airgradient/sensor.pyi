@@ -12,6 +12,7 @@ from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONC
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -38,6 +39,7 @@ class AirGradientSensor(AirGradientEntity, SensorEntity):
 class AirGradientMeasurementSensor(AirGradientSensor):
     entity_description: AirGradientMeasurementSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class AirGradientConfigSensor(AirGradientSensor):
@@ -45,4 +47,5 @@ class AirGradientConfigSensor(AirGradientSensor):
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientConfigSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

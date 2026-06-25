@@ -2,7 +2,7 @@ from .const import DOMAIN as DOMAIN
 from datetime import time
 from homeassistant.helpers.entity import Entity, EntityDescription
 from propcache.api import cached_property
-from typing import final
+from typing import final, override
 
 __all__ = ['DOMAIN', 'TimeEntity', 'TimeEntityDescription']
 
@@ -15,12 +15,15 @@ class TimeEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_state: None
     @cached_property
     @final
+    @override
     def device_class(self) -> None: ...
     @cached_property
     @final
+    @override
     def state_attributes(self) -> None: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def native_value(self) -> time | None: ...

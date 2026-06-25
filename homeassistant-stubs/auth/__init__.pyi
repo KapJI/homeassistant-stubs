@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import FlowHandler as FlowHandler, FlowManager as FlowManager, FlowResultType as FlowResultType
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
-from typing import Any
+from typing import Any, override
 
 EVENT_USER_ADDED: str
 EVENT_USER_UPDATED: str
@@ -27,7 +27,9 @@ class AuthManagerFlowManager(FlowManager[AuthFlowContext, AuthFlowResult, tuple[
     _flow_result = AuthFlowResult
     auth_manager: Incomplete
     def __init__(self, hass: HomeAssistant, auth_manager: AuthManager) -> None: ...
+    @override
     async def async_create_flow(self, handler_key: tuple[str, str], *, context: AuthFlowContext | None = None, data: dict[str, Any] | None = None) -> LoginFlow[Any]: ...
+    @override
     async def async_finish_flow(self, flow: FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]], result: AuthFlowResult) -> AuthFlowResult: ...
 
 class AuthManager:

@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import as_utc as as_utc, parse_datetime as parse_datetime
 from renault_api.kamereon.models import KamereonVehicleBatteryStatusData, KamereonVehicleChargingSettingsData, KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -26,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntr
 class RenaultSensor[T: KamereonVehicleDataAttributes](RenaultDataEntity[T], SensorEntity):
     entity_description: RenaultSensorEntityDescription[T]
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 def _get_charge_state_formatted(entity: RenaultSensor[KamereonVehicleBatteryStatusData]) -> str | None: ...

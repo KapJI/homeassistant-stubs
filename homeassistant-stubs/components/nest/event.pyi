@@ -9,6 +9,7 @@ from google_nest_sdm.traits import TraitType
 from homeassistant.components.event import DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -30,4 +31,5 @@ class NestTraitEventEntity(EventEntity):
     _attr_device_info: Incomplete
     def __init__(self, entity_description: NestEventEntityDescription, device: Device) -> None: ...
     async def _async_handle_event(self, event_message: EventMessage) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

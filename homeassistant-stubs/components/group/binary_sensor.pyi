@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_CL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 CONF_ALL: str
@@ -29,6 +29,8 @@ class BinarySensorGroup(GroupEntity, BinarySensorEntity):
     def __init__(self, unique_id: str | None, name: str, device_class: BinarySensorDeviceClass | None, entity_ids: list[str], mode: bool | None) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def async_update_group_state(self) -> None: ...
     @property
+    @override
     def device_class(self) -> BinarySensorDeviceClass | None: ...

@@ -8,7 +8,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -26,8 +26,11 @@ class RussoundSwitchEntity(RussoundBaseEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, controller: Controller, zone_id: int, description: RussoundZoneSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @command
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @command
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

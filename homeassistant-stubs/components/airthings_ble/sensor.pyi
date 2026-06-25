@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
+from typing import override
 
 _LOGGER: Incomplete
 CONNECTIVITY_MODE_MAP: Incomplete
@@ -28,6 +29,8 @@ class AirthingsSensor(CoordinatorEntity[AirthingsBLEDataUpdateCoordinator], Sens
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirthingsBLEDataUpdateCoordinator, airthings_device: AirthingsDevice, entity_description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

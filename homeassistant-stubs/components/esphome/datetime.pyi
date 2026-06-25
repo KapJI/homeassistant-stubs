@@ -3,13 +3,16 @@ from _typeshed import Incomplete
 from aioesphomeapi import DateTimeInfo, DateTimeState
 from datetime import datetime
 from homeassistant.components.datetime import DateTimeEntity as DateTimeEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 
 class EsphomeDateTime(EsphomeEntity[DateTimeInfo, DateTimeState], DateTimeEntity):
     @property
     @esphome_state_property
+    @override
     def native_value(self) -> datetime | None: ...
+    @override
     async def async_set_value(self, value: datetime) -> None: ...
 
 async_setup_entry: Incomplete

@@ -5,10 +5,12 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type ForecastSolarConfigEntry = ConfigEntry[ForecastSolarDataUpdateCoordinator]
 class ForecastSolarDataUpdateCoordinator(DataUpdateCoordinator[Estimate]):
     config_entry: ForecastSolarConfigEntry
     forecast: ForecastSolar
     def __init__(self, hass: HomeAssistant, entry: ForecastSolarConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> Estimate: ...

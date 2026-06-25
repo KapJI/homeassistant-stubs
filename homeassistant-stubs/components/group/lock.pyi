@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.group import GenericGroup as GenericGroup
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 PARALLEL_UPDATES: int
@@ -36,4 +36,5 @@ class LockGroup(GroupEntity, LockEntity):
     _attr_is_unlocking: Incomplete
     _attr_is_locked: Incomplete
     @callback
+    @override
     def async_update_group_state(self) -> None: ...

@@ -12,6 +12,7 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 SERVER_STATUS_SENSORS: tuple[SensorEntityDescription, ...]
@@ -27,6 +28,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry, a
 
 class ServerStatusSensor(LMSStatusEntity, SensorEntity):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class SqueezeboxSensorEntity(SqueezeboxEntity, SensorEntity):
@@ -34,4 +36,5 @@ class SqueezeboxSensorEntity(SqueezeboxEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator, description: PlayerSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | None: ...

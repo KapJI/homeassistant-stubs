@@ -7,6 +7,7 @@ from homeassistant.components.calendar import CalendarEntity as CalendarEntity, 
 from homeassistant.const import CONF_ID as CONF_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: TwenteMilieuConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,8 +18,12 @@ class TwenteMilieuCalendar(TwenteMilieuEntity, CalendarEntity):
     _event: CalendarEvent | None
     def __init__(self, entry: TwenteMilieuConfigEntry) -> None: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

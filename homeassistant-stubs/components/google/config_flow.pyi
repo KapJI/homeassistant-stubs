@@ -9,7 +9,7 @@ from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, O
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -20,17 +20,23 @@ class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     _web_auth: bool
     def __init__(self) -> None: ...
     @property
+    @override
     def logger(self) -> logging.Logger: ...
     @property
+    @override
     def extra_authorize_data(self) -> dict[str, Any]: ...
     external_data: Incomplete
+    @override
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_creation(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_oauth_create_entry(self, data: dict) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: GoogleConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(OptionsFlowWithReload):

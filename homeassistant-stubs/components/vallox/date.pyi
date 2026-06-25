@@ -6,6 +6,7 @@ from homeassistant.components.date import DateEntity as DateEntity
 from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 class ValloxFilterChangeDateEntity(ValloxEntity, DateEntity):
     _attr_entity_category: Incomplete
@@ -13,7 +14,9 @@ class ValloxFilterChangeDateEntity(ValloxEntity, DateEntity):
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> date | None: ...
+    @override
     async def async_set_value(self, value: date) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: ValloxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

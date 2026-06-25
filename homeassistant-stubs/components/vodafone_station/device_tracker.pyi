@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,6 +26,8 @@ class VodafoneStationTracker(CoordinatorEntity[VodafoneStationRouter], ScannerEn
     @property
     def _device_info(self) -> VodafoneStationDeviceInfo: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def ip_address(self) -> str | None: ...

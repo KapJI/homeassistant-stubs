@@ -6,6 +6,7 @@ from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -25,4 +26,5 @@ class DemoNumber(NumberEntity):
     _attr_native_step: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, unique_id: str, device_name: str, state: float, translation_key: str | None, assumed_state: bool, *, device_class: NumberDeviceClass | None = None, mode: NumberMode = ..., native_min_value: float | None = None, native_max_value: float | None = None, native_step: float | None = None, unit_of_measurement: str | None = None) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

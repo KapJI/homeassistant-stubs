@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class CO2SensorEntityDescription(SensorEntityDescription):
@@ -31,6 +32,8 @@ class CO2Sensor(CoordinatorEntity[CO2SignalCoordinator], SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CO2SignalCoordinator, description: CO2SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...

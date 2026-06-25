@@ -7,7 +7,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_URL as CONF_U
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import SectionConfig as SectionConfig, section as section
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -17,9 +17,11 @@ class SonarrConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SonarrOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def _get_user_data_schema(self) -> vol.Schema: ...
 

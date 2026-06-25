@@ -13,7 +13,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
-from typing import Any, Final
+from typing import Any, Final, override
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.firmware import FirmwareUpdateInfo, FirmwareUpdateProgress as FirmwareUpdateProgress, FirmwareUpdateResult as FirmwareUpdateResult
 from zwave_js_server.model.node import Node as ZwaveNode
@@ -35,6 +35,7 @@ NODE_UPDATE_ENTITY_DESCRIPTION: Incomplete
 @dataclass
 class ZWaveFirmwareUpdateExtraStoredData(ExtraStoredData):
     latest_version_firmware: FirmwareUpdateInfo | None
+    @override
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> ZWaveFirmwareUpdateExtraStoredData: ...
@@ -59,6 +60,7 @@ class ZWaveFirmwareUpdateEntity(ZWaveNodeBaseEntity, UpdateEntity):
     _attr_installed_version: Incomplete
     def __init__(self, driver: Driver, node: ZwaveNode, delay: timedelta, entity_description: ZWaveUpdateEntityDescription) -> None: ...
     @property
+    @override
     def extra_restore_state_data(self) -> ZWaveFirmwareUpdateExtraStoredData: ...
     _attr_in_progress: bool
     _attr_update_percentage: Incomplete
@@ -70,7 +72,11 @@ class ZWaveFirmwareUpdateEntity(ZWaveNodeBaseEntity, UpdateEntity):
     def _unsub_firmware_events_and_reset_progress(self, write_state: bool = True) -> None: ...
     _attr_latest_version: Incomplete
     async def _async_update(self, _: HomeAssistant | datetime | None = None) -> None: ...
+    @override
     async def async_release_notes(self) -> str | None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

@@ -5,7 +5,7 @@ from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LAT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 DOMAIN: str
 _LOGGER: Incomplete
@@ -40,6 +40,7 @@ class AprsListenerThread(threading.Thread):
     ais: Incomplete
     def __init__(self, callsign: str, password: str, host: str, server_filter: str, see: SeeCallback) -> None: ...
     def start_complete(self, success: bool, message: str) -> None: ...
+    @override
     def run(self) -> None: ...
     def stop(self) -> None: ...
     def rx_msg(self, msg: dict[str, Any]) -> None: ...

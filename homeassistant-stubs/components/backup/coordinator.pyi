@@ -7,6 +7,7 @@ from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 type BackupConfigEntry = ConfigEntry[BackupDataUpdateCoordinator]
 @dataclass
@@ -25,6 +26,7 @@ class BackupDataUpdateCoordinator(DataUpdateCoordinator[BackupCoordinatorData]):
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, backup_manager: BackupManager) -> None: ...
     @callback
     def _on_event(self, event: ManagerStateEvent | BackupPlatformEvent) -> None: ...
+    @override
     async def _async_update_data(self) -> BackupCoordinatorData: ...
     @callback
     def async_unsubscribe(self) -> None: ...

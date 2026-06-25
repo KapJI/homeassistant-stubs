@@ -22,7 +22,7 @@ from sqlalchemy.orm import DeclarativeBase as DeclarativeBase
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.schema import AddConstraint
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
-from typing import Any, TypedDict, final
+from typing import Any, TypedDict, final, override
 
 LIVE_MIGRATION_MIN_SCHEMA_VERSION: int
 MIGRATION_NOTE_OFFLINE: str
@@ -92,6 +92,7 @@ def _apply_update(instance: Recorder, hass: HomeAssistant, engine: Engine, sessi
 
 class _SchemaVersionMigrator(ABC, metaclass=abc.ABCMeta):
     __migrators: dict[int, type[_SchemaVersionMigrator]]
+    @override
     def __init_subclass__(cls, target_version: int, **kwargs: Any) -> None: ...
     instance: Incomplete
     hass: Incomplete
@@ -108,166 +109,219 @@ class _SchemaVersionMigrator(ABC, metaclass=abc.ABCMeta):
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion1Migrator(_SchemaVersionMigrator, target_version=1):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion2Migrator(_SchemaVersionMigrator, target_version=2):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion3Migrator(_SchemaVersionMigrator, target_version=3):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion4Migrator(_SchemaVersionMigrator, target_version=4):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion5Migrator(_SchemaVersionMigrator, target_version=5):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion6Migrator(_SchemaVersionMigrator, target_version=6):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion7Migrator(_SchemaVersionMigrator, target_version=7):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion8Migrator(_SchemaVersionMigrator, target_version=8):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion9Migrator(_SchemaVersionMigrator, target_version=9):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion10Migrator(_SchemaVersionMigrator, target_version=10):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion11Migrator(_SchemaVersionMigrator, target_version=11):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion12Migrator(_SchemaVersionMigrator, target_version=12):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion13Migrator(_SchemaVersionMigrator, target_version=13):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion14Migrator(_SchemaVersionMigrator, target_version=14):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion15Migrator(_SchemaVersionMigrator, target_version=15):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion16Migrator(_SchemaVersionMigrator, target_version=16):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion17Migrator(_SchemaVersionMigrator, target_version=17):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion18Migrator(_SchemaVersionMigrator, target_version=18):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion19Migrator(_SchemaVersionMigrator, target_version=19):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion20Migrator(_SchemaVersionMigrator, target_version=20):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion21Migrator(_SchemaVersionMigrator, target_version=21):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion22Migrator(_SchemaVersionMigrator, target_version=22):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion23Migrator(_SchemaVersionMigrator, target_version=23):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion24Migrator(_SchemaVersionMigrator, target_version=24):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion25Migrator(_SchemaVersionMigrator, target_version=25):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion26Migrator(_SchemaVersionMigrator, target_version=26):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion27Migrator(_SchemaVersionMigrator, target_version=27):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion28Migrator(_SchemaVersionMigrator, target_version=28):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion29Migrator(_SchemaVersionMigrator, target_version=29):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion30Migrator(_SchemaVersionMigrator, target_version=30):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion31Migrator(_SchemaVersionMigrator, target_version=31):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion32Migrator(_SchemaVersionMigrator, target_version=32):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion33Migrator(_SchemaVersionMigrator, target_version=33):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion34Migrator(_SchemaVersionMigrator, target_version=34):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion35Migrator(_SchemaVersionMigrator, target_version=35):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion36Migrator(_SchemaVersionMigrator, target_version=36):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion37Migrator(_SchemaVersionMigrator, target_version=37):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion38Migrator(_SchemaVersionMigrator, target_version=38):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion39Migrator(_SchemaVersionMigrator, target_version=39):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion40Migrator(_SchemaVersionMigrator, target_version=40):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion41Migrator(_SchemaVersionMigrator, target_version=41):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion42Migrator(_SchemaVersionMigrator, target_version=42):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion43Migrator(_SchemaVersionMigrator, target_version=43):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion44Migrator(_SchemaVersionMigrator, target_version=44):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion45Migrator(_SchemaVersionMigrator, target_version=45):
+    @override
     def _apply_update(self) -> None: ...
 
 FOREIGN_COLUMNS: Incomplete
 
 class _SchemaVersion46Migrator(_SchemaVersionMigrator, target_version=46):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion47Migrator(_SchemaVersionMigrator, target_version=47):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion48Migrator(_SchemaVersionMigrator, target_version=48):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion49Migrator(_SchemaVersionMigrator, target_version=49):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion50Migrator(_SchemaVersionMigrator, target_version=50):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion51Migrator(_SchemaVersionMigrator, target_version=51):
+    @override
     def _apply_update(self) -> None: ...
 
 class _SchemaVersion52Migrator(_SchemaVersionMigrator, target_version=52):
+    @override
     def _apply_update(self) -> None: ...
     def _apply_update_mysql(self) -> None: ...
     def _apply_update_postgresql_sqlite(self) -> None: ...
 
 class _SchemaVersion53Migrator(_SchemaVersionMigrator, target_version=53):
+    @override
     def _apply_update(self) -> None: ...
 
 def _migrate_statistics_columns_to_timestamp_removing_duplicates(hass: HomeAssistant, instance: Recorder, session_maker: Callable[[], Session], engine: Engine) -> None: ...
@@ -286,6 +340,7 @@ def initialize_database(session_maker: Callable[[], Session]) -> bool: ...
 class MigrationTask(RecorderTask):
     migrator: BaseRunTimeMigration
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -320,17 +375,20 @@ class BaseMigration(ABC, metaclass=abc.ABCMeta):
 
 class BaseOffLineMigration(BaseMigration, metaclass=abc.ABCMeta):
     def migrate_all(self, instance: Recorder, session_maker: Callable[[], Session]) -> None: ...
+    @override
     def migrate_data(self, instance: Recorder) -> bool: ...
     def _ensure_index_exists(self, instance: Recorder) -> None: ...
 
 class BaseRunTimeMigration(BaseMigration, metaclass=abc.ABCMeta):
     task = MigrationTask
     def queue_migration(self, instance: Recorder, session: Session) -> None: ...
+    @override
     def migrate_data(self, instance: Recorder) -> bool: ...
 
 class BaseMigrationWithQuery(BaseMigration, metaclass=abc.ABCMeta):
     @abstractmethod
     def needs_migrate_query(self) -> StatementLambdaElement: ...
+    @override
     def needs_migrate_impl(self, instance: Recorder, session: Session) -> DataMigrationStatus: ...
 
 class StatesContextIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
@@ -339,7 +397,9 @@ class StatesContextIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
     migration_id: str
     migration_version: int
     index_to_drop: Incomplete
+    @override
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...
+    @override
     def needs_migrate_query(self) -> StatementLambdaElement: ...
 
 class EventsContextIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
@@ -348,21 +408,27 @@ class EventsContextIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
     migration_id: str
     migration_version: int
     index_to_drop: Incomplete
+    @override
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...
+    @override
     def needs_migrate_query(self) -> StatementLambdaElement: ...
 
 class EventTypeIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
     required_schema_version = EVENT_TYPE_IDS_SCHEMA_VERSION
     max_initial_schema_version: Incomplete
     migration_id: str
+    @override
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...
+    @override
     def needs_migrate_query(self) -> StatementLambdaElement: ...
 
 class EntityIDMigration(BaseMigrationWithQuery, BaseOffLineMigration):
     required_schema_version = STATES_META_SCHEMA_VERSION
     max_initial_schema_version: Incomplete
     migration_id: str
+    @override
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...
+    @override
     def needs_migrate_query(self) -> StatementLambdaElement: ...
 
 class EventIDPostMigration(BaseRunTimeMigration):
@@ -370,16 +436,20 @@ class EventIDPostMigration(BaseRunTimeMigration):
     max_initial_schema_version = LEGACY_STATES_EVENT_FOREIGN_KEYS_FIXED_SCHEMA_VERSION
     task = MigrationTask
     migration_version: int
+    @override
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...
     @staticmethod
     def _legacy_event_id_foreign_key_exists(instance: Recorder) -> bool: ...
+    @override
     def needs_migrate_impl(self, instance: Recorder, session: Session) -> DataMigrationStatus: ...
 
 class EntityIDPostMigration(BaseMigrationWithQuery, BaseOffLineMigration):
     migration_id: str
     max_initial_schema_version: Incomplete
     index_to_drop: Incomplete
+    @override
     def migrate_data_impl(self, instance: Recorder) -> DataMigrationStatus: ...
+    @override
     def needs_migrate_query(self) -> StatementLambdaElement: ...
 
 NON_LIVE_DATA_MIGRATORS: tuple[type[BaseOffLineMigration], ...]

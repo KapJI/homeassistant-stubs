@@ -3,7 +3,7 @@ from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFe
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 LOCK_UNLOCK_DELAY: int
 
@@ -18,17 +18,26 @@ class DemoLock(LockEntity):
     _jam_on_operation: Incomplete
     def __init__(self, name: str, state: str, openable: bool = False, jam_on_operation: bool = False) -> None: ...
     @property
+    @override
     def is_locking(self) -> bool: ...
     @property
+    @override
     def is_unlocking(self) -> bool: ...
     @property
+    @override
     def is_jammed(self) -> bool: ...
     @property
+    @override
     def is_locked(self) -> bool: ...
     @property
+    @override
     def is_open(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open(self, **kwargs: Any) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.helpers import llm as llm
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector
 from python_open_router import Model as Model
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -16,7 +16,9 @@ class OpenRouterConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class OpenRouterSubentryFlowHandler(ConfigSubentryFlow):

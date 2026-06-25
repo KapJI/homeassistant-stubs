@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM, UnitSystem as UnitSystem
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineSelectDescription(SelectEntityDescription, RainMachineEntityDescription):
@@ -37,7 +38,9 @@ class FreezeProtectionTemperatureSelect(RainMachineEntity, SelectEntity):
     _label_to_api_value_map: Incomplete
     _attr_options: Incomplete
     def __init__(self, entry: ConfigEntry, data: RainMachineData, description: FreezeProtectionSelectDescription, unit_system: UnitSystem) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_current_option: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

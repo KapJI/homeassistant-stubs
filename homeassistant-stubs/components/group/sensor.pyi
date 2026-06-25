@@ -11,7 +11,7 @@ from homeassistant.helpers.entity import get_capability as get_capability, get_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 ATTR_MIN_VALUE: str
@@ -77,10 +77,13 @@ class SensorGroup(GroupEntity, SensorEntity):
     def calculate_state_attributes(self, valid_state_entities: list[str]) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_group_state(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def icon(self) -> str | None: ...
     def _calculate_state_class(self, state_class: SensorStateClass | None, valid_state_entities: list[str]) -> SensorStateClass | None: ...
     def _calculate_device_class(self, device_class: SensorDeviceClass | None, valid_state_entities: list[str]) -> SensorDeviceClass | None: ...

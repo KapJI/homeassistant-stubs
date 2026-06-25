@@ -5,6 +5,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyintelliclima.intelliclima_types import IntelliClimaECO as IntelliClimaECO
+from typing import override
 
 PARALLEL_UPDATES: int
 FAN_MODE_TO_INTELLICLIMA_MODE: Incomplete
@@ -18,5 +19,7 @@ class IntelliClimaVMCFanModeSelect(IntelliClimaECOEntity, SelectEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: IntelliClimaCoordinator, device: IntelliClimaECO) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

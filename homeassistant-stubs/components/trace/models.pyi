@@ -2,21 +2,31 @@ import abc
 import datetime as dt
 from _typeshed import Incomplete
 from collections import deque
+from collections.abc import Iterator
+from dataclasses import dataclass
 from homeassistant.core import Context as Context
 from homeassistant.helpers.trace import TraceElement as TraceElement, script_execution_get as script_execution_get, trace_id_get as trace_id_get, trace_id_set as trace_id_set, trace_set_child_id as trace_set_child_id
 from homeassistant.util.limited_size_dict import LimitedSizeDict as LimitedSizeDict
-from typing import Any
+from typing import Any, override
 
-type TraceData = dict[str, LimitedSizeDict[str, BaseTrace]]
+type TraceData = dict[str, TraceBuckets]
 class BaseTrace(abc.ABC, metaclass=abc.ABCMeta):
     context: Context
     key: str
     run_id: str
+    not_triggered: bool
     def as_dict(self) -> dict[str, Any]: ...
     @abc.abstractmethod
     def as_extended_dict(self) -> dict[str, Any]: ...
     @abc.abstractmethod
     def as_short_dict(self) -> dict[str, Any]: ...
+
+@dataclass(slots=True)
+class TraceBuckets:
+    runs: LimitedSizeDict[str, BaseTrace]
+    not_triggered: LimitedSizeDict[str, BaseTrace]
+    def bucket(self, not_triggered: bool) -> LimitedSizeDict[str, BaseTrace]: ...
+    def all_traces(self) -> Iterator[BaseTrace]: ...
 
 class ActionTrace(BaseTrace):
     _domain: str | None
@@ -37,15 +47,20 @@ class ActionTrace(BaseTrace):
     def set_trace(self, trace: dict[str, deque[TraceElement]] | None) -> None: ...
     def set_error(self, ex: Exception) -> None: ...
     def finished(self) -> None: ...
+    @override
     def as_extended_dict(self) -> dict[str, Any]: ...
+    @override
     def as_short_dict(self) -> dict[str, Any]: ...
 
 class RestoredTrace(BaseTrace):
     context: Incomplete
     key: Incomplete
     run_id: Incomplete
+    not_triggered: Incomplete
     _dict: Incomplete
     _short_dict: Incomplete
     def __init__(self, data: dict[str, Any]) -> None: ...
+    @override
     def as_extended_dict(self) -> dict[str, Any]: ...
+    @override
     def as_short_dict(self) -> dict[str, Any]: ...

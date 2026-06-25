@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_URL as CONF_URL
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_SERVICE_LIST as ATTR_UPNP_SERVICE_LIST, SsdpServiceInfo as SsdpServiceInfo
-from typing import Any
+from typing import Any, override
 
 LOGGER: Incomplete
 
@@ -17,7 +17,9 @@ class DlnaDmsFlowHandler(ConfigFlow, domain=DOMAIN):
     _usn: str | None
     _name: str | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_ssdp(self, discovery_info: SsdpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def _create_entry(self) -> ConfigFlowResult: ...

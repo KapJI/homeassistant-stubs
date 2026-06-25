@@ -8,7 +8,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class BAFSwitchDescription(SwitchEntityDescription):
@@ -25,6 +25,9 @@ class BAFSwitch(BAFDescriptionEntity, SwitchEntity):
     entity_description: BAFSwitchDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

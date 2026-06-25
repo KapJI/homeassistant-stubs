@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENT
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, State as State, callback as callback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from pyhap.util import callback as pyhap_callback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 HC_HUMIDIFIER: int
@@ -34,6 +34,7 @@ class HumidifierDehumidifier(HomeAccessory):
     def __init__(self, *args: Any) -> None: ...
     @callback
     @pyhap_callback
+    @override
     def run(self) -> None: ...
     @callback
     def async_update_current_humidity_event(self, event: Event[EventStateChangedData]) -> None: ...
@@ -44,4 +45,5 @@ class HumidifierDehumidifier(HomeAccessory):
     def _set_chars(self, char_values: dict[str, Any]) -> None: ...
     def get_humidity_range(self, state: State) -> tuple[int, int]: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...

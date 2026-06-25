@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.hassio import is_hassio as is_hassio
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_HW_SETTINGS_SCHEMA: Incomplete
@@ -14,6 +14,7 @@ class HomeAssistantGreenConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> HomeAssistantGreenOptionsFlow: ...
     async def async_step_system(self, data: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

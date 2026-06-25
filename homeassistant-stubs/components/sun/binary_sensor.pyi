@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 ENTITY_ID_BINARY_SENSOR_FORMAT: Incomplete
 
@@ -32,5 +33,7 @@ class SunBinarySensor(BinarySensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, sun: Sun, entity_description: SunBinarySensorEntityDescription, entry_id: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

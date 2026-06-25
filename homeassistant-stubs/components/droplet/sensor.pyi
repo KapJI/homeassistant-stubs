@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pydroplet.droplet import Droplet as Droplet
+from typing import override
 
 ML_L_CONVERSION: int
 
@@ -30,8 +31,11 @@ class DropletSensor(CoordinatorEntity[DropletDataCoordinator], SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: DropletDataCoordinator, entity_description: DropletSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | str | None: ...
     @property
+    @override
     def last_reset(self) -> datetime | None: ...

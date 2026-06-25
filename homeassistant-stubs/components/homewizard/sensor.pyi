@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from homewizard_energy.models import CombinedModels as CombinedModels, ExternalDevice
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -41,8 +41,10 @@ class HomeWizardSensorEntity(HomeWizardEntity, SensorEntity):
     _attr_entity_registry_enabled_default: bool
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, description: HomeWizardSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime | None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class HomeWizardExternalSensorEntity(HomeWizardEntity, SensorEntity):
@@ -53,12 +55,16 @@ class HomeWizardExternalSensorEntity(HomeWizardEntity, SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, description: HomeWizardExternalSensorEntityDescription, device_unique_id: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | str | None: ...
     @property
     def device(self) -> ExternalDevice | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def device_class(self) -> SensorDeviceClass | None: ...

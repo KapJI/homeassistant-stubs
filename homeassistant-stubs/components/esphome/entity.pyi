@@ -11,7 +11,7 @@ from homeassistant.helpers import device_registry as dr, entity_platform as enti
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from typing import Any, Concatenate, Generic, TypeVar
+from typing import Any, Concatenate, Generic, TypeVar, override
 
 _LOGGER: Incomplete
 _InfoT = TypeVar('_InfoT', bound=EntityInfo)
@@ -46,6 +46,7 @@ class EsphomeEntity(EsphomeBaseEntity, Generic[_InfoT, _StateT]):
     _state_type: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, entity_info: EntityInfo, state_type: type[_StateT]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _on_removal_signal(self) -> None: ...
@@ -75,4 +76,5 @@ class EsphomeAssistEntity(EsphomeBaseEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry_data: RuntimeEntryData) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

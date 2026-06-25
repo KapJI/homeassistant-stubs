@@ -3,7 +3,7 @@ from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
-from typing import Any
+from typing import Any, override
 
 OVERKIZ_TO_PRESET_MODES: dict[str, str]
 PRESET_MODES_TO_OVERKIZ: Incomplete
@@ -24,15 +24,23 @@ class SomfyHeatingTemperatureInterface(OverkizEntity, ClimateEntity):
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

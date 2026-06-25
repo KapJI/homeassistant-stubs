@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -19,7 +19,9 @@ class AirzoneSystemEntity(AirzoneEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: AirzoneConfigEntry, system_data: dict[str, Any]) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
     async def _async_update_sys_params(self, params: dict[str, Any]) -> None: ...
 
@@ -27,6 +29,7 @@ class AirzoneHotWaterEntity(AirzoneEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
     async def _async_update_dhw_params(self, params: dict[str, Any]) -> None: ...
 
@@ -34,6 +37,7 @@ class AirzoneWebServerEntity(AirzoneEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
 
 class AirzoneZoneEntity(AirzoneEntity):
@@ -44,6 +48,8 @@ class AirzoneZoneEntity(AirzoneEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry, system_zone_id: str, zone_data: dict[str, Any]) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
     async def _async_update_hvac_params(self, params: dict[str, Any]) -> None: ...

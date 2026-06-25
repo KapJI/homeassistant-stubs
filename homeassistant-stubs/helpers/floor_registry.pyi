@@ -10,7 +10,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, override
 
 DATA_REGISTRY: HassKey[FloorRegistry]
 EVENT_FLOOR_REGISTRY_UPDATED: EventType[EventFloorRegistryUpdatedData]
@@ -47,12 +47,15 @@ class FloorEntry(NormalizedNameBaseRegistryEntry):
     level: int | None = ...
 
 class FloorRegistryStore(Store[FloorRegistryStoreData]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> FloorRegistryStoreData: ...
 
 class FloorRegistryItems(NormalizedNameBaseRegistryItems[FloorEntry]):
     _aliases_index: RegistryIndexType
     def __init__(self) -> None: ...
+    @override
     def _index_entry(self, key: str, entry: FloorEntry) -> None: ...
+    @override
     def _unindex_entry(self, key: str, replacement_entry: FloorEntry | None = None) -> None: ...
     def get_floors_for_alias(self, alias: str) -> list[FloorEntry]: ...
 
@@ -79,8 +82,10 @@ class FloorRegistry(BaseRegistry[FloorRegistryStoreData]):
     def async_update(self, floor_id: str, *, aliases: set[str] | UndefinedType = ..., icon: str | None | UndefinedType = ..., level: int | UndefinedType = ..., name: str | UndefinedType = ...) -> FloorEntry: ...
     @callback
     def async_reorder(self, floor_ids: list[str]) -> None: ...
+    @override
     async def _async_load(self) -> None: ...
     @callback
+    @override
     def _data_to_save(self) -> FloorRegistryStoreData: ...
 
 @callback

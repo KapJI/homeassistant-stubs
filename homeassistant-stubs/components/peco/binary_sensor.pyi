@@ -4,7 +4,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: Final[int]
 
@@ -17,4 +17,5 @@ class PecoBinarySensor(CoordinatorEntity[PecoSmartMeterCoordinator], BinarySenso
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PecoSmartMeterCoordinator, phone_number: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

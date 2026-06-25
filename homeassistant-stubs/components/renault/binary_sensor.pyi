@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from renault_api.kamereon.enums import ChargeState
 from renault_api.kamereon.models import KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
+from typing import override
 
 PARALLEL_UPDATES: int
 _PLUG_FROM_CHARGE_STATUS: set[ChargeState]
@@ -20,6 +21,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntr
 class RenaultBinarySensor[T: KamereonVehicleDataAttributes](RenaultDataEntity[T], BinarySensorEntity):
     entity_description: RenaultBinarySensorEntityDescription[T]
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 def _plugged_in_value_lambda(self) -> bool | None: ...

@@ -7,7 +7,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from types import FrameType
-from typing import Any
+from typing import Any, override
 
 type KeyType = tuple[str, tuple[str, int], tuple[str, int, str] | None]
 CONF_MAX_ENTRIES: str
@@ -55,6 +55,7 @@ class LogErrorHandler(logging.Handler):
     fire_event: Incomplete
     paths_re: Incomplete
     def __init__(self, hass: HomeAssistant, maxlen: int, fire_event: bool, paths_re: re.Pattern[str]) -> None: ...
+    @override
     def emit(self, record: logging.LogRecord) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

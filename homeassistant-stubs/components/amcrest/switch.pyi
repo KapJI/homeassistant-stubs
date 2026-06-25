@@ -6,7 +6,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SWITCHES as CONF_SW
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 PRIVACY_MODE_KEY: str
 SWITCH_TYPES: tuple[SwitchEntityDescription, ...]
@@ -20,8 +20,11 @@ class AmcrestSwitch(SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, name: str, device: AmcrestDevice, entity_description: SwitchEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_turn_switch(self, mode: bool) -> None: ...
     _attr_is_on: Incomplete

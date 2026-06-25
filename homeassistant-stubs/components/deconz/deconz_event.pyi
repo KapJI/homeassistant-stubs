@@ -10,6 +10,7 @@ from pydeconz.models.sensor.ancillary_control import AncillaryControl
 from pydeconz.models.sensor.presence import Presence
 from pydeconz.models.sensor.relative_rotary import RelativeRotary
 from pydeconz.models.sensor.switch import Switch
+from typing import override
 
 CONF_DECONZ_EVENT: str
 CONF_DECONZ_ALARM_EVENT: str
@@ -38,19 +39,23 @@ class DeconzEventBase(DeconzBase):
 class DeconzEvent(DeconzEventBase):
     _device: Switch
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class DeconzAlarmEvent(DeconzEventBase):
     _device: AncillaryControl
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class DeconzPresenceEvent(DeconzEventBase):
     _device: Presence
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class DeconzRelativeRotaryEvent(DeconzEventBase):
     _device: RelativeRotary
     @callback
+    @override
     def async_update_callback(self) -> None: ...

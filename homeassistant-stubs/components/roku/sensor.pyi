@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from rokuecp.models import Device as RokuDevice
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_a
 class RokuSensorEntity(RokuEntity, SensorEntity):
     entity_description: RokuSensorEntityDescription
     @property
+    @override
     def native_value(self) -> str | None: ...

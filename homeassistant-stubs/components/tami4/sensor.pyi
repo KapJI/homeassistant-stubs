@@ -6,6 +6,7 @@ from homeassistant.const import UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 _LOGGER: Incomplete
 ENTITY_DESCRIPTIONS: Incomplete
@@ -17,4 +18,5 @@ class Tami4EdgeSensorEntity(Tami4EdgeBaseEntity, CoordinatorEntity[Tami4EdgeCoor
     _attr_native_value: Incomplete
     def _update_attr(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

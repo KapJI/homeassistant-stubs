@@ -6,7 +6,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 def async_handle_api_call[_T: SensiboDeviceBaseEntity, **_P](function: Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_T, _P], Coroutine[Any, Any, Any]]: ...
 
@@ -18,6 +18,7 @@ class SensiboBaseEntity(CoordinatorEntity[SensiboDataUpdateCoordinator]):
     @property
     def device_data(self) -> SensiboDevice: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class SensiboDeviceBaseEntity(SensiboBaseEntity):
@@ -31,4 +32,5 @@ class SensiboMotionBaseEntity(SensiboBaseEntity):
     @property
     def sensor_data(self) -> MotionSensor: ...
     @property
+    @override
     def available(self) -> bool: ...

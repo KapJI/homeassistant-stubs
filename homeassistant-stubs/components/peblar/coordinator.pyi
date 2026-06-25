@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from peblar import Peblar as Peblar, PeblarApi as PeblarApi, PeblarEVInterface as PeblarEVInterface, PeblarMeter as PeblarMeter, PeblarSystem as PeblarSystem, PeblarSystemInformation as PeblarSystemInformation, PeblarUserConfiguration, PeblarVersions as PeblarVersions
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 @dataclass(kw_only=True)
 class PeblarRuntimeData:
@@ -35,6 +35,7 @@ class PeblarVersionDataUpdateCoordinator(DataUpdateCoordinator[PeblarVersionInfo
     peblar: Incomplete
     def __init__(self, hass: HomeAssistant, entry: PeblarConfigEntry, peblar: Peblar) -> None: ...
     @_coordinator_exception_handler
+    @override
     async def _async_update_data(self) -> PeblarVersionInformation: ...
 
 class PeblarDataUpdateCoordinator(DataUpdateCoordinator[PeblarData]):
@@ -42,10 +43,12 @@ class PeblarDataUpdateCoordinator(DataUpdateCoordinator[PeblarData]):
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: PeblarConfigEntry, api: PeblarApi) -> None: ...
     @_coordinator_exception_handler
+    @override
     async def _async_update_data(self) -> PeblarData: ...
 
 class PeblarUserConfigurationDataUpdateCoordinator(DataUpdateCoordinator[PeblarUserConfiguration]):
     peblar: Incomplete
     def __init__(self, hass: HomeAssistant, entry: PeblarConfigEntry, peblar: Peblar) -> None: ...
     @_coordinator_exception_handler
+    @override
     async def _async_update_data(self) -> PeblarUserConfiguration: ...

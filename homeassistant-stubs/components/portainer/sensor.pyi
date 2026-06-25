@@ -7,6 +7,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfInformation as U
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer.models.docker import DockerSystemDF as DockerSystemDF
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -41,24 +42,29 @@ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, as
 class PortainerContainerSensor(PortainerContainerEntity, SensorEntity):
     entity_description: PortainerContainerSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class PortainerEndpointSensor(PortainerEndpointEntity, SensorEntity):
     entity_description: PortainerEndpointSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class PortainerDockerSystemDiskSpaceSensor(PortainerDockerSystemDiskSpaceEndpointEntity, SensorEntity):
     entity_description: PortainerDockerSystemDiskSpaceSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class PortainerStackSensor(PortainerStackEntity, SensorEntity):
     entity_description: PortainerStackSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class PortainerVolumeSensor(PortainerVolumeEntity, SensorEntity):
     entity_description: PortainerVolumeSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

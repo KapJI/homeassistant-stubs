@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -22,4 +23,5 @@ class TrafikverketCameraBinarySensor(TrafikverketCameraNonCameraEntity, BinarySe
     entity_description: TVCameraSensorEntityDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def _update_attr(self) -> None: ...

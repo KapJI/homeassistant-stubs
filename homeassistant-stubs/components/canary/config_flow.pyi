@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Final[Incomplete]
 
@@ -13,7 +13,9 @@ class CanaryConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class CanaryOptionsFlowHandler(OptionsFlow):

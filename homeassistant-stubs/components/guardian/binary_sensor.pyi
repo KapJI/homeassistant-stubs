@@ -11,7 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 ATTR_CONNECTED_CLIENTS: str
 SENSOR_KIND_LEAK_DETECTED: str
@@ -35,6 +35,7 @@ class PairedSensorBinarySensor(PairedSensorEntity, BinarySensorEntity):
     _attr_is_on: bool
     def __init__(self, entry: GuardianConfigEntry, coordinator: GuardianDataUpdateCoordinator, description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class ValveControllerBinarySensor(ValveControllerEntity, BinarySensorEntity):
@@ -42,4 +43,5 @@ class ValveControllerBinarySensor(ValveControllerEntity, BinarySensorEntity):
     _attr_is_on: bool
     def __init__(self, entry: GuardianConfigEntry, coordinators: dict[str, GuardianDataUpdateCoordinator], description: ValveControllerBinarySensorDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

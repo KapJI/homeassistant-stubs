@@ -1,5 +1,5 @@
 import re
-from .const import DOMAIN as DOMAIN, LockState as LockState
+from .const import DOMAIN as DOMAIN, LockEntityStateAttribute as LockEntityStateAttribute, LockState as LockState
 from _typeshed import Incomplete
 from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[LockEntity]]
@@ -87,14 +87,19 @@ class LockEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def async_open(self, **kwargs: Any) -> None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, StateType]: ...
     @final
     @property
+    @override
     def state(self) -> str | None: ...
     @cached_property
+    @override
     def supported_features(self) -> LockEntityFeature: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @callback
+    @override
     def async_registry_entry_updated(self) -> None: ...
     @callback
     def _async_read_entity_options(self) -> None: ...

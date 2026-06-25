@@ -10,6 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from simplipy.device import Device as Device
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
+from typing import override
 
 DEFAULT_CONFIG_URL: str
 DEFAULT_ENTITY_MODEL: str
@@ -29,11 +30,14 @@ class SimpliSafeEntity(CoordinatorEntity[SimpliSafeDataUpdateCoordinator]):
     _websocket_events_to_listen_for: Incomplete
     def __init__(self, simplisafe: SimpliSafe, system: SystemType, *, device: Device | None = None, additional_websocket_events: Iterable[str] | None = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @callback
     def _handle_websocket_update(self, event: WebsocketEvent) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_increment_error_count(self) -> None: ...

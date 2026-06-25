@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class ApsystemsLocalApiBinarySensorDescription(BinarySensorEntityDescription):
@@ -23,4 +24,5 @@ class ApSystemsBinarySensorWithDescription(CoordinatorEntity[ApSystemsDataCoordi
     _attr_unique_id: Incomplete
     def __init__(self, data: ApSystemsData, entity_description: ApsystemsLocalApiBinarySensorDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from trmnl.models import Device as Device
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ class TRMNLSensor(TRMNLEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: TRMNLCoordinator, device_id: int, description: TRMNLSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float | None: ...

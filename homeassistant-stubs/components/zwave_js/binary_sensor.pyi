@@ -16,6 +16,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.start import async_at_started as async_at_started
+from typing import override
 from zwave_js_server.const.command_class.notification import NotificationEvent as NotificationEvent
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue
@@ -95,6 +96,7 @@ class ZWaveBooleanBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ZWaveNotificationBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
@@ -104,6 +106,7 @@ class ZWaveNotificationBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo | NewZwaveDiscoveryInfo, state_key: str, description: NotificationZWaveJSEntityDescription | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ZWaveLegacyDoorStateBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
@@ -112,6 +115,7 @@ class ZWaveLegacyDoorStateBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ZWaveOpeningStateBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
@@ -120,9 +124,12 @@ class ZWaveOpeningStateBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
     @callback
+    @override
     def should_rediscover_on_metadata_update(self) -> bool: ...
+    @override
     async def _async_remove_and_rediscover(self, value: ZwaveValue) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ZWavePropertyBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
@@ -130,6 +137,7 @@ class ZWavePropertyBinarySensor(ZWaveBaseEntity, BinarySensorEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: PropertyZWaveJSEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ZWaveConfigParameterBinarySensor(ZWaveBooleanBinarySensor):

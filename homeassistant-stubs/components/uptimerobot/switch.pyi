@@ -6,7 +6,7 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -15,8 +15,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: UptimeRobotConfigEntry, 
 class UptimeRobotSwitch(UptimeRobotEntity, SwitchEntity):
     _attr_translation_key: str
     @property
+    @override
     def is_on(self) -> bool: ...
     @uptimerobot_api_call
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @uptimerobot_api_call
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

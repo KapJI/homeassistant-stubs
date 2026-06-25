@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
 from matter_server.common.models import MatterSoftwareVersion
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 POLL_AFTER_INSTALL: int
@@ -21,6 +21,7 @@ ATTR_SOFTWARE_UPDATE: str
 @dataclass
 class MatterUpdateExtraStoredData(ExtraStoredData):
     software_update: MatterSoftwareVersion | None = ...
+    @override
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> MatterUpdateExtraStoredData: ...
@@ -40,19 +41,26 @@ class MatterUpdate(MatterEntity, UpdateEntity):
     _attr_in_progress: bool
     _attr_update_percentage: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     def _format_latest_version(self, update_information: MatterSoftwareVersion) -> str | None: ...
     _attr_latest_version: Incomplete
     _attr_release_url: Incomplete
     async def async_update(self) -> None: ...
+    @override
     async def async_release_notes(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def extra_restore_state_data(self) -> MatterUpdateExtraStoredData: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     async def _async_update_future(self, now: datetime | None = None) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

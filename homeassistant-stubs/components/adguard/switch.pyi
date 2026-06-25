@@ -9,7 +9,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
@@ -29,7 +29,10 @@ class AdGuardHomeSwitch(AdGuardHomeEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, data: AdGuardData, entry: AdGuardConfigEntry, description: AdGuardHomeSwitchEntityDescription) -> None: ...
     _attr_available: bool
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @override
     async def _adguard_update(self) -> None: ...

@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class PECOSensorEntityDescription(SensorEntityDescription):
@@ -28,6 +28,8 @@ class PecoSensor(CoordinatorEntity[PecoOutageCoordinator], SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, description: PECOSensorEntityDescription, county: str, coordinator: PecoOutageCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> int | str: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...

@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import SensiboDevice as SensiboDevice
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,7 +27,9 @@ class SensiboNumber(SensiboDeviceBaseEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     @async_handle_api_call
     async def async_send_api_call(self, key: str, value: Any) -> bool: ...

@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import StateType as StateType
 from sucks import VacBot as VacBot
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsSensorEntityDescription[EventT: Event](EcovacsCapabilityEntityDescription, SensorEntityDescription):
@@ -47,11 +47,13 @@ class EcovacsSensor(EcovacsDescriptionEntity[CapabilityEvent], SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, device: Device, capability: CapabilityEvent, entity_description: EcovacsSensorEntityDescription, **kwargs: Any) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class EcovacsLifespanSensor(EcovacsDescriptionEntity[CapabilityLifeSpan], SensorEntity):
     entity_description: EcovacsLifespanSensorEntityDescription
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class EcovacsErrorSensor(EcovacsEntity[CapabilityEvent[ErrorEvent]], SensorEntity):
@@ -60,6 +62,7 @@ class EcovacsErrorSensor(EcovacsEntity[CapabilityEvent[ErrorEvent]], SensorEntit
     entity_description: SensorEntityDescription
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class EcovacsLegacyBatterySensor(EcovacsLegacyEntity, SensorEntity):
@@ -68,10 +71,13 @@ class EcovacsLegacyBatterySensor(EcovacsLegacyEntity, SensorEntity):
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, device: VacBot) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def icon(self) -> str | None: ...
 
 class EcovacsLegacyLifespanSensor(EcovacsLegacyEntity, SensorEntity):
@@ -79,4 +85,5 @@ class EcovacsLegacyLifespanSensor(EcovacsLegacyEntity, SensorEntity):
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete
     def __init__(self, device: VacBot, description: EcovacsLegacyLifespanSensorEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

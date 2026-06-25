@@ -9,6 +9,7 @@ from gcal_sync.timeline import Timeline
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 MIN_TIME_BETWEEN_UPDATES: Incomplete
@@ -21,6 +22,7 @@ class CalendarSyncUpdateCoordinator(DataUpdateCoordinator[Timeline]):
     sync: Incomplete
     _upcoming_timeline: Timeline | None
     def __init__(self, hass: HomeAssistant, config_entry: GoogleConfigEntry, sync: CalendarEventSyncManager, name: str) -> None: ...
+    @override
     async def _async_update_data(self) -> Timeline: ...
     async def async_get_events(self, start_date: datetime, end_date: datetime) -> Iterable[Event]: ...
     @property
@@ -33,6 +35,7 @@ class CalendarQueryUpdateCoordinator(DataUpdateCoordinator[list[Event]]):
     _search: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: GoogleConfigEntry, calendar_service: GoogleCalendarService, name: str, calendar_id: str, search: str | None) -> None: ...
     async def async_get_events(self, start_date: datetime, end_date: datetime) -> Iterable[Event]: ...
+    @override
     async def _async_update_data(self) -> list[Event]: ...
     @property
     def upcoming(self) -> Iterable[Event] | None: ...

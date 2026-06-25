@@ -4,6 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 from vallox_websocket_api import MetricData, Vallox as Vallox
 
 _LOGGER: Incomplete
@@ -13,4 +14,5 @@ class ValloxDataUpdateCoordinator(DataUpdateCoordinator[MetricData]):
     config_entry: ValloxConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ValloxConfigEntry, client: Vallox) -> None: ...
+    @override
     async def _async_update_data(self) -> MetricData: ...

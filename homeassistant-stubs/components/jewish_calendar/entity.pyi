@@ -10,6 +10,7 @@ from homeassistant.helpers import event as event
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class JewishCalendarEntity(CoordinatorEntity[JewishCalendarUpdateCoordinator], metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
@@ -19,9 +20,12 @@ class JewishCalendarEntity(CoordinatorEntity[JewishCalendarUpdateCoordinator], m
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, config_entry: JewishCalendarConfigEntry, description: EntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @abstractmethod
     def _update_times(self, zmanim: Zmanim) -> list[dt.datetime | None]: ...

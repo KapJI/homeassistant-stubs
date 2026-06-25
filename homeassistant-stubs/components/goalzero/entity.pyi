@@ -6,6 +6,7 @@ from homeassistant.const import ATTR_MODEL as ATTR_MODEL, CONF_NAME as CONF_NAME
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class GoalZeroEntity(CoordinatorEntity[GoalZeroDataUpdateCoordinator]):
     _attr_attribution = ATTRIBUTION
@@ -14,6 +15,7 @@ class GoalZeroEntity(CoordinatorEntity[GoalZeroDataUpdateCoordinator]):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: GoalZeroDataUpdateCoordinator, description: EntityDescription) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
     def _api(self) -> Yeti: ...

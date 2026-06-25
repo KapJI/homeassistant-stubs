@@ -5,7 +5,7 @@ from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWOR
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type AdaxConfigEntry = ConfigEntry[AdaxCloudCoordinator | AdaxLocalCoordinator]
@@ -13,9 +13,11 @@ type AdaxConfigEntry = ConfigEntry[AdaxCloudCoordinator | AdaxLocalCoordinator]
 class AdaxCloudCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]]]):
     adax_data_handler: Incomplete
     def __init__(self, hass: HomeAssistant, entry: AdaxConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, dict[str, Any]]: ...
 
 class AdaxLocalCoordinator(DataUpdateCoordinator[dict[str, Any] | None]):
     adax_data_handler: Incomplete
     def __init__(self, hass: HomeAssistant, entry: AdaxConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

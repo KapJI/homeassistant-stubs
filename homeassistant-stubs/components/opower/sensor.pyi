@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,6 +33,8 @@ class OpowerSensor(CoordinatorEntity[OpowerCoordinator], SensorEntity):
     utility_account_id: Incomplete
     def __init__(self, coordinator: OpowerCoordinator, description: OpowerEntityDescription, utility_account_id: str, device: DeviceInfo, device_id: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType | date | datetime: ...

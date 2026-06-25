@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CURRENCY_EURO as CURRENCY_EURO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -25,4 +26,5 @@ class FuelPriceSensor(TankerkoenigCoordinatorEntity, SensorEntity):
     _attr_extra_state_attributes: Incomplete
     def __init__(self, fuel_type: GasType, station: Station, coordinator: TankerkoenigDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

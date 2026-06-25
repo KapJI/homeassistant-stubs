@@ -8,7 +8,7 @@ from homeassistant.const import UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 @dataclass(frozen=True)
 class SonarrSensorEntityDescriptionMixIn(Generic[SonarrDataT]):
@@ -30,6 +30,8 @@ class SonarrSensor(SonarrEntity[SonarrDataT], SensorEntity):
     coordinator: SonarrDataUpdateCoordinator[SonarrDataT]
     entity_description: SonarrSensorEntityDescription[SonarrDataT]
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

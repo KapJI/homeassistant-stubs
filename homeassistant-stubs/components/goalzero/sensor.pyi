@@ -5,6 +5,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 
@@ -12,4 +13,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: GoalZeroConfigEntry, asy
 
 class GoalZeroSensor(GoalZeroEntity, SensorEntity):
     @property
+    @override
     def native_value(self) -> StateType: ...

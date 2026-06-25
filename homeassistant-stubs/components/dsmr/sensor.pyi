@@ -14,6 +14,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util import Throttle as Throttle
+from typing import override
 
 EVENT_FIRST_TELEGRAM: str
 UNIT_CONVERSION: Incomplete
@@ -58,8 +59,10 @@ class DSMREntity(SensorEntity):
     def update_data(self, telegram: Telegram | None) -> None: ...
     def get_dsmr_object_attr(self, attribute: str) -> str | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @staticmethod
     def translate_tariff(value: str, dsmr_version: str) -> str | None: ...

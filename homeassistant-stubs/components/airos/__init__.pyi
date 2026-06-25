@@ -1,5 +1,6 @@
-from .const import DEFAULT_SSL as DEFAULT_SSL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS
+from .const import CONF_LEGACY_SSL as CONF_LEGACY_SSL, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN, SECTION_ADDITIONAL_SETTINGS as SECTION_ADDITIONAL_SETTINGS
 from .coordinator import AirOSConfigEntry as AirOSConfigEntry, AirOSDataUpdateCoordinator as AirOSDataUpdateCoordinator, AirOSFirmwareUpdateCoordinator as AirOSFirmwareUpdateCoordinator, AirOSRuntimeData as AirOSRuntimeData
+from .helpers import build_legacy_context as build_legacy_context
 from _typeshed import Incomplete
 from airos.helpers import DetectDeviceData as DetectDeviceData
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform

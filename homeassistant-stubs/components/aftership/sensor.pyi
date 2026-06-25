@@ -7,7 +7,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import Throttle as Throttle
 from pyaftership import AfterShip as AfterShip
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
@@ -24,9 +24,12 @@ class AfterShipSensor(SensorEntity):
     _attr_name: Incomplete
     def __init__(self, aftership: AfterShip, name: str) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _force_update(self) -> None: ...
     async def async_update(self, **kwargs: Any) -> None: ...

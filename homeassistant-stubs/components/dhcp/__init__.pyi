@@ -19,7 +19,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.event import async_track_state_added_domain as async_track_state_added_domain, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as async_get_dhcp
-from typing import Any, Final
+from typing import Any, Final, override
 
 CONFIG_SCHEMA: Incomplete
 REGISTERED_DEVICES: Final[str]
@@ -46,6 +46,7 @@ class NetworkWatcher(WatcherBase):
     _discover_task: asyncio.Task | None
     def __init__(self, hass: HomeAssistant, dhcp_data: DHCPData) -> None: ...
     @callback
+    @override
     def async_stop(self) -> None: ...
     _unsub: Incomplete
     @callback

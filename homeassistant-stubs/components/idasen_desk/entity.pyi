@@ -1,6 +1,7 @@
 from .coordinator import IdasenDeskCoordinator as IdasenDeskCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class IdasenDeskEntity(CoordinatorEntity[IdasenDeskCoordinator]):
     _attr_has_entity_name: bool
@@ -9,4 +10,5 @@ class IdasenDeskEntity(CoordinatorEntity[IdasenDeskCoordinator]):
     _desk: Incomplete
     def __init__(self, unique_id: str, coordinator: IdasenDeskCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

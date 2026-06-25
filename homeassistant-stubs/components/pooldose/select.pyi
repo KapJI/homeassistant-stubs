@@ -8,7 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -24,7 +24,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: PooldoseConfigEnt
 class PooldoseSelect(PooldoseEntity, SelectEntity):
     entity_description: PooldoseSelectEntityDescription
     def __init__(self, coordinator: PooldoseCoordinator, serial_number: str, device_info: Any, description: PooldoseSelectEntityDescription) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_option: Incomplete
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_PERIOD as ATTR_PERIOD, ATTR_SETPOINT as ATTR_SETPOINT, DOMAIN as DOMAIN, EvoService as EvoService, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION, SERVICE_BREAKS_IN_HA_VERSION as SERVICE_BREAKS_IN_HA_VERSION
+from .const import ATTR_DURATION as ATTR_DURATION, ATTR_PERIOD as ATTR_PERIOD, ATTR_SETPOINT as ATTR_SETPOINT, DOMAIN as DOMAIN, EvoService as EvoService, REFRESH_BREAKS_IN_HA_VERSION as REFRESH_BREAKS_IN_HA_VERSION, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION, SERVICE_BREAKS_IN_HA_VERSION as SERVICE_BREAKS_IN_HA_VERSION
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .helpers import async_create_deprecation_issue_once as async_create_deprecation_issue_once
 from evohomeasync2 import ControlSystem as ControlSystem

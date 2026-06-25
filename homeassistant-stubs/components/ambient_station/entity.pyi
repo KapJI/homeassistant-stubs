@@ -5,6 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
+from typing import override
 
 class AmbientWeatherEntity(Entity):
     _attr_has_entity_name: bool
@@ -18,6 +19,7 @@ class AmbientWeatherEntity(Entity):
     _attr_available: Incomplete
     @callback
     def _async_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def update_from_latest_data(self) -> None: ...

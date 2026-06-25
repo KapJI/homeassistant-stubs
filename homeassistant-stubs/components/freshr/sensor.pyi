@@ -8,6 +8,7 @@ from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyfreshr.models import DeviceReadings as DeviceReadings, DeviceType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,4 +32,5 @@ class FreshrSensor(FreshrEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FreshrReadingsCoordinator, description: FreshrSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

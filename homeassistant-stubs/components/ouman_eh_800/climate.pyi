@@ -7,8 +7,8 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, C
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from ouman_eh_800_api import EnumControlOumanEndpoint as EnumControlOumanEndpoint, IntControlOumanEndpoint as IntControlOumanEndpoint, NumberOumanEndpoint as NumberOumanEndpoint, OperationMode
-from typing import Any
+from ouman_eh_800_api import EnumControlOumanEndpoint as EnumControlOumanEndpoint, FloatControlOumanEndpoint as FloatControlOumanEndpoint, NumberOumanEndpoint as NumberOumanEndpoint, OperationMode
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _HEAT_OPERATION_MODES: tuple[OperationMode, ...]
@@ -19,7 +19,7 @@ _DEFAULT_HEAT_OPERATION_MODE: Incomplete
 class OumanEh800ClimateEntityDescription(OumanEh800EntityDescription, ClimateEntityDescription):
     operation_mode_endpoint: EnumControlOumanEndpoint
     current_temperature_endpoint: NumberOumanEndpoint
-    target_temperature_endpoint: IntControlOumanEndpoint
+    target_temperature_endpoint: FloatControlOumanEndpoint
     valve_position_endpoint: NumberOumanEndpoint
 
 CLIMATE_DESCRIPTIONS: tuple[OumanEh800ClimateEntityDescription, ...]
@@ -30,7 +30,7 @@ class OumanEh800ClimateEntity(OumanEh800Entity, ClimateEntity):
     entity_description: OumanEh800ClimateEntityDescription
     _attr_name: Incomplete
     _attr_temperature_unit: Incomplete
-    _attr_target_temperature_step: int
+    _attr_target_temperature_step: float
     _attr_hvac_modes: Incomplete
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
@@ -40,15 +40,23 @@ class OumanEh800ClimateEntity(OumanEh800Entity, ClimateEntity):
     @property
     def _operation_mode(self) -> OperationMode: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
     @property
+    @override
     def current_temperature(self) -> float: ...
     @property
+    @override
     def target_temperature(self) -> float: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

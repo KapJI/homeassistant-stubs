@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class AirVisualProMeasurementDescription(SensorEntityDescription):
@@ -23,4 +23,5 @@ class AirVisualProSensor(AirVisualProEntity, SensorEntity):
     _attr_has_entity_name: bool
     entity_description: AirVisualProMeasurementDescription
     @property
+    @override
     def native_value(self) -> float | int: ...

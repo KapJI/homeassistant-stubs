@@ -10,6 +10,13 @@ ATTR_LAST_RESET: Final[str]
 ATTR_STATE_CLASS: Final[str]
 ATTR_OPTIONS: Final[str]
 
+class SensorEntityCapabilityAttribute(StrEnum):
+    STATE_CLASS = 'state_class'
+    OPTIONS = 'options'
+
+class SensorEntityStateAttribute(StrEnum):
+    LAST_RESET = 'last_reset'
+
 class SensorDeviceClass(StrEnum):
     DATE = 'date'
     ENUM = 'enum'

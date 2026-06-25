@@ -10,7 +10,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,8 +28,11 @@ class AirGradientSwitch(AirGradientEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

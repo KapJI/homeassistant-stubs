@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -21,12 +21,15 @@ class RpcSelect(ShellyRpcAttributeEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSelectDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @rpc_call
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class RpcCuryModeSelect(RpcSelect):
     @property
+    @override
     def current_option(self) -> str | None: ...
 
 RPC_SELECT_ENTITIES: Final[Incomplete]

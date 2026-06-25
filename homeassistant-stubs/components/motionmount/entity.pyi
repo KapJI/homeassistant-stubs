@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, CONF_PIN as CONF_PIN
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -18,7 +19,10 @@ class MotionMountEntity(Entity):
     _attr_device_info: Incomplete
     def __init__(self, mm: motionmount.MotionMount, config_entry: MotionMountConfigEntry) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     def update_name(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

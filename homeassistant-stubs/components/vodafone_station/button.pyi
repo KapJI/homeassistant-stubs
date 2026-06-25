@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 
@@ -28,4 +28,5 @@ class VodafoneStationSensorEntity(CoordinatorEntity[VodafoneStationRouter], Butt
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: VodafoneStationRouter, description: VodafoneStationEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

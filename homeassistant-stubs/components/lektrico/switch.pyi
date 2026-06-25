@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_T
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lektricowifi import Device
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LektricoSwitchEntityDescription(SwitchEntityDescription):
@@ -25,6 +25,9 @@ class LektricoSwitch(LektricoEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, description: LektricoSwitchEntityDescription, coordinator: LektricoDeviceDataUpdateCoordinator, device_name: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

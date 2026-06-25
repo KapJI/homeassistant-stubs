@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import PlatformData as PlatformData
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 USER_SCHEMA: Incomplete
@@ -19,9 +19,12 @@ CONFIG_FLOW: Incomplete
 
 class TimeDateConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
+    @override
     def async_config_flow_finished(self, options: Mapping[str, Any]) -> None: ...
     @staticmethod
+    @override
     async def async_setup_preview(hass: HomeAssistant) -> None: ...
 
 @websocket_api.async_response

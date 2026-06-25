@@ -6,7 +6,7 @@ from homeassistant.components.light import ColorMode as ColorMode, LightEntity a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 def value_map_brightness(value: int) -> int: ...
 def brightness_map_value(value: int) -> int: ...
@@ -20,8 +20,11 @@ class SwitchBotCloudLight(SwitchBotCloudEntity, LightEntity):
     _attr_brightness: int | None
     _attr_rgb_color: tuple | None
     _attr_color_temp_kelvin: int | None
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def _send_brightness_command(self, brightness: int) -> None: ...
     async def _send_rgb_color_command(self, rgb_color: tuple) -> None: ...
@@ -38,6 +41,7 @@ class SwitchBotCloudStripLight(SwitchBotCloudLight):
 class SwitchBotCloudRGBICLight(SwitchBotCloudLight):
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    @override
     async def _send_rgb_color_command(self, rgb_color: tuple) -> None: ...
 
 class SwitchBotCloudRGBWWLight(SwitchBotCloudLight):
@@ -45,7 +49,9 @@ class SwitchBotCloudRGBWWLight(SwitchBotCloudLight):
     _attr_min_color_temp_kelvin: int
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    @override
     async def _send_brightness_command(self, brightness: int) -> None: ...
+    @override
     async def _send_rgb_color_command(self, rgb_color: tuple) -> None: ...
 
 class SwitchBotCloudCeilingLight(SwitchBotCloudLight):
@@ -53,7 +59,9 @@ class SwitchBotCloudCeilingLight(SwitchBotCloudLight):
     _attr_min_color_temp_kelvin: int
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    @override
     async def _send_brightness_command(self, brightness: int) -> None: ...
+    @override
     async def _send_color_temperature_command(self, color_temp_kelvin: int) -> None: ...
 
 @callback

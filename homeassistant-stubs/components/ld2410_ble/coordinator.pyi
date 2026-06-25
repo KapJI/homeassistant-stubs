@@ -6,6 +6,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJo
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from ld2410_ble import LD2410BLE as LD2410BLE, LD2410BLEState as LD2410BLEState
+from typing import override
 
 _LOGGER: Incomplete
 NEVER_TIME: float
@@ -25,4 +26,5 @@ class LD2410BLECoordinator(DataUpdateCoordinator[None]):
     def _async_handle_update(self, state: LD2410BLEState) -> None: ...
     @callback
     def _async_handle_disconnect(self) -> None: ...
+    @override
     async def async_shutdown(self) -> None: ...

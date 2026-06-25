@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from mashumaro.mixins.orjson import DataClassORJSONMixin
+from typing import override
 
 _LOGGER: Incomplete
 type BringConfigEntry = ConfigEntry[BringCoordinators]
@@ -37,7 +38,9 @@ class BringDataUpdateCoordinator(BringBaseCoordinator[dict[str, BringData]]):
     previous_lists: set[str]
     def __init__(self, hass: HomeAssistant, config_entry: BringConfigEntry, bring: Bring) -> None: ...
     lists: Incomplete
+    @override
     async def _async_update_data(self) -> dict[str, BringData]: ...
+    @override
     async def _async_setup(self) -> None: ...
     def _purge_deleted_lists(self) -> None: ...
 
@@ -46,4 +49,5 @@ class BringActivityCoordinator(BringBaseCoordinator[dict[str, BringActivityData]
     coordinator: Incomplete
     lists: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: BringConfigEntry, coordinator: BringDataUpdateCoordinator) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, BringActivityData]: ...

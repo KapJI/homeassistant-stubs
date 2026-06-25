@@ -6,6 +6,7 @@ from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type CertExpiryConfigEntry = ConfigEntry[CertExpiryDataUpdateCoordinator]
@@ -17,4 +18,5 @@ class CertExpiryDataUpdateCoordinator(DataUpdateCoordinator[datetime | None]):
     cert_error: ValidationFailure | None
     is_cert_valid: bool
     def __init__(self, hass: HomeAssistant, config_entry: CertExpiryConfigEntry, host: str, port: int) -> None: ...
+    @override
     async def _async_update_data(self) -> datetime | None: ...

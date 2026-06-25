@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as L
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from plugwise.constants import SensorType as SensorType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +24,5 @@ class PlugwiseSensorEntity(PlugwiseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, description: PlugwiseSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float: ...

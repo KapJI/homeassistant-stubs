@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -27,4 +27,5 @@ class GhostDataUpdateCoordinator(DataUpdateCoordinator[GhostData]):
     config_entry: GhostConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, api: GhostAdminAPI, config_entry: GhostConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> GhostData: ...

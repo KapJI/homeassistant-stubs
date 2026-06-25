@@ -2,7 +2,7 @@ from .const import BRIDGE_MAKE as BRIDGE_MAKE
 from _typeshed import Incomplete
 from bond_async import Bond as Bond
 from homeassistant.util.async_ import gather_with_limited_concurrency as gather_with_limited_concurrency
-from typing import Any
+from typing import Any, override
 
 MAX_REQUESTS: int
 _LOGGER: Incomplete
@@ -14,6 +14,7 @@ class BondDevice:
     _attrs: Incomplete
     _supported_actions: set[str]
     def __init__(self, device_id: str, attrs: dict[str, Any], props: dict[str, Any], state: dict[str, Any]) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     @property
     def name(self) -> str: ...

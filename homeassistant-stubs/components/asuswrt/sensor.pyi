@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util import slugify as slugify
+from typing import override
 
 @dataclass(frozen=True)
 class AsusWrtSensorEntityDescription(SensorEntityDescription):
@@ -28,4 +29,5 @@ class AsusWrtSensor(CoordinatorEntity, SensorEntity):
     _attr_extra_state_attributes: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator, router: AsusWrtRouter, description: AsusWrtSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | str | None: ...

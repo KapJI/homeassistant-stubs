@@ -6,6 +6,7 @@ from enum import StrEnum
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,4 +32,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: SleepAsAndroidCon
 class SleepAsAndroidEventEntity(SleepAsAndroidEntity, EventEntity):
     entity_description: SleepAsAndroidEventEntityDescription
     @callback
+    @override
     def _async_handle_event(self, webhook_id: str, data: dict[str, str]) -> None: ...

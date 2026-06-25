@@ -8,6 +8,7 @@ from homeassistant.components.media_source import BrowseMediaSource as BrowseMed
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from synology_dsm.api.photos import SynoPhotosItem
+from typing import override
 
 LOGGER: Incomplete
 
@@ -27,8 +28,10 @@ class SynologyPhotosMediaSource(MediaSource):
     hass: Incomplete
     entries: Incomplete
     def __init__(self, hass: HomeAssistant, entries: list[ConfigEntry]) -> None: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     async def _async_build_diskstations(self, item: MediaSourceItem) -> list[BrowseMediaSource]: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     async def async_get_thumbnail(self, item: SynoPhotosItem, diskstation: SynologyDSMData) -> str | None: ...
 

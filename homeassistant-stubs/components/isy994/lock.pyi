@@ -7,7 +7,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
-from typing import Any
+from typing import Any, override
 
 VALUE_TO_STATE: Incomplete
 
@@ -17,14 +17,20 @@ async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_ad
 
 class ISYLockEntity(ISYNodeEntity, LockEntity):
     @property
+    @override
     def is_locked(self) -> bool | None: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     async def async_set_zwave_lock_user_code(self, user_num: int, code: int) -> None: ...
     async def async_delete_zwave_lock_user_code(self, user_num: int) -> None: ...
 
 class ISYLockProgramEntity(ISYProgramEntity, LockEntity):
     @property
+    @override
     def is_locked(self) -> bool: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...

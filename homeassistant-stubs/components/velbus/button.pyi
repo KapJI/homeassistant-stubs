@@ -5,6 +5,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from velbusaio.channels import Button as VelbusaioButton, ButtonCounter as VelbusaioButtonCounter
 
 PARALLEL_UPDATES: int
@@ -16,4 +17,5 @@ class VelbusButton(VelbusEntity, ButtonEntity):
     _attr_entity_registry_enabled_default: bool
     _attr_entity_category: Incomplete
     @api_call
+    @override
     async def async_press(self) -> None: ...

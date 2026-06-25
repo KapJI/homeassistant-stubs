@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 SENSOR_BRIDGE_TYPES: Final[Incomplete]
@@ -23,6 +23,7 @@ class ComelitBridgeSensorEntity(ComelitBridgeBaseEntity, SensorEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str, description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class ComelitVedoSensorEntity(CoordinatorEntity[ComelitVedoSystem | ComelitSerialBridge], SensorEntity):
@@ -35,6 +36,8 @@ class ComelitVedoSensorEntity(CoordinatorEntity[ComelitVedoSystem | ComelitSeria
     @property
     def _zone_object(self) -> ComelitVedoZoneObject: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

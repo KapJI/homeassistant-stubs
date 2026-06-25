@@ -9,7 +9,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from typing import Any
+from typing import Any, override
 
 SECURITY_PANIC_ON: str
 SECURITY_PANIC_OFF: str
@@ -24,6 +24,7 @@ class RfxtrxOffDelayMixin(Entity):
     _off_delay: float | None
     def _setup_timeout(self) -> None: ...
     def _cancel_timeout(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class RfxtrxChime(RfxtrxCommandEntity, SirenEntity, RfxtrxOffDelayMixin):
@@ -34,10 +35,14 @@ class RfxtrxChime(RfxtrxCommandEntity, SirenEntity, RfxtrxOffDelayMixin):
     _off_delay: Incomplete
     def __init__(self, device: rfxtrxmod.RFXtrxDevice, device_id: DeviceTuple, off_delay: float | None = None, event: rfxtrxmod.RFXtrxEvent | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def _apply_event(self, event: rfxtrxmod.ControlEvent) -> None: ...
     @callback
+    @override
     def _handle_event(self, event: rfxtrxmod.RFXtrxEvent, device_id: DeviceTuple) -> None: ...
 
 class RfxtrxSecurityPanic(RfxtrxCommandEntity, SirenEntity, RfxtrxOffDelayMixin):
@@ -48,9 +53,14 @@ class RfxtrxSecurityPanic(RfxtrxCommandEntity, SirenEntity, RfxtrxOffDelayMixin)
     _off_delay: Incomplete
     def __init__(self, device: rfxtrxmod.RFXtrxDevice, device_id: DeviceTuple, off_delay: float | None = None, event: rfxtrxmod.RFXtrxEvent | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _apply_event(self, event: rfxtrxmod.SensorEvent) -> None: ...
     @callback
+    @override
     def _handle_event(self, event: rfxtrxmod.RFXtrxEvent, device_id: DeviceTuple) -> None: ...

@@ -5,11 +5,12 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any
+from typing import Any, override
 from victron_mqtt import Device as VictronVenusDevice, Metric as VictronVenusMetric
 
 ENTITIES_CATEGORY_DIAGNOSTIC: Incomplete
 ENTITIES_DISABLE_BY_DEFAULT: Incomplete
+SPECIAL_NATIVE_UNITS: Incomplete
 
 class VictronBaseEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool
@@ -22,14 +23,16 @@ class VictronBaseEntity(Entity, metaclass=abc.ABCMeta):
     _attr_translation_key: Incomplete
     _attr_translation_placeholders: Incomplete
     _attr_name: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, device: VictronVenusDevice, metric: VictronVenusMetric, device_info: DeviceInfo, installation_id: str) -> None: ...
+    def _native_unit_of_measurement(self) -> str | None: ...
     @callback
     @abstractmethod
     def _on_update_cb(self, value: Any) -> None: ...
     @callback
     def _on_update(self, _: VictronVenusMetric, value: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

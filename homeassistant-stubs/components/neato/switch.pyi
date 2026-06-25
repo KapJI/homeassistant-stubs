@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, STATE_OFF as S
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pybotvac.robot import Robot as Robot
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -29,6 +29,9 @@ class NeatoConnectedSwitch(NeatoEntity, SwitchEntity):
     def __init__(self, neato: NeatoHub, robot: Robot, switch_type: str) -> None: ...
     def update(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...

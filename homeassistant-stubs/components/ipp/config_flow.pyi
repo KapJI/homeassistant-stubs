@@ -5,7 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -15,7 +15,9 @@ class IPPFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovery_info: dict[str, Any]
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _async_set_unique_id_and_abort_if_already_configured(self, unique_id: str) -> None: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

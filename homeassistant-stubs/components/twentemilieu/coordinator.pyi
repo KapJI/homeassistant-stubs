@@ -6,9 +6,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from twentemilieu import WasteType
+from typing import override
 
 type TwenteMilieuConfigEntry = ConfigEntry[TwenteMilieuDataUpdateCoordinator]
 class TwenteMilieuDataUpdateCoordinator(DataUpdateCoordinator[dict[WasteType, list[date]]]):
     twentemilieu: Incomplete
     def __init__(self, hass: HomeAssistant, entry: TwenteMilieuConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[WasteType, list[date]]: ...

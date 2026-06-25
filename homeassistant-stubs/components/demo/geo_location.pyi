@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import track_time_interval as track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 _LOGGER: Incomplete
 AVG_KM_PER_DEGREE: float
@@ -34,12 +35,17 @@ class DemoGeolocationEvent(GeolocationEvent):
     _unit_of_measurement: Incomplete
     def __init__(self, name: str, distance: float, latitude: float, longitude: float, unit_of_measurement: str) -> None: ...
     @property
+    @override
     def source(self) -> str: ...
     @property
+    @override
     def distance(self) -> float | None: ...
     @property
+    @override
     def latitude(self) -> float | None: ...
     @property
+    @override
     def longitude(self) -> float | None: ...
     @property
+    @override
     def unit_of_measurement(self) -> str: ...

@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -31,10 +31,13 @@ class TPLinkSirenEntity(CoordinatedTPLinkModuleEntity, SirenEntity):
     _alarm_duration_max: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkSirenEntityDescription, *, parent: Device | None = None) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     _attr_available_tones: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...

@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 CLEAR_LOGS_BUTTON: Incomplete
@@ -14,4 +15,5 @@ CLEAR_LOGS_BUTTON: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: NextDnsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NextDnsButton(NextDnsEntity, ButtonEntity):
+    @override
     async def async_press(self) -> None: ...

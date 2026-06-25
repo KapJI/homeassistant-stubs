@@ -6,6 +6,7 @@ from homeassistant.components.camera import Camera as Camera, CameraEntityFeatur
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: FullyKioskConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,9 +15,13 @@ class FullyCameraEntity(FullyKioskEntity, Camera):
     _attr_supported_features: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

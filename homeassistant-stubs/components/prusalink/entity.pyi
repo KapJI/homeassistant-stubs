@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class PrusaLinkEntityDescription(EntityDescription):
@@ -16,6 +16,8 @@ class PrusaLinkEntity(CoordinatorEntity[PrusaLinkUpdateCoordinator]):
     _attr_has_entity_name: bool
     entity_description: PrusaLinkEntityDescription
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

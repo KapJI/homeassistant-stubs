@@ -9,6 +9,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pysma import SMAWebConnect as SMAWebConnect
 from pysma.helpers import DeviceInfo
 from pysma.sensor import Sensors
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -23,6 +24,8 @@ class SMADataUpdateCoordinator(DataUpdateCoordinator[SMACoordinatorData]):
     _sma_device_info: Incomplete
     _sensors: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, sma: SMAWebConnect) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> SMACoordinatorData: ...
     async def async_close_sma_session(self) -> None: ...

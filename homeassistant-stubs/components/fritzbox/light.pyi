@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -18,14 +18,21 @@ class FritzboxLight(FritzBoxDeviceEntity, LightEntity):
     _attr_min_color_temp_kelvin: Incomplete
     def __init__(self, coordinator: FritzboxDataUpdateCoordinator, ain: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float]: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 class DataGrandLyonEntity[_CoordinatorT: DataUpdateCoordinator](CoordinatorEntity[_CoordinatorT]):
     _attr_has_entity_name: bool
@@ -14,6 +15,7 @@ class DataGrandLyonEntity[_CoordinatorT: DataUpdateCoordinator](CoordinatorEntit
     _attr_device_info: Incomplete
     def __init__(self, coordinator: _CoordinatorT, subentry: ConfigSubentry, description: EntityDescription, manufacturer: str, model: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class DataGrandLyonTclEntity(DataGrandLyonEntity[DataGrandLyonTclCoordinator]):

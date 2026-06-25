@@ -9,7 +9,7 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
-from typing import Any
+from typing import Any, override
 
 _UPLOAD_AND_DOWNLOAD_TIMEOUT: Incomplete
 _UPLOAD_MAX_RETRIES: int
@@ -25,11 +25,13 @@ class StorageQuotaData:
 class AsyncConfigEntryAuth(AbstractAuth):
     _oauth_session: Incomplete
     def __init__(self, websession: ClientSession, oauth_session: config_entry_oauth2_flow.OAuth2Session) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...
 
 class AsyncConfigFlowAuth(AbstractAuth):
     _token: Incomplete
     def __init__(self, websession: ClientSession, token: str) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...
 
 class DriveClient:

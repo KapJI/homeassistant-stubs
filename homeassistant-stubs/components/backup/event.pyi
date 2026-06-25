@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 ATTR_BACKUP_STAGE: Final[str]
 ATTR_FAILED_REASON: Final[str]
@@ -20,4 +20,5 @@ class AutomaticBackupEvent(BackupManagerBaseEntity, EventEntity):
     _attr_translation_key: str
     def __init__(self, coordinator: BackupDataUpdateCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

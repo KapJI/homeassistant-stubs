@@ -9,7 +9,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, S
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from typing import Any
+from typing import Any, override
 from uiprotect.data import Siren as Siren
 
 _LOGGER: Incomplete
@@ -41,10 +41,13 @@ class ProtectSiren(SirenEntity):
     def _async_updated(self, siren: Siren) -> None: ...
     @callback
     def _async_scheduled_off(self, _now: datetime) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _cancel_off_timer(self) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

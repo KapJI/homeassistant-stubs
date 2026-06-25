@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
@@ -26,8 +26,11 @@ class LondonTubeSensor(CoordinatorEntity[LondonTubeCoordinator], SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LondonTubeCoordinator, name: str) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def native_value(self) -> str: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...

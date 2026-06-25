@@ -6,6 +6,7 @@ from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from typing import override
 
 @callback
 def async_setup_hls(hass: HomeAssistant) -> str: ...
@@ -14,11 +15,14 @@ class HlsStreamOutput(StreamOutput):
     _target_duration: Incomplete
     def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
+    @override
     def cleanup(self) -> None: ...
     @property
     def target_duration(self) -> float: ...
     @callback
+    @override
     def _async_put(self, segment: Segment) -> None: ...
     def discontinuity(self) -> None: ...
     @callback
@@ -30,6 +34,7 @@ class HlsMasterPlaylistView(StreamView):
     cors_allowed: bool
     @staticmethod
     def render(track: StreamOutput) -> str: ...
+    @override
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.Response: ...
 
 class HlsPlaylistView(StreamView):
@@ -42,22 +47,26 @@ class HlsPlaylistView(StreamView):
     def bad_request(blocking: bool, target_duration: float) -> web.Response: ...
     @staticmethod
     def not_found(blocking: bool, target_duration: float) -> web.Response: ...
+    @override
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.Response: ...
 
 class HlsInitView(StreamView):
     url: str
     name: str
     cors_allowed: bool
+    @override
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.Response: ...
 
 class HlsPartView(StreamView):
     url: str
     name: str
     cors_allowed: bool
+    @override
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.Response: ...
 
 class HlsSegmentView(StreamView):
     url: str
     name: str
     cors_allowed: bool
+    @override
     async def handle(self, request: web.Request, stream: Stream, sequence: str, part_num: str) -> web.StreamResponse: ...

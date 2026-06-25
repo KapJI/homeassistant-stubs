@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ class QubeBinarySensor(QubeEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: QubeCoordinator, entry: QubeConfigEntry, description: QubeBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyschlage.lock import Lock as Lock
+from typing import override
 
 class SchlageEntity(CoordinatorEntity[SchlageDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -16,4 +17,5 @@ class SchlageEntity(CoordinatorEntity[SchlageDataUpdateCoordinator]):
     @property
     def _lock(self) -> Lock: ...
     @property
+    @override
     def available(self) -> bool: ...

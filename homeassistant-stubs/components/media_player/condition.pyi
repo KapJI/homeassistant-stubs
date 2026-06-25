@@ -5,15 +5,20 @@ from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.condition import Condition as Condition, EntityConditionBase as EntityConditionBase, EntityNumericalConditionBase as EntityNumericalConditionBase, make_entity_state_condition as make_entity_state_condition
-from typing import Any
+from typing import Any, override
+
+VOLUME_DOMAIN_SPECS: dict[str, DomainSpec]
 
 class _MediaPlayerMutedConditionBase(EntityConditionBase):
     _domain_specs: Incomplete
     _target_muted: bool
+    @override
     def _state_valid_since(self, state: State) -> datetime: ...
     def _has_volume_attributes(self, state: State) -> bool: ...
+    @override
     def _should_include(self, state: State) -> bool: ...
     def _is_muted(self, state: State) -> bool: ...
+    @override
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 class MediaPlayerIsMutedCondition(_MediaPlayerMutedConditionBase):
@@ -23,9 +28,11 @@ class MediaPlayerIsUnmutedCondition(_MediaPlayerMutedConditionBase):
     _target_muted: bool
 
 class MediaPlayerIsVolumeCondition(EntityNumericalConditionBase):
-    _domain_specs: Incomplete
+    _domain_specs = VOLUME_DOMAIN_SPECS
     _valid_unit: str
+    @override
     def _get_tracked_value(self, entity_state: State) -> Any: ...
+    @override
     def _should_include(self, state: State) -> bool: ...
 
 CONDITIONS: dict[str, type[Condition]]

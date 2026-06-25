@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from ical.calendar import Calendar
+from typing import override
 
 type RemoteCalendarConfigEntry = ConfigEntry[RemoteCalendarDataUpdateCoordinator]
 _LOGGER: Incomplete
@@ -21,4 +22,5 @@ class RemoteCalendarDataUpdateCoordinator(DataUpdateCoordinator[Calendar]):
     _username: str | None
     _password: str | None
     def __init__(self, hass: HomeAssistant, config_entry: RemoteCalendarConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> Calendar: ...

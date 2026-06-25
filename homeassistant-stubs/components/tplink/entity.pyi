@@ -15,7 +15,7 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from kasa import Device, Feature
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 FEATURE_CATEGORY_TO_ENTITY_CATEGORY: Incomplete
@@ -50,6 +50,7 @@ class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator], AB
     _attr_unique_id: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkEntityDescription, *, feature: Feature | None = None, parent: Device | None = None) -> None: ...
     def _get_unique_id(self) -> str: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @abstractmethod
     @callback
@@ -58,14 +59,17 @@ class CoordinatedTPLinkEntity(CoordinatorEntity[TPLinkDataUpdateCoordinator], AB
     @callback
     def _async_call_update_attrs(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class CoordinatedTPLinkFeatureEntity(CoordinatedTPLinkEntity, ABC, metaclass=abc.ABCMeta):
     entity_description: TPLinkFeatureEntityDescription
     _feature: Feature
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkFeatureEntityDescription, *, feature: Feature, parent: Device | None = None) -> None: ...
+    @override
     def _get_unique_id(self) -> str: ...
     @staticmethod
     def _get_feature_unique_id(device: Device, entity_description: TPLinkFeatureEntityDescription) -> str: ...
@@ -82,6 +86,7 @@ class CoordinatedTPLinkModuleEntity(CoordinatedTPLinkEntity, ABC, metaclass=abc.
     entity_description: TPLinkModuleEntityDescription
     _attr_name: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkModuleEntityDescription, *, parent: Device | None = None) -> None: ...
+    @override
     def _get_unique_id(self) -> str: ...
     @classmethod
     def _entities_for_device[_E: CoordinatedTPLinkModuleEntity, _D: TPLinkModuleEntityDescription](cls, hass: HomeAssistant, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, entity_class: type[_E], descriptions: Iterable[_D], platform_domain: str, parent: Device | None = None) -> list[_E]: ...

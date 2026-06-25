@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -41,8 +42,10 @@ class HomeeSensor(HomeeEntity, SensorEntity):
     _attr_device_class: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: HomeeSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | str | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
 
 class HomeeNodeSensor(HomeeNodeEntity, SensorEntity):
@@ -51,4 +54,5 @@ class HomeeNodeSensor(HomeeNodeEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, node: HomeeNode, entry: HomeeConfigEntry, description: HomeeNodeSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...

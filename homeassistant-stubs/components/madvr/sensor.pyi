@@ -9,6 +9,7 @@ from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 def is_valid_temperature(value: float | None) -> bool: ...
 def get_temperature(coordinator: MadVRCoordinator, key: str) -> float | None: ...
@@ -26,4 +27,5 @@ class MadvrSensor(MadVREntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MadVRCoordinator, description: MadvrSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | str | None: ...

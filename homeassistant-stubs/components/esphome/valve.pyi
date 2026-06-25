@@ -4,7 +4,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, ValveInfo, ValveState
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityFeature as ValveEntityFeature
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -14,26 +14,35 @@ class EsphomeValve(EsphomeEntity[ValveInfo, ValveState], ValveEntity):
     _attr_assumed_state: Incomplete
     _attr_reports_position: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
+    @override
     def is_closed(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def is_opening(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def is_closing(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def current_valve_position(self) -> int: ...
     @convert_api_error_ha_error
+    @override
     async def async_open_valve(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_close_valve(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_stop_valve(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_valve_position(self, position: float) -> None: ...
 
 async_setup_entry: Incomplete

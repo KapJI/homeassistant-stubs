@@ -9,7 +9,7 @@ from homeassistant.helpers.device import async_entity_id_to_device as async_enti
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 DEFAULT_NAME: Final[str]
@@ -38,10 +38,12 @@ class ThresholdSensor(BinarySensorEntity):
     _state_position: Incomplete
     sensor_value: float | None
     def __init__(self, hass: HomeAssistant, *, entity_id: str, name: str, lower: float | None, upper: float | None, hysteresis: float, device_class: BinarySensorDeviceClass | None, unique_id: str | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_setup_sensor(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     _attr_is_on: Incomplete
     @callback

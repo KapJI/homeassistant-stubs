@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pvo import Status as Status, System as System
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,4 +29,5 @@ class PVOutputSensorEntity(CoordinatorEntity[PVOutputDataUpdateCoordinator], Sen
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: PVOutputDataUpdateCoordinator, description: PVOutputSensorEntityDescription, system_id: str, system: System) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float | None: ...

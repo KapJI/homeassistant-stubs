@@ -14,7 +14,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -35,8 +35,11 @@ class RfxtrxSensor(RfxtrxEntity, SensorEntity):
     entity_description: RfxtrxSensorEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, device: RFXtrxDevice, device_id: DeviceTuple, entity_description: RfxtrxSensorEntityDescription, event: RFXtrxEvent | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | date | datetime | Decimal: ...
     @callback
+    @override
     def _handle_event(self, event: RFXtrxEvent, device_id: DeviceTuple) -> None: ...

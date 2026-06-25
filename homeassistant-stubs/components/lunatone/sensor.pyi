@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from lunatone_rest_api_client import Sensor as Sensor
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 SENSOR_TYPES: Final[dict[str, SensorEntityDescription]]
@@ -27,6 +27,8 @@ class LunatoneSensor(CoordinatorEntity[LunatoneSensorsDataUpdateCoordinator], Se
     @property
     def sensor(self) -> Sensor: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

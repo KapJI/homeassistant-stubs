@@ -11,7 +11,7 @@ from homeassistant.const import CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_AUTHENTIC
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, ObjectSelector as ObjectSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 RESOURCE_SETUP: Incomplete
@@ -24,11 +24,15 @@ class ScrapeConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> ScrapeOptionFlow: ...
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_on_create_entry(self, result: ConfigFlowResult) -> ConfigFlowResult: ...
 
 class ScrapeOptionFlow(OptionsFlow):

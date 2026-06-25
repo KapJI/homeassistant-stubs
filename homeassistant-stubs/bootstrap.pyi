@@ -21,7 +21,7 @@ from .util.system_info import is_official_image as is_official_image
 from _typeshed import Incomplete
 from anyio._backends import _asyncio as _asyncio
 from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 SETUP_ORDER_SORT_KEY: Incomplete
@@ -55,6 +55,7 @@ async def async_enable_logging(hass: core.HomeAssistant, verbose: bool = False, 
 def _create_log_file(err_log_path: str, log_rotate_days: int | None) -> RotatingFileHandler | TimedRotatingFileHandler: ...
 
 class _RotatingFileHandlerWithoutShouldRollOver(RotatingFileHandler):
+    @override
     def shouldRollover(self, record: logging.LogRecord) -> bool: ...
 
 async def async_mount_local_lib_path(config_dir: str) -> str: ...

@@ -1,10 +1,12 @@
 from .knx_module import KNXModule as KNXModule
+from .telegrams import TelegramDict as TelegramDict
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable
 from enum import Enum, StrEnum
 from homeassistant.components.climate import FAN_AUTO as FAN_AUTO, FAN_OFF as FAN_OFF, HVACAction as HVACAction, HVACMode as HVACMode
 from homeassistant.const import Platform as Platform
 from homeassistant.util.hass_dict import HassKey as HassKey
+from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Final, TypedDict
 from xknx.telegram import Telegram
 
@@ -33,9 +35,13 @@ CONF_KNX_STATE_UPDATER: Final[str]
 CONF_KNX_DEFAULT_STATE_UPDATER: Final[bool]
 CONF_KNX_DEFAULT_RATE_LIMIT: Final[int]
 DEFAULT_ROUTING_IA: Final[str]
-CONF_KNX_TELEGRAM_LOG_SIZE: Final[str]
-TELEGRAM_LOG_DEFAULT: Final[int]
-TELEGRAM_LOG_MAX: Final[int]
+CONF_KNX_TELEGRAM_DB_RETENTION_DAYS: Final[str]
+CONF_KNX_TELEGRAM_DB_LOAD_HOURS: Final[str]
+KNX_TELEGRAM_DB_RETENTION_DEFAULT: Final[int]
+KNX_TELEGRAM_LOAD_HOURS_DEFAULT: Final[int]
+KNX_TELEGRAM_DB_PATH_SQLITE: Final[str]
+SIGNAL_KNX_TELEGRAM: SignalType[Telegram, TelegramDict]
+SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM: SignalType[Telegram, TelegramDict]
 CONST_KNX_STORAGE_KEY: Final[str]
 CONF_KNX_KNXKEY_FILENAME: Final[str]
 CONF_KNX_KNXKEY_PASSWORD: Final[str]
@@ -63,6 +69,7 @@ SERVICE_KNX_EVENT_REGISTER: Final[str]
 SERVICE_KNX_EXPOSURE_REGISTER: Final[str]
 SERVICE_KNX_READ: Final[str]
 REPAIR_ISSUE_DATA_SECURE_GROUP_KEY: Final[str]
+REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR: Final[str]
 
 class KNXConfigEntryData(TypedDict, total=False):
     connection_type: str
@@ -81,9 +88,12 @@ class KNXConfigEntryData(TypedDict, total=False):
     knxkeys_password: str
     backbone_key: str | None
     sync_latency_tolerance: int | None
+
+class KNXConfigEntryOptions(TypedDict, total=False):
     state_updater: bool
     rate_limit: int
-    telegram_log_size: int
+    telegram_db_retention_days: int
+    telegram_db_load_hours: int
 
 class ColorTempModes(Enum):
     ABSOLUTE = '7.600'

@@ -7,7 +7,7 @@ from homeassistant.const import CONF_DEVICE as CONF_DEVICE
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_BAUD_RATE: int
 DEFAULT_TCP_PORT: int
@@ -22,6 +22,7 @@ def _is_same_device(gw_type: ConfGatewayType, user_input: dict[str, Any], entry:
 class MySensorsConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     _gw_type: str | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_select_gateway_type(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_gw_serial(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

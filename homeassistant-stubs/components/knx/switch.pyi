@@ -12,17 +12,21 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 from xknx.devices import Switch as XknxSwitch
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class _KnxSwitch(SwitchEntity, RestoreEntity):
     _device: XknxSwitch
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class KnxYamlSwitch(_KnxSwitch, KnxYamlEntity):

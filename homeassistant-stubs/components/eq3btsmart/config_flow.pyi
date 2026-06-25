@@ -5,12 +5,14 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_MAC as CONF_MAC
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 class EQ3ConfigFlow(ConfigFlow, domain=DOMAIN):
     mac_address: str
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

@@ -5,6 +5,7 @@ from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
+from typing import override
 from watchdog.events import DirCreatedEvent as DirCreatedEvent, DirDeletedEvent as DirDeletedEvent, DirModifiedEvent as DirModifiedEvent, DirMovedEvent as DirMovedEvent, FileClosedEvent as FileClosedEvent, FileCreatedEvent as FileCreatedEvent, FileDeletedEvent as FileDeletedEvent, FileModifiedEvent as FileModifiedEvent, FileMovedEvent as FileMovedEvent, FileSystemEvent as FileSystemEvent, PatternMatchingEventHandler
 
 _LOGGER: Incomplete
@@ -17,10 +18,15 @@ class EventHandler(PatternMatchingEventHandler):
     entry_id: Incomplete
     def __init__(self, patterns: list[str], hass: HomeAssistant, entry_id: str) -> None: ...
     def process(self, event: FileSystemEvent, moved: bool = False) -> None: ...
+    @override
     def on_modified(self, event: DirModifiedEvent | FileModifiedEvent) -> None: ...
+    @override
     def on_moved(self, event: DirMovedEvent | FileMovedEvent) -> None: ...
+    @override
     def on_created(self, event: DirCreatedEvent | FileCreatedEvent) -> None: ...
+    @override
     def on_deleted(self, event: DirDeletedEvent | FileDeletedEvent) -> None: ...
+    @override
     def on_closed(self, event: FileClosedEvent) -> None: ...
 
 class Watcher:

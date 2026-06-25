@@ -7,7 +7,7 @@ from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from regenmaschine import Client
 from regenmaschine.controller import Controller as Controller
-from typing import Any
+from typing import Any, override
 
 @callback
 def get_client_controller(client: Client) -> Controller: ...
@@ -18,12 +18,16 @@ class RainMachineFlowHandler(ConfigFlow, domain=DOMAIN):
     discovered_ip_address: str | None
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> RainMachineOptionsFlowHandler: ...
+    @override
     async def async_step_homekit(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_homekit_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     @callback
     def _async_generate_schema(self) -> vol.Schema: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class RainMachineOptionsFlowHandler(OptionsFlow):

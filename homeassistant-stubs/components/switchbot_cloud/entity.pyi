@@ -6,7 +6,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from switchbot_api import Commands as Commands, Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 class SwitchBotCloudEntity(CoordinatorEntity[SwitchBotCoordinator]):
     _api: SwitchBotAPI
@@ -17,6 +17,8 @@ class SwitchBotCloudEntity(CoordinatorEntity[SwitchBotCoordinator]):
     def __init__(self, api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator) -> None: ...
     async def send_api_command(self, command: Commands, command_type: str = 'command', parameters: dict | str | int = 'default') -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     def _set_attributes(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

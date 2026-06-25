@@ -12,7 +12,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tplink_omada_client import OmadaSiteClient as OmadaSiteClient
 from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGateway, OmadaGatewayPortConfig, OmadaGatewayPortStatus, OmadaListDevice as OmadaListDevice, OmadaSwitch, OmadaSwitchPortDetails
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -51,13 +51,18 @@ class OmadaDevicePortSwitchEntity[TCoordinator: OmadaCoordinator[Any], TDevice: 
     _attr_unique_id: Incomplete
     _attr_translation_placeholders: Incomplete
     def __init__(self, coordinator: TCoordinator, device: TDevice, port_details: TPort, port_id: str, entity_description: OmadaDevicePortSwitchEntityDescription[TCoordinator, TDevice, TPort], port_name: str | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     async def _async_turn_on_off(self, enable: bool) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     def _do_update(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 @dataclass
 class ApSystemsSensorData:
@@ -23,5 +24,7 @@ class ApSystemsDataCoordinator(DataUpdateCoordinator[ApSystemsSensorData]):
     battery_system: bool
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ApSystemsConfigEntry, api: APsystemsEZ1M) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> ApSystemsSensorData: ...

@@ -7,6 +7,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 THEME_NAMES: Incomplete
 INFRARED_BRIGHTNESS_ENTITY: Incomplete
@@ -20,9 +21,11 @@ class LIFXInfraredBrightnessSelectEntity(LIFXEntity, SelectEntity):
     _attr_current_option: Incomplete
     def __init__(self, coordinator: LIFXUpdateCoordinator, description: SelectEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @callback
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class LIFXThemeSelectEntity(LIFXEntity, SelectEntity):
@@ -31,7 +34,9 @@ class LIFXThemeSelectEntity(LIFXEntity, SelectEntity):
     _attr_current_option: Incomplete
     def __init__(self, coordinator: LIFXUpdateCoordinator, description: SelectEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @callback
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

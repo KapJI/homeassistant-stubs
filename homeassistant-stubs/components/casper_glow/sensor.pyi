@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from pycasperglow import GlowState as GlowState
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,6 +24,7 @@ class CasperGlowBatterySensor(CasperGlowEntity, SensorEntity):
     _attr_unique_id: Incomplete
     _attr_native_value: Incomplete
     def __init__(self, coordinator: CasperGlowCoordinator) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_state_update(self, state: GlowState) -> None: ...
@@ -37,6 +39,7 @@ class CasperGlowDimmingEndTimeSensor(CasperGlowEntity, SensorEntity):
     def __init__(self, coordinator: CasperGlowCoordinator) -> None: ...
     @staticmethod
     def _calculate_end_time(remaining_ms: int) -> datetime: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     def _reset_projected_end_time(self) -> None: ...

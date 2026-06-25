@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -22,4 +23,5 @@ class RfxtrxEventEntity(RfxtrxEntity, EventEntity):
     _value_attribute: Incomplete
     def __init__(self, device: RFXtrxDevice, device_id: DeviceTuple, device_attribute: str, value_attribute: str, translation_key: str) -> None: ...
     @callback
+    @override
     def _handle_event(self, event: RFXtrxEvent, device_id: DeviceTuple) -> None: ...

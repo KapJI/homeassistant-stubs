@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from homeassistant.const import CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, UnitOfTime as UnitOfTime
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
-from typing import Any
+from typing import Any, override
 
 ALLOWED_DOMAINS: Incomplete
 
@@ -19,4 +19,5 @@ class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow: Incomplete
     options_flow: Incomplete
     options_flow_reloads: bool
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

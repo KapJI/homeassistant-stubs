@@ -6,7 +6,7 @@ from homeassistant.components.bluetooth import BluetoothScanningMode as Bluetoot
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_NAME as CONF_NAME, CONF_TOKEN as CONF_TOKEN
 from pysnooz.advertisement import SnoozAdvertisementData
-from typing import Any
+from typing import Any, override
 
 WAIT_FOR_PAIRING_TIMEOUT: int
 
@@ -21,8 +21,10 @@ class SnoozConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_devices: dict[str, DiscoveredSnooz]
     _pairing_task: asyncio.Task | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfo) -> ConfigFlowResult: ...
     async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_wait_for_pairing_mode(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_pairing_complete(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -28,10 +28,12 @@ class RpcBinarySensor(ShellyRpcAttributeEntity, BinarySensorEntity):
     _attr_translation_key: str
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcBinarySensorDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class RpcPresenceBinarySensor(RpcBinarySensor):
     @property
+    @override
     def available(self) -> bool: ...
 
 class RpcBluTrvBinarySensor(RpcBinarySensor):
@@ -51,24 +53,30 @@ def _async_setup_rpc_entry(hass: HomeAssistant, config_entry: ShellyConfigEntry,
 class BlockBinarySensor(ShellyBlockAttributeEntity, BinarySensorEntity):
     entity_description: BlockBinarySensorDescription
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class RestBinarySensor(ShellyRestAttributeEntity, BinarySensorEntity):
     entity_description: RestBinarySensorDescription
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class BlockSleepingBinarySensor(ShellySleepingBlockAttributeEntity, BinarySensorEntity, RestoreEntity):
     entity_description: BlockBinarySensorDescription
     last_state: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class RpcSleepingBinarySensor(ShellySleepingRpcAttributeEntity, BinarySensorEntity, RestoreEntity):
     entity_description: RpcBinarySensorDescription
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcBinarySensorDescription, entry: RegistryEntry | None = None) -> None: ...
     last_state: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

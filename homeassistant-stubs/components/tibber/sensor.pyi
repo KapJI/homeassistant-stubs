@@ -14,7 +14,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from tibber import TibberHome as TibberHome
 from tibber.data_api import TibberDevice as TibberDevice
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 ICON: str
@@ -39,6 +39,7 @@ class TibberDataAPISensor(CoordinatorEntity[TibberDataAPICoordinator], SensorEnt
     _attr_device_info: Incomplete
     def __init__(self, coordinator: TibberDataAPICoordinator, device: TibberDevice, entity_description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class TibberSensor(SensorEntity):
@@ -49,6 +50,7 @@ class TibberSensor(SensorEntity):
     _model: str | None
     def __init__(self, *args: Any, tibber_home: TibberHome, **kwargs: Any) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
 
 class TibberSensorElPrice(TibberSensor, CoordinatorEntity[TibberPriceCoordinator]):
@@ -63,8 +65,10 @@ class TibberSensorElPrice(TibberSensor, CoordinatorEntity[TibberPriceCoordinator
     _device_name: Incomplete
     def __init__(self, coordinator: TibberPriceCoordinator, tibber_home: TibberHome) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     @callback
@@ -77,6 +81,7 @@ class TibberDataSensor(TibberSensor, CoordinatorEntity[TibberDataCoordinator]):
     _device_name: Incomplete
     def __init__(self, tibber_home: TibberHome, coordinator: TibberDataCoordinator, entity_description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class TibberSensorRT(TibberSensor, CoordinatorEntity['TibberRtDataCoordinator']):
@@ -88,9 +93,11 @@ class TibberSensorRT(TibberSensor, CoordinatorEntity['TibberRtDataCoordinator'])
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, tibber_home: TibberHome, description: SensorEntityDescription, initial_state: float, coordinator: TibberRtDataCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     _attr_last_reset: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 class TibberRtEntityCreator:

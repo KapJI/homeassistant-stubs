@@ -11,7 +11,7 @@ from homeassistant.data_entry_flow import section as section
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from telegram import Bot as Bot, ChatFullInfo as ChatFullInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DESCRIPTION_PLACEHOLDERS: dict[str, str]
@@ -30,14 +30,17 @@ class TelegramBotConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: TelegramBotConfigEntry) -> OptionsFlowHandler: ...
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: TelegramBotConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
     _bot: Bot | None
     _bot_name: str
     _step_user_data: dict[str, Any]
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _shutdown_bot(self) -> None: ...
     async def _validate_bot(self, user_input: dict[str, Any], errors: dict[str, str], placeholders: dict[str, str]) -> str: ...

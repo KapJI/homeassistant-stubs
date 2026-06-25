@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 LIGHT_COLORS: Incomplete
 LIGHT_EFFECT_LIST: Incomplete
@@ -36,6 +36,9 @@ class DemoLight(LightEntity):
     _attr_device_info: Incomplete
     def __init__(self, unique_id: str, device_name: str, state: bool, brightness: int = 180, ct: int | None = None, effect_list: list[str] | None = None, effect: str | None = None, hs_color: tuple[int, int] | None = None, rgbw_color: tuple[int, int, int, int] | None = None, rgbww_color: tuple[int, int, int, int, int] | None = None, supported_color_modes: set[ColorMode] | None = None, translation_key: str | None = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

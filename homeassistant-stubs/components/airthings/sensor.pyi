@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 SENSORS: dict[str, SensorEntityDescription]
 
@@ -24,6 +25,8 @@ class AirthingsDeviceSensor(CoordinatorEntity[AirthingsDataUpdateCoordinator], S
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirthingsDataUpdateCoordinator, airthings_device: AirthingsDevice, entity_description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...

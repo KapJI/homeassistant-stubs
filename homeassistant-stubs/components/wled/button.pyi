@@ -6,6 +6,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -17,4 +18,5 @@ class WLEDRestartButton(WLEDEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @wled_exception_handler
+    @override
     async def async_press(self) -> None: ...

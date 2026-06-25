@@ -10,6 +10,7 @@ from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONC
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
+from typing import override
 
 type _SensorValueType = str | int | float | date | datetime | Decimal | None
 SENSOR_DESCRIPTIONS: Incomplete
@@ -20,6 +21,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: GoveeBLEConfigEntry, asy
 class GoveeBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[_SensorValueType, SensorUpdate]], SensorEntity):
     processor: GoveeBLEPassiveBluetoothDataProcessor[_SensorValueType]
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> _SensorValueType: ...

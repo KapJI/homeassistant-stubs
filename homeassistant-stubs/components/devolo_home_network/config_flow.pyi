@@ -8,7 +8,7 @@ from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_NAME as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -20,7 +20,9 @@ class DevoloHomeNetworkConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     host: str
     _reauth_entry: DevoloHomeNetworkConfigEntry
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

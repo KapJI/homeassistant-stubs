@@ -11,7 +11,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Literal
+from typing import Literal, override
 
 @dataclass(frozen=True, kw_only=True)
 class SensorEntityDescriptionWithValueAccessor(SensorEntityDescription):
@@ -30,4 +30,5 @@ class SmartMeterBRouteSensor(CoordinatorEntity[BRouteUpdateCoordinator], SensorE
     _attr_device_info: Incomplete
     def __init__(self, coordinator: BRouteUpdateCoordinator, description: SensorEntityDescriptionWithValueAccessor) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

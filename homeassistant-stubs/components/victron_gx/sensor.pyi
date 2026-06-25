@@ -5,7 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from victron_mqtt import Device as VictronVenusDevice, Metric as VictronVenusMetric, MetricNature, MetricType
 
 PARALLEL_UPDATES: int
@@ -22,6 +22,7 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
     _attr_native_value: Incomplete
     def __init__(self, device: VictronVenusDevice, metric: VictronVenusMetric, device_info: DeviceInfo, installation_id: str) -> None: ...
     @callback
+    @override
     def _on_update_cb(self, value: Any) -> None: ...
     @staticmethod
     def _normalize_value(value: Any) -> Any: ...

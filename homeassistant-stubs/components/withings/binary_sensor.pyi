@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: WithingsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,4 +18,5 @@ class WithingsBinarySensor(WithingsEntity, BinarySensorEntity):
     coordinator: WithingsBedPresenceDataUpdateCoordinator
     def __init__(self, coordinator: WithingsBedPresenceDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

@@ -7,7 +7,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitejet import LiteJet as LiteJet
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 ATTR_NUMBER: str
@@ -23,10 +23,14 @@ class LiteJetScene(Scene):
     _attr_name: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry_id: str, system: LiteJet, i: int, name: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     _attr_available: Incomplete
     def _on_connected_changed(self, connected: bool, reason: str) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_activate(self, **kwargs: Any) -> None: ...

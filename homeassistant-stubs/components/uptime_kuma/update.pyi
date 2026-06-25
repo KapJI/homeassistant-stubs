@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -26,14 +27,21 @@ class UptimeKumaUpdateEntity(CoordinatorEntity[UptimeKumaDataUpdateCoordinator],
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: UptimeKumaDataUpdateCoordinator, update_coordinator: UptimeKumaSoftwareUpdateCoordinator) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def title(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
+    @override
     async def async_release_notes(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

@@ -8,6 +8,7 @@ from homeassistant.components.update import UpdateEntity as UpdateEntity, Update
 from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True)
 class PiHoleUpdateEntityDescription(UpdateEntityDescription):
@@ -28,8 +29,11 @@ class PiHoleUpdateEntity(PiHoleEntity, UpdateEntity):
     _attr_title: Incomplete
     def __init__(self, api: Hole, coordinator: PiHoleUpdateCoordinator, name: str, server_unique_id: str, description: PiHoleUpdateEntityDescription) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...

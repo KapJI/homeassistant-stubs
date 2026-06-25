@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -38,6 +38,7 @@ class MqttWaterHeater(MqttTemperatureControlEntity, WaterHeaterEntity):
     _attr_target_temperature_low: float | None
     _attr_target_temperature_high: float | None
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_operation_list: Incomplete
     _attr_temperature_unit: Incomplete
@@ -51,12 +52,18 @@ class MqttWaterHeater(MqttTemperatureControlEntity, WaterHeaterEntity):
     _value_templates: Incomplete
     _command_templates: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _handle_current_mode_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,6 +32,8 @@ class CambridgeAudioSelect(CambridgeAudioEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, client: StreamMagicClient, description: CambridgeAudioSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @command
+    @override
     async def async_select_option(self, option: str) -> None: ...

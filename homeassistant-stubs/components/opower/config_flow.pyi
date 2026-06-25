@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from opower import MfaHandlerBase as MfaHandlerBase
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_MFA_CODE: str
@@ -20,6 +20,7 @@ class OpowerConfigFlow(ConfigFlow, domain=DOMAIN):
     _data: dict[str, Any]
     mfa_handler: MfaHandlerBase | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_credentials(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_mfa_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

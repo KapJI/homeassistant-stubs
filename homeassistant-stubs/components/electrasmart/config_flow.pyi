@@ -4,7 +4,7 @@ from electrasmart.api import ElectraAPI
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_TOKEN as CONF_TOKEN
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -17,6 +17,7 @@ class ElectraSmartConfigFlow(ConfigFlow, domain=DOMAIN):
     _token: str | None
     _api: ElectraAPI | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def _show_setup_form(self, user_input: dict[str, str] | None = None, errors: dict[str, str] | None = None, step_id: str = 'user') -> ConfigFlowResult: ...
     async def _validate_phone_number(self, user_input: dict[str, str]) -> ConfigFlowResult: ...

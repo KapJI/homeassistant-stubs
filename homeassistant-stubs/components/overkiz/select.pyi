@@ -8,6 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class OverkizSelectDescription(SelectEntityDescription):
@@ -26,5 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, 
 class OverkizSelect(OverkizDescriptiveEntity, SelectEntity):
     entity_description: OverkizSelectDescription
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

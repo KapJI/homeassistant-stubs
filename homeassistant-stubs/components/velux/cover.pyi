@@ -6,7 +6,7 @@ from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyvlx.opening_device import Blind, DualRollerShutter, OpeningDevice, Position
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -18,20 +18,28 @@ class VeluxCover(VeluxEntity, CoverEntity):
     _attr_device_class: Incomplete
     def __init__(self, node: OpeningDevice, config_entry_id: str) -> None: ...
     @property
+    @override
     def current_cover_position(self) -> int | None: ...
     @property
+    @override
     def is_closed(self) -> bool | None: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
 
 class VeluxDualRollerPart(StrEnum):
@@ -50,14 +58,19 @@ class VeluxDualRollerShutter(VeluxCover):
     @property
     def _part_position(self) -> Position: ...
     @property
+    @override
     def current_cover_position(self) -> int | None: ...
     @property
+    @override
     def is_closed(self) -> bool | None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
 
 class VeluxBlind(VeluxCover):
@@ -65,12 +78,17 @@ class VeluxBlind(VeluxCover):
     _attr_device_class: Incomplete
     def __init__(self, node: Blind, config_entry_id: str) -> None: ...
     @property
+    @override
     def current_cover_tilt_position(self) -> int | None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...

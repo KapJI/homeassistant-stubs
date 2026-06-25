@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
-from typing import Any
+from typing import Any, override
 
 RE_API_KEY: Incomplete
 PLANE_SCHEMA: Incomplete
@@ -13,10 +13,13 @@ class ForecastSolarFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> ForecastSolarOptionFlowHandler: ...
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class ForecastSolarOptionFlowHandler(OptionsFlow):

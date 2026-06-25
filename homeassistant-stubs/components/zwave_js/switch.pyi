@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from zwave_js_server.model.driver import Driver as Driver
 
 PARALLEL_UPDATES: int
@@ -19,8 +19,11 @@ class ZWaveSwitch(ZWaveBaseEntity, SwitchEntity):
     _target_value: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ZWaveIndicatorSwitch(ZWaveSwitch):
@@ -33,10 +36,14 @@ class ZWaveBarrierEventSignalingSwitch(ZWaveBaseEntity, SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @callback
+    @override
     def on_value_update(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
     def _update_state(self) -> None: ...
@@ -45,5 +52,7 @@ class ZWaveConfigParameterSwitch(ZWaveSwitch):
     _attr_entity_category: Incomplete
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -9,6 +9,7 @@ from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 class ValloxSensorEntity(ValloxEntity, SensorEntity):
     entity_description: ValloxSensorEntityDescription
@@ -16,26 +17,32 @@ class ValloxSensorEntity(ValloxEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class ValloxProfileSensor(ValloxSensorEntity):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class ValloxFanSpeedSensor(ValloxSensorEntity):
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class ValloxFilterRemainingSensor(ValloxSensorEntity):
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class ValloxCellStateSensor(ValloxSensorEntity):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class ValloxProfileDurationSensor(ValloxSensorEntity):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 @dataclass(frozen=True)

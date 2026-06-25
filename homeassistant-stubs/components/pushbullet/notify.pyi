@@ -7,7 +7,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfo
 from pushbullet import PushBullet as PushBullet
 from pushbullet.channel import Channel as Channel
 from pushbullet.device import Device as Device
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -19,5 +19,6 @@ class PushBulletNotificationService(BaseNotificationService):
     def __init__(self, hass: HomeAssistant, pushbullet: PushBullet) -> None: ...
     @property
     def pbtargets(self) -> dict[str, dict[str, Device | Channel]]: ...
+    @override
     def send_message(self, message: str, **kwargs: Any) -> None: ...
     def _push_data(self, message: str, title: str, data: dict[str, Any], pusher: PushBullet, email: str | None = None, phonenumber: str | None = None) -> None: ...

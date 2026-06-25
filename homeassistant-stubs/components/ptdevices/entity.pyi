@@ -3,7 +3,7 @@ from .coordinator import PTDevicesCoordinator as PTDevicesCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 class PTDevicesEntity(CoordinatorEntity[PTDevicesCoordinator]):
     _attr_has_entity_name: bool
@@ -16,4 +16,5 @@ class PTDevicesEntity(CoordinatorEntity[PTDevicesCoordinator]):
     @property
     def device(self) -> dict[str, Any]: ...
     @property
+    @override
     def available(self) -> bool: ...

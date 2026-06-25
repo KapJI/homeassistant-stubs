@@ -4,7 +4,7 @@ from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TITLE a
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -16,4 +16,5 @@ class SimplePushNotificationService(BaseNotificationService):
     _password: str | None
     _salt: str | None
     def __init__(self, config: dict[str, Any]) -> None: ...
+    @override
     def send_message(self, message: str, **kwargs: Any) -> None: ...

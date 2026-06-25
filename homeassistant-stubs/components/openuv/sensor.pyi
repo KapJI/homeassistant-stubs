@@ -9,7 +9,7 @@ from homeassistant.const import UV_INDEX as UV_INDEX, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import as_local as as_local, parse_datetime as parse_datetime
-from typing import Any
+from typing import Any, override
 
 ATTR_MAX_UV_TIME: str
 EXPOSURE_TYPE_MAP: Incomplete
@@ -34,6 +34,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: OpenUvConfigEntry, async
 class OpenUvSensor(OpenUvEntity, SensorEntity):
     entity_description: OpenUvSensorEntityDescription
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     @property
+    @override
     def native_value(self) -> int | str: ...

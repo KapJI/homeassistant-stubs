@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class PingSensorEntityDescription(SensorEntityDescription):
@@ -21,6 +22,8 @@ class PingSensor(PingEntity, SensorEntity):
     entity_description: PingSensorEntityDescription
     def __init__(self, config_entry: ConfigEntry, description: PingSensorEntityDescription, coordinator: PingUpdateCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

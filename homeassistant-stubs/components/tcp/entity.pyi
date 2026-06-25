@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Final
+from typing import Final, override
 
 _LOGGER: Final[Incomplete]
 
@@ -18,5 +18,6 @@ class TcpEntity(Entity):
     _state: str | None
     def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     def update(self) -> None: ...

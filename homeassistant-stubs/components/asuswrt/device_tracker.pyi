@@ -5,6 +5,7 @@ from homeassistant.components.device_tracker import ScannerEntity as ScannerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 DEFAULT_DEVICE_NAME: str
 
@@ -19,15 +20,21 @@ class AsusWrtDevice(ScannerEntity):
     _attr_name: Incomplete
     def __init__(self, router: AsusWrtRouter, device: AsusWrtDevInfo) -> None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def hostname(self) -> str | None: ...
     @property
+    @override
     def icon(self) -> str: ...
     @property
+    @override
     def ip_address(self) -> str | None: ...
     @property
+    @override
     def mac_address(self) -> str: ...
     @callback
     def async_on_demand_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

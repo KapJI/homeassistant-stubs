@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import final
+from typing import final, override
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[LawnMowerEntity]]
@@ -30,10 +30,12 @@ class LawnMowerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_supported_features: LawnMowerEntityFeature
     @final
     @property
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def activity(self) -> LawnMowerActivity | None: ...
     @cached_property
+    @override
     def supported_features(self) -> LawnMowerEntityFeature: ...
     def start_mowing(self) -> None: ...
     async def async_start_mowing(self) -> None: ...

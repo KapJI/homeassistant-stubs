@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyloadapi import PyLoadAPI as PyLoadAPI
+from typing import override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -29,5 +30,7 @@ class PyLoadCoordinator(DataUpdateCoordinator[PyLoadData]):
     pyload: Incomplete
     version: str | None
     def __init__(self, hass: HomeAssistant, config_entry: PyLoadConfigEntry, pyload: PyLoadAPI) -> None: ...
+    @override
     async def _async_update_data(self) -> PyLoadData: ...
+    @override
     async def _async_setup(self) -> None: ...

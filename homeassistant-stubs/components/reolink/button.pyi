@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Host as Host
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -34,6 +34,7 @@ class ReolinkButtonEntity(ReolinkChannelCoordinatorEntity, ButtonEntity):
     _attr_supported_features: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkButtonEntityDescription) -> None: ...
     @raise_translated_error
+    @override
     async def async_press(self) -> None: ...
     @raise_translated_error
     async def async_ptz_move(self, speed: int) -> None: ...
@@ -42,4 +43,5 @@ class ReolinkHostButtonEntity(ReolinkHostCoordinatorEntity, ButtonEntity):
     entity_description: ReolinkHostButtonEntityDescription
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostButtonEntityDescription) -> None: ...
     @raise_translated_error
+    @override
     async def async_press(self) -> None: ...

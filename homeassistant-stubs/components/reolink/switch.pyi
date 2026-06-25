@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Chime as Chime, Host as Host
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -44,40 +44,52 @@ class ReolinkSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkSwitchEntityDescription
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ReolinkHostSwitchEntity(ReolinkHostCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkHostSwitchEntityDescription
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ReolinkChimeSwitchEntity(ReolinkChimeCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkChimeSwitchEntityDescription
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ReolinkHostChimeSwitchEntity(ReolinkHostChimeCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkChimeSwitchEntityDescription
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ReolinkIndexSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
@@ -87,8 +99,11 @@ class ReolinkIndexSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, index: int, entity_description: ReolinkSwitchIndexEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

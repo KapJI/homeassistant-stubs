@@ -8,7 +8,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,14 +28,18 @@ class EheimDigitalHeaterClimate(EheimDigitalEntity[EheimDigitalHeater], ClimateE
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalHeater) -> None: ...
     @exception_handler
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @exception_handler
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_min_temp: int
     _attr_max_temp: int
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
     _attr_hvac_action: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...

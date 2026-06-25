@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.event import DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from unifi_access_api import Door as Door
 
 PARALLEL_UPDATES: int
@@ -22,6 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: UnifiAccessConfigEntry, 
 class UnifiAccessEventEntity(UnifiAccessEntity, EventEntity):
     entity_description: UnifiAccessEventEntityDescription
     def __init__(self, coordinator: UnifiAccessCoordinator, door: Door, description: UnifiAccessEventEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self, event: DoorEvent) -> None: ...

@@ -9,6 +9,7 @@ from homeassistant.components.image import Image as Image, ImageEntity as ImageE
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,7 +26,9 @@ class HabiticaImage(HabiticaBase, ImageEntity):
     _cache: bytes | None
     _attr_image_last_updated: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: HabiticaDataUpdateCoordinator, subentry: ConfigSubentry | None = None) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_image(self) -> bytes | None: ...
 
 class HabiticaPartyMemberImage(HabiticaImage, HabiticaPartyMemberBase):
@@ -38,7 +41,10 @@ class HabiticaPartyImage(HabiticaPartyBase, ImageEntity):
     _attr_image_last_updated: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: HabiticaPartyCoordinator, config_entry: HabiticaConfigEntry, content: ContentData) -> None: ...
     _cached_image: Incomplete
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def image_url(self) -> str | None: ...
+    @override
     async def _async_load_image_from_url(self, url: str) -> Image | None: ...

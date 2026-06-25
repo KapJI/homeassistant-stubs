@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from myuplink import DevicePoint as DevicePoint
-from typing import Any
+from typing import Any, override
 
 CATEGORY_BASED_DESCRIPTIONS: dict[str, dict[str, SwitchEntityDescription]]
 
@@ -22,7 +22,10 @@ class MyUplinkDevicePointSwitch(MyUplinkEntity, SwitchEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, device_point: DevicePoint, entity_description: SwitchEntityDescription | None, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_turn_switch(self, mode: int) -> None: ...

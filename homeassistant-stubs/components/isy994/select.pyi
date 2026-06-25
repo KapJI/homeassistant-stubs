@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
+from typing import override
 
 def time_string(i: int) -> str: ...
 
@@ -21,12 +22,16 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: IsyConfigEntry, a
 
 class ISYRampRateSelectEntity(ISYAuxControlEntity, SelectEntity):
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ISYAuxControlIndexSelectEntity(ISYAuxControlEntity, SelectEntity):
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ISYBacklightSelectEntity(ISYAuxControlEntity, SelectEntity, RestoreEntity):
@@ -34,7 +39,9 @@ class ISYBacklightSelectEntity(ISYAuxControlEntity, SelectEntity, RestoreEntity)
     _memory_change_handler: EventListener | None
     _attr_current_option: Incomplete
     def __init__(self, node: Node, control: str, unique_id: str, description: SelectEntityDescription, device_info: DeviceInfo | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_on_memory_write(self, event: NodeChangedEvent, key: str) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 POINT_ENTITIES: Incomplete
 
@@ -23,6 +24,7 @@ class ZinvoltBatteryStateBinarySensor(ZinvoltEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator, description: ZinvoltBatteryStateDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ZinvoltPointBinarySensor(ZinvoltUnitEntity, BinarySensorEntity):
@@ -33,6 +35,8 @@ class ZinvoltPointBinarySensor(ZinvoltUnitEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator, unit_serial_number: str, point: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...

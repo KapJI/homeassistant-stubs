@@ -5,7 +5,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jaraco.abode.devices.light import Light as Light
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,17 +14,25 @@ class AbodeLight(AbodeDevice, LightEntity):
     _attr_name: Incomplete
     _attr_max_color_temp_kelvin = DEFAULT_MAX_KELVIN
     _attr_min_color_temp_kelvin = DEFAULT_MIN_KELVIN
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def supported_color_modes(self) -> set[ColorMode]: ...

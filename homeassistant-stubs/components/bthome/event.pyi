@@ -6,6 +6,7 @@ from homeassistant.components.event import EventDeviceClass as EventDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 DESCRIPTIONS_BY_EVENT_CLASS: Incomplete
 
@@ -18,6 +19,7 @@ class BTHomeEventEntity(EventEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, address: str, event_class: str, event: BTHomeBleEvent | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self, event: BTHomeBleEvent) -> None: ...

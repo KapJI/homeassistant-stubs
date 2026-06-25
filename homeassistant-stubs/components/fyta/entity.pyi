@@ -5,6 +5,7 @@ from fyta_cli.fyta_models import Plant as Plant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class FytaPlantEntity(CoordinatorEntity[FytaCoordinator]):
     _attr_has_entity_name: bool
@@ -16,4 +17,5 @@ class FytaPlantEntity(CoordinatorEntity[FytaCoordinator]):
     @property
     def plant(self) -> Plant: ...
     @property
+    @override
     def available(self) -> bool: ...

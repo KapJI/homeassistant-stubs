@@ -7,6 +7,7 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 from xknx import XKNX as XKNX
 from xknx.devices import Notification as XknxNotification
 
@@ -16,4 +17,5 @@ def _create_notification_instance(xknx: XKNX, config: ConfigType) -> XknxNotific
 class KNXNotify(KnxYamlEntity, NotifyEntity):
     _device: XknxNotification
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

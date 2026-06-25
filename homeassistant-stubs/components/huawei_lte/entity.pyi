@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 SCAN_INTERVAL: Incomplete
 
@@ -16,13 +17,17 @@ class HuaweiLteBaseEntity(Entity):
     @property
     def _device_unique_id(self) -> str: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     async def async_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _async_maybe_update(self, config_entry_unique_id: str) -> None: ...
 
 class HuaweiLteBaseEntityWithDevice(HuaweiLteBaseEntity):
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

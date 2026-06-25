@@ -3,7 +3,7 @@ from homeassistant.components.notify import BaseNotificationService as BaseNotif
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_RECIPIENT as CONF_RECIPIENT, CONF_SENDER as CONF_SENDER, CONF_USERNAME as CONF_USERNAME, CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 BASE_API_URL: str
@@ -20,6 +20,7 @@ class ClicksendNotificationService(BaseNotificationService):
     recipients: list[str]
     sender: str
     def __init__(self, config: ConfigType) -> None: ...
+    @override
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...
 
 def _authenticate(config: ConfigType) -> bool: ...

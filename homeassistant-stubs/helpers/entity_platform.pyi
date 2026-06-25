@@ -16,16 +16,18 @@ from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, DEVICE_DEFAULT_N
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, SupportsResponse as SupportsResponse, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.generated import languages as languages
+from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.setup import SetupPhases as SetupPhases, async_start_setup as async_start_setup
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.hass_dict import HassKey as HassKey
 from logging import Logger
-from typing import Any, Protocol, overload
+from typing import Any, Protocol, overload, override
 
 SLOW_SETUP_WARNING: int
 SLOW_SETUP_MAX_WAIT: int
 SLOW_ADD_ENTITY_MAX_WAIT: int
 SLOW_ADD_MIN_TIMEOUT: int
+MAX_ENABLED_ENTITIES_PER_CONFIG_ENTRY: int
 PLATFORM_NOT_READY_RETRIES: int
 DATA_ENTITY_PLATFORM: HassKey[dict[str, list[EntityPlatform]]]
 DATA_DOMAIN_ENTITIES: HassKey[dict[str, dict[str, Entity]]]
@@ -69,6 +71,7 @@ class EntityPlatform:
     entity_namespace: Incomplete
     config_entry: config_entries.ConfigEntry | None
     entities: dict[str, Entity]
+    _entity_limit_warned: bool
     _tasks: list[asyncio.Task[None]]
     _setup_complete: bool
     _async_polling_timer: asyncio.TimerHandle | None
@@ -81,6 +84,7 @@ class EntityPlatform:
     domain_platform_entities: Incomplete
     platform_data: Incomplete
     def __init__(self, *, hass: HomeAssistant, logger: Logger, domain: str, platform_name: str, platform: EntityPlatformModule | None, scan_interval: timedelta, entity_namespace: str | None) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     @callback
     def _get_parallel_updates_semaphore(self, entity_has_sync_update: bool) -> asyncio.Semaphore | None: ...

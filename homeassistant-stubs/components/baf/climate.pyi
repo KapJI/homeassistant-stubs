@@ -5,7 +5,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,6 +19,9 @@ class BAFAutoComfort(BAFEntity, ClimateEntity):
     _attr_target_temperature: Incomplete
     _attr_current_temperature: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

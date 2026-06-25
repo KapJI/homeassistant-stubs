@@ -7,7 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Concatenate, overload
+from typing import Any, Concatenate, overload, override
 
 _LOGGER: Incomplete
 ERROR_ACTIVITIES: Incomplete
@@ -28,10 +28,12 @@ class AutomowerBaseEntity(CoordinatorEntity[AutomowerDataUpdateCoordinator]):
     @property
     def mower_attributes(self) -> MowerAttributes: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class AutomowerControlEntity(AutomowerBaseEntity):
     @property
+    @override
     def available(self) -> bool: ...
 
 class WorkAreaAvailableEntity(AutomowerControlEntity):
@@ -42,6 +44,7 @@ class WorkAreaAvailableEntity(AutomowerControlEntity):
     @property
     def work_area_attributes(self) -> WorkArea: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class WorkAreaControlEntity(WorkAreaAvailableEntity, AutomowerControlEntity): ...

@@ -4,12 +4,13 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
 class AdaxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_local(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_cloud(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

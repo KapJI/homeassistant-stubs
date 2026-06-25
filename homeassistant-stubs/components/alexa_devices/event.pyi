@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 EVENTS: Final[Incomplete]
@@ -19,4 +19,5 @@ class AlexaVoiceEvent(AmazonEntity, EventEntity):
     coordinator: AmazonDevicesCoordinator
     _last_seen_timestamp: int
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pynecil import CharSetting
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,4 +29,5 @@ class IronOSButtonEntity(IronOSBaseEntity, ButtonEntity):
     entity_description: IronOSButtonEntityDescription
     settings: Incomplete
     def __init__(self, coordinators: IronOSCoordinators, entity_description: IronOSButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

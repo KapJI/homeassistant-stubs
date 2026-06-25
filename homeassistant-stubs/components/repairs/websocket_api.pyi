@@ -7,7 +7,7 @@ from homeassistant.components.http.data_validator import RequestDataValidator as
 from homeassistant.components.http.decorators import require_admin as require_admin
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.data_entry_flow import FlowManagerIndexView as FlowManagerIndexView, FlowManagerResourceView as FlowManagerResourceView
-from typing import Any
+from typing import Any, override
 
 @callback
 def async_setup(hass: HomeAssistant) -> None: ...
@@ -21,10 +21,13 @@ def ws_list_issues(hass: HomeAssistant, connection: websocket_api.ActiveConnecti
 class RepairsFlowIndexView(FlowManagerIndexView):
     url: str
     name: str
+    @override
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
 
 class RepairsFlowResourceView(FlowManagerResourceView):
     url: str
     name: str
+    @override
     async def get(self, request: web.Request, /, flow_id: str) -> web.Response: ...
+    @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...

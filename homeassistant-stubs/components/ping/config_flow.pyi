@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.util.network import is_ip_address as is_ip_address
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -15,9 +15,11 @@ def _clean_user_input(user_input: dict[str, Any]) -> dict[str, Any]: ...
 class PingConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(OptionsFlowWithReload):

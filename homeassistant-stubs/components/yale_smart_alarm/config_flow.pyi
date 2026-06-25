@@ -4,7 +4,7 @@ from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 DATA_SCHEMA: Incomplete
 DATA_SCHEMA_AUTH: Incomplete
@@ -17,10 +17,12 @@ class YaleConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> YaleOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class YaleOptionsFlowHandler(OptionsFlowWithReload):

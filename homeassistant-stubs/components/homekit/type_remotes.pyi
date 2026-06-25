@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from homeassistant.components.remote import ATTR_ACTIVITY as ATTR_ACTIVITY, ATTR_ACTIVITY_LIST as ATTR_ACTIVITY_LIST, ATTR_CURRENT_ACTIVITY as ATTR_CURRENT_ACTIVITY, RemoteEntityFeature as RemoteEntityFeature
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import State as State, callback as callback
-from typing import Any
+from typing import Any, override
 
 MAXIMUM_SOURCES: int
 _LOGGER: Incomplete
@@ -38,8 +38,12 @@ class RemoteInputSelectAccessory(HomeAccessory, ABC, metaclass=abc.ABCMeta):
 
 class ActivityRemote(RemoteInputSelectAccessory):
     def __init__(self, *args: Any) -> None: ...
+    @override
     def set_on_off(self, value: bool) -> None: ...
+    @override
     def set_input_source(self, value: int) -> None: ...
+    @override
     def set_remote_key(self, value: int) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...

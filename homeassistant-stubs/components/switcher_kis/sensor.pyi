@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -33,4 +34,5 @@ class SwitcherSensorEntity(SwitcherEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, description: SwitcherSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

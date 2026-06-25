@@ -6,6 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 ATTR_PICKUP_TYPES: str
 ATTR_AREA_NAME: str
@@ -24,4 +25,5 @@ class ReCollectWasteSensor(ReCollectWasteEntity, SensorEntity):
     _attr_extra_state_attributes: Incomplete
     _attr_native_value: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyrituals import Diffuser as Diffuser
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -25,7 +25,10 @@ class RitualsSwitchEntity(DiffuserEntity, SwitchEntity):
     entity_description: RitualsSwitchEntityDescription
     _attr_is_on: Incomplete
     def __init__(self, coordinator: RitualsDataUpdateCoordinator, description: RitualsSwitchEntityDescription) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

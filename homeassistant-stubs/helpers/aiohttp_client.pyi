@@ -17,7 +17,7 @@ from homeassistant.util import ssl as ssl_util
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import json_loads as json_loads
 from homeassistant.util.network import is_loopback as is_loopback
-from typing import Any, Self
+from typing import Any, Self, override
 
 DATA_CONNECTOR: HassKey[dict[tuple[bool, int, str], aiohttp.BaseConnector]]
 DATA_CLIENTSESSION: HassKey[dict[tuple[bool, int, str], aiohttp.ClientSession]]
@@ -39,9 +39,11 @@ MAXIMUM_CONNECTIONS_PER_HOST: int
 
 class HassAsyncDNSResolver(AsyncDualMDNSResolver):
     async def real_close(self) -> None: ...
+    @override
     async def close(self) -> None: ...
 
 class HassClientResponse(aiohttp.ClientResponse):
+    @override
     async def json(self, *args: Any, loads: JSONDecoder = ..., **kwargs: Any) -> Any: ...
 
 class ChunkAsyncStreamIterator:

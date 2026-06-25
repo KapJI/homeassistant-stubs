@@ -9,7 +9,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -27,25 +27,31 @@ class MatterRangeNumberEntityDescription(NumberEntityDescription, MatterEntityDe
 
 class MatterNumber(MatterEntity, NumberEntity):
     entity_description: MatterNumberEntityDescription
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterRangeNumber(MatterEntity, NumberEntity):
     entity_description: MatterRangeNumberEntityDescription
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
     _attr_native_min_value: Incomplete
     _attr_native_max_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterLevelControlNumber(MatterEntity, NumberEntity):
     entity_description: MatterNumberEntityDescription
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

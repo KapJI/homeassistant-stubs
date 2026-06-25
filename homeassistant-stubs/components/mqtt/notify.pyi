@@ -13,6 +13,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
@@ -25,10 +26,15 @@ class MqttNotify(MqttEntity, NotifyEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     @staticmethod
+    @override
     def config_schema() -> vol.Schema: ...
     _command_template: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

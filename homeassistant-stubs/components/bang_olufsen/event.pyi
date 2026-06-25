@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from mozart_api.models import PairedRemote as PairedRemote
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,6 +29,7 @@ class BeoButtonEvent(BeoEvent):
     _attr_translation_key: Incomplete
     _button_type: Incomplete
     def __init__(self, config_entry: BeoConfigEntry, button_type: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class BeoRemoteKeyEvent(BeoEvent):
@@ -37,4 +39,5 @@ class BeoRemoteKeyEvent(BeoEvent):
     _attr_translation_key: Incomplete
     _key_type: Incomplete
     def __init__(self, config_entry: BeoConfigEntry, remote: PairedRemote, key_type: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

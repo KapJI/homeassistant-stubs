@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
 from oralb_ble import SensorUpdate
+from typing import override
 
 SENSOR_DESCRIPTIONS: dict[str, SensorEntityDescription]
 
@@ -15,8 +16,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: OralBConfigEntry, async_
 
 class OralBBluetoothSensorEntity(PassiveBluetoothProcessorEntity[PassiveBluetoothDataProcessor[str | int | None, SensorUpdate]], SensorEntity):
     @property
+    @override
     def native_value(self) -> str | int | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def assumed_state(self) -> bool: ...

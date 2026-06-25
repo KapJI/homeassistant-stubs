@@ -8,6 +8,7 @@ from homeassistant.const import LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jaraco.abode.devices.sensor import Sensor as Sensor
+from typing import override
 
 ABODE_TEMPERATURE_UNIT_HA_UNIT: Incomplete
 
@@ -26,6 +27,8 @@ class AbodeSensor(AbodeDevice, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, data: AbodeSystem, device: Sensor, description: AbodeSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str: ...

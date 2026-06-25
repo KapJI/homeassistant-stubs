@@ -10,7 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 class EheimDigitalEntity[_DeviceT: EheimDigitalDevice](CoordinatorEntity[EheimDigitalUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
@@ -21,6 +21,7 @@ class EheimDigitalEntity[_DeviceT: EheimDigitalDevice](CoordinatorEntity[EheimDi
     @abstractmethod
     def _async_update_attrs(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 def exception_handler[_EntityT: EheimDigitalEntity[EheimDigitalDevice], **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...

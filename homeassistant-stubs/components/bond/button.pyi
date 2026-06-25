@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 STEP_SIZE: int
 
@@ -26,5 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_a
 class BondButtonEntity(BondEntity, ButtonEntity):
     entity_description: BondButtonEntityDescription
     def __init__(self, data: BondData, device: BondDevice, description: BondButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...
+    @override
     def _apply_state(self) -> None: ...

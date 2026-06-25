@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -20,4 +21,5 @@ class NRGkickBinarySensor(NRGkickEntity, BinarySensorEntity):
     entity_description: NRGkickBinarySensorEntityDescription
     def __init__(self, coordinator: NRGkickDataUpdateCoordinator, entity_description: NRGkickBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

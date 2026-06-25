@@ -7,6 +7,7 @@ from homeassistant.const import CONF_MODEL as CONF_MODEL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from infrared_protocols.codes.marantz.audio import MarantzAudioCode
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: MarantzIrConfigEntry, as
 class MarantzIrButton(MarantzIrEntity, ButtonEntity):
     entity_description: MarantzIrButtonEntityDescription
     def __init__(self, entry: MarantzIrConfigEntry, infrared_entity_id: str, description: MarantzIrButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

@@ -10,6 +10,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,4 +28,5 @@ class AirGradientButton(AirGradientEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientButtonEntityDescription) -> None: ...
     @exception_handler
+    @override
     async def async_press(self) -> None: ...

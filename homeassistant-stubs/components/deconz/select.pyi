@@ -8,6 +8,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.air_purifier import AirPurifier
 from pydeconz.models.sensor.presence import Presence
+from typing import override
 
 SENSITIVITY_TO_DECONZ: Incomplete
 DECONZ_TO_SENSITIVITY: Incomplete
@@ -22,7 +23,9 @@ class DeconzAirPurifierFanMode(DeconzDevice[AirPurifier], SelectEntity):
     _attr_options: Incomplete
     TYPE = SELECT_DOMAIN
     @property
+    @override
     def current_option(self) -> str: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class DeconzPresenceDeviceModeSelect(DeconzDevice[Presence], SelectEntity):
@@ -33,7 +36,9 @@ class DeconzPresenceDeviceModeSelect(DeconzDevice[Presence], SelectEntity):
     _attr_options: Incomplete
     TYPE = SELECT_DOMAIN
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class DeconzPresenceSensitivitySelect(DeconzDevice[Presence], SelectEntity):
@@ -44,7 +49,9 @@ class DeconzPresenceSensitivitySelect(DeconzDevice[Presence], SelectEntity):
     _attr_options: Incomplete
     TYPE = SELECT_DOMAIN
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class DeconzPresenceTriggerDistanceSelect(DeconzDevice[Presence], SelectEntity):
@@ -55,5 +62,7 @@ class DeconzPresenceTriggerDistanceSelect(DeconzDevice[Presence], SelectEntity):
     _attr_options: Incomplete
     TYPE = SELECT_DOMAIN
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

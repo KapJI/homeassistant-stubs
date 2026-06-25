@@ -10,6 +10,7 @@ from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfPower as Uni
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(frozen=True)
 class AttributeSensorDescription(SensorEntityDescription):
@@ -25,9 +26,12 @@ class AttributeSensor(WemoEntity, SensorEntity):
     entity_description: AttributeSensorDescription
     def __init__(self, coordinator: DeviceCoordinator, description: AttributeSensorDescription) -> None: ...
     @property
+    @override
     def name_suffix(self) -> str | None: ...
     @property
+    @override
     def unique_id_suffix(self) -> str | None: ...
     def convert_state(self, value: StateType) -> StateType: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

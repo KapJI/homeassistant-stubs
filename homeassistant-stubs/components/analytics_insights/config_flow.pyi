@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
-from typing import Any
+from typing import Any, override
 
 INTEGRATION_TYPES_WITHOUT_ANALYTICS: Incomplete
 
@@ -13,7 +13,9 @@ class HomeassistantAnalyticsConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: AnalyticsInsightsConfigEntry) -> HomeassistantAnalyticsOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class HomeassistantAnalyticsOptionsFlowHandler(OptionsFlowWithReload):

@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceError as MediaSourceError, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from typing import override
 
 _LOGGER: Incomplete
 MIME_TYPE: str
@@ -16,7 +17,9 @@ class NetatmoSource(MediaSource):
     hass: Incomplete
     events: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     def _browse_media(self, source: str, camera_id: str, event_id: int | None) -> BrowseMediaSource: ...
     def _build_item_response(self, source: str, camera_id: str, event_id: int | None = None) -> BrowseMediaSource: ...

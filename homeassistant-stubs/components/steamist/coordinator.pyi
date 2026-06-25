@@ -4,6 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -12,4 +13,5 @@ class SteamistDataUpdateCoordinator(DataUpdateCoordinator[SteamistStatus]):
     client: Incomplete
     device_name: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, client: Steamist) -> None: ...
+    @override
     async def _async_update_data(self) -> SteamistStatus: ...

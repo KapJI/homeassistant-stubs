@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from simplipy.system import System as System
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class SimpliSafeButtonDescription(ButtonEntityDescription):
@@ -27,4 +28,5 @@ class SimpliSafeButton(SimpliSafeEntity, ButtonEntity):
     _attr_entity_category: Incomplete
     entity_description: SimpliSafeButtonDescription
     def __init__(self, simplisafe: SimpliSafe, system: SystemType, description: SimpliSafeButtonDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

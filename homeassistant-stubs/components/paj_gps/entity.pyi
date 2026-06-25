@@ -3,6 +3,7 @@ from .coordinator import Device as Device, PajGpsCoordinator as PajGpsCoordinato
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class PajGpsEntity(CoordinatorEntity[PajGpsCoordinator]):
     _attr_has_entity_name: bool
@@ -10,6 +11,7 @@ class PajGpsEntity(CoordinatorEntity[PajGpsCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: PajGpsCoordinator, device_id: int) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def device(self) -> Device: ...

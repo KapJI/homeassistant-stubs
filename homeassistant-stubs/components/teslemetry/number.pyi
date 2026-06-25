@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStreamVehicle as TeslemetryStreamVehicle
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -43,6 +43,7 @@ class TeslemetryVehicleNumberEntity(TeslemetryRootEntity, NumberEntity):
     api: Vehicle
     entity_description: TeslemetryNumberVehicleEntityDescription
     _attr_native_value: Incomplete
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class TeslemetryVehiclePollingNumberEntity(TeslemetryVehiclePollingEntity, TeslemetryVehicleNumberEntity):
@@ -51,6 +52,7 @@ class TeslemetryVehiclePollingNumberEntity(TeslemetryVehiclePollingEntity, Tesle
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryNumberVehicleEntityDescription, scopes: list[Scope]) -> None: ...
     _attr_native_value: Incomplete
     _attr_native_max_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingNumberEntity(TeslemetryVehicleStreamEntity, TeslemetryVehicleNumberEntity, RestoreNumber):
@@ -59,6 +61,7 @@ class TeslemetryStreamingNumberEntity(TeslemetryVehicleStreamEntity, TeslemetryV
     _attr_native_max_value: Incomplete
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryNumberVehicleEntityDescription, scopes: list[Scope]) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _value_callback(self, value: int | None) -> None: ...
     def _max_callback(self, value: int | None) -> None: ...
@@ -73,5 +76,7 @@ class TeslemetryEnergyInfoNumberSensorEntity(TeslemetryEnergyInfoEntity, NumberE
     scoped: Incomplete
     def __init__(self, data: TeslemetryEnergyData, description: TeslemetryNumberBatteryEntityDescription, scopes: list[Scope]) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

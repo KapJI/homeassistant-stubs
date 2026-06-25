@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyisy.helpers import NodeProperty as NodeProperty
 from pyisy.nodes import Node as Node
-from typing import Any
+from typing import Any, override
 
 ATTR_LAST_BRIGHTNESS: str
 
@@ -23,13 +23,20 @@ class ISYLightEntity(ISYNodeEntity, LightEntity, RestoreEntity):
     _restore_light_state: Incomplete
     def __init__(self, node: Node, restore_light_state: bool, device_info: DeviceInfo | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def async_on_update(self, event: NodeProperty) -> None: ...
+    @override
     async def async_turn_on(self, brightness: int | None = None, **kwargs: Any) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

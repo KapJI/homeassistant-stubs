@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 from visionpluspython.client import WattsVisionClient as WattsVisionClient
 from visionpluspython.models import Device
 
@@ -22,6 +23,7 @@ class WattsVisionHubCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     last_discovery: datetime | None
     previous_devices: set[str]
     def __init__(self, hass: HomeAssistant, client: WattsVisionClient, config_entry: WattsVisionConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Device]: ...
     async def _remove_stale_devices(self, stale_device_ids: set[str]) -> None: ...
     @property
@@ -38,5 +40,6 @@ class WattsVisionDeviceCoordinator(DataUpdateCoordinator[WattsVisionDeviceData])
     last_update_success: bool
     def _handle_hub_update(self) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> WattsVisionDeviceData: ...
     def trigger_fast_polling(self, duration: int = 60) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from ld2410_ble import LD2410BLE as LD2410BLE
+from typing import override
 
 MOVING_TARGET_DISTANCE_DESCRIPTION: Incomplete
 STATIC_TARGET_DISTANCE_DESCRIPTION: Incomplete
@@ -33,6 +34,8 @@ class LD2410BLESensor(CoordinatorEntity[LD2410BLECoordinator], SensorEntity):
     _attr_native_value: Incomplete
     def __init__(self, coordinator: LD2410BLECoordinator, device: LD2410BLE, name: str, description: SensorEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

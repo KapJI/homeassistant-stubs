@@ -7,7 +7,7 @@ from holidays import HolidayBase as HolidayBase
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
-from typing import Final
+from typing import Final, override
 
 SERVICE_CHECK_DATE: Final[str]
 CHECK_DATE: Final[str]
@@ -19,4 +19,5 @@ class IsWorkdaySensor(BaseWorkdayEntity, BinarySensorEntity):
     _attr_extra_state_attributes: Incomplete
     def __init__(self, obj_holidays: HolidayBase, workdays: list[str], excludes: list[str], days_offset: int, name: str, entry_id: str) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def update_data(self, now: datetime) -> None: ...

@@ -5,7 +5,7 @@ from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 
 DATA_GROUP_ENTITIES: str
 ENTITY_PREFIX: str
@@ -24,6 +24,7 @@ class GenericGroup(Group):
     _member_entity_ids: Incomplete
     def __init__(self, entity: Entity, member_entity_ids: list[str]) -> None: ...
     @cached_property
+    @override
     def member_entity_ids(self) -> list[str]: ...
 
 class IntegrationSpecificGroup(Group):
@@ -31,12 +32,14 @@ class IntegrationSpecificGroup(Group):
     _member_unique_ids: list[str]
     def __init__(self, entity: Entity, member_unique_ids: list[str]) -> None: ...
     @cached_property
+    @override
     def member_entity_ids(self) -> list[str]: ...
     @property
     def member_unique_ids(self) -> list[str]: ...
     @member_unique_ids.setter
     def member_unique_ids(self, value: list[str]) -> None: ...
     @callback
+    @override
     def async_added_to_hass(self) -> None: ...
 
 @callback

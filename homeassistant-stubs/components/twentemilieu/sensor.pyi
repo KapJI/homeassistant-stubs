@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from twentemilieu import WasteType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class TwenteMilieuSensorDescription(SensorEntityDescription):
@@ -21,4 +22,5 @@ class TwenteMilieuSensor(TwenteMilieuEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, entry: TwenteMilieuConfigEntry, description: TwenteMilieuSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> date | None: ...

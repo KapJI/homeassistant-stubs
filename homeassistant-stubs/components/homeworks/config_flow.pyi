@@ -11,7 +11,7 @@ from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandl
 from homeassistant.helpers.selector import TextSelector as TextSelector
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_FADE_RATE: float
@@ -54,7 +54,9 @@ OPTIONS_FLOW: Incomplete
 class HomeworksConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     async def _validate_edit_controller(self, user_input: dict[str, Any], reconfigure_entry: ConfigEntry) -> dict[str, Any]: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...

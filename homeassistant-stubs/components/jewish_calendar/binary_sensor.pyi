@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,5 +24,7 @@ class JewishCalendarBinarySensor(JewishCalendarEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
     entity_description: JewishCalendarBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def _update_times(self, zmanim: Zmanim) -> list[dt.datetime | None]: ...

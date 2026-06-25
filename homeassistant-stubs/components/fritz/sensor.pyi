@@ -13,6 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -52,4 +53,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzConfigEntry, async_
 class FritzBoxSensor(FritzBoxBaseCoordinatorEntity, SensorEntity):
     entity_description: FritzConnectionSensorEntityDescription | FritzDeviceSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

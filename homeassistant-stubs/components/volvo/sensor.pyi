@@ -9,6 +9,7 @@ from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCatego
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 from volvocarsapi.models import VolvoCarsApiBaseModel as VolvoCarsApiBaseModel
 
 PARALLEL_UPDATES: int
@@ -32,4 +33,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: VolvoConfigEntry, async_
 class VolvoSensor(VolvoEntity, SensorEntity):
     entity_description: VolvoSensorDescription
     _attr_native_value: Incomplete
+    @override
     def _update_state(self, api_field: VolvoCarsApiBaseModel | None) -> None: ...

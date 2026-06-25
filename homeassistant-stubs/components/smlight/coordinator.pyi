@@ -14,7 +14,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from pysmlight import Api2 as Api2, Info as Info, Sensors
 from pysmlight.const import Settings as Settings
 from pysmlight.models import FirmwareList as FirmwareList
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True)
 class SmlightData:
@@ -39,7 +39,9 @@ class SmBaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metacla
     unique_id: str | None
     legacy_api: int
     def __init__(self, hass: HomeAssistant, config_entry: SmConfigEntry, client: Api2) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
     @abstractmethod
     async def _internal_update_data(self) -> _DataT: ...
@@ -48,10 +50,12 @@ class SmBaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metacla
 class SmDataUpdateCoordinator(SmBaseDataUpdateCoordinator[SmData]):
     def update_setting(self, setting: Settings, value: bool | int) -> None: ...
     def update_ambilight(self, changes: dict) -> None: ...
+    @override
     async def _internal_update_data(self) -> SmData: ...
 
 class SmFirmwareUpdateCoordinator(SmBaseDataUpdateCoordinator[SmFwData]):
     update_interval: Incomplete
     in_progress: bool
     def __init__(self, hass: HomeAssistant, config_entry: SmConfigEntry, client: Api2) -> None: ...
+    @override
     async def _internal_update_data(self) -> SmFwData: ...

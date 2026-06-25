@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
+from typing import override
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[SwitchEntity]]
@@ -39,4 +40,5 @@ class SwitchEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     entity_description: SwitchEntityDescription
     _attr_device_class: SwitchDeviceClass | None
     @cached_property
+    @override
     def device_class(self) -> SwitchDeviceClass | None: ...

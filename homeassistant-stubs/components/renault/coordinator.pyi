@@ -7,6 +7,7 @@ from datetime import timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from renault_api.kamereon.models import KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
+from typing import override
 
 _PARALLEL_SEMAPHORE: Incomplete
 
@@ -20,5 +21,7 @@ class RenaultDataUpdateCoordinator[T: KamereonVehicleDataAttributes](DataUpdateC
     _hub: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RenaultConfigEntry, hub: RenaultHub, logger: logging.Logger, *, name: str, update_interval: timedelta, update_method: Callable[[], Awaitable[T]]) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> T: ...
+    @override
     async def async_config_entry_first_refresh(self) -> None: ...

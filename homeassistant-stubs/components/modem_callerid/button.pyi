@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from phone_modem import PhoneModem as PhoneModem
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: ModemCallerIdConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -18,4 +19,5 @@ class PhoneModemButton(ButtonEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, api: PhoneModem, device: str, server_unique_id: str) -> None: ...
+    @override
     async def async_press(self) -> None: ...

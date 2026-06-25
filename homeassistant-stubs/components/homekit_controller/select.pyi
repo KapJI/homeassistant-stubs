@@ -11,6 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class HomeKitSelectEntityDescription(SelectEntityDescription):
@@ -29,21 +30,29 @@ class HomeKitSelect(BaseHomeKitSelect):
     _enum_to_choice: Incomplete
     _attr_options: Incomplete
     def __init__(self, conn: HKDevice, info: ConfigType, char: Characteristic, description: HomeKitSelectEntityDescription) -> None: ...
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def name(self) -> str | None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class EcobeeModeSelect(BaseHomeKitSelect):
     _attr_options: Incomplete
     _attr_translation_key: str
     @property
+    @override
     def name(self) -> str: ...
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

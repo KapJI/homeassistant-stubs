@@ -12,6 +12,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class GeocachingSensorEntityDescription(SensorEntityDescription):
@@ -36,6 +37,7 @@ class GeoEntityCacheSensorEntity(GeoEntityBaseCache, SensorEntity):
     entity_description: GeocachingCacheSensorDescription
     def __init__(self, coordinator: GeocachingDataUpdateCoordinator, cache: GeocachingCache, description: GeocachingCacheSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime.date: ...
 
 class GeocachingProfileSensor(GeocachingBaseEntity, SensorEntity):
@@ -45,4 +47,5 @@ class GeocachingProfileSensor(GeocachingBaseEntity, SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: GeocachingDataUpdateCoordinator, description: GeocachingSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | None: ...

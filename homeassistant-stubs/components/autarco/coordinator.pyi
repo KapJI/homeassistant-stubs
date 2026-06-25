@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import NamedTuple
+from typing import NamedTuple, override
 
 type AutarcoConfigEntry = ConfigEntry[list[AutarcoDataUpdateCoordinator]]
 class AutarcoData(NamedTuple):
@@ -19,4 +19,5 @@ class AutarcoDataUpdateCoordinator(DataUpdateCoordinator[AutarcoData]):
     client: Incomplete
     account_site: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AutarcoConfigEntry, client: Autarco, account_site: AccountSite) -> None: ...
+    @override
     async def _async_update_data(self) -> AutarcoData: ...

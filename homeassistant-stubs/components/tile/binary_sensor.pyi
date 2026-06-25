@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pytile.tile import Tile as Tile
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class TileBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -21,4 +22,5 @@ class TileBinarySensor(TileEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: TileCoordinator, description: TileBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

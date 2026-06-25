@@ -9,13 +9,14 @@ from .models import MatterDeviceInfo as MatterDeviceInfo
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from functools import cache
-from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState
+from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, SupervisorError as SupervisorError, get_supervisor_client as get_supervisor_client
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from matter_ble_proxy import MatterBleProxy as MatterBleProxy
@@ -32,6 +33,7 @@ def get_matter_device_info(hass: HomeAssistant, device_id: str) -> MatterDeviceI
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: MatterConfigEntry) -> bool: ...
 def _derive_ble_proxy_url(matter_ws_url: str) -> str | None: ...
+async def _async_check_ipv6_enabled(hass: HomeAssistant) -> None: ...
 async def _client_listen(hass: HomeAssistant, entry: MatterConfigEntry, matter_client: MatterClient, init_ready: asyncio.Event) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: MatterConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: MatterConfigEntry) -> None: ...

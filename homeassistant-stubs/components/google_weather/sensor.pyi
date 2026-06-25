@@ -9,6 +9,7 @@ from homeassistant.const import DEGREE as DEGREE, PERCENTAGE as PERCENTAGE, UV_I
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ class GoogleWeatherSensor(CoordinatorEntity[GoogleWeatherCurrentConditionsCoordi
     entity_description: GoogleWeatherSensorDescription
     def __init__(self, coordinator: GoogleWeatherCurrentConditionsCoordinator, subentry: ConfigSubentry, description: GoogleWeatherSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | float | None: ...

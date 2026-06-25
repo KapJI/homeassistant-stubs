@@ -9,10 +9,12 @@ from homeassistant.components.event import EventEntity as EventEntity, EventEnti
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class EcovacsLastJobEventEntity(EcovacsEntity[CapabilityEvent[ReportStatsEvent]], EventEntity):
     entity_description: Incomplete
     def __init__(self, device: Device) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

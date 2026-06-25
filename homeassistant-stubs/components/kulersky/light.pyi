@@ -8,7 +8,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -24,10 +24,14 @@ class KulerskyLight(LightEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, name: str, address: str, light: pykulersky.Light) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_rgbw_color: Incomplete
     _attr_brightness: Incomplete

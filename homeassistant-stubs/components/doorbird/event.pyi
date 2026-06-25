@@ -7,6 +7,7 @@ from homeassistant.components.event import EventDeviceClass as EventDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 EVENT_DESCRIPTIONS: Incomplete
 
@@ -19,6 +20,7 @@ class DoorBirdEventEntity(DoorBirdEntity, EventEntity):
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, door_bird_data: DoorBirdData, doorbird_event: DoorbirdEvent, entity_description: EventEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self) -> None: ...

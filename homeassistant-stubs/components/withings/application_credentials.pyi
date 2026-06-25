@@ -2,13 +2,16 @@ from .const import DOMAIN as DOMAIN
 from homeassistant.components.application_credentials import AuthImplementation as AuthImplementation, AuthorizationServer as AuthorizationServer, ClientCredential as ClientCredential
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
-from typing import Any
+from typing import Any, override
 
 async def async_get_auth_implementation(hass: HomeAssistant, auth_domain: str, credential: ClientCredential) -> config_entry_oauth2_flow.AbstractOAuth2Implementation: ...
 
 class WithingsLocalOAuth2Implementation(AuthImplementation):
+    @override
     async def _token_request(self, data: dict) -> dict: ...
+    @override
     async def async_resolve_external_data(self, external_data: Any) -> dict: ...
+    @override
     async def _async_refresh_token(self, token: dict) -> dict: ...
 
 async def async_get_description_placeholders(hass: HomeAssistant) -> dict[str, str]: ...

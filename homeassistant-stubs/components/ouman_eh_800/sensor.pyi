@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ouman_eh_800_api import OumanEndpoint as OumanEndpoint
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: OumanEh800ConfigEntry, a
 class OumanEh800SensorEntity(OumanEh800Entity, SensorEntity):
     entity_description: OumanEh800SensorDescription
     @property
+    @override
     def native_value(self) -> float | str: ...

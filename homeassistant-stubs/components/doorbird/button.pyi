@@ -8,7 +8,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 IR_RELAY: str
 
@@ -26,4 +26,5 @@ class DoorBirdButton(DoorBirdEntity, ButtonEntity):
     _relay: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, door_bird_data: DoorBirdData, entity_description: DoorbirdButtonEntityDescription, relay: str | None = None) -> None: ...
+    @override
     async def async_press(self) -> None: ...

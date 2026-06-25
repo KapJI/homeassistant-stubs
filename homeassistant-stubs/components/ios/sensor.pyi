@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 DEFAULT_ICON_LEVEL: str
@@ -27,12 +27,16 @@ class IOSSensor(SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, device_name: str, device: dict[str, Any], description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def icon(self) -> str: ...
     _attr_native_value: Incomplete
     @callback
     def _update(self, device: dict[str, Any]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

@@ -12,6 +12,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pyoverkiz.types import StateType as OverkizStateType
+from typing import override
 
 @dataclass(frozen=True)
 class OverkizSensorDescription(SensorEntityDescription):
@@ -25,8 +26,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, 
 class OverkizStateSensor(OverkizDescriptiveEntity, SensorEntity):
     entity_description: OverkizSensorDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     def _is_unit_valid_for_device_class(self, unit: str) -> bool: ...
 
@@ -36,6 +39,8 @@ class OverkizHomeKitSetupCodeSensor(OverkizEntity, SensorEntity):
     _attr_name: str
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

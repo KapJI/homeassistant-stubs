@@ -8,7 +8,7 @@ from datetime import date
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 ATTR_CATEGORY: str
 ATTR_PICKUP_STATE: str
@@ -23,6 +23,8 @@ class RidwellSensor(RidwellEntity, SensorEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount, description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     @property
+    @override
     def native_value(self) -> date: ...

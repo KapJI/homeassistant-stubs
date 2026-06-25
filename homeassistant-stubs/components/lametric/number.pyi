@@ -9,7 +9,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LaMetricNumberEntityDescription(NumberEntityDescription):
@@ -27,10 +27,14 @@ class LaMetricNumberEntity(LaMetricEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LaMetricDataUpdateCoordinator, description: LaMetricNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...
     @property
+    @override
     def native_min_value(self) -> int: ...
     @property
+    @override
     def native_max_value(self) -> int: ...
     @lametric_exception_handler
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

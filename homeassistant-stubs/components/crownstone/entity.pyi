@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from crownstone_cloud.cloud_models.crownstones import Crownstone as Crownstone
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class CrownstoneEntity(Entity):
     _attr_should_poll: bool
@@ -12,4 +13,5 @@ class CrownstoneEntity(Entity):
     @property
     def cloud_id(self) -> str: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True, frozen=True)
 class BlueCurrentSwitchEntityDescription(SwitchEntityDescription):
@@ -34,7 +34,10 @@ class ChargePointSwitch(ChargepointEntity, SwitchEntity):
     def __init__(self, connector: Connector, evse_id: str, switch: BlueCurrentSwitchEntityDescription) -> None: ...
     async def call_function(self, value: bool) -> None: ...
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

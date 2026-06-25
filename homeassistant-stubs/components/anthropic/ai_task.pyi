@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.json import json_loads as json_loads
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -16,4 +17,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AnthropicConfigEn
 class AnthropicTaskEntity(ai_task.AITaskEntity, AnthropicBaseLLMEntity):
     _attr_supported_features: Incomplete
     _attr_translation_key: str
+    @override
     async def _async_generate_data(self, task: ai_task.GenDataTask, chat_log: conversation.ChatLog) -> ai_task.GenDataTaskResult: ...

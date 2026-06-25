@@ -15,6 +15,27 @@ class SourceType(StrEnum):
     BLUETOOTH = 'bluetooth'
     BLUETOOTH_LE = 'bluetooth_le'
 
+class TrackingType(StrEnum):
+    CONNECTION = 'connection'
+    POSITION = 'position'
+
+class DeviceTrackerEntityCapabilityAttribute(StrEnum):
+    TRACKING_TYPE = 'tracking_type'
+
+class DeviceTrackerEntityStateAttribute(StrEnum):
+    SOURCE_TYPE = 'source_type'
+    IN_ZONES = 'in_zones'
+
+class TrackerEntityStateAttribute(StrEnum):
+    LATITUDE = 'latitude'
+    LONGITUDE = 'longitude'
+    GPS_ACCURACY = 'gps_accuracy'
+
+class ScannerEntityStateAttribute(StrEnum):
+    IP = 'ip'
+    MAC = 'mac'
+    HOST_NAME = 'host_name'
+
 CONF_SCAN_INTERVAL: Final[str]
 SCAN_INTERVAL: Final[Incomplete]
 CONF_TRACK_NEW: Final[str]
@@ -32,6 +53,7 @@ ATTR_IN_ZONES: Final[str]
 ATTR_LOCATION_NAME: Final[str]
 ATTR_MAC: Final[str]
 ATTR_SOURCE_TYPE: Final[str]
+ATTR_TRACKING_TYPE: Final[str]
 ATTR_CONSIDER_HOME: Final[str]
 ATTR_IP: Final[str]
 CONNECTED_DEVICE_REGISTERED: Incomplete

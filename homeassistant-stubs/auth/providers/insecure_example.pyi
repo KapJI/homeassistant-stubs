@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from typing import override
 
 USER_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
@@ -11,11 +12,15 @@ CONFIG_SCHEMA: Incomplete
 class InvalidAuthError(HomeAssistantError): ...
 
 class ExampleAuthProvider(AuthProvider):
+    @override
     async def async_login_flow(self, context: AuthFlowContext | None) -> ExampleLoginFlow: ...
     @callback
     def async_validate_login(self, username: str, password: str) -> None: ...
+    @override
     async def async_get_or_create_credentials(self, flow_result: Mapping[str, str]) -> Credentials: ...
+    @override
     async def async_user_meta_for_credentials(self, credentials: Credentials) -> UserMeta: ...
 
 class ExampleLoginFlow(LoginFlow[ExampleAuthProvider]):
+    @override
     async def async_step_init(self, user_input: dict[str, str] | None = None) -> AuthFlowResult: ...

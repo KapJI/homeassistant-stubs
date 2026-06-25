@@ -7,7 +7,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyfritzhome.devicetypes import FritzhomeTrigger as FritzhomeTrigger
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -15,17 +15,25 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, asy
 
 class FritzboxSwitch(FritzBoxDeviceEntity, SwitchEntity):
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def check_lock_state(self) -> None: ...
 
 class FritzboxTrigger(FritzBoxEntity, SwitchEntity):
     @property
+    @override
     def data(self) -> FritzhomeTrigger: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from plugwise.constants import BinarySensorType as BinarySensorType
-from typing import Any
+from typing import Any, override
 
 SEVERITIES: Incomplete
 PARALLEL_UPDATES: int
@@ -26,6 +26,8 @@ class PlugwiseBinarySensorEntity(PlugwiseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, description: PlugwiseBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

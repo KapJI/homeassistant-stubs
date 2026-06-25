@@ -5,14 +5,16 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from technove import Station as TechnoVEStation
-from typing import Any
+from typing import Any, override
 
 class TechnoVEConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovered_host: str
     discovered_station: TechnoVEStation
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_get_station(self, host: str) -> TechnoVEStation: ...

@@ -10,7 +10,7 @@ from homeassistant.helpers import sun as sun
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
 from pysmhi import SMHIForecast as SMHIForecast
-from typing import Any, Final
+from typing import Any, Final, override
 
 CONDITION_CLASSES: Final[dict[str, list[int]]]
 CONDITION_MAP: Incomplete
@@ -34,12 +34,18 @@ class SmhiWeather(SmhiWeatherEntity, SingleCoordinatorWeatherEntity):
     _attr_native_wind_gust_speed: Incomplete
     _attr_cloud_coverage: Incomplete
     _attr_condition: Incomplete
+    @override
     def update_entity_data(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     def _get_forecast_data(self, forecast_data: list[SMHIForecast] | None, forecast_type: str) -> list[Forecast] | None: ...
+    @override
     def _async_forecast_daily(self) -> list[Forecast] | None: ...
+    @override
     def _async_forecast_hourly(self) -> list[Forecast] | None: ...
+    @override
     def _async_forecast_twice_daily(self) -> list[Forecast] | None: ...

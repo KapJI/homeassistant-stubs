@@ -6,6 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -16,10 +17,13 @@ class LeafPluggedInSensor(LeafEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, car: LeafDataStore) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class LeafChargingSensor(LeafEntity, BinarySensorEntity):
@@ -27,8 +31,11 @@ class LeafChargingSensor(LeafEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, car: LeafDataStore) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...

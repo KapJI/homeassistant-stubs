@@ -9,6 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PRESSURE as PRESSURE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class SleepIQSensorEntityDescription(SensorEntityDescription):
@@ -24,4 +25,5 @@ class SleepIQSensorEntity(SleepIQSleeperEntity[SleepIQDataUpdateCoordinator | Sl
     def __init__(self, coordinator: SleepIQDataUpdateCoordinator | SleepIQSleepDataCoordinator, bed: SleepIQBed, sleeper: SleepIQSleeper, description: SleepIQSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

@@ -13,7 +13,7 @@ from homeassistant.helpers.storage import STORAGE_DIR as STORAGE_DIR
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.loader import async_get_integration as async_get_integration
 from homeassistant.util.network import is_ip_address as is_ip_address
-from typing import Any
+from typing import Any, override
 from uiprotect.data import NVR as NVR
 
 _LOGGER: Incomplete
@@ -44,10 +44,12 @@ class ProtectFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_device: dict[str, str]
     def __init__(self) -> None: ...
+    @override
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: UFPConfigEntry) -> OptionsFlowHandler: ...
     @callback
     def _async_create_entry(self, title: str, data: dict[str, Any]) -> ConfigFlowResult: ...
@@ -55,6 +57,7 @@ class ProtectFlowHandler(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class OptionsFlowHandler(OptionsFlowWithReload):

@@ -5,7 +5,7 @@ from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_OPTIONS as CONF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.condition import Condition as Condition, ConditionCheckerType as ConditionCheckerType, ConditionConfig as ConditionConfig
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
-from typing import Any, Protocol
+from typing import Any, Protocol, override
 
 class DeviceAutomationConditionProtocol(Protocol):
     CONDITION_SCHEMA: vol.Schema
@@ -18,11 +18,15 @@ class DeviceCondition(Condition):
     _config: ConfigType
     _platform_checker: ConditionCheckerType
     @classmethod
+    @override
     async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     @classmethod
+    @override
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     def _async_check(self, variables: TemplateVarsType = None, **kwargs: Any) -> bool: ...
 
 CONDITIONS: dict[str, type[Condition]]

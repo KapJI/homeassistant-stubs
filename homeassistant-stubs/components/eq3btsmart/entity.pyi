@@ -6,7 +6,7 @@ from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNEC
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 class Eq3Entity(Entity):
     _attr_has_entity_name: bool
@@ -15,7 +15,9 @@ class Eq3Entity(Entity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, entry: Eq3ConfigEntry, unique_id_key: str | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @callback
     def _async_on_status_updated(self, data: Any) -> None: ...
@@ -27,4 +29,5 @@ class Eq3Entity(Entity):
     @callback
     def _async_on_connected(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

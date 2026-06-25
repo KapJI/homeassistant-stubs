@@ -14,6 +14,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from openevsehttp.__main__ import OpenEVSE as OpenEVSE
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -36,4 +37,5 @@ class OpenEVSESensor(CoordinatorEntity[OpenEVSEDataUpdateCoordinator], SensorEnt
     _attr_device_info: Incomplete
     def __init__(self, coordinator: OpenEVSEDataUpdateCoordinator, description: OpenEVSESensorDescription, identifier: str, unique_id: str | None) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

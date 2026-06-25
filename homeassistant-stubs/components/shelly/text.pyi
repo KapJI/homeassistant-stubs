@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.text import TextEntity as TextEntity, TextEntityDescription as TextEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -27,6 +27,8 @@ class RpcText(ShellyRpcAttributeEntity, TextEntity):
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcTextDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
     @rpc_call
+    @override
     async def async_set_value(self, value: str) -> None: ...

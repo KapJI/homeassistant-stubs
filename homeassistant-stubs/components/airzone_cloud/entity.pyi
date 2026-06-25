@@ -6,13 +6,14 @@ from abc import ABC, abstractmethod
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
 class AirzoneEntity(CoordinatorEntity[AirzoneUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     @property
+    @override
     def available(self) -> bool: ...
     @abstractmethod
     def get_airzone_value(self, key: str) -> Any: ...
@@ -22,40 +23,50 @@ class AirzoneAidooEntity(AirzoneEntity):
     aidoo_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, aidoo_id: str, aidoo_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
+    @override
     async def _async_update_params(self, params: dict[str, Any]) -> None: ...
 
 class AirzoneGroupEntity(AirzoneEntity):
     group_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, group_id: str, group_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
+    @override
     async def _async_update_params(self, params: dict[str, Any]) -> None: ...
 
 class AirzoneHotWaterEntity(AirzoneEntity):
     dhw_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, dhw_id: str, dhw_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
+    @override
     async def _async_update_params(self, params: dict[str, Any]) -> None: ...
 
 class AirzoneInstallationEntity(AirzoneEntity):
     inst_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, inst_id: str, inst_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
+    @override
     async def _async_update_params(self, params: dict[str, Any]) -> None: ...
 
 class AirzoneSystemEntity(AirzoneEntity):
     system_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, system_id: str, system_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
 
 class AirzoneWebServerEntity(AirzoneEntity):
     ws_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, ws_id: str, ws_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
 
 class AirzoneZoneEntity(AirzoneEntity):
@@ -63,5 +74,7 @@ class AirzoneZoneEntity(AirzoneEntity):
     zone_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, zone_id: str, zone_data: dict[str, Any]) -> None: ...
+    @override
     def get_airzone_value(self, key: str) -> Any: ...
+    @override
     async def _async_update_params(self, params: dict[str, Any]) -> None: ...

@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,6 +22,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 class PeblarUpdateEntity(PeblarEntity[PeblarVersionDataUpdateCoordinator], UpdateEntity):
     entity_description: PeblarUpdateEntityDescription
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...

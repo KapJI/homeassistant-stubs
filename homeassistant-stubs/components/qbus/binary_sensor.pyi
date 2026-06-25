@@ -10,6 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttDevice as QbusMqttDevice, QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttDeviceState as QbusMqttDeviceState, QbusMqttWeatherState
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -26,6 +27,7 @@ class QbusWeatherBinarySensor(QbusEntity, BinarySensorEntity):
     entity_description: QbusWeatherDescription
     def __init__(self, mqtt_output: QbusMqttOutput, description: QbusWeatherDescription) -> None: ...
     _attr_is_on: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttWeatherState) -> None: ...
 
 class QbusControllerConnectedBinarySensor(BinarySensorEntity):
@@ -37,6 +39,7 @@ class QbusControllerConnectedBinarySensor(BinarySensorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, controller: QbusMqttDevice) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     @callback

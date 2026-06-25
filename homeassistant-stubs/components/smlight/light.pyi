@@ -6,7 +6,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight.const import AmbiEffect
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -33,11 +33,15 @@ class SmLightEntity(SmEntity, LightEntity):
     _attr_effect: Incomplete
     _attr_rgb_color: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _handle_ambilight_changes(self, changes: dict) -> None: ...
     def _effect_from_mode(self, mode: AmbiEffect | None) -> str | None: ...
     def _parse_rgb_color(self, color: str | None) -> tuple[int, int, int] | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

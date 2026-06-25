@@ -10,14 +10,16 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 from xknx.devices import Device as XknxDevice, Scene as XknxScene
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class _KnxScene(BaseScene, _KnxEntityBase):
     _device: XknxScene
+    @override
     async def _async_activate(self, **kwargs: Any) -> None: ...
+    @override
     def after_update_callback(self, device: XknxDevice) -> None: ...
 
 class KnxYamlScene(_KnxScene, KnxYamlEntity):

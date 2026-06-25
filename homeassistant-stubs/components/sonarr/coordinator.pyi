@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import TypeVar
+from typing import TypeVar, override
 
 SonarrDataT = TypeVar('SonarrDataT', bound=list[SonarrCalendar] | list[Command] | list[Diskspace] | SonarrQueue | list[SonarrSeries] | SystemStatus | SonarrWantedMissing)
 
@@ -29,26 +29,34 @@ class SonarrDataUpdateCoordinator(DataUpdateCoordinator[SonarrDataT]):
     host_configuration: Incomplete
     system_version: str | None
     def __init__(self, hass: HomeAssistant, config_entry: SonarrConfigEntry, host_configuration: PyArrHostConfiguration, api_client: SonarrClient) -> None: ...
+    @override
     async def _async_update_data(self) -> SonarrDataT: ...
     async def _fetch_data(self) -> SonarrDataT: ...
 
 class CalendarDataUpdateCoordinator(SonarrDataUpdateCoordinator[list[SonarrCalendar]]):
+    @override
     async def _fetch_data(self) -> list[SonarrCalendar]: ...
 
 class CommandsDataUpdateCoordinator(SonarrDataUpdateCoordinator[list[Command]]):
+    @override
     async def _fetch_data(self) -> list[Command]: ...
 
 class DiskSpaceDataUpdateCoordinator(SonarrDataUpdateCoordinator[list[Diskspace]]):
+    @override
     async def _fetch_data(self) -> list[Diskspace]: ...
 
 class QueueDataUpdateCoordinator(SonarrDataUpdateCoordinator[SonarrQueue]):
+    @override
     async def _fetch_data(self) -> SonarrQueue: ...
 
 class SeriesDataUpdateCoordinator(SonarrDataUpdateCoordinator[list[SonarrSeries]]):
+    @override
     async def _fetch_data(self) -> list[SonarrSeries]: ...
 
 class StatusDataUpdateCoordinator(SonarrDataUpdateCoordinator[SystemStatus]):
+    @override
     async def _fetch_data(self) -> SystemStatus: ...
 
 class WantedDataUpdateCoordinator(SonarrDataUpdateCoordinator[SonarrWantedMissing]):
+    @override
     async def _fetch_data(self) -> SonarrWantedMissing: ...

@@ -9,7 +9,7 @@ from pytradfri import Gateway as Gateway
 from pytradfri.api.aiocoap_api import APIFactory as APIFactory
 from pytradfri.command import Command as Command
 from pytradfri.device import Device
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: int
 type TradfriConfigEntry = ConfigEntry[TradfriData]
@@ -35,4 +35,5 @@ class TradfriDeviceDataUpdateCoordinator(DataUpdateCoordinator[Device]):
     def _exception_callback(self, exc: Exception) -> None: ...
     update_interval: Incomplete
     async def _handle_exception(self, exc: Exception) -> None: ...
+    @override
     async def _async_update_data(self) -> Device: ...

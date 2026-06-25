@@ -5,6 +5,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, NumberInfo, NumberMode as Es
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberMode as NumberMode
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
+from typing import override
 
 PARALLEL_UPDATES: int
 NUMBER_MODES: EsphomeEnumMapper[EsphomeNumberMode, NumberMode]
@@ -17,11 +18,14 @@ class EsphomeNumber(EsphomeEntity[NumberInfo, NumberState], NumberEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_mode: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_float_state_property
+    @override
     def native_value(self) -> float | None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 async_setup_entry: Incomplete

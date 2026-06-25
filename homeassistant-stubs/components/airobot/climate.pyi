@@ -10,7 +10,7 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyairobotrest.const import SETPOINT_TEMP_MAX, SETPOINT_TEMP_MIN
 from pyairobotrest.models import ThermostatSettings as ThermostatSettings, ThermostatStatus as ThermostatStatus
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _PRESET_MODE_2_MODE: Incomplete
@@ -33,17 +33,26 @@ class AirobotClimate(AirobotEntity, ClimateEntity):
     @property
     def _settings(self) -> ThermostatSettings: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def current_humidity(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

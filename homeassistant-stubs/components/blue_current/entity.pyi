@@ -6,6 +6,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class BlueCurrentEntity(Entity):
     _attr_has_entity_name: bool
@@ -14,8 +15,10 @@ class BlueCurrentEntity(Entity):
     connector: Incomplete
     signal: Incomplete
     def __init__(self, connector: Connector, signal: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
     def update_from_latest_data(self) -> None: ...

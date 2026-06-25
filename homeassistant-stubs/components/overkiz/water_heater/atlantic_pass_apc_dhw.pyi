@@ -2,23 +2,30 @@ from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.water_heater import STATE_ECO as STATE_ECO, STATE_HEAT_PUMP as STATE_HEAT_PUMP, STATE_OFF as STATE_OFF, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
-from typing import Any
+from typing import Any, override
 
 class AtlanticPassAPCDHW(OverkizEntity, WaterHeaterEntity):
     _attr_temperature_unit: Incomplete
     _attr_supported_features: Incomplete
     _attr_operation_list: Incomplete
     @property
+    @override
     def target_temperature(self) -> float: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @property
     def is_boost_mode_on(self) -> bool: ...
     @property
     def is_eco_mode_on(self) -> bool: ...
     @property
+    @override
     def is_away_mode_on(self) -> bool: ...
     @property
+    @override
     def current_operation(self) -> str: ...
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
+    @override
     async def async_turn_away_mode_on(self) -> None: ...
+    @override
     async def async_turn_away_mode_off(self) -> None: ...

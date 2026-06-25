@@ -13,7 +13,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete
@@ -53,6 +53,7 @@ class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_todo_items: list[TodoItem] | None
     _update_listeners: list[Callable[[list[TodoItem] | None], None]] | None
     @property
+    @override
     def state(self) -> int | None: ...
     @cached_property
     def todo_items(self) -> list[TodoItem] | None: ...
@@ -67,6 +68,7 @@ class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @callback
     def async_update_listeners(self) -> None: ...
     @callback
+    @override
     def _async_write_ha_state(self) -> None: ...
 
 @websocket_api.async_response

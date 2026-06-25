@@ -36,7 +36,7 @@ from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.json import json_loads as json_loads
 from ipaddress import IPv4Network, IPv6Network
 from pathlib import Path
-from typing import Any, Final, TypedDict
+from typing import Any, Final, TypedDict, override
 
 CONF_SERVER_HOST: Final[str]
 CONF_SERVER_PORT: Final[str]
@@ -102,9 +102,11 @@ class ApiConfig:
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class HomeAssistantRequest(web.Request):
+    @override
     async def json(self, *, loads: JSONDecoder = ...) -> Any: ...
 
 class HomeAssistantApplication(web.Application):
+    @override
     def _make_request(self, message: RawRequestMessage, payload: StreamReader, protocol: RequestHandler, writer: AbstractStreamWriter, task: asyncio.Task[None], _cls: type[web.Request] = ...) -> web.Request: ...
 
 async def _serve_file_with_cache_headers(path: str, request: web.Request) -> web.FileResponse: ...

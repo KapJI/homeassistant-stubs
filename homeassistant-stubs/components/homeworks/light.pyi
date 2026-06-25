@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyhomeworks.pyhomeworks import Homeworks as Homeworks
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -23,13 +23,18 @@ class HomeworksLight(HomeworksEntity, LightEntity):
     _level: int
     _prev_level: int
     def __init__(self, controller: Homeworks, controller_id: str, addr: str, name: str, rate: float) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def brightness(self) -> int: ...
     def _set_brightness(self, level: int) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @callback
     def _update_callback(self, msg_type: str, values: list[Any]) -> None: ...

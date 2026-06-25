@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 from wled import Device as WLEDDevice, Releases
 
 type WLEDConfigEntry = ConfigEntry[WLEDDataUpdateCoordinator]
@@ -27,9 +28,11 @@ class WLEDDataUpdateCoordinator(DataUpdateCoordinator[WLEDDevice]):
     last_update_success: bool
     @callback
     def _use_websocket(self) -> None: ...
+    @override
     async def _async_update_data(self) -> WLEDDevice: ...
 
 class WLEDReleasesDataUpdateCoordinator(DataUpdateCoordinator[Releases]):
     wled: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def _async_update_data(self) -> Releases: ...

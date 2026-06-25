@@ -6,7 +6,7 @@ from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.start import async_at_start as async_at_start
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
@@ -27,5 +27,7 @@ class HistoryStatsUpdateCoordinator(DataUpdateCoordinator[HistoryStatsState]):
     @callback
     def _async_add_events_listener(self, *_: Any) -> None: ...
     async def _async_update_from_event(self, event: Event[EventStateChangedData]) -> None: ...
+    @override
     async def _async_update_data(self) -> HistoryStatsState: ...
+    @override
     async def async_refresh(self) -> None: ...

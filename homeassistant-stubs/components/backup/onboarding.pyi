@@ -6,7 +6,7 @@ from homeassistant.components.http.data_validator import RequestDataValidator as
 from homeassistant.components.onboarding import BaseOnboardingView as BaseOnboardingView, NoAuthBaseOnboardingView as NoAuthBaseOnboardingView, OnboardingStoreData as OnboardingStoreData
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 async def async_setup_views(hass: HomeAssistant, data: OnboardingStoreData) -> None: ...
 def with_backup_manager[_ViewT: BaseOnboardingView, **_P](func: Callable[Concatenate[_ViewT, BackupManager, web.Request, _P], Coroutine[Any, Any, web.Response]]) -> Callable[Concatenate[_ViewT, web.Request, _P], Coroutine[Any, Any, web.Response]]: ...
@@ -27,4 +27,5 @@ class UploadBackupView(NoAuthBaseOnboardingView, backup_http.UploadBackupView):
     url: str
     name: str
     @with_backup_manager
+    @override
     async def post(self, manager: BackupManager, request: web.Request) -> web.Response: ...

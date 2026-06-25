@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 def get_space(data: list[LidarrRootFolder], name: str) -> str: ...
 def get_modified_description(description: LidarrSensorEntityDescription[T], mount: LidarrRootFolder) -> tuple[LidarrSensorEntityDescription[T], str]: ...
@@ -32,8 +32,10 @@ class LidarrSensor(LidarrEntity[T], SensorEntity):
     folder_name: Incomplete
     def __init__(self, coordinator: LidarrDataUpdateCoordinator[T], description: LidarrSensorEntityDescription[T], folder_name: str = '') -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str] | None: ...
     @property
+    @override
     def native_value(self) -> str | int: ...
 
 def queue_str(item: LidarrQueueItem) -> str: ...

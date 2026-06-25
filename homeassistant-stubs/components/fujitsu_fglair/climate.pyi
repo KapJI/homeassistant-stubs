@@ -6,7 +6,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 HA_TO_FUJI_FAN: Incomplete
 FUJI_TO_HA_FAN: Incomplete
@@ -26,10 +26,15 @@ class FGLairDevice(FGLairEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     def __init__(self, coordinator: FGLairCoordinator, device: FujitsuHVAC) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _attr_fan_mode: Incomplete
     _attr_fan_modes: Incomplete
@@ -42,4 +47,5 @@ class FGLairDevice(FGLairEntity, ClimateEntity):
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
     def _set_attr(self) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...

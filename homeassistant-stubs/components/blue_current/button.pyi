@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True, frozen=True)
 class ChargePointButtonEntityDescription(ButtonEntityDescription):
@@ -22,4 +22,5 @@ class ChargePointButton(ChargepointEntity, ButtonEntity):
     entity_description: ChargePointButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, connector: Connector, description: ChargePointButtonEntityDescription, evse_id: str) -> None: ...
+    @override
     async def async_press(self) -> None: ...

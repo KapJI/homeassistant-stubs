@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 UPDATE_DESCRIPTION: Incomplete
@@ -18,15 +19,22 @@ class IronOSUpdate(IronOSBaseEntity, UpdateEntity, RestoreEntity):
     firmware_update: Incomplete
     def __init__(self, coordinator: IronOSLiveDataCoordinator, firmware_update: IronOSFirmwareUpdateCoordinator, entity_description: UpdateEntityDescription) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def title(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
+    @override
     async def async_release_notes(self) -> str | None: ...
     _attr_installed_version: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

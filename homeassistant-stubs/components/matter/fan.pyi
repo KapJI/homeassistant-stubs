@@ -7,7 +7,7 @@ from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD,
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 FanControlFeature: Incomplete
 WindBitmap: Incomplete
@@ -31,11 +31,17 @@ class MatterFan(MatterEntity, FanEntity):
     _last_known_percentage: int
     _feature_map: int | None
     _platform_translation_key: str
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_oscillate(self, oscillating: bool) -> None: ...
+    @override
     async def async_set_direction(self, direction: str) -> None: ...
     async def _set_wind_mode(self, wind_mode: str | None) -> None: ...
     _attr_preset_mode: Incomplete
@@ -43,6 +49,7 @@ class MatterFan(MatterEntity, FanEntity):
     _attr_current_direction: Incomplete
     _attr_oscillating: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
     _attr_speed_count: int

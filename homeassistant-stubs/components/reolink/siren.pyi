@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.siren import ATTR_DURATION as ATTR_DURATION, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL, SirenEntity as SirenEntity, SirenEntityDescription as SirenEntityDescription, SirenEntityFeature as SirenEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -24,10 +24,13 @@ class ReolinkSirenEntity(ReolinkChannelCoordinatorEntity, SirenEntity):
     entity_description: ReolinkSirenEntityDescription
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkSirenEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ReolinkHostSirenEntity(ReolinkHostCoordinatorEntity, SirenEntity):
@@ -35,4 +38,5 @@ class ReolinkHostSirenEntity(ReolinkHostCoordinatorEntity, SirenEntity):
     entity_description: ReolinkHostSirenEntityDescription
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostSirenEntityDescription) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 HVACMODE: Final[Incomplete]
 HVACMODE_REVERSE: Final[Incomplete]
@@ -23,16 +23,23 @@ class DuotecnoClimate(DuotecnoEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_translation_key: str
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def preset_mode(self) -> str: ...
     @api_call
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @api_call
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @api_call
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

@@ -11,16 +11,19 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 from xknx.devices import DateDevice as XknxDateDevice
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class _KNXDate(DateEntity, RestoreEntity):
     _device: XknxDateDevice
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> dt_date | None: ...
+    @override
     async def async_set_value(self, value: dt_date) -> None: ...
 
 class KnxYamlDate(_KNXDate, KnxYamlEntity):

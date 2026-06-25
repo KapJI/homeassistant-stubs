@@ -29,8 +29,10 @@ class EheimDigitalSwitch[_DeviceT: EheimDigitalDevice](EheimDigitalEntity[_Devic
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: _DeviceT, description: EheimDigitalSwitchDescription[_DeviceT]) -> None: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @override

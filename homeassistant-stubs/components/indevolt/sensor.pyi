@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from indevolt_api import IndevoltEnergyMode
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -29,6 +29,8 @@ class IndevoltSensorEntity(IndevoltEntity, SensorEntity):
     _attr_options: Incomplete
     def __init__(self, coordinator: IndevoltCoordinator, description: IndevoltSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> str | int | float | None: ...

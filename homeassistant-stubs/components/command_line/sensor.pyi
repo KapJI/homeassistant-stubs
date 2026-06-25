@@ -10,7 +10,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.trigger_template_entity import ManualTriggerSensorEntity as ManualTriggerSensorEntity, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 SCAN_INTERVAL: Incomplete
@@ -29,7 +29,9 @@ class CommandSensor(ManualTriggerSensorEntity):
     _process_updates: asyncio.Lock | None
     def __init__(self, data: CommandSensorData, config: ConfigType, value_template: ValueTemplate | None, json_attributes: list[str] | None, json_attributes_path: str | None, scan_interval: timedelta) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _update_entity_state(self, now: datetime | None = None) -> None: ...
     async def _async_update(self) -> None: ...

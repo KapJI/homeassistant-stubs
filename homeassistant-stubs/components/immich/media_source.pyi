@@ -9,6 +9,7 @@ from homeassistant.components.media_source import BrowseMediaSource as BrowseMed
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import ChunkAsyncStreamIterator as ChunkAsyncStreamIterator
+from typing import override
 
 LOGGER: Incomplete
 
@@ -27,8 +28,10 @@ class ImmichMediaSource(MediaSource):
     name: str
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     async def _async_build_immich(self, item: MediaSourceItem, entries: list[ConfigEntry]) -> list[BrowseMediaSource]: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
 
 class ImmichMediaView(HomeAssistantView):

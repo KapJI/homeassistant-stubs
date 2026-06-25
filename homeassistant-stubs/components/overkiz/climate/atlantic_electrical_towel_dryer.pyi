@@ -4,7 +4,7 @@ from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
-from typing import Any
+from typing import Any, override
 
 PRESET_DRYING: str
 PRESET_PROG: str
@@ -23,13 +23,20 @@ class AtlanticElectricalTowelDryer(OverkizEntity, ClimateEntity):
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

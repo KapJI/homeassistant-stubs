@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from sensoterra.probe import Probe as Probe, Sensor as Sensor
+from typing import override
 
 class ProbeSensorType(StrEnum):
     MOISTURE = ...
@@ -33,6 +34,8 @@ class SensoterraEntity(CoordinatorEntity[SensoterraCoordinator], SensorEntity):
     @property
     def sensor(self) -> Sensor | None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...

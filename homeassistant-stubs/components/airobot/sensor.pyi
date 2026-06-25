@@ -13,6 +13,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from pyairobotrest.models import ThermostatStatus as ThermostatStatus
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,4 +32,5 @@ class AirobotSensor(AirobotEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirobotDataUpdateCoordinator, description: AirobotSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

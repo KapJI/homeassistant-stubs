@@ -5,7 +5,7 @@ from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydrawise.schema import Controller as Controller, Zone as Zone
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 VALVE_TYPES: tuple[ValveEntityDescription, ...]
@@ -17,7 +17,10 @@ class HydrawiseValve(HydrawiseEntity, ValveEntity):
     _attr_reports_position: bool
     _attr_supported_features: Incomplete
     zone: Zone
+    @override
     async def async_open_valve(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_valve(self) -> None: ...
     _attr_is_closed: Incomplete
+    @override
     def _update_attrs(self) -> None: ...

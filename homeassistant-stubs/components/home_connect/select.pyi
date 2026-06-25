@@ -1,5 +1,5 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry, should_add_option_entity as should_add_option_entity
-from .const import AVAILABLE_MAPS_ENUM as AVAILABLE_MAPS_ENUM, BEAN_AMOUNT_OPTIONS as BEAN_AMOUNT_OPTIONS, BEAN_CONTAINER_OPTIONS as BEAN_CONTAINER_OPTIONS, CLEANING_MODE_OPTIONS as CLEANING_MODE_OPTIONS, COFFEE_MILK_RATIO_OPTIONS as COFFEE_MILK_RATIO_OPTIONS, COFFEE_TEMPERATURE_OPTIONS as COFFEE_TEMPERATURE_OPTIONS, DOMAIN as DOMAIN, DRYING_TARGET_OPTIONS as DRYING_TARGET_OPTIONS, FLOW_RATE_OPTIONS as FLOW_RATE_OPTIONS, HOT_WATER_TEMPERATURE_OPTIONS as HOT_WATER_TEMPERATURE_OPTIONS, INTENSIVE_LEVEL_OPTIONS as INTENSIVE_LEVEL_OPTIONS, PROGRAMS_TRANSLATION_KEYS_MAP as PROGRAMS_TRANSLATION_KEYS_MAP, RINSE_PLUS_OPTIONS as RINSE_PLUS_OPTIONS, SPIN_SPEED_OPTIONS as SPIN_SPEED_OPTIONS, STAINS_OPTIONS as STAINS_OPTIONS, SUCTION_POWER_OPTIONS as SUCTION_POWER_OPTIONS, TEMPERATURE_OPTIONS as TEMPERATURE_OPTIONS, TRANSLATION_KEYS_PROGRAMS_MAP as TRANSLATION_KEYS_PROGRAMS_MAP, VARIO_PERFECT_OPTIONS as VARIO_PERFECT_OPTIONS, VENTING_LEVEL_OPTIONS as VENTING_LEVEL_OPTIONS, WARMING_LEVEL_OPTIONS as WARMING_LEVEL_OPTIONS
+from .const import AVAILABLE_MAPS_ENUM as AVAILABLE_MAPS_ENUM, BEAN_AMOUNT_OPTIONS as BEAN_AMOUNT_OPTIONS, BEAN_CONTAINER_OPTIONS as BEAN_CONTAINER_OPTIONS, CLEANING_MODE_OPTIONS as CLEANING_MODE_OPTIONS, COFFEE_MILK_RATIO_OPTIONS as COFFEE_MILK_RATIO_OPTIONS, COFFEE_TEMPERATURE_OPTIONS as COFFEE_TEMPERATURE_OPTIONS, DOMAIN as DOMAIN, DRYING_TARGET_OPTIONS as DRYING_TARGET_OPTIONS, FAVORITE_PROGRAMS as FAVORITE_PROGRAMS, FLOW_RATE_OPTIONS as FLOW_RATE_OPTIONS, HOT_WATER_TEMPERATURE_OPTIONS as HOT_WATER_TEMPERATURE_OPTIONS, INTENSIVE_LEVEL_OPTIONS as INTENSIVE_LEVEL_OPTIONS, PROGRAMS_TRANSLATION_KEYS_MAP as PROGRAMS_TRANSLATION_KEYS_MAP, RINSE_PLUS_OPTIONS as RINSE_PLUS_OPTIONS, SPIN_SPEED_OPTIONS as SPIN_SPEED_OPTIONS, STAINS_OPTIONS as STAINS_OPTIONS, SUCTION_POWER_OPTIONS as SUCTION_POWER_OPTIONS, TEMPERATURE_OPTIONS as TEMPERATURE_OPTIONS, TRANSLATION_KEYS_PROGRAMS_MAP as TRANSLATION_KEYS_PROGRAMS_MAP, VARIO_PERFECT_OPTIONS as VARIO_PERFECT_OPTIONS, VENTING_LEVEL_OPTIONS as VENTING_LEVEL_OPTIONS, WARMING_LEVEL_OPTIONS as WARMING_LEVEL_OPTIONS
 from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity, HomeConnectOptionEntity as HomeConnectOptionEntity, constraint_fetcher as constraint_fetcher
 from .utils import bsh_key_to_translation_key as bsh_key_to_translation_key, get_dict_from_home_connect_error as get_dict_from_home_connect_error
@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -48,18 +48,24 @@ class HomeConnectProgramSelectEntity(HomeConnectEntity, SelectEntity):
     def set_options(self) -> None: ...
     @callback
     def refresh_options(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_current_option: Incomplete
+    @override
     def update_native_value(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class HomeConnectSelectEntity(HomeConnectEntity, SelectEntity):
     entity_description: HomeConnectSelectEntityDescription
     _original_option_keys: set[str | None]
     def __init__(self, appliance_coordinator: HomeConnectApplianceCoordinator, desc: HomeConnectSelectEntityDescription) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_current_option: Incomplete
+    @override
     def update_native_value(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_options: Incomplete
     @constraint_fetcher
@@ -69,7 +75,9 @@ class HomeConnectSelectOptionEntity(HomeConnectOptionEntity, SelectEntity):
     entity_description: HomeConnectSelectEntityDescription
     _original_option_keys: set[str | None]
     def __init__(self, appliance_coordinator: HomeConnectApplianceCoordinator, desc: HomeConnectSelectEntityDescription) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_current_option: Incomplete
     _attr_options: Incomplete
+    @override
     def update_native_value(self) -> None: ...

@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 def min_charging_current_value(coordinator: WallboxCoordinator) -> float: ...
 
@@ -28,9 +29,13 @@ class WallboxNumber(WallboxEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WallboxCoordinator, entry: WallboxConfigEntry, description: WallboxNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def native_min_value(self) -> float: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

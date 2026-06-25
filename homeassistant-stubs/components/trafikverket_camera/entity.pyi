@@ -5,6 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class TrafikverketCameraEntity(CoordinatorEntity[TVDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -18,4 +19,5 @@ class TrafikverketCameraNonCameraEntity(TrafikverketCameraEntity):
     @callback
     def _update_attr(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

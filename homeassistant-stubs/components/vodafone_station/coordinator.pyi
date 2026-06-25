@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 CONSIDER_HOME_SECONDS: Incomplete
 type VodafoneConfigEntry = ConfigEntry[VodafoneStationRouter]
@@ -38,6 +38,7 @@ class VodafoneStationRouter(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     previous_devices: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: VodafoneConfigEntry) -> None: ...
     def _calculate_update_time_and_consider_home(self, device: VodafoneStationDevice, utc_point_in_time: datetime) -> tuple[datetime | None, bool]: ...
+    @override
     async def _async_update_data(self) -> UpdateCoordinatorDataType: ...
     @property
     def signal_device_new(self) -> str: ...

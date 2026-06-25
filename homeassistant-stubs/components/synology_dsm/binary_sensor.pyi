@@ -6,6 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import CONF_DISKS as CONF_DISKS, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class SynologyDSMBinarySensorEntityDescription(BinarySensorEntityDescription, SynologyDSMEntityDescription): ...
@@ -21,14 +22,18 @@ class SynoDSMBinarySensor(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordina
 
 class SynoDSMSecurityBinarySensor(SynoDSMBinarySensor):
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...
 
 class SynoDSMStorageBinarySensor(SynologyDSMDeviceEntity, SynoDSMBinarySensor):
     entity_description: SynologyDSMBinarySensorEntityDescription
     def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMBinarySensorEntityDescription, device_id: str | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

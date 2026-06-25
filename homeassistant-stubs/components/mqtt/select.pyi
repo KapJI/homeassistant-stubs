@@ -15,6 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -34,13 +35,18 @@ class MqttSelect(MqttEntity, SelectEntity, RestoreEntity):
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     _optimistic: bool
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_assumed_state: Incomplete
     _attr_options: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

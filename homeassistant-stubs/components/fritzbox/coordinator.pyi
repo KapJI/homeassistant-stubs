@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyfritzhome import Fritzhome, FritzhomeDevice as FritzhomeDevice
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate, FritzhomeTrigger as FritzhomeTrigger
+from typing import override
 
 type FritzboxConfigEntry = ConfigEntry[FritzboxDataUpdateCoordinator]
 @dataclass
@@ -31,4 +32,5 @@ class FritzboxDataUpdateCoordinator(DataUpdateCoordinator[FritzboxCoordinatorDat
     async def async_setup(self) -> None: ...
     def cleanup_removed_devices(self, data: FritzboxCoordinatorData) -> None: ...
     def _update_fritz_devices(self) -> FritzboxCoordinatorData: ...
+    @override
     async def _async_update_data(self) -> FritzboxCoordinatorData: ...

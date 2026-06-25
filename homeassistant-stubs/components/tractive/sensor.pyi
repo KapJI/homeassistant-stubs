@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Entity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class TractiveSensorEntityDescription(SensorEntityDescription):
@@ -24,6 +24,7 @@ class TractiveSensor(TractiveEntity, SensorEntity):
     def __init__(self, client: TractiveClient, item: Trackables, description: TractiveSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def handle_status_update(self, event: dict[str, Any]) -> None: ...
 
 SENSOR_TYPES: tuple[TractiveSensorEntityDescription, ...]

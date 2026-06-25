@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from indevolt_api import IndevoltEnergyMode
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -32,7 +32,10 @@ class IndevoltSelectEntity(IndevoltEntity, SelectEntity):
     _option_to_value: Incomplete
     def __init__(self, coordinator: IndevoltCoordinator, description: IndevoltSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

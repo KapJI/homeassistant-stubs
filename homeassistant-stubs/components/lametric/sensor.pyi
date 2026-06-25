@@ -8,6 +8,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class LaMetricSensorEntityDescription(SensorEntityDescription):
@@ -22,4 +23,5 @@ class LaMetricSensorEntity(LaMetricEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LaMetricDataUpdateCoordinator, description: LaMetricSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...

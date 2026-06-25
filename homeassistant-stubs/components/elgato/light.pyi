@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -19,18 +19,25 @@ class ElgatoLight(ElgatoEntity, LightEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ElgatoDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @elgato_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @elgato_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @elgato_exception_handler
     async def async_identify(self) -> None: ...

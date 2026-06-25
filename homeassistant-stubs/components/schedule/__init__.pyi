@@ -10,7 +10,7 @@ from homeassistant.helpers.event import async_track_point_in_utc_time as async_t
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from typing import Any, Literal
+from typing import Any, Literal, override
 
 STORAGE_VERSION: int
 STORAGE_VERSION_MINOR: int
@@ -33,10 +33,14 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class ScheduleStorageCollection(DictStorageCollection):
     SCHEMA: Incomplete
+    @override
     async def _process_create_data(self, data: dict) -> dict: ...
     @callback
+    @override
     def _get_suggested_id(self, info: dict) -> str: ...
+    @override
     async def _update_data(self, item: dict, update_data: dict) -> dict: ...
+    @override
     async def _async_load_data(self) -> SerializedStorageCollection | None: ...
 
 class Schedule(CollectionEntity):
@@ -55,12 +59,16 @@ class Schedule(CollectionEntity):
     _Entity__combined_unrecorded_attributes: Incomplete
     def __init__(self, config: ConfigType, editable: bool) -> None: ...
     @classmethod
+    @override
     def from_storage(cls, config: ConfigType) -> Schedule: ...
     @classmethod
+    @override
     def from_yaml(cls, config: ConfigType) -> Schedule: ...
+    @override
     async def async_update_config(self, config: ConfigType) -> None: ...
     @callback
     def _clean_up_listener(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def get_schedule(self) -> ConfigType: ...
     _attr_extra_state_attributes: Incomplete

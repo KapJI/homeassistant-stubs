@@ -4,10 +4,11 @@ from elkm1_lib.tasks import Task as Task
 from homeassistant.components.scene import Scene as Scene
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ElkTask(ElkAttachedEntity, Scene):
     _element: Task
+    @override
     async def async_activate(self, **kwargs: Any) -> None: ...

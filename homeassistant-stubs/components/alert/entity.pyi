@@ -9,7 +9,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time, async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.template import Template as Template
 from homeassistant.util.dt import now as now
-from typing import Any
+from typing import Any, override
 
 class AlertEntity(Entity):
     _attr_should_poll: bool
@@ -32,6 +32,7 @@ class AlertEntity(Entity):
     entity_id: Incomplete
     def __init__(self, hass: HomeAssistant, entity_id: str, name: str, watched_entity_id: str, state: str, repeat: list[float], skip_first: bool, message_template: Template | None, done_message_template: Template | None, notifiers: list[str], can_ack: bool, title_template: Template | None, data: dict[Any, Any]) -> None: ...
     @property
+    @override
     def state(self) -> str: ...
     async def watched_entity_change(self, event: Event[EventStateChangedData]) -> None: ...
     async def begin_alerting(self) -> None: ...

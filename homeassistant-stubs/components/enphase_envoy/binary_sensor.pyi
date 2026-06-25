@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnpower as EnvoyEnpower
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -48,6 +49,7 @@ class EnvoyEnchargeBinarySensorEntity(EnvoyBaseBinarySensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnchargeBinarySensorEntityDescription, serial_number: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class EnvoyEnpowerBinarySensorEntity(EnvoyBaseBinarySensorEntity):
@@ -56,6 +58,7 @@ class EnvoyEnpowerBinarySensorEntity(EnvoyBaseBinarySensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnpowerBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class EnvoyCollarBinarySensorEntity(EnvoyBaseBinarySensorEntity):
@@ -64,6 +67,7 @@ class EnvoyCollarBinarySensorEntity(EnvoyBaseBinarySensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyCollarBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class EnvoyC6CCBinarySensorEntity(EnvoyBaseBinarySensorEntity):
@@ -72,4 +76,5 @@ class EnvoyC6CCBinarySensorEntity(EnvoyBaseBinarySensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyC6CCBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

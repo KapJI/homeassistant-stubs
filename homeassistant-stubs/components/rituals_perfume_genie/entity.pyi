@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 MANUFACTURER: str
 MODEL: str
@@ -19,4 +19,5 @@ class DiffuserEntity(CoordinatorEntity[RitualsDataUpdateCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: RitualsDataUpdateCoordinator, description: EntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

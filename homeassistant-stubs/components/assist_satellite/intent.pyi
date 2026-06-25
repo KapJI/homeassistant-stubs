@@ -2,7 +2,7 @@ from .const import AssistSatelliteEntityFeature as AssistSatelliteEntityFeature,
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
-from typing import Final
+from typing import Final, override
 
 EXCLUDED_DOMAINS: Final[set[str]]
 
@@ -12,5 +12,7 @@ class BroadcastIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     @property
+    @override
     def slot_schema(self) -> dict | None: ...
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

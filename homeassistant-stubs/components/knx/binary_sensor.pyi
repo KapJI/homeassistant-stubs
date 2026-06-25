@@ -11,17 +11,20 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 from xknx.devices import BinarySensor as XknxBinarySensor
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class _KnxBinarySensor(BinarySensorEntity, RestoreEntity):
     _device: XknxBinarySensor
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class KnxYamlBinarySensor(_KnxBinarySensor, KnxYamlEntity):

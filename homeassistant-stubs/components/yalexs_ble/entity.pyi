@@ -5,6 +5,7 @@ from homeassistant.components import bluetooth as bluetooth
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
 class YALEXSBLEEntity(Entity):
@@ -22,5 +23,6 @@ class YALEXSBLEEntity(Entity):
     def _async_state_changed(self, new_state: LockState, lock_info: LockInfo, connection_info: ConnectionInfo) -> None: ...
     @callback
     def _async_device_unavailable(self, _service_info: bluetooth.BluetoothServiceInfoBleak) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def async_update(self) -> None: ...

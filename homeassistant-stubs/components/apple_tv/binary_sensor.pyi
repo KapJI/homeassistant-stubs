@@ -8,6 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatv.const import KeyboardFocusState
 from pyatv.interface import AppleTV as AppleTV, KeyboardListener
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -17,9 +18,12 @@ class AppleTVKeyboardFocused(AppleTVEntity, BinarySensorEntity, KeyboardListener
     _attr_translation_key: str
     _attr_available: bool
     @callback
+    @override
     def async_device_connected(self, atv: AppleTV) -> None: ...
     @callback
+    @override
     def async_device_disconnected(self) -> None: ...
+    @override
     def focusstate_update(self, old_state: KeyboardFocusState, new_state: KeyboardFocusState) -> None: ...
     _attr_is_on: Incomplete
     def _update_state(self, new_state: bool) -> None: ...

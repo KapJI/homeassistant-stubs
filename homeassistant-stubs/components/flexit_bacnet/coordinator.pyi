@@ -6,6 +6,7 @@ from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_IP_ADDRES
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 type FlexitConfigEntry = ConfigEntry[FlexitCoordinator]
@@ -14,4 +15,5 @@ class FlexitCoordinator(DataUpdateCoordinator[FlexitBACnet]):
     config_entry: FlexitConfigEntry
     device: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FlexitConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> FlexitBACnet: ...

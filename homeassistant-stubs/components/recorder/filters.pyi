@@ -7,7 +7,7 @@ from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from sqlalchemy import Column as Column
 from sqlalchemy.sql.elements import ColumnElement as ColumnElement
-from typing import Any
+from typing import Any, override
 
 DOMAIN: str
 HISTORY_FILTERS: str
@@ -28,6 +28,7 @@ class Filters:
     _included_domains: Incomplete
     _included_entity_globs: Incomplete
     def __init__(self, excluded_entities: Collection[str] | None = None, excluded_domains: Collection[str] | None = None, excluded_entity_globs: Collection[str] | None = None, included_entities: Collection[str] | None = None, included_domains: Collection[str] | None = None, included_entity_globs: Collection[str] | None = None) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     @property
     def has_config(self) -> bool: ...

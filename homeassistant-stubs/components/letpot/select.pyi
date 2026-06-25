@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from letpot.deviceclient import LetPotDeviceClient as LetPotDeviceClient
 from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus, LetPotGardenStatus
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -35,6 +35,8 @@ class LetPotSelectEntity[_DataT: LetPotDeviceStatus](LetPotEntity[_DataT], Selec
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT], description: LetPotSelectEntityDescription[_DataT]) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...

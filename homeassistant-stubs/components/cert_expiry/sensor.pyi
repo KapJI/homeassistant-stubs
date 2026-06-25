@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: CertExpiryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,4 +18,5 @@ class SSLCertificateTimestamp(CertExpiryEntity, SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: CertExpiryDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | None: ...

@@ -6,6 +6,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from letpot.deviceclient import LetPotDeviceClient as LetPotDeviceClient
 from letpot.models import LetPotDevice as LetPotDevice, LetPotDeviceStatus, LetPotGardenStatus
+from typing import override
 
 _LOGGER: Incomplete
 type LetPotConfigEntry = ConfigEntry[list[LetPotDeviceCoordinator[LetPotGardenStatus]]]
@@ -16,5 +17,7 @@ class LetPotDeviceCoordinator[_DataT: LetPotDeviceStatus](DataUpdateCoordinator[
     device_client: LetPotDeviceClient
     def __init__(self, hass: HomeAssistant, config_entry: LetPotConfigEntry, device: LetPotDevice, device_client: LetPotDeviceClient) -> None: ...
     def _handle_status_update(self, status: _DataT) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...

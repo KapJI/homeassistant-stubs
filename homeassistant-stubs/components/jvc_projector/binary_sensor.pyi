@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 ON_STATUS: Incomplete
 
@@ -14,4 +15,5 @@ class JvcBinarySensor(JvcProjectorEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: JvcProjectorDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

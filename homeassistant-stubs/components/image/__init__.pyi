@@ -1,6 +1,6 @@
 import collections
 import httpx
-from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, IMAGE_TIMEOUT as IMAGE_TIMEOUT, ImageEntityStateAttribute as ImageEntityStateAttribute
 from _typeshed import Incomplete
 from aiohttp import web
 from dataclasses import dataclass
@@ -16,7 +16,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolDictType as VolDictType
 from propcache.api import cached_property
-from typing import Final, final
+from typing import Final, final, override
 
 _LOGGER: Incomplete
 SERVICE_SNAPSHOT: Final[str]
@@ -69,6 +69,7 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def content_type(self) -> str: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
     @cached_property
     def image_last_updated(self) -> datetime | None: ...
@@ -80,9 +81,11 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def async_image(self) -> bytes | None: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, str | None]: ...
     @callback
     def async_update_token(self) -> None: ...
@@ -103,6 +106,7 @@ async def async_get_still_stream(request: web.Request, image_entity: ImageEntity
 class ImageStreamView(ImageView):
     url: str
     name: str
+    @override
     async def handle(self, request: web.Request, image_entity: ImageEntity) -> web.StreamResponse: ...
 
 async def async_handle_snapshot_service(image: ImageEntity, service_call: ServiceCall) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, UnitOfEnergy as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from powerfox import Device as Device, GasReport as GasReport, HeatMeter, PowerMeter, WaterMeter
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class PowerfoxSensorEntityDescription[T: (PowerMeter, WaterMeter, HeatMeter)](SensorEntityDescription):
@@ -34,10 +34,12 @@ class PowerfoxSensorEntity(BasePowerfoxSensorEntity[PowerfoxDataUpdateCoordinato
     coordinator: PowerfoxDataUpdateCoordinator
     entity_description: PowerfoxSensorEntityDescription
     @property
+    @override
     def native_value(self) -> float | int | None: ...
 
 class PowerfoxGasSensorEntity(BasePowerfoxSensorEntity[PowerfoxReportDataUpdateCoordinator]):
     coordinator: PowerfoxReportDataUpdateCoordinator
     entity_description: PowerfoxReportSensorEntityDescription
     @property
+    @override
     def native_value(self) -> float | int | None: ...

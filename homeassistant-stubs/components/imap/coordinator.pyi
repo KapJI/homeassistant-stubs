@@ -14,7 +14,7 @@ from homeassistant.helpers.json import json_bytes as json_bytes
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList, client_context as client_context, create_no_verify_ssl_context as create_no_verify_ssl_context
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 BACKOFF_TIME: int
@@ -70,14 +70,18 @@ class ImapDataUpdateCoordinator(DataUpdateCoordinator[int | None]):
 class ImapPollingDataUpdateCoordinator(ImapDataUpdateCoordinator):
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry) -> None: ...
     auth_errors: int
+    @override
     async def _async_update_data(self) -> int | None: ...
 
 class ImapPushDataUpdateCoordinator(ImapDataUpdateCoordinator):
     _push_wait_task: asyncio.Task[None] | None
     number_of_messages: int | None
     def __init__(self, hass: HomeAssistant, imap_client: IMAP4_SSL, entry: ImapConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> int | None: ...
+    @override
     async def async_start(self) -> None: ...
     auth_errors: int
     async def _async_wait_push_loop(self) -> None: ...
+    @override
     async def shutdown(self, *_: Any) -> None: ...

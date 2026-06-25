@@ -7,7 +7,7 @@ from homeassistant.helpers.selector import SelectSelector as SelectSelector, Sel
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.util.ssl import get_default_context as get_default_context
 from mozart_api.mozart_client import MozartClient
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 class EntryData(TypedDict, total=False):
     host: str
@@ -27,7 +27,9 @@ class BeoConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     _serial_number: str
     def __init__(self) -> None: ...
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _create_entry(self) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

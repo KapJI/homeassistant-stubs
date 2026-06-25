@@ -11,6 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,4 +32,5 @@ class CookidooSensorEntity(CookidooBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CookidooDataUpdateCoordinator, entity_description: CookidooSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttOnOffState
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -18,6 +18,9 @@ class QbusSwitch(QbusEntity, SwitchEntity):
     _attr_device_class: Incomplete
     _attr_is_on: bool
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def _handle_state_received(self, state: QbusMqttOnOffState) -> None: ...

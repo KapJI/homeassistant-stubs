@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 ENTITY_ID_SENSOR_FORMAT: Incomplete
 
@@ -34,5 +35,7 @@ class SunSensor(SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, sun: Sun, entity_description: SunSensorEntityDescription, entry_id: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

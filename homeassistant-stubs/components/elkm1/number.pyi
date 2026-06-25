@@ -8,7 +8,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -24,5 +24,7 @@ class ElkNumberSetting(ElkAttachedEntity, NumberEntity):
     def __init__(self, element: Setting, elk: Any, elk_data: ELKM1Data) -> None: ...
     _attr_native_value: Incomplete
     _attr_available: bool
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

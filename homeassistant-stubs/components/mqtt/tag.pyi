@@ -15,6 +15,7 @@ from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_VALUE_TEMPLATE 
 from homeassistant.core import HassJobType as HassJobType, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 _LOGGER: Incomplete
 LOG_NAME: str
@@ -34,8 +35,10 @@ class MQTTTagScanner(MqttDiscoveryDeviceUpdateMixin):
     hass: Incomplete
     _sub_state: dict[str, EntitySubscription] | None
     def __init__(self, hass: HomeAssistant, config: ConfigType, device_id: str | None, discovery_data: DiscoveryInfoType, config_entry: ConfigEntry) -> None: ...
+    @override
     async def async_update(self, discovery_data: MQTTDiscoveryPayload) -> None: ...
     @callback
     def _async_tag_scanned(self, msg: ReceiveMessage) -> None: ...
     async def subscribe_topics(self) -> None: ...
+    @override
     async def async_tear_down(self) -> None: ...

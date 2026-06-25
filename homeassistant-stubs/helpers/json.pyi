@@ -4,17 +4,19 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.util.file import write_utf8_file as write_utf8_file, write_utf8_file_atomic as write_utf8_file_atomic
 from homeassistant.util.json import SerializationError as SerializationError, format_unserializable_data as format_unserializable_data
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 
 class JSONEncoder(json.JSONEncoder):
+    @override
     def default(self, o: Any) -> Any: ...
 
 def json_encoder_default(obj: Any) -> Any: ...
 def json_bytes(obj: Any) -> bytes: ...
 
 class ExtendedJSONEncoder(JSONEncoder):
+    @override
     def default(self, o: Any) -> Any: ...
 
 def _strip_null(obj: Any) -> Any: ...

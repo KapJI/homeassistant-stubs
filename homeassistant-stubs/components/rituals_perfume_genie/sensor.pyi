@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyrituals import Diffuser as Diffuser
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ class RitualsSensorEntity(DiffuserEntity, SensorEntity):
     entity_description: RitualsSensorEntityDescription
     _attr_entity_category: Incomplete
     @property
+    @override
     def native_value(self) -> str | int: ...

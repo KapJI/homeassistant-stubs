@@ -11,6 +11,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsNumberEntityDescription[EventT: Event](NumberEntityDescription, EcovacsCapabilityEntityDescription):
@@ -27,5 +28,7 @@ class EcovacsNumberEntity[EventT: Event](EcovacsDescriptionEntity[CapabilitySet[
     _attr_native_max_value: Incomplete
     def __init__(self, device: Device, capability: CapabilitySet[EventT, [int]], entity_description: EcovacsNumberEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

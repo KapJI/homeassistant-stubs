@@ -11,6 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from regenmaschine.controller import Controller as Controller
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineButtonDescription(ButtonEntityDescription, RainMachineEntityDescription):
@@ -28,4 +29,5 @@ class RainMachineButton(RainMachineEntity, ButtonEntity):
     _attr_device_class: Incomplete
     _attr_entity_category: Incomplete
     entity_description: RainMachineButtonDescription
+    @override
     async def async_press(self) -> None: ...

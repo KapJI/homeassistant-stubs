@@ -2,8 +2,10 @@ from collections.abc import Callable as Callable
 from homeassistant.core import Event as Event, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from serialx.platforms.serial_esphome import ESPHomeSerial, ESPHomeSerialTransport
+from typing import override
 
 class HassESPHomeSerialStub(ESPHomeSerial):
+    @override
     async def _async_open(self) -> None: ...
 
 class HassESPHomeSerialStubTransport(ESPHomeSerialTransport):

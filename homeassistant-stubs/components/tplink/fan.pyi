@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from kasa import Device as Device
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -32,11 +32,15 @@ class TPLinkFanEntity(CoordinatedTPLinkModuleEntity, FanEntity):
     fan_module: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkFanEntityDescription, *, parent: Device | None = None) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
     _attr_is_on: Incomplete
     _attr_percentage: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...

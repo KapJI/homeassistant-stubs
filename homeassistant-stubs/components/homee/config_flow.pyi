@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, C
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from pyHomee import Homee
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 AUTH_SCHEMA: Incomplete
@@ -18,7 +18,9 @@ class HomeeConfigFlow(ConfigFlow, domain=DOMAIN):
     _reauth_host: str
     _reauth_username: str
     async def _connect_homee(self) -> dict[str, str]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

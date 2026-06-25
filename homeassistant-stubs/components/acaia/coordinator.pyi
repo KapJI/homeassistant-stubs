@@ -7,6 +7,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 SCAN_INTERVAL: Incomplete
 UPDATE_DEBOUNCE_TIME: float
@@ -19,4 +20,5 @@ class AcaiaCoordinator(DataUpdateCoordinator[None]):
     def __init__(self, hass: HomeAssistant, entry: AcaiaConfigEntry) -> None: ...
     @property
     def scale(self) -> AcaiaScale: ...
+    @override
     async def _async_update_data(self) -> None: ...

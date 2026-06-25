@@ -8,6 +8,7 @@ from homeassistant.components.sensor import RestoreSensor as RestoreSensor, Sens
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfMass as UnitOfMass, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,8 +28,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_
 class AcaiaSensor(AcaiaEntity, SensorEntity):
     entity_description: AcaiaDynamicUnitSensorEntityDescription
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> int | float | None: ...
 
 class AcaiaRestoreSensor(AcaiaEntity, RestoreSensor):
@@ -36,8 +39,11 @@ class AcaiaRestoreSensor(AcaiaEntity, RestoreSensor):
     _restored_data: SensorExtraStoredData | None
     _attr_native_value: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

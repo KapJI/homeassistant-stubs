@@ -13,6 +13,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
+from typing import override
 
 type SubscriptionType = Callable[[CallbackType, ItemEvent], UnsubscribeType]
 @callback
@@ -55,6 +56,7 @@ class UnifiEntity[HandlerT: APIHandler, ItemT: ApiItem](Entity, metaclass=abc.AB
     _attr_name: Incomplete
     _attr_translation_placeholders: Incomplete
     def __init__(self, obj_id: str, hub: UnifiHub, description: UnifiEntityDescription[HandlerT, ItemT]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_signalling_callback(self, event: ItemEvent, obj_id: str) -> None: ...

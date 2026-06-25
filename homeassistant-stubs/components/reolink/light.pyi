@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Host as Host
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -39,14 +39,19 @@ class ReolinkLightEntity(ReolinkChannelCoordinatorEntity, LightEntity):
     _attr_max_color_temp_kelvin: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkLightEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class ReolinkHostLightEntity(ReolinkHostCoordinatorEntity, LightEntity):
@@ -55,8 +60,11 @@ class ReolinkHostLightEntity(ReolinkHostCoordinatorEntity, LightEntity):
     _attr_color_mode: Incomplete
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostLightEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @raise_translated_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @raise_translated_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

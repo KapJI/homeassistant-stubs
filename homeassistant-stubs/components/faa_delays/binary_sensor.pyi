@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class FaaDelaysBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -27,6 +27,8 @@ class FAABinarySensor(CoordinatorEntity[FAADataUpdateCoordinator], BinarySensorE
     _attr_device_info: Incomplete
     def __init__(self, coordinator: FAADataUpdateCoordinator, entry_id: str, description: FaaDelaysBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...

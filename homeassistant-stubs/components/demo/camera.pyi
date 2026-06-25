@@ -3,6 +3,7 @@ from homeassistant.components.camera import Camera as Camera, CameraEntityFeatur
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,11 +15,16 @@ class DemoCamera(Camera):
     content_type: Incomplete
     _images_index: int
     def __init__(self, name: str, content_type: str) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes: ...
+    @override
     async def async_enable_motion_detection(self) -> None: ...
+    @override
     async def async_disable_motion_detection(self) -> None: ...
     _attr_is_on: bool
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_turn_on(self) -> None: ...
 
 class DemoCameraWithoutStream(DemoCamera):

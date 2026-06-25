@@ -13,7 +13,7 @@ from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServi
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
 from homewizard_energy.models import Device as Device
-from typing import Any
+from typing import Any, override
 
 class HomeWizardConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
@@ -21,9 +21,12 @@ class HomeWizardConfigFlow(ConfigFlow, domain=DOMAIN):
     product_name: str | None
     product_type: str | None
     serial: str | None
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_authorize(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

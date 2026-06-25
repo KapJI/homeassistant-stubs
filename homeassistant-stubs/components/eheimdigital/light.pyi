@@ -8,7 +8,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
-from typing import Any
+from typing import Any, override
 
 BRIGHTNESS_SCALE: Incomplete
 PARALLEL_UPDATES: int
@@ -26,12 +26,16 @@ class EheimDigitalClassicLEDControlLight(EheimDigitalEntity[EheimDigitalClassicL
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalClassicLEDControl, channel: int) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     _attr_effect: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...

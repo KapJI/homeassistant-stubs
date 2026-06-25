@@ -5,6 +5,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pymiele import MieleAPI as MieleAPI, MieleAction as MieleAction, MieleDevice as MieleDevice, MieleFillingLevel as MieleFillingLevel
+from typing import override
 
 class MieleBaseEntity[_MieleCoordinatorT: MieleDataUpdateCoordinator | MieleAuxDataUpdateCoordinator](CoordinatorEntity[_MieleCoordinatorT]):
     _attr_has_entity_name: bool
@@ -26,6 +27,7 @@ class MieleEntity(MieleBaseEntity[MieleDataUpdateCoordinator]):
     @property
     def action(self) -> MieleAction: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class MieleAuxEntity(MieleBaseEntity[MieleAuxDataUpdateCoordinator]):

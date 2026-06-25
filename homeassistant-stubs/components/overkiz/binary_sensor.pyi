@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyoverkiz.types import StateType as OverkizStateType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class OverkizBinarySensorDescription(BinarySensorEntityDescription):
@@ -21,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, 
 class OverkizBinarySensor(OverkizDescriptiveEntity, BinarySensorEntity):
     entity_description: OverkizBinarySensorDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...

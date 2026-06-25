@@ -6,7 +6,7 @@ from homeassistant.components.tts import CONF_LANG as CONF_LANG
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import FileSelector as FileSelector, FileSelectorConfig as FileSelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 UPLOADED_KEY_FILE: str
@@ -18,10 +18,12 @@ class GoogleCloudConfigFlow(ConfigFlow, domain=DOMAIN):
     entry: ConfigEntry | None
     abort_reason: str | None
     def _parse_uploaded_file(self, uploaded_file_id: str) -> dict[str, Any]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_import(self, import_data: dict[str, Any]) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> GoogleCloudOptionsFlowHandler: ...
 
 class GoogleCloudOptionsFlowHandler(OptionsFlowWithReload):

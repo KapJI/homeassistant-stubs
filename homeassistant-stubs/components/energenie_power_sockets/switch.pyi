@@ -7,7 +7,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyegps.powerstrip import PowerStrip as PowerStrip
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EnergenieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -21,7 +21,9 @@ class EGPowerStripSocket(SwitchEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, dev: PowerStrip, socket: int) -> None: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     def update(self) -> None: ...

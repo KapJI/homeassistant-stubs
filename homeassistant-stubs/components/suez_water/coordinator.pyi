@@ -12,6 +12,7 @@ from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.unit_conversion import VolumeConverter as VolumeConverter
 from pysuez import SuezClient, TelemetryMeasure as TelemetryMeasure
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -38,7 +39,9 @@ class SuezWaterCoordinator(DataUpdateCoordinator[SuezWaterData]):
     _cost_statistic_id: Incomplete
     _water_statistic_id: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SuezWaterConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> SuezWaterData: ...
     async def _update_statistics(self, current_price: float | None) -> None: ...
     def _build_statistics(self, current_price: float | None, consumption_sum: float, cost_sum: float, last_stats: date | None, usage: list[TelemetryMeasure]) -> tuple[list[StatisticData], list[StatisticData]]: ...

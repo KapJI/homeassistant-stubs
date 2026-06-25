@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -20,9 +21,12 @@ class NetatmoScheduleSelect(NetatmoBaseEntity, SelectEntity):
     _attr_current_option: Incomplete
     _attr_options: Incomplete
     def __init__(self, netatmo_home: NetatmoHome) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def handle_event(self, event: dict) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...

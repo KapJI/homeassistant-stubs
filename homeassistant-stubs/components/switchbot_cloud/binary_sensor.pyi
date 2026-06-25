@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True)
 class SwitchBotCloudBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -31,4 +31,5 @@ class SwitchBotCloudBinarySensor(SwitchBotCloudEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SwitchBotCloudBinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _set_attributes(self) -> None: ...

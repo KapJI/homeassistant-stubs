@@ -6,7 +6,7 @@ from aioautomower.model import StayOutZones as StayOutZones, Zone as Zone
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -18,10 +18,13 @@ class AutomowerScheduleSwitchEntity(AutomowerControlEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @handle_sending_exception
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @handle_sending_exception
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class StayOutZoneSwitchEntity(AutomowerControlEntity, SwitchEntity):
@@ -36,10 +39,14 @@ class StayOutZoneSwitchEntity(AutomowerControlEntity, SwitchEntity):
     @property
     def stay_out_zone(self) -> Zone: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WorkAreaSwitchEntity(WorkAreaControlEntity, SwitchEntity):
@@ -49,6 +56,9 @@ class WorkAreaSwitchEntity(WorkAreaControlEntity, SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, coordinator: AutomowerDataUpdateCoordinator, mower_id: str, work_area_id: int) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

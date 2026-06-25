@@ -16,7 +16,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any, Self, TypedDict
+from typing import Any, Self, TypedDict, override
 
 STORAGE_KEY: str
 STORAGE_VERSION: int
@@ -75,9 +75,11 @@ class PassiveBluetoothProcessorCoordinator[_DataT](BasePassiveBluetoothCoordinat
     @callback
     def async_register_processor(self, processor: PassiveBluetoothDataProcessor[Any, _DataT], entity_description_class: type[EntityDescription] | None = None) -> Callable[[], None]: ...
     @callback
+    @override
     def _async_handle_unavailable(self, service_info: BluetoothServiceInfoBleak) -> None: ...
     _available: bool
     @callback
+    @override
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...
     @callback
     def async_set_updated_data(self, update: _DataT) -> None: ...
@@ -125,7 +127,9 @@ class PassiveBluetoothProcessorEntity[_PassiveBluetoothDataProcessorT: PassiveBl
     _attr_name: Incomplete
     def __init__(self, processor: _PassiveBluetoothDataProcessorT, entity_key: PassiveBluetoothEntityKey, description: EntityDescription, context: Any = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _handle_processor_update(self, new_data: PassiveBluetoothDataUpdate[_PassiveBluetoothDataProcessorT] | None) -> None: ...

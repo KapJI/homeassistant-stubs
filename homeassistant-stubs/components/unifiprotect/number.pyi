@@ -8,7 +8,9 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from uiprotect.data import Camera as Camera, Chime, Doorlock, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
+from typing import override
+from uiprotect.data import Camera as Camera, Chime, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
+from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -19,17 +21,14 @@ class ProtectNumberEntityDescription(ProtectSettableKeysMixin[T], NumberEntityDe
     ufp_min: int | float
     ufp_step: int | float
 
-def _get_pir_duration(obj: Light) -> int: ...
+def _get_pir_duration_public(obj: PublicDeviceModel) -> int | None: ...
 async def _set_pir_duration(obj: Light, value: float) -> None: ...
-def _get_auto_close(obj: Doorlock) -> int: ...
-async def _set_auto_close(obj: Doorlock, value: float) -> None: ...
 def _get_chime_duration(obj: Camera) -> int: ...
 async def _set_chime_volume(obj: Chime, value: float) -> None: ...
 
 CAMERA_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 LIGHT_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 SENSE_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
-DOORLOCK_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 CHIME_NUMBERS: tuple[ProtectNumberEntityDescription, ...]
 _MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
@@ -47,8 +46,10 @@ class ProtectNumbers(ProtectDeviceEntity, NumberEntity):
     def __init__(self, data: ProtectData, device: Camera | Light, description: ProtectNumberEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ChimeRingVolumeNumber(ProtectDeviceEntity, NumberEntity):
@@ -66,9 +67,12 @@ class ChimeRingVolumeNumber(ProtectDeviceEntity, NumberEntity):
     def __init__(self, data: ProtectData, chime: Chime, camera: Camera) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     def _get_ring_volume(self) -> int | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @async_ufp_instance_command
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

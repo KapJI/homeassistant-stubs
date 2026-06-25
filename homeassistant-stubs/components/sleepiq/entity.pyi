@@ -8,6 +8,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 type _DataCoordinatorType = SleepIQDataUpdateCoordinator | SleepIQPauseUpdateCoordinator | SleepIQSleepDataCoordinator
 def device_from_bed(bed: SleepIQBed) -> DeviceInfo: ...
@@ -24,6 +25,7 @@ class SleepIQBedEntity[_SleepIQCoordinatorT: _DataCoordinatorType](CoordinatorEn
     _attr_device_info: Incomplete
     def __init__(self, coordinator: _SleepIQCoordinatorT, bed: SleepIQBed) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @callback
     @abstractmethod

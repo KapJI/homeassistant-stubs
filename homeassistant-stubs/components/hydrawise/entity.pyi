@@ -6,6 +6,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pydrawise.schema import Controller as Controller, Sensor as Sensor, Zone as Zone
+from typing import override
 
 class HydrawiseEntity(CoordinatorEntity[HydrawiseDataUpdateCoordinator]):
     _attr_attribution: str
@@ -24,6 +25,8 @@ class HydrawiseEntity(CoordinatorEntity[HydrawiseDataUpdateCoordinator]):
     def sensor(self) -> Sensor: ...
     def _update_attrs(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

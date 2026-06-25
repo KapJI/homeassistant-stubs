@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -19,15 +19,22 @@ class WLEDUpdateEntity(WLEDEntity, UpdateEntity):
     releases_coordinator: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, releases_coordinator: WLEDReleasesDataUpdateCoordinator) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...
     @wled_exception_handler
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
+    @override
     async def async_update(self) -> None: ...

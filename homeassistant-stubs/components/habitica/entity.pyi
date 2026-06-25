@@ -7,6 +7,7 @@ from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class HabiticaBase(CoordinatorEntity[HabiticaDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -22,9 +23,12 @@ class HabiticaPartyMemberBase(HabiticaBase):
     party_coordinator: Incomplete
     def __init__(self, coordinator: HabiticaDataUpdateCoordinator, party_coordinator: HabiticaPartyCoordinator, entity_description: EntityDescription, subentry: ConfigSubentry | None = None) -> None: ...
     @property
+    @override
     def user(self) -> UserData | None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class HabiticaPartyBase(CoordinatorEntity[HabiticaPartyCoordinator]):

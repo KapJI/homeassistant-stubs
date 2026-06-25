@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 type SensorTypeItem = tuple[str, str | None, str | None, SensorDeviceClass | None, list[str]]
 SENSOR_VALUE_PRECISION: Final[int]
@@ -36,6 +36,8 @@ class CanarySensor(CoordinatorEntity[CanaryDataUpdateCoordinator], SensorEntity)
     @property
     def reading(self) -> float | None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str] | None: ...

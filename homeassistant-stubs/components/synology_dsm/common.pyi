@@ -9,6 +9,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from synology_dsm import SynologyDSM
 from synology_dsm.api.core.external_usb import SynoCoreExternalUSB
+from synology_dsm.api.core.hardware import SynoCoreHardware
 from synology_dsm.api.core.security import SynoCoreSecurity
 from synology_dsm.api.core.system import SynoCoreSystem
 from synology_dsm.api.core.upgrade import SynoCoreUpgrade
@@ -28,6 +29,7 @@ class SynoApi:
     _entry: Incomplete
     config_url: Incomplete
     file_station: SynoFileStation | None
+    hardware: SynoCoreHardware | None
     information: SynoDSMInformation | None
     network: SynoDSMNetwork | None
     photos: SynoPhotos | None
@@ -40,6 +42,7 @@ class SynoApi:
     external_usb: SynoCoreExternalUSB | None
     _fetching_entities: dict[str, set[str]]
     _with_file_station: bool
+    _with_hardware: bool
     _with_information: bool
     _with_photos: bool
     _with_security: bool

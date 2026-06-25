@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from ohme import OhmeApiClient as OhmeApiClient
+from typing import override
 
 @dataclass(frozen=True)
 class OhmeEntityDescription(EntityDescription):
@@ -20,4 +21,5 @@ class OhmeEntity(CoordinatorEntity[OhmeBaseCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: OhmeBaseCoordinator, entity_description: OhmeEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

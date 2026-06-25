@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_NAME as ATTR_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Literal
+from typing import Literal, override
 
 TYPE_BATT1: str
 TYPE_BATT10: str
@@ -66,4 +66,5 @@ class AmbientWeatherBinarySensor(AmbientWeatherEntity, BinarySensorEntity):
     entity_description: AmbientBinarySensorDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

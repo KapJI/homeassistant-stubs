@@ -6,7 +6,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_HOS
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import SectionConfig as SectionConfig, section as section
 from homeassistant.helpers.selector import ObjectSelector as ObjectSelector, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 APPS_NEW_ID: str
 CONF_APP_DELETE: str
@@ -28,9 +28,11 @@ class AndroidTVFlowHandler(ConfigFlow, domain=DOMAIN):
     @callback
     def _show_setup_form(self, user_input: dict[str, Any] | None = None, error: str | None = None) -> ConfigFlowResult: ...
     async def _async_check_connection(self, user_input: dict[str, Any]) -> tuple[str | None, str | None]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(OptionsFlow):

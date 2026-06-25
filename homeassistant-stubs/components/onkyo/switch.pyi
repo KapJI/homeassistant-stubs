@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -20,8 +20,12 @@ class OnkyoChannelMutingSwitch(CoordinatorEntity[ChannelMutingCoordinator], Swit
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ChannelMutingCoordinator, channel: Channel) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -1,3 +1,4 @@
+from .const import GeolocationEntityStateAttribute as GeolocationEntityStateAttribute
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
@@ -7,7 +8,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -32,6 +33,7 @@ class GeolocationEvent(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_longitude: float | None
     @final
     @property
+    @override
     def state(self) -> float | None: ...
     @cached_property
     def source(self) -> str: ...
@@ -43,4 +45,5 @@ class GeolocationEvent(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def longitude(self) -> float | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...

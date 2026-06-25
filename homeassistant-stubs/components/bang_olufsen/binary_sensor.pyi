@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from mozart_api.models import BatteryState as BatteryState
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BeoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,5 +17,6 @@ class BeoBinarySensorBatteryCharging(BinarySensorEntity, BeoEntity):
     _attr_is_on: bool
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: BeoConfigEntry) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _update_battery_charging(self, data: BatteryState) -> None: ...

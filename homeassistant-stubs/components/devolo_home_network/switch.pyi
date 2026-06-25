@@ -10,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 type _DataType = WifiGuestAccessGet | bool
@@ -29,6 +29,9 @@ class DevoloSwitchEntity[_DataT: _DataType](DevoloCoordinatorEntity[_DataT], Swi
     entity_description: DevoloSwitchEntityDescription[_DataT]
     def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator[_DataT], description: DevoloSwitchEntityDescription[_DataT]) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

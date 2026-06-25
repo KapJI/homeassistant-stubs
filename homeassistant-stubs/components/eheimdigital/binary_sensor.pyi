@@ -9,6 +9,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ class EheimDigitalBinarySensor[_DeviceT: EheimDigitalDevice](EheimDigitalEntity[
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EheimDigitalUpdateCoordinator, device: _DeviceT, description: EheimDigitalBinarySensorDescription[_DeviceT]) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...

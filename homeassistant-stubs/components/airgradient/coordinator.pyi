@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type AirGradientConfigEntry = ConfigEntry[AirGradientCoordinator]
 @dataclass
@@ -18,5 +19,7 @@ class AirGradientCoordinator(DataUpdateCoordinator[AirGradientData]):
     client: Incomplete
     serial_number: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AirGradientConfigEntry, client: AirGradientClient) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> AirGradientData: ...

@@ -5,6 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
 
@@ -17,4 +18,5 @@ class DormakabaDkeySensor(DormakabaDkeyEntity, SensorEntity):
     def __init__(self, coordinator: DormakabaDkeyCoordinator, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

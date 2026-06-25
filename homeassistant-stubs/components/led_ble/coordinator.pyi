@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from led_ble import LEDBLE as LEDBLE
+from typing import override
 
 type LEDBLEConfigEntry = ConfigEntry[LEDBLEData]
 @dataclass
@@ -19,4 +20,5 @@ class LEDBLECoordinator(DataUpdateCoordinator[None]):
     config_entry: LEDBLEConfigEntry
     led_ble: Incomplete
     def __init__(self, hass: HomeAssistant, entry: LEDBLEConfigEntry, led_ble: LEDBLE) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

@@ -4,7 +4,7 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 from yalesmartalarmclient import YaleLock
 from yalesmartalarmclient.client import YaleSmartAlarmClient
 
@@ -14,6 +14,8 @@ class YaleDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     locks: list[YaleLock]
     def __init__(self, hass: HomeAssistant, config_entry: YaleConfigEntry) -> None: ...
     def _yale_setup(self) -> tuple[YaleSmartAlarmClient, list[YaleLock]]: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
     def get_updates(self) -> dict[str, Any]: ...

@@ -14,7 +14,7 @@ from abc import ABCMeta
 from collections import deque
 from collections.abc import Callable as Callable, Coroutine, Iterable, Mapping
 from enum import Enum
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ATTRIBUTION as ATTR_ATTRIBUTION, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_PICTURE as ATTR_ENTITY_PICTURE, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_GROUP_ENTITIES as ATTR_GROUP_ENTITIES, ATTR_ICON as ATTR_ICON, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCategory as EntityCategory, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EntityCapabilityAttribute as EntityCapabilityAttribute, EntityCategory as EntityCategory, EntityStateAttribute as EntityStateAttribute, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, HassJobType as HassJobType, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_hassjob_callable_job_type as get_hassjob_callable_job_type, get_release_channel as get_release_channel
 from homeassistant.core_config import DATA_CUSTOMIZE as DATA_CUSTOMIZE
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, NoEntitySpecifiedError as NoEntitySpecifiedError
@@ -22,7 +22,7 @@ from homeassistant.loader import async_suggest_report_issue as async_suggest_rep
 from homeassistant.util import ensure_unique_string as ensure_unique_string, slugify as slugify
 from homeassistant.util.frozen_dataclass_compat import FrozenOrThawed as FrozenOrThawed
 from propcache.api import cached_property
-from typing import Any, Final, Literal, NotRequired, TypedDict, final
+from typing import Any, Final, Literal, NotRequired, TypedDict, final, override
 
 timer = time.time
 _LOGGER: Incomplete
@@ -146,6 +146,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _attr_translation_placeholders: Mapping[str, str]
     _attr_unique_id: str | None
     _attr_unit_of_measurement: str | None
+    @override
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
     def get_hassjob_type(self, function_name: str) -> HassJobType: ...
     @cached_property
@@ -262,6 +263,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     def _async_device_registry_updated(self, event: Event[EventDeviceRegistryUpdatedData]) -> None: ...
     @callback
     def _async_subscribe_device_updates(self) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     async def async_request_call[_T](self, coro: Coroutine[Any, Any, _T]) -> _T: ...
     def _suggest_report_issue(self) -> str: ...
@@ -276,6 +278,7 @@ class ToggleEntity(Entity, cached_properties=TOGGLE_ENTITY_CACHED_PROPERTIES_WIT
     _attr_state: None
     @property
     @final
+    @override
     def state(self) -> Literal['on', 'off'] | None: ...
     @cached_property
     def is_on(self) -> bool | None: ...

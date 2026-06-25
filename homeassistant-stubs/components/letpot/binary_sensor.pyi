@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ class LetPotBinarySensorEntity[_DataT: LetPotDeviceStatus](LetPotEntity[_DataT],
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT], description: LetPotBinarySensorEntityDescription[_DataT]) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

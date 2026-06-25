@@ -5,12 +5,14 @@ from homeassistant.components.application_credentials import AuthImplementation 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
 class FitbitOAuth2Implementation(AuthImplementation):
+    @override
     async def async_resolve_external_data(self, external_data: dict[str, Any]) -> dict: ...
+    @override
     async def _token_request(self, data: dict) -> dict: ...
     async def _post(self, data: dict[str, Any]) -> dict[str, Any]: ...
     @property

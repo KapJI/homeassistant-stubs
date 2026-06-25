@@ -7,6 +7,7 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 DEFAULT_UPDATE_INTERVAL: Incomplete
 type WattTimeConfigEntry = ConfigEntry[WattTimeCoordinator]
@@ -15,4 +16,5 @@ class WattTimeCoordinator(DataUpdateCoordinator[RealTimeEmissionsResponseType]):
     config_entry: WattTimeConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: WattTimeConfigEntry, client: Client) -> None: ...
+    @override
     async def _async_update_data(self) -> RealTimeEmissionsResponseType: ...

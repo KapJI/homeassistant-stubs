@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbee.device import SwitchBeeThermostat
-from typing import Any
+from typing import Any, override
 
 FAN_SB_TO_HASS: Incomplete
 FAN_HASS_TO_SB: dict[str | None, str]
@@ -29,13 +29,17 @@ class SwitchBeeClimateEntity(SwitchBeeDeviceEntity[SwitchBeeThermostat], Climate
     _attr_supported_features: Incomplete
     def __init__(self, device: SwitchBeeThermostat, coordinator: SwitchBeeCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_hvac_mode: HVACMode
     _attr_fan_mode: Incomplete
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
     def _update_attrs_from_coordinator(self) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     async def _operate(self, power: str | None = None, mode: str | None = None, fan: str | None = None, target_temperature: int | None = None) -> None: ...

@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector, TemplateSelectorConfig as TemplateSelectorConfig
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList
-from typing import Any
+from typing import Any, override
 
 BOOLEAN_SELECTOR: Incomplete
 CIPHER_SELECTOR: Incomplete
@@ -23,11 +23,13 @@ async def validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> dic
 
 class IMAPConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ImapConfigEntry) -> ImapOptionsFlow: ...
 
 class ImapOptionsFlow(OptionsFlow):

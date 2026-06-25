@@ -9,6 +9,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pajgps_api.models.device import Device as Device
 from pajgps_api.models.trackpoint import TrackPoint as TrackPoint
+from typing import override
 
 _LOGGER: Incomplete
 type PajGpsConfigEntry = ConfigEntry[PajGpsCoordinator]
@@ -28,5 +29,7 @@ class PajGpsCoordinator(DataUpdateCoordinator[PajGpsData]):
     def email(self) -> str: ...
     @property
     def user_id(self) -> int | None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> PajGpsData: ...

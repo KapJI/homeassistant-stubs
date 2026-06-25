@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -15,6 +16,7 @@ class TedeeBinarySensorEntityDescription(BinarySensorEntityDescription):
     is_on_fn: Callable[[TedeeLock], bool | None]
     supported_fn: Callable[[TedeeLock], bool] = ...
     available_fn: Callable[[TedeeLock], bool] = ...
+    always_available: bool = ...
 
 ENTITIES: tuple[TedeeBinarySensorEntityDescription, ...]
 
@@ -23,6 +25,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_
 class TedeeBinarySensorEntity(TedeeDescriptionEntity, BinarySensorEntity):
     entity_description: TedeeBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def available(self) -> bool: ...

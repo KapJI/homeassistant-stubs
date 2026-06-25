@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysenz import Thermostat as Thermostat
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class SenzSensorDescription(SensorEntityDescription):
@@ -27,8 +28,11 @@ class SENZSensor(CoordinatorEntity[SENZDataUpdateCoordinator], SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, thermostat: Thermostat, coordinator: SENZDataUpdateCoordinator, description: SenzSensorDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> str | float | int | None: ...

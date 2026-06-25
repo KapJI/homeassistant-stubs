@@ -6,6 +6,7 @@ from homeassistant.components.notify import NotifyEntity as NotifyEntity, Notify
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: TelegramBotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,4 +15,5 @@ class TelegramBotNotifyEntity(TelegramBotEntity, NotifyEntity):
     chat_id: Incomplete
     _attr_name: Incomplete
     def __init__(self, config_entry: TelegramBotConfigEntry, subentry: ConfigSubentry) -> None: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

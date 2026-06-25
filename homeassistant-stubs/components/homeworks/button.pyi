@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyhomeworks.pyhomeworks import Homeworks as Homeworks
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: HomeworksConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,4 +16,5 @@ class HomeworksButton(HomeworksEntity, ButtonEntity):
     _attr_device_info: Incomplete
     _release_delay: Incomplete
     def __init__(self, controller: Homeworks, controller_id: str, addr: str, keypad_name: str, button_name: str, button_number: int, release_delay: float) -> None: ...
+    @override
     async def async_press(self) -> None: ...

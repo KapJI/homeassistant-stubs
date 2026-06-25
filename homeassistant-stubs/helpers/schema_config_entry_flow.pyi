@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.data_entry_flow import UnknownHandler as UnknownHandler
-from typing import Any
+from typing import Any, override
 
 class SchemaFlowError(Exception): ...
 @dataclass
@@ -55,13 +55,16 @@ class SchemaConfigFlowHandler(ConfigFlow, ABC, metaclass=abc.ABCMeta):
     options_flow: Mapping[str, SchemaFlowStep] | None
     options_flow_reloads: bool
     VERSION: int
+    @override
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
     _common_handler: Incomplete
     def __init__(self) -> None: ...
     @staticmethod
+    @override
     async def async_setup_preview(hass: HomeAssistant) -> None: ...
     @classmethod
     @callback
+    @override
     def async_supports_options_flow(cls, config_entry: ConfigEntry) -> bool: ...
     @staticmethod
     def _async_step(step_id: str) -> Callable[[SchemaConfigFlowHandler, dict[str, Any] | None], Coroutine[Any, Any, ConfigFlowResult]]: ...
@@ -74,6 +77,7 @@ class SchemaConfigFlowHandler(ConfigFlow, ABC, metaclass=abc.ABCMeta):
     @staticmethod
     def async_options_flow_finished(hass: HomeAssistant, options: Mapping[str, Any]) -> None: ...
     @callback
+    @override
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...
 
 class SchemaOptionsFlowHandler(OptionsFlow):
@@ -86,6 +90,7 @@ class SchemaOptionsFlowHandler(OptionsFlow):
     @staticmethod
     def _async_step(step_id: str) -> Callable[[SchemaConfigFlowHandler, dict[str, Any] | None], Coroutine[Any, Any, ConfigFlowResult]]: ...
     @callback
+    @override
     def async_create_entry(self, data: Mapping[str, Any], **kwargs: Any) -> ConfigFlowResult: ...
 
 class SchemaOptionsFlowHandlerWithReload(SchemaOptionsFlowHandler, OptionsFlowWithReload): ...

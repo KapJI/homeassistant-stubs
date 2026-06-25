@@ -6,6 +6,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 RESTART_BUTTON_DESCRIPTION: Incomplete
 IDENTIFY_BUTTON_DESCRIPTION: Incomplete
@@ -19,8 +20,10 @@ class LIFXButton(LIFXEntity, ButtonEntity):
 
 class LIFXRestartButton(LIFXButton):
     entity_description = RESTART_BUTTON_DESCRIPTION
+    @override
     async def async_press(self) -> None: ...
 
 class LIFXIdentifyButton(LIFXButton):
     entity_description = IDENTIFY_BUTTON_DESCRIPTION
+    @override
     async def async_press(self) -> None: ...

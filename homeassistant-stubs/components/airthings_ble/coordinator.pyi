@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
+from typing import override
 
 _LOGGER: Incomplete
 type AirthingsBLEConfigEntry = ConfigEntry[AirthingsBLEDataUpdateCoordinator]
@@ -19,5 +20,7 @@ class AirthingsBLEDataUpdateCoordinator(DataUpdateCoordinator[AirthingsDevice]):
     airthings: Incomplete
     def __init__(self, hass: HomeAssistant, entry: AirthingsBLEConfigEntry) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> AirthingsDevice: ...

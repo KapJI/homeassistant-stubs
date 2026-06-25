@@ -13,7 +13,7 @@ from pythonxbox.api.provider.catalog.models import AlternateIdType, Product as P
 from pythonxbox.api.provider.people.models import Person as Person
 from pythonxbox.api.provider.smartglass.models import SmartglassConsole, SmartglassConsoleStatus as SmartglassConsoleStatus
 from pythonxbox.api.provider.titlehub.models import Title as Title
-from typing import ClassVar
+from typing import ClassVar, override
 
 _LOGGER: Incomplete
 type XboxConfigEntry = ConfigEntry[XboxCoordinators]
@@ -41,11 +41,13 @@ class XboxBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=abc.A
     def __init__(self, hass: HomeAssistant, config_entry: XboxConfigEntry, client: XboxLiveClient) -> None: ...
     @abstractmethod
     async def update_data(self) -> _DataT: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
 
 class XboxConsolesCoordinator(XboxBaseCoordinator[dict[str, SmartglassConsole]]):
     config_entry: XboxConfigEntry
     _update_interval: Incomplete
+    @override
     async def update_data(self) -> dict[str, SmartglassConsole]: ...
 
 class XboxConsoleStatusCoordinator(XboxBaseCoordinator[dict[str, ConsoleData]]):
@@ -54,6 +56,7 @@ class XboxConsoleStatusCoordinator(XboxBaseCoordinator[dict[str, ConsoleData]]):
     data: dict[str, ConsoleData]
     consoles: dict[str, SmartglassConsole] | None
     def __init__(self, hass: HomeAssistant, config_entry: XboxConfigEntry, client: XboxLiveClient, consoles: dict[str, SmartglassConsole]) -> None: ...
+    @override
     async def update_data(self) -> dict[str, ConsoleData]: ...
     def _resolve_app_id(self, focus_app_aumid: str) -> tuple[str, AlternateIdType]: ...
 
@@ -61,6 +64,7 @@ class XboxPresenceCoordinator(XboxBaseCoordinator[XboxData]):
     config_entry: XboxConfigEntry
     _update_interval: Incomplete
     title_data: ClassVar[dict[str, Title]]
+    @override
     async def update_data(self) -> XboxData: ...
     def last_seen_timestamp(self, person: Person) -> datetime | None: ...
     def friend_subentries(self) -> set[str]: ...

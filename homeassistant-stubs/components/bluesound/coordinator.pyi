@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from pyblu import Input as Input, Player as Player, Preset as Preset, Status as Status, SyncStatus as SyncStatus
+from typing import override
 
 _LOGGER: Incomplete
 NODE_OFFLINE_CHECK_TIMEOUT: Incomplete
@@ -32,7 +33,9 @@ class BluesoundCoordinator(DataUpdateCoordinator[BluesoundData]):
     player: Incomplete
     _inital_sync_status: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: BluesoundConfigEntry, player: Player, sync_status: SyncStatus) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> BluesoundData: ...
     async def _poll_presets_and_inputs_loop(self) -> None: ...
     async def _poll_status_loop(self) -> None: ...

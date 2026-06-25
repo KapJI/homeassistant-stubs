@@ -20,6 +20,7 @@ from pydeconz.models.sensor.open_close import OpenClose
 from pydeconz.models.sensor.presence import Presence
 from pydeconz.models.sensor.vibration import Vibration
 from pydeconz.models.sensor.water import Water
+from typing import override
 
 ATTR_ORIENTATION: str
 ATTR_TILTANGLE: str
@@ -46,6 +47,8 @@ class DeconzBinarySensor(DeconzDevice[SensorResources], BinarySensorEntity):
     _name_suffix: Incomplete
     def __init__(self, device: SensorResources, hub: DeconzHub, description: DeconzBinarySensorDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool | float | int | list | None]: ...

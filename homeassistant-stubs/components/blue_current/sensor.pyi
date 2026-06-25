@@ -6,6 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 SENSORS: Incomplete
 TIMESTAMP_SENSORS: Incomplete
@@ -22,6 +23,7 @@ class ChargePointSensor(ChargepointEntity, SensorEntity):
     has_value: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class ChargePointTimestampSensor(ChargePointSensor):
@@ -29,6 +31,7 @@ class ChargePointTimestampSensor(ChargePointSensor):
     has_value: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class GridSensor(BlueCurrentEntity, SensorEntity):
@@ -39,4 +42,5 @@ class GridSensor(BlueCurrentEntity, SensorEntity):
     has_value: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

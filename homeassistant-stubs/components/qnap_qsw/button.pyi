@@ -9,7 +9,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class QswButtonDescription(ButtonEntityDescription):
@@ -24,4 +24,5 @@ class QswButton(QswDataEntity, ButtonEntity):
     entity_description: QswButtonDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: QswDataCoordinator, description: QswButtonDescription, entry: QnapQswConfigEntry) -> None: ...
+    @override
     async def async_press(self) -> None: ...

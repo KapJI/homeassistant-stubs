@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from mozart_api.models import BatteryState as BatteryState, PairedRemote as PairedRemote
+from typing import override
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
@@ -25,6 +26,7 @@ class BeoSensorBatteryLevel(BeoSensor):
     _attr_state_class: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: BeoConfigEntry) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     async def _update_battery(self, data: BatteryState) -> None: ...
@@ -39,5 +41,6 @@ class BeoSensorRemoteBatteryLevel(BeoSensor):
     _attr_native_value: Incomplete
     _remote: Incomplete
     def __init__(self, config_entry: BeoConfigEntry, remote: PairedRemote) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def async_update(self) -> None: ...

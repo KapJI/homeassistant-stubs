@@ -8,6 +8,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, STATE_UNKNOWN as STATE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ohme import OhmeApiClient as OhmeApiClient
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -22,4 +23,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: OhmeConfigEntry, 
 class OhmeSensor(OhmeEntity, SensorEntity):
     entity_description: OhmeSensorDescription
     @property
+    @override
     def native_value(self) -> str | int | float | None: ...

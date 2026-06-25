@@ -1,16 +1,17 @@
 import abc
+import asyncio
 import dataclasses
 from . import group as group
 from .deprecation import deprecated_class as deprecated_class
 from .event import async_track_state_change_event as async_track_state_change_event
 from .typing import ConfigType as ConfigType
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Coroutine, Mapping
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, ENTITY_MATCH_NONE as ENTITY_MATCH_NONE
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from logging import Logger
-from typing import Any, TypeGuard
+from typing import Any, TypeGuard, override
 
 _LOGGER: Incomplete
 
@@ -18,6 +19,7 @@ _LOGGER: Incomplete
 class TargetStateChangedData:
     state_change_event: Event[EventStateChangedData]
     targeted_entity_ids: set[str]
+    targeted_entity_states: Mapping[str, State | None]
 
 def _has_match(ids: str | list[str] | None) -> TypeGuard[str | list[str]]: ...
 
@@ -57,10 +59,12 @@ class TargetEntityChangeTracker(abc.ABC, metaclass=abc.ABCMeta):
     _primary_entities_only: Incomplete
     _registry_unsubs: list[CALLBACK_TYPE]
     def __init__(self, hass: HomeAssistant, target_selection: TargetSelection, entity_filter: Callable[[set[str]], set[str]], *, primary_entities_only: bool = True) -> None: ...
-    def async_setup(self) -> Callable[[], None]: ...
+    async def async_setup(self) -> Callable[[], None]: ...
     @abc.abstractmethod
     @callback
     def _handle_entities_update(self, tracked_entities: set[str]) -> None: ...
+    @callback
+    def _referenced_entities(self) -> set[str]: ...
     @callback
     def _handle_target_update(self, event: Event[Any] | None = None) -> None: ...
     def _setup_registry_listeners(self) -> None: ...
@@ -71,8 +75,16 @@ class TargetStateChangeTracker(TargetEntityChangeTracker):
     _on_entities_update: Incomplete
     _state_change_unsub: CALLBACK_TYPE | None
     _tracked_entities: set[str]
-    def __init__(self, hass: HomeAssistant, target_selection: TargetSelection, action: Callable[[TargetStateChangedData], Any], entity_filter: Callable[[set[str]], set[str]], on_entities_update: Callable[[set[str], set[str]], None] | None = None, *, primary_entities_only: bool = True) -> None: ...
+    _tracked_entity_states: dict[str, State | None]
+    _update_tasks: set[asyncio.Task[None]]
+    def __init__(self, hass: HomeAssistant, target_selection: TargetSelection, action: Callable[[TargetStateChangedData], Any], entity_filter: Callable[[set[str]], set[str]], on_entities_update: Callable[[set[str], set[str], Mapping[str, State | None]], Coroutine[Any, Any, None] | None] | None = None, *, primary_entities_only: bool = True) -> None: ...
+    @override
+    async def async_setup(self) -> Callable[[], None]: ...
+    @callback
+    @override
     def _handle_entities_update(self, tracked_entities: set[str]) -> None: ...
+    def _apply_entities_update(self, tracked_entities: set[str]) -> Coroutine[Any, Any, None] | None: ...
+    @override
     def _unsubscribe(self) -> None: ...
 
-def async_track_target_selector_state_change_event(hass: HomeAssistant, target_selector_config: ConfigType, action: Callable[[TargetStateChangedData], Any], entity_filter: Callable[[set[str]], set[str]] = ..., on_entities_update: Callable[[set[str], set[str]], None] | None = None, *, primary_entities_only: bool = True) -> CALLBACK_TYPE: ...
+async def async_track_target_selector_state_change_event(hass: HomeAssistant, target_selector_config: ConfigType, action: Callable[[TargetStateChangedData], Any], entity_filter: Callable[[set[str]], set[str]] = ..., on_entities_update: Callable[[set[str], set[str], Mapping[str, State | None]], Coroutine[Any, Any, None] | None] | None = None, *, primary_entities_only: bool = True) -> CALLBACK_TYPE: ...

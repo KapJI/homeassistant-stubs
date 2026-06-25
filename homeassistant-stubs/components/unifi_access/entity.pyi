@@ -3,6 +3,7 @@ from .coordinator import UnifiAccessCoordinator as UnifiAccessCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 from unifi_access_api import Door as Door
 
 class UnifiAccessEntity(CoordinatorEntity[UnifiAccessCoordinator]):
@@ -12,6 +13,7 @@ class UnifiAccessEntity(CoordinatorEntity[UnifiAccessCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: UnifiAccessCoordinator, door: Door, key: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def _door(self) -> Door: ...

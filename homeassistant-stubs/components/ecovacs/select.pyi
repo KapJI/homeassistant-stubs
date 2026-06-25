@@ -13,7 +13,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsSelectEntityDescription[EventT: Event](SelectEntityDescription, EcovacsCapabilityEntityDescription):
@@ -30,7 +30,9 @@ class EcovacsSelectEntity[EventT: Event](EcovacsDescriptionEntity[CapabilitySetT
     entity_description: EcovacsSelectEntityDescription
     _attr_options: Incomplete
     def __init__(self, device: Device, capability: CapabilitySetTypes[EventT, [str], str], entity_description: EcovacsSelectEntityDescription, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class EcovacsActiveMapSelectEntity(EcovacsEntity[CapabilityMap], SelectEntity):
@@ -41,5 +43,7 @@ class EcovacsActiveMapSelectEntity(EcovacsEntity[CapabilityMap], SelectEntity):
     _attr_current_option: Incomplete
     _attr_options: Incomplete
     def _handle_on_cached_map(self, event: CachedMapInfoEvent) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from nextdns import NextDns
-from typing import Any
+from typing import Any, override
 
 AUTH_SCHEMA: Incomplete
 _LOGGER: Incomplete
@@ -20,6 +20,7 @@ class NextDnsFlowHandler(ConfigFlow, domain=DOMAIN):
     nextdns: NextDns
     api_key: str
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_profiles(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

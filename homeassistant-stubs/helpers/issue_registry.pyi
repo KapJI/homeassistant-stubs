@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, override
 
 DATA_REGISTRY: HassKey[IssueRegistry]
 EVENT_REPAIRS_ISSUE_REGISTRY_UPDATED: EventType[EventIssueRegistryUpdatedData]
@@ -47,6 +47,7 @@ class IssueEntry:
     def to_json(self) -> dict[str, Any]: ...
 
 class IssueRegistryStore(Store[dict[str, list[dict[str, Any]]]]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class IssueRegistry(BaseRegistry):
@@ -64,8 +65,10 @@ class IssueRegistry(BaseRegistry):
     def async_ignore(self, domain: str, issue_id: str, ignore: bool) -> IssueEntry: ...
     @callback
     def make_read_only(self) -> None: ...
+    @override
     async def _async_load(self) -> None: ...
     @callback
+    @override
     def _data_to_save(self) -> dict[str, list[dict[str, str | None]]]: ...
 
 @callback

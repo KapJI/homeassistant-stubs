@@ -8,6 +8,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -27,5 +28,7 @@ class AirQLEDBrightness(CoordinatorEntity[AirQCoordinator], NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirQCoordinator, description: AirQBrightnessDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

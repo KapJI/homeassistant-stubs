@@ -7,6 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class AmbientNetworkEntity(CoordinatorEntity[AmbientNetworkDataUpdateCoordinator], metaclass=abc.ABCMeta):
     _attr_attribution: str
@@ -18,4 +19,5 @@ class AmbientNetworkEntity(CoordinatorEntity[AmbientNetworkDataUpdateCoordinator
     @abstractmethod
     def _update_attrs(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

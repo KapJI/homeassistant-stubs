@@ -9,7 +9,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ELEVATION as 
 from homeassistant.core import callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.schema_config_entry_flow import SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
-from typing import Any
+from typing import Any, override
 
 STEP_REAUTH_SCHEMA: Incomplete
 OPTIONS_SCHEMA: Incomplete
@@ -33,7 +33,9 @@ class OpenUvFlowHandler(ConfigFlow, domain=DOMAIN):
     async def _async_verify(self, data: OpenUvData, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: OpenUvConfigEntry) -> SchemaOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

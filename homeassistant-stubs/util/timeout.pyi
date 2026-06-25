@@ -3,7 +3,7 @@ import enum
 from .async_ import run_callback_threadsafe as run_callback_threadsafe
 from _typeshed import Incomplete
 from types import TracebackType
-from typing import Any, Self
+from typing import Any, Self, override
 
 ZONE_GLOBAL: str
 
@@ -89,6 +89,7 @@ class _ZoneTimeoutManager:
     _tasks: list[_ZoneTaskContext]
     _freezes: list[_ZoneFreezeContext]
     def __init__(self, manager: TimeoutManager, zone: str) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     @property
     def name(self) -> str: ...

@@ -3,14 +3,16 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as CONF_LOCATION, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import LocationSelector as LocationSelector, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
-from typing import Any
+from typing import Any, override
 
 class IslamicPrayerFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> IslamicPrayerOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class IslamicPrayerOptionsFlowHandler(OptionsFlow):

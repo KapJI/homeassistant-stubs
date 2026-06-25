@@ -9,7 +9,7 @@ from homeassistant.helpers import llm as llm
 from homeassistant.helpers.chat_session import ChatSession as ChatSession
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from propcache.api import cached_property
-from typing import final
+from typing import final, override
 
 class AITaskEntity(RestoreEntity):
     _attr_should_poll: bool
@@ -17,9 +17,12 @@ class AITaskEntity(RestoreEntity):
     __last_activity: str | None
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @cached_property
+    @override
     def supported_features(self) -> AITaskEntityFeature: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @final
     @contextlib.asynccontextmanager

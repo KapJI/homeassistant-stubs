@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_create_clientsession as a
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from librehardwaremonitor_api.model import DeviceId, DeviceName, LibreHardwareMonitorData
+from typing import override
 
 _LOGGER: Incomplete
 type LibreHardwareMonitorConfigEntry = ConfigEntry[LibreHardwareMonitorCoordinator]
@@ -19,6 +20,8 @@ class LibreHardwareMonitorCoordinator(DataUpdateCoordinator[LibreHardwareMonitor
     _previous_devices: dict[DeviceId, DeviceName]
     _is_deprecated_version: bool | None
     def __init__(self, hass: HomeAssistant, config_entry: LibreHardwareMonitorConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> LibreHardwareMonitorData: ...
+    @override
     async def _async_refresh(self, log_failures: bool = True, raise_on_auth_failed: bool = False, scheduled: bool = False, raise_on_entry_error: bool = False) -> None: ...
     async def _async_handle_changes_in_devices(self, detected_devices: dict[DeviceId, DeviceName]) -> None: ...

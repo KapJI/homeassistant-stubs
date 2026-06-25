@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature
-from homeassistant.const import CONF_DISCOVERY as CONF_DISCOVERY, CONF_PAYLOAD as CONF_PAYLOAD, Platform as Platform
+from homeassistant.const import CONF_PAYLOAD as CONF_PAYLOAD, Platform as Platform
 from homeassistant.exceptions import TemplateError as TemplateError
 
 ATTR_DISCOVERY_HASH: str
@@ -237,6 +237,7 @@ CONF_TILT_STATE_OPTIMISTIC: str
 CONF_TRANSITION: str
 CONF_URL_TEMPLATE: str
 CONF_URL_TOPIC: str
+CONF_VISIBLE_BY_DEFAULT: str
 CONF_XY_COMMAND_TEMPLATE: str
 CONF_XY_COMMAND_TOPIC: str
 CONF_XY_STATE_TOPIC: str
@@ -340,7 +341,6 @@ PAYLOAD_EMPTY_JSON: str
 PAYLOAD_NONE: str
 CONFIG_ENTRY_VERSION: int
 CONFIG_ENTRY_MINOR_VERSION: int
-ENTRY_OPTION_FIELDS: Incomplete
 ENTITY_PLATFORMS: Incomplete
 TEMPLATE_ERRORS: Incomplete
 SUPPORTED_COMPONENTS: Incomplete

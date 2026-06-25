@@ -7,6 +7,7 @@ from aioridwell.model import RidwellAccount as RidwellAccount, RidwellPickupEven
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @callback
 def async_get_calendar_event_from_pickup_event(pickup_event: RidwellPickupEvent, config_entry: RidwellConfigEntry) -> CalendarEvent: ...
@@ -19,5 +20,7 @@ class RidwellCalendar(RidwellEntity, CalendarEntity):
     _event: CalendarEvent | None
     def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount) -> None: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime.datetime, end_date: datetime.datetime) -> list[CalendarEvent]: ...

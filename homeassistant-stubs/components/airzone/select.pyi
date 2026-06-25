@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class AirzoneSelectDescription(SelectEntityDescription):
@@ -33,6 +33,7 @@ class AirzoneBaseSelect(AirzoneEntity, SelectEntity):
     entity_description: AirzoneSelectDescription
     values_dict: dict[int, str]
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     def _get_current_option(self) -> str | None: ...
     _attr_current_option: Incomplete
@@ -45,6 +46,7 @@ class AirzoneSystemSelect(AirzoneSystemEntity, AirzoneBaseSelect):
     _attr_options: Incomplete
     values_dict: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneSelectDescription, entry: ConfigEntry, system_id: str, system_data: dict[str, Any]) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class AirzoneZoneSelect(AirzoneZoneEntity, AirzoneBaseSelect):
@@ -53,4 +55,5 @@ class AirzoneZoneSelect(AirzoneZoneEntity, AirzoneBaseSelect):
     _attr_options: Incomplete
     values_dict: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, description: AirzoneSelectDescription, entry: ConfigEntry, system_zone_id: str, zone_data: dict[str, Any]) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

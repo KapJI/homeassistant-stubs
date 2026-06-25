@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
 from infrared_protocols.codes.marantz.audio import MarantzAudioCode
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 SOURCE_TO_CODE: dict[str, MarantzAudioCode]
@@ -18,6 +18,7 @@ SOURCE_TO_CODE: dict[str, MarantzAudioCode]
 class _MarantzAmplifierExtraData(ExtraStoredData):
     source: str | None
     is_volume_muted: bool | None
+    @override
     def as_dict(self) -> dict[str, Any]: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: MarantzIrConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -32,14 +33,22 @@ class MarantzIrAmplifierMediaPlayer(MarantzIrEntity, MediaPlayerEntity, RestoreE
     _attr_supported_features: Incomplete
     def __init__(self, entry: MarantzIrConfigEntry, infrared_entity_id: str) -> None: ...
     @property
+    @override
     def extra_restore_state_data(self) -> ExtraStoredData: ...
     _attr_state: Incomplete
     _attr_source: Incomplete
     _attr_is_volume_muted: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_volume_up(self) -> None: ...
+    @override
     async def async_volume_down(self) -> None: ...
+    @override
     async def async_mute_volume(self, mute: bool) -> None: ...
+    @override
     async def async_select_source(self, source: str) -> None: ...

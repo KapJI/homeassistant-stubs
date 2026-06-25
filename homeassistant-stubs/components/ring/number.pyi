@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from ring_doorbell import RingGeneric as RingGeneric
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 PARALLEL_UPDATES: int
 
@@ -31,6 +31,8 @@ class RingNumber(RingEntity[RingDeviceT], NumberEntity):
     def _update_native_value(self) -> None: ...
     _device: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @refresh_after
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

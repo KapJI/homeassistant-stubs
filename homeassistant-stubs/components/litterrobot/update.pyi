@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitterbot import LitterRobot4
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
@@ -20,12 +20,17 @@ class RobotUpdateEntity(LitterRobotEntity[LitterRobot4], UpdateEntity):
     _attr_release_url = RELEASE_URL
     _attr_supported_features: Incomplete
     @property
+    @override
     def installed_version(self) -> str: ...
     @property
+    @override
     def in_progress(self) -> bool: ...
     @property
+    @override
     def should_poll(self) -> bool: ...
     _attr_latest_version: Incomplete
+    @override
     async def async_update(self) -> None: ...
     @whisker_command
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

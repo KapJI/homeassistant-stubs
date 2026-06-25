@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pymiele import MieleDevice as MieleDevice
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -31,4 +31,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: MieleConfigEntry,
 class MieleBinarySensor(MieleEntity, BinarySensorEntity):
     entity_description: MieleBinarySensorDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...

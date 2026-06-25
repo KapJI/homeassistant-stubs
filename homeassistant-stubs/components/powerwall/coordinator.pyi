@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from tesla_powerwall import BatteryResponse as BatteryResponse, DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregatesResponse as MetersAggregatesResponse, Powerwall as Powerwall, PowerwallStatusResponse as PowerwallStatusResponse, SiteInfoResponse as SiteInfoResponse, SiteMasterResponse as SiteMasterResponse
+from tesla_powerwall import BatteryResponse as BatteryResponse, DeviceType as DeviceType, GridStatus as GridStatus, MetersAggregatesResponse as MetersAggregatesResponse, OperationMode as OperationMode, Powerwall as Powerwall, PowerwallStatusResponse as PowerwallStatusResponse, SiteInfoResponse as SiteInfoResponse, SiteMasterResponse as SiteMasterResponse
 from typing import TypedDict
 
 _LOGGER: Incomplete
@@ -14,21 +14,26 @@ type PowerwallConfigEntry = ConfigEntry[PowerwallRuntimeData]
 @dataclass
 class PowerwallBaseInfo:
     gateway_din: str
-    site_info: SiteInfoResponse
-    status: PowerwallStatusResponse
-    device_type: DeviceType
+    site_name: str
+    site_info: SiteInfoResponse | None
+    status: PowerwallStatusResponse | None
+    device_type: DeviceType | None
     serial_numbers: list[str]
     url: str
     batteries: dict[str, BatteryResponse]
+    restricted: bool = ...
 
 @dataclass
 class PowerwallData:
     charge: float
-    site_master: SiteMasterResponse
+    site_master: SiteMasterResponse | None
     meters: MetersAggregatesResponse
     grid_services_active: bool
     grid_status: GridStatus
     backup_reserve: float | None
+    max_charge_power: int | None
+    max_discharge_power: int | None
+    operation_mode: OperationMode | None
     batteries: dict[str, BatteryResponse]
 
 class PowerwallRuntimeData(TypedDict):

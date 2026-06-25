@@ -7,7 +7,7 @@ from homeassistant.components.light import ColorMode as ColorMode, LightEntity a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingStickUpCam
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -28,8 +28,11 @@ class RingLight(RingEntity[RingStickUpCam], LightEntity):
     _no_updates_until: Incomplete
     def __init__(self, device: RingStickUpCam, coordinator: RingDataCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @exception_wrap
     async def _async_set_light(self, new_state: OnOffState) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

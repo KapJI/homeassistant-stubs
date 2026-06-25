@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from pyHomee.model import HomeeAttribute, HomeeNode as HomeeNode
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,14 +27,22 @@ class HomeeFan(HomeeNodeEntity, FanEntity):
     _mode_attribute: HomeeAttribute
     def __init__(self, node: HomeeNode, entry: HomeeConfigEntry) -> None: ...
     @property
+    @override
     def supported_features(self) -> FanEntityFeature: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def percentage(self) -> int: ...
     @property
+    @override
     def preset_mode(self) -> str: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...

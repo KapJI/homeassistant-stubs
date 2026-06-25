@@ -6,6 +6,7 @@ from homeassistant.components.event import EventEntity as EventEntity, EventEnti
 from homeassistant.const import ATTR_ID as ATTR_ID, ATTR_NAME as ATTR_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -13,6 +14,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TransmissionEvent(TransmissionEntity, EventEntity):
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _handle_event(self, event_data: TransmissionEventData) -> None: ...

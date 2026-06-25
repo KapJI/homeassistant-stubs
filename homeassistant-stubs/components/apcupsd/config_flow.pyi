@@ -4,12 +4,13 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.helpers import selector as selector
-from typing import Any
+from typing import Any, override
 
 _PORT_SELECTOR: Incomplete
 _SCHEMA: Incomplete
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

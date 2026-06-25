@@ -7,7 +7,7 @@ from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 DATA_SCHEMA_USER: Incomplete
 
@@ -38,7 +38,9 @@ class FritzBoxCallMonitorConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _get_list_of_phonebook_names(self) -> list[str]: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> FritzBoxCallMonitorOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_phonebook(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

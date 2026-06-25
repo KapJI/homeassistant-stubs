@@ -6,6 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 class ValloxBinarySensorEntity(ValloxEntity, BinarySensorEntity):
     entity_description: ValloxBinarySensorEntityDescription
@@ -13,6 +14,7 @@ class ValloxBinarySensorEntity(ValloxEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, name: str, coordinator: ValloxDataUpdateCoordinator, description: ValloxBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 @dataclass(frozen=True, kw_only=True)

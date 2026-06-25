@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse a
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyschlage.code import AccessCode
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: SchlageConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,12 +15,15 @@ class SchlageLockEntity(SchlageEntity, LockEntity):
     _attr_name: Incomplete
     def __init__(self, coordinator: SchlageDataUpdateCoordinator, device_id: str) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_locked: Incomplete
     _attr_is_jammed: Incomplete
     _attr_changed_by: Incomplete
     def _update_attrs(self) -> None: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     @staticmethod
     def _normalize_code_name(name: str) -> str: ...

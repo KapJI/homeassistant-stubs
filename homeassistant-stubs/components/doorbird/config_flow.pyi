@@ -12,7 +12,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_OPTIONS: Incomplete
@@ -31,11 +31,14 @@ class DoorBirdConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _async_verify_existing_device_for_discovery(self, existing_entry: ConfigEntry, host: str, macaddress: str) -> None: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _async_validate_or_error(self, user_input: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(OptionsFlow):

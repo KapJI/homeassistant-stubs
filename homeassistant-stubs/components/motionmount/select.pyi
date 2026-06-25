@@ -7,6 +7,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -28,5 +29,7 @@ class MotionMountPresets(MotionMountEntity, SelectEntity):
     async def _ensure_connected(self) -> bool: ...
     async def async_update(self) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

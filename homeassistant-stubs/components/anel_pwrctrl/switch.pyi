@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import Throttle as Throttle
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_PORT_RECV: str
@@ -24,7 +24,9 @@ class PwrCtrlSwitch(SwitchEntity):
     def __init__(self, port: Switch, parent_device: PwrCtrlDevice) -> None: ...
     _attr_is_on: Incomplete
     def update(self) -> None: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
 
 class PwrCtrlDevice:

@@ -5,10 +5,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyuptimerobot import UptimeRobot as UptimeRobot, UptimeRobotMonitor
+from typing import override
 
 type UptimeRobotConfigEntry = ConfigEntry[UptimeRobotDataUpdateCoordinator]
 class UptimeRobotDataUpdateCoordinator(DataUpdateCoordinator[dict[int, UptimeRobotMonitor]]):
     config_entry: UptimeRobotConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: UptimeRobotConfigEntry, api: UptimeRobot) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[int, UptimeRobotMonitor]: ...

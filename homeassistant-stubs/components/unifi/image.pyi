@@ -11,6 +11,7 @@ from homeassistant.components.image import ImageEntity as ImageEntity, ImageEnti
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,7 +33,9 @@ class UnifiImageEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[Hand
     current_image: bytes | None
     previous_value: str | None
     def __init__(self, obj_id: str, hub: UnifiHub, description: UnifiEntityDescription[HandlerT, ApiItemT]) -> None: ...
+    @override
     def image(self) -> bytes | None: ...
     _attr_image_last_updated: Incomplete
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

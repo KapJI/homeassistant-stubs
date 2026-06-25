@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
 from pyfritzhome.fritzhomedevice import FritzhomeDevice as FritzhomeDevice
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -39,6 +39,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, asy
 class FritzBoxSensor(FritzBoxDeviceEntity, SensorEntity):
     entity_description: FritzSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def entity_category(self) -> EntityCategory | None: ...

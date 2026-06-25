@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from logging import Logger
-from typing import Any
+from typing import Any, override
 
 SEMAPHORE: Incomplete
 type DevoloHomeNetworkConfigEntry = ConfigEntry[DevoloHomeNetworkData]
@@ -18,6 +18,7 @@ type DevoloHomeNetworkConfigEntry = ConfigEntry[DevoloHomeNetworkData]
 class DevoloDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
     device: Incomplete
     def __init__(self, hass: HomeAssistant, logger: Logger, *, config_entry: DevoloHomeNetworkConfigEntry, name: str, update_interval: timedelta | None = None) -> None: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
     @callback
     def update_sw_version(self) -> None: ...

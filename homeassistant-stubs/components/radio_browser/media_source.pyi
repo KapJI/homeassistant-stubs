@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.location import vincenty as vincenty
 from radios import RadioBrowser as RadioBrowser, Station as Station
+from typing import override
 
 CODEC_TO_MIMETYPE: Incomplete
 
@@ -19,7 +20,9 @@ class RadioMediaSource(MediaSource):
     def __init__(self, hass: HomeAssistant, entry: RadioBrowserConfigEntry) -> None: ...
     @property
     def radios(self) -> RadioBrowser: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     @callback
     @staticmethod

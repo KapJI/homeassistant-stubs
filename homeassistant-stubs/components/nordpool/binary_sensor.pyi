@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.components.sensor import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ class NordpoolPriceBinarySensor(NordpoolBaseEntity, BinarySensorEntity):
     entity_description: NordpoolBinarySensorEntityDescription
     def __init__(self, coordinator: NordPoolDataUpdateCoordinator, entity_description: NordpoolBinarySensorEntityDescription, area: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

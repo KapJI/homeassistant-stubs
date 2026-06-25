@@ -9,7 +9,7 @@ from eq3btsmart.models import Status as Status
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_set_away(thermostat: Thermostat, enable: bool) -> Status: ...
 
@@ -25,7 +25,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: Eq3ConfigEntry, async_ad
 class Eq3SwitchEntity(Eq3Entity, SwitchEntity):
     entity_description: Eq3SwitchEntityDescription
     def __init__(self, entry: Eq3ConfigEntry, entity_description: Eq3SwitchEntityDescription) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

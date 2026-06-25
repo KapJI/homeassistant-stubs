@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -17,6 +18,8 @@ class PajGPSDeviceTracker(PajGpsEntity, TrackerEntity):
     _attr_unique_id: Incomplete
     def __init__(self, pajgps_coordinator: PajGpsCoordinator, device_id: int) -> None: ...
     @property
+    @override
     def latitude(self) -> float | None: ...
     @property
+    @override
     def longitude(self) -> float | None: ...

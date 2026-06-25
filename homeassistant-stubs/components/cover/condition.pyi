@@ -4,9 +4,11 @@ from collections.abc import Mapping
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.condition import Condition as Condition, EntityConditionBase as EntityConditionBase
+from typing import override
 
 class CoverConditionBase(EntityConditionBase):
     _domain_specs: Mapping[str, CoverDomainSpec]
+    @override
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 def make_cover_is_open_condition(*, device_classes: dict[str, str]) -> type[CoverConditionBase]: ...

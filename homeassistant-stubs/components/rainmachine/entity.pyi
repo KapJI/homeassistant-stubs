@@ -8,6 +8,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class RainMachineEntityDescription(EntityDescription):
@@ -23,9 +24,12 @@ class RainMachineEntity(CoordinatorEntity[RainMachineDataUpdateCoordinator]):
     entity_description: Incomplete
     def __init__(self, entry: RainMachineConfigEntry, data: RainMachineData, description: RainMachineEntityDescription) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def update_from_latest_data(self) -> None: ...

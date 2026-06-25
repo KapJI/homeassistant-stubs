@@ -9,7 +9,7 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 PARALLEL_UPDATES: int
 
@@ -56,9 +56,13 @@ class ComelitClimateEntity(ComelitBridgeBaseEntity, ClimateEntity):
     _attr_target_temperature: Incomplete
     def _update_attributes(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @bridge_api_call
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @bridge_api_call
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

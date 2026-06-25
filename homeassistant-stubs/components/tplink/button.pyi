@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkButtonEntityDescription(ButtonEntityDescription, TPLinkFeatureEntityDescription): ...
@@ -19,5 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: TPLinkConfigEntry
 
 class TPLinkButtonEntity(CoordinatedTPLinkFeatureEntity, ButtonEntity):
     entity_description: TPLinkButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
+    @override
     def _async_update_attrs(self) -> bool: ...

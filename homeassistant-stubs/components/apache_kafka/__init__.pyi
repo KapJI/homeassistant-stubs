@@ -4,7 +4,7 @@ from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWOR
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant
 from homeassistant.helpers.entityfilter import EntityFilter as EntityFilter, FILTER_SCHEMA as FILTER_SCHEMA
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Literal
+from typing import Any, Literal, override
 
 DOMAIN: str
 CONF_FILTER: str
@@ -15,6 +15,7 @@ CONFIG_SCHEMA: Incomplete
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 
 class DateTimeJSONEncoder(json.JSONEncoder):
+    @override
     def default(self, o: Any) -> str: ...
 
 class KafkaManager:

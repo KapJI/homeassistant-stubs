@@ -1,11 +1,12 @@
 from .const import CONF_LEGACY_SETPOINT_STATUS as CONF_LEGACY_SETPOINT_STATUS, DOMAIN as DOMAIN
-from .coordinator import InComfortConfigEntry as InComfortConfigEntry, async_connect_gateway as async_connect_gateway
+from .coordinator import InComfortConfigEntry as InComfortConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
+from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, BooleanSelectorConfig as BooleanSelectorConfig, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo

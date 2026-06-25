@@ -7,7 +7,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.schema_config_entry_flow import SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector
 from homeassistant.helpers.service_info.zeroconf import ATTR_PROPERTIES_ID as ATTR_PROPERTIES_ID, ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -17,9 +17,12 @@ class AirQConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_host: str
     _discovered_name: str
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...

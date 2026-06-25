@@ -8,9 +8,9 @@ from homeassistant.components.climate import ClimateEntity as ClimateEntity, Cli
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 FAN_ELECTRA_TO_HASS: Incomplete
 FAN_HASS_TO_ELECTRA: Incomplete
@@ -46,10 +46,14 @@ class ElectraClimateEntity(ClimateEntity):
     _was_available: bool
     def __init__(self, device: ElectraAirConditioner, api: ElectraAPI) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     async def async_update(self) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _attr_fan_mode: Incomplete
     _attr_current_temperature: Incomplete
@@ -58,6 +62,8 @@ class ElectraClimateEntity(ClimateEntity):
     _attr_swing_mode: Incomplete
     _attr_preset_mode: Incomplete
     def _update_device_attrs(self) -> None: ...
+    @override
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     async def _async_operate_electra_ac(self) -> None: ...

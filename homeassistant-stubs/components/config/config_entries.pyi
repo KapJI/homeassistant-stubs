@@ -13,7 +13,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.json import JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_config_flows as async_get_config_flows, async_get_integrations as async_get_integrations, async_get_loaded_integration as async_get_loaded_integration
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
-from typing import Any, NoReturn
+from typing import Any, NoReturn, override
 
 _LOGGER: Incomplete
 
@@ -41,16 +41,23 @@ class ConfigManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigEntri
     url: str
     name: str
     async def get(self, request: web.Request) -> NoReturn: ...
+    @override
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+    @override
     async def _post_impl(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+    @override
     def get_context(self, data: dict[str, Any]) -> dict[str, Any]: ...
+    @override
     def _prepare_result_json(self, result: data_entry_flow.FlowResult) -> dict[str, Any]: ...
 
 class ConfigManagerFlowResourceView(FlowManagerResourceView[config_entries.ConfigEntriesFlowManager]):
     url: str
     name: str
+    @override
     async def get(self, request: web.Request, /, flow_id: str) -> web.Response: ...
+    @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...
+    @override
     def _prepare_result_json(self, result: data_entry_flow.FlowResult) -> dict[str, Any]: ...
 
 class ConfigManagerAvailableFlowView(HomeAssistantView):
@@ -61,24 +68,31 @@ class ConfigManagerAvailableFlowView(HomeAssistantView):
 class OptionManagerFlowIndexView(FlowManagerIndexView[config_entries.OptionsFlowManager]):
     url: str
     name: str
+    @override
     async def post(self, request: web.Request) -> web.Response: ...
 
 class OptionManagerFlowResourceView(FlowManagerResourceView[config_entries.OptionsFlowManager]):
     url: str
     name: str
+    @override
     async def get(self, request: web.Request, /, flow_id: str) -> web.Response: ...
+    @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...
 
 class SubentryManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigSubentryFlowManager]):
     url: str
     name: str
+    @override
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
+    @override
     def get_context(self, data: dict[str, Any]) -> dict[str, Any]: ...
 
 class SubentryManagerFlowResourceView(FlowManagerResourceView[config_entries.ConfigSubentryFlowManager]):
     url: str
     name: str
+    @override
     async def get(self, request: web.Request, /, flow_id: str) -> web.Response: ...
+    @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...
 
 @websocket_api.require_admin

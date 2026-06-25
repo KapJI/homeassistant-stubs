@@ -6,6 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: FGLairConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,4 +18,5 @@ class FGLairOutsideTemperature(FGLairEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FGLairCoordinator, device: FujitsuHVAC) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

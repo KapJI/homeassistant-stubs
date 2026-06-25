@@ -6,6 +6,7 @@ from homeassistant.const import UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ApSystemsConfigEntry, add_entities: AddConfigEntryEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
@@ -23,4 +24,5 @@ class ApSystemsMaxOutputNumber(ApSystemsEntity, NumberEntity):
     _attr_available: bool
     _attr_native_value: Incomplete
     async def async_update(self) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

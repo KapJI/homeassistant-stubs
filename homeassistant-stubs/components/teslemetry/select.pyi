@@ -12,7 +12,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStreamVehicle as TeslemetryStreamVehicle
-from typing import Any
+from typing import Any, override
 
 OFF: str
 LOW: str
@@ -37,6 +37,7 @@ class TeslemetrySelectEntity(TeslemetryRootEntity, SelectEntity):
     entity_description: TeslemetrySelectEntityDescription
     _climate: bool
     _attr_current_option: Incomplete
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class TeslemetryVehiclePollingSelectEntity(TeslemetryVehiclePollingEntity, TeslemetrySelectEntity):
@@ -45,6 +46,7 @@ class TeslemetryVehiclePollingSelectEntity(TeslemetryVehiclePollingEntity, Tesle
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetrySelectEntityDescription, scopes: list[Scope]) -> None: ...
     _climate: Incomplete
     _attr_current_option: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingSelectEntity(TeslemetryVehicleStreamEntity, TeslemetrySelectEntity, RestoreEntity):
@@ -52,6 +54,7 @@ class TeslemetryStreamingSelectEntity(TeslemetryVehicleStreamEntity, TeslemetryS
     scoped: Incomplete
     _attr_current_option: Incomplete
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetrySelectEntityDescription, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _value_callback(self, value: int | None) -> None: ...
     _climate: Incomplete
@@ -62,7 +65,9 @@ class TeslemetryOperationSelectEntity(TeslemetryEnergyInfoEntity, SelectEntity):
     scoped: Incomplete
     def __init__(self, data: TeslemetryEnergyData, scopes: list[Scope]) -> None: ...
     _attr_current_option: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class TeslemetryExportRuleSelectEntity(TeslemetryEnergyInfoEntity, SelectEntity, RestoreEntity):
@@ -70,6 +75,9 @@ class TeslemetryExportRuleSelectEntity(TeslemetryEnergyInfoEntity, SelectEntity,
     scoped: Incomplete
     def __init__(self, data: TeslemetryEnergyData, scopes: list[Scope]) -> None: ...
     _attr_current_option: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

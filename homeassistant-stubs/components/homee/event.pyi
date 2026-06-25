@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 REMOTE_PROFILES: Incomplete
@@ -20,6 +21,7 @@ class HomeeEvent(HomeeEntity, EventEntity):
     _attr_translation_key: Incomplete
     _attr_translation_placeholders: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: EventEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _event_triggered(self, event: HomeeAttribute) -> None: ...

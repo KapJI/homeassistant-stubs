@@ -6,6 +6,7 @@ from enum import StrEnum
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,5 +22,7 @@ class SleepAsAndroidSensorEntity(SleepAsAndroidEntity, RestoreSensor):
     entity_description: SensorEntityDescription
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_handle_event(self, webhook_id: str, data: dict[str, str]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
-from typing import Any
+from typing import Any, override
 
 CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
@@ -20,7 +20,9 @@ class Enigma2ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     DATA_KEYS: Incomplete
     OPTIONS_KEYS: Incomplete
     async def validate_user_input(self, user_input: dict[str, Any]) -> dict[str, str] | None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...

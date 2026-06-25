@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from teslemetry_stream import TeslemetryStream as TeslemetryStream, TeslemetryStreamVehicle as TeslemetryStreamVehicle
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 BMS_STATES: Incomplete
@@ -72,6 +73,7 @@ class TeslemetryStreamSensorEntity(TeslemetryVehicleStreamEntity, RestoreSensor)
     entity_description: TeslemetryVehicleSensorEntityDescription
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryVehicleSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_value_from_stream(self, value: StateType) -> None: ...
 
@@ -80,12 +82,14 @@ class TeslemetryVehicleSensorEntity(TeslemetryVehiclePollingEntity, SensorEntity
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryVehicleSensorEntityDescription) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamTimeSensorEntity(TeslemetryVehicleStreamEntity, SensorEntity):
     entity_description: TeslemetryTimeEntityDescription
     _get_timestamp: Incomplete
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryTimeEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     def _value_callback(self, value: float | None) -> None: ...
@@ -96,6 +100,7 @@ class TeslemetryVehicleTimeSensorEntity(TeslemetryVehiclePollingEntity, SensorEn
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryTimeEntityDescription) -> None: ...
     _attr_available: Incomplete
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryEnergyLiveSensorEntity(TeslemetryEnergyLiveEntity, SensorEntity):
@@ -103,12 +108,14 @@ class TeslemetryEnergyLiveSensorEntity(TeslemetryEnergyLiveEntity, SensorEntity)
     def __init__(self, data: TeslemetryEnergyData, description: TeslemetryEnergySensorEntityDescription) -> None: ...
     _attr_available: Incomplete
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryWallConnectorSensorEntity(TeslemetryWallConnectorEntity, SensorEntity):
     entity_description: TeslemetrySensorEntityDescription
     def __init__(self, data: TeslemetryEnergyData, din: str, description: TeslemetrySensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryEnergyInfoSensorEntity(TeslemetryEnergyInfoEntity, SensorEntity):
@@ -116,12 +123,14 @@ class TeslemetryEnergyInfoSensorEntity(TeslemetryEnergyInfoEntity, SensorEntity)
     def __init__(self, data: TeslemetryEnergyData, description: SensorEntityDescription) -> None: ...
     _attr_available: Incomplete
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryEnergyHistorySensorEntity(TeslemetryEnergyHistoryEntity, SensorEntity):
     entity_description: SensorEntityDescription
     def __init__(self, data: TeslemetryEnergyData, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryCreditBalanceSensor(RestoreSensor):
@@ -133,5 +142,20 @@ class TeslemetryCreditBalanceSensor(RestoreSensor):
     _attr_unique_id: Incomplete
     def __init__(self, uid: str, stream: TeslemetryStream) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_update(self, value: int) -> None: ...
+
+class TeslemetryCreditQuotaSensor(RestoreSensor):
+    _attr_has_entity_name: bool
+    stream: TeslemetryStream
+    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_state_class: Incomplete
+    _attr_suggested_display_precision: int
+    _attr_translation_key: str
+    _attr_unique_id: Incomplete
+    def __init__(self, uid: str, stream: TeslemetryStream) -> None: ...
+    _attr_native_value: Incomplete
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    def _async_update(self, credits: dict[str, Any]) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 SERVER_SENSORS: tuple[BinarySensorEntityDescription, ...]
@@ -18,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry, a
 
 class ServerStatusBinarySensor(LMSStatusEntity, BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class SqueezeboxBinarySensorEntity(SqueezeboxEntity, BinarySensorEntity):
@@ -26,4 +28,5 @@ class SqueezeboxBinarySensorEntity(SqueezeboxEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator, description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

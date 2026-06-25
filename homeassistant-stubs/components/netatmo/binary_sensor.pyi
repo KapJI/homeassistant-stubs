@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatmo.modules.device_types import DeviceCategory as NetatmoDeviceCategory
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 DEFAULT_OPENING_SENSOR_KEY: str
@@ -44,6 +44,7 @@ class NetatmoBinarySensor(NetatmoModuleEntity, BinarySensorEntity):
     _attr_available: bool
     _attr_is_on: bool
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoWeatherBinarySensor(NetatmoWeatherModuleEntity, NetatmoBinarySensor):
@@ -59,6 +60,7 @@ class NetatmoOpeningBinarySensor(NetatmoBinarySensor):
     _attr_available: bool
     _attr_is_on: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoConnectivityBinarySensor(NetatmoBinarySensor):

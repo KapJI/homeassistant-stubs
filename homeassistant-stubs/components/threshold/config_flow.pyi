@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep
-from typing import Any
+from typing import Any, override
 
 async def _validate_mode(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
 
@@ -22,8 +22,10 @@ class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
     options_flow_reloads: bool
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     @staticmethod
+    @override
     async def async_setup_preview(hass: HomeAssistant) -> None: ...
 
 @callback

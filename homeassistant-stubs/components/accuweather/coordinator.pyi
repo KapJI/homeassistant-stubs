@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 EXCEPTIONS: Incomplete
 _LOGGER: Incomplete
@@ -28,6 +28,7 @@ class AccuWeatherObservationDataUpdateCoordinator(DataUpdateCoordinator[dict[str
     location_key: Incomplete
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AccuWeatherConfigEntry, accuweather: AccuWeather) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class AccuWeatherForecastDataUpdateCoordinator(TimestampDataUpdateCoordinator[list[dict[str, Any]]]):
@@ -37,6 +38,7 @@ class AccuWeatherForecastDataUpdateCoordinator(TimestampDataUpdateCoordinator[li
     _fetch_method: Incomplete
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AccuWeatherConfigEntry, accuweather: AccuWeather, coordinator_type: str, update_interval: timedelta, fetch_method: Callable[..., Awaitable[list[dict[str, Any]]]]) -> None: ...
+    @override
     async def _async_update_data(self) -> list[dict[str, Any]]: ...
 
 class AccuWeatherDailyForecastDataUpdateCoordinator(AccuWeatherForecastDataUpdateCoordinator):

@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
-from typing import Any
+from typing import Any, override
 
 AVAILABLE: str
 DOWNLOADING: str
@@ -24,6 +24,7 @@ class TeslemetryUpdateEntity(TeslemetryRootEntity, UpdateEntity):
     api: Vehicle
     _attr_supported_features: Incomplete
     _attr_in_progress: bool
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
 
 class TeslemetryVehiclePollingUpdateEntity(TeslemetryVehiclePollingEntity, TeslemetryUpdateEntity):
@@ -34,6 +35,7 @@ class TeslemetryVehiclePollingUpdateEntity(TeslemetryVehiclePollingEntity, Tesle
     _attr_latest_version: Incomplete
     _attr_in_progress: bool
     _attr_update_percentage: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingUpdateEntity(TeslemetryVehicleStreamEntity, TeslemetryUpdateEntity, RestoreEntity):
@@ -45,6 +47,7 @@ class TeslemetryStreamingUpdateEntity(TeslemetryVehicleStreamEntity, TeslemetryU
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
     _attr_supported_features: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_handle_software_update_download_percent_complete(self, value: float | None) -> None: ...
     def _async_handle_software_update_installation_percent_complete(self, value: float | None) -> None: ...

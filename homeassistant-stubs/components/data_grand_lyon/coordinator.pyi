@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 @dataclass
 class DataGrandLyonData:
@@ -17,10 +18,12 @@ class DataGrandLyonTclCoordinator(DataUpdateCoordinator[dict[str, list[TclPassag
     config_entry: DataGrandLyonConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: DataGrandLyonConfigEntry, client: DataGrandLyonClient) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, list[TclPassage]]: ...
 
 class DataGrandLyonVelovCoordinator(DataUpdateCoordinator[dict[str, VelovStation]]):
     config_entry: DataGrandLyonConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: DataGrandLyonConfigEntry, client: DataGrandLyonClient) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, VelovStation]: ...

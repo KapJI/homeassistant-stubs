@@ -8,7 +8,7 @@ from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGE
 from homeassistant.const import PRECISION_WHOLE as PRECISION_WHOLE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SUPPORT_HVAC: Incomplete
 HASS_TO_ELK_HVAC_MODES: Incomplete
@@ -29,21 +29,32 @@ class ElkThermostat(ElkEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _element: Thermostat
     @property
+    @override
     def temperature_unit(self) -> str: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature_high(self) -> float | None: ...
     @property
+    @override
     def target_temperature_low(self) -> float | None: ...
     @property
+    @override
     def current_humidity(self) -> int | None: ...
     @property
+    @override
     def fan_mode(self) -> str | None: ...
     def _elk_set(self, mode: ThermostatMode | None, fan: ThermostatFan | None) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     def _element_changed(self, element: Element, changeset: Any) -> None: ...

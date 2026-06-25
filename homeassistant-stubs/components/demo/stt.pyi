@@ -4,6 +4,7 @@ from homeassistant.components.stt import AudioBitRates as AudioBitRates, AudioCh
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 SUPPORT_LANGUAGES: Incomplete
 
@@ -12,15 +13,22 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class DemoProviderEntity(SpeechToTextEntity):
     _attr_name: str
     @property
+    @override
     def supported_languages(self) -> list[str]: ...
     @property
+    @override
     def supported_formats(self) -> list[AudioFormats]: ...
     @property
+    @override
     def supported_codecs(self) -> list[AudioCodecs]: ...
     @property
+    @override
     def supported_bit_rates(self) -> list[AudioBitRates]: ...
     @property
+    @override
     def supported_sample_rates(self) -> list[AudioSampleRates]: ...
     @property
+    @override
     def supported_channels(self) -> list[AudioChannels]: ...
+    @override
     async def async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...

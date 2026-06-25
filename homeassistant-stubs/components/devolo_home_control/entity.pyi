@@ -5,6 +5,7 @@ from devolo_home_control_api.devices.zwave import Zwave as Zwave
 from devolo_home_control_api.homecontrol import HomeControl as HomeControl
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -19,7 +20,9 @@ class DevoloDeviceEntity(Entity):
     subscriber: Subscriber | None
     _value: float
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     def sync_callback(self, message: tuple) -> None: ...
     def _generic_message(self, message: tuple) -> None: ...

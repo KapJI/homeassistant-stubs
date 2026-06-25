@@ -6,6 +6,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -18,8 +19,11 @@ class HWEnergyNumberEntity(HomeWizardEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator) -> None: ...
     @homewizard_exception_handler
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

@@ -5,6 +5,11 @@ DOMAIN: Final[str]
 ATTR_CHANGED_BY: Final[str]
 ATTR_CODE_ARM_REQUIRED: Final[str]
 
+class AlarmControlPanelEntityStateAttribute(StrEnum):
+    CODE_FORMAT = 'code_format'
+    CHANGED_BY = 'changed_by'
+    CODE_ARM_REQUIRED = 'code_arm_required'
+
 class AlarmControlPanelState(StrEnum):
     DISARMED = 'disarmed'
     ARMED_HOME = 'armed_home'

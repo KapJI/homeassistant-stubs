@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from telegram import Bot as Bot
 from telegram.ext import CallbackContext as CallbackContext
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -15,6 +16,7 @@ class PollBot(BaseTelegramBot):
     bot: Incomplete
     application: Incomplete
     def __init__(self, hass: HomeAssistant, bot: Bot, config: TelegramBotConfigEntry) -> None: ...
+    @override
     async def shutdown(self) -> None: ...
     async def start_polling(self) -> None: ...
     async def stop_polling(self) -> None: ...

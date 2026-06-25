@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyrituals import Diffuser as Diffuser
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RitualsConfigEntr
 class RitualsBinarySensorEntity(DiffuserEntity, BinarySensorEntity):
     entity_description: RitualsBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool: ...

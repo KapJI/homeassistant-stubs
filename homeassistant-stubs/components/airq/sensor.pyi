@@ -8,6 +8,7 @@ from homeassistant.const import CONCENTRATION_GRAMS_PER_CUBIC_METER as CONCENTRA
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -27,4 +28,5 @@ class AirQSensor(CoordinatorEntity, SensorEntity):
     _attr_native_value: Incomplete
     def __init__(self, coordinator: AirQCoordinator, description: AirQEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

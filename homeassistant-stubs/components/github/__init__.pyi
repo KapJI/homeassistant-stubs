@@ -1,5 +1,5 @@
 from .const import CONF_REPOSITORIES as CONF_REPOSITORIES, CONF_REPOSITORY as CONF_REPOSITORY, DOMAIN as DOMAIN, SUBENTRY_TYPE_REPOSITORY as SUBENTRY_TYPE_REPOSITORY
-from .coordinator import GitHubDataUpdateCoordinator as GitHubDataUpdateCoordinator, GithubConfigEntry as GithubConfigEntry
+from .coordinator import GitHubDataUpdateCoordinator as GitHubDataUpdateCoordinator, GitHubRuntimeData as GitHubRuntimeData, GitHubUserDataUpdateCoordinator as GitHubUserDataUpdateCoordinator, GithubConfigEntry as GithubConfigEntry
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

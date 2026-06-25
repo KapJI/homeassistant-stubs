@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from ttn_client import TTNSensorValue
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -15,4 +16,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: TTNConfigEntry, async_ad
 class TtnDataSensor(TTNEntity, SensorEntity):
     _ttn_value: TTNSensorValue
     @property
+    @override
     def native_value(self) -> StateType: ...

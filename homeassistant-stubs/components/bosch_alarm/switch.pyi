@@ -10,7 +10,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True, frozen=True)
 class BoschAlarmSwitchEntityDescription(SwitchEntityDescription):
@@ -29,8 +29,11 @@ class PanelDoorEntity(BoschAlarmDoorEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, door_id: int, unique_id: str, entity_description: BoschAlarmSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class PanelOutputEntity(BoschAlarmOutputEntity, SwitchEntity):
@@ -38,6 +41,9 @@ class PanelOutputEntity(BoschAlarmOutputEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, output_id: int, unique_id: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

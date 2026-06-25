@@ -12,7 +12,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Generic, TypeVar
+from typing import Generic, TypeVar, override
 
 @dataclass(kw_only=True, slots=True)
 class RadarrData:
@@ -38,23 +38,29 @@ class RadarrDataUpdateCoordinator(DataUpdateCoordinator[T], ABC, Generic[T], met
     api_client: Incomplete
     host_configuration: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RadarrConfigEntry, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
+    @override
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _fetch_data(self) -> T: ...
 
 class StatusDataUpdateCoordinator(RadarrDataUpdateCoordinator[SystemStatus]):
+    @override
     async def _fetch_data(self) -> SystemStatus: ...
 
 class DiskSpaceDataUpdateCoordinator(RadarrDataUpdateCoordinator[list[RootFolder]]):
+    @override
     async def _fetch_data(self) -> list[RootFolder]: ...
 
 class HealthDataUpdateCoordinator(RadarrDataUpdateCoordinator[list[Health]]):
+    @override
     async def _fetch_data(self) -> list[Health]: ...
 
 class MoviesDataUpdateCoordinator(RadarrDataUpdateCoordinator[int]):
+    @override
     async def _fetch_data(self) -> int: ...
 
 class QueueDataUpdateCoordinator(RadarrDataUpdateCoordinator[int]):
+    @override
     async def _fetch_data(self) -> int: ...
 
 class CalendarUpdateCoordinator(RadarrDataUpdateCoordinator[None]):
@@ -62,6 +68,7 @@ class CalendarUpdateCoordinator(RadarrDataUpdateCoordinator[None]):
     event: RadarrEvent | None
     _events: list[RadarrEvent]
     def __init__(self, hass: HomeAssistant, config_entry: RadarrConfigEntry, host_configuration: PyArrHostConfiguration, api_client: RadarrClient) -> None: ...
+    @override
     async def _fetch_data(self) -> None: ...
     async def async_get_events(self, start_date: datetime, end_date: datetime) -> list[RadarrEvent]: ...
     async def _async_get_events(self, _date: date) -> None: ...

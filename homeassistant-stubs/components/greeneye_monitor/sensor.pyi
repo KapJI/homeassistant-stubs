@@ -6,7 +6,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_SENSORS as CONF_SEN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DATA_PULSES: str
 DATA_WATT_SECONDS: str
@@ -25,7 +25,9 @@ class GEMSensor(SensorEntity):
     _number: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, name: str, sensor_type: str, sensor: UnderlyingSensorType, number: int) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class CurrentSensor(GEMSensor):
@@ -35,8 +37,10 @@ class CurrentSensor(GEMSensor):
     _net_metering: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str, net_metering: bool) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class PulseCounter(GEMSensor):
@@ -47,10 +51,12 @@ class PulseCounter(GEMSensor):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str, counted_quantity: str, time_unit: str, counted_quantity_per_pulse: float) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
     def _seconds_per_time_unit(self) -> int: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
 
 class TemperatureSensor(GEMSensor):
@@ -59,6 +65,7 @@ class TemperatureSensor(GEMSensor):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str, unit: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
 
 class VoltageSensor(GEMSensor):
@@ -67,4 +74,5 @@ class VoltageSensor(GEMSensor):
     _sensor: greeneye.monitor.VoltageSensor
     def __init__(self, monitor: greeneye.monitor.Monitor, number: int, name: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

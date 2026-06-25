@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.const import CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, STATE_OK as STATE_OK
 from homeassistant.core import ServiceCall as ServiceCall
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class RememberTheMilkEntity(Entity):
     _name: Incomplete
@@ -18,6 +19,8 @@ class RememberTheMilkEntity(Entity):
     def create_task(self, call: ServiceCall) -> None: ...
     def complete_task(self, call: ServiceCall) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def state(self) -> str: ...

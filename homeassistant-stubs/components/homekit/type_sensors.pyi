@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, STATE_HOME as STATE_HOME, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import State as State, callback as callback
 from pyhap.service import Service as Service
-from typing import Any, NamedTuple
+from typing import Any, NamedTuple, override
 
 _LOGGER: Incomplete
 
@@ -22,12 +22,14 @@ class TemperatureSensor(HomeAccessory):
     char_temp: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class HumiditySensor(HomeAccessory):
     char_humidity: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class AirQualitySensor(HomeAccessory):
@@ -36,34 +38,43 @@ class AirQualitySensor(HomeAccessory):
     char_density: Incomplete
     def create_services(self) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class PM10Sensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
+    @override
     def create_services(self) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class PM25Sensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
+    @override
     def create_services(self) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class NitrogenDioxideSensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
+    @override
     def create_services(self) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class VolatileOrganicCompoundsSensor(AirQualitySensor):
     char_quality: Incomplete
     char_density: Incomplete
+    @override
     def create_services(self) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class CarbonMonoxideSensor(HomeAccessory):
@@ -73,6 +84,7 @@ class CarbonMonoxideSensor(HomeAccessory):
     char_detected: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class CarbonDioxideSensor(HomeAccessory):
@@ -82,12 +94,14 @@ class CarbonDioxideSensor(HomeAccessory):
     char_detected: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class LightSensor(HomeAccessory):
     char_light: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...
 
 class BinarySensor(HomeAccessory):
@@ -95,4 +109,5 @@ class BinarySensor(HomeAccessory):
     char_detected: Incomplete
     def __init__(self, *args: Any) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...

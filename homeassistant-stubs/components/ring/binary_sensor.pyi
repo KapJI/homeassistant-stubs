@@ -10,7 +10,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_at as async_call_at
 from ring_doorbell import RingCapability, RingEvent as RingEvent
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 PARALLEL_UPDATES: int
 
@@ -35,9 +35,13 @@ class RingBinarySensor(RingBaseEntity[RingListenCoordinator, RingDeviceT], Binar
     def _async_cancel_event(self, _now: Any) -> None: ...
     def _get_coordinator_alert(self) -> RingEvent | None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_update(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

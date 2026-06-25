@@ -6,6 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -13,4 +14,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: UptimeRobotConfigEntry, 
 
 class UptimeRobotBinarySensor(UptimeRobotEntity, BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool: ...

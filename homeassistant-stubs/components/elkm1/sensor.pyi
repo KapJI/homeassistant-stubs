@@ -17,7 +17,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any
+from typing import Any, override
 
 SERVICE_SENSOR_COUNTER_REFRESH: str
 SERVICE_SENSOR_COUNTER_SET: str
@@ -42,6 +42,7 @@ class ElkCounter(ElkSensor):
     _attr_icon: str
     _element: Counter
     _attr_native_value: Incomplete
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
 
 class ElkKeypad(ElkSensor):
@@ -50,10 +51,13 @@ class ElkKeypad(ElkSensor):
     @property
     def temperature_unit(self) -> str: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     _attr_native_value: Incomplete
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
 
 class ElkPanel(ElkSensor):
@@ -61,31 +65,41 @@ class ElkPanel(ElkSensor):
     _attr_entity_category: Incomplete
     _element: Panel
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     _attr_native_value: Incomplete
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
 
 class ElkSetting(ElkSensor):
     _attr_translation_key: str
     _element: Setting
     _attr_native_value: Incomplete
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
 
 class ElkZone(ElkSensor):
     _element: Zone
     @property
+    @override
     def icon(self) -> str: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
     def temperature_unit(self) -> str | None: ...
     @property
+    @override
     def device_class(self) -> SensorDeviceClass | None: ...
     @property
+    @override
     def state_class(self) -> SensorStateClass | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     _attr_native_value: Incomplete
+    @override
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...

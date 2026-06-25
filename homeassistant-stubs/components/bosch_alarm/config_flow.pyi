@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, C
 from homeassistant.const import CONF_CODE as CONF_CODE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from typing import Any, Self
+from typing import Any, Self, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -21,8 +21,11 @@ class BoschAlarmConfigFlow(ConfigFlow, domain=DOMAIN):
     mac: str | None
     host: str | None
     def __init__(self) -> None: ...
+    @override
     def is_matching(self, other_flow: Self) -> bool: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

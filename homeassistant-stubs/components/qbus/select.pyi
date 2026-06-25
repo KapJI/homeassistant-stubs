@@ -8,6 +8,7 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttStepperState
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -20,6 +21,8 @@ class QbusStepper(QbusEntity, SelectEntity):
     _value_to_name: dict[int, str]
     _attr_options: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_current_option: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttStepperState) -> None: ...

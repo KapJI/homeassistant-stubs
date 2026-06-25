@@ -6,6 +6,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from pyatv.interface import AppleTV as AppleTVInterface
+from typing import override
 
 class AppleTVEntity(Entity):
     _attr_should_poll: bool
@@ -15,6 +16,7 @@ class AppleTVEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, name: str, identifier: str, manager: AppleTVManager) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def async_device_connected(self, atv: AppleTVInterface) -> None: ...
     def async_device_disconnected(self) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.components.media_player import MediaClass as MediaClass, Medi
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.components.stream import create_stream as create_stream
 from homeassistant.core import HomeAssistant as HomeAssistant
+from typing import override
 
 _LOGGER: Incomplete
 VOD_SPLIT_TIME: Incomplete
@@ -18,7 +19,9 @@ class ReolinkVODMediaSource(MediaSource):
     name: str
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     async def _async_generate_root(self) -> BrowseMediaSource: ...
     async def _async_generate_resolution_select(self, config_entry_id: str, channel: int) -> BrowseMediaSource: ...

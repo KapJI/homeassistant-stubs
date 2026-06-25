@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from kasa import Credentials as Credentials, Device as Device
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -28,6 +29,7 @@ class TPLinkDataUpdateCoordinator(DataUpdateCoordinator[None]):
     removed_child_device_ids: set[str]
     _child_coordinators: dict[str, TPLinkDataUpdateCoordinator]
     def __init__(self, hass: HomeAssistant, device: Device, update_interval: timedelta, config_entry: TPLinkConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
     async def _process_child_devices(self) -> None: ...
     def get_child_coordinator(self, child: Device, platform_domain: str) -> TPLinkDataUpdateCoordinator: ...

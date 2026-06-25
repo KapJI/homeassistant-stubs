@@ -5,6 +5,7 @@ from homeassistant.const import ATTR_SW_VERSION as ATTR_SW_VERSION
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class RadarrEntity(CoordinatorEntity[RadarrDataUpdateCoordinator[T]]):
     _attr_has_entity_name: bool
@@ -13,4 +14,5 @@ class RadarrEntity(CoordinatorEntity[RadarrDataUpdateCoordinator[T]]):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: RadarrDataUpdateCoordinator[T], description: EntityDescription) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

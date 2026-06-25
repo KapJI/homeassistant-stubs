@@ -5,6 +5,7 @@ from homeassistant.const import ATTR_NAME as ATTR_NAME, ATTR_VIA_DEVICE as ATTR_
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, CONNECTION_ZIGBEE as CONNECTION_ZIGBEE, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from plugwise import GwEntityData as GwEntityData
+from typing import override
 
 class PlugwiseEntity(CoordinatorEntity[PlugwiseDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -12,6 +13,7 @@ class PlugwiseEntity(CoordinatorEntity[PlugwiseDataUpdateCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def device(self) -> GwEntityData: ...

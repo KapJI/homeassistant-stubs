@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 STATE_SCHEDULE: str
@@ -38,23 +38,35 @@ class CompitWaterHeater(CoordinatorEntity[CompitDataUpdateCoordinator], WaterHea
     _attr_device_info: Incomplete
     def __init__(self, coordinator: CompitDataUpdateCoordinator, device_id: int, entity_description: CompitWaterHeaterEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @cached_property
+    @override
     def min_temp(self) -> float: ...
     @cached_property
+    @override
     def max_temp(self) -> float: ...
     @cached_property
+    @override
     def supported_features(self) -> WaterHeaterEntityFeature: ...
     @cached_property
+    @override
     def operation_list(self) -> list[str] | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     _attr_target_temperature: Incomplete
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
     @property
+    @override
     def current_operation(self) -> str | None: ...

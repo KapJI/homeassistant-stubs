@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -25,21 +25,30 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectSwitch(HomeConnectEntity, SwitchEntity):
     _attr_available: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def update_native_value(self) -> None: ...
 
 class HomeConnectPowerSwitch(HomeConnectEntity, SwitchEntity):
     power_off_state: str | None | UndefinedType
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def update_native_value(self) -> None: ...
     async def async_fetch_power_off_state(self) -> None: ...
 
 class HomeConnectSwitchOptionEntity(HomeConnectOptionEntity, SwitchEntity):
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def update_native_value(self) -> None: ...

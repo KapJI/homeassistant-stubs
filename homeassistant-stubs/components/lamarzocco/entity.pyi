@@ -7,6 +7,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_MAC as CONF_M
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class LaMarzoccoEntityDescription(EntityDescription):
@@ -21,12 +22,15 @@ class LaMarzoccoBaseEntity(CoordinatorEntity[LaMarzoccoUpdateCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, key: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class LaMarzoccoEntity(LaMarzoccoBaseEntity):
     entity_description: LaMarzoccoEntityDescription
     @property
+    @override
     def available(self) -> bool: ...
     bluetooth_coordinator: Incomplete
     def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, entity_description: LaMarzoccoEntityDescription, bluetooth_coordinator: LaMarzoccoBluetoothUpdateCoordinator | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

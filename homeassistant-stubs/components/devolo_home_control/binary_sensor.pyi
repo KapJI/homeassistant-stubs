@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 DEVICE_CLASS_MAPPING: Incomplete
 
@@ -21,6 +22,7 @@ class DevoloBinaryDeviceEntity(DevoloDeviceEntity, BinarySensorEntity):
     _attr_entity_registry_enabled_default: bool
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class DevoloRemoteControl(DevoloDeviceEntity, BinarySensorEntity):
@@ -30,4 +32,5 @@ class DevoloRemoteControl(DevoloDeviceEntity, BinarySensorEntity):
     _attr_translation_key: str
     _attr_translation_placeholders: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str, key: int) -> None: ...
+    @override
     def sync_callback(self, message: tuple) -> None: ...

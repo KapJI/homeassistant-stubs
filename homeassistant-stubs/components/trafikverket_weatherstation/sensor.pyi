@@ -13,6 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pytrafikverket.models import WeatherStationInfoModel as WeatherStationInfoModel
+from typing import override
 
 PRECIPITATION_TYPE: Incomplete
 PARALLEL_UPDATES: int
@@ -35,4 +36,5 @@ class TrafikverketWeatherStation(CoordinatorEntity[TVDataUpdateCoordinator], Sen
     _attr_device_info: Incomplete
     def __init__(self, coordinator: TVDataUpdateCoordinator, entry_id: str, sensor_station: str, description: TrafikverketSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

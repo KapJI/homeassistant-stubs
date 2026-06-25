@@ -7,6 +7,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,6 +17,7 @@ class StarlinkButtonEntityDescription(ButtonEntityDescription):
 
 class StarlinkButtonEntity(StarlinkEntity, ButtonEntity):
     entity_description: StarlinkButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
 
 BUTTONS: Incomplete

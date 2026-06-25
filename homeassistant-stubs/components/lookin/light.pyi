@@ -6,7 +6,7 @@ from homeassistant.components.light import ColorMode as ColorMode, LightEntity a
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 LOGGER: Incomplete
 
@@ -16,6 +16,9 @@ class LookinLightEntity(LookinPowerPushRemoteEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _update_from_status(self, status: str) -> None: ...

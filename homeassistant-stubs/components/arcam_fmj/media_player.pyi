@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -19,45 +19,67 @@ class ArcamFmj(ArcamFmjEntity, MediaPlayerEntity):
     _attr_supported_features: Incomplete
     def __init__(self, coordinator: ArcamFmjCoordinator) -> None: ...
     @property
+    @override
     def state(self) -> MediaPlayerState | None: ...
     @convert_exception
+    @override
     async def async_mute_volume(self, mute: bool) -> None: ...
     @convert_exception
+    @override
     async def async_select_source(self, source: str) -> None: ...
     @convert_exception
+    @override
     async def async_select_sound_mode(self, sound_mode: str) -> None: ...
     @convert_exception
+    @override
     async def async_set_volume_level(self, volume: float) -> None: ...
     @convert_exception
+    @override
     async def async_volume_up(self) -> None: ...
     @convert_exception
+    @override
     async def async_volume_down(self) -> None: ...
     @convert_exception
+    @override
     async def async_turn_on(self) -> None: ...
     @convert_exception
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     @convert_exception
+    @override
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
     @property
+    @override
     def source(self) -> str | None: ...
     @property
+    @override
     def source_list(self) -> list[str]: ...
     @property
+    @override
     def sound_mode(self) -> str | None: ...
     @property
+    @override
     def sound_mode_list(self) -> list[str] | None: ...
     @property
+    @override
     def is_volume_muted(self) -> bool | None: ...
     @property
+    @override
     def volume_level(self) -> float | None: ...
     @property
+    @override
     def media_content_type(self) -> MediaType | None: ...
     @property
+    @override
     def media_content_id(self) -> str | None: ...
     @property
+    @override
     def media_channel(self) -> str | None: ...
     @property
+    @override
     def media_artist(self) -> str | None: ...
     @property
+    @override
     def media_title(self) -> str | None: ...

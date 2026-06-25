@@ -6,7 +6,7 @@ from datetime import datetime
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
 from homeassistant.helpers.update_coordinator import BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
-from typing import Any
+from typing import Any, override
 from webio_api import WebioAPI as WebioAPI
 
 _LOGGER: Incomplete
@@ -35,6 +35,7 @@ class NASwebCoordinator(BaseDataUpdateCoordinatorProtocol):
     def __init__(self, hass: HomeAssistant, webio_api: WebioAPI, name: str = 'NASweb[default]') -> None: ...
     def is_connection_confirmed(self) -> bool: ...
     @callback
+    @override
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...
     data: Incomplete
     last_update: Incomplete

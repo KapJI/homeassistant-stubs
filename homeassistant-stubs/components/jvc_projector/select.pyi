@@ -6,7 +6,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jvcprojector import Command as Command
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class JvcProjectorSelectDescription(SelectEntityDescription):
@@ -25,7 +25,10 @@ class JvcProjectorSelectEntity(JvcProjectorEntity, SelectEntity):
     _options_map: dict[str, str]
     def __init__(self, coordinator: JvcProjectorDataUpdateCoordinator, description: JvcProjectorSelectDescription) -> None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

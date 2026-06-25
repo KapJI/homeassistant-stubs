@@ -7,7 +7,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 
@@ -22,6 +22,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: IdasenDeskConfigEntry, a
 class IdasenDeskButton(IdasenDeskEntity, ButtonEntity):
     entity_description: IdasenDeskButtonDescription
     def __init__(self, coordinator: IdasenDeskCoordinator, description: IdasenDeskButtonDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

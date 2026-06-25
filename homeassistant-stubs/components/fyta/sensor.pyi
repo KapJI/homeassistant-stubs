@@ -10,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class FytaSensorEntityDescription(SensorEntityDescription):
@@ -30,9 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: FytaConfigEntry, async_a
 class FytaPlantSensor(FytaPlantEntity, SensorEntity):
     entity_description: FytaSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class FytaPlantMeasurementSensor(FytaPlantSensor):
     entity_description: FytaMeasurementSensorEntityDescription
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, float | None]: ...

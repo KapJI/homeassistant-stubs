@@ -6,7 +6,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device, Feature
-from typing import Final
+from typing import Final, override
 
 _LOGGER: Incomplete
 
@@ -25,7 +25,9 @@ class TPLinkNumberEntity(CoordinatedTPLinkFeatureEntity, NumberEntity):
     _attr_native_max_value: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, *, feature: Feature, description: TPLinkFeatureEntityDescription, parent: Device | None = None) -> None: ...
     @async_refresh_after
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...

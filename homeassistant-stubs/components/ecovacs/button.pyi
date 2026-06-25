@@ -11,6 +11,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsButtonEntityDescription(ButtonEntityDescription, EcovacsCapabilityEntityDescription): ...
@@ -31,12 +32,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntr
 
 class EcovacsButtonEntity(EcovacsDescriptionEntity[CapabilityExecute], ButtonEntity):
     entity_description: EcovacsLifespanButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
 
 class EcovacsResetLifespanButtonEntity(EcovacsDescriptionEntity[CapabilityLifeSpan], ButtonEntity):
     entity_description: EcovacsLifespanButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
 
 class EcovacsStationActionButtonEntity(EcovacsDescriptionEntity[CapabilityExecuteTypes[StationAction]], ButtonEntity):
     entity_description: EcovacsStationActionButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...

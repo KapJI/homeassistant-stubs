@@ -21,7 +21,7 @@ from homeassistant.helpers import discovery as discovery
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send, dispatcher_send as dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_RESOLUTION: str
@@ -63,9 +63,12 @@ class AmcrestChecker(ApiWrapper):
     def async_available_flag(self) -> asyncio.Event: ...
     @callback
     def _async_start_recovery(self) -> None: ...
+    @override
     def command(self, *args: Any, **kwargs: Any) -> Any: ...
+    @override
     async def async_command(self, *args: Any, **kwargs: Any) -> httpx.Response: ...
     @asynccontextmanager
+    @override
     async def async_stream_command(self, *args: Any, **kwargs: Any) -> AsyncGenerator[httpx.Response]: ...
     @asynccontextmanager
     async def _async_command_wrapper(self) -> AsyncGenerator[None]: ...

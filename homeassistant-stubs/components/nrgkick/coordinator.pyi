@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from nrgkick_api import NRGkickAPI as NRGkickAPI
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type NRGkickConfigEntry = ConfigEntry[NRGkickDataUpdateCoordinator]
@@ -21,4 +21,5 @@ class NRGkickDataUpdateCoordinator(DataUpdateCoordinator[NRGkickData]):
     config_entry: NRGkickConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, api: NRGkickAPI, entry: NRGkickConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> NRGkickData: ...

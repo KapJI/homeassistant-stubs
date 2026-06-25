@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,12 +28,15 @@ class ModbusRegisterSensor(ModbusStructEntity, RestoreSensor, SensorEntity):
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, entry: dict[str, Any], slave_count: int) -> None: ...
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: bool
+    @override
     async def _async_update(self) -> None: ...
 
 class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float | None] | None]], RestoreSensor, SensorEntity):
     @property
+    @override
     def available(self) -> bool: ...
     _idx: Incomplete
     _attr_name: Incomplete
@@ -44,6 +47,8 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[float | None] | N
     _attr_available: bool
     def __init__(self, coordinator: DataUpdateCoordinator[list[float | None] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

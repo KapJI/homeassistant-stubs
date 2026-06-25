@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from mastodon.Mastodon import Account as Account
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,4 +33,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: MastodonConfigEntry, asy
 class MastodonBinarySensorEntity(MastodonEntity, BinarySensorEntity):
     entity_description: MastodonBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...

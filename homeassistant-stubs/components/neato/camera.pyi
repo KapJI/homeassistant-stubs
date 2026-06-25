@@ -7,7 +7,7 @@ from homeassistant.components.camera import Camera as Camera
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pybotvac.robot import Robot as Robot
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -26,9 +26,12 @@ class NeatoCleaningMap(NeatoEntity, Camera):
     _image_url: str | None
     _image: bytes | None
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: dict[str, Any]) -> None: ...
+    @override
     def camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     def update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...

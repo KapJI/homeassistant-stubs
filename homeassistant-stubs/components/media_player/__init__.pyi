@@ -3,7 +3,7 @@ import collections
 import datetime as dt
 import logging
 from .browse_media import BrowseMedia as BrowseMedia, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery, async_process_play_media_url as async_process_play_media_url
-from .const import ATTR_APP_ID as ATTR_APP_ID, ATTR_APP_NAME as ATTR_APP_NAME, ATTR_ENTITY_PICTURE_LOCAL as ATTR_ENTITY_PICTURE_LOCAL, ATTR_GROUP_MEMBERS as ATTR_GROUP_MEMBERS, ATTR_INPUT_SOURCE as ATTR_INPUT_SOURCE, ATTR_INPUT_SOURCE_LIST as ATTR_INPUT_SOURCE_LIST, ATTR_MEDIA_ALBUM_ARTIST as ATTR_MEDIA_ALBUM_ARTIST, ATTR_MEDIA_ALBUM_NAME as ATTR_MEDIA_ALBUM_NAME, ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_ARTIST as ATTR_MEDIA_ARTIST, ATTR_MEDIA_CHANNEL as ATTR_MEDIA_CHANNEL, ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, ATTR_MEDIA_DURATION as ATTR_MEDIA_DURATION, ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_EPISODE as ATTR_MEDIA_EPISODE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, ATTR_MEDIA_FILTER_CLASSES as ATTR_MEDIA_FILTER_CLASSES, ATTR_MEDIA_PLAYLIST as ATTR_MEDIA_PLAYLIST, ATTR_MEDIA_POSITION as ATTR_MEDIA_POSITION, ATTR_MEDIA_POSITION_UPDATED_AT as ATTR_MEDIA_POSITION_UPDATED_AT, ATTR_MEDIA_REPEAT as ATTR_MEDIA_REPEAT, ATTR_MEDIA_SEARCH_QUERY as ATTR_MEDIA_SEARCH_QUERY, ATTR_MEDIA_SEASON as ATTR_MEDIA_SEASON, ATTR_MEDIA_SEEK_POSITION as ATTR_MEDIA_SEEK_POSITION, ATTR_MEDIA_SERIES_TITLE as ATTR_MEDIA_SERIES_TITLE, ATTR_MEDIA_SHUFFLE as ATTR_MEDIA_SHUFFLE, ATTR_MEDIA_TITLE as ATTR_MEDIA_TITLE, ATTR_MEDIA_TRACK as ATTR_MEDIA_TRACK, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED, ATTR_SOUND_MODE as ATTR_SOUND_MODE, ATTR_SOUND_MODE_LIST as ATTR_SOUND_MODE_LIST, CONTENT_AUTH_EXPIRY_TIME as CONTENT_AUTH_EXPIRY_TIME, DOMAIN as DOMAIN, INTENT_MEDIA_SEARCH_AND_PLAY as INTENT_MEDIA_SEARCH_AND_PLAY, MediaClass as MediaClass, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, REPEAT_MODES as REPEAT_MODES, RepeatMode as RepeatMode, SERVICE_BROWSE_MEDIA as SERVICE_BROWSE_MEDIA, SERVICE_CLEAR_PLAYLIST as SERVICE_CLEAR_PLAYLIST, SERVICE_JOIN as SERVICE_JOIN, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA, SERVICE_SEARCH_MEDIA as SERVICE_SEARCH_MEDIA, SERVICE_SELECT_SOUND_MODE as SERVICE_SELECT_SOUND_MODE, SERVICE_SELECT_SOURCE as SERVICE_SELECT_SOURCE, SERVICE_UNJOIN as SERVICE_UNJOIN
+from .const import ATTR_APP_ID as ATTR_APP_ID, ATTR_APP_NAME as ATTR_APP_NAME, ATTR_ENTITY_PICTURE_LOCAL as ATTR_ENTITY_PICTURE_LOCAL, ATTR_GROUP_MEMBERS as ATTR_GROUP_MEMBERS, ATTR_INPUT_SOURCE as ATTR_INPUT_SOURCE, ATTR_INPUT_SOURCE_LIST as ATTR_INPUT_SOURCE_LIST, ATTR_MEDIA_ALBUM_ARTIST as ATTR_MEDIA_ALBUM_ARTIST, ATTR_MEDIA_ALBUM_NAME as ATTR_MEDIA_ALBUM_NAME, ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_ARTIST as ATTR_MEDIA_ARTIST, ATTR_MEDIA_CHANNEL as ATTR_MEDIA_CHANNEL, ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, ATTR_MEDIA_DURATION as ATTR_MEDIA_DURATION, ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_EPISODE as ATTR_MEDIA_EPISODE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, ATTR_MEDIA_FILTER_CLASSES as ATTR_MEDIA_FILTER_CLASSES, ATTR_MEDIA_PLAYLIST as ATTR_MEDIA_PLAYLIST, ATTR_MEDIA_POSITION as ATTR_MEDIA_POSITION, ATTR_MEDIA_POSITION_UPDATED_AT as ATTR_MEDIA_POSITION_UPDATED_AT, ATTR_MEDIA_REPEAT as ATTR_MEDIA_REPEAT, ATTR_MEDIA_SEARCH_QUERY as ATTR_MEDIA_SEARCH_QUERY, ATTR_MEDIA_SEASON as ATTR_MEDIA_SEASON, ATTR_MEDIA_SEEK_POSITION as ATTR_MEDIA_SEEK_POSITION, ATTR_MEDIA_SERIES_TITLE as ATTR_MEDIA_SERIES_TITLE, ATTR_MEDIA_SHUFFLE as ATTR_MEDIA_SHUFFLE, ATTR_MEDIA_TITLE as ATTR_MEDIA_TITLE, ATTR_MEDIA_TRACK as ATTR_MEDIA_TRACK, ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED, ATTR_SOUND_MODE as ATTR_SOUND_MODE, ATTR_SOUND_MODE_LIST as ATTR_SOUND_MODE_LIST, CONTENT_AUTH_EXPIRY_TIME as CONTENT_AUTH_EXPIRY_TIME, DOMAIN as DOMAIN, INTENT_MEDIA_SEARCH_AND_PLAY as INTENT_MEDIA_SEARCH_AND_PLAY, MediaClass as MediaClass, MediaPlayerEntityCapabilityAttribute as MediaPlayerEntityCapabilityAttribute, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerEntityStateAttribute as MediaPlayerEntityStateAttribute, MediaPlayerState as MediaPlayerState, MediaType as MediaType, REPEAT_MODES as REPEAT_MODES, RepeatMode as RepeatMode, SERVICE_BROWSE_MEDIA as SERVICE_BROWSE_MEDIA, SERVICE_CLEAR_PLAYLIST as SERVICE_CLEAR_PLAYLIST, SERVICE_JOIN as SERVICE_JOIN, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA, SERVICE_SEARCH_MEDIA as SERVICE_SEARCH_MEDIA, SERVICE_SELECT_SOUND_MODE as SERVICE_SELECT_SOUND_MODE, SERVICE_SELECT_SOURCE as SERVICE_SELECT_SOURCE, SERVICE_UNJOIN as SERVICE_UNJOIN
 from .errors import BrowseError as BrowseError, SearchError as SearchError
 from _typeshed import Incomplete
 from aiohttp import web
@@ -24,7 +24,7 @@ from homeassistant.helpers.network import get_url as get_url
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, Final, Required, TypedDict, final
+from typing import Any, Final, Required, TypedDict, final, override
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[MediaPlayerEntity]]
@@ -49,6 +49,7 @@ class MediaPlayerDeviceClass(StrEnum):
     TV = 'tv'
     SPEAKER = 'speaker'
     RECEIVER = 'receiver'
+    PROJECTOR = 'projector'
 
 DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
@@ -122,8 +123,10 @@ class MediaPlayerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_volume_level: float | None
     _attr_volume_step: float
     @cached_property
+    @override
     def device_class(self) -> MediaPlayerDeviceClass | None: ...
     @cached_property
+    @override
     def state(self) -> MediaPlayerState | None: ...
     @property
     def access_token(self) -> str: ...
@@ -190,6 +193,7 @@ class MediaPlayerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def group_members(self) -> list[str] | None: ...
     @cached_property
+    @override
     def supported_features(self) -> MediaPlayerEntityFeature: ...
     def turn_on(self) -> None: ...
     async def async_turn_on(self) -> None: ...
@@ -270,13 +274,16 @@ class MediaPlayerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def async_volume_down(self) -> None: ...
     async def async_media_play_pause(self) -> None: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
     @property
     def media_image_local(self) -> str | None: ...
     @property
+    @override
     def capability_attributes(self) -> dict[str, Any]: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     async def async_internal_search_media(self, search_query: str, media_content_type: MediaType | str | None = None, media_content_id: str | None = None, media_filter_classes: list[MediaClass] | None = None) -> SearchMedia: ...

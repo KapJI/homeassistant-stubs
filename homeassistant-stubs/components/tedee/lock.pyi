@@ -7,7 +7,7 @@ from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFe
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -17,23 +17,34 @@ class TedeeLockEntity(TedeeEntity, LockEntity):
     _attr_name: Incomplete
     def __init__(self, lock: TedeeLock, coordinator: TedeeApiCoordinator) -> None: ...
     @property
+    @override
     def is_locked(self) -> bool | None: ...
     @property
+    @override
     def is_unlocking(self) -> bool: ...
     @property
+    @override
     def is_open(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @property
+    @override
     def is_locking(self) -> bool: ...
     @property
+    @override
     def is_jammed(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
 
 class TedeeLockWithLatchEntity(TedeeLockEntity):
     @property
+    @override
     def supported_features(self) -> LockEntityFeature: ...
+    @override
     async def async_open(self, **kwargs: Any) -> None: ...

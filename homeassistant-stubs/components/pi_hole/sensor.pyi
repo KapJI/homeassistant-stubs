@@ -8,7 +8,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 SENSOR_TYPES_V6: tuple[SensorEntityDescription, ...]
@@ -21,6 +21,7 @@ class PiHoleSensor(PiHoleEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, api: Hole, coordinator: PiHoleUpdateCoordinator, name: str, server_unique_id: str, description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 def get_nested(data: Mapping[str, Any], key: str) -> float | int: ...

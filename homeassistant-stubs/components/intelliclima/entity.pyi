@@ -5,6 +5,7 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_MODEL
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyintelliclima.intelliclima_types import IntelliClimaC800 as IntelliClimaC800, IntelliClimaECO as IntelliClimaECO
+from typing import override
 
 class IntelliClimaEntity(CoordinatorEntity[IntelliClimaCoordinator]):
     _attr_has_entity_name: bool
@@ -19,4 +20,5 @@ class IntelliClimaECOEntity(IntelliClimaEntity):
     @property
     def _device_data(self) -> IntelliClimaECO: ...
     @property
+    @override
     def available(self) -> bool: ...

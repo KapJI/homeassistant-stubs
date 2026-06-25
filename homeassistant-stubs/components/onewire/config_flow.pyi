@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 DATA_SCHEMA: Incomplete
 
@@ -16,13 +16,17 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any], errors: dict
 class OneWireFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovery_data: dict[str, Any]
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: OneWireConfigEntry) -> OnewireOptionsFlowHandler: ...
 
 class OnewireOptionsFlowHandler(OptionsFlowWithReload):

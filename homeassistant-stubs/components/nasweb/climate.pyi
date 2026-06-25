@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
-from typing import Any
+from typing import Any, override
 from webio_api import Thermostat as NASwebThermostat
 
 CLIMATE_TRANSLATION_KEY: str
@@ -33,6 +33,7 @@ class Thermostat(ClimateEntity, BaseCoordinatorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: BaseDataUpdateCoordinatorProtocol, nasweb_thermostat: NASwebThermostat) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _set_attr_available(self, entity_last_update: float, available: bool | None) -> None: ...
     _attr_current_temperature: Incomplete
@@ -41,9 +42,13 @@ class Thermostat(ClimateEntity, BaseCoordinatorEntity):
     _attr_hvac_mode: Incomplete
     _attr_hvac_action: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     def _get_current_hvac_mode(self) -> HVACMode: ...
     def _get_current_action(self) -> HVACAction: ...
+    @override
     async def async_update(self) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

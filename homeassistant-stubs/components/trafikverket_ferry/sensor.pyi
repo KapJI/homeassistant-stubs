@@ -13,7 +13,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import as_utc as as_utc
-from typing import Any
+from typing import Any, override
 
 ATTR_FROM: str
 ATTR_TO: str
@@ -42,4 +42,5 @@ class FerrySensor(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     _attr_extra_state_attributes: Incomplete
     def _update_attr(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

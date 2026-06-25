@@ -2,6 +2,7 @@ from .util import get_iid_storage_filename_for_entry_id as get_iid_storage_filen
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
+from typing import override
 from uuid import UUID
 
 IID_MANAGER_STORAGE_VERSION: int
@@ -12,6 +13,7 @@ IID_MAX: int
 ACCESSORY_INFORMATION_SERVICE: str
 
 class IIDStorage(Store):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict) -> dict: ...
 
 class AccessoryIIDStorage:

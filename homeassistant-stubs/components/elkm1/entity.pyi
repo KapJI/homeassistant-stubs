@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -27,19 +27,25 @@ class ElkEntity(Entity):
     _attr_name: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: ELKM1Data) -> None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def available(self) -> bool: ...
     def initial_attrs(self) -> dict[str, Any]: ...
     def _element_changed(self, element: Element, changeset: dict[str, Any]) -> None: ...
     @callback
     def _element_callback(self, element: Element, changeset: dict[str, Any]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
 
 class ElkAttachedEntity(ElkEntity):
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

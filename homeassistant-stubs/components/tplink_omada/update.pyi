@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tplink_omada_client.devices import OmadaListDevice as OmadaListDevice
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -20,10 +20,13 @@ class OmadaDeviceUpdate(OmadaDeviceEntity[OmadaFirmwareUpdateCoordinator], Updat
     _omada_client: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: OmadaFirmwareUpdateCoordinator, device: OmadaListDevice) -> None: ...
+    @override
     def release_notes(self) -> str | None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
     _attr_in_progress: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

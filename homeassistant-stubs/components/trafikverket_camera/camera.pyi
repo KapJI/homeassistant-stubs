@@ -8,7 +8,7 @@ from homeassistant.components.camera import Camera as Camera
 from homeassistant.const import ATTR_LOCATION as ATTR_LOCATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -21,8 +21,11 @@ class TVCamera(TrafikverketCameraEntity, Camera):
     coordinator: TVDataUpdateCoordinator
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: TVDataUpdateCoordinator, entry_id: str) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

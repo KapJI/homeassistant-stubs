@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco.devices import LaMarzoccoMachine as LaMarzoccoMachine
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 STEAM_LEVEL_HA_TO_LM: Incomplete
@@ -34,5 +34,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, a
 class LaMarzoccoSelectEntity(LaMarzoccoEntity, SelectEntity):
     entity_description: LaMarzoccoSelectEntityDescription
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -9,7 +9,7 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import TypeVar
+from typing import TypeVar, override
 
 _LOGGER: Incomplete
 T = TypeVar('T', bound=CurrentConditionsResponse | DailyForecastResponse | HourlyForecastResponse | None)
@@ -32,6 +32,7 @@ class GoogleWeatherBaseCoordinator(TimestampDataUpdateCoordinator[T]):
     _data_type_name: Incomplete
     _api_method: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: GoogleWeatherConfigEntry, subentry: ConfigSubentry, data_type_name: str, update_interval: timedelta, api_method: Callable[..., Awaitable[T]]) -> None: ...
+    @override
     async def _async_update_data(self) -> T: ...
 
 class GoogleWeatherCurrentConditionsCoordinator(GoogleWeatherBaseCoordinator[CurrentConditionsResponse]):

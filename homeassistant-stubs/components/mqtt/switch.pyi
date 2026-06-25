@@ -16,7 +16,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
@@ -33,15 +33,21 @@ class MqttSwitch(MqttEntity, SwitchEntity, RestoreEntity):
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> vol.Schema: ...
     _attr_device_class: Incomplete
     _attr_assumed_state: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_on: Incomplete
     @callback
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

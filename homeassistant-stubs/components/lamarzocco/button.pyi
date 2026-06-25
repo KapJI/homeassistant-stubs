@@ -7,7 +7,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 BACKFLUSH_ENABLED_DURATION: int
@@ -24,4 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, a
 
 class LaMarzoccoButtonEntity(LaMarzoccoEntity, ButtonEntity):
     entity_description: LaMarzoccoButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...

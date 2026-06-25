@@ -6,7 +6,7 @@ from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_PASSWOR
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from libpyvivotek.vivotek import VivotekCamera as VivotekCamera
-from typing import Final
+from typing import Final, override
 
 _LOGGER: Incomplete
 DEFAULT_CAMERA_BRAND: str
@@ -28,10 +28,14 @@ class VivotekCam(Camera):
     _attr_name: Incomplete
     _stream_source: Incomplete
     def __init__(self, cam_client: VivotekCamera, stream_source: str, unique_id: str, framerate: int, name: str) -> None: ...
+    @override
     def camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
+    @override
     async def stream_source(self) -> str: ...
     _attr_motion_detection_enabled: Incomplete
+    @override
     def disable_motion_detection(self) -> None: ...
+    @override
     def enable_motion_detection(self) -> None: ...
     _attr_model: Incomplete
     _attr_available: Incomplete

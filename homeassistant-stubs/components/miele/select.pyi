@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -37,7 +37,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: MieleConfigEntry,
 class MieleSelectMode(MieleEntity, SelectEntity):
     entity_description: MieleSelectDescription
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

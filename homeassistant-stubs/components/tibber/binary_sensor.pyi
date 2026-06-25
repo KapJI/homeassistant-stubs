@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from tibber.data_api import TibberDevice as TibberDevice
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -30,8 +31,10 @@ class TibberDataAPIBinarySensor(CoordinatorEntity[TibberDataAPICoordinator], Bin
     _attr_device_info: Incomplete
     def __init__(self, coordinator: TibberDataAPICoordinator, device: TibberDevice, entity_description: TibberBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def device(self) -> dict[str, tibber.data_api.Sensor]: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

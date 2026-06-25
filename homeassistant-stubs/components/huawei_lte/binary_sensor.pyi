@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -18,10 +18,14 @@ class HuaweiLteBaseBinarySensor(HuaweiLteBaseEntityWithDevice, BinarySensorEntit
     item: str
     _raw_state: str | None
     @property
+    @override
     def _device_unique_id(self) -> str: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     _available: bool
+    @override
     async def async_update(self) -> None: ...
 
 CONNECTION_STATE_ATTRIBUTES: Incomplete
@@ -33,17 +37,22 @@ class HuaweiLteMobileConnectionBinarySensor(HuaweiLteBaseBinarySensor):
     key = KEY_MONITORING_STATUS
     item: str
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def assumed_state(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class HuaweiLteBaseWifiStatusBinarySensor(HuaweiLteBaseBinarySensor):
     _attr_device_class: Incomplete
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def assumed_state(self) -> bool: ...
 
 class HuaweiLteWifiStatusBinarySensor(HuaweiLteBaseWifiStatusBinarySensor):
@@ -66,6 +75,8 @@ class HuaweiLteSmsStorageFullBinarySensor(HuaweiLteBaseBinarySensor):
     key = KEY_MONITORING_CHECK_NOTIFICATIONS
     item: str
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def assumed_state(self) -> bool: ...

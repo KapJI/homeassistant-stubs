@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from switchbot_api import Device as Device, Remote as Remote, SmartRadiatorThermostatMode, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 _SWITCHBOT_HVAC_MODES: dict[HVACMode, int]
@@ -30,13 +30,19 @@ class SwitchBotCloudAirConditioner(SwitchBotCloudEntity, ClimateEntity, RestoreE
     _attr_target_temperature_step: int
     _attr_precision: int
     _attr_name: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _get_mode(self, hvac_mode: HVACMode | None) -> int: ...
     async def _do_send_command(self, hvac_mode: HVACMode | None = None, fan_mode: str | None = None, temperature: float | None = None) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_turn_on(self) -> None: ...
 
 RADIATOR_PRESET_MODE_MAP: dict[str, SmartRadiatorThermostatMode]
@@ -54,11 +60,15 @@ class SwitchBotCloudSmartRadiatorThermostat(SwitchBotCloudEntity, ClimateEntity)
     _attr_preset_mode = PRESET_HOME
     _attr_hvac_modes: Incomplete
     _attr_target_temperature: Incomplete
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     _attr_hvac_mode: Incomplete
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_current_temperature: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 @callback

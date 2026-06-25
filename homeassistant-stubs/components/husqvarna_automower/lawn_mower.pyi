@@ -9,6 +9,7 @@ from homeassistant.components.lawn_mower import LawnMowerActivity as LawnMowerAc
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 DOCKED_ACTIVITIES: Incomplete
@@ -24,16 +25,21 @@ class AutomowerLawnMowerEntity(AutomowerBaseEntity, LawnMowerEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def activity(self) -> LawnMowerActivity: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def work_areas(self) -> dict[int, WorkArea] | None: ...
     @handle_sending_exception
+    @override
     async def async_start_mowing(self) -> None: ...
     @handle_sending_exception
+    @override
     async def async_pause(self) -> None: ...
     @handle_sending_exception
+    @override
     async def async_dock(self) -> None: ...
     @handle_sending_exception
     async def async_override_schedule(self, override_mode: str, duration: timedelta) -> None: ...

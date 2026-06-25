@@ -4,7 +4,7 @@ from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, ATTR_TIT
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_FILE: str
@@ -15,4 +15,5 @@ def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Discove
 class AppriseNotificationService(BaseNotificationService):
     apprise: Incomplete
     def __init__(self, a_obj: apprise.Apprise) -> None: ...
+    @override
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 SWITCH_TYPES: Incomplete
 PLATFORM_SCHEMA: Incomplete
@@ -20,7 +20,11 @@ class AquaLogicSwitch(SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, processor: AquaLogicProcessor, switch_type: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

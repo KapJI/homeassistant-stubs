@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 TIME_STEP: int
 
@@ -23,6 +24,7 @@ class TOTPSensor(SensorEntity):
     _otp: Incomplete
     device_info: Incomplete
     def __init__(self, name: str, token: str, entry_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _call_loop(self) -> None: ...

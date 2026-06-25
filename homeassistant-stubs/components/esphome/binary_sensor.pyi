@@ -4,16 +4,20 @@ from aioesphomeapi import BinarySensorInfo, BinarySensorState, EntityInfo as Ent
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
+from typing import override
 
 PARALLEL_UPDATES: int
 
 class EsphomeBinarySensor(EsphomeEntity[BinarySensorInfo, BinarySensorState], BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool | None: ...
     _attr_device_class: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 async_setup_entry: Incomplete

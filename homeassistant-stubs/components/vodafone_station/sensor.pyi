@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 NOT_AVAILABLE: list
@@ -33,4 +33,5 @@ class VodafoneStationSensorEntity(CoordinatorEntity[VodafoneStationRouter], Sens
     _old_state: str | datetime | float | None
     def __init__(self, coordinator: VodafoneStationRouter, description: VodafoneStationEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | datetime | float | None: ...

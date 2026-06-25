@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
@@ -27,4 +27,5 @@ class AdGuardHomeSensor(AdGuardHomeEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, data: AdGuardData, entry: AdGuardConfigEntry, description: AdGuardHomeEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def _adguard_update(self) -> None: ...

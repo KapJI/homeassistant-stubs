@@ -16,6 +16,12 @@ CONF_DURATION: Final[str]
 CAMERA_STREAM_SOURCE_TIMEOUT: Final[int]
 CAMERA_IMAGE_TIMEOUT: Final[int]
 
+class CameraEntityStateAttribute(StrEnum):
+    ACCESS_TOKEN = 'access_token'
+    MODEL_NAME = 'model_name'
+    BRAND = 'brand'
+    MOTION_DETECTION = 'motion_detection'
+
 class CameraState(StrEnum):
     RECORDING = 'recording'
     STREAMING = 'streaming'

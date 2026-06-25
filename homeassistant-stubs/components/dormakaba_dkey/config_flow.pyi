@@ -5,7 +5,7 @@ from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as Blue
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from py_dormakaba_dkey import DKEYLock
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_ASSOCIATE_SCHEMA: Incomplete
@@ -16,7 +16,9 @@ class DormkabaConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_devices: dict[str, BluetoothServiceInfoBleak]
     _discovery_info: BluetoothServiceInfoBleak | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...

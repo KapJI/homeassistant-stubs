@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysenz import Thermostat as Thermostat
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SENZConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -27,16 +27,24 @@ class SENZClimate(CoordinatorEntity[SENZDataUpdateCoordinator], ClimateEntity):
     _attr_device_info: Incomplete
     def __init__(self, thermostat: Thermostat, coordinator: SENZDataUpdateCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def current_temperature(self) -> float: ...
     @property
+    @override
     def target_temperature(self) -> float: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

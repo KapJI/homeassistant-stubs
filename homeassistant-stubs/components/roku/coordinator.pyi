@@ -10,6 +10,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homeassistant.util.dt import utcnow as utcnow
 from rokuecp import Roku
 from rokuecp.models import Device
+from typing import override
 
 REQUEST_REFRESH_DELAY: float
 SCAN_INTERVAL: Incomplete
@@ -24,4 +25,5 @@ class RokuDataUpdateCoordinator(DataUpdateCoordinator[Device]):
     play_media_app_id: Incomplete
     full_update_interval: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RokuConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> Device: ...

@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_TYPE as CONF_TYPE, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LektricoBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -23,4 +23,5 @@ class LektricoBinarySensor(LektricoEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, description: LektricoBinarySensorEntityDescription, coordinator: LektricoDeviceDataUpdateCoordinator, device_name: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

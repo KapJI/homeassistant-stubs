@@ -12,7 +12,7 @@ from homeassistant.helpers.template import Template as Template, _SENTINEL as _S
 from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_PICTURE as CONF_PICTURE, ManualTriggerEntity as ManualTriggerEntity, ManualTriggerSensorEntity as ManualTriggerSensorEntity, TEMPLATE_SENSOR_BASE_SCHEMA as TEMPLATE_SENSOR_BASE_SCHEMA, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 TRIGGER_ENTITY_OPTIONS: Incomplete
@@ -31,12 +31,16 @@ class ScrapeSensor(CoordinatorEntity[ScrapeCoordinator], ManualTriggerSensorEnti
     _attr_device_info: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: ScrapeCoordinator, trigger_entity_config: ConfigType, select: str, attr: str | None, index: int, value_template: ValueTemplate | None, yaml: bool) -> None: ...
     @property
+    @override
     def name(self) -> str | None: ...
     def _extract_value(self) -> Any: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: bool
     def _async_update_from_rest_data(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

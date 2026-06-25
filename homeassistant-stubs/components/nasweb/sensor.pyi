@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
+from typing import override
 from webio_api import Input as NASwebInput, TempSensor as TempSensor
 
 SENSOR_INPUT_TRANSLATION_KEY: str
@@ -19,8 +20,10 @@ class BaseSensorEntity(SensorEntity, BaseCoordinatorEntity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     def __init__(self, coordinator: BaseDataUpdateCoordinatorProtocol) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _set_attr_available(self, entity_last_update: float, available: bool | None) -> None: ...
+    @override
     async def async_update(self) -> None: ...
 
 class InputStateSensor(BaseSensorEntity):
@@ -34,6 +37,7 @@ class InputStateSensor(BaseSensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: BaseDataUpdateCoordinatorProtocol, nasweb_input: NASwebInput) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 class TemperatureSensor(BaseSensorEntity):
@@ -46,4 +50,5 @@ class TemperatureSensor(BaseSensorEntity):
     def __init__(self, coordinator: BaseDataUpdateCoordinatorProtocol, nasweb_temp_sensor: TempSensor) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

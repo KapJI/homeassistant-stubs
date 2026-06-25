@@ -3,7 +3,7 @@ from .entity import NRGkickEntity as NRGkickEntity, get_nested_dict_value as get
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 TRACKER_KEY: Final[str]
@@ -15,8 +15,11 @@ class NRGkickDeviceTracker(NRGkickEntity, TrackerEntity):
     def __init__(self, coordinator: NRGkickDataUpdateCoordinator) -> None: ...
     def _gps_float(self, key: str) -> float | None: ...
     @property
+    @override
     def latitude(self) -> float | None: ...
     @property
+    @override
     def longitude(self) -> float | None: ...
     @property
+    @override
     def location_accuracy(self) -> float: ...

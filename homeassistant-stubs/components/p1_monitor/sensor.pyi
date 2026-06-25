@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Literal
+from typing import Literal, override
 
 SENSORS_SMARTMETER: tuple[SensorEntityDescription, ...]
 SENSORS_PHASES: tuple[SensorEntityDescription, ...]
@@ -25,4 +25,5 @@ class P1MonitorSensorEntity(CoordinatorEntity[P1MonitorDataUpdateCoordinator], S
     _attr_device_info: Incomplete
     def __init__(self, *, entry: P1MonitorConfigEntry, description: SensorEntityDescription, name: str, service: Literal['smartmeter', 'watermeter', 'phases', 'settings']) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

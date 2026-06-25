@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from technove import Station as TechnoVEStation
-from typing import Any
+from typing import Any, override
 
 async def _set_charging_enabled(coordinator: TechnoVEDataUpdateCoordinator, enabled: bool) -> None: ...
 async def _enable_charging(coordinator: TechnoVEDataUpdateCoordinator) -> None: ...
@@ -32,8 +32,11 @@ class TechnoVESwitchEntity(TechnoVEEntity, SwitchEntity):
     entity_description: TechnoVESwitchDescription
     def __init__(self, coordinator: TechnoVEDataUpdateCoordinator, description: TechnoVESwitchDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @technove_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @technove_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

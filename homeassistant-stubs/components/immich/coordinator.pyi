@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -25,5 +26,7 @@ class ImmichDataUpdateCoordinator(DataUpdateCoordinator[ImmichData]):
     is_admin: bool
     configuration_url: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ImmichConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> ImmichData: ...

@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -25,12 +25,18 @@ class HuaweiLteSelectEntity(HuaweiLteBaseEntityWithDevice, SelectEntity):
     key: Incomplete
     item: Incomplete
     def __init__(self, router: Router, entity_description: HuaweiSelectEntityDescription, key: str, item: str) -> None: ...
+    @override
     def select_option(self, option: str) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def _device_unique_id(self) -> str: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     _available: bool
+    @override
     async def async_update(self) -> None: ...

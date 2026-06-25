@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, PERCENTAGE as PERCENTAGE
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
-from typing import Any
+from typing import Any, override
 
 OPTIONS_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
@@ -19,4 +19,5 @@ class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
     options_flow_reloads: bool
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

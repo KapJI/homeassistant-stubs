@@ -7,7 +7,7 @@ from homeassistant.const import MATCH_ALL as MATCH_ALL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Literal
+from typing import Literal, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -18,7 +18,10 @@ class CloudConversationEntity(BaseCloudLLMEntity, conversation.ConversationEntit
     _attr_unique_id = CONVERSATION_ENTITY_UNIQUE_ID
     _attr_supported_features: Incomplete
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def supported_languages(self) -> list[str] | Literal['*']: ...
+    @override
     async def _async_handle_message(self, user_input: conversation.ConversationInput, chat_log: conversation.ChatLog) -> conversation.ConversationResult: ...

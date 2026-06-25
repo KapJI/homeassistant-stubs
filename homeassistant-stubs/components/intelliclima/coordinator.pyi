@@ -4,10 +4,13 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyintelliclima import IntelliClimaAPI as IntelliClimaAPI, IntelliClimaDevices
+from typing import override
 
 type IntelliClimaConfigEntry = ConfigEntry[IntelliClimaCoordinator]
 class IntelliClimaCoordinator(DataUpdateCoordinator[IntelliClimaDevices]):
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: IntelliClimaConfigEntry, api: IntelliClimaAPI) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> IntelliClimaDevices: ...

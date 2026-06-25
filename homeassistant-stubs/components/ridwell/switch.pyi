@@ -6,7 +6,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SWITCH_DESCRIPTION: Incomplete
 
@@ -17,6 +17,9 @@ class RidwellSwitch(RidwellEntity, SwitchEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: RidwellDataUpdateCoordinator, account: RidwellAccount, description: SwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

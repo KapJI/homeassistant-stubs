@@ -7,13 +7,14 @@ from homeassistant.components.event import EventEntity as EventEntity, EventEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: TelegramBotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TelegramBotEventEntity(TelegramBotEntity, EventEntity):
     _attr_event_types: Incomplete
     def __init__(self, config_entry: TelegramBotConfigEntry) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self, event_type: str, event_data: dict[str, Any]) -> None: ...

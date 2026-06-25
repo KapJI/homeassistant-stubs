@@ -11,7 +11,7 @@ from homeassistant.const import CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 DATA_BRIDGES: str
 DATA_LISTENERS: str
@@ -41,4 +41,5 @@ class NotionDataUpdateCoordinator(DataUpdateCoordinator[NotionData]):
     config_entry: NotionConfigEntry
     _client: Incomplete
     def __init__(self, hass: HomeAssistant, *, entry: NotionConfigEntry, client: Client) -> None: ...
+    @override
     async def _async_update_data(self) -> NotionData: ...

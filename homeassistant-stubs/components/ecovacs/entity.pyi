@@ -8,7 +8,7 @@ from deebot_client.events.base import Event as Event
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from sucks import EventListener as EventListener, VacBot as VacBot
-from typing import Any
+from typing import Any, override
 
 class EcovacsEntity[CapabilityEntityT](Entity):
     _attr_should_poll: bool
@@ -20,8 +20,10 @@ class EcovacsEntity[CapabilityEntityT](Entity):
     _subscribed_events: set[type[Event]]
     def __init__(self, device: Device, capability: CapabilityEntityT, **kwargs: Any) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo | None: ...
     _attr_available: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _subscribe[EventT: Event](self, event_type: type[EventT], callback: Callable[[EventT], Coroutine[Any, Any, None]]) -> None: ...
     async def async_update(self) -> None: ...
@@ -44,5 +46,7 @@ class EcovacsLegacyEntity(Entity):
     _event_listeners: list[EventListener]
     def __init__(self, device: VacBot) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

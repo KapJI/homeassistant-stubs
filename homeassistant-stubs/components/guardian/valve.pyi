@@ -10,7 +10,7 @@ from enum import StrEnum
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 VALVE_KIND_VALVE: str
 
@@ -51,14 +51,20 @@ class ValveControllerValve(ValveControllerEntity, ValveEntity):
     _client: Incomplete
     def __init__(self, entry: GuardianConfigEntry, data: GuardianData, description: ValveControllerValveDescription) -> None: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @property
+    @override
     def is_closed(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @convert_exceptions_to_homeassistant_error
+    @override
     async def async_close_valve(self) -> None: ...
     @convert_exceptions_to_homeassistant_error
+    @override
     async def async_open_valve(self) -> None: ...
     @convert_exceptions_to_homeassistant_error
+    @override
     async def async_stop_valve(self) -> None: ...

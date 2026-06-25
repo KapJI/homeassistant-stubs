@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from zwave_js_server.model.driver import Driver as Driver
 
 PARALLEL_UPDATES: int
@@ -20,12 +21,15 @@ class ZwaveSelectEntity(ZWaveBaseEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ZWaveDoorLockSelectEntity(ZwaveSelectEntity):
     _target_value: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ZWaveConfigParameterSelectEntity(ZwaveSelectEntity):
@@ -39,9 +43,12 @@ class ZwaveDefaultToneSelectEntity(ZWaveBaseEntity, SelectEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ZwaveMultilevelSwitchSelectEntity(ZWaveBaseEntity, SelectEntity):
@@ -50,5 +57,7 @@ class ZwaveMultilevelSwitchSelectEntity(ZWaveBaseEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

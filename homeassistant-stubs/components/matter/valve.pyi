@@ -7,6 +7,7 @@ from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass,
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 ValveConfigurationAndControl: Incomplete
 ValveStateEnum: Incomplete
@@ -20,14 +21,18 @@ class MatterValve(MatterEntity, ValveEntity):
     _feature_map: int | None
     entity_description: MatterValveEntityDescription
     _platform_translation_key: str
+    @override
     async def async_open_valve(self) -> None: ...
+    @override
     async def async_close_valve(self) -> None: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...
     _attr_is_opening: bool
     _attr_is_closing: bool
     _attr_is_closed: Incomplete
     _attr_current_valve_position: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
     _attr_reports_position: bool

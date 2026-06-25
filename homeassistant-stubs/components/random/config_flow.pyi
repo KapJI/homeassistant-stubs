@@ -10,7 +10,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_MAX
 from homeassistant.core import callback as callback
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
-from typing import Any
+from typing import Any, override
 
 class _FlowType(StrEnum):
     CONFIG = 'config'
@@ -30,4 +30,5 @@ class RandomConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     options_flow = OPTIONS_FLOW
     options_flow_reloads: bool
     @callback
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

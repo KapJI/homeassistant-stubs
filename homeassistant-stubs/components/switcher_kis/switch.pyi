@@ -11,7 +11,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 API_CONTROL_DEVICE: str
@@ -28,8 +28,11 @@ class SwitcherBaseSwitchEntity(SwitcherEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _update_data(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class SwitcherPowerPlugSwitchEntity(SwitcherBaseSwitchEntity):
@@ -49,8 +52,11 @@ class SwitcherShutterChildLockBaseSwitchEntity(SwitcherEntity, SwitchEntity):
     control_result: bool | None
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, cover_id: int) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _update_data(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class SwitcherShutterChildLockSingleSwitchEntity(SwitcherShutterChildLockBaseSwitchEntity):

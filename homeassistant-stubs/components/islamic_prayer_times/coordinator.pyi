@@ -6,7 +6,7 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE a
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type IslamicPrayerTimesConfigEntry = ConfigEntry[IslamicPrayerDataUpdateCoordinator]
@@ -29,4 +29,5 @@ class IslamicPrayerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, datetim
     @callback
     def async_schedule_future_update(self, midnight_dt: datetime) -> None: ...
     async def async_request_update(self, _: datetime) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, datetime]: ...

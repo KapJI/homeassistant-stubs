@@ -7,7 +7,7 @@ from homeassistant.const import STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -21,13 +21,19 @@ class SwitchBotCloudFan(SwitchBotCloudEntity, FanEntity):
     _attr_preset_modes: Incomplete
     _attr_is_on: bool | None
     @property
+    @override
     def is_on(self) -> bool | None: ...
     _attr_preset_mode: Incomplete
     _attr_percentage: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
 
 class SwitchBotAirPurifierEntity(SwitchBotCloudEntity, FanEntity):
@@ -38,9 +44,14 @@ class SwitchBotAirPurifierEntity(SwitchBotCloudEntity, FanEntity):
     _attr_name: Incomplete
     _attr_is_on: bool | None
     @property
+    @override
     def is_on(self) -> bool | None: ...
     _attr_preset_mode: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

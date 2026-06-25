@@ -10,7 +10,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.config_entry_oauth2_flow import AbstractOAuth2FlowHandler as AbstractOAuth2FlowHandler
 from onedrive_personal_sdk.clients.client import OneDriveClient
 from onedrive_personal_sdk.models.items import AppRoot as AppRoot
-from typing import Any
+from typing import Any, override
 
 FOLDER_NAME_SCHEMA: Incomplete
 
@@ -22,11 +22,14 @@ class OneDriveConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
     step_data: dict[str, Any]
     def __init__(self) -> None: ...
     @property
+    @override
     def logger(self) -> logging.Logger: ...
     @property
+    @override
     def extra_authorize_data(self) -> dict[str, Any]: ...
     @property
     def apps_folder(self) -> str: ...
+    @override
     async def async_oauth_create_entry(self, data: dict[str, Any]) -> ConfigFlowResult: ...
     async def async_step_folder_name(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure_folder(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -35,6 +38,7 @@ class OneDriveConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: OneDriveConfigEntry) -> OneDriveOptionsFlowHandler: ...
 
 class OneDriveOptionsFlowHandler(OptionsFlow):

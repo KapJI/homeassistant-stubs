@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class PureEnergieSensorEntityDescription(SensorEntityDescription):
@@ -26,4 +27,5 @@ class PureEnergieSensorEntity(CoordinatorEntity[PureEnergieDataUpdateCoordinator
     _attr_device_info: Incomplete
     def __init__(self, *, description: PureEnergieSensorEntityDescription, entry: PureEnergieConfigEntry) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float: ...

@@ -10,7 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
@@ -34,6 +34,7 @@ class TextToSpeechEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH
     _attr_supported_options: list[str] | None
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def supported_languages(self) -> list[str]: ...
@@ -46,6 +47,7 @@ class TextToSpeechEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH
     def async_supports_streaming_input(self) -> bool: ...
     @callback
     def async_get_supported_voices(self, language: str) -> list[Voice] | None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     async def async_speak(self, media_player_entity_id: list[str], message: str, cache: bool, language: str | None = None, options: dict | None = None) -> None: ...
     @final

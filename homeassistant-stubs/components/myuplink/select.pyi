@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from myuplink import DevicePoint as DevicePoint
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MyUplinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -20,5 +21,7 @@ class MyUplinkSelect(MyUplinkEntity, SelectEntity):
     options_rev: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, device_point: DevicePoint, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from powerfox import LocalResponse
+from typing import override
 
 type PowerfoxLocalConfigEntry = ConfigEntry[PowerfoxLocalDataUpdateCoordinator]
 class PowerfoxLocalDataUpdateCoordinator(DataUpdateCoordinator[LocalResponse]):
@@ -14,4 +15,5 @@ class PowerfoxLocalDataUpdateCoordinator(DataUpdateCoordinator[LocalResponse]):
     client: Incomplete
     device_id: str
     def __init__(self, hass: HomeAssistant, entry: PowerfoxLocalConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> LocalResponse: ...

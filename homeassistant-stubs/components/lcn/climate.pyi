@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_DOMAI
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
@@ -30,17 +30,24 @@ class LcnClimate(LcnEntity, ClimateEntity):
     _attr_supported_features: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
     @property
+    @override
     def temperature_unit(self) -> str: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def max_temp(self) -> float: ...
     @property
+    @override
     def min_temp(self) -> float: ...
     _attr_target_temperature: Incomplete
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _attr_available: Incomplete
     async def async_update(self) -> None: ...
     _attr_current_temperature: Incomplete
+    @override
     def input_received(self, input_obj: InputType) -> None: ...

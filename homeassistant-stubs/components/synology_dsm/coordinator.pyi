@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from synology_dsm.api.surveillance_station.camera import SynoCamera
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 
@@ -34,14 +34,17 @@ class SynologyDSMSwitchUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, 
     def __init__(self, hass: HomeAssistant, entry: SynologyDSMConfigEntry, api: SynoApi) -> None: ...
     async def async_setup(self) -> None: ...
     @async_re_login_on_expired
+    @override
     async def _async_update_data(self) -> dict[str, dict[str, Any]]: ...
 
 class SynologyDSMCentralUpdateCoordinator(SynologyDSMUpdateCoordinator[None]):
     def __init__(self, hass: HomeAssistant, entry: SynologyDSMConfigEntry, api: SynoApi) -> None: ...
     @async_re_login_on_expired
+    @override
     async def _async_update_data(self) -> None: ...
 
 class SynologyDSMCameraUpdateCoordinator(SynologyDSMUpdateCoordinator[dict[str, dict[int, SynoCamera]]]):
     def __init__(self, hass: HomeAssistant, entry: SynologyDSMConfigEntry, api: SynoApi) -> None: ...
     @async_re_login_on_expired
+    @override
     async def _async_update_data(self) -> dict[str, dict[int, SynoCamera]]: ...

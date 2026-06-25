@@ -8,6 +8,7 @@ from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
@@ -21,4 +22,5 @@ class LcnBinarySensor(LcnEntity, BinarySensorEntity):
     _attr_available: Incomplete
     async def async_update(self) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def input_received(self, input_obj: InputType) -> None: ...

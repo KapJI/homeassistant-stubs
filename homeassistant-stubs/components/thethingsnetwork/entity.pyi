@@ -5,6 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from ttn_client import TTNBaseValue as TTNBaseValue
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -16,6 +17,7 @@ class TTNEntity(CoordinatorEntity[TTNCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: TTNCoordinator, app_id: str, ttn_value: TTNBaseValue) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
     def device_id(self) -> str: ...

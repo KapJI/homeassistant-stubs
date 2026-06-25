@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from teltasync.modems import ModemStatusFull as ModemStatusFull
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -33,6 +34,8 @@ class TeltonikaSensorEntity(CoordinatorEntity[TeltonikaDataUpdateCoordinator], S
     _attr_translation_placeholders: Incomplete
     def __init__(self, coordinator: TeltonikaDataUpdateCoordinator, device_info: DeviceInfo, description: TeltonikaSensorEntityDescription, modem_id: str, modem: ModemStatusFull) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

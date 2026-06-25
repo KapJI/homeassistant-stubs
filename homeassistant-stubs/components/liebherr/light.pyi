@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyliebherrhomeapi import PresentationLightControl
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,10 +23,15 @@ class LiebherrPresentationLight(LiebherrEntity, LightEntity):
     @property
     def _light_control(self) -> PresentationLightControl | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from surepy import SurepyEntity
+from typing import override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -17,6 +18,7 @@ class SurePetcareDataCoordinator(DataUpdateCoordinator[dict[int, SurepyEntity]])
     surepy: Incomplete
     lock_states_callbacks: Incomplete
     def __init__(self, hass: HomeAssistant, entry: SurePetcareConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[int, SurepyEntity]: ...
     async def handle_set_lock_state(self, call: ServiceCall) -> None: ...
     def get_pets(self) -> dict[str, int]: ...

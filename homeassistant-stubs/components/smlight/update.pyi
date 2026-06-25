@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight.models import Firmware as Firmware, Info as Info
 from pysmlight.sse import MessageEvent as MessageEvent
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -39,14 +39,19 @@ class SmUpdateEntity(SmEntity, UpdateEntity):
     _unload: list[Callable]
     idx: Incomplete
     def __init__(self, coordinator: SmFirmwareUpdateCoordinator, description: SmUpdateEntityDescription, idx: int = 0) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     def register_callbacks(self) -> None: ...
+    @override
     def release_notes(self) -> str | None: ...
     _attr_update_percentage: Incomplete
     @callback
@@ -57,4 +62,5 @@ class SmUpdateEntity(SmEntity, UpdateEntity):
     def _update_finished(self, event: MessageEvent) -> None: ...
     @callback
     def _update_failed(self, event: MessageEvent) -> None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

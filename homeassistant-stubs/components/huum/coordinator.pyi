@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from huum.schemas import HuumStatusResponse
+from typing import override
 
 type HuumConfigEntry = ConfigEntry[HuumDataUpdateCoordinator]
 _LOGGER: Incomplete
@@ -16,4 +17,5 @@ class HuumDataUpdateCoordinator(DataUpdateCoordinator[HuumStatusResponse]):
     config_entry: HuumConfigEntry
     huum: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: HuumConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> HuumStatusResponse: ...

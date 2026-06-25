@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -39,18 +39,23 @@ class MqttDeviceTracker(MqttEntity, TrackerEntity):
     _location_name: str | None
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_source_type: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_location_name: Incomplete
     @callback
     def _tracker_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     _attr_latitude: Incomplete
     _attr_longitude: Incomplete
     _attr_location_accuracy: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _process_update_extra_state_attributes(self, extra_state_attributes: dict[str, Any]) -> None: ...

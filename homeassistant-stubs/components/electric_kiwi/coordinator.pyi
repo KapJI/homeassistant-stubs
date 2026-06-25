@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 ACCOUNT_SCAN_INTERVAL: Incomplete
@@ -20,6 +21,7 @@ type ElectricKiwiConfigEntry = ConfigEntry[ElectricKiwiRuntimeData]
 class ElectricKiwiAccountDataCoordinator(DataUpdateCoordinator[AccountSummary]):
     ek_api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ElectricKiwiConfigEntry, ek_api: ElectricKiwiApi) -> None: ...
+    @override
     async def _async_update_data(self) -> AccountSummary: ...
 
 class ElectricKiwiHOPDataCoordinator(DataUpdateCoordinator[Hop]):
@@ -28,4 +30,5 @@ class ElectricKiwiHOPDataCoordinator(DataUpdateCoordinator[Hop]):
     def __init__(self, hass: HomeAssistant, entry: ElectricKiwiConfigEntry, ek_api: ElectricKiwiApi) -> None: ...
     def get_hop_options(self) -> dict[str, int]: ...
     async def async_update_hop(self, hop_interval: int) -> Hop: ...
+    @override
     async def _async_update_data(self) -> Hop: ...

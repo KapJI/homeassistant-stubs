@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class BasePrivateDeviceEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool
@@ -18,6 +19,7 @@ class BasePrivateDeviceEntity(Entity, metaclass=abc.ABCMeta):
     _irk: Incomplete
     _last_info: bluetooth.BluetoothServiceInfoBleak | None
     def __init__(self, config_entry: ConfigEntry) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @abstractmethod
     @callback

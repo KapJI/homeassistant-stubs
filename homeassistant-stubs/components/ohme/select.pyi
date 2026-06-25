@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ohme import OhmeApiClient as OhmeApiClient
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 
@@ -26,8 +26,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: OhmeConfigEntry, 
 
 class OhmeSelect(OhmeEntity, SelectEntity):
     entity_description: OhmeSelectDescription
+    @override
     async def async_select_option(self, option: str) -> None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...

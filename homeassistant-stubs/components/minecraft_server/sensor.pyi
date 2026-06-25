@@ -10,7 +10,7 @@ from homeassistant.const import CONF_TYPE as CONF_TYPE, EntityCategory as Entity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 ATTR_PLAYERS_LIST: str
 KEY_EDITION: str
@@ -41,6 +41,7 @@ class MinecraftServerSensorEntity(MinecraftServerEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MinecraftServerCoordinator, description: MinecraftServerSensorEntityDescription, config_entry: MinecraftServerConfigEntry) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete

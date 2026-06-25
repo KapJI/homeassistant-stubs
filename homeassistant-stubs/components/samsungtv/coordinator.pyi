@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: int
 type SamsungTVConfigEntry = ConfigEntry[SamsungTVDataUpdateCoordinator]
@@ -16,4 +16,5 @@ class SamsungTVDataUpdateCoordinator(DataUpdateCoordinator[None]):
     is_on: bool | None
     async_extra_update: Callable[[], Coroutine[Any, Any, None]] | None
     def __init__(self, hass: HomeAssistant, config_entry: SamsungTVConfigEntry, bridge: SamsungTVBridge) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

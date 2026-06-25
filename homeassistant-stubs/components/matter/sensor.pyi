@@ -8,10 +8,11 @@ from chip.clusters.Types import Nullable as Nullable
 from dataclasses import dataclass, field
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfReactivePower as UnitOfReactivePower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfReactivePower as UnitOfReactivePower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
+from typing import override
 
 AIR_QUALITY_MAP: Incomplete
 CONTAMINATION_STATE_MAP: Incomplete
@@ -25,6 +26,8 @@ _rvc_op: Incomplete
 RVC_OPERATIONAL_STATE_MAP: Incomplete
 _rvc_err: Incomplete
 RVC_OPERATIONAL_STATE_ERROR_MAP: Incomplete
+THREAD_ROUTING_ROLE_MAP: Incomplete
+BOOT_REASON_MAP: Incomplete
 BOOST_STATE_MAP: Incomplete
 CHARGE_STATE_MAP: Incomplete
 DEM_OPT_OUT_STATE_MAP: Incomplete
@@ -57,12 +60,14 @@ class MatterSensor(MatterEntity, SensorEntity):
     entity_description: MatterSensorEntityDescription
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterDraftElectricalMeasurementSensor(MatterEntity, SensorEntity):
     entity_description: MatterSensorEntityDescription
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterOperationalStateSensor(MatterSensor):
@@ -71,6 +76,7 @@ class MatterOperationalStateSensor(MatterSensor):
     _attr_options: Incomplete
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterListSensor(MatterSensor):
@@ -79,6 +85,7 @@ class MatterListSensor(MatterSensor):
     _attr_options: Incomplete
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

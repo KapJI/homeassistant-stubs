@@ -15,6 +15,7 @@ from pyportainer.models.docker import DockerContainer as DockerContainer, Docker
 from pyportainer.models.docker_inspect import DockerInfo as DockerInfo, DockerVersion as DockerVersion
 from pyportainer.models.portainer import Endpoint as Endpoint
 from pyportainer.models.stacks import Stack as Stack
+from typing import override
 
 type PortainerConfigEntry = ConfigEntry[PortainerCoordinator]
 _LOGGER: Incomplete
@@ -61,15 +62,18 @@ class PortainerBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=
     new_stacks_callbacks: list[Callable[[list[tuple[PortainerCoordinatorData, PortainerStackData]]], None]]
     new_volumes_callbacks: list[Callable[[list[tuple[PortainerCoordinatorData, PortainerVolumeData]]], None]]
     def __init__(self, hass: HomeAssistant, config_entry: PortainerConfigEntry, portainer: Portainer) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
     @abstractmethod
     async def update_data(self) -> _DataT: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
 
 class PortainerCoordinator(PortainerBaseCoordinator[dict[int, PortainerCoordinatorData]]):
     config_entry: PortainerConfigEntry
     docker_disk_space: PortainerDockerDiskSpaceCoordinator | None
     _update_interval = DEFAULT_SCAN_INTERVAL
+    @override
     async def update_data(self) -> dict[int, PortainerCoordinatorData]: ...
     def _async_add_remove_endpoints(self, mapped_endpoints: dict[int, PortainerCoordinatorData]) -> None: ...
     def _get_container_name(self, container_name: str) -> str: ...
@@ -77,4 +81,5 @@ class PortainerCoordinator(PortainerBaseCoordinator[dict[int, PortainerCoordinat
 class PortainerDockerDiskSpaceCoordinator(PortainerBaseCoordinator[dict[int, DockerSystemDF]]):
     config_entry: PortainerConfigEntry
     _update_interval = DEFAULT_DF_SCAN_INTERVAL
+    @override
     async def update_data(self) -> dict[int, DockerSystemDF]: ...

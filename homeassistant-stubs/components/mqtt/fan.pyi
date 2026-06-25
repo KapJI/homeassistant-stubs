@@ -18,7 +18,7 @@ from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
@@ -53,11 +53,13 @@ class MqttFan(MqttEntity, FanEntity):
     _payload: dict[str, Any]
     _speed_range: tuple[int, int]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_preset_modes: Incomplete
     _attr_speed_count: Incomplete
     _attr_assumed_state: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_on: bool
     @callback
@@ -73,13 +75,22 @@ class MqttFan(MqttEntity, FanEntity):
     @callback
     def _direction_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_oscillate(self, oscillating: bool) -> None: ...
+    @override
     async def async_set_direction(self, direction: str) -> None: ...

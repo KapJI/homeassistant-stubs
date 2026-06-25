@@ -17,7 +17,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
-from typing import Any
+from typing import Any, override
 from zwave_js_server.model.controller import Controller
 from zwave_js_server.model.controller.statistics import ControllerStatistics
 from zwave_js_server.model.driver import Driver as Driver
@@ -50,8 +50,10 @@ class ZwaveSensor(ZWaveBaseEntity, SensorEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: str | None = None) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
 
 class ZWaveNumericSensor(ZwaveSensor):
@@ -60,8 +62,10 @@ class ZWaveNumericSensor(ZwaveSensor):
     entity_description: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     @callback
+    @override
     def on_value_update(self) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
 
 class NewZWaveNumericSensor(ZWaveBaseEntity, SensorEntity):
@@ -71,17 +75,21 @@ class NewZWaveNumericSensor(ZWaveBaseEntity, SensorEntity):
     def __init__(self, config_entry: ConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
     def _get_scale_type(self) -> IntEnum | None: ...
     @callback
+    @override
     def on_value_update(self) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
 
 class ZWaveMeterSensor(ZWaveNumericSensor):
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, int | str] | None: ...
     async def async_reset_meter(self, meter_type: int | None = None, value: int | None = None) -> None: ...
 
 class NewZWaveMeterSensor(NewZWaveNumericSensor):
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, int | str] | None: ...
     async def async_reset_meter(self, meter_type: int | None = None, value: int | None = None) -> None: ...
 
@@ -91,8 +99,10 @@ class ZWaveListSensor(ZwaveSensor):
     _attr_options: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: str | None = None) -> None: ...
     @callback
+    @override
     def should_rediscover_on_metadata_update(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str] | None: ...
 
 class ZWaveConfigParameterSensor(ZWaveListSensor):
@@ -100,6 +110,7 @@ class ZWaveConfigParameterSensor(ZWaveListSensor):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, entity_description: SensorEntityDescription, unit_of_measurement: str | None = None) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str] | None: ...
 
 class ZWaveNodeStatusSensor(ZWaveNodeBaseEntity, SensorEntity):
@@ -111,6 +122,7 @@ class ZWaveNodeStatusSensor(ZWaveNodeBaseEntity, SensorEntity):
     _attr_native_value: Incomplete
     @callback
     def _status_changed(self, _: dict) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class ZWaveControllerStatusSensor(ZWaveNodeBaseEntity, SensorEntity):
@@ -123,6 +135,7 @@ class ZWaveControllerStatusSensor(ZWaveNodeBaseEntity, SensorEntity):
     _attr_native_value: Incomplete
     @callback
     def _status_changed(self, _: dict) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class ZWaveStatisticsSensor(ZWaveNodeBaseEntity, SensorEntity):
@@ -138,6 +151,7 @@ class ZWaveStatisticsSensor(ZWaveNodeBaseEntity, SensorEntity):
     _attr_available: bool
     @callback
     def _set_statistics(self, statistics: ControllerStatistics | NodeStatistics) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 DISCOVERY_SCHEMAS: list[NewZWaveDiscoverySchema]

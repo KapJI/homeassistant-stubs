@@ -12,7 +12,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatmo import modules as NaModules
 from pyatmo.event import Event as NaEvent
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_QUALITY: str
@@ -30,22 +30,30 @@ class NetatmoCamera(NetatmoModuleEntity, Camera):
     _attr_unique_id: Incomplete
     _light_state: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_streaming: bool
     @callback
     def handle_event(self, event: dict) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     @property
+    @override
     def supported_features(self) -> CameraEntityFeature: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def stream_source(self) -> str: ...
     _attr_is_on: Incomplete
     _attr_available: Incomplete
     _attr_motion_detection_enabled: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
     def process_events(self, event_list: list[NaEvent]) -> dict: ...
     def get_video_url(self, video_id: str) -> str: ...

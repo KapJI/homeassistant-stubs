@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from evohomeasync2.schemas.typedefs import DayOfWeekDhwT as DayOfWeekDhwT
 from homeassistant.core import callback as callback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -19,8 +19,10 @@ class EvoEntity(CoordinatorEntity[EvoDataUpdateCoordinator]):
     _device_state_attrs: dict[str, Any]
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.ControlSystem | evo.HotWater | evo.Zone) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     async def update_attrs(self) -> None: ...
 
@@ -38,5 +40,7 @@ class EvoChild(EvoEntity):
     async def _update_schedule(self, force_refresh: bool = False) -> None: ...
     _device_state_attrs: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def update_attrs(self) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.components.update import UpdateEntity as UpdateEntity, Update
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -23,9 +23,13 @@ class FritzBoxUpdateEntity(FritzBoxBaseCoordinatorEntity, UpdateEntity):
     entity_description: FritzUpdateEntityDescription
     def __init__(self, avm_wrapper: AvmWrapper, device_friendly_name: str) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

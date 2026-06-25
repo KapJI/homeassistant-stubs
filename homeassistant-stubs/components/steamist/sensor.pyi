@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _KEY_MINUTES_REMAIN: str
 _KEY_TEMP: str
@@ -28,4 +29,5 @@ class SteamistSensorEntity(SteamistEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: SteamistDataUpdateCoordinator, entry: ConfigEntry, description: SteamistSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...

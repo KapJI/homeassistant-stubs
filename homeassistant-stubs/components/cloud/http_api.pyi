@@ -9,6 +9,7 @@ from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from hass_nabucasa import Cloud as Cloud, auth
 from homeassistant.components import websocket_api as websocket_api
+from homeassistant.components.frontend import DATA_THEMES as DATA_THEMES
 from homeassistant.components.homeassistant import exposed_entities as exposed_entities
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS, require_admin as require_admin
 from homeassistant.components.http.data_validator import RequestDataValidator as RequestDataValidator
@@ -84,6 +85,8 @@ class DownloadSupportPackageView(HomeAssistantView):
     url: str
     name: str
     async def _get_integration_info(self, hass: HomeAssistant) -> dict[str, Any]: ...
+    @callback
+    def _get_themes_info(self, hass: HomeAssistant) -> dict[str, Any]: ...
     async def _generate_markdown(self, hass: HomeAssistant, hass_info: dict[str, Any], domains_info: dict[str, dict[str, str]]) -> str: ...
     @require_admin
     async def get(self, request: web.Request) -> web.Response: ...

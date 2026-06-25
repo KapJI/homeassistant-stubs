@@ -2,6 +2,7 @@ from . import DOMAIN as DOMAIN, INTENT_GET_WEATHER as INTENT_GET_WEATHER
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers import intent as intent
+from typing import override
 
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 
@@ -10,4 +11,5 @@ class GetWeatherIntent(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

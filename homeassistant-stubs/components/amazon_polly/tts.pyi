@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_CREDENTIALS as ATTR_CREDENTIALS, CONF_PROFI
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.generated.amazon_polly import SUPPORTED_ENGINES as SUPPORTED_ENGINES, SUPPORTED_REGIONS as SUPPORTED_REGIONS, SUPPORTED_VOICES as SUPPORTED_VOICES
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
@@ -24,11 +24,16 @@ class AmazonPollyProvider(Provider):
     name: str
     def __init__(self, polly_client: boto3.client, config: ConfigType, supported_languages: list[str], all_voices: dict[str, dict[str, str]], all_engines: dict[str, set[str]]) -> None: ...
     @property
+    @override
     def supported_languages(self) -> list[str]: ...
     @property
+    @override
     def default_language(self) -> str | None: ...
     @property
+    @override
     def default_options(self) -> dict[str, str]: ...
     @property
+    @override
     def supported_options(self) -> list[str]: ...
+    @override
     def get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...

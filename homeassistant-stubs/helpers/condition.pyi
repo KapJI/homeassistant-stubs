@@ -4,6 +4,7 @@ import voluptuous as vol
 from . import selector as selector
 from .automation import DomainSpec as DomainSpec, ThresholdConfig as ThresholdConfig, filter_by_domain_specs as filter_by_domain_specs, get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
+from .recorder import get_instance as get_instance
 from .selector import NumericThresholdMode as NumericThresholdMode, NumericThresholdSelector as NumericThresholdSelector, NumericThresholdSelectorConfig as NumericThresholdSelectorConfig, NumericThresholdType as NumericThresholdType, TargetSelector as TargetSelector
 from .target import TargetSelection as TargetSelection, TargetStateChangedData as TargetStateChangedData, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids, async_track_target_selector_state_change_event as async_track_target_selector_state_change_event
 from .template import Template as Template, render_complex as render_complex
@@ -14,8 +15,9 @@ from collections.abc import Callable, Container, Coroutine, Generator, Iterable,
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime, time as dt_time, timedelta
+from homeassistant.components.recorder import Recorder as Recorder
 from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_OPTIONS as CONF_OPTIONS, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_TARGET as CONF_TARGET, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, ConditionErrorMessage as ConditionErrorMessage, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
@@ -28,10 +30,11 @@ ASYNC_FROM_CONFIG_FORMAT: str
 FROM_CONFIG_FORMAT: str
 VALIDATE_CONFIG_FORMAT: str
 _LOGGER: Incomplete
+HISTORY_PRIMING_TIMEOUT: int
+MAX_HISTORY_PRIMING_LOOKBACK: Incomplete
 _PLATFORM_ALIASES: dict[str | None, str | None]
 INPUT_ENTITY_ID: Incomplete
 CONDITION_DESCRIPTION_CACHE: HassKey[dict[str, dict[str, Any] | None]]
-CONDITION_DISABLED_CONDITIONS: HassKey[set[str]]
 CONDITION_PLATFORM_SUBSCRIPTIONS: HassKey[list[Callable[[set[str]], Coroutine[Any, Any, None]]]]
 CONDITIONS: HassKey[dict[str, str]]
 _FIELD_DESCRIPTION_SCHEMA: Incomplete
@@ -70,14 +73,17 @@ class ConditionChecker(abc.ABC, metaclass=abc.ABCMeta):
 class LegacyConditionChecker(ConditionChecker):
     _checker: Incomplete
     def __init__(self, hass: HomeAssistant, checker: ConditionCheckerType) -> None: ...
+    @override
     def _async_check(self, variables: TemplateVarsType = None, **kwargs: Any) -> bool: ...
 
 class DisabledConditionChecker(ConditionChecker):
+    @override
     def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> None: ...
 
 class CompoundConditionChecker(ConditionChecker, metaclass=abc.ABCMeta):
     _conditions: Incomplete
     def __init__(self, hass: HomeAssistant, conditions: list[ConditionChecker]) -> None: ...
+    @override
     def _async_unload(self) -> None: ...
 
 class Condition(ConditionChecker, metaclass=abc.ABCMeta):
@@ -92,6 +98,17 @@ ATTR_BEHAVIOR: Final[str]
 BEHAVIOR_ANY: Final[str]
 BEHAVIOR_ALL: Final[str]
 ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL: Incomplete
+_DATA_HISTORY_PRIMING_MANAGER: HassKey[_HistoryPrimingManager]
+
+class _HistoryPrimingManager:
+    _hass: Incomplete
+    _flush_condition: Incomplete
+    _flushing: bool
+    _flush_ok: bool
+    _query_lock: Incomplete
+    def __init__(self, hass: HomeAssistant) -> None: ...
+    async def async_prime[_T](self, job: Callable[[Recorder], Coroutine[Any, Any, _T]]) -> _T: ...
+    async def _async_flush(self) -> None: ...
 
 class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     _domain_specs: Mapping[str, DomainSpec]
@@ -108,6 +125,7 @@ class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     _matcher: Incomplete
     _on_unload: list[Callable[[], None]]
     _valid_since: dict[str, datetime]
+    _priming: set[str]
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
     def entity_filter(self, entities: set[str]) -> set[str]: ...
     @property
@@ -116,6 +134,10 @@ class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     def _update_valid_since(self, entity_id: str, _state: State | None) -> None: ...
     @override
     async def _async_setup(self) -> None: ...
+    async def _async_on_entities_update(self, added: set[str], removed: set[str], _entity_states: Mapping[str, State | None]) -> None: ...
+    async def _async_prime_valid_since(self, entity_ids: set[str]) -> None: ...
+    async def _async_refine_anchors_from_history(self, anchors: dict[str, datetime]) -> None: ...
+    def _valid_since_from_history(self, entity_id: str, rows: list[State]) -> datetime | None: ...
     @override
     def _async_unload(self) -> None: ...
     def _should_include(self, _state: State) -> bool: ...
@@ -123,13 +145,16 @@ class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     def is_valid_state(self, entity_state: State) -> bool: ...
     def _check_any_match_state(self, states: list[State]) -> bool: ...
     def _check_all_match_state(self, states: list[State]) -> bool: ...
+    @override
     def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
 
 class EntityStateConditionBase(EntityConditionBase):
     _states: set[str | bool]
     @property
+    @override
     def _needs_duration_tracking(self) -> bool: ...
     def _get_tracked_value(self, entity_state: State) -> Any: ...
+    @override
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 def _normalize_domain_specs(domain_specs: Mapping[str, DomainSpec] | str) -> Mapping[str, DomainSpec]: ...
@@ -148,6 +173,7 @@ class EntityNumericalConditionBase(EntityConditionBase):
     def _is_valid_unit(self, unit: str | None) -> bool: ...
     def _get_threshold_value(self, threshold: ThresholdConfig | None) -> float | None: ...
     def _get_tracked_value(self, entity_state: State) -> Any: ...
+    @override
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 def make_entity_numerical_condition(domain_specs: Mapping[str, DomainSpec] | str, valid_unit: str | None | UndefinedType = ..., *, primary_entities_only: bool = True) -> type[EntityNumericalConditionBase]: ...
@@ -156,9 +182,12 @@ def _make_numerical_condition_with_unit_schema(unit_converter: type[BaseUnitConv
 class EntityNumericalConditionWithUnitBase(EntityNumericalConditionBase):
     _base_unit: str | None
     _unit_converter: type[BaseUnitConverter]
+    @override
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
     def _get_entity_unit(self, entity_state: State) -> str | None: ...
+    @override
     def _get_threshold_value(self, threshold: ThresholdConfig | None) -> float | None: ...
+    @override
     def _get_tracked_value(self, entity_state: State) -> Any: ...
 
 def make_entity_numerical_condition_with_unit(domain_specs: Mapping[str, DomainSpec], base_unit: str, unit_converter: type[BaseUnitConverter]) -> type[EntityNumericalConditionWithUnitBase]: ...
@@ -191,18 +220,21 @@ async def async_and_from_config(hass: HomeAssistant, config: ConfigType) -> Cond
 
 class AndConditionChecker(CompoundConditionChecker):
     @callback
+    @override
     def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
 
 async def async_or_from_config(hass: HomeAssistant, config: ConfigType) -> ConditionChecker: ...
 
 class OrConditionChecker(CompoundConditionChecker):
     @callback
+    @override
     def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
 
 async def async_not_from_config(hass: HomeAssistant, config: ConfigType) -> ConditionChecker: ...
 
 class NotConditionChecker(CompoundConditionChecker):
     @callback
+    @override
     def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
 
 def numeric_state(hass: HomeAssistant, entity: str | State | None, below: float | str | None = None, above: float | str | None = None, value_template: Template | None = None, variables: TemplateVarsType = None) -> bool: ...

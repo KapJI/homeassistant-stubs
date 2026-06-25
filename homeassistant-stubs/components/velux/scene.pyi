@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyvlx import Scene as PyVLXScene
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -21,4 +21,5 @@ class VeluxScene(Scene):
     _attr_device_info: Incomplete
     def __init__(self, config_entry_id: str, scene: PyVLXScene) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_activate(self, **kwargs: Any) -> None: ...

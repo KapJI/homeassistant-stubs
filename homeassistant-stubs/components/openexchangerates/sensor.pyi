@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 ATTRIBUTION: str
 
@@ -23,4 +24,5 @@ class OpenexchangeratesSensor(CoordinatorEntity[OpenexchangeratesCoordinator], S
     _quote: Incomplete
     def __init__(self, config_entry: OpenexchangeratesConfigEntry, coordinator: OpenexchangeratesCoordinator, quote: str, enabled: bool) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...

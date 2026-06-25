@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,7 +16,11 @@ class DemoRemote(RemoteEntity):
     _last_command_sent: str | None
     def __init__(self, name: str | None, state: bool) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_send_command(self, command: Iterable[str], **kwargs: Any) -> None: ...

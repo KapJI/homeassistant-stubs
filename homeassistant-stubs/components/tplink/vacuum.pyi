@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device
 from kasa.smart.modules.clean import Clean as Clean
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 STATUS_TO_ACTIVITY: Incomplete
@@ -28,16 +28,23 @@ class TPLinkVacuumEntity(CoordinatedTPLinkModuleEntity, StateVacuumEntity):
     _attr_fan_speed_list: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkVacuumEntityDescription, *, parent: Device) -> None: ...
     @async_refresh_after
+    @override
     async def async_start(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_pause(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
     @async_refresh_after
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
+    @override
     async def async_locate(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def battery_level(self) -> int | None: ...
     _attr_activity: Incomplete
     _attr_fan_speed: Incomplete
+    @override
     def _async_update_attrs(self) -> bool: ...

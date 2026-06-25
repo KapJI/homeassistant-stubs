@@ -16,7 +16,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -41,16 +41,21 @@ class MqttTextEntity(MqttEntity, TextEntity):
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_native_max: Incomplete
     _attr_native_min: Incomplete
     _attr_mode: Incomplete
     _attr_pattern: Incomplete
     _attr_assumed_state: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _handle_state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_set_value(self, value: str) -> None: ...

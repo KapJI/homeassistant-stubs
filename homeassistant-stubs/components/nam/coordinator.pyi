@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from nettigo_air_monitor import NAMSensors, NettigoAirMonitor as NettigoAirMonitor
+from typing import override
 
 _LOGGER: Incomplete
 type NAMConfigEntry = ConfigEntry[NAMDataUpdateCoordinator]
@@ -15,4 +16,5 @@ class NAMDataUpdateCoordinator(DataUpdateCoordinator[NAMSensors]):
     device_info: Incomplete
     nam: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: NAMConfigEntry, nam: NettigoAirMonitor) -> None: ...
+    @override
     async def _async_update_data(self) -> NAMSensors: ...

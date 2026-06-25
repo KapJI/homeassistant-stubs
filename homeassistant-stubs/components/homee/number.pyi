@@ -10,6 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfSpeed as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,7 +33,10 @@ class HomeeNumber(HomeeEntity, NumberEntity):
     _attr_native_step: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: HomeeNumberEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

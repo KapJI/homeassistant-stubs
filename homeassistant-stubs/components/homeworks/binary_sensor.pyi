@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyhomeworks.pyhomeworks import Homeworks as Homeworks
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -20,6 +20,7 @@ class HomeworksBinarySensor(HomeworksEntity, BinarySensorEntity):
     _attr_device_info: Incomplete
     _keypad: Incomplete
     def __init__(self, controller: Homeworks, keypad: HomeworksKeypad, controller_id: str, addr: str, keypad_name: str, button_name: str, led_number: int) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     @callback

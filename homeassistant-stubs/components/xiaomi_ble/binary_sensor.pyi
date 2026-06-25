@@ -7,6 +7,7 @@ from homeassistant.components.bluetooth.passive_update_processor import PassiveB
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
+from typing import override
 from xiaomi_ble.parser import SensorUpdate as SensorUpdate
 
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
@@ -16,6 +17,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: XiaomiBLEConfigEntry, as
 
 class XiaomiBluetoothSensorEntity(PassiveBluetoothProcessorEntity[XiaomiPassiveBluetoothDataProcessor[bool | None]], BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def available(self) -> bool: ...

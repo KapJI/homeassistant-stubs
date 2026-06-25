@@ -7,7 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitterbot import Robot as Robot
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 PARALLEL_UPDATES: int
 
@@ -22,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, 
 class LitterRobotButtonEntity(LitterRobotEntity[_WhiskerEntityT], ButtonEntity):
     entity_description: RobotButtonEntityDescription[_WhiskerEntityT]
     @whisker_command
+    @override
     async def async_press(self) -> None: ...

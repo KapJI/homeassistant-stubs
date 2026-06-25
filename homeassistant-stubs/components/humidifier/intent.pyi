@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
+from typing import override
 
 INTENT_HUMIDITY: str
 INTENT_MODE: str
@@ -14,6 +15,7 @@ class HumidityHandler(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class SetModeHandler(intent.IntentHandler):
@@ -21,4 +23,5 @@ class SetModeHandler(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

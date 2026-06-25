@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SECTION_ADVANCED_SETTINGS as SECTION_ADVANCED_SETTINGS
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, SECTION_ADDITIONAL_SETTINGS as SECTION_ADDITIONAL_SETTINGS
 from .coordinator import AirOSDataUpdateCoordinator as AirOSDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_SSL as CONF_SSL

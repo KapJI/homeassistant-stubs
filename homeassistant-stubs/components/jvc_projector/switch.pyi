@@ -7,7 +7,7 @@ from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jvcprojector import Command as Command
-from typing import Any, Final
+from typing import Any, Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class JvcProjectorSwitchDescription(SwitchEntityDescription):
@@ -24,6 +24,9 @@ class JvcProjectorSwitchEntity(JvcProjectorEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: JvcProjectorDataUpdateCoordinator, description: JvcProjectorSwitchDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type MonzoConfigEntry = ConfigEntry[MonzoCoordinator]
@@ -20,4 +20,5 @@ class MonzoCoordinator(DataUpdateCoordinator[MonzoData]):
     config_entry: MonzoConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: MonzoConfigEntry, api: AuthenticatedMonzoAPI) -> None: ...
+    @override
     async def _async_update_data(self) -> MonzoData: ...

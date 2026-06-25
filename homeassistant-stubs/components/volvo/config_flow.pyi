@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.config_entry_oauth2_flow import AbstractOAuth2FlowHandler as AbstractOAuth2FlowHandler
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
-from typing import Any
+from typing import Any, override
 from volvocarsapi.api import VolvoCarsApi
 from volvocarsapi.models import VolvoCarsVehicle as VolvoCarsVehicle
 
@@ -23,9 +23,12 @@ class VolvoOAuth2FlowHandler(AbstractOAuth2FlowHandler, domain=DOMAIN):
     _config_data: dict
     def __init__(self) -> None: ...
     @property
+    @override
     def extra_authorize_data(self) -> dict: ...
     @property
+    @override
     def logger(self) -> logging.Logger: ...
+    @override
     async def async_oauth_create_entry(self, data: dict) -> ConfigFlowResult: ...
     async def async_step_reauth(self, _: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, data: dict[str, Any] | None = None) -> ConfigFlowResult: ...

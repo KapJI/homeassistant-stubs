@@ -7,7 +7,7 @@ from homeassistant.const import CONF_AUTHENTICATION as CONF_AUTHENTICATION, CONF
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.selector import NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DESCRIPTION_PLACEHOLDERS: Incomplete
@@ -20,5 +20,7 @@ class OptionsFlowHandler(OptionsFlow):
 class VivotekConfigFlow(ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: VivotekConfigEntry) -> OptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

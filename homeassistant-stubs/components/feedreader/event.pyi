@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -28,4 +29,5 @@ class FeedReaderEvent(CoordinatorEntity[FeedReaderCoordinator], EventEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: FeedReaderCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

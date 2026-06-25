@@ -3,6 +3,7 @@ from airtouch5py.airtouch5_client import Airtouch5ConnectionStateChange
 from airtouch5py.airtouch5_simple_client import Airtouch5SimpleClient as Airtouch5SimpleClient
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class Airtouch5Entity(Entity):
     _attr_should_poll: bool
@@ -12,5 +13,7 @@ class Airtouch5Entity(Entity):
     def __init__(self, client: Airtouch5SimpleClient) -> None: ...
     @callback
     def _receive_connection_callback(self, state: Airtouch5ConnectionStateChange) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from homeassistant.util.logging import async_create_catching_coro as async_create_catching_coro
-from typing import Any
+from typing import Any, override
 
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
@@ -17,6 +17,7 @@ ALEXA_SETTINGS_VERSION: int
 GOOGLE_SETTINGS_VERSION: int
 
 class CloudPreferencesStore(Store):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class CloudPreferences:

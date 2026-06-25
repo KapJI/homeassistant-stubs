@@ -6,7 +6,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Commands as SwitchBotCloudBaseCommands, Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class SwitchbotCloudButtonEntityDescription(ButtonEntityDescription):
@@ -26,6 +26,7 @@ class SwitchBotCloudBot(SwitchBotCloudEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     _device_id: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SwitchbotCloudButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self, **kwargs: Any) -> None: ...
 
 @callback

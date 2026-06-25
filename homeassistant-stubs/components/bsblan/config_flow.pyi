@@ -7,7 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 class BSBLANFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
@@ -21,7 +21,9 @@ class BSBLANFlowHandler(ConfigFlow, domain=DOMAIN):
     password: str | None
     _auth_required: bool
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _validate_and_create(self, user_input: dict[str, Any], is_discovery: bool = False) -> ConfigFlowResult: ...

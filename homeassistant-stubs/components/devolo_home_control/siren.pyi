@@ -6,7 +6,7 @@ from devolo_home_control_api.homecontrol import HomeControl as HomeControl
 from homeassistant.components.siren import ATTR_TONE as ATTR_TONE, SirenEntity as SirenEntity, SirenEntityFeature as SirenEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,7 +16,11 @@ class DevoloSirenDeviceEntity(DevoloMultiLevelSwitchDeviceEntity, SirenEntity):
     _default_tone: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _generic_message(self, message: tuple) -> None: ...

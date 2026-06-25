@@ -10,6 +10,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from homeassistant.util.hass_dict import HassKey as HassKey
 from qbusmqttapi.discovery import QbusDiscovery as QbusDiscovery, QbusMqttDevice
+from typing import override
 
 _LOGGER: Incomplete
 type QbusConfigEntry = ConfigEntry[QbusControllerCoordinator]
@@ -24,6 +25,7 @@ class QbusControllerCoordinator(DataUpdateCoordinator[QbusMqttDevice | None]):
     _subscribed_to_controller_state: bool
     _controller: QbusMqttDevice | None
     def __init__(self, hass: HomeAssistant, entry: QbusConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> QbusMqttDevice | None: ...
     def shutdown(self, event: Event | None = None) -> None: ...
     async def async_update_controller_config(self, config: QbusDiscovery) -> None: ...

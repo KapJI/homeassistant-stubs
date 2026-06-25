@@ -8,7 +8,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from unifi_access_api import EmergencyStatus
 
 PARALLEL_UPDATES: int
@@ -27,7 +27,10 @@ class UnifiAccessEmergencySwitch(UnifiAccessHubEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: UnifiAccessCoordinator, description: UnifiAccessSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_set_emergency(self, value: bool) -> None: ...

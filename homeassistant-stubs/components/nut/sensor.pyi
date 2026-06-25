@@ -6,7 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 AMBIENT_PRESENT: str
@@ -22,6 +22,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: NutConfigEntry, a
 
 class NUTSensor(NUTBaseEntity, SensorEntity):
     @property
+    @override
     def native_value(self) -> str | None: ...
 
 def _format_display_state(status: dict[str, str]) -> str | None: ...

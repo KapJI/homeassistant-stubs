@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from p1monitor import Phases as Phases, Settings as Settings, SmartMeter as SmartMeter, WaterMeter as WaterMeter
-from typing import TypedDict
+from typing import TypedDict, override
 
 type P1MonitorConfigEntry = ConfigEntry[P1MonitorDataUpdateCoordinator]
 class P1MonitorData(TypedDict):
@@ -20,4 +20,5 @@ class P1MonitorDataUpdateCoordinator(DataUpdateCoordinator[P1MonitorData]):
     has_water_meter: bool | None
     p1monitor: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: P1MonitorConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> P1MonitorData: ...

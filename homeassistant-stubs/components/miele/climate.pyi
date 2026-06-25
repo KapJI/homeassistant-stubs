@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pymiele import MieleDevice as MieleDevice, MieleTemperature as MieleTemperature
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -43,15 +43,20 @@ class MieleClimate(MieleEntity, ClimateEntity):
     _attr_hvac_mode: Incomplete
     _attr_supported_features: Incomplete
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     _attr_name: Incomplete
     _attr_translation_key: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MieleDataUpdateCoordinator, device_id: str, description: MieleClimateDescription) -> None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def max_temp(self) -> float: ...
     @property
+    @override
     def min_temp(self) -> float: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

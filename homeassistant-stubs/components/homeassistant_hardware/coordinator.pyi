@@ -4,6 +4,7 @@ from ha_silabs_firmware_client import FirmwareManifest
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 FIRMWARE_REFRESH_INTERVAL: Incomplete
@@ -12,4 +13,5 @@ class FirmwareUpdateCoordinator(DataUpdateCoordinator[FirmwareManifest]):
     session: Incomplete
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, session: ClientSession, url: str) -> None: ...
+    @override
     async def _async_update_data(self) -> FirmwareManifest: ...

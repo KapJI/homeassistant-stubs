@@ -5,6 +5,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 REBOOT_BUTTON: Incomplete
@@ -15,4 +16,5 @@ class AirOSRebootButton(AirOSEntity, ButtonEntity):
     entity_description: ButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirOSDataUpdateCoordinator, description: ButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

@@ -4,6 +4,7 @@ from aiopegelonline import PegelOnline as PegelOnline, Station as Station, Stati
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type PegelOnlineConfigEntry = ConfigEntry[PegelOnlineDataUpdateCoordinator]
@@ -13,4 +14,5 @@ class PegelOnlineDataUpdateCoordinator(DataUpdateCoordinator[StationMeasurements
     api: Incomplete
     station: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: PegelOnlineConfigEntry, api: PegelOnline, station: Station) -> None: ...
+    @override
     async def _async_update_data(self) -> StationMeasurements: ...

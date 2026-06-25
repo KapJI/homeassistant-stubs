@@ -8,7 +8,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 class UpdateStates(Enum):
     IDLE = 1
@@ -31,10 +31,12 @@ class RainMachineUpdateEntity(RainMachineEntity, UpdateEntity):
     _attr_device_class: Incomplete
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_installed_version: Incomplete
     _attr_in_progress: bool
     _attr_latest_version: Incomplete
     _attr_title: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

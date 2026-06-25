@@ -3,6 +3,7 @@ from .coordinator import WattsVisionDeviceCoordinator as WattsVisionDeviceCoordi
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 from visionpluspython.models import Device as Device
 
 class WattsVisionEntity[_T: Device](CoordinatorEntity[WattsVisionDeviceCoordinator]):
@@ -14,4 +15,5 @@ class WattsVisionEntity[_T: Device](CoordinatorEntity[WattsVisionDeviceCoordinat
     @property
     def device(self) -> _T: ...
     @property
+    @override
     def available(self) -> bool: ...

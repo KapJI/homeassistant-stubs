@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityDescription as LightEntityDescription, LightEntityFeature as LightEntityFeature, brightness_supported as brightness_supported
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 
@@ -31,26 +31,37 @@ class BlockShellyLight(ShellyBlockAttributeEntity, LightEntity):
     _attr_max_color_temp_kelvin: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockLightDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
     def mode(self) -> str: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def rgb_color(self) -> tuple[int, int, int]: ...
     @property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int]: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int: ...
     @property
+    @override
     def effect_list(self) -> list[str] | None: ...
     @property
+    @override
     def effect(self) -> str | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _update_callback(self) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -63,16 +74,23 @@ class RpcShellyLightBase(ShellyRpcAttributeEntity, LightEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def rgb_color(self) -> tuple[int, int, int]: ...
     @property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int]: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class RpcShellySwitchAsLight(RpcShellyLightBase):
@@ -102,6 +120,7 @@ class RpcShellyRgbCctLight(RpcShellyLightBase):
     _attr_min_color_temp_kelvin = KELVIN_MIN_VALUE_WHITE
     _attr_max_color_temp_kelvin = KELVIN_MAX_VALUE
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
 
 class RpcShellyRgbLight(RpcShellyLightBase):

@@ -1,4 +1,4 @@
-from .const import CONF_BC_CONNECT as CONF_BC_CONNECT, CONF_BC_ONLY as CONF_BC_ONLY, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
+from .const import CONF_BC_CONNECT as CONF_BC_CONNECT, CONF_BC_ONLY as CONF_BC_ONLY, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_UID as CONF_UID, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkException as ReolinkException, ReolinkWebhookException as ReolinkWebhookException, UserNotAdmin as UserNotAdmin
 from .host import ReolinkHost as ReolinkHost
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, is_connected as is_connected
@@ -11,7 +11,7 @@ from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_PROTOCOL: str
@@ -31,10 +31,13 @@ class ReolinkFlowHandler(ConfigFlow, domain=DOMAIN):
     def __init__(self) -> None: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ReolinkConfigEntry) -> ReolinkOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_privacy(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

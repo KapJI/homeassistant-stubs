@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
-from typing import Any
+from typing import Any, override
 
 POLL_DEFAULT_COOLDOWN: int
 POLL_DEFAULT_IMMEDIATE: bool
@@ -22,6 +22,8 @@ class ActiveBluetoothProcessorCoordinator[_DataT](PassiveBluetoothProcessorCoord
     async def _async_poll_data(self, last_service_info: BluetoothServiceInfoBleak) -> _DataT: ...
     async def _async_poll(self) -> None: ...
     @callback
+    @override
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...
     @callback
+    @override
     def _async_stop(self) -> None: ...

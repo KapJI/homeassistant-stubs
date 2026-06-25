@@ -11,7 +11,7 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from infrared_protocols.commands import Command as InfraredCommand
 from propcache.api import cached_property
-from typing import final
+from typing import final, override
 
 _LOGGER: Incomplete
 
@@ -34,10 +34,12 @@ class InfraredEmitterEntity(RestoreEntity, metaclass=abc.ABCMeta):
     __last_command_sent: str | None
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
     async def async_send_command_internal(self, command: InfraredCommand) -> None: ...
     @final
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @abstractmethod
     async def async_send_command(self, command: InfraredCommand) -> None: ...
@@ -54,8 +56,10 @@ class InfraredReceiverEntity(RestoreEntity):
     def __signal_callbacks(self) -> set[Callable[[InfraredReceivedSignal], None]]: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @final
     def _handle_received_signal(self, signal: InfraredReceivedSignal) -> None: ...

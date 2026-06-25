@@ -5,13 +5,16 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: BondConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BondSwitch(BondEntity, SwitchEntity):
     _attr_is_on: Incomplete
+    @override
     def _apply_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_set_power_belief(self, power_state: bool) -> None: ...

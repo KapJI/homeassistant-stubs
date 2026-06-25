@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 LANG_TO_BROADCAST_COMMAND: Incomplete
 
@@ -14,4 +14,5 @@ async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_i
 class BroadcastNotificationService(BaseNotificationService):
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_send_message(self, message: str = '', **kwargs: Any) -> None: ...

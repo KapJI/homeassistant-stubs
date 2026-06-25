@@ -4,11 +4,12 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.selector import LocationSelector as LocationSelector
-from typing import Any
+from typing import Any, override
 
 async def async_check_location(hass: HomeAssistant, longitude: float, latitude: float) -> bool: ...
 
 class SmhiFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

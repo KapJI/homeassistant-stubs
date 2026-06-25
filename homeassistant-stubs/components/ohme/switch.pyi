@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ohme import OhmeApiClient as OhmeApiClient
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -32,14 +32,20 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: OhmeConfigEntry, 
 class OhmeSwitch(OhmeEntity, SwitchEntity):
     entity_description: OhmeSwitchDescription
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class OhmeConfigSwitch(OhmeEntity, SwitchEntity):
     entity_description: OhmeConfigSwitchDescription
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _toggle(self, on: bool) -> None: ...

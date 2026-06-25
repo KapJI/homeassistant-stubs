@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from aiohttp import ClientResponse as ClientResponse, ClientResponseError, RequestInfo as RequestInfo
 from collections.abc import Callable as Callable, Generator, Sequence
 from multidict import MultiMapping
-from typing import Any
+from typing import Any, override
 
 _function_cache: dict[str, Callable[[str, str, dict[str, str] | None], str]]
 
@@ -17,6 +17,7 @@ class HomeAssistantError(Exception):
     translation_key: str | None
     translation_placeholders: dict[str, str] | None
     def __init__(self, *args: object, translation_domain: str | None = None, translation_key: str | None = None, translation_placeholders: dict[str, str] | None = None) -> None: ...
+    @override
     def __str__(self) -> str: ...
 
 class ConfigValidationError(HomeAssistantError, ExceptionGroup[Exception]):
@@ -36,11 +37,13 @@ class ConditionError(HomeAssistantError):
     @staticmethod
     def _indent(indent: int, message: str) -> str: ...
     def output(self, indent: int) -> Generator[str]: ...
+    @override
     def __str__(self) -> str: ...
 
 class ConditionErrorMessage(ConditionError):
     message: Incomplete
     def __init__(self, type: str, message: str) -> None: ...
+    @override
     def output(self, indent: int) -> Generator[str]: ...
 
 class ConditionErrorIndex(ConditionError):
@@ -48,14 +51,17 @@ class ConditionErrorIndex(ConditionError):
     total: Incomplete
     error: Incomplete
     def __init__(self, type: str, *, index: int, total: int, error: ConditionError) -> None: ...
+    @override
     def output(self, indent: int) -> Generator[str]: ...
 
 class ConditionErrorContainer(ConditionError):
     errors: Incomplete
     def __init__(self, type: str, *, errors: Sequence[ConditionError]) -> None: ...
+    @override
     def output(self, indent: int) -> Generator[str]: ...
 
 class IntegrationError(HomeAssistantError):
+    @override
     def __str__(self) -> str: ...
 
 class PlatformNotReady(IntegrationError): ...

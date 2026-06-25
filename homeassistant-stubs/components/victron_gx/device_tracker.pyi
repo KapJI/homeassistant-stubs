@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 from victron_mqtt import Device as VictronVenusDevice, GpsLocation, Metric as VictronVenusMetric
 
 PARALLEL_UPDATES: int
@@ -22,9 +22,11 @@ class VictronDeviceTracker(VictronBaseEntity, TrackerEntity):
     _speed: float | None
     def __init__(self, device: VictronVenusDevice, metric: VictronVenusMetric, device_info: DeviceInfo, installation_id: str) -> None: ...
     @callback
+    @override
     def _on_update_cb(self, value: Any) -> None: ...
     _attr_latitude: Incomplete
     _attr_longitude: Incomplete
     def _update_from_location(self, value: GpsLocation | None) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, StateType]: ...

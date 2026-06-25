@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from peblar import Peblar as Peblar
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 class PeblarButtonEntity(PeblarEntity[PeblarUserConfigurationDataUpdateCoordinator], ButtonEntity):
     entity_description: PeblarButtonEntityDescription
     @peblar_exception_handler
+    @override
     async def async_press(self) -> None: ...

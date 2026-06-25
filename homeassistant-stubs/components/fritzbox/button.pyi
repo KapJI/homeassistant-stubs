@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyfritzhome.devicetypes import FritzhomeTemplate as FritzhomeTemplate
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -13,8 +14,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: FritzboxConfigEntry, asy
 
 class FritzBoxTemplate(FritzBoxEntity, ButtonEntity):
     @property
+    @override
     def data(self) -> FritzhomeTemplate: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
+    @override
     async def async_press(self) -> None: ...
     def apply_template(self) -> None: ...

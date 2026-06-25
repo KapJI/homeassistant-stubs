@@ -8,7 +8,7 @@ from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,15 +23,22 @@ class ComelitCoverEntity(ComelitBridgeBaseEntity, RestoreEntity, CoverEntity):
     @property
     def device_status(self) -> int: ...
     @property
+    @override
     def is_closed(self) -> bool | None: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @bridge_api_call
     async def _cover_set_state(self, action: int, state: int) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover(self, **_kwargs: Any) -> None: ...
     _attr_is_closed: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...

@@ -9,6 +9,7 @@ from homeassistant.const import CONF_URL as CONF_URL, EntityCategory as EntityCa
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,14 +26,21 @@ class NtfyUpdateEntity(NtfyCommonBaseEntity, UpdateEntity):
     update_checker: Incomplete
     def __init__(self, coordinator: NtfyVersionDataUpdateCoordinator, update_checker: NtfyLatestReleaseUpdateCoordinator, description: EntityDescription) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def title(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
+    @override
     async def async_release_notes(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

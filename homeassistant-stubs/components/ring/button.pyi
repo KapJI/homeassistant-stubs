@@ -6,6 +6,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingOther
+from typing import override
 
 PARALLEL_UPDATES: int
 BUTTON_DESCRIPTION: Incomplete
@@ -17,4 +18,5 @@ class RingDoorButton(RingEntity[RingOther], ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, device: RingOther, coordinator: RingDataCoordinator, description: ButtonEntityDescription) -> None: ...
     @exception_wrap
+    @override
     async def async_press(self) -> None: ...

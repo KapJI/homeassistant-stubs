@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pymiele import MieleEnum
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -68,14 +68,22 @@ class MieleVacuum(MieleEntity, StateVacuumEntity):
     _attr_fan_speed_list: Incomplete
     _attr_name: Incomplete
     @property
+    @override
     def activity(self) -> VacuumActivity | None: ...
     @property
+    @override
     def fan_speed(self) -> str | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     async def send(self, device_id: str, action: dict[str, Any]) -> None: ...
+    @override
     async def async_clean_spot(self, **kwargs: Any) -> None: ...
+    @override
     async def async_start(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop(self, **kwargs: Any) -> None: ...
+    @override
     async def async_pause(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...

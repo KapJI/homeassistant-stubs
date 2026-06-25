@@ -7,7 +7,7 @@ from google_photos_library_api.model import Album as Album, MediaItem as MediaIt
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from homeassistant.core import HomeAssistant as HomeAssistant
-from typing import Self
+from typing import Self, override
 
 _LOGGER: Incomplete
 MEDIA_ITEMS_PAGE_SIZE: int
@@ -40,7 +40,9 @@ class GooglePhotosMediaSource(MediaSource):
     name: str
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     def _async_config_entries(self) -> list[GooglePhotosConfigEntry]: ...
     def _async_config_entry(self, config_entry_id: str) -> GooglePhotosConfigEntry: ...

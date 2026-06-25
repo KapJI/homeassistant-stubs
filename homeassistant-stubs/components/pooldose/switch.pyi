@@ -6,7 +6,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -16,8 +16,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: PooldoseConfigEnt
 
 class PooldoseSwitch(PooldoseEntity, SwitchEntity):
     def __init__(self, coordinator: PooldoseCoordinator, serial_number: str, device_info: Any, description: SwitchEntityDescription) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

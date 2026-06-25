@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tplink_omada_client.devices import OmadaDevice as OmadaDevice, OmadaGatewayPortConfig as OmadaGatewayPortConfig, OmadaGatewayPortStatus as OmadaGatewayPortStatus, OmadaListDevice as OmadaListDevice
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,8 +28,10 @@ class OmadaGatewayPortBinarySensor(OmadaDeviceEntity[OmadaGatewayCoordinator], B
     _attr_unique_id: Incomplete
     _attr_translation_placeholders: Incomplete
     def __init__(self, coordinator: OmadaGatewayCoordinator, device: OmadaDevice, port_number: int, entity_description: GatewayPortBinarySensorEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     def _do_update(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

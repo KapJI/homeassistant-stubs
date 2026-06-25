@@ -8,6 +8,7 @@ from homeassistant.components.time import TimeEntity as TimeEntity, TimeEntityDe
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -20,9 +21,12 @@ class StarlinkTimeEntityDescription(TimeEntityDescription):
 class StarlinkTimeEntity(StarlinkEntity, TimeEntity):
     entity_description: StarlinkTimeEntityDescription
     @property
+    @override
     def native_value(self) -> time | None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_set_value(self, value: time) -> None: ...
 
 def _utc_minutes_to_time(utc_minutes: int, timezone: tzinfo) -> time: ...

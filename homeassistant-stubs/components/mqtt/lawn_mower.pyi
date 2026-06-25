@@ -16,6 +16,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -45,17 +46,24 @@ class MqttLawnMower(MqttEntity, LawnMowerEntity, RestoreEntity):
     _command_topics: dict[str, str]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_assumed_state: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_activity: Incomplete
     @callback
     def _message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     async def _async_operate(self, option: str, activity: LawnMowerActivity) -> None: ...
+    @override
     async def async_start_mowing(self) -> None: ...
+    @override
     async def async_dock(self) -> None: ...
+    @override
     async def async_pause(self) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from streamlabswater.streamlabswater import StreamlabsClient as StreamlabsClient
+from typing import override
 
 @dataclass(slots=True)
 class StreamlabsData:
@@ -19,5 +20,6 @@ class StreamlabsCoordinator(DataUpdateCoordinator[dict[str, StreamlabsData]]):
     config_entry: StreamlabsConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: StreamlabsConfigEntry, client: StreamlabsClient) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, StreamlabsData]: ...
     def _update_data(self) -> dict[str, StreamlabsData]: ...

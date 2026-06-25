@@ -10,6 +10,7 @@ from homeassistant.const import DEGREE as DEGREE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ class TrafikverketCameraSensor(TrafikverketCameraNonCameraEntity, SensorEntity):
     entity_description: TVCameraSensorEntityDescription
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_attr(self) -> None: ...

@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from pysmlight import Info as Info, Sensors as Sensors
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -39,6 +40,7 @@ class SmSensorEntity(SmEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | str | float | None: ...
 
 class SmInfoSensorEntity(SmEntity, SensorEntity):
@@ -49,6 +51,7 @@ class SmInfoSensorEntity(SmEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmInfoEntityDescription, idx: int = 0) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class SmUptimeSensorEntity(SmSensorEntity):
@@ -56,4 +59,5 @@ class SmUptimeSensorEntity(SmSensorEntity):
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmSensorEntityDescription) -> None: ...
     def get_uptime(self, uptime: float | None) -> datetime | None: ...
     @property
+    @override
     def native_value(self) -> datetime | None: ...

@@ -13,7 +13,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from synology_dsm.api.core.external_usb import SynoCoreExternalUSBDevice as SynoCoreExternalUSBDevice
 from synology_dsm.api.dsm.information import SynoDSMInformation
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class SynologyDSMSensorEntityDescription(SensorEntityDescription, SynologyDSMEntityDescription):
@@ -34,24 +34,30 @@ class SynoDSMSensor(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordinator], 
 
 class SynoDSMUtilSensor(SynoDSMSensor):
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class SynoDSMStorageSensor(SynologyDSMDeviceEntity, SynoDSMSensor):
     entity_description: SynologyDSMSensorEntityDescription
     def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMSensorEntityDescription, device_id: str | None = None) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class SynoDSMExternalUSBSensor(SynologyDSMDeviceEntity, SynoDSMSensor):
     entity_description: SynologyDSMSensorEntityDescription
     def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator, description: SynologyDSMSensorEntityDescription, device_id: str | None = None) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class SynoDSMInfoSensor(SynoDSMSensor):
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

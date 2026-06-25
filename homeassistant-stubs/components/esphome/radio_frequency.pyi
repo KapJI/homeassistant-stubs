@@ -4,6 +4,7 @@ from aioesphomeapi import EntityState, RadioFrequencyInfo, RadioFrequencyModulat
 from homeassistant.components.radio_frequency import RadioFrequencyTransmitterEntity as RadioFrequencyTransmitterEntity
 from homeassistant.core import callback as callback
 from rf_protocols import ModulationType, RadioFrequencyCommand as RadioFrequencyCommand
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -11,10 +12,13 @@ MODULATION_TYPE_TO_ESPHOME: dict[ModulationType, RadioFrequencyModulation]
 
 class EsphomeRadioFrequencyEntity(EsphomeEntity[RadioFrequencyInfo, EntityState], RadioFrequencyTransmitterEntity):
     @property
+    @override
     def supported_frequency_ranges(self) -> list[tuple[int, int]]: ...
     @callback
+    @override
     def _on_device_update(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_send_command(self, command: RadioFrequencyCommand) -> None: ...
 
 async_setup_entry: Incomplete

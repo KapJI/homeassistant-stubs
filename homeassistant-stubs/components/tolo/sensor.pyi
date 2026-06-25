@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tololib import ToloSettings as ToloSettings, ToloStatus as ToloStatus
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class ToloSensorEntityDescription(SensorEntityDescription):
@@ -24,6 +25,8 @@ class ToloSensorEntity(ToloSaunaCoordinatorEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ToloConfigEntry, entity_description: ToloSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> int | None: ...

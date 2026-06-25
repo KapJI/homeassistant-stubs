@@ -6,7 +6,7 @@ from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD,
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: BAFConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -21,9 +21,15 @@ class BAFFan(BAFEntity, FanEntity):
     _attr_percentage: Incomplete
     _attr_preset_mode: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_set_direction(self, direction: str) -> None: ...

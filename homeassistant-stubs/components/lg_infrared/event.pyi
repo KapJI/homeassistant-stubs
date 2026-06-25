@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from infrared_protocols.codes.lg.tv import LGTVCode
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -22,4 +23,5 @@ class LgIrReceivedCommandEvent(LgIrEntity, InfraredReceiverConsumerEntity, Event
     _infrared_receiver_entity_id: Incomplete
     def __init__(self, entry: ConfigEntry, receiver_entity_id: str) -> None: ...
     @callback
+    @override
     def _handle_signal(self, signal: InfraredReceivedSignal) -> None: ...

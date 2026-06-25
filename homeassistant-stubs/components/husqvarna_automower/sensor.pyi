@@ -12,7 +12,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -60,12 +60,16 @@ class AutomowerSensorEntity(AutomowerBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, description: AutomowerSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def options(self) -> list[str] | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class WorkAreaSensorEntity(WorkAreaAvailableEntity, SensorEntity):
@@ -74,6 +78,8 @@ class WorkAreaSensorEntity(WorkAreaAvailableEntity, SensorEntity):
     _attr_translation_placeholders: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, description: WorkAreaSensorEntityDescription, work_area_id: int) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def translation_key(self) -> str: ...

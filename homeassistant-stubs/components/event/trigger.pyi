@@ -4,6 +4,7 @@ from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_STATE_TRIGGER_SCHEMA, StatelessEntityTriggerBase as StatelessEntityTriggerBase, Trigger as Trigger, TriggerConfig as TriggerConfig
+from typing import override
 
 CONF_EVENT_TYPE: str
 EVENT_RECEIVED_TRIGGER_SCHEMA: Incomplete
@@ -13,6 +14,7 @@ class EventReceivedTrigger(StatelessEntityTriggerBase):
     _schema = EVENT_RECEIVED_TRIGGER_SCHEMA
     _event_types: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
+    @override
     def is_valid_state(self, state: State) -> bool: ...
 
 TRIGGERS: dict[str, type[Trigger]]

@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -22,6 +23,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: PooldoseConfigEnt
 class PooldoseSensor(PooldoseEntity, SensorEntity):
     entity_description: PooldoseSensorEntityDescription
     @property
+    @override
     def native_value(self) -> float | int | str | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...

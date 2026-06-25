@@ -5,7 +5,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, WaterHeaterInfo, WaterHeater
 from homeassistant.components.water_heater import WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _WATER_HEATER_MODES: EsphomeEnumMapper[WaterHeaterMode, str]
@@ -19,30 +19,41 @@ class EsphomeWaterHeater(EsphomeEntity[WaterHeaterInfo, WaterHeaterState], Water
     _attr_operation_list: Incomplete
     _attr_supported_features: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_float_state_property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
     @esphome_float_state_property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
     @esphome_state_property
+    @override
     def current_operation(self) -> str | None: ...
     @property
     @esphome_state_property
+    @override
     def is_away_mode_on(self) -> bool | None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_away_mode_on(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_away_mode_off(self) -> None: ...
 
 async_setup_entry: Incomplete

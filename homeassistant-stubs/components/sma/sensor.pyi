@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysma.sensor import Sensor as Sensor
+from typing import override
 
 SENSOR_ENTITIES: dict[str, SensorEntityDescription]
 
@@ -24,10 +25,15 @@ class SMAsensor(CoordinatorEntity[SMADataUpdateCoordinator], SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SMADataUpdateCoordinator, description: SensorEntityDescription | None, pysma_sensor: Sensor, entry: SMAConfigEntry) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

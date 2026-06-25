@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Literal, final
+from typing import Literal, final, override
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -66,12 +66,16 @@ class BinarySensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     _attr_device_class: BinarySensorDeviceClass | None
     _attr_is_on: bool | None
     _attr_state: None
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
+    @override
     def _default_to_device_class_name(self) -> bool: ...
     @cached_property
+    @override
     def device_class(self) -> BinarySensorDeviceClass | None: ...
     @cached_property
     def is_on(self) -> bool | None: ...
     @final
     @property
+    @override
     def state(self) -> Literal['on', 'off'] | None: ...

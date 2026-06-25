@@ -9,6 +9,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, REVOLUTIONS_PER_MINUTE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class FlexitSensorEntityDescription(SensorEntityDescription):
@@ -25,4 +26,5 @@ class FlexitSensor(FlexitEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FlexitCoordinator, entity_description: FlexitSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

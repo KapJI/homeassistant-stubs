@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: FastdotcomConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -21,4 +22,5 @@ class SpeedtestSensor(CoordinatorEntity[FastdotcomDataUpdateCoordinator], Sensor
     _attr_device_info: Incomplete
     def __init__(self, entry_id: str, coordinator: FastdotcomDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

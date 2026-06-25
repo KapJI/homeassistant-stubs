@@ -9,7 +9,7 @@ from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, Cover
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -27,9 +27,14 @@ class Airtouch5ZoneOpenPercentage(CoverEntity, Airtouch5Entity):
     _attr_is_closed: bool
     @callback
     def _async_update_attrs(self, data: dict[int, ZoneStatusZone]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
     async def _set_cover_position(self, position_percent: float) -> None: ...

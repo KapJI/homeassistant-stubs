@@ -6,7 +6,7 @@ from homeassistant.components.http.auth import async_sign_path as async_sign_pat
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_supervisor_network_url as get_supervisor_network_url, get_url as get_url, is_hass_url as is_hass_url
-from typing import Any
+from typing import Any, override
 
 PATHS_WITHOUT_AUTH: Incomplete
 
@@ -28,6 +28,7 @@ class BrowseMedia:
     def __init__(self, *, media_class: MediaClass | str, media_content_id: str, media_content_type: MediaType | str, title: str, can_play: bool, can_expand: bool, children: Sequence[BrowseMedia] | None = None, children_media_class: MediaClass | str | None = None, thumbnail: str | None = None, not_shown: int = 0, can_search: bool = False) -> None: ...
     def as_dict(self, *, parent: bool = True) -> dict[str, Any]: ...
     def calculate_children_class(self) -> None: ...
+    @override
     def __repr__(self) -> str: ...
 
 @dataclass(kw_only=True, frozen=True)

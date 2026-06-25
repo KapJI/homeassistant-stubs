@@ -8,7 +8,7 @@ from homeassistant.components.humidifier import DEFAULT_MAX_HUMIDITY as DEFAULT_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from zwave_js_server.const.command_class.humidity_control import HumidityControlMode, HumidityControlSetpointType
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as ZwaveValue
@@ -34,14 +34,21 @@ class ZWaveHumidifier(ZWaveBaseEntity, HumidifierEntity):
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo, description: ZwaveHumidifierEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     def _supports_inverse_mode(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def target_humidity(self) -> int | None: ...
+    @override
     async def async_set_humidity(self, humidity: int) -> None: ...
     @property
+    @override
     def min_humidity(self) -> int: ...
     @property
+    @override
     def max_humidity(self) -> int: ...

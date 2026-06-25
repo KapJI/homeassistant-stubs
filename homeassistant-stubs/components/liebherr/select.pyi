@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyliebherrhomeapi import BioFreshPlusControl, HydroBreezeControl, IceMakerControl
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 type SelectControl = IceMakerControl | HydroBreezeControl | BioFreshPlusControl
@@ -42,7 +42,10 @@ class LiebherrSelectEntity(LiebherrEntity, SelectEntity):
     @property
     def _select_control(self) -> SelectControl | None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

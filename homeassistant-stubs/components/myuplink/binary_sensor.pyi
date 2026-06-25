@@ -8,6 +8,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from myuplink import DevicePoint as DevicePoint
+from typing import override
 
 CATEGORY_BASED_DESCRIPTIONS: dict[str, dict[str, BinarySensorEntityDescription]]
 CONNECTED_BINARY_SENSOR_DESCRIPTION: Incomplete
@@ -22,18 +23,22 @@ class MyUplinkDevicePointBinarySensor(MyUplinkEntity, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, device_point: DevicePoint, entity_description: BinarySensorEntityDescription | None, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class MyUplinkDeviceBinarySensor(MyUplinkEntity, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, entity_description: BinarySensorEntityDescription, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class MyUplinkSystemBinarySensor(MyUplinkSystemEntity, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, system_id: str, device_id: str, entity_description: BinarySensorEntityDescription, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

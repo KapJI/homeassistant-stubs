@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
-from typing import Any
+from typing import Any, override
 
 newserver: Incomplete
 newplugins: Incomplete
@@ -21,15 +21,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: SqueezeboxConfigEntry, a
 
 class ServerStatusUpdate(LMSStatusEntity, UpdateEntity):
     @property
+    @override
     def latest_version(self) -> str: ...
 
 class ServerStatusUpdateLMS(ServerStatusUpdate):
     title: str
     @property
+    @override
     def installed_version(self) -> str: ...
     @property
+    @override
     def release_url(self) -> str: ...
     @property
+    @override
     def release_summary(self) -> None | str: ...
 
 class ServerStatusUpdatePlugins(ServerStatusUpdate):
@@ -39,12 +43,17 @@ class ServerStatusUpdatePlugins(ServerStatusUpdate):
     restart_triggered: bool
     _cancel_update: Callable | None
     @property
+    @override
     def supported_features(self) -> UpdateEntityFeature: ...
     @property
+    @override
     def release_summary(self) -> None | str: ...
     @property
+    @override
     def release_url(self) -> str: ...
     @property
+    @override
     def in_progress(self) -> bool: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     async def _async_update_catchall(self, now: datetime | None = None) -> None: ...

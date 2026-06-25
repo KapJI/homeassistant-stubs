@@ -8,7 +8,7 @@ from amberelectric.models.forecast_interval import ForecastInterval
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 type AmberConfigEntry = ConfigEntry[AmberUpdateCoordinator]
 def is_current(interval: ActualInterval | CurrentInterval | ForecastInterval) -> bool: ...
@@ -23,4 +23,5 @@ class AmberUpdateCoordinator(DataUpdateCoordinator):
     site_id: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AmberConfigEntry, api: amberelectric.AmberApi, site_id: str) -> None: ...
     def update_price_data(self) -> dict[str, dict[str, Any]]: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

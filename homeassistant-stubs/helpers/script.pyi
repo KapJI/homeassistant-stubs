@@ -26,7 +26,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType, SignalTypeFormat as SignalTypeFormat
 from propcache.api import cached_property
-from typing import Any, Literal, TypedDict, overload
+from typing import Any, Literal, TypedDict, overload, override
 
 SCRIPT_MODE_PARALLEL: str
 SCRIPT_MODE_QUEUED: str
@@ -81,7 +81,8 @@ class _ConditionFail(_HaltScript): ...
 
 class _StopScript(_HaltScript):
     response: Incomplete
-    def __init__(self, message: str, response: Any) -> None: ...
+    conversation_response: Incomplete
+    def __init__(self, message: str, response: Any, conversation_response: str | None | UndefinedType = ...) -> None: ...
 
 class _ScriptRun:
     _action: dict[str, Any]
@@ -138,7 +139,9 @@ class _ScriptRun:
 
 class _QueuedScriptRun(_ScriptRun):
     lock_acquired: bool
+    @override
     async def async_run(self) -> ScriptRunResult | None: ...
+    @override
     def _finish(self) -> None: ...
 
 @callback

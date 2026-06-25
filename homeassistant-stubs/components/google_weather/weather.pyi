@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 _CONDITION_MAP: dict[WeatherCondition.Type, str | None]
@@ -25,32 +26,47 @@ class GoogleWeatherEntity(CoordinatorWeatherEntity[GoogleWeatherCurrentCondition
     _attr_supported_features: Incomplete
     def __init__(self, entry: GoogleWeatherConfigEntry, subentry: ConfigSubentry) -> None: ...
     @property
+    @override
     def condition(self) -> str | None: ...
     @property
+    @override
     def native_temperature(self) -> float: ...
     @property
+    @override
     def native_apparent_temperature(self) -> float: ...
     @property
+    @override
     def native_dew_point(self) -> float: ...
     @property
+    @override
     def humidity(self) -> int: ...
     @property
+    @override
     def uv_index(self) -> float: ...
     @property
+    @override
     def native_pressure(self) -> float: ...
     @property
+    @override
     def native_wind_gust_speed(self) -> float: ...
     @property
+    @override
     def native_wind_speed(self) -> float: ...
     @property
+    @override
     def wind_bearing(self) -> int: ...
     @property
+    @override
     def native_visibility(self) -> float: ...
     @property
+    @override
     def cloud_coverage(self) -> float: ...
     @callback
+    @override
     def _async_forecast_daily(self) -> list[Forecast] | None: ...
     @callback
+    @override
     def _async_forecast_hourly(self) -> list[Forecast] | None: ...
     @callback
+    @override
     def _async_forecast_twice_daily(self) -> list[Forecast] | None: ...

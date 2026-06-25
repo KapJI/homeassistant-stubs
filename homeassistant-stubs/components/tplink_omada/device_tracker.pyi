@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from tplink_omada_client.clients import OmadaWirelessClient
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -20,16 +21,23 @@ class OmadaClientScannerEntity(CoordinatorEntity[OmadaClientsCoordinator], Scann
     _attr_name: Incomplete
     def __init__(self, site_id: str, client_id: str, display_name: str, coordinator: OmadaClientsCoordinator) -> None: ...
     def _do_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def ip_address(self) -> str | None: ...
     @property
+    @override
     def mac_address(self) -> str | None: ...
     @property
+    @override
     def hostname(self) -> str | None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def unique_id(self) -> str | None: ...

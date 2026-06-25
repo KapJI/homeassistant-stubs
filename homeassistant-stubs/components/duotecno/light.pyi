@@ -5,7 +5,7 @@ from duotecno.unit import DimUnit as DimUnit
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: DuotecnoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,10 +14,14 @@ class DuotecnoLight(DuotecnoEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @api_call
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @api_call
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

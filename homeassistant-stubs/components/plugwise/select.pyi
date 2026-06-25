@@ -8,6 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -26,8 +27,11 @@ class PlugwiseSelectEntity(PlugwiseEntity, SelectEntity):
     _location: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, entity_description: PlugwiseSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @plugwise_command
+    @override
     async def async_select_option(self, option: str) -> None: ...

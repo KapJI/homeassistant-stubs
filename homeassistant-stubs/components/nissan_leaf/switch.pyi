@@ -6,7 +6,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -16,11 +16,17 @@ class LeafClimateSwitch(LeafEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, car: LeafDataStore) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
+    @override
     def log_registration(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

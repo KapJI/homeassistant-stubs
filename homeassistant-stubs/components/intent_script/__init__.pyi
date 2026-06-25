@@ -7,7 +7,7 @@ from homeassistant.helpers import intent as intent, script as script, service as
 from homeassistant.helpers.reload import async_integration_yaml_config as async_integration_yaml_config
 from homeassistant.helpers.script import async_validate_actions_config as async_validate_actions_config
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import TypedDict
+from typing import TypedDict, override
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -45,4 +45,5 @@ class ScriptIntentHandler(intent.IntentHandler):
     description: Incomplete
     platforms: Incomplete
     def __init__(self, intent_type: str, config: ConfigType) -> None: ...
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

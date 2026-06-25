@@ -5,10 +5,12 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CO
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from typing import Any
+from typing import Any, override
 
 DATA_SCHEMA: Incomplete
 
 class KnockiConfigFlow(ConfigFlow, domain=DOMAIN):
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...

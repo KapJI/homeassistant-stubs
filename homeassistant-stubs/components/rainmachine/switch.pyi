@@ -13,7 +13,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 ATTR_ACTIVITY_TYPE: str
 ATTR_AREA: str
@@ -79,10 +79,12 @@ class RainMachineActivitySwitch(RainMachineBaseSwitch):
     _attr_icon: str
     entity_description: RainMachineActivitySwitchDescription
     def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineSwitchDescription) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
     async def async_turn_off_when_active(self, **kwargs: Any) -> None: ...
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
     async def async_turn_on_when_active(self, **kwargs: Any) -> None: ...
@@ -94,23 +96,31 @@ class RainMachineEnabledSwitch(RainMachineBaseSwitch):
     def __init__(self, entry: ConfigEntry, data: RainMachineData, description: RainMachineSwitchDescription) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class RainMachineProgram(RainMachineActivitySwitch):
+    @override
     async def async_start_program(self) -> None: ...
+    @override
     async def async_stop_program(self) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_off_when_active(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_on_when_active(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class RainMachineProgramEnabled(RainMachineEnabledSwitch):
     @raise_on_request_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class RainMachineRestrictionSwitch(RainMachineBaseSwitch):
@@ -118,25 +128,35 @@ class RainMachineRestrictionSwitch(RainMachineBaseSwitch):
     entity_description: RainMachineRestrictionSwitchDescription
     _attr_is_on: bool
     @raise_on_request_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class RainMachineZone(RainMachineActivitySwitch):
+    @override
     async def async_start_zone(self, *, zone_run_time: int) -> None: ...
+    @override
     async def async_stop_zone(self) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_off_when_active(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_on_when_active(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class RainMachineZoneEnabled(RainMachineEnabledSwitch):
     @raise_on_request_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @raise_on_request_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

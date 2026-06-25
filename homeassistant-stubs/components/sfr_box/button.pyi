@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from sfrbox_api.bridge import SFRBox as SFRBox
 from sfrbox_api.models import SystemInfo as SystemInfo
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 PARALLEL_UPDATES: int
 
@@ -30,4 +30,5 @@ class SFRBoxButton(SFREntity, ButtonEntity):
     _box: Incomplete
     def __init__(self, box: SFRBox, description: SFRBoxButtonEntityDescription, system_info: SystemInfo) -> None: ...
     @with_error_wrapping
+    @override
     async def async_press(self) -> None: ...

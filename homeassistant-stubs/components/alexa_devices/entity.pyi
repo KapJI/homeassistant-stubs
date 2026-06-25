@@ -6,6 +6,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
+from typing import override
 
 class AmazonEntity(CoordinatorEntity[AmazonDevicesCoordinator]):
     _attr_has_entity_name: bool
@@ -17,6 +18,7 @@ class AmazonEntity(CoordinatorEntity[AmazonDevicesCoordinator]):
     @property
     def device(self) -> AmazonDevice: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class AmazonServiceEntity(CoordinatorEntity[AmazonDevicesCoordinator]):

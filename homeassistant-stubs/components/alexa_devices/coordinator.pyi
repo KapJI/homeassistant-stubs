@@ -1,6 +1,6 @@
 from .const import CONF_LOGIN_DATA as CONF_LOGIN_DATA, DOMAIN as DOMAIN, _LOGGER as _LOGGER
 from _typeshed import Incomplete
-from aioamazondevices.structures import AmazonDevice, AmazonMediaState as AmazonMediaState, AmazonVocalRecord as AmazonVocalRecord, AmazonVolumeState as AmazonVolumeState
+from aioamazondevices.structures import AmazonDevice, AmazonListEvent as AmazonListEvent, AmazonListItem as AmazonListItem, AmazonMediaState as AmazonMediaState, AmazonVocalRecord as AmazonVocalRecord, AmazonVolumeState as AmazonVolumeState
 from aiohttp import ClientSession as ClientSession
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
@@ -11,6 +11,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import slugify as slugify
+from typing import override
 
 SCAN_INTERVAL: int
 
@@ -25,13 +26,21 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
     api: Incomplete
     previous_devices: set[str]
     previous_routines: set[str]
+    previous_todo_lists: set[str]
+    _todo_list_items: dict[str, dict[str, AmazonListItem]]
     _vocal_records: dict[str, AmazonVocalRecord]
     _volume_states: dict[str, AmazonVolumeState]
     _media_states: dict[str, AmazonMediaState]
     def __init__(self, hass: HomeAssistant, entry: AmazonConfigEntry, session: ClientSession) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, AmazonDevice]: ...
     async def _async_remove_device_stale(self, stale_devices: set[str]) -> None: ...
     async def _async_remove_routine_stale(self, stale_routines: set[str]) -> None: ...
+    async def _async_remove_todo_lists_stale(self, stale_todo_lists: set[str]) -> None: ...
+    async def sync_todo_list_items(self) -> None: ...
+    async def todo_event_handler(self, list_event: AmazonListEvent) -> None: ...
+    @property
+    def todo_list_items(self) -> dict[str, dict[str, AmazonListItem]]: ...
     async def sync_history_state(self) -> None: ...
     async def history_state_event_handler(self, vocal_records: dict[str, AmazonVocalRecord]) -> None: ...
     @property

@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco import LaMarzoccoMachine as LaMarzoccoMachine
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -25,5 +25,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, a
 class LaMarzoccoNumberEntity(LaMarzoccoEntity, NumberEntity):
     entity_description: LaMarzoccoNumberEntityDescription
     @property
+    @override
     def native_value(self) -> float | int: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

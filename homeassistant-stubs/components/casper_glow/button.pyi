@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pycasperglow import CasperGlow as CasperGlow
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +24,5 @@ class CasperGlowButton(CasperGlowEntity, ButtonEntity):
     entity_description: CasperGlowButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CasperGlowCoordinator, description: CasperGlowButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

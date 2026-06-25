@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysaunum import SaunumClient as SaunumClient, SaunumData as SaunumData
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,5 +29,7 @@ class LeilSaunaNumber(LeilSaunaEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LeilSaunaCoordinator, description: LeilSaunaNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

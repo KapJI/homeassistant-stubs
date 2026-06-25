@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from onedrive_personal_sdk.models.items import DriveQuota as DriveQuota
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -30,6 +31,8 @@ class OneDriveDriveStateSensor(CoordinatorEntity[OneDriveUpdateCoordinator], Sen
     _attr_device_info: Incomplete
     def __init__(self, coordinator: OneDriveUpdateCoordinator, description: OneDriveSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...

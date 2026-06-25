@@ -8,14 +8,16 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from python_awair import AwairLocalDevice as AwairLocalDevice
 from python_awair.user import AwairUser as AwairUser
-from typing import Any
+from typing import Any, override
 
 class AwairFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _device: AwairLocalDevice
     host: str
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_cloud(self, user_input: Mapping[str, Any]) -> ConfigFlowResult: ...
     @callback

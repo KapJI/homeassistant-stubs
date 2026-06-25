@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.ulid import ulid as ulid
-from typing import Any
+from typing import Any, override
 from webrtc_models import RTCConfiguration, RTCIceCandidate as RTCIceCandidate, RTCIceCandidateInit
 
 _LOGGER: Incomplete
@@ -37,6 +37,7 @@ class WebRTCAnswer(WebRTCMessage):
 @dataclass(frozen=True)
 class WebRTCCandidate(WebRTCMessage):
     candidate: RTCIceCandidate | RTCIceCandidateInit
+    @override
     def as_dict(self) -> dict[str, Any]: ...
 
 @dataclass(frozen=True)

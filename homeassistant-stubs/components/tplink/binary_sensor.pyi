@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkBinarySensorEntityDescription(BinarySensorEntityDescription, TPLinkFeatureEntityDescription): ...
@@ -20,4 +20,5 @@ class TPLinkBinarySensorEntity(CoordinatedTPLinkFeatureEntity, BinarySensorEntit
     entity_description: TPLinkBinarySensorEntityDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...

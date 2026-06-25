@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 UPDATE_DESCRIPTION: Incomplete
 
@@ -13,6 +14,8 @@ class MyUplinkDeviceUpdate(MyUplinkEntity, UpdateEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, entity_description: UpdateEntityDescription, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...

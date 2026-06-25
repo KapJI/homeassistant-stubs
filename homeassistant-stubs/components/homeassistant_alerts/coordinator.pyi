@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.hassio import is_hassio as is_hassio
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -23,4 +24,5 @@ class AlertUpdateCoordinator(DataUpdateCoordinator[dict[str, IntegrationAlert]])
     ha_version: Incomplete
     supervisor: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, IntegrationAlert]: ...

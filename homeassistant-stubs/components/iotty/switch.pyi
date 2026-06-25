@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from iottycloud.lightswitch import LightSwitch
 from iottycloud.outlet import Outlet
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 ENTITIES: dict[str, SwitchEntityDescription]
@@ -20,8 +20,12 @@ class IottySwitch(IottyEntity, SwitchEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: IottyDataUpdateCoordinator, iotty_cloud: IottyProxy, iotty_device: LightSwitch | Outlet, entity_description: SwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

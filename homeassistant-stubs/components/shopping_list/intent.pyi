@@ -3,6 +3,7 @@ from .const import DOMAIN as DOMAIN, EVENT_SHOPPING_LIST_UPDATED as EVENT_SHOPPI
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
+from typing import override
 
 INTENT_ADD_ITEM: str
 INTENT_COMPLETE_ITEM: str
@@ -15,6 +16,7 @@ class AddItemIntent(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class CompleteItemIntent(intent.IntentHandler):
@@ -22,6 +24,7 @@ class CompleteItemIntent(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class ListTopItemsIntent(intent.IntentHandler):
@@ -29,4 +32,5 @@ class ListTopItemsIntent(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

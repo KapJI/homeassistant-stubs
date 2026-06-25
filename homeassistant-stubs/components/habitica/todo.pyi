@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -24,19 +25,25 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEnt
 
 class BaseHabiticaListEntity(HabiticaBase, TodoListEntity):
     def __init__(self, coordinator: HabiticaDataUpdateCoordinator) -> None: ...
+    @override
     async def async_delete_todo_items(self, uids: list[str]) -> None: ...
+    @override
     async def async_move_todo_item(self, uid: str, previous_uid: str | None = None) -> None: ...
+    @override
     async def async_update_todo_item(self, item: TodoItem) -> None: ...
 
 class HabiticaTodosListEntity(BaseHabiticaListEntity):
     _attr_supported_features: Incomplete
     entity_description: Incomplete
     @property
+    @override
     def todo_items(self) -> list[TodoItem]: ...
+    @override
     async def async_create_todo_item(self, item: TodoItem) -> None: ...
 
 class HabiticaDailiesListEntity(BaseHabiticaListEntity):
     _attr_supported_features: Incomplete
     entity_description: Incomplete
     @property
+    @override
     def todo_items(self) -> list[TodoItem]: ...

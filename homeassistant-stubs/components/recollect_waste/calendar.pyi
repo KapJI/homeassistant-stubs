@@ -7,6 +7,7 @@ from aiorecollect.client import PickupEvent as PickupEvent
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @callback
 def async_get_calendar_event_from_pickup_event(entry: RecollectWasteConfigEntry, pickup_event: PickupEvent) -> CalendarEvent: ...
@@ -19,7 +20,10 @@ class ReCollectWasteCalendar(ReCollectWasteEntity, CalendarEntity):
     _event: CalendarEvent | None
     def __init__(self, coordinator: ReCollectWasteDataUpdateCoordinator, entry: RecollectWasteConfigEntry) -> None: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime.datetime, end_date: datetime.datetime) -> list[CalendarEvent]: ...

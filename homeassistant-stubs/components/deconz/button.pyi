@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.scene import Scene as PydeconzScene
 from pydeconz.models.sensor.presence import Presence
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class DeconzButtonDescription(ButtonEntityDescription):
@@ -25,7 +26,9 @@ class DeconzSceneButton(DeconzSceneMixin, ButtonEntity):
     entity_description: DeconzButtonDescription
     _attr_name: Incomplete
     def __init__(self, device: PydeconzScene, hub: DeconzHub, description: DeconzButtonDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...
+    @override
     def get_device_identifier(self) -> str: ...
 
 class DeconzPresenceResetButton(DeconzDevice[Presence], ButtonEntity):
@@ -34,4 +37,5 @@ class DeconzPresenceResetButton(DeconzDevice[Presence], ButtonEntity):
     _attr_entity_category: Incomplete
     _attr_device_class: Incomplete
     TYPE = BUTTON_DOMAIN
+    @override
     async def async_press(self) -> None: ...

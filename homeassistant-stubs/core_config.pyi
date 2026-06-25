@@ -13,7 +13,7 @@ from .util.package import is_docker_env as is_docker_env
 from .util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, UnitSystem as UnitSystem, _CONF_UNIT_SYSTEM_IMPERIAL as _CONF_UNIT_SYSTEM_IMPERIAL, _CONF_UNIT_SYSTEM_METRIC as _CONF_UNIT_SYSTEM_METRIC, _CONF_UNIT_SYSTEM_US_CUSTOMARY as _CONF_UNIT_SYSTEM_US_CUSTOMARY, get_unit_system as get_unit_system
 from _typeshed import Incomplete
 from collections.abc import Sequence
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 DATA_CUSTOMIZE: HassKey[EntityValues]
@@ -53,8 +53,11 @@ class _ComponentSet(set[str]):
     _top_level_components: Incomplete
     _all_components: Incomplete
     def __init__(self, top_level_components: set[str], all_components: set[str]) -> None: ...
+    @override
     def add(self, value: str) -> None: ...
+    @override
     def remove(self, value: str) -> None: ...
+    @override
     def discard(self, value: object) -> None: ...
 
 class Config:
@@ -104,5 +107,7 @@ class Config:
     class _ConfigStore(Store[dict[str, Any]]):
         _original_unit_system: str | None
         def __init__(self, hass: HomeAssistant) -> None: ...
+        @override
         async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
+        @override
         async def async_save(self, data: dict[str, Any]) -> None: ...

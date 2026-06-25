@@ -7,6 +7,7 @@ from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -21,5 +22,7 @@ class AutomowerCalendarEntity(AutomowerBaseEntity, CalendarEntity):
     @property
     def device_name(self) -> str: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...

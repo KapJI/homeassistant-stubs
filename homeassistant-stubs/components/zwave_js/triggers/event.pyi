@@ -8,9 +8,9 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.automation import move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig
+from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 from zwave_js_server.model.driver import Driver as Driver
 
 RELATIVE_PLATFORM_TYPE: Incomplete
@@ -31,11 +31,14 @@ class EventTrigger(Trigger):
     _unsubs: list[Callable]
     _action_runner: TriggerActionRunner
     @classmethod
+    @override
     async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     @classmethod
+    @override
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
-    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+    @override
+    async def async_attach_runner(self, run_action: TriggerActionRunner, did_not_trigger: TriggerNotTriggeredReporter | None = None) -> CALLBACK_TYPE: ...
     @callback
     def _async_on_event(self, event_data: dict, device: dr.DeviceEntry | None = None) -> None: ...
     @callback

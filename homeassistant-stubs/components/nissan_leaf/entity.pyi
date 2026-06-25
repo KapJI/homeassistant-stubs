@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -13,7 +13,9 @@ class LeafEntity(Entity):
     def __init__(self, car: LeafDataStore) -> None: ...
     def log_registration(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _update_callback(self) -> None: ...

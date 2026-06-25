@@ -12,7 +12,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 ATTR_PRODUCT_FILTER: str
 PARALLEL_UPDATES: int
@@ -36,6 +36,8 @@ class TrainSensor(CoordinatorEntity[TVDataUpdateCoordinator], SensorEntity):
     @callback
     def _update_attr(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

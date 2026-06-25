@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class IronOSBaseEntity(CoordinatorEntity[IronOSLiveDataCoordinator]):
     _attr_has_entity_name: bool
@@ -12,4 +13,5 @@ class IronOSBaseEntity(CoordinatorEntity[IronOSLiveDataCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: IronOSLiveDataCoordinator, entity_description: EntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

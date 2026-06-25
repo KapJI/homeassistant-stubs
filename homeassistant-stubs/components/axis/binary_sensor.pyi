@@ -13,6 +13,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class AxisBinarySensorDescription(AxisEventDescription, BinarySensorEntityDescription): ...
@@ -46,4 +47,5 @@ class AxisBinarySensor(AxisEventEntity, BinarySensorEntity):
     cancel_scheduled_update: Callable[[], None] | None
     def __init__(self, hub: AxisHub, description: AxisBinarySensorDescription, event: Event) -> None: ...
     @callback
+    @override
     def async_event_callback(self, event: Event) -> None: ...

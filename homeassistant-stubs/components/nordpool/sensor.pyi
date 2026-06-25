@@ -10,6 +10,7 @@ from homeassistant.components.sensor import EntityCategory as EntityCategory, Se
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -41,6 +42,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: NordPoolConfigEntry, asy
 class NordpoolSensor(NordpoolBaseEntity, SensorEntity):
     entity_description: NordpoolDefaultSensorEntityDescription
     @property
+    @override
     def native_value(self) -> str | float | datetime | None: ...
 
 class NordpoolPriceSensor(NordpoolBaseEntity, SensorEntity):
@@ -48,8 +50,10 @@ class NordpoolPriceSensor(NordpoolBaseEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: NordPoolDataUpdateCoordinator, entity_description: NordpoolPricesSensorEntityDescription, area: str, currency: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str] | None: ...
 
 class NordpoolBlockPriceSensor(NordpoolBaseEntity, SensorEntity):
@@ -60,6 +64,7 @@ class NordpoolBlockPriceSensor(NordpoolBaseEntity, SensorEntity):
     _attr_translation_placeholders: Incomplete
     def __init__(self, coordinator: NordPoolDataUpdateCoordinator, entity_description: NordpoolBlockPricesSensorEntityDescription, area: str, currency: str, block_name: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | datetime | None: ...
 
 class NordpoolDailyAveragePriceSensor(NordpoolBaseEntity, SensorEntity):
@@ -67,4 +72,5 @@ class NordpoolDailyAveragePriceSensor(NordpoolBaseEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: NordPoolDataUpdateCoordinator, entity_description: SensorEntityDescription, area: str, currency: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

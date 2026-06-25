@@ -7,6 +7,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfPower as UnitOfPower, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from zinvolt import ZinvoltClient as ZinvoltClient
 
 @dataclass(kw_only=True, frozen=True)
@@ -24,7 +25,10 @@ class ZinvoltBatteryStateNumber(ZinvoltEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator, description: ZinvoltBatteryStateDescription) -> None: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

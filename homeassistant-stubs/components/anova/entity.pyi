@@ -2,6 +2,7 @@ from .coordinator import AnovaCoordinator as AnovaCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class AnovaEntity(CoordinatorEntity[AnovaCoordinator], Entity):
     _attr_has_entity_name: bool
@@ -9,6 +10,7 @@ class AnovaEntity(CoordinatorEntity[AnovaCoordinator], Entity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AnovaCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class AnovaDescriptionEntity(AnovaEntity):

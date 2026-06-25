@@ -6,7 +6,7 @@ from .util import dpt_string_to_dict as dpt_string_to_dict
 from _typeshed import Incomplete
 from collections.abc import Hashable, Iterable
 from enum import Enum
-from typing import Any
+from typing import Any, override
 
 class AllSerializeFirst(vol.All): ...
 
@@ -22,6 +22,7 @@ class KNXSectionFlat(KNXSelectorBase):
     schema: Incomplete
     collapsible: Incomplete
     def __init__(self, collapsible: bool = False) -> None: ...
+    @override
     def serialize(self) -> dict[str, Any]: ...
 
 class KNXSection(KNXSelectorBase):
@@ -30,6 +31,7 @@ class KNXSection(KNXSelectorBase):
     collapsible: Incomplete
     schema: Incomplete
     def __init__(self, schema: dict[str | vol.Marker, vol.Schemable], collapsible: bool = True) -> None: ...
+    @override
     def serialize(self) -> dict[str, Any]: ...
 
 class GroupSelectOption(KNXSelectorBase):
@@ -38,9 +40,11 @@ class GroupSelectOption(KNXSelectorBase):
     translation_key: Incomplete
     schema: Incomplete
     def __init__(self, schema: vol.Schemable, translation_key: str) -> None: ...
+    @override
     def serialize(self) -> dict[str, Any]: ...
 
 class GroupSelectSchema(vol.Any):
+    @override
     def _exec(self, funcs: Iterable, v: Any, path: list[Hashable] | None = None) -> Any: ...
 
 class GroupSelect(KNXSelectorBase):
@@ -49,6 +53,7 @@ class GroupSelect(KNXSelectorBase):
     collapsible: Incomplete
     schema: Incomplete
     def __init__(self, *options: GroupSelectOption, collapsible: bool = True) -> None: ...
+    @override
     def serialize(self) -> dict[str, Any]: ...
 
 class GASelector(KNXSelectorBase):
@@ -62,6 +67,7 @@ class GASelector(KNXSelectorBase):
     valid_dpt: Incomplete
     schema: Incomplete
     def __init__(self, write: bool = True, state: bool = True, passive: bool = True, write_required: bool = False, state_required: bool = False, dpt: type[Enum] | list[HaDptClass] | None = None, valid_dpt: str | Iterable[str] | None = None) -> None: ...
+    @override
     def serialize(self) -> dict[str, Any]: ...
     def build_schema(self) -> vol.Schema: ...
     def _add_group_addresses(self, schema: dict[vol.Marker, Any]) -> None: ...
@@ -73,5 +79,7 @@ class SyncStateSelector(KNXSelectorBase):
     selector_type: str
     allow_false: Incomplete
     def __init__(self, allow_false: bool = False) -> None: ...
+    @override
     def serialize(self) -> dict[str, Any]: ...
+    @override
     def __call__(self, data: Any) -> Any: ...

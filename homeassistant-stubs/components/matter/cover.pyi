@@ -9,7 +9,7 @@ from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 OPERATIONAL_STATUS_MASK: int
 TYPE_MAP: Incomplete
@@ -28,11 +28,17 @@ class MatterCoverEntityDescription(CoverEntityDescription, MatterEntityDescripti
 class MatterCover(MatterEntity, CoverEntity):
     entity_description: MatterCoverEntityDescription
     @property
+    @override
     def is_closed(self) -> bool | None: ...
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
     _attr_is_opening: bool
     _attr_is_closing: bool
@@ -41,6 +47,7 @@ class MatterCover(MatterEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

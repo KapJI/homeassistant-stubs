@@ -1,7 +1,7 @@
-from .const import ValveDeviceClass as ValveDeviceClass, ValveEntityFeature as ValveEntityFeature, ValveState as ValveState
+from .const import ValveDeviceClass as ValveDeviceClass, ValveEntityFeature as ValveEntityFeature, ValveEntityStateAttribute as ValveEntityStateAttribute, ValveState as ValveState
 from dataclasses import dataclass
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from typing import Any, final
+from typing import Any, final, override
 
 ATTR_CURRENT_POSITION: str
 ATTR_IS_CLOSED: str
@@ -26,14 +26,18 @@ class ValveEntity(Entity):
     @property
     def current_valve_position(self) -> int | None: ...
     @property
+    @override
     def device_class(self) -> ValveDeviceClass | None: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def supported_features(self) -> ValveEntityFeature: ...
     @property
     def is_opening(self) -> bool | None: ...

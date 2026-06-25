@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Platform as Platform, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 CURRENT_STATE_MAP: Incomplete
 TARGET_STATE_MAP: Incomplete
@@ -17,17 +17,25 @@ REVERSED_TARGET_STATE_MAP: Incomplete
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeKitLock(HomeKitEntity, LockEntity):
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def is_locked(self) -> bool | None: ...
     @property
+    @override
     def is_locking(self) -> bool: ...
     @property
+    @override
     def is_unlocking(self) -> bool: ...
     @property
+    @override
     def is_jammed(self) -> bool: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     async def _set_lock_state(self, state: LockState) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...

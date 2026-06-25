@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Literal
+from typing import Any, Literal, override
 
 _LOGGER: Incomplete
 
@@ -29,8 +29,11 @@ class TractiveSwitch(TractiveEntity, SwitchEntity):
     _attr_available: Incomplete
     _attr_is_on: Incomplete
     @callback
+    @override
     def handle_status_update(self, event: dict[str, Any]) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_set_buzzer(self, active: bool) -> dict[str, Any]: ...
     async def async_set_led(self, active: bool) -> dict[str, Any]: ...

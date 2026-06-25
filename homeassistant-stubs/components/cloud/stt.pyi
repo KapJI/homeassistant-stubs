@@ -10,6 +10,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.setup import async_when_setup as async_when_setup
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -21,16 +22,24 @@ class CloudProviderEntity(SpeechToTextEntity):
     cloud: Incomplete
     def __init__(self, cloud: Cloud[CloudClient]) -> None: ...
     @property
+    @override
     def supported_languages(self) -> list[str]: ...
     @property
+    @override
     def supported_formats(self) -> list[AudioFormats]: ...
     @property
+    @override
     def supported_codecs(self) -> list[AudioCodecs]: ...
     @property
+    @override
     def supported_bit_rates(self) -> list[AudioBitRates]: ...
     @property
+    @override
     def supported_sample_rates(self) -> list[AudioSampleRates]: ...
     @property
+    @override
     def supported_channels(self) -> list[AudioChannels]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...

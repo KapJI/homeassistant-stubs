@@ -8,6 +8,7 @@ from homeassistant.const import STATE_UNKNOWN as STATE_UNKNOWN, UnitOfFrequency 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,8 +22,11 @@ class DevoloScannerEntity(CoordinatorEntity[DevoloDataUpdateCoordinator[dict[str
     _attr_name: Incomplete
     def __init__(self, coordinator: DevoloDataUpdateCoordinator[dict[str, ConnectedStationInfo]], device: Device, mac: str) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def unique_id(self) -> str: ...

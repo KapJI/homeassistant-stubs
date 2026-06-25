@@ -6,7 +6,7 @@ from collections.abc import Mapping
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 class PurpleAirEntity(CoordinatorEntity[PurpleAirDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -15,6 +15,7 @@ class PurpleAirEntity(CoordinatorEntity[PurpleAirDataUpdateCoordinator]):
     _entry: Incomplete
     def __init__(self, entry: PurpleAirConfigEntry, sensor_index: int) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     @property
     def sensor_data(self) -> SensorModel: ...

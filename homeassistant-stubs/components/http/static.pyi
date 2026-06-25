@@ -4,7 +4,7 @@ from aiohttp.web_urldispatcher import StaticResource
 from collections.abc import Mapping
 from lru import LRU
 from pathlib import Path
-from typing import Final
+from typing import Final, override
 
 CACHE_TIME: Final[Incomplete]
 CACHE_HEADER: Incomplete
@@ -13,4 +13,5 @@ RESPONSE_CACHE: LRU[tuple[str, Path], tuple[Path, str]]
 _GUESSER: Incomplete
 
 class CachingStaticResource(StaticResource):
+    @override
     async def _handle(self, request: Request) -> StreamResponse: ...

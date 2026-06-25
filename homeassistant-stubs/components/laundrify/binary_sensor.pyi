@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from laundrify_aio import LaundrifyDevice as LaundrifyDevice
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -21,8 +22,11 @@ class LaundrifyPowerPlug(CoordinatorEntity[LaundrifyUpdateCoordinator], BinarySe
     _attr_device_info: Incomplete
     def __init__(self, coordinator: LaundrifyUpdateCoordinator, device: LaundrifyDevice) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

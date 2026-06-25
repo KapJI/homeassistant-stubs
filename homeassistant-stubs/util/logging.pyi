@@ -23,7 +23,9 @@ class HomeAssistantQueueListener(logging.handlers.QueueListener):
 
 class HomeAssistantQueueHandler(logging.handlers.QueueHandler):
     listener: logging.handlers.QueueListener | None
+    @override
     def handle(self, record: logging.LogRecord) -> Any: ...
+    @override
     def close(self) -> None: ...
 
 @callback

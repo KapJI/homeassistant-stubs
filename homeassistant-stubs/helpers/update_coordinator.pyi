@@ -14,7 +14,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, H
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError
 from homeassistant.util.dt import utcnow as utcnow
 from propcache.api import cached_property
-from typing import Any, Generic, Protocol, TypeVar
+from typing import Any, Generic, Protocol, TypeVar, override
 
 REQUEST_REFRESH_DEFAULT_COOLDOWN: int
 REQUEST_REFRESH_DEFAULT_IMMEDIATE: bool
@@ -52,6 +52,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, *, config_entry: config_entries.ConfigEntry | None | UndefinedType = ..., name: str, update_interval: timedelta | None = None, update_method: Callable[[], Awaitable[_DataT]] | None = None, setup_method: Callable[[], Awaitable[None]] | None = None, request_refresh_debouncer: Debouncer[Coroutine[Any, Any, None]] | None = None, always_update: bool = True) -> None: ...
     async def async_register_shutdown(self) -> None: ...
     @callback
+    @override
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...
     @callback
     def __async_remove_listener_internal(self, listener_id: int) -> None: ...
@@ -91,6 +92,7 @@ class DataUpdateCoordinator(BaseDataUpdateCoordinatorProtocol, Generic[_DataT]):
 class TimestampDataUpdateCoordinator(DataUpdateCoordinator[_DataT]):
     last_update_success_time: datetime | None
     @callback
+    @override
     def _async_refresh_finished(self) -> None: ...
 
 class BaseCoordinatorEntity[_BaseDataUpdateCoordinatorT: BaseDataUpdateCoordinatorProtocol](entity.Entity, metaclass=abc.ABCMeta):
@@ -98,7 +100,9 @@ class BaseCoordinatorEntity[_BaseDataUpdateCoordinatorT: BaseDataUpdateCoordinat
     coordinator_context: Incomplete
     def __init__(self, coordinator: _BaseDataUpdateCoordinatorT, context: Any = None) -> None: ...
     @cached_property
+    @override
     def should_poll(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _handle_coordinator_update(self) -> None: ...
@@ -108,5 +112,7 @@ class BaseCoordinatorEntity[_BaseDataUpdateCoordinatorT: BaseDataUpdateCoordinat
 class CoordinatorEntity[_DataUpdateCoordinatorT: DataUpdateCoordinator[Any] = DataUpdateCoordinator[dict[str, Any]]](BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
     def __init__(self, coordinator: _DataUpdateCoordinatorT, context: Any = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_update(self) -> None: ...

@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
+from typing import override
 from wled import Device as WLEDDevice
 
 PARALLEL_UPDATES: int
@@ -28,4 +29,5 @@ class WLEDSensorEntity(WLEDEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, description: WLEDSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | StateType: ...

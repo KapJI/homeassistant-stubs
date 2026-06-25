@@ -5,6 +5,7 @@ from homeassistant.components.bluetooth.active_update_coordinator import ActiveB
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from pycasperglow import CasperGlow as CasperGlow
+from typing import override
 
 _LOGGER: Incomplete
 type CasperGlowConfigEntry = ConfigEntry[CasperGlowCoordinator]
@@ -20,6 +21,8 @@ class CasperGlowCoordinator(ActiveBluetoothDataUpdateCoordinator[None]):
     async def _async_update(self, service_info: BluetoothServiceInfoBleak) -> None: ...
     last_poll_successful: bool
     _last_poll: Incomplete
+    @override
     async def _async_poll(self) -> None: ...
     @callback
+    @override
     def _async_handle_bluetooth_event(self, service_info: BluetoothServiceInfoBleak, change: BluetoothChange) -> None: ...

@@ -10,7 +10,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 MODE_ATTRS: Incomplete
@@ -41,19 +41,27 @@ class FluxLight(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], Li
     _custom_effect_transition: Incomplete
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, custom_effect_colors: list[tuple[int, int, int]], custom_effect_speed_pct: int, custom_effect_transition: str) -> None: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int: ...
     @property
+    @override
     def rgb_color(self) -> tuple[int, int, int]: ...
     @property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int]: ...
     @property
+    @override
     def rgbww_color(self) -> tuple[int, int, int, int, int]: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def effect(self) -> str | None: ...
+    @override
     async def _async_turn_on(self, **kwargs: Any) -> None: ...
     async def _async_set_effect(self, effect: str, brightness: int) -> None: ...
     @callback

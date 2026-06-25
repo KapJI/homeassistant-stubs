@@ -9,6 +9,7 @@ from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAut
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from spotifyaio import Device, PlaybackState as PlaybackState, Playlist as Playlist, SpotifyClient as SpotifyClient, UserProfile as UserProfile
+from typing import override
 
 _LOGGER: Incomplete
 type SpotifyConfigEntry = ConfigEntry[SpotifyData]
@@ -38,12 +39,15 @@ class SpotifyCoordinator(DataUpdateCoordinator[SpotifyCoordinatorData]):
     _playlist: Playlist | None
     _checked_playlist_id: str | None
     def __init__(self, hass: HomeAssistant, config_entry: SpotifyConfigEntry, client: SpotifyClient) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> SpotifyCoordinatorData: ...
 
 class SpotifyDeviceCoordinator(DataUpdateCoordinator[list[Device]]):
     config_entry: SpotifyConfigEntry
     _client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SpotifyConfigEntry, client: SpotifyClient) -> None: ...
+    @override
     async def _async_update_data(self) -> list[Device]: ...

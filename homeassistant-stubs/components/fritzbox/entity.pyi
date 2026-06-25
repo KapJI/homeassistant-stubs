@@ -8,6 +8,7 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyfritzhome import FritzhomeDevice as FritzhomeDevice
 from pyfritzhome.devicetypes.fritzhomeentitybase import FritzhomeEntityBase as FritzhomeEntityBase
+from typing import override
 
 class FritzBoxEntity(CoordinatorEntity[FritzboxDataUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
@@ -21,8 +22,11 @@ class FritzBoxEntity(CoordinatorEntity[FritzboxDataUpdateCoordinator], ABC, meta
 
 class FritzBoxDeviceEntity(FritzBoxEntity):
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def data(self) -> FritzhomeDevice: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

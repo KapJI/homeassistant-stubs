@@ -6,6 +6,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyuptimerobot import UptimeRobotMonitor as UptimeRobotMonitor
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -13,4 +14,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: UptimeRobotConfigEntry, 
 
 class UptimeRobotSensor(UptimeRobotEntity, SensorEntity):
     @property
+    @override
     def native_value(self) -> str | None: ...

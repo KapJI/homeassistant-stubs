@@ -7,7 +7,7 @@ from homeassistant.components.event import DoorbellEventType as DoorbellEventTyp
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingCapability, RingEvent as RingAlert
-from typing import Generic
+from typing import Generic, override
 
 PARALLEL_UPDATES: int
 
@@ -27,7 +27,10 @@ class RingEvent(RingBaseEntity[RingListenCoordinator, RingDeviceT], EventEntity)
     def _async_handle_event(self, event: str) -> None: ...
     def _get_coordinator_alert(self) -> RingAlert | None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_update(self) -> None: ...

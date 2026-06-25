@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from ouman_eh_800_api import ControllableEndpoint as ControllableEndpoint, OumanEh800Client, OumanEndpoint, OumanRegistrySet as OumanRegistrySet, OumanValues
+from typing import override
 
 _LOGGER: Incomplete
 type OumanEh800ConfigEntry = ConfigEntry[OumanEh800Coordinator]
@@ -18,7 +19,9 @@ class OumanEh800Coordinator(DataUpdateCoordinator[dict[OumanEndpoint, OumanValue
     client: OumanEh800Client
     device_info: dict[OumanDevice, DeviceInfo]
     def __init__(self, hass: HomeAssistant, config_entry: OumanEh800ConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[OumanEndpoint, OumanValues]: ...
     async def async_set_endpoint_value(self, endpoint: ControllableEndpoint, value: OumanValues | int) -> None: ...
     def sync_circuit_device_names(self) -> None: ...

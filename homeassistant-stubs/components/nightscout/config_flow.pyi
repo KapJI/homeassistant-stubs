@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_URL as CONF_URL
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DATA_SCHEMA: Incomplete
@@ -13,6 +13,7 @@ async def _validate_input(data: dict[str, Any]) -> dict[str, str]: ...
 
 class NightscoutConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class InputValidationError(HomeAssistantError):

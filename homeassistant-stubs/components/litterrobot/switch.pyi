@@ -1,5 +1,5 @@
 from .coordinator import LitterRobotConfigEntry as LitterRobotConfigEntry
-from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT, whisker_command as whisker_command
+from .entity import LitterRobotEntity as LitterRobotEntity, _WhiskerEntityT as _WhiskerEntityT, raise_update_failed as raise_update_failed, whisker_command as whisker_command
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -7,10 +7,14 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pylitterbot import Robot
-from typing import Any, Generic
+from pylitterbot import LitterRobot5, Robot
+from pylitterbot.sleep_schedule import DayOfWeek
+from typing import Any, Generic, override
 
 PARALLEL_UPDATES: int
+
+def _lr5_sleep_day_enabled(robot: LitterRobot5, *, day: DayOfWeek) -> bool: ...
+async def _lr5_set_sleep_day_enabled(robot: LitterRobot5, value: bool, *, day: DayOfWeek) -> bool: ...
 
 @dataclass(frozen=True, kw_only=True)
 class RobotSwitchEntityDescription(SwitchEntityDescription, Generic[_WhiskerEntityT]):
@@ -26,8 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, 
 class RobotSwitchEntity(LitterRobotEntity[_WhiskerEntityT], SwitchEntity):
     entity_description: RobotSwitchEntityDescription[_WhiskerEntityT]
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @whisker_command
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @whisker_command
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

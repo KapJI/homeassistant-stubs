@@ -10,7 +10,7 @@ from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BEL
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector, translation as translation
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 USER: str
@@ -53,8 +53,11 @@ class BayesianConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     options_flow = OPTIONS_FLOW
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
+    @override
     def async_config_entry_title(self, options: Mapping[str, str]) -> str: ...
+    @override
     async def async_on_create_entry(self, result: ConfigFlowResult) -> ConfigFlowResult: ...
 
 class ObservationSubentryFlowHandler(ConfigSubentryFlow):

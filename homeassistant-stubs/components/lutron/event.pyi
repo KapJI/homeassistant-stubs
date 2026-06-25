@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
 from pylutron import Button, Keypad as Keypad, Lutron as Lutron, LutronEntity as LutronEntity, LutronEvent as LutronEvent
+from typing import override
 
 class LutronEventType(StrEnum):
     SINGLE_PRESS = 'single_press'
@@ -26,6 +27,7 @@ class LutronEventEntity(LutronKeypad, EventEntity):
     _full_id: Incomplete
     _id: Incomplete
     def __init__(self, area_name: str, keypad: Keypad, button: Button, controller: Lutron) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def handle_event(self, button: LutronEntity, _context: None, event: LutronEvent, _params: dict) -> None: ...

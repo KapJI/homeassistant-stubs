@@ -7,6 +7,7 @@ from homeassistant.components.event import EventDeviceClass as EventDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 BUTTON_DESCRIPTIONS: Incomplete
 MOTION_DESCRIPTION: Incomplete
@@ -21,6 +22,7 @@ class GoveeBluetoothEventEntity(EventEntity):
     _address: Incomplete
     _signal: Incomplete
     def __init__(self, model_info: ModelInfo, service_info: BluetoothServiceInfoBleak | None, address: str, description: EventEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self) -> None: ...

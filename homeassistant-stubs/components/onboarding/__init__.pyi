@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import TypedDict
+from typing import TypedDict, override
 
 STORAGE_KEY = DOMAIN
 STORAGE_VERSION: int
@@ -23,6 +23,7 @@ class OnboardingStoreData(TypedDict):
     done: list[str]
 
 class OnboardingStorage(Store[OnboardingStoreData]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: OnboardingStoreData) -> OnboardingStoreData: ...
 
 @callback

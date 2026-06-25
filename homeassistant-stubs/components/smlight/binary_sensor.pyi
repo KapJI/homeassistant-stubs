@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight import Sensors as Sensors
 from pysmlight.sse import MessageEvent as MessageEvent
+from typing import override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL = SCAN_INTERNET_INTERVAL
@@ -29,6 +30,7 @@ class SmBinarySensorEntity(SmEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class SmInternetSensorEntity(SmEntity, BinarySensorEntity):
@@ -37,10 +39,13 @@ class SmInternetSensorEntity(SmEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     @callback
     def internet_callback(self, event: MessageEvent) -> None: ...
     @property
+    @override
     def should_poll(self) -> bool: ...
+    @override
     async def async_update(self) -> None: ...

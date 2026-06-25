@@ -12,7 +12,7 @@ from homeassistant.helpers.aiohttp_client import async_aiohttp_proxy_stream as a
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 FORCE_CAMERA_REFRESH_INTERVAL: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
@@ -35,9 +35,13 @@ class CanaryCamera(CoordinatorEntity[CanaryDataUpdateCoordinator], Camera):
     @property
     def location(self) -> Location: ...
     @property
+    @override
     def is_recording(self) -> bool: ...
     @property
+    @override
     def motion_detection_enabled(self) -> bool: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
+    @override
     async def handle_async_mjpeg_stream(self, request: Request) -> StreamResponse | None: ...
     def renew_live_stream_session(self) -> None: ...

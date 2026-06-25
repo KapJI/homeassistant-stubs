@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 SCAN_INTERVAL: Incomplete
 STALE_DEVICE_TIMEOUT: Incomplete
@@ -26,5 +27,6 @@ class ActronAirSystemCoordinator(DataUpdateCoordinator[ActronAirStatus]):
     status: Incomplete
     last_seen: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ActronAirConfigEntry, api: ActronAirAPI, system: ActronAirSystemInfo) -> None: ...
+    @override
     async def _async_update_data(self) -> ActronAirStatus: ...
     def is_device_stale(self) -> bool: ...

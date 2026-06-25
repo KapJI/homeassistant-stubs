@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pymicro_vad import MicroVad
 from pyspeex_noise import AudioProcessor
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -28,4 +29,5 @@ class MicroVadSpeexEnhancer(AudioEnhancer):
     auto_gain: Incomplete
     vad: MicroVad | None
     def __init__(self, auto_gain: int, noise_suppression: int, is_vad_enabled: bool) -> None: ...
+    @override
     def enhance_chunk(self, audio: bytes, timestamp_ms: int) -> EnhancedAudioChunk: ...

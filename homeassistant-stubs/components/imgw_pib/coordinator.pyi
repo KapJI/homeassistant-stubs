@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from imgw_pib import HydrologicalData, ImgwPib as ImgwPib
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -20,4 +21,5 @@ class ImgwPibDataUpdateCoordinator(DataUpdateCoordinator[HydrologicalData]):
     station_id: Incomplete
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ImgwPibConfigEntry, imgwpib: ImgwPib, station_id: str) -> None: ...
+    @override
     async def _async_update_data(self) -> HydrologicalData: ...

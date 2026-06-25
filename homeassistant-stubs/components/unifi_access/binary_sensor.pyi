@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from unifi_access_api import Door as Door
 
 PARALLEL_UPDATES: int
@@ -15,4 +16,5 @@ class UnifiAccessDoorPositionBinarySensor(UnifiAccessEntity, BinarySensorEntity)
     _attr_device_class: Incomplete
     def __init__(self, coordinator: UnifiAccessCoordinator, door: Door) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

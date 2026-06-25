@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from peco import AlertResults as AlertResults, OutageResults as OutageResults
+from typing import override
 
 @dataclass
 class PECOCoordinatorData:
@@ -24,6 +25,7 @@ class PecoOutageCoordinator(DataUpdateCoordinator[PECOCoordinatorData]):
     _websession: Incomplete
     _county: str
     def __init__(self, hass: HomeAssistant, entry: PecoConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> PECOCoordinatorData: ...
 
 class PecoSmartMeterCoordinator(DataUpdateCoordinator[bool]):
@@ -32,4 +34,5 @@ class PecoSmartMeterCoordinator(DataUpdateCoordinator[bool]):
     _websession: Incomplete
     _phone_number: Incomplete
     def __init__(self, hass: HomeAssistant, entry: PecoConfigEntry, phone_number: str) -> None: ...
+    @override
     async def _async_update_data(self) -> bool: ...

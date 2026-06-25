@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from rokuecp import Roku as Roku
 from rokuecp.models import Device as RokuDevice
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -33,7 +34,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: RokuConfigEntry, async_a
 class RokuSelectEntity(RokuEntity, SelectEntity):
     entity_description: RokuSelectEntityDescription
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

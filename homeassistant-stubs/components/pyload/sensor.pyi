@@ -9,6 +9,7 @@ from homeassistant.const import UnitOfDataRate as UnitOfDataRate, UnitOfInformat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -30,4 +31,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: PyLoadConfigEntry, async
 class PyLoadSensor(BasePyLoadEntity, SensorEntity):
     entity_description: PyLoadSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

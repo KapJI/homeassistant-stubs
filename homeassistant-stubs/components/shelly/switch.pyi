@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, State as State, c
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -43,9 +43,13 @@ class BlockSleepingMotionSwitch(ShellySleepingBlockAttributeEntity, RestoreEntit
     last_state: State | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockSwitchDescription, entry: RegistryEntry | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class BlockRelaySwitch(ShellyBlockAttributeEntity, SwitchEntity):
@@ -55,10 +59,14 @@ class BlockRelaySwitch(ShellyBlockAttributeEntity, SwitchEntity):
     _attr_unique_id: str
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockSwitchDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _update_callback(self) -> None: ...
 
 class RpcSwitch(ShellyRpcAttributeEntity, SwitchEntity):
@@ -66,10 +74,13 @@ class RpcSwitch(ShellyRpcAttributeEntity, SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcSwitchDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @rpc_call
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @rpc_call
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class RpcRelaySwitch(RpcSwitch):

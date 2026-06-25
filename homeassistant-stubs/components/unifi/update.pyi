@@ -12,7 +12,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -32,10 +32,13 @@ class UnifiDeviceUpdateEntity[_HandlerT: Devices, _DataT: Device](UnifiEntity[_H
     entity_description: UnifiUpdateEntityDescription[_HandlerT, _DataT]
     _attr_supported_features: Incomplete
     @callback
+    @override
     def async_initiate_state(self) -> None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     _attr_in_progress: Incomplete
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

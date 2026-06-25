@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from ttn_client import TTNClient
+from typing import override
 
 _LOGGER: Incomplete
 type TTNConfigEntry = ConfigEntry[TTNCoordinator]
@@ -14,5 +15,6 @@ class TTNCoordinator(DataUpdateCoordinator[TTNClient.DATA_TYPE]):
     config_entry: TTNConfigEntry
     _client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: TTNConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> TTNClient.DATA_TYPE: ...
     async def _push_callback(self, data: TTNClient.DATA_TYPE) -> None: ...

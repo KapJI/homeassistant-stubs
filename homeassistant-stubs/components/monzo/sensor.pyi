@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class MonzoSensorEntityDescription(SensorEntityDescription):
@@ -24,4 +24,5 @@ class MonzoSensor(MonzoBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MonzoCoordinator, entity_description: MonzoSensorEntityDescription, index: int, device_model: str, data_accessor: Callable[[MonzoData], list[dict[str, Any]]]) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

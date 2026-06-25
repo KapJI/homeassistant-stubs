@@ -9,7 +9,7 @@ from collections.abc import AsyncIterable
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.restore_state import RestoreEntity
-from typing import final
+from typing import final, override
 
 __all__ = ['DOMAIN', 'AudioBitRates', 'AudioChannels', 'AudioCodecs', 'AudioFormats', 'AudioSampleRates', 'Provider', 'SpeechMetadata', 'SpeechResult', 'SpeechResultState', 'SpeechToTextEntity', 'async_get_provider', 'async_get_speech_to_text_engine', 'async_get_speech_to_text_entity']
 
@@ -23,6 +23,7 @@ class SpeechToTextEntity(RestoreEntity, metaclass=abc.ABCMeta):
     __last_processed: str | None
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @property
     @abstractmethod
@@ -44,6 +45,7 @@ class SpeechToTextEntity(RestoreEntity, metaclass=abc.ABCMeta):
     def supported_channels(self) -> list[AudioChannels]: ...
     @property
     def audio_processing(self) -> SpeechAudioProcessing: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @final
     async def internal_async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...

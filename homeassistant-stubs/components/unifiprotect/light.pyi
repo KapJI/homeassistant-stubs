@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from uiprotect.data import Light as Light, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
@@ -24,8 +24,11 @@ class ProtectLight(ProtectDeviceEntity, LightEntity):
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

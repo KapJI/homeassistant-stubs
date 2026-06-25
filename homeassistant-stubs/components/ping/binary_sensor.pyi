@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: PingConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,4 +16,5 @@ class PingBinarySensor(PingEntity, BinarySensorEntity):
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, config_entry: PingConfigEntry, coordinator: PingUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

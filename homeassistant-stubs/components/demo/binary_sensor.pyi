@@ -2,9 +2,11 @@ from . import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,8 +18,11 @@ class DemoBinarySensor(BinarySensorEntity):
     _state: Incomplete
     _attr_device_class: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, unique_id: str, device_name: str, state: bool, device_class: BinarySensorDeviceClass) -> None: ...
+    _attr_entity_category: Incomplete
+    def __init__(self, unique_id: str, device_name: str, state: bool, device_class: BinarySensorDeviceClass, device_id: str | None = None, entity_category: EntityCategory | None = None, entity_name: str | None = None) -> None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...

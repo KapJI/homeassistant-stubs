@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pythonkuma import MonitorType, UptimeKumaMonitor as UptimeKumaMonitor
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -50,8 +50,11 @@ class UptimeKumaSensorEntity(CoordinatorEntity[UptimeKumaDataUpdateCoordinator],
     _attr_device_info: Incomplete
     def __init__(self, coordinator: UptimeKumaDataUpdateCoordinator, monitor: str | int, entity_description: UptimeKumaSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

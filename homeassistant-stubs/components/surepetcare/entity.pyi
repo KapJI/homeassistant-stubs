@@ -7,6 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from surepy.entities import SurepyEntity as SurepyEntity
+from typing import override
 
 class SurePetcareEntity(CoordinatorEntity[SurePetcareDataCoordinator], metaclass=abc.ABCMeta):
     _id: Incomplete
@@ -18,4 +19,5 @@ class SurePetcareEntity(CoordinatorEntity[SurePetcareDataCoordinator], metaclass
     @callback
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -3,7 +3,7 @@ from .coordinator import JellyfinDataUpdateCoordinator as JellyfinDataUpdateCoor
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 class JellyfinEntity(CoordinatorEntity[JellyfinDataUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -26,4 +26,5 @@ class JellyfinClientEntity(JellyfinEntity):
     @property
     def session_data(self) -> dict[str, Any]: ...
     @property
+    @override
     def available(self) -> bool: ...

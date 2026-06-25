@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 def convert_exception[**_P, _R](func: Callable[_P, Coroutine[Any, Any, _R]]) -> Callable[_P, Coroutine[Any, Any, _R]]: ...
 
@@ -17,4 +17,5 @@ class ArcamFmjEntity(CoordinatorEntity[ArcamFmjCoordinator]):
     entity_description: Incomplete
     def __init__(self, coordinator: ArcamFmjCoordinator, description: EntityDescription | None = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight import Sensors as Sensors, SettingsEvent as SettingsEvent
 from pysmlight.const import Settings
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -30,11 +30,15 @@ class SmSwitch(SmEntity, SwitchEntity):
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmSwitchEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def set_smlight(self, state: bool) -> None: ...
     @callback
     def event_callback(self, event: SettingsEvent) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

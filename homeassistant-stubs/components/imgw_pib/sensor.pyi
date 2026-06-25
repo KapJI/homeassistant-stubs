@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from imgw_pib.model import HydrologicalData as HydrologicalData
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -30,6 +30,8 @@ class ImgwPibSensorEntity(ImgwPibEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ImgwPibDataUpdateCoordinator, description: ImgwPibSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

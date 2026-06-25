@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import Envoy as Envoy, EnvoyDryContactSettings as EnvoyDryContactSettings
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -48,8 +48,10 @@ class EnvoyRelaySelectEntity(EnvoyBaseEntity, SelectEntity):
     @property
     def relay(self) -> EnvoyDryContactSettings: ...
     @property
+    @override
     def current_option(self) -> str: ...
     @exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class EnvoyStorageSettingsSelectEntity(EnvoyBaseEntity, SelectEntity):
@@ -60,6 +62,8 @@ class EnvoyStorageSettingsSelectEntity(EnvoyBaseEntity, SelectEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyStorageSettingsSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...

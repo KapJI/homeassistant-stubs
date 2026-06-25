@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +24,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeNetworkConfigE
 class DevoloButtonEntity(DevoloEntity, ButtonEntity):
     entity_description: DevoloButtonEntityDescription
     def __init__(self, entry: DevoloHomeNetworkConfigEntry, description: DevoloButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

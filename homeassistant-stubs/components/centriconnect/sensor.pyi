@@ -9,6 +9,7 @@ from homeassistant.components.sensor import EntityCategory as EntityCategory, Se
 from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfLength as UnitOfLength, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 _ALERT_STATUS_VALUES: Incomplete
@@ -43,4 +44,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: CentriConnectConfigEntry
 class CentriConnectSensor(CentriConnectBaseEntity, SensorEntity):
     entity_description: CentriConnectSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime | None: ...

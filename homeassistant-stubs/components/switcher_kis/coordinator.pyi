@@ -6,6 +6,7 @@ from homeassistant.const import CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import update_coordinator as update_coordinator
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -14,6 +15,7 @@ class SwitcherDataUpdateCoordinator(update_coordinator.DataUpdateCoordinator[Swi
     data: Incomplete
     token: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, device: SwitcherBase) -> None: ...
+    @override
     async def _async_update_data(self) -> SwitcherBase: ...
     @property
     def model(self) -> str: ...

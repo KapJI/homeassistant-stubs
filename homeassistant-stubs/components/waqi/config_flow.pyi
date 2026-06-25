@@ -6,7 +6,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as C
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import LocationSelector as LocationSelector
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_MAP: str
@@ -17,7 +17,9 @@ class WAQIConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class StationFlowHandler(ConfigSubentryFlow):

@@ -8,7 +8,7 @@ from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITIES as CON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -22,4 +22,5 @@ class LcnScene(LcnEntity, Scene):
     relay_ports: Incomplete
     transition: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
+    @override
     async def async_activate(self, **kwargs: Any) -> None: ...

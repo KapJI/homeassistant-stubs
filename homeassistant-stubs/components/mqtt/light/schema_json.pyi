@@ -15,7 +15,7 @@ from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import json_loads_object as json_loads_object
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_NAME: str
@@ -32,6 +32,7 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _topic: dict[str, str | None]
     _optimistic: bool
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
@@ -40,6 +41,7 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     _attr_assumed_state: Incomplete
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_color_temp_kelvin: Incomplete
     _attr_hs_color: Incomplete
@@ -54,10 +56,14 @@ class MqttLightJson(MqttEntity, LightEntity, RestoreEntity):
     @callback
     def _state_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     def _set_flash_and_transition(self, message: dict[str, Any], **kwargs: Any) -> None: ...
     def _scale_rgbxx(self, rgbxx: tuple[int, ...], kwargs: Any) -> tuple[int, ...]: ...
     def _supports_color_mode(self, color_mode: ColorMode | str) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

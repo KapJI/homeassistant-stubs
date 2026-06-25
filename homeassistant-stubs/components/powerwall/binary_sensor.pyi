@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 CONNECTED_GRID_STATUSES: Incomplete
 
@@ -13,39 +14,50 @@ class PowerWallRunningSensor(PowerWallEntity, BinarySensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class PowerWallConnectedSensor(PowerWallEntity, BinarySensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class PowerWallGridServicesActiveSensor(PowerWallEntity, BinarySensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class PowerWallGridStatusSensor(PowerWallEntity, BinarySensorEntity):
     _attr_translation_key: str
     _attr_device_class: Incomplete
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class PowerWallChargingStatusSensor(PowerWallEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def is_on(self) -> bool: ...

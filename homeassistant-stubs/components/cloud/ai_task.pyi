@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.json import json_loads as json_loads
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -21,6 +22,9 @@ class CloudAITaskEntity(BaseCloudLLMEntity, ai_task.AITaskEntity):
     _attr_translation_key: str
     _attr_unique_id = AI_TASK_ENTITY_UNIQUE_ID
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def _async_generate_data(self, task: ai_task.GenDataTask, chat_log: conversation.ChatLog) -> ai_task.GenDataTaskResult: ...
+    @override
     async def _async_generate_image(self, task: ai_task.GenImageTask, chat_log: conversation.ChatLog) -> ai_task.GenImageTaskResult: ...

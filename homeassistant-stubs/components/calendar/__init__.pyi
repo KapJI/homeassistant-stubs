@@ -1,6 +1,6 @@
 import dataclasses
 import datetime
-from .const import CONF_EVENT as CONF_EVENT, CalendarEntityFeature as CalendarEntityFeature, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_DURATION as EVENT_DURATION, EVENT_END as EVENT_END, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_LOCATION as EVENT_LOCATION, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TIME_FIELDS as EVENT_TIME_FIELDS, EVENT_TYPES as EVENT_TYPES, EVENT_UID as EVENT_UID, LIST_EVENT_FIELDS as LIST_EVENT_FIELDS
+from .const import CalendarEntityFeature as CalendarEntityFeature, CalendarEntityStateAttribute as CalendarEntityStateAttribute, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_DURATION as EVENT_DURATION, EVENT_END as EVENT_END, EVENT_END_DATE as EVENT_END_DATE, EVENT_END_DATETIME as EVENT_END_DATETIME, EVENT_IN as EVENT_IN, EVENT_IN_DAYS as EVENT_IN_DAYS, EVENT_IN_WEEKS as EVENT_IN_WEEKS, EVENT_LOCATION as EVENT_LOCATION, EVENT_RECURRENCE_ID as EVENT_RECURRENCE_ID, EVENT_RECURRENCE_RANGE as EVENT_RECURRENCE_RANGE, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_START_DATE as EVENT_START_DATE, EVENT_START_DATETIME as EVENT_START_DATETIME, EVENT_SUMMARY as EVENT_SUMMARY, EVENT_TIME_FIELDS as EVENT_TIME_FIELDS, EVENT_TYPES as EVENT_TYPES, EVENT_UID as EVENT_UID, LIST_EVENT_FIELDS as LIST_EVENT_FIELDS
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable as Callable, Iterable
@@ -10,7 +10,7 @@ from homeassistant.components import frontend as frontend, http as http, websock
 from homeassistant.components.http import KEY_HASS_USER as KEY_HASS_USER
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_INVALID_FORMAT as ERR_INVALID_FORMAT, ERR_NOT_FOUND as ERR_NOT_FOUND, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import CONF_EVENT as CONF_EVENT, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, Unauthorized as Unauthorized
 from homeassistant.helpers import entity_registry as er
@@ -21,7 +21,7 @@ from homeassistant.helpers.event import async_track_point_in_time as async_track
 from homeassistant.helpers.template import DATE_STR_FORMAT as DATE_STR_FORMAT
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.json import JsonValueType as JsonValueType
-from typing import Any, Final, final
+from typing import Any, Final, final, override
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete
@@ -93,19 +93,24 @@ class CalendarEntity(Entity):
     _attr_initial_color: str | None
     @property
     def initial_color(self) -> str | None: ...
+    @override
     def get_initial_entity_options(self) -> er.EntityOptionsType | None: ...
     @property
     def event(self) -> CalendarEvent | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any] | None: ...
     @final
     @property
+    @override
     def state(self) -> str: ...
     @callback
+    @override
     def _async_write_ha_state(self) -> None: ...
     @callback
     def _async_cancel_event_listener_debouncer(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @final
     @callback

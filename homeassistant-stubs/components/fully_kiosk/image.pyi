@@ -9,7 +9,7 @@ from homeassistant.components.image import ImageEntity as ImageEntity, ImageEnti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class FullyImageEntityDescription(ImageEntityDescription):
@@ -25,4 +25,5 @@ class FullyImageEntity(FullyKioskEntity, ImageEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator, description: FullyImageEntityDescription) -> None: ...
     _attr_image_last_updated: Incomplete
+    @override
     async def async_image(self) -> bytes | None: ...

@@ -10,7 +10,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.target import TargetEntityChangeTracker as TargetEntityChangeTracker, TargetSelection as TargetSelection
-from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig
+from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import override
 
@@ -40,10 +40,12 @@ class ItemChangeListener(TargetEntityChangeTracker):
 
 class ItemTriggerBase(Trigger, abc.ABC, metaclass=abc.ABCMeta):
     @classmethod
+    @override
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     _target: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
-    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+    @override
+    async def async_attach_runner(self, run_action: TriggerActionRunner, did_not_trigger: TriggerNotTriggeredReporter | None = None) -> CALLBACK_TYPE: ...
     @callback
     @abc.abstractmethod
     def _handle_item_change(self, event: TodoItemChangeEvent, run_action: TriggerActionRunner) -> None: ...

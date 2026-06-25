@@ -12,7 +12,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util import slugify as slugify
-from typing import Literal
+from typing import Literal, override
 
 _LOGGER: Incomplete
 CONF_ARG: str
@@ -46,7 +46,10 @@ class SystemMonitorSensor(CoordinatorEntity[SystemMonitorCoordinator], BinarySen
     _attr_device_info: Incomplete
     argument: Incomplete
     def __init__(self, coordinator: SystemMonitorCoordinator, sensor_description: SysMonitorBinarySensorEntityDescription, entry_id: str, argument: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

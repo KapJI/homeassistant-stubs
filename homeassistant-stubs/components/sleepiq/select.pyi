@@ -6,6 +6,7 @@ from asyncsleepiq import SleepIQBed as SleepIQBed, SleepIQCoreClimate as SleepIQ
 from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SleepIQConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,7 +18,9 @@ class SleepIQSelectEntity(SleepIQBedEntity[SleepIQDataUpdateCoordinator], Select
     def __init__(self, coordinator: SleepIQDataUpdateCoordinator, bed: SleepIQBed, preset: SleepIQPreset) -> None: ...
     _attr_current_option: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class SleepIQFootWarmingTempSelectEntity(SleepIQSleeperEntity[SleepIQDataUpdateCoordinator], SelectEntity):
@@ -28,7 +31,9 @@ class SleepIQFootWarmingTempSelectEntity(SleepIQSleeperEntity[SleepIQDataUpdateC
     def __init__(self, coordinator: SleepIQDataUpdateCoordinator, bed: SleepIQBed, foot_warmer: SleepIQFootWarmer) -> None: ...
     _attr_current_option: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class SleepIQCoreTempSelectEntity(SleepIQSleeperEntity[SleepIQDataUpdateCoordinator], SelectEntity):
@@ -41,5 +46,7 @@ class SleepIQCoreTempSelectEntity(SleepIQSleeperEntity[SleepIQDataUpdateCoordina
     def __init__(self, coordinator: SleepIQDataUpdateCoordinator, bed: SleepIQBed, core_climate: SleepIQCoreClimate) -> None: ...
     _attr_current_option: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

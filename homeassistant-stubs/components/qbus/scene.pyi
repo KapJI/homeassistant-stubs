@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttState
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -15,5 +15,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: QbusConfigEntry, async_a
 class QbusScene(QbusEntity, BaseScene):
     _attr_name: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...
+    @override
     async def _async_activate(self, **kwargs: Any) -> None: ...
+    @override
     async def _handle_state_received(self, state: QbusMqttState) -> None: ...

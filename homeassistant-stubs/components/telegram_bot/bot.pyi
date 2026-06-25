@@ -21,6 +21,7 @@ from typing import Any
 _FILE_TYPES: Incomplete
 _LOGGER: Incomplete
 type TelegramBotConfigEntry = ConfigEntry[TelegramNotificationService]
+_RETRY_DELAY: int
 
 def _get_bot_info(bot: Bot, config_entry: ConfigEntry) -> dict[str, Any]: ...
 

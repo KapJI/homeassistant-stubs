@@ -9,7 +9,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfPower as UnitOfP
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -29,5 +29,7 @@ class IndevoltNumberEntity(IndevoltEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: IndevoltCoordinator, description: IndevoltNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

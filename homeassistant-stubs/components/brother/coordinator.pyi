@@ -4,6 +4,7 @@ from brother import Brother as Brother, BrotherSensors
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type BrotherConfigEntry = ConfigEntry[BrotherDataUpdateCoordinator]
@@ -13,4 +14,5 @@ class BrotherDataUpdateCoordinator(DataUpdateCoordinator[BrotherSensors]):
     brother: Incomplete
     device_name: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: BrotherConfigEntry, brother: Brother) -> None: ...
+    @override
     async def _async_update_data(self) -> BrotherSensors: ...

@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from homeassistant.const import CONF_TIME_ZONE as CONF_TIME_ZONE
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 TIME_STR_OPTIONS: Incomplete
 
@@ -20,4 +20,5 @@ class WorldclockConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     config_flow = CONFIG_FLOW
     options_flow = OPTIONS_FLOW
     options_flow_reloads: bool
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

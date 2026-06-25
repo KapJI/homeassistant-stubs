@@ -6,7 +6,7 @@ from homeassistant.helpers.template import TemplateEnvironment as TemplateEnviro
 from jinja2.ext import Extension
 from jinja2.nodes import Node as Node
 from jinja2.parser import Parser as Parser
-from typing import Any, Concatenate, NoReturn
+from typing import Any, Concatenate, NoReturn, override
 
 @dataclass
 class TemplateFunction:
@@ -28,4 +28,5 @@ class BaseTemplateExtension(Extension):
     def _create_unsupported_function(name: str) -> Callable[[], NoReturn]: ...
     @property
     def hass(self) -> HomeAssistant: ...
+    @override
     def parse(self, parser: Parser) -> Node | list[Node]: ...

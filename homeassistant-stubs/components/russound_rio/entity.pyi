@@ -7,7 +7,7 @@ from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 def command[_EntityT: RussoundBaseEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Awaitable[None]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...
 
@@ -25,5 +25,7 @@ class RussoundBaseEntity(Entity):
     def _zone(self) -> ZoneControlSurface: ...
     _attr_available: Incomplete
     async def _state_update_callback(self, _client: RussoundRIOClient, _callback_type: CallbackType) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

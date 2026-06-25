@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 KEY_OPEN_CLOSE: str
 KEY_STOP: str
@@ -35,13 +35,21 @@ class ValveGroup(GroupEntity, ValveEntity):
     _attr_unique_id: Incomplete
     def __init__(self, unique_id: str | None, name: str, entities: list[str]) -> None: ...
     @callback
+    @override
     def async_update_supported_features(self, entity_id: str, new_state: State | None) -> None: ...
+    @override
     async def async_open_valve(self) -> None: ...
+    @override
     async def async_handle_open_valve(self) -> None: ...
+    @override
     async def async_close_valve(self) -> None: ...
+    @override
     async def async_handle_close_valve(self) -> None: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...
+    @override
     async def async_stop_valve(self) -> None: ...
     _attr_supported_features: Incomplete
     @callback
+    @override
     def async_update_group_state(self) -> None: ...

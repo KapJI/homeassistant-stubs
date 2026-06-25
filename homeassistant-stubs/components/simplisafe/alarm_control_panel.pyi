@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
+from typing import override
 
 ATTR_BATTERY_BACKUP_POWER_LEVEL: str
 ATTR_GSM_STRENGTH: str
@@ -30,11 +31,16 @@ class SimpliSafeAlarm(SimpliSafeEntity, AlarmControlPanelEntity):
     _attr_alarm_state: Incomplete
     @callback
     def _set_state_from_system_data(self) -> None: ...
+    @override
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_home(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_away(self, code: str | None = None) -> None: ...
     @callback
+    @override
     def async_update_from_rest_api(self) -> None: ...
     _attr_changed_by: Incomplete
     @callback
+    @override
     def async_update_from_websocket_event(self, event: WebsocketEvent) -> None: ...

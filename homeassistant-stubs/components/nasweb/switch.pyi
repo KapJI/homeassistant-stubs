@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
-from typing import Any
+from typing import Any, override
 from webio_api import Output as NASwebOutput
 
 OUTPUT_TRANSLATION_KEY: str
@@ -27,11 +27,16 @@ class RelaySwitch(SwitchEntity, BaseCoordinatorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: BaseDataUpdateCoordinatorProtocol, nasweb_output: NASwebOutput) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: Incomplete
     _attr_available: bool
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_update(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

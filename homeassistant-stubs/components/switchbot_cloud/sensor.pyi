@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 SENSOR_TYPE_TEMPERATURE: str
 SENSOR_TYPE_HUMIDITY: str
@@ -58,6 +58,7 @@ class SwitchBotCloudSensor(SwitchBotCloudEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SwitchbotCloudSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 class SwitchBotCloudRelaySwitch2PMSensor(SwitchBotCloudSensor):
@@ -67,6 +68,7 @@ class SwitchBotCloudRelaySwitch2PMSensor(SwitchBotCloudSensor):
     _attr_device_info: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device, coordinator: SwitchBotCoordinator, description: SwitchbotCloudSensorEntityDescription, channel: str) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 @callback

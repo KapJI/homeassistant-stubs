@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASURE
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
-from typing import Any
+from typing import Any, override
 
 UNIT_PREFIXES: Incomplete
 TIME_UNITS: Incomplete
@@ -27,4 +27,5 @@ class ConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     options_flow_reloads: bool
     VERSION: int
     MINOR_VERSION: int
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

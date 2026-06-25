@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.json import json_loads as json_loads
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -16,5 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: OpenAIConfigEntry
 class OpenAITaskEntity(ai_task.AITaskEntity, OpenAIBaseLLMEntity):
     _attr_supported_features: Incomplete
     def __init__(self, entry: OpenAIConfigEntry, subentry: ConfigSubentry) -> None: ...
+    @override
     async def _async_generate_data(self, task: ai_task.GenDataTask, chat_log: conversation.ChatLog) -> ai_task.GenDataTaskResult: ...
+    @override
     async def _async_generate_image(self, task: ai_task.GenImageTask, chat_log: conversation.ChatLog) -> ai_task.GenImageTaskResult: ...

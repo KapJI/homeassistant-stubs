@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from pymiele import MieleAPI as MieleAPI, MieleAction, MieleDevice, MieleFillingLevel as MieleFillingLevel
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -32,6 +33,7 @@ class MieleDataUpdateCoordinator(DataUpdateCoordinator[MieleCoordinatorData]):
     devices: dict[str, MieleDevice]
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: MieleConfigEntry, api: MieleAPI) -> None: ...
+    @override
     async def _async_update_data(self) -> MieleCoordinatorData: ...
     def async_add_devices(self, added_devices: set[str]) -> tuple[set[str], set[str]]: ...
     async def callback_update_data(self, devices_json: dict[str, dict]) -> None: ...
@@ -41,4 +43,5 @@ class MieleAuxDataUpdateCoordinator(DataUpdateCoordinator[MieleAuxCoordinatorDat
     config_entry: MieleConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: MieleConfigEntry, api: MieleAPI) -> None: ...
+    @override
     async def _async_update_data(self) -> MieleAuxCoordinatorData: ...

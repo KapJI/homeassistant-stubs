@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyprusalink import JobInfo, LegacyPrinterStatus, PrinterInfo, PrinterStatus, PrusaLink as PrusaLink, VersionInfo
-from typing import TypeVar
+from typing import TypeVar, override
 
 _LOGGER: Incomplete
 _MINIMUM_REFRESH_INTERVAL: float
@@ -21,6 +21,7 @@ class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.AB
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: PrusaLinkConfigEntry, api: PrusaLink) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _fetch_data(self) -> T: ...
@@ -29,16 +30,21 @@ class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.AB
     def _get_update_interval(self, data: T | None) -> timedelta: ...
 
 class StatusCoordinator(PrusaLinkUpdateCoordinator[PrinterStatus]):
+    @override
     async def _fetch_data(self) -> PrinterStatus: ...
 
 class LegacyStatusCoordinator(PrusaLinkUpdateCoordinator[LegacyPrinterStatus]):
+    @override
     async def _fetch_data(self) -> LegacyPrinterStatus: ...
 
 class JobUpdateCoordinator(PrusaLinkUpdateCoordinator[JobInfo | None]):
+    @override
     async def _fetch_data(self) -> JobInfo | None: ...
 
 class InfoUpdateCoordinator(PrusaLinkUpdateCoordinator[PrinterInfo]):
+    @override
     async def _fetch_data(self) -> PrinterInfo: ...
 
 class VersionUpdateCoordinator(PrusaLinkUpdateCoordinator[VersionInfo]):
+    @override
     async def _fetch_data(self) -> VersionInfo: ...

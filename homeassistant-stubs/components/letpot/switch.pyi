@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from letpot.deviceclient import LetPotDeviceClient as LetPotDeviceClient
 from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus, LetPotGardenStatus
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,8 +27,11 @@ class LetPotSwitchEntity[_DataT: LetPotDeviceStatus](LetPotEntity[_DataT], Switc
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT], description: LetPotSwitchEntityDescription[_DataT]) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

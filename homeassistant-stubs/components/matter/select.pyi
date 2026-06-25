@@ -11,6 +11,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 DOOR_LOCK_OPERATING_MODE_MAP: Incomplete
 DOOR_LOCK_OPERATING_MODE_MAP_REVERSE: Incomplete
@@ -38,37 +39,45 @@ class MatterListSelectEntityDescription(MatterSelectEntityDescription):
 
 class MatterAttributeSelectEntity(MatterEntity, SelectEntity):
     entity_description: MatterSelectEntityDescription
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_current_option: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterMapSelectEntity(MatterAttributeSelectEntity):
     entity_description: MatterMapSelectEntityDescription
     _attr_options: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterModeSelectEntity(MatterAttributeSelectEntity):
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_options: Incomplete
     _attr_current_option: Incomplete
     _attr_name: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterDoorLockOperatingModeSelectEntity(MatterAttributeSelectEntity):
     entity_description: MatterMapSelectEntityDescription
     _attr_options: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 class MatterListSelectEntity(MatterEntity, SelectEntity):
     entity_description: MatterListSelectEntityDescription
+    @override
     async def async_select_option(self, option: str) -> None: ...
     _attr_options: Incomplete
     _attr_current_option: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

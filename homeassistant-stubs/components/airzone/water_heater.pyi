@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 OPERATION_LIB_TO_HASS: Final[dict[HotWaterOperation, str]]
 OPERATION_MODE_TO_DHW_PARAMS: Final[dict[str, dict[str, Any]]]
@@ -22,11 +22,16 @@ class AirzoneWaterHeater(AirzoneHotWaterEntity, WaterHeaterEntity):
     _attr_operation_list: Incomplete
     _attr_temperature_unit: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_operation: Incomplete

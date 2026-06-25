@@ -8,7 +8,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
-from typing import Any
+from typing import Any, override
 from youtubeaio.youtube import YouTube
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
@@ -18,14 +18,18 @@ class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     _youtube: YouTube | None
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: YouTubeConfigEntry) -> YouTubeOptionsFlowHandler: ...
     @property
+    @override
     def logger(self) -> logging.Logger: ...
     @property
+    @override
     def extra_authorize_data(self) -> dict[str, Any]: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def get_resource(self, token: str) -> YouTube: ...
+    @override
     async def async_oauth_create_entry(self, data: dict[str, Any]) -> ConfigFlowResult: ...
     async def async_step_channels(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

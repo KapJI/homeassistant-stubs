@@ -4,7 +4,7 @@ from homeassistant.components.hassio import AddonError as AddonError, AddonManag
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.redact import async_redact_data as async_redact_data
 from homeassistant.helpers.singleton import singleton as singleton
-from typing import Any
+from typing import Any, override
 
 DATA_ADDON_MANAGER: Incomplete
 REDACT_ADDON_OPTION_KEYS: Incomplete
@@ -12,6 +12,7 @@ REDACT_ADDON_OPTION_KEYS: Incomplete
 def _redact_sensitive_option_values(message: str, config: dict[str, Any]) -> str: ...
 
 class ZwaveAddonManager(AddonManager):
+    @override
     async def async_set_addon_options(self, config: dict[str, Any]) -> None: ...
 
 @callback

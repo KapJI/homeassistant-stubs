@@ -9,7 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
-from typing import Any
+from typing import Any, override
 
 def handle_error(func: Callable[[Command | list[Command]], Any]) -> Callable[[Command | list[Command]], Coroutine[Any, Any, None]]: ...
 
@@ -26,6 +26,8 @@ class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], m
     @callback
     def _refresh(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

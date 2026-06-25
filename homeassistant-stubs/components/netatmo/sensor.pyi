@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pyatmo.modules import PublicWeatherArea as PublicWeatherArea
 from pyatmo.modules.device_types import DeviceCategory as NetatmoDeviceCategory
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Incomplete
 DIRECTION_OPTIONS: Incomplete
@@ -54,6 +54,7 @@ class NetatmoBaseSensor(NetatmoModuleEntity, SensorEntity):
     _attr_available: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoWeatherSensor(NetatmoWeatherModuleEntity, NetatmoBaseSensor):
@@ -62,9 +63,11 @@ class NetatmoWeatherSensor(NetatmoWeatherModuleEntity, NetatmoBaseSensor):
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice, description: NetatmoSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoLegacySensor(NetatmoBaseSensor):
@@ -81,6 +84,7 @@ class NetatmoClimateBatterySensor(NetatmoLegacySensor):
     _attr_available: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoSensor(NetatmoBaseSensor):
@@ -91,6 +95,7 @@ class NetatmoSensor(NetatmoBaseSensor):
     _attr_available: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoRoomSensor(NetatmoRoomEntity, SensorEntity):
@@ -99,6 +104,7 @@ class NetatmoRoomSensor(NetatmoRoomEntity, SensorEntity):
     def __init__(self, netatmo_room: NetatmoRoom, description: NetatmoSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoPublicSensor(NetatmoBaseEntity, SensorEntity):
@@ -111,9 +117,11 @@ class NetatmoPublicSensor(NetatmoBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler, area: NetatmoArea, description: NetatmoPublicWeatherSensorEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def async_config_update_callback(self, area: NetatmoArea) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...

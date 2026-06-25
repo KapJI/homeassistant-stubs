@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from typing import Final
+from uiprotect.data import ModelType
 
 DOMAIN: str
 AUTH_RETRIES: int
@@ -28,7 +29,7 @@ DEFAULT_MAX_MEDIA: int
 DEVICES_THAT_ADOPT: Incomplete
 DEVICES_WITH_ENTITIES: Incomplete
 DEVICES_FOR_SUBSCRIBE: Incomplete
-DEVICES_WS_SUBSCRIBED_MODELS: Incomplete
+DEVICES_WS_SUBSCRIBED_MODELS: set[ModelType]
 MIN_REQUIRED_PROTECT_V: Incomplete
 OUTDATED_LOG_MESSAGE: str
 TYPE_EMPTY_VALUE: str
@@ -40,6 +41,7 @@ EVENT_TYPE_FINGERPRINT_IDENTIFIED: Final[str]
 EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED: Final[str]
 EVENT_TYPE_NFC_SCANNED: Final[str]
 EVENT_TYPE_VEHICLE_DETECTED: Final[str]
+EVENT_TYPE_PACKAGE_DETECTED: Final[str]
 VEHICLE_EVENT_DELAY_SECONDS: Final[int]
 KEYRINGS_ULP_ID: Final[str]
 KEYRINGS_USER_STATUS: Final[str]

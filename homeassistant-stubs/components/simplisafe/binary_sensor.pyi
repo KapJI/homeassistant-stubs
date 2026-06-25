@@ -10,6 +10,7 @@ from simplipy.device import DeviceV3
 from simplipy.device.sensor.v3 import SensorV3
 from simplipy.system.v3 import SystemV3
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
+from typing import override
 
 SUPPORTED_BATTERY_SENSOR_TYPES: Incomplete
 TRIGGERED_SENSOR_TYPES: Incomplete
@@ -22,8 +23,10 @@ class TriggeredBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, sensor: SensorV3, device_class: BinarySensorDeviceClass) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def async_update_from_rest_api(self) -> None: ...
     @callback
+    @override
     def async_update_from_websocket_event(self, event: WebsocketEvent) -> None: ...
 
 class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
@@ -34,4 +37,5 @@ class BatteryBinarySensor(SimpliSafeEntity, BinarySensorEntity):
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, device: DeviceV3) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def async_update_from_rest_api(self) -> None: ...

@@ -13,7 +13,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -40,6 +40,7 @@ class BaseDevoloSensorEntity[_CoordinatorDataT: _CoordinatorDataType, _ValueData
 class DevoloSensorEntity[_CoordinatorDataT: _CoordinatorDataType, _ValueDataT: _CoordinatorDataType, _SensorDataT: _SensorDataType](BaseDevoloSensorEntity[_CoordinatorDataT, _ValueDataT, _SensorDataT]):
     entity_description: DevoloSensorEntityDescription[_CoordinatorDataT, _SensorDataT]
     @property
+    @override
     def native_value(self) -> int | float | datetime: ...
 
 class DevoloPlcDataRateSensorEntity(BaseDevoloSensorEntity[LogicalNetwork, DataRate, float]):
@@ -50,4 +51,5 @@ class DevoloPlcDataRateSensorEntity(BaseDevoloSensorEntity[LogicalNetwork, DataR
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator[LogicalNetwork], description: DevoloSensorEntityDescription[DataRate, float], peer: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...

@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyprusalink.types import JobInfo as JobInfo, PrinterInfo, PrinterStatus
 from pyprusalink.types_legacy import LegacyPrinterStatus as LegacyPrinterStatus
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class PrusaLinkBinarySensorEntityDescription[T: (PrinterStatus, LegacyPrinterStatus, JobInfo, PrinterInfo)](BinarySensorEntityDescription, PrusaLinkEntityDescription):
@@ -22,4 +23,5 @@ class PrusaLinkBinarySensorEntity(PrusaLinkEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PrusaLinkUpdateCoordinator, description: PrusaLinkBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

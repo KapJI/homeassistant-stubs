@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector, TimeSelector as TimeSelector
 from pytrafikverket import StationInfoModel as StationInfoModel
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 OPTION_SCHEMA: Incomplete
@@ -27,9 +27,11 @@ class TVTrainConfigFlow(ConfigFlow, domain=DOMAIN):
     _data: dict[str, Any]
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> TVTrainOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_initial(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

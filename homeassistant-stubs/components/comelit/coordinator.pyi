@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import TypeVar
+from typing import TypeVar, override
 
 type ComelitConfigEntry = ConfigEntry[ComelitBaseCoordinator]
 T = TypeVar('T', bound=dict[str, Mapping[int, ObjectClassType]])
@@ -23,6 +23,7 @@ class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     _host: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, device: str, host: str) -> None: ...
     def platform_device_info(self, object_class: ObjectClassType, object_type: str) -> dr.DeviceInfo: ...
+    @override
     async def _async_update_data(self) -> T: ...
     @abstractmethod
     async def _async_update_system_data(self) -> T: ...
@@ -33,6 +34,7 @@ class ComelitSerialBridge(ComelitBaseCoordinator[T]):
     api: ComeliteSerialBridgeApi
     vedo_pin: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: str, vedo_pin: str | None, session: ClientSession) -> None: ...
+    @override
     async def _async_update_system_data(self) -> T: ...
 
 class ComelitVedoSystem(ComelitBaseCoordinator[T]):
@@ -40,4 +42,5 @@ class ComelitVedoSystem(ComelitBaseCoordinator[T]):
     api: ComelitVedoApi
     vedo_pin: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, host: str, port: int, pin: str, session: ClientSession) -> None: ...
+    @override
     async def _async_update_system_data(self) -> T: ...

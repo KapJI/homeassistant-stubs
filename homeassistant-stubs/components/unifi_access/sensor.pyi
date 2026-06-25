@@ -6,6 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from unifi_access_api import Door as Door
 
 PARALLEL_UPDATES: int
@@ -19,8 +20,10 @@ class UnifiAccessDoorLockRuleSensor(UnifiAccessEntity, SensorEntity):
     _attr_translation_key: str
     def __init__(self, coordinator: UnifiAccessCoordinator, door: Door) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class UnifiAccessDoorLockRuleEndTimeSensor(UnifiAccessEntity, SensorEntity):
@@ -29,6 +32,8 @@ class UnifiAccessDoorLockRuleEndTimeSensor(UnifiAccessEntity, SensorEntity):
     _attr_translation_key: str
     def __init__(self, coordinator: UnifiAccessCoordinator, door: Door) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | None: ...
     @property
+    @override
     def available(self) -> bool: ...

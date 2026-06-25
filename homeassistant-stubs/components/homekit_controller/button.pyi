@@ -11,6 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -28,22 +29,31 @@ class BaseHomeKitButton(CharacteristicEntity, ButtonEntity): ...
 class HomeKitButton(BaseHomeKitButton):
     entity_description: HomeKitButtonEntityDescription
     def __init__(self, conn: HKDevice, info: ConfigType, char: Characteristic, description: HomeKitButtonEntityDescription) -> None: ...
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def name(self) -> str: ...
+    @override
     async def async_press(self) -> None: ...
 
 class HomeKitEcobeeClearHoldButton(BaseHomeKitButton):
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def name(self) -> str: ...
+    @override
     async def async_press(self) -> None: ...
 
 class HomeKitProvisionPreferredThreadCredentials(BaseHomeKitButton):
     _attr_entity_category: Incomplete
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def name(self) -> str: ...
+    @override
     async def async_press(self) -> None: ...
 
 BUTTON_ENTITY_CLASSES: dict[str, type]

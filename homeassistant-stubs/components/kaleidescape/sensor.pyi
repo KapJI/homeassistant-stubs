@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from kaleidescape import Device as KaleidescapeDevice
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class KaleidescapeSensorEntityDescription(SensorEntityDescription):
@@ -23,4 +24,5 @@ class KaleidescapeSensor(KaleidescapeEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, device: KaleidescapeDevice, entity_description: KaleidescapeSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CO
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
 from pyvlx import PyVLX
-from typing import Any
+from typing import Any, override
 
 USER_SCHEMA: Incomplete
 
@@ -16,8 +16,10 @@ class VeluxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     discovery_data: dict[str, Any]
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -13,6 +13,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
 from pyenphase.models.meters import CtMeterStatus, CtState as CtState, CtStatusFlags as CtStatusFlags, CtType, EnvoyMeterData as EnvoyMeterData
+from typing import override
 
 _LOGGER: Incomplete
 INVERTERS_KEY: str
@@ -119,41 +120,49 @@ class EnvoySystemSensorEntity(EnvoySensorBaseEntity):
 class EnvoyProductionEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyProductionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class EnvoyConsumptionEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyConsumptionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class EnvoyNetConsumptionEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyConsumptionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class EnvoyProductionPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyProductionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class EnvoyConsumptionPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyConsumptionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class EnvoyNetConsumptionPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyConsumptionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class EnvoyCTEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyCTSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
 
 class EnvoyCTPhaseEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyCTSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | float | str | CtType | CtMeterStatus | CtStatusFlags | None: ...
 
 class EnvoyInverterEntity(EnvoySensorBaseEntity):
@@ -163,6 +172,7 @@ class EnvoyInverterEntity(EnvoySensorBaseEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyInverterSensorEntityDescription, serial_number: str) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime.datetime | float | None: ...
 
 class EnvoyEnchargeEntity(EnvoySensorBaseEntity):
@@ -174,16 +184,19 @@ class EnvoyEnchargeEntity(EnvoySensorBaseEntity):
 class EnvoyEnchargeInventoryEntity(EnvoyEnchargeEntity):
     entity_description: EnvoyEnchargeSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | float | datetime.datetime | None: ...
 
 class EnvoyEnchargePowerEntity(EnvoyEnchargeEntity):
     entity_description: EnvoyEnchargePowerSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | float | None: ...
 
 class EnvoyEnchargeAggregateEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyEnchargeAggregateSensorEntityDescription
     @property
+    @override
     def native_value(self) -> int: ...
 
 class EnvoyEnpowerEntity(EnvoySensorBaseEntity):
@@ -192,6 +205,7 @@ class EnvoyEnpowerEntity(EnvoySensorBaseEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnpowerSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime.datetime | int | float | None: ...
 
 class EnvoyAcbBatteryPowerEntity(EnvoySensorBaseEntity):
@@ -200,16 +214,19 @@ class EnvoyAcbBatteryPowerEntity(EnvoySensorBaseEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyAcbBatterySensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | str | None: ...
 
 class EnvoyAcbBatteryEnergyEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyAcbBatterySensorEntityDescription
     @property
+    @override
     def native_value(self) -> int | str: ...
 
 class AggregateBatteryEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyAggregateBatterySensorEntityDescription
     @property
+    @override
     def native_value(self) -> int: ...
 
 class EnvoyCollarEntity(EnvoySensorBaseEntity):
@@ -219,6 +236,7 @@ class EnvoyCollarEntity(EnvoySensorBaseEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyCollarSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime.datetime | int | float | str: ...
 
 class EnvoyC6CCEntity(EnvoySensorBaseEntity):
@@ -227,4 +245,5 @@ class EnvoyC6CCEntity(EnvoySensorBaseEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyC6CCSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime.datetime: ...

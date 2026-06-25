@@ -6,6 +6,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfElectricCurrent as UnitOfElectricCurrent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,8 +22,11 @@ class PeblarChargeCurrentLimitNumberEntity(PeblarEntity[PeblarDataUpdateCoordina
     _attr_native_max_value: Incomplete
     def __init__(self, entry: PeblarConfigEntry, coordinator: PeblarDataUpdateCoordinator) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @peblar_exception_handler
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

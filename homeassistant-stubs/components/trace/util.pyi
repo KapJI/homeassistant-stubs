@@ -1,5 +1,5 @@
 from .const import DATA_TRACE as DATA_TRACE, DATA_TRACES_RESTORED as DATA_TRACES_RESTORED, DATA_TRACE_STORE as DATA_TRACE_STORE
-from .models import ActionTrace as ActionTrace, BaseTrace as BaseTrace, RestoredTrace as RestoredTrace, TraceData as TraceData
+from .models import ActionTrace as ActionTrace, BaseTrace as BaseTrace, RestoredTrace as RestoredTrace, TraceBuckets as TraceBuckets, TraceData as TraceData
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

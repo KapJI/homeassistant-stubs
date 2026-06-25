@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable, Coroutine, Generator
 from contextlib import contextmanager
 from contextvars import ContextVar
 from homeassistant.core import ServiceResponse as ServiceResponse
-from typing import Any, Literal, overload
+from typing import Any, Literal, overload, override
 
 class TraceElement:
     __slots__: Incomplete
@@ -19,6 +19,7 @@ class TraceElement:
     _timestamp: Incomplete
     _last_variables: Incomplete
     def __init__(self, variables: TemplateVarsType, path: str) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     def set_child_id(self, child_key: str, child_run_id: str) -> None: ...
     def set_error(self, ex: BaseException | None) -> None: ...
@@ -37,10 +38,10 @@ trace_path_stack_cv: ContextVar[list[str] | None]
 variables_cv: ContextVar[Any | None]
 trace_id_cv: ContextVar[tuple[str, str] | None]
 script_execution_cv: ContextVar[StopReason | None]
-record_template_errors_cv: ContextVar[bool]
+suppress_template_error_logging_cv: ContextVar[bool]
 
 @contextmanager
-def record_template_errors() -> Generator[None]: ...
+def suppress_template_error_logging() -> Generator[None]: ...
 def trace_id_set(trace_id: tuple[str, str]) -> None: ...
 def trace_id_get() -> tuple[str, str] | None: ...
 def trace_stack_push[_T](trace_stack_var: ContextVar[list[_T] | None], node: _T) -> None: ...

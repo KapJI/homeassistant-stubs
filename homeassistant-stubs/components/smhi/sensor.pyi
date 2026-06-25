@@ -9,6 +9,7 @@ from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LOCATION as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 FWI_INDEX_MAP: Incomplete
@@ -38,6 +39,7 @@ class SMHIWeatherSensor(SmhiWeatherEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, latitude: str, longitude: str, coordinator: SMHIDataUpdateCoordinator, entity_description: SMHIWeatherEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def update_entity_data(self) -> None: ...
 
 class SMHIFireSensor(SmhiFireEntity, SensorEntity):
@@ -45,4 +47,5 @@ class SMHIFireSensor(SmhiFireEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, latitude: str, longitude: str, coordinator: SMHIFireDataUpdateCoordinator, entity_description: SMHIFireEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def update_entity_data(self) -> None: ...

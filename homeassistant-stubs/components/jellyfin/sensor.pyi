@@ -7,7 +7,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class JellyfinSensorEntityDescription(SensorEntityDescription):
@@ -24,4 +24,5 @@ class JellyfinServerSensor(JellyfinServerEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: JellyfinDataUpdateCoordinator, description: JellyfinSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

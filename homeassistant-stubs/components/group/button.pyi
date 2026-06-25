@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITIES 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 PARALLEL_UPDATES: int
@@ -25,6 +25,8 @@ class ButtonGroup(GroupEntity, ButtonEntity):
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, unique_id: str | None, name: str, entity_ids: list[str]) -> None: ...
+    @override
     async def async_press(self) -> None: ...
     @callback
+    @override
     def async_update_group_state(self) -> None: ...

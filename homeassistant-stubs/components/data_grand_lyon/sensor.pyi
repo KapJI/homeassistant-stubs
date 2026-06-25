@@ -10,6 +10,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 _TZ_PARIS: Incomplete
@@ -35,11 +36,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: DataGrandLyonConfigEntry
 class DataGrandLyonStopSensor(DataGrandLyonTclEntity, SensorEntity):
     entity_description: DataGrandLyonStopSensorEntityDescription
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class DataGrandLyonVelovSensor(DataGrandLyonVelovEntity, SensorEntity):
     entity_description: DataGrandLyonVelovSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

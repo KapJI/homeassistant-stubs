@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
 from homewizard_energy.models import CombinedModels as DeviceResponseEntry
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -30,10 +30,14 @@ class HomeWizardSwitchEntity(HomeWizardEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: HWEnergyDeviceUpdateCoordinator, description: HomeWizardSwitchEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @homewizard_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @homewizard_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

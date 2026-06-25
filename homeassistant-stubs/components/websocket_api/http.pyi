@@ -20,7 +20,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.json import json_loads as json_loads
-from typing import Any, Final
+from typing import Any, Final, override
 
 CLOSE_MSG_TYPES: Incomplete
 AUTH_MESSAGE_TIMEOUT: int
@@ -33,6 +33,7 @@ class WebsocketAPIView(HomeAssistantView):
     async def get(self, request: web.Request) -> web.WebSocketResponse: ...
 
 class WebSocketAdapter(logging.LoggerAdapter):
+    @override
     def process(self, msg: str, kwargs: Any) -> tuple[str, Any]: ...
 
 class WebSocketHandler:
@@ -55,6 +56,7 @@ class WebSocketHandler:
     _debug: Incomplete
     @callback
     def _async_logging_changed(self, event: Event | None = None) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     @property
     def description(self) -> str: ...

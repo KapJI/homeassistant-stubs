@@ -1,9 +1,10 @@
-from .const import ATTR_CYCLE as ATTR_CYCLE, ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_FIRST as SERVICE_SELECT_FIRST, SERVICE_SELECT_LAST as SERVICE_SELECT_LAST, SERVICE_SELECT_NEXT as SERVICE_SELECT_NEXT, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION, SERVICE_SELECT_PREVIOUS as SERVICE_SELECT_PREVIOUS
+from .const import ATTR_CYCLE as ATTR_CYCLE, ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_FIRST as SERVICE_SELECT_FIRST, SERVICE_SELECT_LAST as SERVICE_SELECT_LAST, SERVICE_SELECT_NEXT as SERVICE_SELECT_NEXT, SERVICE_SELECT_PREVIOUS as SERVICE_SELECT_PREVIOUS
 from _typeshed import Incomplete
+from homeassistant.const import ATTR_OPTION as ATTR_OPTION, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION
 from homeassistant.core import callback
 from homeassistant.helpers.entity import Entity, EntityDescription
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 __all__ = ['ATTR_CYCLE', 'ATTR_OPTION', 'ATTR_OPTIONS', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'SERVICE_SELECT_FIRST', 'SERVICE_SELECT_LAST', 'SERVICE_SELECT_NEXT', 'SERVICE_SELECT_OPTION', 'SERVICE_SELECT_PREVIOUS', 'SelectEntity', 'SelectEntityDescription']
 
@@ -20,9 +21,11 @@ class SelectEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_options: list[str]
     _attr_state: None
     @property
+    @override
     def capability_attributes(self) -> dict[str, Any]: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def options(self) -> list[str]: ...

@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import now as now
 from homeassistant.util.variance import ignore_variance as ignore_variance
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,12 +23,15 @@ class StarlinkSensorEntityDescription(SensorEntityDescription):
 class StarlinkSensorEntity(StarlinkEntity, SensorEntity):
     entity_description: StarlinkSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class StarlinkAccumulationSensor(StarlinkSensorEntity, RestoreSensor):
     _attr_native_value: int | float
     @property
+    @override
     def native_value(self) -> int | float: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 uptime_to_stable_datetime: Incomplete

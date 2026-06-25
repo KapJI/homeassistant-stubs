@@ -3,13 +3,17 @@ from _typeshed import Incomplete
 from homeassistant.components.application_credentials import AuthImplementation as AuthImplementation, AuthorizationServer as AuthorizationServer, ClientCredential as ClientCredential
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 class ElectricKiwiLocalOAuth2Implementation(AuthImplementation):
     _name: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str, client_credential: ClientCredential, authorization_server: AuthorizationServer) -> None: ...
     @property
+    @override
     def extra_authorize_data(self) -> dict[str, Any]: ...
+    @override
     async def async_resolve_external_data(self, external_data: Any) -> dict: ...
+    @override
     async def _async_refresh_token(self, token: dict) -> dict: ...
+    @override
     async def _token_request(self, data: dict) -> dict: ...

@@ -6,6 +6,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homewizard_energy import HomeWizardEnergy as HomeWizardEnergy
 from homewizard_energy.models import CombinedModels as DeviceResponseEntry
+from typing import override
 
 type HomeWizardConfigEntry = ConfigEntry[HWEnergyDeviceUpdateCoordinator]
 class HWEnergyDeviceUpdateCoordinator(DataUpdateCoordinator[DeviceResponseEntry]):
@@ -15,4 +16,5 @@ class HWEnergyDeviceUpdateCoordinator(DataUpdateCoordinator[DeviceResponseEntry]
     def __init__(self, hass: HomeAssistant, config_entry: HomeWizardConfigEntry, api: HomeWizardEnergy) -> None: ...
     def _update_battery_mode_cloud_repair_issue(self, data: DeviceResponseEntry) -> None: ...
     data: Incomplete
+    @override
     async def _async_update_data(self) -> DeviceResponseEntry: ...

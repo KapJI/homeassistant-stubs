@@ -12,6 +12,7 @@ from homeassistant.helpers.httpx_client import create_async_httpx_client as crea
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 from mcp.client.session import ClientSession
+from typing import override
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
@@ -28,10 +29,12 @@ class ModelContextProtocolTool(llm.Tool):
     server_url: Incomplete
     token_manager: Incomplete
     def __init__(self, name: str, description: str | None, parameters: vol.Schema, server_url: str, token_manager: TokenManager | None = None) -> None: ...
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: llm.ToolInput, llm_context: llm.LLMContext) -> JsonObjectType: ...
 
 class ModelContextProtocolCoordinator(DataUpdateCoordinator[list[llm.Tool]]):
     config_entry: ConfigEntry
     token_manager: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, token_manager: TokenManager | None = None) -> None: ...
+    @override
     async def _async_update_data(self) -> list[llm.Tool]: ...

@@ -9,12 +9,13 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: FluxLedConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class FluxSwitch(FluxOnOffEntity, CoordinatorEntity[FluxLedUpdateCoordinator], SwitchEntity):
     _attr_name: Incomplete
+    @override
     async def _async_turn_on(self, **kwargs: Any) -> None: ...
 
 class FluxRemoteAccessSwitch(FluxBaseEntity, SwitchEntity):
@@ -22,15 +23,21 @@ class FluxRemoteAccessSwitch(FluxBaseEntity, SwitchEntity):
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: FluxLedConfigEntry) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def _async_update_entry(self, new_state: bool) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class FluxMusicSwitch(FluxEntity, SwitchEntity):
     _attr_translation_key: str
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

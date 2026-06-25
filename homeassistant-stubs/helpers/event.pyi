@@ -19,7 +19,7 @@ from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Concatenate, Generic, TypeVar
+from typing import Any, Concatenate, Generic, TypeVar, override
 
 _TRACK_STATE_CHANGE_DATA: HassKey[_KeyedEventData[EventStateChangedData]]
 _TRACK_STATE_REPORT_DATA: HassKey[_KeyedEventData[EventStateReportedData]]
@@ -72,8 +72,6 @@ def async_track_state_change(hass: HomeAssistant, entity_ids: str | Iterable[str
 track_state_change: Incomplete
 
 def async_track_state_change_event(hass: HomeAssistant, entity_ids: str | Iterable[str], action: Callable[[Event[EventStateChangedData]], Any], job_type: HassJobType | None = None) -> CALLBACK_TYPE: ...
-@callback
-def _async_dispatch_entity_id_event_soon[_StateEventDataT: EventStateEventData](hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]], event: Event[_StateEventDataT]) -> None: ...
 @callback
 def _async_dispatch_entity_id_event[_StateEventDataT: EventStateEventData](hass: HomeAssistant, callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]], event: Event[_StateEventDataT]) -> None: ...
 @callback
@@ -173,6 +171,7 @@ class TrackTemplateResultInfo:
     _track_state_changes: _TrackStateChangeFiltered | None
     _time_listeners: dict[Template, Callable[[], None]]
     def __init__(self, hass: HomeAssistant, track_templates: Sequence[TrackTemplate], action: TrackTemplateResultListener, has_super_template: bool = False) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     def async_setup(self, strict: bool = False, log_fn: Callable[[int, str], None] | None = None) -> None: ...
     @property

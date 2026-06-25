@@ -7,7 +7,7 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, A
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 FAN_QUIET: str
@@ -33,52 +33,70 @@ class EsphomeClimateEntity(EsphomeEntity[ClimateInfo, ClimateState], ClimateEnti
     _attr_max_humidity: Incomplete
     _attr_supported_features: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     def _get_precision(self) -> float: ...
     @property
     @esphome_state_property
+    @override
     def hvac_mode(self) -> HVACMode | None: ...
     @property
     @esphome_state_property
+    @override
     def hvac_action(self) -> HVACAction | None: ...
     @property
     @esphome_state_property
+    @override
     def fan_mode(self) -> str | None: ...
     @property
     @esphome_state_property
+    @override
     def preset_mode(self) -> str | None: ...
     @property
     @esphome_state_property
+    @override
     def swing_mode(self) -> str | None: ...
     @property
     @esphome_float_state_property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
     @esphome_state_property
+    @override
     def current_humidity(self) -> int | None: ...
     @property
     @esphome_float_state_property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
     @esphome_float_state_property
+    @override
     def target_temperature_low(self) -> float | None: ...
     @property
     @esphome_float_state_property
+    @override
     def target_temperature_high(self) -> float | None: ...
     @property
     @esphome_state_property
+    @override
     def target_humidity(self) -> int: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_humidity(self, humidity: int) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
 
 async_setup_entry: Incomplete

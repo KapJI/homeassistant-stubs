@@ -6,6 +6,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pybotvac import Robot as Robot
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: NeatoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,4 +15,5 @@ class NeatoDismissAlertButton(NeatoEntity, ButtonEntity):
     _attr_entity_category: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, robot: Robot) -> None: ...
+    @override
     async def async_press(self) -> None: ...

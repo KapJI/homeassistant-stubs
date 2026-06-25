@@ -14,7 +14,7 @@ from homeassistant.helpers.event import async_track_point_in_utc_time as async_t
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STAT_AGE_COVERAGE_RATIO: str
@@ -142,6 +142,7 @@ class StatisticsSensor(SensorEntity):
     @callback
     def _async_stats_sensor_state_report_listener(self, event: Event[EventStateReportedData]) -> None: ...
     async def _async_stats_sensor_startup(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _add_state_to_queue(self, new_state: State, last_reported_timestamp: float) -> None: ...
     _attr_native_unit_of_measurement: Incomplete

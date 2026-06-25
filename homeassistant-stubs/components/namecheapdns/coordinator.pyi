@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type NamecheapConfigEntry = ConfigEntry[NamecheapDnsUpdateCoordinator]
@@ -16,4 +17,5 @@ class NamecheapDnsUpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: NamecheapConfigEntry
     session: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: NamecheapConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

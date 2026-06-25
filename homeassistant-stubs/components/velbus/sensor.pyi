@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from velbusaio.channels import ButtonCounter, SensorNumber, Temperature
 from velbusaio.properties import LightValue
 
@@ -31,4 +32,5 @@ class VelbusSensor(VelbusEntity, SensorEntity):
     _attr_name: Incomplete
     def __init__(self, channel: VelbusSensorChannel, description: VelbusSensorEntityDescription, is_counter: bool = False) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | None: ...

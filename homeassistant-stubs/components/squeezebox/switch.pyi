@@ -11,7 +11,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_time_change as async_track_time_change
 from pysqueezebox.player import Alarm as Alarm
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -25,16 +25,22 @@ class SqueezeBoxAlarmEntity(SqueezeboxEntity, SwitchEntity):
     _attr_translation_placeholders: Incomplete
     _attr_unique_id: str
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator, alarm_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
     def alarm(self) -> Alarm: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class SqueezeBoxAlarmsEnabledEntity(SqueezeboxEntity, SwitchEntity):
@@ -43,6 +49,9 @@ class SqueezeBoxAlarmsEnabledEntity(SqueezeboxEntity, SwitchEntity):
     _attr_unique_id: str
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

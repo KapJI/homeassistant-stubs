@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class IBeaconSensorEntityDescription(SensorEntityDescription):
@@ -27,8 +28,11 @@ class IBeaconSensorEntity(IBeaconEntity, SensorEntity):
     _attr_available: bool
     _ibeacon_advertisement: Incomplete
     @callback
+    @override
     def _async_seen(self, ibeacon_advertisement: iBeaconAdvertisement) -> None: ...
     @callback
+    @override
     def _async_unavailable(self) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | None: ...

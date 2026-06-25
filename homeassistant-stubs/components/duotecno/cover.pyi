@@ -5,7 +5,7 @@ from duotecno.unit import DuoswitchUnit as DuoswitchUnit
 from homeassistant.components.cover import CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: DuotecnoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -13,14 +13,20 @@ class DuotecnoCover(DuotecnoEntity, CoverEntity):
     _unit: DuoswitchUnit
     _attr_supported_features: Incomplete
     @property
+    @override
     def is_closed(self) -> bool | None: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @api_call
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     @api_call
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     @api_call
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...

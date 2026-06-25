@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from plugwise import Smile
-from typing import Any, Self
+from typing import Any, Self, override
 
 _LOGGER: Incomplete
 SMILE_RECONF_SCHEMA: Incomplete
@@ -21,7 +21,10 @@ class PlugwiseConfigFlow(ConfigFlow, domain=DOMAIN):
     discovery_info: ZeroconfServiceInfo | None
     product: str
     _username: str
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
+    @override
     def is_matching(self, other_flow: Self) -> bool: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

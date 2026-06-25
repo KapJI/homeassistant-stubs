@@ -7,6 +7,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,5 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: HDFuryConfigEntry, async
 class HDFurySelect(HDFuryEntity, SelectEntity):
     entity_description: HDFurySelectEntityDescription
     @property
+    @override
     def current_option(self) -> str: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

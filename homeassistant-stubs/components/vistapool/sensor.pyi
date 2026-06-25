@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -31,4 +31,5 @@ class VistapoolSensorEntity(VistapoolEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: VistapoolDataUpdateCoordinator, description: VistapoolSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | None: ...

@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -20,4 +21,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_
 class AcaiaBinarySensor(AcaiaEntity, BinarySensorEntity):
     entity_description: AcaiaBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool: ...

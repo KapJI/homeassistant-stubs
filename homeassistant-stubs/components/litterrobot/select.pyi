@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitterbot import Robot as Robot
-from typing import Any, Generic, TypeVar
+from typing import Any, Generic, TypeVar, override
 
 PARALLEL_UPDATES: int
 _CastTypeT = TypeVar('_CastTypeT', int, float, str)
@@ -29,6 +29,8 @@ class LitterRobotSelectEntity(LitterRobotEntity[_WhiskerEntityT], SelectEntity, 
     _attr_options: Incomplete
     def __init__(self, robot: _WhiskerEntityT, coordinator: LitterRobotDataUpdateCoordinator, description: RobotSelectEntityDescription[_WhiskerEntityT, _CastTypeT]) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @whisker_command
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from solarlog_cli.solarlog_models import BatteryData as BatteryData, EnergyData as EnergyData, InverterData as InverterData, SolarlogData as SolarlogData
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class SolarLogCoordinatorSensorEntityDescription(SensorEntityDescription):
@@ -37,19 +38,23 @@ async def async_setup_entry(hass: HomeAssistant, entry: SolarlogConfigEntry, asy
 class SolarLogBasicCoordinatorSensor(SolarLogBasicCoordinatorEntity, SensorEntity):
     entity_description: SolarLogCoordinatorSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class SolarLogLongtimeCoordinatorSensor(SolarLogLongtimeCoordinatorEntity, SensorEntity):
     entity_description: SolarLogLongtimeSensorEntityDescription
     @property
+    @override
     def native_value(self) -> float | None: ...
 
 class SolarLogBatterySensor(SolarLogBasicCoordinatorEntity, SensorEntity):
     entity_description: SolarLogBatterySensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class SolarLogInverterSensor(SolarLogInverterEntity, SensorEntity):
     entity_description: SolarLogInverterSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

@@ -8,7 +8,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.light.light import Light, LightFanSpeed
-from typing import Any
+from typing import Any, override
 
 ORDERED_NAMED_FAN_SPEEDS: list[LightFanSpeed]
 
@@ -20,11 +20,17 @@ class DeconzFan(DeconzDevice[Light], FanEntity):
     _attr_supported_features: Incomplete
     def __init__(self, device: Light, hub: DeconzHub) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def percentage(self) -> int | None: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

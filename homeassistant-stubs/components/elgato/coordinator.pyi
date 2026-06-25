@@ -7,6 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type ElgatoConfigEntry = ConfigEntry[ElgatoDataUpdateCoordinator]
 @dataclass
@@ -21,4 +22,5 @@ class ElgatoDataUpdateCoordinator(DataUpdateCoordinator[ElgatoData]):
     has_battery: bool | None
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ElgatoConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> ElgatoData: ...

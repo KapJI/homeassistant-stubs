@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 BINARY_SENSOR_TYPE: Incomplete
 
@@ -14,4 +15,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: RadarrConfigEntry, async
 
 class RadarrBinarySensor(RadarrEntity[list[Health]], BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool: ...

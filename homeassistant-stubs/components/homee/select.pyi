@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 SELECT_DESCRIPTIONS: dict[AttributeType, SelectEntityDescription]
@@ -21,5 +22,7 @@ class HomeeSelect(HomeeEntity, SelectEntity):
     _attr_translation_key: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: SelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

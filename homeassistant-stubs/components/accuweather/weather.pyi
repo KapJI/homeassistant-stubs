@@ -6,6 +6,7 @@ from homeassistant.const import UnitOfLength as UnitOfLength, UnitOfPrecipitatio
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,30 +29,44 @@ class AccuWeatherEntity(CoordinatorWeatherEntity[AccuWeatherObservationDataUpdat
     hourly_coordinator: Incomplete
     def __init__(self, accuweather_data: AccuWeatherData) -> None: ...
     @property
+    @override
     def condition(self) -> str | None: ...
     @property
+    @override
     def cloud_coverage(self) -> float: ...
     @property
+    @override
     def native_apparent_temperature(self) -> float: ...
     @property
+    @override
     def native_temperature(self) -> float: ...
     @property
+    @override
     def native_pressure(self) -> float: ...
     @property
+    @override
     def native_dew_point(self) -> float: ...
     @property
+    @override
     def humidity(self) -> int: ...
     @property
+    @override
     def native_wind_gust_speed(self) -> float: ...
     @property
+    @override
     def native_wind_speed(self) -> float: ...
     @property
+    @override
     def wind_bearing(self) -> int: ...
     @property
+    @override
     def native_visibility(self) -> float: ...
     @property
+    @override
     def uv_index(self) -> float: ...
     @callback
+    @override
     def _async_forecast_daily(self) -> list[Forecast] | None: ...
     @callback
+    @override
     def _async_forecast_hourly(self) -> list[Forecast] | None: ...

@@ -8,7 +8,7 @@ from habiticalib import Habitica as Habitica, HabiticaClass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -44,8 +44,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: HabiticaConfigEntry, asy
 
 class HabiticaButton(HabiticaBase, ButtonEntity):
     entity_description: HabiticaButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...

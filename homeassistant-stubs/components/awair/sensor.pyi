@@ -11,7 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from python_awair.air_data import AirData as AirData
 from python_awair.devices import AwairBaseDevice as AwairBaseDevice
-from typing import Any
+from typing import Any, override
 
 DUST_ALIASES: Incomplete
 
@@ -32,14 +32,19 @@ class AwairSensor(CoordinatorEntity[AwairDataUpdateCoordinator], SensorEntity):
     _device: Incomplete
     def __init__(self, device: AwairBaseDevice, coordinator: AwairDataUpdateCoordinator, description: AwairSensorEntityDescription) -> None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
     def _air_data(self) -> AirData | None: ...

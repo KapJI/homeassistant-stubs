@@ -5,7 +5,7 @@ from homeassistant.const import ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_SERIAL_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 type LektricoConfigEntry = ConfigEntry[LektricoDeviceDataUpdateCoordinator]
@@ -17,4 +17,5 @@ class LektricoDeviceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]])
     board_revision: str
     device_type: str
     def __init__(self, hass: HomeAssistant, config_entry: LektricoConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

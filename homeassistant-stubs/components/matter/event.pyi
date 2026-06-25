@@ -8,7 +8,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from matter_server.common.models import EventType, MatterNodeEvent as MatterNodeEvent
-from typing import Any
+from typing import Any, override
 
 SwitchFeature: Incomplete
 EVENT_TYPES_MAP: Incomplete
@@ -21,7 +21,9 @@ class MatterEventEntityDescription(EventEntityDescription, MatterEntityDescripti
 class MatterEventEntity(MatterEntity, EventEntity):
     _attr_event_types: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def _update_from_device(self) -> None: ...
     @callback
     def _on_matter_node_event(self, event: EventType, data: MatterNodeEvent) -> None: ...

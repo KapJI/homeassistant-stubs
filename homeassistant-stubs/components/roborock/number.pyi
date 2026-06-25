@@ -1,16 +1,17 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
+from .coordinator import RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinatorType as RoborockCoordinatorType, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
 from .entity import RoborockEntityV1 as RoborockEntityV1
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -30,5 +31,7 @@ class RoborockNumberEntity(RoborockEntityV1, NumberEntity):
     _trait: Incomplete
     def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, entity_description: RoborockNumberDescription, trait: Any) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

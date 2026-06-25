@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 ALARM_TYPES: Incomplete
 
@@ -31,4 +32,5 @@ class BoschAreaSensor(BoschAlarmAreaEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, area_id: int, unique_id: str, entity_description: BoschAlarmSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int: ...

@@ -2,7 +2,7 @@ from .const import CONF_PHONE as CONF_PHONE, CONF_REFRESH_TOKEN as CONF_REFRESH_
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 _STEP_PHONE_NUMBER_SCHEMA: Incomplete
@@ -12,6 +12,7 @@ _PHONE_MATCHER: Incomplete
 class Tami4ConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     phone: str
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_otp(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

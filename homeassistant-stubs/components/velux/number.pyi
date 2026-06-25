@@ -6,6 +6,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyvlx import ExteriorHeating
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -19,6 +20,8 @@ class VeluxExteriorHeatingNumber(VeluxEntity, NumberEntity):
     _attr_name: Incomplete
     node: ExteriorHeating
     @property
+    @override
     def native_value(self) -> float | None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

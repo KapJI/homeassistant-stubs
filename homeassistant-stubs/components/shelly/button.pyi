@@ -12,7 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 
@@ -35,6 +35,7 @@ class ShellyBaseButton(CoordinatorEntity[ShellyRpcCoordinator | ShellyBlockCoord
     _attr_has_entity_name: bool
     entity_description: ShellyButtonDescription[ShellyRpcCoordinator | ShellyBlockCoordinator]
     def __init__(self, coordinator: ShellyRpcCoordinator | ShellyBlockCoordinator, description: ShellyButtonDescription[ShellyRpcCoordinator | ShellyBlockCoordinator]) -> None: ...
+    @override
     async def async_press(self) -> None: ...
     async def _press_method(self) -> None: ...
 
@@ -42,6 +43,7 @@ class ShellyButton(ShellyBaseButton):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator | ShellyBlockCoordinator, description: ShellyButtonDescription[ShellyRpcCoordinator | ShellyBlockCoordinator]) -> None: ...
+    @override
     async def _press_method(self) -> None: ...
 
 class ShellyBluTrvButton(ShellyRpcAttributeEntity, ButtonEntity):
@@ -51,19 +53,23 @@ class ShellyBluTrvButton(ShellyRpcAttributeEntity, ButtonEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcButtonDescription) -> None: ...
     @rpc_call
+    @override
     async def async_press(self) -> None: ...
 
 class RpcVirtualButton(ShellyRpcAttributeEntity, ButtonEntity):
     entity_description: RpcButtonDescription
     _id: int
     @rpc_call
+    @override
     async def async_press(self) -> None: ...
 
 class RpcSleepingSmokeMuteButton(ShellySleepingRpcAttributeEntity, ButtonEntity):
     entity_description: RpcButtonDescription
     @rpc_call
+    @override
     async def async_press(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 RPC_BUTTONS: Incomplete

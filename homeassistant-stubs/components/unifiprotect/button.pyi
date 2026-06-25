@@ -10,6 +10,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from uiprotect.data import ModelType, ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
@@ -32,9 +33,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_ad
 class ProtectButton(ProtectDeviceEntity, ButtonEntity):
     entity_description: ProtectButtonEntityDescription
     @async_ufp_instance_command
+    @override
     async def async_press(self) -> None: ...
 
 class ProtectAdoptButton(ProtectButton):
     _attr_available: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...

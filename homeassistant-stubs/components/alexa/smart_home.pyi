@@ -13,7 +13,7 @@ from homeassistant.components.http import HomeAssistantRequest as HomeAssistantR
 from homeassistant.const import CONF_CLIENT_ID as CONF_CLIENT_ID, CONF_CLIENT_SECRET as CONF_CLIENT_SECRET
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 from yarl import URL as URL
 
 _LOGGER: Incomplete
@@ -24,22 +24,32 @@ class AlexaConfig(AbstractConfig):
     _config: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConfigType) -> None: ...
     @property
+    @override
     def supports_auth(self) -> bool: ...
     @property
+    @override
     def should_report_state(self) -> bool: ...
     @property
+    @override
     def endpoint(self) -> str | URL | None: ...
     @property
+    @override
     def entity_config(self) -> dict[str, Any]: ...
     @property
+    @override
     def locale(self) -> str | None: ...
     @core.callback
+    @override
     def user_identifier(self) -> str: ...
     @core.callback
+    @override
     def should_expose(self, entity_id: str) -> bool: ...
     @core.callback
+    @override
     def async_invalidate_access_token(self) -> None: ...
+    @override
     async def async_get_access_token(self) -> str | None: ...
+    @override
     async def async_accept_grant(self, code: str) -> str | None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> None: ...

@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from bosch_alarm_mode2 import Panel as Panel
 from homeassistant.components.sensor import Entity as Entity
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -14,8 +15,11 @@ class BoschAlarmEntity(Entity):
     _attr_device_info: Incomplete
     def __init__(self, panel: Panel, unique_id: str, observe_faults: bool = False) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class BoschAlarmAreaEntity(BoschAlarmEntity):
@@ -27,7 +31,9 @@ class BoschAlarmAreaEntity(BoschAlarmEntity):
     _area: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, panel: Panel, area_id: int, unique_id: str, observe_alarms: bool, observe_ready: bool, observe_status: bool) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class BoschAlarmPointEntity(BoschAlarmEntity):
@@ -36,7 +42,9 @@ class BoschAlarmPointEntity(BoschAlarmEntity):
     _point: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, panel: Panel, point_id: int, unique_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class BoschAlarmDoorEntity(BoschAlarmEntity):
@@ -45,7 +53,9 @@ class BoschAlarmDoorEntity(BoschAlarmEntity):
     _door_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, panel: Panel, door_id: int, unique_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class BoschAlarmOutputEntity(BoschAlarmEntity):
@@ -54,5 +64,7 @@ class BoschAlarmOutputEntity(BoschAlarmEntity):
     _output_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, panel: Panel, output_id: int, unique_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

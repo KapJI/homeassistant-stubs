@@ -6,7 +6,7 @@ from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 UPDATE_TYPES: Final[tuple[UpdateEntityDescription, ...]]
 
@@ -19,9 +19,11 @@ class QswUpdate(QswFirmwareEntity, UpdateEntity):
     _attr_installed_version: Incomplete
     def __init__(self, coordinator: QswFirmwareCoordinator, description: UpdateEntityDescription, entry: QnapQswConfigEntry) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_latest_version: Incomplete
     _attr_release_summary: Incomplete
     @callback
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

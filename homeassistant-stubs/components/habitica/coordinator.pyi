@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 from uuid import UUID
 
 _LOGGER: Incomplete
@@ -34,16 +34,20 @@ class HabiticaBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=a
     def __init__(self, hass: HomeAssistant, config_entry: HabiticaConfigEntry, habitica: Habitica) -> None: ...
     @abstractmethod
     async def _update_data(self) -> _DataT: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
 
 class HabiticaDataUpdateCoordinator(HabiticaBaseCoordinator[HabiticaData]):
     _update_interval: Incomplete
     content: ContentData
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _update_data(self) -> HabiticaData: ...
     async def execute(self, func: Callable[[Habitica], Any]) -> None: ...
     async def generate_avatar(self, avatar: Avatar) -> bytes: ...
 
 class HabiticaPartyCoordinator(HabiticaBaseCoordinator[HabiticaPartyData]):
     _update_interval: Incomplete
+    @override
     async def _update_data(self) -> HabiticaPartyData: ...

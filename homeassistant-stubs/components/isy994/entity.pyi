@@ -9,7 +9,7 @@ from pyisy.helpers import EventListener as EventListener, NodeProperty as NodePr
 from pyisy.nodes import Group as Group, Node as Node, NodeChangedEvent as NodeChangedEvent
 from pyisy.programs import Program as Program
 from pyisy.variables import Variable as Variable
-from typing import Any
+from typing import Any, override
 
 class ISYEntity(Entity):
     _attr_has_entity_name: bool
@@ -22,6 +22,7 @@ class ISYEntity(Entity):
     _change_handler: EventListener | None
     _control_handler: EventListener | None
     def __init__(self, node: Node | Group | Variable | Program, device_info: DeviceInfo | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_on_update(self, event: NodeProperty) -> None: ...
@@ -33,8 +34,10 @@ class ISYNodeEntity(ISYEntity):
     _attr_name: Incomplete
     def __init__(self, node: Node | Group | Variable | Program, device_info: DeviceInfo | None = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     async def async_send_node_command(self, command: str) -> None: ...
     async def async_send_raw_node_command(self, command: str, value: Any | None = None, unit_of_measurement: str | None = None, parameters: Any | None = None) -> None: ...
@@ -49,6 +52,7 @@ class ISYProgramEntity(ISYEntity):
     _attr_name: Incomplete
     def __init__(self, name: str, status: Program, actions: Program = None) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
 
 class ISYAuxControlEntity(Entity):
@@ -63,8 +67,10 @@ class ISYAuxControlEntity(Entity):
     _change_handler: EventListener
     _availability_handler: EventListener
     def __init__(self, node: Node, control: str, unique_id: str, description: EntityDescription, device_info: DeviceInfo | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_on_update(self, event: NodeProperty | NodeChangedEvent, key: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

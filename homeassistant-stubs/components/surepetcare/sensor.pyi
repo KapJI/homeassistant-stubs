@@ -7,6 +7,7 @@ from homeassistant.const import ATTR_VOLTAGE as ATTR_VOLTAGE, EntityCategory as 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from surepy.entities import SurepyEntity as SurepyEntity
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SurePetcareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -20,6 +21,7 @@ class SureBattery(SurePetcareEntity, SensorEntity):
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class Felaqua(SurePetcareEntity, SensorEntity):
@@ -31,6 +33,7 @@ class Felaqua(SurePetcareEntity, SensorEntity):
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class PetLastSeenFlapDevice(SurePetcareEntity, SensorEntity):
@@ -41,6 +44,7 @@ class PetLastSeenFlapDevice(SurePetcareEntity, SensorEntity):
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
 
 class PetLastSeenUser(SurePetcareEntity, SensorEntity):
@@ -51,4 +55,5 @@ class PetLastSeenUser(SurePetcareEntity, SensorEntity):
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_IMPO
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
@@ -40,9 +40,11 @@ class GoogleCloudTTSEntity(BaseGoogleCloudProvider, TextToSpeechEntity):
     _attr_device_info: Incomplete
     _entry: Incomplete
     def __init__(self, entry: ConfigEntry, client: texttospeech.TextToSpeechAsyncClient, voices: dict[str, list[str]], language: str, options_schema: vol.Schema) -> None: ...
+    @override
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...
 
 class GoogleCloudTTSProvider(BaseGoogleCloudProvider, Provider):
     name: str
     def __init__(self, client: texttospeech.TextToSpeechAsyncClient, voices: dict[str, list[str]], language: str, options_schema: vol.Schema) -> None: ...
+    @override
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...

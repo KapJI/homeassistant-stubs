@@ -8,6 +8,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -29,6 +30,8 @@ class PlugwiseNumberEntity(PlugwiseEntity, NumberEntity):
     _attr_native_step: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, description: PlugwiseNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
     @plugwise_command
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

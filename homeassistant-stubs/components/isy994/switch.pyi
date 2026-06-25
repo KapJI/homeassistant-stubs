@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyisy.helpers import EventListener as EventListener
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True)
 class ISYSwitchEntityDescription(SwitchEntityDescription):
@@ -20,29 +20,42 @@ async def async_setup_entry(hass: HomeAssistant, entry: IsyConfigEntry, async_ad
 
 class ISYSwitchEntity(ISYNodeEntity, SwitchEntity):
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def icon(self) -> str | None: ...
 
 class ISYSwitchProgramEntity(ISYProgramEntity, SwitchEntity):
     _attr_icon: str
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class ISYEnableSwitchEntity(ISYAuxControlEntity, SwitchEntity):
     _attr_name: Incomplete
     _change_handler: EventListener | None
     def __init__(self, node: Node, control: str, unique_id: str, description: ISYSwitchEntityDescription, device_info: DeviceInfo | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def async_on_update(self, event: NodeChangedEvent, key: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyoverkiz.types import StateType as OverkizStateType
+from typing import override
 
 @dataclass(frozen=True)
 class OverkizButtonDescription(ButtonEntityDescription):
@@ -20,4 +21,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, 
 
 class OverkizButton(OverkizDescriptiveEntity, ButtonEntity):
     entity_description: OverkizButtonDescription
+    @override
     async def async_press(self) -> None: ...

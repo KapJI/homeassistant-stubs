@@ -6,6 +6,7 @@ from bring_api import BringList as BringList
 from homeassistant.components.event import EventEntity as EventEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -19,6 +20,9 @@ class BringEventEntity(BringBaseEntity, EventEntity):
     def __init__(self, coordinator: BringActivityCoordinator, bring_list: BringList) -> None: ...
     def _async_handle_event(self) -> None: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...

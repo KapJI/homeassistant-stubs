@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_state_change_event as async_track_state_change_event, async_track_state_report_event as async_track_state_report_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 _LOGGER: Incomplete
 ATTR_SOURCE_ID: str
@@ -55,4 +56,5 @@ class DerivativeSensor(RestoreSensor, SensorEntity):
     def _handle_invalid_source_state(self, state: State | None) -> bool: ...
     def _write_native_value(self, derivative: Decimal | None) -> None: ...
     async def _handle_restore(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

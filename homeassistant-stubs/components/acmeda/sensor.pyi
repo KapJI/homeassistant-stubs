@@ -8,6 +8,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AcmedaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,4 +16,5 @@ class AcmedaBattery(AcmedaEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
     @property
+    @override
     def native_value(self) -> float | int | None: ...

@@ -15,7 +15,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Final
+from typing import Any, Final, override
 
 _LOGGER: Final[Incomplete]
 _CONFIGURING: dict[str, str]
@@ -65,6 +65,7 @@ class FitbitSensor(SensorEntity):
     _attr_available: bool
     _attr_native_value: Incomplete
     async def async_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class FitbitBatterySensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEntity):
@@ -77,12 +78,16 @@ class FitbitBatterySensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEnti
     _attr_entity_registry_enabled_default: bool
     def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: Device, enable_default_override: bool) -> None: ...
     @property
+    @override
     def icon(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str | None]: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 class FitbitBatteryLevelSensor(CoordinatorEntity[FitbitDeviceCoordinator], SensorEntity):
@@ -93,7 +98,9 @@ class FitbitBatteryLevelSensor(CoordinatorEntity[FitbitDeviceCoordinator], Senso
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: FitbitDeviceCoordinator, user_profile_id: str, description: FitbitSensorEntityDescription, device: Device) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

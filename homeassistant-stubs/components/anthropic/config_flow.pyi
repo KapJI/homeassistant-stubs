@@ -12,7 +12,7 @@ from homeassistant.helpers import llm as llm
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.selector import NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -24,11 +24,13 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None: ...
 class AnthropicConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: AnthropicConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
 
 class ConversationSubentryFlowHandler(ConfigSubentryFlow):

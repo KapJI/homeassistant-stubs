@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_ALIAS as CONF_ALIAS, CONF_BASE as CONF_BASE, CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 REAUTH_SCHEMA: Incomplete
@@ -26,7 +26,9 @@ class NutConfigFlow(ConfigFlow, domain=DOMAIN):
     title: str | None
     reauth_entry: ConfigEntry | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_ups(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

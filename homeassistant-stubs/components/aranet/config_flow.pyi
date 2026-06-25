@@ -5,7 +5,7 @@ from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as Blue
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
-from typing import Any
+from typing import Any, override
 
 MIN_VERSION: Incomplete
 
@@ -18,6 +18,8 @@ class AranetConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_devices: dict[str, tuple[str, Aranet4Advertisement]]
     def __init__(self) -> None: ...
     def _raise_for_advertisement_errors(self, adv: Aranet4Advertisement) -> None: ...
+    @override
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfoBleak) -> ConfigFlowResult: ...
     async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

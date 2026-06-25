@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyschlage import Lock as Lock, Schlage as Schlage
 from pyschlage.log import LockLog as LockLog
+from typing import override
 
 @dataclass
 class LockData:
@@ -25,6 +26,7 @@ class SchlageDataUpdateCoordinator(DataUpdateCoordinator[SchlageData]):
     api: Incomplete
     new_locks_callbacks: list[Callable[[dict[str, LockData]], None]]
     def __init__(self, hass: HomeAssistant, config_entry: SchlageConfigEntry, username: str, api: Schlage) -> None: ...
+    @override
     async def _async_update_data(self) -> SchlageData: ...
     def _get_lock_data(self, lock: Lock) -> LockData: ...
     @callback

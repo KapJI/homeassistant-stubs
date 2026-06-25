@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 DEVICE_MODE_TO_HA: Incomplete
@@ -38,9 +38,14 @@ class SwitcherClimateEntity(SwitcherEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _attr_swing_mode: Incomplete
     _attr_swing_modes: Incomplete
+    @override
     def _update_data(self) -> None: ...
     async def _async_control_breeze_device(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...

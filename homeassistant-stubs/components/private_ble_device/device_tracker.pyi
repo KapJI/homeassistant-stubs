@@ -6,6 +6,7 @@ from homeassistant.components.device_tracker import BaseScannerEntity as BaseSca
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -18,11 +19,15 @@ class BasePrivateDeviceTracker(BasePrivateDeviceEntity, BaseScannerEntity):
     _attr_translation_key: str
     _attr_name: Incomplete
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, str]: ...
     _last_info: Incomplete
     @callback
+    @override
     def _async_track_unavailable(self, service_info: bluetooth.BluetoothServiceInfoBleak) -> None: ...
     @callback
+    @override
     def _async_track_service_info(self, service_info: bluetooth.BluetoothServiceInfoBleak, change: bluetooth.BluetoothChange) -> None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...

@@ -8,6 +8,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +26,5 @@ class MealieStatisticSensors(MealieEntity, SensorEntity):
     _attr_translation_key: Incomplete
     def __init__(self, coordinator: MealieStatisticsCoordinator, description: MealieStatisticsSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

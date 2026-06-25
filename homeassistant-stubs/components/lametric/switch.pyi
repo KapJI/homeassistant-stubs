@@ -9,7 +9,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LaMetricSwitchEntityDescription(SwitchEntityDescription):
@@ -27,10 +27,14 @@ class LaMetricSwitchEntity(LaMetricEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LaMetricDataUpdateCoordinator, description: LaMetricSwitchEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @lametric_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @lametric_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

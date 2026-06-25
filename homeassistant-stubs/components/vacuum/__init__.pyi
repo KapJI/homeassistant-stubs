@@ -1,5 +1,5 @@
 import asyncio
-from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, VacuumEntityCapabilityAttribute as VacuumEntityCapabilityAttribute, VacuumEntityFeature as VacuumEntityFeature, VacuumEntityStateAttribute as VacuumEntityStateAttribute
 from .websocket import async_register_websocket_handlers as async_register_websocket_handlers
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -14,7 +14,7 @@ from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete
@@ -64,11 +64,15 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     __vacuum_legacy_battery_level: bool
     __vacuum_legacy_battery_icon: bool
     __vacuum_legacy_battery_feature: bool
+    @override
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
+    @override
     def __setattr__(self, name: str, value: Any) -> None: ...
     @callback
+    @override
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     @callback
+    @override
     def async_registry_entry_updated(self) -> None: ...
     @callback
     def _report_deprecated_battery_properties(self, property: str) -> None: ...
@@ -79,19 +83,23 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     @property
     def battery_icon(self) -> str: ...
     @property
+    @override
     def capability_attributes(self) -> dict[str, Any] | None: ...
     @cached_property
     def fan_speed(self) -> str | None: ...
     @cached_property
     def fan_speed_list(self) -> list[str]: ...
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     @final
     @property
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def activity(self) -> VacuumActivity | None: ...
     @cached_property
+    @override
     def supported_features(self) -> VacuumEntityFeature: ...
     def stop(self, **kwargs: Any) -> None: ...
     async def async_stop(self, **kwargs: Any) -> None: ...

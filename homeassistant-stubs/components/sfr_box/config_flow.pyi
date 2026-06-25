@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from sfrbox_api.bridge import SFRBox
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DATA_SCHEMA: Incomplete
@@ -17,6 +17,7 @@ class SFRBoxFlowHandler(ConfigFlow, domain=DOMAIN):
     _box: SFRBox
     _config: dict[str, Any]
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_choose_auth(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...

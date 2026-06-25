@@ -10,7 +10,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.util.network import is_host_valid as is_host_valid
-from typing import Any
+from typing import Any, override
 
 DATA_SCHEMA: Incomplete
 ZEROCONF_SCHEMA: Incomplete
@@ -24,7 +24,9 @@ class BrotherConfigFlow(ConfigFlow, domain=DOMAIN):
     brother: Brother
     host: str | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

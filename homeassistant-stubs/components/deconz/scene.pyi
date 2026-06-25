@@ -4,10 +4,11 @@ from homeassistant.components.scene import DOMAIN as SCENE_DOMAIN, Scene as Scen
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydeconz.models.event import EventType as EventType
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: DeconzConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DeconzScene(DeconzSceneMixin, Scene):
     TYPE = SCENE_DOMAIN
+    @override
     async def async_activate(self, **kwargs: Any) -> None: ...

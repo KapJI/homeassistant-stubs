@@ -8,6 +8,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as Value, ValueNotification as ValueNotification
 
@@ -26,6 +27,7 @@ class ZwaveEventEntity(ZWaveBaseEntity, EventEntity):
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: NewZwaveDiscoveryInfo) -> None: ...
     @callback
     def _async_handle_event(self, value_notification: ValueNotification) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 DISCOVERY_SCHEMAS: list[NewZWaveDiscoverySchema]

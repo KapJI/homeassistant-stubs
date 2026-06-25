@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.auth import EVENT_USER_REMOVED as EVENT_USER_REMOVED
 from homeassistant.components import persistent_notification as persistent_notification, websocket_api as websocket_api
-from homeassistant.components.device_tracker import ATTR_IN_ZONES as ATTR_IN_ZONES, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, SourceType as SourceType
+from homeassistant.components.device_tracker import ATTR_IN_ZONES as ATTR_IN_ZONES, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, ATTR_TRACKING_TYPE as ATTR_TRACKING_TYPE, SourceType as SourceType, TrackingType as TrackingType
 from homeassistant.components.zone import ENTITY_ID_HOME as ENTITY_ID_HOME
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_ID as ATTR_ID, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_NAME as ATTR_NAME, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, SERVICE_RELOAD as SERVICE_RELOAD, STATE_HOME as STATE_HOME, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback, split_entity_id as split_entity_id
@@ -13,7 +13,7 @@ from homeassistant.helpers.event import async_track_state_change_event as async_
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from typing import Any, Self
+from typing import Any, Self, override
 
 _LOGGER: Incomplete
 ATTR_SOURCE: str
@@ -39,6 +39,7 @@ CREATE_FIELDS: VolDictType
 UPDATE_FIELDS: VolDictType
 
 class PersonStore(Store):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class PersonStorageCollection(collection.DictStorageCollection):
@@ -46,18 +47,24 @@ class PersonStorageCollection(collection.DictStorageCollection):
     UPDATE_SCHEMA: Incomplete
     yaml_collection: Incomplete
     def __init__(self, store: Store, id_manager: collection.IDManager, yaml_collection: collection.YamlCollection) -> None: ...
+    @override
     async def _async_load_data(self) -> collection.SerializedStorageCollection | None: ...
+    @override
     async def async_load(self) -> None: ...
     @callback
     def _entity_registry_filter(self, event_data: er.EventEntityRegistryUpdatedData) -> bool: ...
     async def _entity_registry_updated(self, event: Event[er.EventEntityRegistryUpdatedData]) -> None: ...
+    @override
     async def _process_create_data(self, data: dict) -> dict: ...
     @callback
+    @override
     def _get_suggested_id(self, info: dict[str, str]) -> str: ...
+    @override
     async def _update_data(self, item: dict, update_data: dict) -> dict: ...
     async def _validate_user_id(self, user_id: str) -> None: ...
 
 class PersonStorageCollectionWebsocket(collection.DictStorageCollectionWebsocket):
+    @override
     def ws_list_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 
 async def filter_yaml_data(hass: HomeAssistant, persons: list[dict]) -> list[dict]: ...
@@ -82,10 +89,14 @@ class Person(collection.CollectionEntity, RestoreEntity):
     _attr_entity_picture: Incomplete
     def _set_attrs_from_config(self) -> None: ...
     @classmethod
+    @override
     def from_storage(cls, config: ConfigType) -> Self: ...
     @classmethod
+    @override
     def from_yaml(cls, config: ConfigType) -> Self: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_update_config(self, config: ConfigType) -> None: ...
     @callback
     def _async_update_config(self, config: ConfigType) -> None: ...
@@ -94,7 +105,7 @@ class Person(collection.CollectionEntity, RestoreEntity):
     @callback
     def _update_state(self) -> None: ...
     @callback
-    def _parse_source_state(self, state: State, coordinates: State) -> None: ...
+    def _parse_source_state(self, state: State) -> None: ...
     _attr_extra_state_attributes: Incomplete
     @callback
     def _update_extra_state_attributes(self) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, CONF_MAC as CONF_MAC, DEGREE as DEGREE, PERCENTAGE as PERCENTAGE, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 TYPE_AQI_PM25: str
 TYPE_AQI_PM25_24H: str
@@ -42,4 +43,5 @@ class AmbientNetworkSensor(AmbientNetworkEntity, SensorEntity):
     _attr_available: Incomplete
     _attr_native_value: Incomplete
     _attr_extra_state_attributes: Incomplete
+    @override
     def _update_attrs(self) -> None: ...

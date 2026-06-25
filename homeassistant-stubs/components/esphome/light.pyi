@@ -4,7 +4,7 @@ from aioesphomeapi import ColorMode as ESPHomeColorMode, EntityInfo as EntityInf
 from functools import lru_cache
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_FLASH as ATTR_FLASH, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ColorMode as ColorMode, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 FLASH_LENGTHS: Incomplete
@@ -24,30 +24,40 @@ class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     def _color_temp_to_cold_warm(self, color_temp_mired: float) -> tuple[float, float]: ...
     @property
     @esphome_state_property
+    @override
     def is_on(self) -> bool: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
     @esphome_state_property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
     @esphome_state_property
+    @override
     def rgb_color(self) -> tuple[int, int, int]: ...
     @property
     @esphome_state_property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int]: ...
     @property
     @esphome_state_property
+    @override
     def rgbww_color(self) -> tuple[int, int, int, int, int]: ...
     @property
     @esphome_state_property
+    @override
     def color_temp_kelvin(self) -> int: ...
     @property
     @esphome_state_property
+    @override
     def effect(self) -> str: ...
     _attr_supported_features: Incomplete
     _attr_supported_color_modes: Incomplete
@@ -55,6 +65,7 @@ class EsphomeLight(EsphomeEntity[LightInfo, LightState], LightEntity):
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
 
 async_setup_entry: Incomplete

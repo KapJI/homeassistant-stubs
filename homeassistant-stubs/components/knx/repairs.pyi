@@ -1,7 +1,7 @@
-from .const import CONF_KNX_KNXKEY_PASSWORD as CONF_KNX_KNXKEY_PASSWORD, DOMAIN as DOMAIN, KNXConfigEntryData as KNXConfigEntryData, REPAIR_ISSUE_DATA_SECURE_GROUP_KEY as REPAIR_ISSUE_DATA_SECURE_GROUP_KEY
+from .const import CONF_KNX_KNXKEY_PASSWORD as CONF_KNX_KNXKEY_PASSWORD, DOMAIN as DOMAIN, KNXConfigEntryData as KNXConfigEntryData, REPAIR_ISSUE_DATA_SECURE_GROUP_KEY as REPAIR_ISSUE_DATA_SECURE_GROUP_KEY, REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR as REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR, SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM as SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM
 from .knx_module import KNXModule as KNXModule
 from .storage.keyring import DEFAULT_KNX_KEYRING_FILENAME as DEFAULT_KNX_KEYRING_FILENAME, save_uploaded_knxkeys_file as save_uploaded_knxkeys_file
-from .telegrams import SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM as SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM, TelegramDict as TelegramDict
+from .telegrams import TelegramDict as TelegramDict
 from collections.abc import Callable as Callable
 from homeassistant.components.repairs import RepairsFlow as RepairsFlow, RepairsFlowResult as RepairsFlowResult
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -23,3 +23,8 @@ class DataSecureGroupIssueRepairFlow(RepairsFlow):
     async def async_step_secure_knxkeys(self, user_input: dict[str, Any] | None = None) -> RepairsFlowResult: ...
     @callback
     def finish_flow(self, new_entry_data: KNXConfigEntryData) -> RepairsFlowResult: ...
+
+@callback
+def async_create_telegram_storage_issue(hass: HomeAssistant) -> None: ...
+@callback
+def async_delete_telegram_storage_issue(hass: HomeAssistant) -> None: ...

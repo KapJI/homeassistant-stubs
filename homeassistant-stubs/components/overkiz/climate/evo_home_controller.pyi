@@ -2,6 +2,7 @@ from ..entity import OverkizDataUpdateCoordinator as OverkizDataUpdateCoordinato
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_NONE as PRESET_NONE
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
+from typing import override
 
 PRESET_DAY_OFF: str
 PRESET_HOLIDAYS: str
@@ -17,8 +18,12 @@ class EvoHomeController(OverkizEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

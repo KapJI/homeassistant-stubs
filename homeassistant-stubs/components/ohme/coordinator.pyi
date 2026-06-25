@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from ohme import OhmeApiClient as OhmeApiClient
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -24,6 +25,7 @@ class OhmeBaseCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):
     coordinator_name: str
     name: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: OhmeConfigEntry, client: OhmeApiClient) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
     @abstractmethod
     async def _internal_update_data(self) -> None: ...
@@ -31,9 +33,11 @@ class OhmeBaseCoordinator(DataUpdateCoordinator[None], metaclass=abc.ABCMeta):
 class OhmeChargeSessionCoordinator(OhmeBaseCoordinator):
     coordinator_name: str
     _default_update_interval: Incomplete
+    @override
     async def _internal_update_data(self) -> None: ...
 
 class OhmeDeviceInfoCoordinator(OhmeBaseCoordinator):
     coordinator_name: str
     _default_update_interval: Incomplete
+    @override
     async def _internal_update_data(self) -> None: ...

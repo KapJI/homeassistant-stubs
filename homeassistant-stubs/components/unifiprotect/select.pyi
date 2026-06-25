@@ -12,9 +12,9 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from uiprotect.api import ProtectApiClient as ProtectApiClient
-from uiprotect.data import Camera, Doorlock, Light, ModelType, NVR as NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
+from uiprotect.data import Camera, Light, ModelType, NVR as NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
@@ -46,7 +46,7 @@ def _get_paired_camera_options(api: ProtectApiClient) -> list[dict[str, Any]]: .
 def _get_viewer_current(obj: Viewer) -> str: ...
 def _get_doorbell_current(obj: Camera) -> str | None: ...
 async def _set_light_mode(obj: Light, mode: str) -> None: ...
-async def _set_paired_camera(obj: Light | Sensor | Doorlock, camera_id: str) -> None: ...
+async def _set_paired_camera(obj: Light | Sensor, camera_id: str) -> None: ...
 async def _set_doorbell_message(obj: Camera, message: str) -> None: ...
 async def _set_liveview(obj: Viewer, liveview_id: str) -> None: ...
 async def _set_ptz_patrol(obj: Camera, patrol_slot: str) -> None: ...
@@ -59,7 +59,6 @@ PTZ_PATROL_DESCRIPTION: Incomplete
 CAMERA_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 LIGHT_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 SENSE_SELECTS: tuple[ProtectSelectEntityDescription, ...]
-DOORLOCK_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 VIEWER_SELECTS: tuple[ProtectSelectEntityDescription, ...]
 _MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
@@ -72,6 +71,7 @@ class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     def __init__(self, data: ProtectData, device: Camera | Light | Viewer, description: ProtectSelectEntityDescription) -> None: ...
     _attr_current_option: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     _attr_options: Incomplete
     _hass_to_unifi_options: Incomplete
@@ -79,6 +79,7 @@ class ProtectSelects(ProtectDeviceEntity, SelectEntity):
     @callback
     def _async_set_options(self, data: ProtectData, description: ProtectSelectEntityDescription) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ProtectPTZPatrolSelect(ProtectDeviceEntity, SelectEntity):
@@ -91,8 +92,10 @@ class ProtectPTZPatrolSelect(ProtectDeviceEntity, SelectEntity):
     def __init__(self, data: ProtectData, device: Camera, patrols: list[PTZPatrol]) -> None: ...
     def _update_patrol_state(self) -> None: ...
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ProtectNVRArmProfileSelect(ProtectNVREntity, SelectEntity):
@@ -107,6 +110,8 @@ class ProtectNVRArmProfileSelect(ProtectNVREntity, SelectEntity):
     @callback
     def _refresh_arm_profile_state(self) -> None: ...
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_select_option(self, option: str) -> None: ...

@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from universal_silabs_flasher.flasher import Zbt1Flasher
 
 _LOGGER: Incomplete
@@ -23,6 +24,8 @@ class FirmwareUpdateEntity(BaseFirmwareUpdateEntity):
     _attr_device_info: Incomplete
     _current_firmware_info: Incomplete
     def __init__(self, device: str, config_entry: HomeAssistantSkyConnectConfigEntry, update_coordinator: FirmwareUpdateCoordinator, entity_description: FirmwareUpdateEntityDescription) -> None: ...
+    @override
     def _update_attributes(self) -> None: ...
     @callback
+    @override
     def _firmware_info_callback(self, firmware_info: FirmwareInfo) -> None: ...

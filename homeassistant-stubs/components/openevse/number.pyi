@@ -11,7 +11,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from openevsehttp.__main__ import OpenEVSE as OpenEVSE
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -33,9 +33,13 @@ class OpenEVSENumber(CoordinatorEntity[OpenEVSEDataUpdateCoordinator], NumberEnt
     _attr_device_info: Incomplete
     def __init__(self, coordinator: OpenEVSEDataUpdateCoordinator, description: OpenEVSENumberDescription, identifier: str, unique_id: str | None) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
     @property
+    @override
     def native_min_value(self) -> float: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

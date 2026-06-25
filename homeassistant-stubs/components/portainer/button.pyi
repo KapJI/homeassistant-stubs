@@ -13,7 +13,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer import Portainer as Portainer
 from pyportainer.models.docker import DockerContainer as DockerContainer
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -31,12 +31,15 @@ class PortainerBaseButton(ButtonEntity, metaclass=abc.ABCMeta):
     coordinator: PortainerCoordinator
     @abstractmethod
     async def _async_press_call(self) -> None: ...
+    @override
     async def async_press(self) -> None: ...
 
 class PortainerEndpointButton(PortainerEndpointEntity, PortainerBaseButton):
     entity_description: PortainerButtonDescription
+    @override
     async def _async_press_call(self) -> None: ...
 
 class PortainerContainerButton(PortainerContainerEntity, PortainerBaseButton):
     entity_description: PortainerButtonDescription
+    @override
     async def _async_press_call(self) -> None: ...

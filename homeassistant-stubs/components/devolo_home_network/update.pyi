@@ -11,7 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -30,9 +30,13 @@ class DevoloUpdateEntity(DevoloCoordinatorEntity, UpdateEntity):
     _in_progress_old_version: str | None
     def __init__(self, entry: DevoloHomeNetworkConfigEntry, coordinator: DevoloDataUpdateCoordinator, description: DevoloUpdateEntityDescription) -> None: ...
     @property
+    @override
     def installed_version(self) -> str: ...
     @property
+    @override
     def latest_version(self) -> str: ...
     @property
+    @override
     def in_progress(self) -> bool: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

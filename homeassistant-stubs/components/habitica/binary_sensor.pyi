@@ -10,6 +10,7 @@ from habiticalib import ContentData as ContentData, UserData as UserData
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,12 +32,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: HabiticaConfigEnt
 class HabiticaBinarySensorEntity(HabiticaBase, BinarySensorEntity):
     entity_description: HabiticaBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
 
 class HabiticaPartyBinarySensorEntity(HabiticaPartyBase, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: HabiticaPartyCoordinator, config_entry: HabiticaConfigEntry, content: ContentData) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

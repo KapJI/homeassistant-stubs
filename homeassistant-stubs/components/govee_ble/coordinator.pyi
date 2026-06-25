@@ -10,14 +10,16 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from logging import Logger
 
 type GoveeBLEConfigEntry = ConfigEntry[GoveeBLEBluetoothProcessorCoordinator]
+ACTIVE_SCAN_DURATION: float
+
 def process_service_info(hass: HomeAssistant, entry: GoveeBLEConfigEntry, service_info: BluetoothServiceInfoBleak) -> SensorUpdate: ...
 def format_event_dispatcher_name(address: str, key: str) -> str: ...
 
 class GoveeBLEBluetoothProcessorCoordinator(PassiveBluetoothProcessorCoordinator[SensorUpdate]):
+    model_info: ModelInfo | None
     device_data: Incomplete
     entry: Incomplete
-    model_info: ModelInfo | None
-    def __init__(self, hass: HomeAssistant, logger: Logger, address: str, mode: BluetoothScanningMode, update_method: Callable[[BluetoothServiceInfoBleak], SensorUpdate], device_data: GoveeBluetoothDeviceData, entry: ConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, logger: Logger, address: str, update_method: Callable[[BluetoothServiceInfoBleak], SensorUpdate], device_data: GoveeBluetoothDeviceData, entry: ConfigEntry) -> None: ...
     def set_model_info(self, device_type: str) -> None: ...
 
 class GoveeBLEPassiveBluetoothDataProcessor[_T](PassiveBluetoothDataProcessor[_T, SensorUpdate]):

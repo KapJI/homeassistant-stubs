@@ -6,6 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -20,4 +21,5 @@ class StationOpenBinarySensorEntity(TankerkoenigCoordinatorEntity, BinarySensorE
     _attr_extra_state_attributes: Incomplete
     def __init__(self, station: Station, coordinator: TankerkoenigDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

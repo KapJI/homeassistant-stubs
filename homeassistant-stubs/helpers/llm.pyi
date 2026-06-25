@@ -10,6 +10,7 @@ from homeassistant.components.calendar import SERVICE_GET_EVENTS as SERVICE_GET_
 from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from homeassistant.components.homeassistant import async_should_expose as async_should_expose
 from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers
+from homeassistant.components.sensor import async_rounded_state as async_rounded_state
 from homeassistant.components.todo import TodoServices as TodoServices
 from homeassistant.components.weather import INTENT_GET_WEATHER as INTENT_GET_WEATHER
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_SERVICE as ATTR_SERVICE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED
@@ -18,7 +19,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 from homeassistant.util.ulid import ulid_now as ulid_now
-from typing import Any
+from typing import Any, override
 
 ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, vol.Schema]]]]
 LLM_API_ASSIST: str
@@ -59,6 +60,7 @@ class Tool(metaclass=abc.ABCMeta):
     parameters: vol.Schema
     @abstractmethod
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+    @override
     def __repr__(self) -> str: ...
 
 @dataclass
@@ -84,6 +86,7 @@ class IntentTool(Tool):
     extra_slots: Incomplete
     parameters: Incomplete
     def __init__(self, name: str, intent_handler: intent.IntentHandler) -> None: ...
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 class IntentResponseDict(dict):
@@ -97,11 +100,13 @@ class NamespacedTool(Tool):
     parameters: Incomplete
     tool: Incomplete
     def __init__(self, namespace: str, tool: Tool) -> None: ...
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 class MergedAPI(API):
     llm_apis: Incomplete
     def __init__(self, llm_apis: list[API]) -> None: ...
+    @override
     async def async_get_api_instance(self, llm_context: LLMContext) -> APIInstance: ...
     def _custom_serializer(self, llm_apis: list[APIInstance]) -> Callable[[Any], Any] | None: ...
 
@@ -109,6 +114,7 @@ class AssistAPI(API):
     IGNORE_INTENTS: Incomplete
     cached_slugify: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_get_api_instance(self, llm_context: LLMContext) -> APIInstance: ...
     @callback
     def _async_get_api_prompt(self, llm_context: LLMContext, exposed_entities: dict | None) -> str: ...
@@ -130,6 +136,7 @@ class ActionTool(Tool):
     _action: Incomplete
     name: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str, action: str) -> None: ...
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 class ScriptTool(ActionTool):
@@ -141,6 +148,7 @@ class CalendarGetEventsTool(Tool):
     description: str
     parameters: Incomplete
     def __init__(self, calendars: list[str]) -> None: ...
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 class TodoGetItemsTool(Tool):
@@ -148,6 +156,7 @@ class TodoGetItemsTool(Tool):
     description: str
     parameters: Incomplete
     def __init__(self, todo_lists: list[str]) -> None: ...
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 def _live_context_match_error(match_result: intent.MatchTargetsResult, name_filter: str | None, area_filter: str | None, domain_filter: list[str] | None) -> str: ...
@@ -156,9 +165,11 @@ class GetLiveContextTool(Tool):
     name: str
     description: str
     parameters: Incomplete
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
 
 class GetDateTimeTool(Tool):
     name: str
     description: str
+    @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

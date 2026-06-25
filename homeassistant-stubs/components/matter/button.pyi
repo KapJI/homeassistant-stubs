@@ -8,7 +8,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -18,6 +18,7 @@ class MatterButtonEntityDescription(ButtonEntityDescription, MatterEntityDescrip
 
 class MatterCommandButton(MatterEntity, ButtonEntity):
     entity_description: MatterButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

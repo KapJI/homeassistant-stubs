@@ -10,6 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import restore_state as restore_state
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -18,11 +19,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, asyn
 class EsphomeSelect(EsphomeEntity[SelectInfo, SelectState], SelectEntity):
     _attr_options: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
+    @override
     def current_option(self) -> str | None: ...
     @convert_api_error_ha_error
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class EsphomeAssistPipelineSelect(EsphomeAssistEntity, AssistPipelineSelect):
@@ -40,7 +44,10 @@ class EsphomeAssistSatelliteWakeWordSelect(EsphomeAssistEntity, SelectEntity, re
     _wake_word_index: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, index: int = 0) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     def async_satellite_config_updated(self, config: AssistSatelliteConfiguration) -> None: ...

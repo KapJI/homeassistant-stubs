@@ -1,4 +1,4 @@
-from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat, DOMAIN as DOMAIN
+from .const import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelEntityStateAttribute as AlarmControlPanelEntityStateAttribute, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_ALARM_ARM_AWAY as SERVICE_ALARM_ARM_AWAY, SERVICE_ALARM_ARM_CUSTOM_BYPASS as SERVICE_ALARM_ARM_CUSTOM_BYPASS, SERVICE_ALARM_ARM_HOME as SERVICE_ALARM_ARM_HOME, SERVICE_ALARM_ARM_NIGHT as SERVICE_ALARM_ARM_NIGHT, SERVICE_ALARM_ARM_VACATION as SERVICE_ALARM_ARM_VACATION, SERVICE_ALARM_DISARM as SERVICE_ALARM_DISARM, SERVICE_ALARM_TRIGGER as SERVICE_ALARM_TRIGGER
@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, Final, final
+from typing import Any, Final, final, override
 
 _LOGGER: Final[Incomplete]
 DATA_COMPONENT: HassKey[EntityComponent[AlarmControlPanelEntity]]
@@ -39,6 +39,7 @@ class AlarmControlPanelEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_A
     _alarm_control_panel_option_default_code: str | None
     @final
     @property
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def alarm_state(self) -> AlarmControlPanelState | None: ...
@@ -81,12 +82,16 @@ class AlarmControlPanelEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_A
     def alarm_arm_custom_bypass(self, code: str | None = None) -> None: ...
     async def async_alarm_arm_custom_bypass(self, code: str | None = None) -> None: ...
     @cached_property
+    @override
     def supported_features(self) -> AlarmControlPanelEntityFeature: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any] | None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @callback
+    @override
     def async_registry_entry_updated(self) -> None: ...
     @callback
     def _async_read_entity_options(self) -> None: ...

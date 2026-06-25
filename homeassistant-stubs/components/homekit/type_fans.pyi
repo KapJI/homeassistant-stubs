@@ -6,7 +6,7 @@ from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import State as State, callback as callback
 from pyhap.service import Service as Service
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -31,4 +31,5 @@ class Fan(HomeAccessory):
     def set_percentage(self, value: float) -> None: ...
     _state: Incomplete
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...

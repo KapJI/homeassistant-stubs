@@ -8,6 +8,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from open_meteo import Forecast as OpenMeteoForecast
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: OpenMeteoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,14 +23,20 @@ class OpenMeteoWeatherEntity(SingleCoordinatorWeatherEntity[DataUpdateCoordinato
     _attr_device_info: Incomplete
     def __init__(self, *, entry: OpenMeteoConfigEntry, coordinator: DataUpdateCoordinator[OpenMeteoForecast]) -> None: ...
     @property
+    @override
     def condition(self) -> str | None: ...
     @property
+    @override
     def native_temperature(self) -> float | None: ...
     @property
+    @override
     def native_wind_speed(self) -> float | None: ...
     @property
+    @override
     def wind_bearing(self) -> float | str | None: ...
     @callback
+    @override
     def _async_forecast_daily(self) -> list[Forecast] | None: ...
     @callback
+    @override
     def _async_forecast_hourly(self) -> list[Forecast] | None: ...

@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from simplipy.device.sensor.v3 import SensorV3
 from simplipy.system.v3 import SystemV3
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SimpliSafeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,4 +20,5 @@ class SimplisafeFreezeSensor(SimpliSafeEntity, SensorEntity):
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, sensor: SensorV3) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def async_update_from_rest_api(self) -> None: ...

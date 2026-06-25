@@ -9,7 +9,7 @@ from homeassistant.components.media_player import ATTR_MEDIA_ENQUEUE as ATTR_MED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from spotifyaio import Item as Item, PlaybackState as PlaybackState
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 SUPPORT_SPOTIFY: Incomplete
@@ -31,70 +31,100 @@ class SpotifyMediaPlayer(SpotifyEntity, MediaPlayerEntity):
     @property
     def currently_playing(self) -> PlaybackState | None: ...
     @property
+    @override
     def supported_features(self) -> MediaPlayerEntityFeature: ...
     @property
+    @override
     def state(self) -> MediaPlayerState: ...
     @property
+    @override
     def volume_level(self) -> float | None: ...
     @property
     @ensure_item
+    @override
     def media_content_id(self, item: Item) -> str: ...
     @property
     @ensure_item
+    @override
     def media_content_type(self, item: Item) -> str: ...
     @property
     @ensure_item
+    @override
     def media_duration(self, item: Item) -> int: ...
     @property
+    @override
     def media_position(self) -> int | None: ...
     @property
+    @override
     def media_position_updated_at(self) -> dt.datetime | None: ...
     @property
     @ensure_item
+    @override
     def media_image_url(self, item: Item) -> str | None: ...
     @property
     @ensure_item
+    @override
     def media_title(self, item: Item) -> str: ...
     @property
     @ensure_item
+    @override
     def media_artist(self, item: Item) -> str: ...
     @property
     @ensure_item
+    @override
     def media_album_name(self, item: Item) -> str | None: ...
     @property
     @ensure_item
+    @override
     def media_track(self, item: Item) -> int | None: ...
     @property
+    @override
     def media_playlist(self) -> str | None: ...
     @property
+    @override
     def source(self) -> str | None: ...
     @property
+    @override
     def source_list(self) -> list[str] | None: ...
     @property
+    @override
     def shuffle(self) -> bool | None: ...
     @property
+    @override
     def repeat(self) -> RepeatMode | None: ...
     @async_refresh_after
+    @override
     async def async_set_volume_level(self, volume: float) -> None: ...
     @async_refresh_after
+    @override
     async def async_media_play(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_media_pause(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_media_previous_track(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_media_next_track(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_media_seek(self, position: float) -> None: ...
     @async_refresh_after
+    @override
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
     @async_refresh_after
+    @override
     async def async_select_source(self, source: str) -> None: ...
     @async_refresh_after
+    @override
     async def async_set_shuffle(self, shuffle: bool) -> None: ...
     @async_refresh_after
+    @override
     async def async_set_repeat(self, repeat: RepeatMode) -> None: ...
+    @override
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     @callback
     def _handle_devices_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

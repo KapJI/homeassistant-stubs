@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 TEMPERATURE_SCALING_FACTOR: int
 WATER_HEATER_SYSTEM_MODE_MAP: Incomplete
@@ -30,14 +30,19 @@ class MatterWaterHeater(MatterEntity, WaterHeaterEntity):
     _attr_temperature_unit: Incomplete
     _platform_translation_key: str
     async def async_set_boost(self, duration: int, emergency_boost: bool = False, temporary_setpoint: int | None = None) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_operation_mode(self, operation_mode: str) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_temperature: Incomplete
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     @callback
     def _get_temperature_in_degrees(self, attribute: type[clusters.ClusterAttributeDescriptor]) -> float | None: ...

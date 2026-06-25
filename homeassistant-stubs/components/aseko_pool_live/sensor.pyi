@@ -8,6 +8,7 @@ from homeassistant.const import UnitOfElectricPotential as UnitOfElectricPotenti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class AsekoSensorEntityDescription(SensorEntityDescription):
@@ -20,4 +21,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AsekoConfigEntry,
 class AsekoSensorEntity(AsekoEntity, SensorEntity):
     entity_description: AsekoSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

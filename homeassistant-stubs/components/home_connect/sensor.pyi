@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -29,15 +30,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectSensor(HomeConnectEntity, SensorEntity):
     entity_description: HomeConnectSensorEntityDescription
+    @override
     def update_native_value(self) -> None: ...
     _attr_native_value: Incomplete
     def _update_native_value(self, status: str | float | None) -> None: ...
     _attr_native_unit_of_measurement: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @constraint_fetcher
     async def fetch_unit(self) -> None: ...
 
 class HomeConnectProgramSensor(HomeConnectSensor):
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_native_value: Incomplete
     @callback
@@ -45,10 +49,13 @@ class HomeConnectProgramSensor(HomeConnectSensor):
     @property
     def program_running(self) -> bool: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     def update_native_value(self) -> None: ...
 
 class HomeConnectEventSensor(HomeConnectSensor):
     _attr_entity_registry_enabled_default: bool
     _attr_native_value: Incomplete
+    @override
     def update_native_value(self) -> None: ...

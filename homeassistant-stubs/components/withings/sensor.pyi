@@ -13,7 +13,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, Platform as Platform, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class WithingsMeasurementSensorEntityDescription(SensorEntityDescription):
@@ -68,30 +68,38 @@ class WithingsSensor[_T: WithingsDataUpdateCoordinator[Any], _ED: SensorEntityDe
 
 class WithingsMeasurementSensor(WithingsSensor[WithingsMeasurementDataUpdateCoordinator, WithingsMeasurementSensorEntityDescription]):
     @property
+    @override
     def native_value(self) -> float: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class WithingsSleepSensor(WithingsSensor[WithingsSleepDataUpdateCoordinator, WithingsSleepSensorEntityDescription]):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class WithingsGoalsSensor(WithingsSensor[WithingsGoalsDataUpdateCoordinator, WithingsGoalsSensorEntityDescription]):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class WithingsActivitySensor(WithingsSensor[WithingsActivityDataUpdateCoordinator, WithingsActivitySensorEntityDescription]):
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def last_reset(self) -> datetime: ...
 
 class WithingsWorkoutSensor(WithingsSensor[WithingsWorkoutDataUpdateCoordinator, WithingsWorkoutSensorEntityDescription]):
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class WithingsDeviceSensor(WithingsDeviceEntity, SensorEntity):
     entity_description: WithingsDeviceSensorEntityDescription
     def __init__(self, coordinator: WithingsDeviceDataUpdateCoordinator, entity_description: WithingsDeviceSensorEntityDescription, device_id: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

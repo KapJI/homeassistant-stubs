@@ -6,6 +6,7 @@ from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -13,4 +14,5 @@ class YaleTemperatureSensor(YaleEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     @property
+    @override
     def native_value(self) -> StateType: ...

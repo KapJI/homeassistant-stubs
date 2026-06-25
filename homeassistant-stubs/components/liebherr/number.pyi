@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyliebherrhomeapi import TemperatureControl as TemperatureControl
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,13 +32,19 @@ class LiebherrNumber(LiebherrZoneEntity, NumberEntity):
     _attr_translation_key: Incomplete
     def __init__(self, coordinator: LiebherrCoordinator, zone_id: int, description: LiebherrNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def native_min_value(self) -> float: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

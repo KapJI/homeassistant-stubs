@@ -7,7 +7,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.selector import CountrySelector as CountrySelector, CountrySelectorConfig as CountrySelectorConfig, LanguageSelector as LanguageSelector, LanguageSelectorConfig as LanguageSelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
-from typing import Any
+from typing import Any, override
 
 def add_province_and_language_to_schema(schema: vol.Schema, country: str | None) -> vol.Schema: ...
 def _is_valid_date_range(check_date: str, error: type[HomeAssistantError]) -> bool: ...
@@ -21,7 +21,9 @@ class WorkdayConfigFlow(ConfigFlow, domain=DOMAIN):
     data: dict[str, Any]
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> WorkdayOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

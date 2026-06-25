@@ -9,7 +9,7 @@ from homeassistant.components.notify import NotifyEntity as NotifyEntity, Notify
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: NtfyConfigEntry, 
 class NtfyNotifyEntity(NtfyBaseEntity, NotifyEntity):
     entity_description: Incomplete
     _attr_supported_features: Incomplete
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...
     async def publish(self, **kwargs: Any) -> None: ...
     async def _publish(self, **kwargs: Any) -> None: ...

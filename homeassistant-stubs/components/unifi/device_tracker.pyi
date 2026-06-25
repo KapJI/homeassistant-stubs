@@ -14,7 +14,7 @@ from homeassistant.core import Event as core_Event, HomeAssistant as HomeAssista
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 
 LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -52,24 +52,35 @@ class UnifiScannerEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[Ha
     _ignore_events: bool
     _is_connected: bool
     @callback
+    @override
     def async_initiate_state(self) -> None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def hostname(self) -> str | None: ...
     @property
+    @override
     def ip_address(self) -> str | None: ...
     @cached_property
+    @override
     def mac_address(self) -> str: ...
     @cached_property
+    @override
     def unique_id(self) -> str: ...
     @callback
     def _make_disconnected(self, *_: core_Event) -> None: ...
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...
     @callback
+    @override
     def async_event_callback(self, event: Event) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

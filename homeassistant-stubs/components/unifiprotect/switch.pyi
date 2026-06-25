@@ -12,7 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any, Literal
+from typing import Any, Literal, override
 from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicRelayOutput as PublicRelayOutput, Relay as Relay, RelayOutputState
 
 ATTR_PREV_MIC: str
@@ -29,7 +29,6 @@ CAMERA_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 PRIVACY_MODE_SWITCH: Incomplete
 SENSE_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 LIGHT_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
-DOORLOCK_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 VIEWER_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 NVR_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]
 _RELAY_STATE_MAP: dict[RelayOutputState, bool]
@@ -59,11 +58,15 @@ class ProtectPrivacyModeSwitch(RestoreEntity, ProtectSwitch):
     @callback
     def _update_previous_attr(self) -> None: ...
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -89,9 +92,12 @@ class ProtectRelayOutputSwitch(SwitchEntity):
     def _update_from_relay(self, relay: Relay) -> None: ...
     @callback
     def _async_updated(self, relay: Relay) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _activate_output(self, state: Literal['on', 'off']) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

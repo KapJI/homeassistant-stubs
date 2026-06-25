@@ -9,7 +9,7 @@ from homeassistant.const import LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
@@ -32,4 +32,5 @@ async def get_entities(onewire_hub: OneWireHub, devices: list[OWDeviceDescriptio
 
 class OneWireSensorEntity(OneWireEntity, SensorEntity):
     @property
+    @override
     def native_value(self) -> float | int | None: ...

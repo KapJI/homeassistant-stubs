@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_REFRESH_TOKEN: str
@@ -38,9 +38,11 @@ class FitbitApi(ABC, metaclass=abc.ABCMeta):
 class OAuthFitbitApi(FitbitApi):
     _oauth_session: Incomplete
     def __init__(self, hass: HomeAssistant, oauth_session: config_entry_oauth2_flow.OAuth2Session, unit_system: FitbitUnitSystem | None = None) -> None: ...
+    @override
     async def async_get_access_token(self) -> dict[str, Any]: ...
 
 class ConfigFlowFitbitApi(FitbitApi):
     _token: Incomplete
     def __init__(self, hass: HomeAssistant, token: dict[str, Any]) -> None: ...
+    @override
     async def async_get_access_token(self) -> dict[str, Any]: ...

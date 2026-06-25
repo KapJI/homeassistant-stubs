@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pyipp import Marker as Marker, Printer as Printer
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class IPPSensorEntityDescription(SensorEntityDescription):
@@ -27,6 +27,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: IPPConfigEntry, async_ad
 class IPPSensor(IPPEntity, SensorEntity):
     entity_description: IPPSensorEntityDescription
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

@@ -5,10 +5,12 @@ from aiohttp import ClientSession as ClientSession
 from collections.abc import Iterable
 from homeassistant.components import cloud as cloud
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
+from typing import override
 
 def get_api_scopes(auth_implementation: str) -> Iterable[str]: ...
 
 class AsyncConfigEntryNetatmoAuth(pyatmo.AbstractAsyncAuth):
     _oauth_session: Incomplete
     def __init__(self, websession: ClientSession, oauth_session: config_entry_oauth2_flow.OAuth2Session) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...

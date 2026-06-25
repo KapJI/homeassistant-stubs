@@ -1,6 +1,6 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_KNX_TELEGRAM as SIGNAL_KNX_TELEGRAM
 from .schema import ga_validator as ga_validator
-from .telegrams import SIGNAL_KNX_TELEGRAM as SIGNAL_KNX_TELEGRAM, TelegramDict as TelegramDict, decode_telegram_payload as decode_telegram_payload
+from .telegrams import TelegramDict as TelegramDict, decode_telegram_payload as decode_telegram_payload
 from .validation import dpt_base_type_validator as dpt_base_type_validator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CONF_TYPE

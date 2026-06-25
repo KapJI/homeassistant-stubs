@@ -10,6 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import MotionSensor as MotionSensor, SensiboDevice as SensiboDevice
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -35,6 +36,7 @@ class SensiboMotionSensor(SensiboMotionBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, sensor_id: str, sensor_data: MotionSensor, entity_description: SensiboMotionBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class SensiboDeviceSensor(SensiboDeviceBaseEntity, BinarySensorEntity):
@@ -42,4 +44,5 @@ class SensiboDeviceSensor(SensiboDeviceBaseEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

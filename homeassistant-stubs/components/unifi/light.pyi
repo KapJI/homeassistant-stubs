@@ -14,7 +14,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.color import rgb_hex_to_rgb_list as rgb_hex_to_rgb_list
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -42,11 +42,15 @@ class UnifiLightEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[Hand
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
     @callback
+    @override
     def async_initiate_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     _attr_rgb_color: Incomplete
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

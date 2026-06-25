@@ -11,7 +11,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pyisy.helpers import NodeProperty as NodeProperty
 from pyisy.nodes import Group as Group, Node
-from typing import Any
+from typing import Any, override
 
 DEVICE_PARENT_REQUIRED: Incomplete
 
@@ -22,6 +22,7 @@ class ISYBinarySensorEntity(ISYNodeEntity, BinarySensorEntity):
     _attr_device_class: Incomplete
     def __init__(self, node: Node, force_device_class: BinarySensorDeviceClass | None = None, unknown_state: bool | None = None, device_info: DeviceInfo | None = None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
@@ -30,6 +31,7 @@ class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
     _computed_state: Incomplete
     _status_was_unknown: bool
     def __init__(self, node: Node, force_device_class: BinarySensorDeviceClass | None = None, unknown_state: bool | None = None, device_info: DeviceInfo | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def add_heartbeat_device(self, entity: ISYBinarySensorHeartbeat | None) -> None: ...
     def _async_heartbeat(self) -> None: ...
@@ -39,8 +41,10 @@ class ISYInsteonBinarySensorEntity(ISYBinarySensorEntity):
     @callback
     def _async_positive_node_control_handler(self, event: NodeProperty) -> None: ...
     @callback
+    @override
     def async_on_update(self, event: NodeProperty) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
 
 class ISYBinarySensorHeartbeat(ISYNodeEntity, BinarySensorEntity, RestoreEntity):
@@ -49,18 +53,23 @@ class ISYBinarySensorHeartbeat(ISYNodeEntity, BinarySensorEntity, RestoreEntity)
     _heartbeat_timer: CALLBACK_TYPE | None
     _computed_state: bool | None
     def __init__(self, node: Node, parent_device: ISYInsteonBinarySensorEntity | ISYBinarySensorEntity | ISYBinarySensorHeartbeat | ISYBinarySensorProgramEntity, device_info: DeviceInfo | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _heartbeat_node_control_handler(self, event: NodeProperty) -> None: ...
     @callback
     def async_heartbeat(self) -> None: ...
     def _restart_timer(self) -> None: ...
     @callback
+    @override
     def async_on_update(self, event: object) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
 
 class ISYBinarySensorProgramEntity(ISYProgramEntity, BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool: ...

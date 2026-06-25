@@ -7,10 +7,12 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from trmnl.models import Device
+from typing import override
 
 type TRMNLConfigEntry = ConfigEntry[TRMNLCoordinator]
 class TRMNLCoordinator(DataUpdateCoordinator[dict[int, Device]]):
     config_entry: TRMNLConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TRMNLConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[int, Device]: ...

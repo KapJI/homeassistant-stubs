@@ -13,7 +13,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStreamVehicle as TeslemetryStreamVehicle
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -37,7 +37,9 @@ class TeslemetryVehicleSwitchEntity(TeslemetryRootEntity, SwitchEntity):
     _attr_device_class: Incomplete
     entity_description: TeslemetrySwitchEntityDescription
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class TeslemetryVehiclePollingVehicleSwitchEntity(TeslemetryVehiclePollingEntity, TeslemetryVehicleSwitchEntity):
@@ -46,6 +48,7 @@ class TeslemetryVehiclePollingVehicleSwitchEntity(TeslemetryVehiclePollingEntity
     _attr_unique_id: Incomplete
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetrySwitchEntityDescription, scopes: list[Scope]) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingVehicleSwitchEntity(TeslemetryVehicleStreamEntity, TeslemetryVehicleSwitchEntity, RestoreEntity):
@@ -54,6 +57,7 @@ class TeslemetryStreamingVehicleSwitchEntity(TeslemetryVehicleStreamEntity, Tesl
     _attr_unique_id: Incomplete
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetrySwitchEntityDescription, scopes: list[Scope]) -> None: ...
     _attr_is_on: bool
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _value_callback(self, value: bool | None) -> None: ...
 
@@ -62,8 +66,11 @@ class TeslemetryChargeFromGridSwitchEntity(TeslemetryEnergyInfoEntity, SwitchEnt
     scoped: Incomplete
     def __init__(self, data: TeslemetryEnergyData, scopes: list[Scope]) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class TeslemetryStormModeSwitchEntity(TeslemetryEnergyInfoEntity, SwitchEntity):
@@ -72,6 +79,9 @@ class TeslemetryStormModeSwitchEntity(TeslemetryEnergyInfoEntity, SwitchEntity):
     def __init__(self, data: TeslemetryEnergyData, scopes: list[Scope]) -> None: ...
     _attr_available: Incomplete
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

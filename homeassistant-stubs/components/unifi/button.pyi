@@ -12,7 +12,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -32,6 +32,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: UnifiConfigEntry,
 
 class UnifiButtonEntity[HandlerT: APIHandler, ApiItemT: ApiItem](UnifiEntity[HandlerT, ApiItemT], ButtonEntity):
     entity_description: UnifiButtonEntityDescription[HandlerT, ApiItemT]
+    @override
     async def async_press(self) -> None: ...
     @callback
+    @override
     def async_update_state(self, event: ItemEvent, obj_id: str) -> None: ...

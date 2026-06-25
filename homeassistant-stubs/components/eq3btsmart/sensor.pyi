@@ -10,6 +10,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class Eq3SensorEntityDescription(SensorEntityDescription):
@@ -23,4 +24,5 @@ class Eq3SensorEntity(Eq3Entity, SensorEntity):
     entity_description: Eq3SensorEntityDescription
     def __init__(self, entry: Eq3ConfigEntry, entity_description: Eq3SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | datetime | None: ...

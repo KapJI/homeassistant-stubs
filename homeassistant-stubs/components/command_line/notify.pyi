@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.process import kill_subprocess as kill_subprocess
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -17,4 +17,5 @@ class CommandLineNotificationService(BaseNotificationService):
     command: Incomplete
     _timeout: Incomplete
     def __init__(self, command: str, timeout: int) -> None: ...
+    @override
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from pyblu import SyncStatus as SyncStatus
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -18,6 +18,8 @@ class BluesoundConfigFlow(ConfigFlow, domain=DOMAIN):
     _port: Incomplete
     _sync_status: SyncStatus | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -8,6 +8,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 STATE_INCLUDE: Incomplete
 SENSOR_INCLUDE: Incomplete
@@ -33,8 +34,10 @@ class BSBLanCoordinator[T](DataUpdateCoordinator[T]):
 class BSBLanFastCoordinator(BSBLanCoordinator[BSBLanFastData]):
     circuits: list[int]
     def __init__(self, hass: HomeAssistant, config_entry: BSBLanConfigEntry, client: BSBLAN, circuits: list[int]) -> None: ...
+    @override
     async def _async_update_data(self) -> BSBLanFastData: ...
 
 class BSBLanSlowCoordinator(BSBLanCoordinator[BSBLanSlowData]):
     def __init__(self, hass: HomeAssistant, config_entry: BSBLanConfigEntry, client: BSBLAN) -> None: ...
+    @override
     async def _async_update_data(self) -> BSBLanSlowData: ...

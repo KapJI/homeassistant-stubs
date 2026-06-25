@@ -3,7 +3,7 @@ from .entity import VelbusEntity as VelbusEntity, api_call as api_call
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from velbusaio.channels import Relay as VelbusRelay
 
 PARALLEL_UPDATES: int
@@ -13,8 +13,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async
 class VelbusSwitch(VelbusEntity, SwitchEntity):
     _channel: VelbusRelay
     @property
+    @override
     def is_on(self) -> bool: ...
     @api_call
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @api_call
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -9,6 +9,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyvlx import Node, PyVLX as PyVLX
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -20,6 +21,7 @@ class VeluxIdentifyButton(VeluxEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, node: Node, config_entry_id: str) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_press(self) -> None: ...
 
 class VeluxGatewayRebootButton(ButtonEntity):
@@ -30,4 +32,5 @@ class VeluxGatewayRebootButton(ButtonEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, config_entry_id: str, pyvlx: PyVLX) -> None: ...
+    @override
     async def async_press(self) -> None: ...

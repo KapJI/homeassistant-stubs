@@ -4,7 +4,7 @@ from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNoti
 from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, CONF_RECIPIENT as CONF_RECIPIENT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -14,4 +14,5 @@ class HuaweiLteSmsNotificationService(BaseNotificationService):
     router: Incomplete
     default_targets: Incomplete
     def __init__(self, router: Router, default_targets: list[str]) -> None: ...
+    @override
     def send_message(self, message: str = '', **kwargs: Any) -> None: ...

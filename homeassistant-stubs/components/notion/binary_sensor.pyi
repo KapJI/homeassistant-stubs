@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Literal
+from typing import Literal, override
 
 @dataclass(frozen=True, kw_only=True)
 class NotionBinarySensorDescription(BinarySensorEntityDescription, NotionEntityDescription):
@@ -20,4 +20,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: NotionConfigEntry, async
 class NotionBinarySensor(NotionEntity, BinarySensorEntity):
     entity_description: NotionBinarySensorDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...

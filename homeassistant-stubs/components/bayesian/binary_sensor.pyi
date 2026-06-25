@@ -15,7 +15,7 @@ from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTem
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.template import Template as Template, result_as_boolean as result_as_boolean
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 from uuid import UUID
 
 _LOGGER: Incomplete
@@ -50,6 +50,7 @@ class BayesianBinarySensor(BinarySensorEntity):
     observations_by_template: Incomplete
     observation_handlers: dict[str, Callable[[Observation, bool], bool | None]]
     def __init__(self, name: str, unique_id: str | None, prior: float, observations: list[ConfigType], probability_threshold: float, device_class: BinarySensorDeviceClass | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _recalculate_and_write_state(self) -> None: ...
@@ -61,5 +62,6 @@ class BayesianBinarySensor(BinarySensorEntity):
     def _process_numeric_state(self, entity_observation: Observation, multi: bool = False) -> bool | None: ...
     def _process_state(self, entity_observation: Observation, multi: bool = False) -> bool | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     async def async_update(self) -> None: ...

@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyisy.helpers import EventListener as EventListener, NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
-from typing import Any
+from typing import Any, override
 
 AUX_DISABLED_BY_DEFAULT_MATCH: Incomplete
 AUX_DISABLED_BY_DEFAULT_EXACT: Incomplete
@@ -32,8 +32,10 @@ class ISYSensorEntity(ISYNodeEntity, SensorEntity):
     @property
     def raw_unit_of_measurement(self) -> dict | str | None: ...
     @property
+    @override
     def native_value(self) -> float | int | str | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
 
 class ISYAuxSensorEntity(ISYSensorEntity):
@@ -48,11 +50,16 @@ class ISYAuxSensorEntity(ISYSensorEntity):
     _attr_name: Incomplete
     def __init__(self, node: Node, control: str, enabled_default: bool, unique_id: str, device_info: DeviceInfo | None = None) -> None: ...
     @property
+    @override
     def target(self) -> Node | NodeProperty | None: ...
     @property
+    @override
     def target_value(self) -> Any: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def async_on_update(self, event: NodeProperty | NodeChangedEvent) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

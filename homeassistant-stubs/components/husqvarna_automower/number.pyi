@@ -10,7 +10,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -43,7 +43,9 @@ class AutomowerNumberEntity(AutomowerControlEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, description: AutomowerNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class WorkAreaNumberEntity(WorkAreaControlEntity, NumberEntity):
@@ -52,7 +54,10 @@ class WorkAreaNumberEntity(WorkAreaControlEntity, NumberEntity):
     _attr_translation_placeholders: Incomplete
     def __init__(self, mower_id: str, coordinator: AutomowerDataUpdateCoordinator, description: WorkAreaNumberEntityDescription, work_area_id: int) -> None: ...
     @property
+    @override
     def translation_key(self) -> str: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 BINARY_SENSOR_DESCRIPTIONS: dict[AttributeType, BinarySensorEntityDescription]
@@ -20,4 +21,5 @@ class HomeeBinarySensor(HomeeEntity, BinarySensorEntity):
     _attr_translation_key: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

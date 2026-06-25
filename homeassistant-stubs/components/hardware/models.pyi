@@ -2,11 +2,12 @@ import psutil_home_assistant as ha_psutil
 from dataclasses import dataclass
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.integration_platform import LazyIntegrationPlatforms as LazyIntegrationPlatforms
 from typing import Protocol
 
 @dataclass
 class HardwareData:
-    hardware_platform: dict[str, HardwareProtocol]
+    hardware_platforms: LazyIntegrationPlatforms[HardwareProtocol]
     system_status: SystemStatus
 
 @dataclass(slots=True)

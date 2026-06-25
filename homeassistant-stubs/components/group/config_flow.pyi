@@ -21,7 +21,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er, selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler, entity_selector_without_own_entities as entity_selector_without_own_entities
-from typing import Any
+from typing import Any, override
 
 _STATISTIC_MEASURES: Incomplete
 
@@ -56,13 +56,17 @@ class GroupConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     options_flow = OPTIONS_FLOW
     options_flow_reloads: bool
     @callback
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...
     @callback
+    @override
     def async_config_flow_finished(self, options: Mapping[str, Any]) -> None: ...
     @callback
     @staticmethod
+    @override
     def async_options_flow_finished(hass: HomeAssistant, options: Mapping[str, Any]) -> None: ...
     @staticmethod
+    @override
     async def async_setup_preview(hass: HomeAssistant) -> None: ...
 
 def _async_hide_members(hass: HomeAssistant, members: list[str], hidden_by: er.RegistryEntryHider | None) -> None: ...

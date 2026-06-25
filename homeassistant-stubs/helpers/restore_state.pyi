@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, State as State, c
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, UnsupportedStorageVersionError as UnsupportedStorageVersionError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import json_loads as json_loads
-from typing import Any, Self
+from typing import Any, Self, override
 
 DATA_RESTORE_STATE: HassKey[RestoreStateData]
 _LOGGER: Incomplete
@@ -29,6 +29,7 @@ class ExtraStoredData(ABC, metaclass=abc.ABCMeta):
 class RestoredExtraData(ExtraStoredData):
     json_dict: Incomplete
     def __init__(self, json_dict: dict[str, Any]) -> None: ...
+    @override
     def as_dict(self) -> dict[str, Any]: ...
 
 class StoredState:
@@ -66,7 +67,9 @@ class RestoreStateData:
     def async_restore_entity_removed(self, entity_id: str, state: State | None, extra_data: ExtraStoredData | None) -> None: ...
 
 class RestoreEntity(Entity):
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
+    @override
     async def async_internal_will_remove_from_hass(self) -> None: ...
     @callback
     def _async_get_restored_data(self) -> StoredState | None: ...

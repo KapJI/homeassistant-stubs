@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 CURRENT_STATE_MAP: Incomplete
 TARGET_STATE_MAP: Incomplete
@@ -18,13 +18,20 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class HomeKitAlarmControlPanelEntity(HomeKitEntity, AlarmControlPanelEntity):
     _attr_supported_features: Incomplete
     _attr_code_arm_required: bool
+    @override
     def get_characteristic_types(self) -> list[str]: ...
     @property
+    @override
     def alarm_state(self) -> AlarmControlPanelState: ...
+    @override
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_away(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_home(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_night(self, code: str | None = None) -> None: ...
     async def set_alarm_state(self, state: AlarmControlPanelState, code: str | None = None) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

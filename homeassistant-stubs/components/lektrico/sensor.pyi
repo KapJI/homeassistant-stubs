@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import IntegrationError as IntegrationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LektricoSensorEntityDescription(SensorEntityDescription):
@@ -30,4 +30,5 @@ class LektricoSensor(LektricoEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, description: LektricoSensorEntityDescription, coordinator: LektricoDeviceDataUpdateCoordinator, device_name: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

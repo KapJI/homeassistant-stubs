@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer import Portainer as Portainer
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerSwitchEntityDescription(SwitchEntityDescription):
@@ -35,13 +35,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, as
 class PortainerContainerSwitch(PortainerContainerEntity, SwitchEntity):
     entity_description: PortainerSwitchEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class PortainerStackSwitch(PortainerStackEntity, SwitchEntity):
     entity_description: PortainerStackSwitchEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

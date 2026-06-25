@@ -1,5 +1,5 @@
 import datetime
-from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator, RoborockWetDryVacUpdateCoordinator as RoborockWetDryVacUpdateCoordinator
+from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinatorType as RoborockCoordinatorType, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator, RoborockWetDryVacUpdateCoordinator as RoborockWetDryVacUpdateCoordinator
 from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1, RoborockEntity as RoborockEntity
 from .models import DeviceState as DeviceState
 from _typeshed import Incomplete
@@ -7,12 +7,15 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from roborock.data import B01Props as B01Props
 from roborock.devices.traits.b01.q10.status import StatusTrait as Q10StatusTrait
+from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
 from roborock.roborock_message import RoborockDyadDataProtocol, RoborockZeoProtocol
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -21,6 +24,7 @@ PARALLEL_UPDATES: int
 class RoborockSensorDescription(SensorEntityDescription):
     value_fn: Callable[[DeviceState], StateType | datetime.datetime]
     is_dock_entity: bool = ...
+    support_fn: Callable[[PropertiesApi], bool] = ...
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockSensorDescriptionA01(SensorEntityDescription):
@@ -48,6 +52,7 @@ class RoborockSensorEntity(RoborockCoordinatedEntityV1, SensorEntity):
     entity_description: RoborockSensorDescription
     def __init__(self, coordinator: RoborockDataUpdateCoordinator, description: RoborockSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime.datetime: ...
 
 class RoborockCurrentRoom(RoborockCoordinatedEntityV1, SensorEntity):
@@ -58,25 +63,31 @@ class RoborockCurrentRoom(RoborockCoordinatedEntityV1, SensorEntity):
     _map_content_trait: Incomplete
     def __init__(self, coordinator: RoborockDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
 
 class RoborockSensorEntityA01(RoborockCoordinatedEntityA01, SensorEntity):
     entity_description: RoborockSensorDescriptionA01
     def __init__(self, coordinator: RoborockDataUpdateCoordinatorA01, description: RoborockSensorDescriptionA01) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class RoborockSensorEntityB01Q7(RoborockCoordinatedEntityB01Q7, SensorEntity):
     entity_description: RoborockSensorDescriptionB01
     def __init__(self, coordinator: RoborockB01Q7UpdateCoordinator, description: RoborockSensorDescriptionB01) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class RoborockSensorEntityB01Q10(RoborockCoordinatedEntityB01Q10, SensorEntity):
     entity_description: RoborockSensorDescriptionQ10
     def __init__(self, coordinator: RoborockB01Q10UpdateCoordinator, description: RoborockSensorDescriptionQ10) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

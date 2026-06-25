@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.value import Value as Value
 
@@ -23,13 +23,18 @@ class ZwaveNumberEntity(ZWaveBaseEntity, NumberEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def native_min_value(self) -> float: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ZWaveConfigParameterNumberEntity(ZwaveNumberEntity):
@@ -37,6 +42,7 @@ class ZWaveConfigParameterNumberEntity(ZwaveNumberEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
 
 class ZwaveVolumeNumberEntity(ZWaveBaseEntity, NumberEntity):
@@ -47,5 +53,7 @@ class ZwaveVolumeNumberEntity(ZWaveBaseEntity, NumberEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -35,4 +36,5 @@ class NRGkickSensor(NRGkickEntity, SensorEntity):
     entity_description: NRGkickSensorEntityDescription
     def __init__(self, coordinator: NRGkickDataUpdateCoordinator, entity_description: NRGkickSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

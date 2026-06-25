@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from homeassistant.helpers.device_registry import CONNECTION_BLUETOOTH as CONNECTION_BLUETOOTH, DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass
 class AcaiaEntity(CoordinatorEntity[AcaiaCoordinator]):
@@ -14,4 +15,5 @@ class AcaiaEntity(CoordinatorEntity[AcaiaCoordinator]):
     _attr_device_info = ...
     def __init__(self, coordinator: AcaiaCoordinator, entity_description: EntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

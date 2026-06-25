@@ -15,6 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -37,6 +38,7 @@ class MqttNumber(MqttEntity, RestoreNumber):
     _command_template: Callable[[PublishPayloadType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _config: Incomplete
     _attr_assumed_state: Incomplete
@@ -46,11 +48,15 @@ class MqttNumber(MqttEntity, RestoreNumber):
     _attr_native_min_value: Incomplete
     _attr_native_step: Incomplete
     _attr_native_unit_of_measurement: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_native_value: Incomplete
     @callback
     def _message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

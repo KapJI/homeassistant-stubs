@@ -7,7 +7,7 @@ from homeassistant.components.siren import ATTR_TONE as ATTR_TONE, ATTR_VOLUME_L
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from zwave_js_server.model.driver import Driver as Driver
 
 PARALLEL_UPDATES: int
@@ -20,6 +20,9 @@ class ZwaveSirenEntity(ZWaveBaseEntity, SirenEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

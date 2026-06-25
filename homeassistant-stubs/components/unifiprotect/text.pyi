@@ -8,6 +8,7 @@ from homeassistant.components.text import TextEntity as TextEntity, TextEntityDe
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from uiprotect.data import Camera as Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 PARALLEL_UPDATES: int
@@ -28,6 +29,8 @@ class ProtectDeviceText(ProtectDeviceEntity, TextEntity):
     _state_attrs: Incomplete
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_set_value(self, value: str) -> None: ...

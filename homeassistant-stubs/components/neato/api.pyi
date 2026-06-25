@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries, core as core
 from homeassistant.components.application_credentials import AuthImplementation as AuthImplementation
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
-from typing import Any
+from typing import Any, override
 
 class ConfigEntryAuth(pybotvac.OAuthSession):
     hass: Incomplete
@@ -13,5 +13,7 @@ class ConfigEntryAuth(pybotvac.OAuthSession):
 
 class NeatoImplementation(AuthImplementation):
     @property
+    @override
     def extra_authorize_data(self) -> dict[str, Any]: ...
+    @override
     async def async_generate_authorize_url(self, flow_id: str) -> str: ...

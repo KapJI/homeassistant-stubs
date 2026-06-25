@@ -14,7 +14,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_NAME: str
@@ -44,6 +44,7 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _optimistic_rgbww_color: bool
     _optimistic_xy_color: bool
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_min_color_temp_kelvin: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
@@ -52,6 +53,7 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     def _is_optimistic(self, attribute: str) -> bool: ...
     _attr_is_on: bool
@@ -86,7 +88,11 @@ class MqttLight(MqttEntity, LightEntity, RestoreEntity):
     @callback
     def _xy_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

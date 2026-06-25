@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from uiprotect.data import NVR as NVR, NvrArmModeStatus
 
 PARALLEL_UPDATES: int
@@ -26,8 +27,11 @@ class ProtectNVRAlarmControlPanel(ProtectNVREntity, AlarmControlPanelEntity):
     @callback
     def _refresh_alarm_state(self) -> None: ...
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_alarm_arm_away(self, code: str | None = None) -> None: ...

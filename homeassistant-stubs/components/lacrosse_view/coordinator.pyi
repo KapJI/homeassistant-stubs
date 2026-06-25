@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from lacrosse_view import LaCrosse as LaCrosse, Sensor
+from typing import override
 
 _LOGGER: Incomplete
 type LaCrosseConfigEntry = ConfigEntry[LaCrosseUpdateCoordinator]
@@ -20,4 +21,5 @@ class LaCrosseUpdateCoordinator(DataUpdateCoordinator[list[Sensor]]):
     api: Incomplete
     last_update: Incomplete
     def __init__(self, hass: HomeAssistant, entry: LaCrosseConfigEntry, api: LaCrosse) -> None: ...
+    @override
     async def _async_update_data(self) -> list[Sensor]: ...

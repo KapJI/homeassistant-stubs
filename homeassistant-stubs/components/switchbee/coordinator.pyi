@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from switchbee.api import CentralUnitPolling as CentralUnitPolling, CentralUnitWsRPC
 from switchbee.device import SwitchBeeBaseDevice
+from typing import override
 
 _LOGGER: Incomplete
 type SwitchBeeConfigEntry = ConfigEntry[SwitchBeeCoordinator]
@@ -19,4 +20,5 @@ class SwitchBeeCoordinator(DataUpdateCoordinator[Mapping[int, SwitchBeeBaseDevic
     def __init__(self, hass: HomeAssistant, config_entry: SwitchBeeConfigEntry, swb_api: CentralUnitPolling | CentralUnitWsRPC) -> None: ...
     @callback
     def _async_handle_update(self, push_data: dict) -> None: ...
+    @override
     async def _async_update_data(self) -> Mapping[int, SwitchBeeBaseDevice]: ...

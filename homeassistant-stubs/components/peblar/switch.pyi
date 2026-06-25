@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from peblar import PeblarEVInterface as PeblarEVInterface
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,8 +28,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 class PeblarSwitchEntity(PeblarEntity[PeblarDataUpdateCoordinator], SwitchEntity):
     entity_description: PeblarSwitchEntityDescription
     @property
+    @override
     def is_on(self) -> bool: ...
     @peblar_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @peblar_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

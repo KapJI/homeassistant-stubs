@@ -14,7 +14,7 @@ from matter_server.client import MatterClient as MatterClient
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint
 from matter_server.common.models import EventType
 from propcache.api import cached_property
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 LOGGER: Incomplete
 VENDOR_LABELING_LIST: dict[int, dict[int, list[str] | None]]
@@ -46,8 +46,10 @@ class MatterEntity(Entity):
     def __init__(self, matter_client: MatterClient, endpoint: MatterEndpoint, entity_info: MatterEntityInfo) -> None: ...
     def _find_matching_labels(self) -> list[str]: ...
     def _get_name_modifier(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @cached_property
+    @override
     def name(self) -> str | UndefinedType | None: ...
     @cached_property
     def _compose_parent(self) -> MatterEndpoint | None: ...

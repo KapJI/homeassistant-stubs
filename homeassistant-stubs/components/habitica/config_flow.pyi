@@ -10,7 +10,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_NAME as CONF_
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
-from typing import Any
+from typing import Any, override
 
 STEP_ADVANCED_DATA_SCHEMA: Incomplete
 STEP_LOGIN_DATA_SCHEMA: Incomplete
@@ -19,6 +19,7 @@ STEP_RECONF_DATA_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
 class HabiticaConfigFlow(ConfigFlow, domain=DOMAIN):
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_login(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_advanced(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -29,6 +30,7 @@ class HabiticaConfigFlow(ConfigFlow, domain=DOMAIN):
     async def validate_api_key(self, user_input: Mapping[str, Any]) -> tuple[dict[str, str], UserData | None]: ...
     @classmethod
     @callback
+    @override
     def async_get_supported_subentry_types(cls, config_entry: ConfigEntry) -> dict[str, type[ConfigSubentryFlow]]: ...
 
 class PartyMembersSubentryFlowHandler(ConfigSubentryFlow):

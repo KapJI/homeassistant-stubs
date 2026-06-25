@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemp
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 FAN_SPEED_AUTO: dict[int, str]
 FAN_SPEED_MAPS: Final[dict[int, dict[int, str]]]
@@ -25,6 +25,7 @@ class AirzoneClimate(AirzoneEntity, ClimateEntity, metaclass=abc.ABCMeta):
     _attr_hvac_modes: Incomplete
     def _init_attributes(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
@@ -42,27 +43,38 @@ class AirzoneDeviceClimate(AirzoneClimate, metaclass=abc.ABCMeta):
     _attr_supported_features: Incomplete
     _speeds: dict[int, str]
     _speeds_reverse: dict[str, int]
+    @override
     def _init_attributes(self) -> None: ...
     _attr_fan_mode: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
     _attr_fan_modes: Incomplete
     def _initialize_fan_speeds(self) -> None: ...
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
 
 class AirzoneDeviceGroupClimate(AirzoneClimate, metaclass=abc.ABCMeta):
     _attr_supported_features: Incomplete
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
 
 class AirzoneAidooClimate(AirzoneAidooEntity, AirzoneDeviceClimate):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, aidoo_id: str, aidoo_data: dict) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
 
 class AirzoneGroupClimate(AirzoneGroupEntity, AirzoneDeviceGroupClimate):
@@ -76,4 +88,5 @@ class AirzoneInstallationClimate(AirzoneInstallationEntity, AirzoneDeviceGroupCl
 class AirzoneZoneClimate(AirzoneZoneEntity, AirzoneDeviceClimate):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirzoneUpdateCoordinator, system_zone_id: str, zone_data: dict) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

@@ -13,6 +13,7 @@ from homeassistant.helpers.aiohttp_client import async_create_clientsession as a
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.unit_conversion import EnergyConverter as EnergyConverter, VolumeConverter as VolumeConverter
 from opower import Account as Account, CostRead as CostRead, Forecast as Forecast
+from typing import override
 
 _LOGGER: Incomplete
 type OpowerConfigEntry = ConfigEntry[OpowerCoordinator]
@@ -28,6 +29,7 @@ class OpowerCoordinator(DataUpdateCoordinator[dict[str, OpowerData]]):
     config_entry: OpowerConfigEntry
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: OpowerConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, OpowerData]: ...
     async def _insert_statistics(self, accounts: list[Account]) -> dict[str, datetime]: ...
     async def _async_maybe_migrate_statistics(self, utility_account_id: str, migration_map: dict[str, str], metadata_map: dict[str, StatisticMetaData]) -> bool: ...

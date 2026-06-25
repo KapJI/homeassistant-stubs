@@ -6,7 +6,7 @@ from collections.abc import Mapping
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 async def validate_sensor_setup(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
 async def get_sensor_setup_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
@@ -21,4 +21,5 @@ class SystemMonitorConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     options_flow_reloads: bool
     VERSION: int
     MINOR_VERSION: int
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

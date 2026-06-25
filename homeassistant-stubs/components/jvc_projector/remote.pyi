@@ -6,7 +6,7 @@ from homeassistant.components.remote import RemoteEntity as RemoteEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 COMMANDS: list[str]
 RENAMED_COMMANDS: dict[str, str]
@@ -18,7 +18,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: JVCConfigEntry, async_ad
 class JvcProjectorRemote(JvcProjectorEntity, RemoteEntity):
     _attr_name: Incomplete
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_send_command(self, command: Iterable[str], **kwargs: Any) -> None: ...

@@ -5,7 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -14,7 +14,9 @@ class LondonUndergroundConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(_: ConfigEntry) -> LondonUndergroundOptionsFlow: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_import(self, import_data: ConfigType) -> ConfigFlowResult: ...
 

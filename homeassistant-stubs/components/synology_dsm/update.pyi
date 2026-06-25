@@ -6,7 +6,7 @@ from homeassistant.components.update import UpdateEntity as UpdateEntity, Update
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True, kw_only=True)
 class SynologyDSMUpdateEntityEntityDescription(UpdateEntityDescription, SynologyDSMEntityDescription): ...
@@ -19,10 +19,14 @@ class SynoDSMUpdateEntity(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordina
     entity_description: SynologyDSMUpdateEntityEntityDescription
     _attr_title: str
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def installed_version(self) -> str | None: ...
     @property
+    @override
     def latest_version(self) -> str | None: ...
     @property
+    @override
     def release_url(self) -> str | None: ...

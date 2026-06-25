@@ -8,18 +8,21 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywizlight import wizlight as wizlight
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class WizNumberEntityDescription(NumberEntityDescription):
     required_feature: str
     set_value_fn: Callable[[wizlight, int], Coroutine[None, None, None]]
     value_fn: Callable[[wizlight], int | None]
+    supported_fn: Callable[[wizlight], bool] | None = ...
 
 async def _async_set_speed(device: wizlight, speed: int) -> None: ...
 async def _async_set_ratio(device: wizlight, ratio: int) -> None: ...
 
 NUMBERS: tuple[WizNumberEntityDescription, ...]
 
+def _supports_number_description(device: wizlight, description: WizNumberEntityDescription) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WizSpeedNumber(WizEntity, NumberEntity):
@@ -28,8 +31,11 @@ class WizSpeedNumber(WizEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, wiz_data: WizData, name: str, description: WizNumberEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

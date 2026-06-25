@@ -6,7 +6,7 @@ from homeassistant.const import ATTR_MODEL as ATTR_MODEL, ATTR_SW_VERSION as ATT
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from homeassistant.util.network import is_ip_address as is_ip_address
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 _SCHEMA: Incomplete
@@ -23,7 +23,9 @@ class SystemNexa2ConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_device: _DiscoveryInfo
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _async_set_unique_id(self) -> None: ...
     async def async_step_discovery_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

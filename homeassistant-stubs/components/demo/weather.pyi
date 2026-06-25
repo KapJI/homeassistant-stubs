@@ -5,6 +5,7 @@ from homeassistant.const import UnitOfPressure as UnitOfPressure, UnitOfSpeed as
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from typing import override
 
 CONDITION_CLASSES: dict[str, list[str]]
 CONDITION_MAP: Incomplete
@@ -30,23 +31,35 @@ class DemoWeather(WeatherEntity):
     _forecast_twice_daily: Incomplete
     _attr_supported_features: int
     def __init__(self, name: str, condition: str, temperature: float, humidity: float, pressure: float, wind_speed: float, temperature_unit: str, pressure_unit: str, wind_speed_unit: str, forecast_daily: list[list] | None, forecast_hourly: list[list] | None, forecast_twice_daily: list[list] | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_temperature(self) -> float: ...
     @property
+    @override
     def native_temperature_unit(self) -> str: ...
     @property
+    @override
     def humidity(self) -> float: ...
     @property
+    @override
     def native_wind_speed(self) -> float: ...
     @property
+    @override
     def native_wind_speed_unit(self) -> str: ...
     @property
+    @override
     def native_pressure(self) -> float: ...
     @property
+    @override
     def native_pressure_unit(self) -> str: ...
     @property
+    @override
     def condition(self) -> str: ...
+    @override
     async def async_forecast_daily(self) -> list[Forecast]: ...
+    @override
     async def async_forecast_hourly(self) -> list[Forecast]: ...
+    @override
     async def async_forecast_twice_daily(self) -> list[Forecast]: ...

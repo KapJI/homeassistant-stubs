@@ -7,6 +7,7 @@ from homeassistant.const import CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from unifi_access_api import Door as Door
 
 PARALLEL_UPDATES: int
@@ -17,5 +18,7 @@ class UnifiAccessDoorImageEntity(UnifiAccessEntity, ImageEntity):
     _attr_translation_key: str
     _attr_image_last_updated: Incomplete
     def __init__(self, coordinator: UnifiAccessCoordinator, hass: HomeAssistant, verify_ssl: bool, door: Door) -> None: ...
+    @override
     async def async_image(self) -> bytes | None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...

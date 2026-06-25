@@ -16,7 +16,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
+from typing import Any, override
 from xknx.core.connection_state import XknxConnectionState
 from xknx.devices import Device as XknxDevice, Sensor as XknxSensor
 
@@ -37,7 +37,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.Co
 class _KnxSensor(RestoreSensor, _KnxEntityBase):
     _device: XknxSensor
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def after_update_callback(self, device: XknxDevice) -> None: ...
 
 class KnxYamlSensor(_KnxSensor, KnxYamlEntity):
@@ -68,8 +70,11 @@ class KNXSystemSensor(SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, knx: KNXModule, description: KNXSystemEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def available(self) -> bool: ...
     def after_update_callback(self, device: XknxConnectionState) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

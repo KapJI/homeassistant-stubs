@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.thermostat import Thermostat
-from typing import Any
+from typing import Any, override
 
 DECONZ_FAN_SMART: str
 FAN_MODE_TO_DECONZ: Incomplete
@@ -34,20 +34,31 @@ class DeconzThermostat(DeconzDevice[Thermostat], ClimateEntity):
     _attr_preset_modes: Incomplete
     def __init__(self, device: Thermostat, hub: DeconzHub) -> None: ...
     @property
+    @override
     def fan_mode(self) -> str: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
+    @override
     def current_temperature(self) -> float: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool | int]: ...

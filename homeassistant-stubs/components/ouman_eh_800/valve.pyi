@@ -7,6 +7,7 @@ from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ouman_eh_800_api import IntControlOumanEndpoint
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,5 +24,7 @@ class OumanEh800ValveEntity(OumanEh800Entity, ValveEntity):
     _attr_reports_position: bool
     _attr_supported_features: Incomplete
     @property
+    @override
     def current_valve_position(self) -> int: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...

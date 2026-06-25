@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatmo import modules as NaModules
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -21,5 +22,7 @@ class NetatmoCoverPreferredPositionButton(NetatmoModuleEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...
+    @override
     async def async_press(self) -> None: ...

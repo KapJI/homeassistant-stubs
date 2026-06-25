@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -22,6 +23,7 @@ def _get_option_entities_for_appliance(appliance_coordinator: HomeConnectApplian
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectNumberEntity(HomeConnectEntity, NumberEntity):
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_unit_of_measurement: Incomplete
     @constraint_fetcher
@@ -31,14 +33,18 @@ class HomeConnectNumberEntity(HomeConnectEntity, NumberEntity):
     _attr_native_step: Incomplete
     def set_constraints(self, setting: GetSetting) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def update_native_value(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class HomeConnectOptionNumberEntity(HomeConnectOptionEntity, NumberEntity):
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_value: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     _attr_native_min_value: Incomplete
     _attr_native_max_value: Incomplete
     _attr_native_step: Incomplete
+    @override
     def update_native_value(self) -> None: ...

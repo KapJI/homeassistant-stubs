@@ -9,7 +9,7 @@ from homeassistant.const import STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -22,9 +22,14 @@ class RfxtrxLight(RfxtrxCommandEntity, LightEntity):
     _attr_brightness: int
     _device: rfxtrxmod.LightingDevice
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _apply_event(self, event: rfxtrxmod.RFXtrxEvent) -> None: ...
     @callback
+    @override
     def _handle_event(self, event: rfxtrxmod.RFXtrxEvent, device_id: DeviceTuple) -> None: ...

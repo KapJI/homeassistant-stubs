@@ -10,7 +10,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pybravia import BraviaClient as BraviaClient
-from typing import Any, Concatenate, Final
+from typing import Any, Concatenate, Final, override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Final[Incomplete]
@@ -46,6 +46,7 @@ class BraviaTVCoordinator(DataUpdateCoordinator[None]):
     def __init__(self, hass: HomeAssistant, config_entry: BraviaTVConfigEntry, client: BraviaClient) -> None: ...
     def _sources_extend(self, sources: list[dict], source_type: SourceType, add_to_list: bool = False, sort_by: str | None = None) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> None: ...
     async def async_update_volume(self) -> None: ...
     async def async_update_playing(self) -> None: ...

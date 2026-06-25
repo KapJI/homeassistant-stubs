@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyschlage.lock import Lock as Lock
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class SchlageSwitchEntityDescription(SwitchEntityDescription):
@@ -25,6 +25,9 @@ class SchlageSwitch(SchlageEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SchlageDataUpdateCoordinator, description: SchlageSwitchEntityDescription, device_id: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

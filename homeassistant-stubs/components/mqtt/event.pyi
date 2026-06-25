@@ -15,6 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_object as json_loads_object
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -35,12 +36,16 @@ class MqttEvent(MqttEntity, EventEntity):
     _attributes_extra_blocked = MQTT_EVENT_ATTRIBUTES_BLOCKED
     _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_event_types: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _event_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...

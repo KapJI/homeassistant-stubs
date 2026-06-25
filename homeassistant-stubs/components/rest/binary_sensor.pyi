@@ -13,6 +13,7 @@ from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_PICTURE as CONF_PICTURE, ManualTriggerEntity as ManualTriggerEntity, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
@@ -25,6 +26,8 @@ class RestBinarySensor(ManualTriggerEntity, RestEntity, BinarySensorEntity):
     _value_template: ValueTemplate | None
     def __init__(self, hass: HomeAssistant, coordinator: DataUpdateCoordinator[None] | None, rest: RestData, config: ConfigType, trigger_entity_config: ConfigType) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     _attr_is_on: bool
+    @override
     def _update_from_rest_data(self) -> None: ...

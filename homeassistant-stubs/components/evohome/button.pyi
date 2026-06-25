@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 async def async_setup_platform(hass: HomeAssistant, _: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 
@@ -16,6 +17,7 @@ class EvoResetButtonBase(CoordinatorEntity[EvoDataUpdateCoordinator], ButtonEnti
     _attr_entity_category: Incomplete
     _evo_device: evo.ControlSystem | evo.HotWater | evo.Zone
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.ControlSystem | evo.HotWater | evo.Zone) -> None: ...
+    @override
     async def async_press(self) -> None: ...
 
 class EvoResetSystemButton(EvoResetButtonBase):
@@ -35,4 +37,5 @@ class EvoResetZoneButton(EvoResetButtonBase):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.Zone) -> None: ...
     @property
+    @override
     def name(self) -> str: ...

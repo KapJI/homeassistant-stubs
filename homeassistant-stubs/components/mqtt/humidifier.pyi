@@ -16,7 +16,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 CONF_AVAILABLE_MODES_LIST: str
@@ -62,6 +62,7 @@ class MqttHumidifier(MqttEntity, HumidifierEntity):
     _payload: dict[str, str]
     _topic: dict[str, Any]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_min_humidity: Incomplete
@@ -69,6 +70,7 @@ class MqttHumidifier(MqttEntity, HumidifierEntity):
     _attr_available_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_assumed_state: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_on: bool
     @callback
@@ -85,9 +87,15 @@ class MqttHumidifier(MqttEntity, HumidifierEntity):
     @callback
     def _mode_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_humidity(self, humidity: float) -> None: ...
+    @override
     async def async_set_mode(self, mode: str) -> None: ...

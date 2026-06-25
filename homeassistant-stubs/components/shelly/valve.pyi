@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from homeassistant.components.valve import ValveDeviceClass as ValveDeviceClass, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription, ValveEntityFeature as ValveEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -30,15 +30,20 @@ class RpcShellyWaterValve(RpcShellyBaseWaterValve):
     _attr_supported_features: Incomplete
     _attr_reports_position: bool
     @property
+    @override
     def current_valve_position(self) -> int: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...
 
 class RpcShellySimpleWaterValve(RpcShellyBaseWaterValve):
     _attr_supported_features: Incomplete
     _attr_reports_position: bool
     @property
+    @override
     def is_closed(self) -> bool | None: ...
+    @override
     async def async_open_valve(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_valve(self, **kwargs: Any) -> None: ...
 
 RPC_VALVES: dict[str, RpcValveDescription]
@@ -57,10 +62,15 @@ class BlockShellyValve(ShellyBlockAttributeEntity, ValveEntity):
     _attr_is_closed: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, attribute: str, description: BlockValveDescription) -> None: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
+    @override
     async def async_open_valve(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_valve(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _update_callback(self) -> None: ...

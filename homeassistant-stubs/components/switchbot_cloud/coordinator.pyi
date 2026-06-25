@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from switchbot_api import Device as Device, Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type Status = dict[str, Any] | None
@@ -20,4 +20,5 @@ class SwitchBotCoordinator(DataUpdateCoordinator[Status]):
     update_interval: Incomplete
     def webhook_subscription_listener(self, connected: bool) -> None: ...
     def manageable_by_webhook(self) -> bool: ...
+    @override
     async def _async_update_data(self) -> Status: ...

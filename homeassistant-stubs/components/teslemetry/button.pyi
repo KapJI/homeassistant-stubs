@@ -8,7 +8,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +25,5 @@ class TeslemetryButtonEntity(TeslemetryVehicleStreamEntity, ButtonEntity):
     entity_description: TeslemetryButtonEntityDescription
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryButtonEntityDescription) -> None: ...
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_press(self) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfArea as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyrituals import Diffuser as Diffuser
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,5 +26,7 @@ class RitualsSelectEntity(DiffuserEntity, SelectEntity):
     _attr_entity_registry_enabled_default: Incomplete
     def __init__(self, coordinator: RitualsDataUpdateCoordinator, description: RitualsSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

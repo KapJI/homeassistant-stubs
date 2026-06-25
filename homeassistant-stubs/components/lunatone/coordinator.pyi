@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from lunatone_rest_api_client import DALIBroadcast as DALIBroadcast, Device, Devices as Devices, Info as Info, Sensor, Sensors as Sensors
 from lunatone_rest_api_client.models import InfoData
+from typing import override
 
 _LOGGER: Incomplete
 DEFAULT_INFO_SCAN_INTERVAL: Incomplete
@@ -24,16 +25,19 @@ class LunatoneInfoDataUpdateCoordinator(DataUpdateCoordinator[InfoData]):
     config_entry: LunatoneConfigEntry
     info_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: LunatoneConfigEntry, info_api: Info) -> None: ...
+    @override
     async def _async_update_data(self) -> InfoData: ...
 
 class LunatoneDevicesDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Device]]):
     config_entry: LunatoneConfigEntry
     devices_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: LunatoneConfigEntry, devices_api: Devices) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[int, Device]: ...
 
 class LunatoneSensorsDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Sensor]]):
     config_entry: LunatoneConfigEntry
     sensors_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: LunatoneConfigEntry, sensors_api: Sensors) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[int, Sensor]: ...

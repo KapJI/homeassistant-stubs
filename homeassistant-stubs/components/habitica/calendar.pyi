@@ -10,6 +10,7 @@ from enum import StrEnum
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -26,7 +27,9 @@ class HabiticaCalendarEntity(HabiticaBase, CalendarEntity, metaclass=abc.ABCMeta
     @abstractmethod
     def get_events(self, start_date: datetime, end_date: datetime | None = None) -> list[CalendarEvent]: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...
     @property
     def start_of_today(self) -> datetime: ...
@@ -34,22 +37,28 @@ class HabiticaCalendarEntity(HabiticaBase, CalendarEntity, metaclass=abc.ABCMeta
 
 class HabiticaTodosCalendarEntity(HabiticaCalendarEntity):
     entity_description: Incomplete
+    @override
     def get_events(self, start_date: datetime, end_date: datetime | None = None) -> list[CalendarEvent]: ...
 
 class HabiticaDailiesCalendarEntity(HabiticaCalendarEntity):
     entity_description: Incomplete
     def end_date(self, recurrence: datetime, end: datetime | None = None) -> date: ...
+    @override
     def get_events(self, start_date: datetime, end_date: datetime | None = None) -> list[CalendarEvent]: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool | None] | None: ...
 
 class HabiticaTodoRemindersCalendarEntity(HabiticaCalendarEntity):
     entity_description: Incomplete
+    @override
     def get_events(self, start_date: datetime, end_date: datetime | None = None) -> list[CalendarEvent]: ...
 
 class HabiticaDailyRemindersCalendarEntity(HabiticaCalendarEntity):
     entity_description: Incomplete
     def start(self, reminder_time: datetime, reminder_date: date) -> datetime: ...
+    @override
     def get_events(self, start_date: datetime, end_date: datetime | None = None) -> list[CalendarEvent]: ...

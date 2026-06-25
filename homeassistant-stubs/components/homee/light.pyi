@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.color import brightness_to_value as brightness_to_value, color_RGB_to_hs as color_RGB_to_hs, color_hs_to_RGB as color_hs_to_RGB, value_to_brightness as value_to_brightness
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
-from typing import Any
+from typing import Any, override
 
 LIGHT_ATTRIBUTES: Incomplete
 PARALLEL_UPDATES: int
@@ -38,13 +38,19 @@ class HomeeLight(HomeeNodeEntity, LightEntity):
     _attr_unique_id: Incomplete
     def __init__(self, node: HomeeNode, light: dict[AttributeType, HomeeAttribute], entry: HomeeConfigEntry) -> None: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def _get_supported_color_modes(self) -> set[ColorMode]: ...

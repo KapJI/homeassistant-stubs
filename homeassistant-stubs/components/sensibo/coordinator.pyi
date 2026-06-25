@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pysensibo.model import SensiboData
+from typing import override
 
 REQUEST_REFRESH_DELAY: float
 
@@ -17,4 +18,5 @@ class SensiboDataUpdateCoordinator(DataUpdateCoordinator[SensiboData]):
     previous_devices: set[str]
     def __init__(self, hass: HomeAssistant, config_entry: SensiboConfigEntry) -> None: ...
     def get_devices(self, added_devices: set[str]) -> tuple[set[str], set[str], set[str]]: ...
+    @override
     async def _async_update_data(self) -> SensiboData: ...

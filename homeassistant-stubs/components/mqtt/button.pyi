@@ -13,6 +13,7 @@ from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAM
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
@@ -25,11 +26,16 @@ class MqttButton(MqttEntity, ButtonEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     @staticmethod
+    @override
     def config_schema() -> vol.Schema: ...
     _command_template: Incomplete
     _attr_device_class: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_press(self) -> None: ...

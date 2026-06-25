@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_ID as CONF_ID, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import callback as callback
 from homeassistant.helpers.service_info.usb import UsbServiceInfo as UsbServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -18,4 +18,5 @@ class BRouteConfigFlow(ConfigFlow, domain=DOMAIN):
     @callback
     def _get_discovered_device_id_and_name(self, device_options: dict[str, USBDevice]) -> tuple[str | None, str | None]: ...
     async def _get_usb_devices(self) -> dict[str, USBDevice]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

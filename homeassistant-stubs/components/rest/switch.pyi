@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_PICTURE as CONF_PICTURE, ManualTriggerEntity as ManualTriggerEntity, TEMPLATE_ENTITY_BASE_SCHEMA as TEMPLATE_ENTITY_BASE_SCHEMA, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_BODY_OFF: str
@@ -42,9 +42,12 @@ class RestSwitch(ManualTriggerEntity, SwitchEntity):
     _timeout: int
     _verify_ssl: bool
     def __init__(self, hass: HomeAssistant, config: ConfigType, trigger_entity_config: ConfigType) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def set_device_state(self, body: Any) -> httpx.Response: ...
     async def async_update(self) -> None: ...

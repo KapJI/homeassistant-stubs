@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Literal
+from typing import Literal, override
 
 _LOGGER: Incomplete
 type MetOfficeConfigEntry = ConfigEntry[MetOfficeRuntimeData]
@@ -27,6 +27,7 @@ class MetOfficeUpdateCoordinator(TimestampDataUpdateCoordinator[Forecast]):
     _longitude: Incomplete
     _frequency: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, name: str, connection: Manager, latitude: float, longitude: float, frequency: Literal['daily', 'twice-daily', 'hourly']) -> None: ...
+    @override
     async def _async_update_data(self) -> Forecast: ...
 
 def fetch_data(connection: Manager, latitude: float, longitude: float, frequency: Literal['daily', 'twice-daily', 'hourly']) -> Forecast: ...

@@ -10,6 +10,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from python_awair.air_data import AirData as AirData
 from python_awair.devices import AwairBaseDevice as AwairBaseDevice, AwairLocalDevice as AwairLocalDevice
+from typing import override
 
 type AwairConfigEntry = ConfigEntry[AwairDataUpdateCoordinator]
 @dataclass
@@ -26,10 +27,12 @@ class AwairDataUpdateCoordinator(DataUpdateCoordinator[dict[str, AwairResult]]):
 class AwairCloudDataUpdateCoordinator(AwairDataUpdateCoordinator):
     _awair: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AwairConfigEntry, session: ClientSession) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, AwairResult]: ...
 
 class AwairLocalDataUpdateCoordinator(AwairDataUpdateCoordinator):
     _device: AwairLocalDevice | None
     _awair: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AwairConfigEntry, session: ClientSession) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, AwairResult]: ...

@@ -29,5 +29,17 @@ DOMAIN: str
 SERVICE_SET_MODE: str
 SERVICE_SET_HUMIDITY: str
 
+class HumidifierEntityCapabilityAttribute(StrEnum):
+    MIN_HUMIDITY = 'min_humidity'
+    MAX_HUMIDITY = 'max_humidity'
+    TARGET_HUMIDITY_STEP = 'target_humidity_step'
+    AVAILABLE_MODES = 'available_modes'
+
+class HumidifierEntityStateAttribute(StrEnum):
+    ACTION = 'action'
+    CURRENT_HUMIDITY = 'current_humidity'
+    HUMIDITY = 'humidity'
+    MODE = 'mode'
+
 class HumidifierEntityFeature(IntFlag):
     MODES = 1

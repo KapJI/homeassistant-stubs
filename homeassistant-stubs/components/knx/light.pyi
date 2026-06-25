@@ -13,7 +13,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 from xknx import XKNX as XKNX
 from xknx.devices.light import Light as XknxLight
 
@@ -26,23 +26,33 @@ class _KnxLight(LightEntity):
     _attr_min_color_temp_kelvin: int
     _device: XknxLight
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def rgb_color(self) -> tuple[int, int, int] | None: ...
     @property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int] | None: ...
     @property
+    @override
     def hs_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def xy_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @cached_property
+    @override
     def supported_color_modes(self) -> set[ColorMode]: ...
     _attr_color_mode: Incomplete
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class KnxYamlLight(_KnxLight, KnxYamlEntity):

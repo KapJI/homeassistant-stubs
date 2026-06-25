@@ -9,6 +9,7 @@ from homeassistant.core import Context as Context, HomeAssistant as HomeAssistan
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import intent as intent
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -26,16 +27,19 @@ async def async_setup_intents(hass: HomeAssistant) -> None: ...
 class MediaPauseHandler(intent.ServiceIntentHandler):
     last_paused: Incomplete
     def __init__(self, last_paused: LastPaused) -> None: ...
+    @override
     async def async_handle_states(self, intent_obj: intent.Intent, match_result: intent.MatchTargetsResult, match_constraints: intent.MatchTargetsConstraints, match_preferences: intent.MatchTargetsPreferences | None = None) -> intent.IntentResponse: ...
 
 class MediaUnpauseHandler(intent.ServiceIntentHandler):
     last_paused: Incomplete
     def __init__(self, last_paused: LastPaused) -> None: ...
+    @override
     async def async_handle_states(self, intent_obj: intent.Intent, match_result: intent.MatchTargetsResult, match_constraints: intent.MatchTargetsConstraints, match_preferences: intent.MatchTargetsPreferences | None = None) -> intent.IntentResponse: ...
 
 class MediaPlayerMuteUnmuteHandler(intent.ServiceIntentHandler):
     is_volume_muted: Incomplete
     def __init__(self, is_volume_muted: bool) -> None: ...
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class MediaSearchAndPlayHandler(intent.IntentHandler):
@@ -43,6 +47,7 @@ class MediaSearchAndPlayHandler(intent.IntentHandler):
     intent_type = INTENT_MEDIA_SEARCH_AND_PLAY
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class MediaSetVolumeRelativeHandler(intent.IntentHandler):
@@ -50,4 +55,5 @@ class MediaSetVolumeRelativeHandler(intent.IntentHandler):
     intent_type = INTENT_SET_VOLUME_RELATIVE
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

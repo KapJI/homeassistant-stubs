@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from pynecil import CharSetting, LiveDataResponse as LiveDataResponse, SettingsDataResponse as SettingsDataResponse
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -58,21 +59,29 @@ class IronOSNumberEntity(IronOSBaseEntity, NumberEntity):
     entity_description: IronOSNumberEntityDescription
     settings: Incomplete
     def __init__(self, coordinators: IronOSCoordinators, entity_description: IronOSNumberEntityDescription) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class IronOSTemperatureNumberEntity(IronOSNumberEntity):
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_min_value(self) -> float: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class IronOSSetpointNumberEntity(IronOSTemperatureNumberEntity):
     @property
+    @override
     def native_max_value(self) -> float: ...

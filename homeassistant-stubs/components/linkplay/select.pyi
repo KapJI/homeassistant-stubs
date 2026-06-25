@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge, LinkPlayPlayer as LinkPlayPlayer
 from linkplay.consts import AudioOutputHwMode
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 AUDIO_OUTPUT_HW_MODE_MAP: dict[AudioOutputHwMode, str]
@@ -32,4 +32,5 @@ class LinkPlaySelect(LinkPlayBaseEntity, SelectEntity):
     _attr_current_option: Incomplete
     async def async_update(self) -> None: ...
     @exception_wrap
+    @override
     async def async_select_option(self, option: str) -> None: ...

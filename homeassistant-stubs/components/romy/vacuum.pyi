@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 FAN_SPEED_NONE: str
 FAN_SPEED_NORMAL: str
@@ -29,8 +29,13 @@ class RomyVacuumEntity(RomyEntity, StateVacuumEntity):
     _attr_battery_level: Incomplete
     _attr_activity: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_start(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop(self, **kwargs: Any) -> None: ...
+    @override
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...

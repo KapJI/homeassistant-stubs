@@ -12,7 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 
 LIGHT_UPDATE_INTERVAL: int
 REQUEST_REFRESH_DELAY: float
@@ -73,6 +73,7 @@ class LIFXUpdateCoordinator(DataUpdateCoordinator[None]):
     def _async_build_color_zones_update_requests(self) -> list[Callable]: ...
     @callback
     def _async_build_get64_update_requests(self) -> list[Callable]: ...
+    @override
     async def _async_update_data(self) -> None: ...
     async def async_get_color_zones(self) -> None: ...
     async def async_get_extended_color_zones(self) -> None: ...

@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
+from typing import override
 
 async def async_setup_intents(hass: HomeAssistant) -> None: ...
 
@@ -11,4 +12,5 @@ class SetTemperatureIntent(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pycasperglow import GlowState as GlowState
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -17,6 +18,7 @@ class CasperGlowPausedBinarySensor(CasperGlowEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
     def __init__(self, coordinator: CasperGlowCoordinator) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_state_update(self, state: GlowState) -> None: ...
@@ -27,6 +29,7 @@ class CasperGlowChargingBinarySensor(CasperGlowEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
     def __init__(self, coordinator: CasperGlowCoordinator) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_state_update(self, state: GlowState) -> None: ...

@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyliebherrhomeapi import ToggleControl
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -39,10 +39,14 @@ class LiebherrDeviceSwitch(LiebherrEntity, SwitchEntity):
     @property
     def _toggle_control(self) -> ToggleControl | None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _async_call_set_fn(self, value: bool) -> None: ...
     async def _async_set_value(self, value: bool) -> None: ...
@@ -53,4 +57,5 @@ class LiebherrZoneSwitch(LiebherrDeviceSwitch):
     _attr_unique_id: Incomplete
     _attr_translation_key: Incomplete
     def __init__(self, coordinator: LiebherrCoordinator, description: LiebherrZoneSwitchEntityDescription, zone_id: int, has_multiple_zones: bool) -> None: ...
+    @override
     async def _async_call_set_fn(self, value: bool) -> None: ...

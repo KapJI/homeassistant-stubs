@@ -3,7 +3,7 @@ from .entity import NRGkickEntity as NRGkickEntity
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 CHARGING_ENABLED_KEY: str
@@ -15,6 +15,9 @@ class NRGkickChargingEnabledSwitch(NRGkickEntity, SwitchEntity):
     _attr_translation_key = CHARGING_ENABLED_KEY
     def __init__(self, coordinator: NRGkickDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

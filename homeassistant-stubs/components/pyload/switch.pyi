@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyloadapi import PyLoadAPI as PyLoadAPI
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -31,7 +31,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: PyLoadConfigEntry, async
 class PyLoadSwitchEntity(BasePyLoadEntity, SwitchEntity):
     entity_description: PyLoadSwitchEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_toggle(self, **kwargs: Any) -> None: ...

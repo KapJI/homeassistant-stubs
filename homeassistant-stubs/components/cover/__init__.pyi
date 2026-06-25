@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.helpers.entity import Entity, EntityDescription
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 __all__ = ['ATTR_CURRENT_POSITION', 'ATTR_CURRENT_TILT_POSITION', 'ATTR_IS_CLOSED', 'ATTR_POSITION', 'ATTR_TILT_POSITION', 'DEVICE_CLASSES', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'INTENT_CLOSE_COVER', 'INTENT_OPEN_COVER', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'CoverDeviceClass', 'CoverEntity', 'CoverEntityDescription', 'CoverEntityFeature', 'CoverState', 'make_cover_closed_trigger', 'make_cover_is_closed_condition', 'make_cover_is_open_condition', 'make_cover_opened_trigger']
 
@@ -33,14 +33,18 @@ class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def current_cover_tilt_position(self) -> int | None: ...
     @cached_property
+    @override
     def device_class(self) -> CoverDeviceClass | None: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     @property
+    @override
     def supported_features(self) -> CoverEntityFeature: ...
     @cached_property
     def is_opening(self) -> bool | None: ...

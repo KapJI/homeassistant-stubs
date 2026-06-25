@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SUPPORT_FLAGS_HEATER: Incomplete
 
@@ -22,9 +22,15 @@ class DemoWaterHeater(WaterHeaterEntity):
     _attr_operation_list: Incomplete
     _attr_target_temperature_step: Incomplete
     def __init__(self, unique_id: str, name: str, target_temperature: int, unit_of_measurement: str, away: bool, current_operation: str, target_temperature_step: float) -> None: ...
+    @override
     def set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     def set_operation_mode(self, operation_mode: str) -> None: ...
+    @override
     def turn_away_mode_on(self) -> None: ...
+    @override
     def turn_away_mode_off(self) -> None: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...

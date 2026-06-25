@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -25,4 +25,5 @@ class LinkPlayButton(LinkPlayBaseEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, bridge: LinkPlayBridge, description: LinkPlayButtonEntityDescription) -> None: ...
     @exception_wrap
+    @override
     async def async_press(self) -> None: ...

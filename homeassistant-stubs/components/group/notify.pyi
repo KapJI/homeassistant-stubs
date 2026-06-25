@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 CONF_SERVICES: str
 
@@ -22,6 +22,7 @@ class GroupNotifyPlatform(BaseNotificationService):
     hass: Incomplete
     entities: Incomplete
     def __init__(self, hass: HomeAssistant, entities: list[dict[str, Any]]) -> None: ...
+    @override
     async def async_send_message(self, message: str = '', **kwargs: Any) -> None: ...
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -35,6 +36,8 @@ class NotifyGroup(GroupEntity, NotifyEntity):
     _attr_extra_state_attributes: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, unique_id: str | None, name: str, entity_ids: list[str]) -> None: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...
     @callback
+    @override
     def async_update_group_state(self) -> None: ...

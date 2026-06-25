@@ -9,6 +9,7 @@ from homeassistant.const import UnitOfEnergy as UnitOfEnergy, UnitOfTemperature 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,4 +28,5 @@ class BSBLanSensor(BSBLanEntity, SensorEntity):
     _attr_temperature_unit: Incomplete
     def __init__(self, data: BSBLanData, description: BSBLanSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

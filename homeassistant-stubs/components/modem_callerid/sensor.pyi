@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from phone_modem import PhoneModem as PhoneModem
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: ModemCallerIdConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -21,6 +22,7 @@ class ModemCalleridSensor(RestoreSensor):
     _attr_extra_state_attributes: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, api: PhoneModem, server_unique_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_incoming_call(self, new_state: str) -> None: ...

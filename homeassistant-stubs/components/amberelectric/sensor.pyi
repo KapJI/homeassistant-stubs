@@ -9,7 +9,7 @@ from homeassistant.const import CURRENCY_DOLLAR as CURRENCY_DOLLAR, PERCENTAGE a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 UNIT: Incomplete
 
@@ -25,18 +25,23 @@ class AmberSensor(CoordinatorEntity[AmberUpdateCoordinator], SensorEntity):
 
 class AmberPriceSensor(AmberSensor):
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class AmberForecastSensor(AmberSensor):
     @property
+    @override
     def native_value(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 class AmberPriceDescriptorSensor(AmberSensor):
     @property
+    @override
     def native_value(self) -> str | None: ...
 
 class AmberGridSensor(CoordinatorEntity[AmberUpdateCoordinator], SensorEntity):
@@ -46,6 +51,7 @@ class AmberGridSensor(CoordinatorEntity[AmberUpdateCoordinator], SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AmberUpdateCoordinator, description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
 
 async def async_setup_entry(hass: HomeAssistant, entry: AmberConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

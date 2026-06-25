@@ -6,7 +6,7 @@ from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,21 +15,29 @@ class SwitchBotCloudCover(SwitchBotCloudEntity, CoverEntity):
     _attr_is_closed: bool | None
     _attr_current_cover_position: Incomplete
     _attr_current_cover_tilt_position: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 class SwitchBotCloudCoverCurtain(SwitchBotCloudCover):
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
 
 class SwitchBotCloudCoverRollerShade(SwitchBotCloudCover):
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
 
 class SwitchBotCloudCoverBlindTilt(SwitchBotCloudCover):
@@ -39,17 +47,24 @@ class SwitchBotCloudCoverBlindTilt(SwitchBotCloudCover):
     _attr_is_closed: Incomplete
     _attr_current_cover_position: Incomplete
     _attr_current_cover_tilt_position: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
 
 class SwitchBotCloudCoverGarageDoorOpener(SwitchBotCloudCover):
     _attr_device_class: Incomplete
     _attr_supported_features: CoverEntityFeature
     _attr_is_closed: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
 
 @callback

@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pynecil import LiveDataResponse as LiveDataResponse
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -43,4 +44,5 @@ class IronOSSensorEntity(IronOSBaseEntity, SensorEntity):
     entity_description: IronOSSensorEntityDescription
     coordinator: IronOSLiveDataCoordinator
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

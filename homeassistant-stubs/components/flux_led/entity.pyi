@@ -11,7 +11,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 def _async_device_info(device: AIOWifiLedBulb, entry: config_entries.ConfigEntry) -> DeviceInfo: ...
 
@@ -32,9 +32,12 @@ class FluxEntity(CoordinatorEntity[FluxLedUpdateCoordinator]):
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, key: str | None) -> None: ...
     async def _async_ensure_device_on(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class FluxOnOffEntity(FluxEntity, metaclass=abc.ABCMeta):

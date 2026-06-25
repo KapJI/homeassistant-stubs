@@ -8,7 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class TPLinkSensorEntityDescription(SensorEntityDescription, TPLinkFeatureEntityDescription):
@@ -27,4 +27,5 @@ class TPLinkSensorEntity(CoordinatedTPLinkFeatureEntity, SensorEntity):
     _attr_native_value: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...

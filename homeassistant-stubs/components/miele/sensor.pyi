@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pymiele import MieleDevice as MieleDevice, MieleFillingLevel, MieleTemperature as MieleTemperature
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -51,17 +51,22 @@ class MieleSensor(MieleEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MieleDataUpdateCoordinator, device_id: str, description: MieleSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
 
 class MieleRestorableSensor(MieleSensor, RestoreSensor):
     _attr_native_value: StateType | datetime
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     def _update_native_value(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 class MieleAuxSensor(MieleAuxEntity, SensorEntity):
@@ -69,11 +74,13 @@ class MieleAuxSensor(MieleAuxEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MieleAuxDataUpdateCoordinator, device_id: str, description: MieleSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class MielePlateSensor(MieleSensor):
     entity_description: MieleSensorDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class MieleStatusSensor(MieleSensor):
@@ -81,35 +88,44 @@ class MieleStatusSensor(MieleSensor):
     _attr_icon: Incomplete
     def __init__(self, coordinator: MieleDataUpdateCoordinator, device_id: str, description: MieleSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 PROGRAM_PHASE_TRANSLATION: Incomplete
 
 class MielePhaseSensor(MieleSensor):
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def options(self) -> list[str]: ...
 
 class MieleProgramIdSensor(MieleSensor):
     _unrecorded_attributes: Incomplete
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def options(self) -> list[str]: ...
 
 class MieleTimeSensor(MieleRestorableSensor):
     _attr_native_value: Incomplete
+    @override
     def _update_native_value(self) -> None: ...
 
 class MieleAbsoluteTimeSensor(MieleRestorableSensor):
     _previous_value: StateType | datetime
     _attr_native_value: Incomplete
+    @override
     def _update_native_value(self) -> None: ...
 
 class MieleConsumptionSensor(MieleRestorableSensor):
     _is_reporting: bool
     _attr_native_value: Incomplete
+    @override
     def _update_native_value(self) -> None: ...

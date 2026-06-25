@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFA
 from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordinator as TimestampDataUpdateCoordinator
 from psutil import Process as Process
 from psutil._ntuples import sbattery as sbattery, sdiskusage as sdiskusage, shwtemp as shwtemp, snetio as snetio, snicaddr as snicaddr, sswap as sswap
-from typing import Any, NamedTuple
+from typing import Any, NamedTuple, override
 
 _LOGGER: Incomplete
 
@@ -48,5 +48,6 @@ class SystemMonitorCoordinator(TimestampDataUpdateCoordinator[SensorData]):
     update_subscribers: dict[tuple[str, str], set[str]]
     def __init__(self, hass: HomeAssistant, config_entry: SystemMonitorConfigEntry, psutil_wrapper: ha_psutil.PsutilWrapper, arguments: list[str]) -> None: ...
     def set_subscribers_tuples(self, arguments: list[str]) -> dict[tuple[str, str], set[str]]: ...
+    @override
     async def _async_update_data(self) -> SensorData: ...
     def update_data(self) -> dict[str, Any]: ...

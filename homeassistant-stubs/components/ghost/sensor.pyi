@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -32,6 +32,7 @@ class GhostSensorEntity(CoordinatorEntity[GhostDataUpdateCoordinator], SensorEnt
     _attr_device_info: Incomplete
     def __init__(self, coordinator: GhostDataUpdateCoordinator, description: GhostSensorEntityDescription, entry: GhostConfigEntry) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | None: ...
 
 class GhostNewsletterSensorEntity(CoordinatorEntity[GhostDataUpdateCoordinator], SensorEntity):
@@ -46,6 +47,8 @@ class GhostNewsletterSensorEntity(CoordinatorEntity[GhostDataUpdateCoordinator],
     def __init__(self, coordinator: GhostDataUpdateCoordinator, entry: GhostConfigEntry, newsletter_id: str, newsletter_name: str) -> None: ...
     def _get_newsletter_by_id(self) -> dict[str, Any] | None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> int | None: ...

@@ -11,6 +11,7 @@ from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from pydrawise import Controller as Controller, Zone as Zone
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -30,8 +31,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEn
 class HydrawiseBinarySensor(HydrawiseEntity, BinarySensorEntity):
     entity_description: HydrawiseBinarySensorEntityDescription
     _attr_is_on: Incomplete
+    @override
     def _update_attrs(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class HydrawiseZoneBinarySensor(HydrawiseBinarySensor):

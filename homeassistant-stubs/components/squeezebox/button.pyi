@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -30,4 +31,5 @@ class SqueezeboxButtonEntity(SqueezeboxEntity, ButtonEntity):
     entity_description: SqueezeboxButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SqueezeBoxPlayerUpdateCoordinator, entity_description: SqueezeboxButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

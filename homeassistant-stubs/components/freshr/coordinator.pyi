@@ -9,6 +9,7 @@ from homeassistant.helpers.aiohttp_client import async_create_clientsession as a
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyfreshr import FreshrClient
 from pyfreshr.models import DeviceReadings, DeviceSummary, DeviceType
+from typing import override
 
 _DEVICE_TYPE_NAMES: dict[DeviceType, str]
 DEVICES_SCAN_INTERVAL: Incomplete
@@ -24,6 +25,7 @@ class FreshrDevicesCoordinator(DataUpdateCoordinator[dict[str, DeviceSummary]]):
     config_entry: FreshrConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: FreshrConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, DeviceSummary]: ...
 
 class FreshrReadingsCoordinator(DataUpdateCoordinator[DeviceReadings]):
@@ -34,4 +36,5 @@ class FreshrReadingsCoordinator(DataUpdateCoordinator[DeviceReadings]):
     def __init__(self, hass: HomeAssistant, config_entry: FreshrConfigEntry, device: DeviceSummary, client: FreshrClient) -> None: ...
     @property
     def device_id(self) -> str: ...
+    @override
     async def _async_update_data(self) -> DeviceReadings: ...

@@ -10,7 +10,7 @@ from homeassistant.helpers.event import async_call_later as async_call_later, as
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyenphase import Envoy as Envoy
 from pyenphase.models.home import EnvoyInterfaceInformation as EnvoyInterfaceInformation
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 TOKEN_REFRESH_CHECK_INTERVAL: Incomplete
@@ -49,6 +49,7 @@ class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     def _async_mark_setup_complete(self) -> None: ...
     async def _async_setup_and_authenticate(self) -> None: ...
     def _async_update_saved_token(self) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
     @callback
     def async_cancel_token_refresh(self) -> None: ...

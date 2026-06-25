@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 from whois import Domain as Domain
 
 @dataclass(frozen=True, kw_only=True)
@@ -32,6 +33,8 @@ class WhoisSensorEntity(CoordinatorEntity[WhoisCoordinator], SensorEntity):
     _domain: Incomplete
     def __init__(self, coordinator: WhoisCoordinator, description: WhoisSensorEntityDescription, domain: str) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | int | str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, int | float | None] | None: ...

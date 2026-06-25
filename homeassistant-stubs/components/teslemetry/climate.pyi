@@ -12,7 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
-from typing import Any
+from typing import Any, override
 
 DEFAULT_MIN_TEMP: int
 DEFAULT_MAX_TEMP: int
@@ -30,14 +30,20 @@ class TeslemetryClimateEntity(TeslemetryRootEntity, ClimateEntity):
     _attr_preset_modes: Incomplete
     _attr_fan_modes: Incomplete
     _attr_hvac_mode: Incomplete
+    @override
     async def async_turn_on(self) -> None: ...
     _attr_preset_mode: Incomplete
     _attr_fan_mode: Incomplete
+    @override
     async def async_turn_off(self) -> None: ...
     _attr_target_temperature: Incomplete
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
 
 class TeslemetryVehiclePollingClimateEntity(TeslemetryClimateEntity, TeslemetryVehiclePollingEntity):
@@ -51,6 +57,7 @@ class TeslemetryVehiclePollingClimateEntity(TeslemetryClimateEntity, TeslemetryV
     _attr_fan_mode: str
     _attr_min_temp: Incomplete
     _attr_max_temp: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingClimateEntity(TeslemetryClimateEntity, TeslemetryVehicleStreamEntity, RestoreEntity):
@@ -66,6 +73,7 @@ class TeslemetryStreamingClimateEntity(TeslemetryClimateEntity, TeslemetryVehicl
     _attr_max_temp: Incomplete
     rhd: bool
     def __init__(self, data: TeslemetryVehicleData, side: TeslemetryClimateSide, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_handle_inside_temp(self, data: float | None) -> None: ...
     def _async_handle_hvac_power(self, data: str | None) -> None: ...
@@ -86,11 +94,15 @@ class TeslemetryCabinOverheatProtectionEntity(TeslemetryRootEntity, ClimateEntit
     _attr_hvac_modes: Incomplete
     _attr_entity_registry_enabled_default: bool
     _enable_turn_on_off_backwards_compatibility: bool
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
     _attr_target_temperature: Incomplete
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     _attr_hvac_mode: Incomplete
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
 
 class TeslemetryVehiclePollingCabinOverheatProtectionEntity(TeslemetryVehiclePollingEntity, TeslemetryCabinOverheatProtectionEntity):
@@ -100,6 +112,7 @@ class TeslemetryVehiclePollingCabinOverheatProtectionEntity(TeslemetryVehiclePol
     _attr_hvac_mode: Incomplete
     _attr_target_temperature: Incomplete
     _attr_current_temperature: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingCabinOverheatProtectionEntity(TeslemetryVehicleStreamEntity, TeslemetryCabinOverheatProtectionEntity, RestoreEntity):
@@ -111,6 +124,7 @@ class TeslemetryStreamingCabinOverheatProtectionEntity(TeslemetryVehicleStreamEn
     _attr_supported_features: Incomplete
     scoped: Incomplete
     def __init__(self, data: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_handle_inside_temp(self, value: float | None) -> None: ...
     def _async_handle_protection_mode(self, value: str | None) -> None: ...

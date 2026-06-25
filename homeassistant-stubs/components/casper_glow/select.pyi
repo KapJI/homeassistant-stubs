@@ -9,6 +9,7 @@ from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from pycasperglow import GlowState as GlowState
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -22,8 +23,11 @@ class CasperGlowDimmingTimeSelect(CasperGlowEntity, SelectEntity, RestoreEntity)
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CasperGlowCoordinator) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_state_update(self, state: GlowState) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

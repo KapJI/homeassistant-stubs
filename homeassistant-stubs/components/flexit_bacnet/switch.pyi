@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
-from typing import Any
+from typing import Any, override
 
 @dataclass(kw_only=True, frozen=True)
 class FlexitSwitchEntityDescription(SwitchEntityDescription):
@@ -31,6 +31,9 @@ class FlexitSwitch(FlexitEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FlexitCoordinator, entity_description: FlexitSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

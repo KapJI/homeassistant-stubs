@@ -9,7 +9,7 @@ from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class FullyButtonEntityDescription(ButtonEntityDescription):
@@ -24,4 +24,5 @@ class FullyButtonEntity(FullyKioskEntity, ButtonEntity):
     entity_description: FullyButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator, description: FullyButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

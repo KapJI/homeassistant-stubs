@@ -6,6 +6,7 @@ from homeassistant.components.todo import TodoItem as TodoItem, TodoItemStatus a
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -17,7 +18,9 @@ class CookidooIngredientsTodoListEntity(CookidooBaseEntity, TodoListEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CookidooDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def todo_items(self) -> list[TodoItem]: ...
+    @override
     async def async_update_todo_item(self, item: TodoItem) -> None: ...
 
 class CookidooAdditionalItemTodoListEntity(CookidooBaseEntity, TodoListEntity):
@@ -26,7 +29,11 @@ class CookidooAdditionalItemTodoListEntity(CookidooBaseEntity, TodoListEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: CookidooDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def todo_items(self) -> list[TodoItem]: ...
+    @override
     async def async_create_todo_item(self, item: TodoItem) -> None: ...
+    @override
     async def async_update_todo_item(self, item: TodoItem) -> None: ...
+    @override
     async def async_delete_todo_items(self, uids: list[str]) -> None: ...

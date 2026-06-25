@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from kasa import Device as Device
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -54,8 +54,10 @@ class TPLinkLightEntity(CoordinatedTPLinkModuleEntity, LightEntity):
     async def _async_set_color_temp(self, color_temp: float, brightness: int | None, transition: int | None) -> None: ...
     async def _async_turn_on_with_brightness(self, brightness: int | None, transition: int | None) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def _determine_color_mode(self) -> ColorMode: ...
     _attr_is_on: Incomplete
@@ -64,20 +66,24 @@ class TPLinkLightEntity(CoordinatedTPLinkModuleEntity, LightEntity):
     _attr_color_temp_kelvin: Incomplete
     _attr_hs_color: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...
 
 class TPLinkLightEffectEntity(TPLinkLightEntity):
     _attr_supported_features: Incomplete
     _effect_module: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkLightEntityDescription, *, parent: Device | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _register_effects_services(self) -> None: ...
     _attr_effect: Incomplete
     _attr_color_mode: Incomplete
     _attr_effect_list: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...
     @async_refresh_after
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     async def async_set_random_effect(self, brightness: int, duration: int, transition: int, segments: list[int], fadeoff: int, init_states: tuple[int, int, int], random_seed: int, backgrounds: Sequence[tuple[int, int, int]] | None = None, hue_range: tuple[int, int] | None = None, saturation_range: tuple[int, int] | None = None, brightness_range: tuple[int, int] | None = None, transition_range: tuple[int, int] | None = None) -> None: ...
     async def async_set_sequence_effect(self, brightness: int, duration: int, transition: int, segments: list[int], sequence: Sequence[tuple[int, int, int]], repeat_times: int, spread: int, direction: int) -> None: ...

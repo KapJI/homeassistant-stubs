@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -39,4 +40,5 @@ class DemoSumSensor(RestoreSensor):
     def __init__(self, unique_id: str, device_name: str, five_minute_increase: float, device_class: SensorDeviceClass, state_class: SensorStateClass | None, unit_of_measurement: str | None, suggested_entity_id: str) -> None: ...
     @callback
     def _async_bump_sum(self, now: datetime) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

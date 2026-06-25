@@ -6,10 +6,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from open_meteo import Forecast
+from typing import override
 
 type OpenMeteoConfigEntry = ConfigEntry[OpenMeteoDataUpdateCoordinator]
 class OpenMeteoDataUpdateCoordinator(DataUpdateCoordinator[Forecast]):
     config_entry: OpenMeteoConfigEntry
     open_meteo: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: OpenMeteoConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> Forecast: ...

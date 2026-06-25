@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class SleepIQButtonEntityDescription(ButtonEntityDescription):
@@ -22,4 +22,5 @@ class SleepNumberButton(SleepIQEntity, ButtonEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, bed: SleepIQBed, entity_description: SleepIQButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

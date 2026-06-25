@@ -2,8 +2,10 @@ from .const import CHARGER_CURRENT_VERSION_KEY as CHARGER_CURRENT_VERSION_KEY, C
 from .coordinator import WallboxCoordinator as WallboxCoordinator
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class WallboxEntity(CoordinatorEntity[WallboxCoordinator]):
     _attr_has_entity_name: bool
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

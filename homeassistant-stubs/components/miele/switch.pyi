@@ -10,7 +10,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pymiele import MieleDevice as MieleDevice
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -34,19 +34,25 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: MieleConfigEntry,
 
 class MieleSwitch(MieleEntity, SwitchEntity):
     entity_description: MieleSwitchDescription
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_turn_switch(self, mode: dict[str, str | int | bool]) -> None: ...
 
 class MielePowerSwitch(MieleSwitch):
     entity_description: MieleSwitchDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_switch(self, mode: dict[str, str | int | bool]) -> None: ...
 
 class MieleSuperSwitch(MieleSwitch):
     entity_description: MieleSwitchDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...

@@ -7,6 +7,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -23,5 +24,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: VolvoConfigEntry, async_
 
 class VolvoButton(VolvoBaseEntity, ButtonEntity):
     entity_description: VolvoButtonDescription
+    @override
     async def async_press(self) -> None: ...
     def _raise(self, command: str, *, status: str = '', message: str = '', exception: Exception | None = None) -> None: ...

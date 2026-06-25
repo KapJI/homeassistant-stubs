@@ -8,7 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 class TractiveBinarySensor(TractiveEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
@@ -17,6 +17,7 @@ class TractiveBinarySensor(TractiveEntity, BinarySensorEntity):
     def __init__(self, client: TractiveClient, item: Trackables, description: TractiveBinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def handle_status_update(self, event: dict[str, Any]) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)

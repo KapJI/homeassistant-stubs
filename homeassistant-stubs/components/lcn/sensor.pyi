@@ -9,6 +9,7 @@ from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 PARALLEL_UPDATES: int
 SCAN_INTERVAL: Incomplete
@@ -27,6 +28,7 @@ class LcnVariableSensor(LcnEntity, SensorEntity):
     _attr_available: Incomplete
     async def async_update(self) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def input_received(self, input_obj: InputType) -> None: ...
 
 class LcnLedLogicSensor(LcnEntity, SensorEntity):
@@ -35,4 +37,5 @@ class LcnLedLogicSensor(LcnEntity, SensorEntity):
     _attr_available: Incomplete
     async def async_update(self) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def input_received(self, input_obj: InputType) -> None: ...

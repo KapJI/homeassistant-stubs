@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemp
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 FAN_MODE_MAPPING_ACTRONAIR_TO_HA: Incomplete
@@ -28,28 +28,39 @@ class ActronSystemClimate(ActronAirAcEntity, ActronAirClimateEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ActronAirSystemCoordinator) -> None: ...
     @property
+    @override
     def hvac_modes(self) -> list[HVACMode]: ...
     @property
+    @override
     def min_temp(self) -> float: ...
     @property
+    @override
     def max_temp(self) -> float: ...
     @property
     def _status(self) -> ActronAirStatus: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode | None: ...
     @property
+    @override
     def fan_mode(self) -> str | None: ...
     @property
+    @override
     def current_humidity(self) -> float: ...
     @property
+    @override
     def current_temperature(self) -> float: ...
     @property
+    @override
     def target_temperature(self) -> float: ...
     @actron_air_command
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     @actron_air_command
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @actron_air_command
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
 
 class ActronZoneClimate(ActronAirZoneEntity, ActronAirClimateEntity):
@@ -57,22 +68,31 @@ class ActronZoneClimate(ActronAirZoneEntity, ActronAirClimateEntity):
     _attr_unique_id: str
     def __init__(self, coordinator: ActronAirSystemCoordinator, zone: ActronAirZone) -> None: ...
     @property
+    @override
     def hvac_modes(self) -> list[HVACMode]: ...
     @property
+    @override
     def min_temp(self) -> float: ...
     @property
+    @override
     def max_temp(self) -> float: ...
     @property
     def _zone(self) -> ActronAirZone: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode | None: ...
     @property
+    @override
     def current_humidity(self) -> float | None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @actron_air_command
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @actron_air_command
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...

@@ -5,7 +5,7 @@ from homeassistant.components.cover import CoverEntity as CoverEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jaraco.abode.devices.cover import Cover as Cover
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -13,6 +13,9 @@ class AbodeCover(AbodeDevice, CoverEntity):
     _device: Cover
     _attr_name: Incomplete
     @property
+    @override
     def is_closed(self) -> bool: ...
+    @override
     def close_cover(self, **kwargs: Any) -> None: ...
+    @override
     def open_cover(self, **kwargs: Any) -> None: ...

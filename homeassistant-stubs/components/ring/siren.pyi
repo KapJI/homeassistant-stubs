@@ -9,7 +9,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ring_doorbell import RingGeneric as RingGeneric
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -34,9 +34,12 @@ class RingSiren(RingEntity[RingDeviceT], SirenEntity):
     def __init__(self, device: RingDeviceT, coordinator: RingDataCoordinator, description: RingSirenEntityDescription[RingDeviceT]) -> None: ...
     async def _async_set_siren(self, siren_on: bool, **kwargs: Any) -> None: ...
     @refresh_after
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @refresh_after
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _device: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

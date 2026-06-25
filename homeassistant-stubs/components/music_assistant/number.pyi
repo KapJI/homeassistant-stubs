@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from music_assistant_client.client import MusicAssistantClient as MusicAssistantClient
 from music_assistant_models.player import PlayerOption as PlayerOption
-from typing import Final
+from typing import Final, override
 
 PLAYER_OPTIONS_NUMBER: Final[dict[str, bool]]
 
@@ -18,9 +18,11 @@ class MusicAssistantPlayerConfigNumber(MusicAssistantPlayerOptionEntity, NumberE
     entity_description: Incomplete
     def __init__(self, mass: MusicAssistantClient, player_id: str, player_option: PlayerOption, entity_description: NumberEntityDescription) -> None: ...
     @catch_musicassistant_error
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     _attr_native_min_value: Incomplete
     _attr_native_max_value: Incomplete
     _attr_native_step: Incomplete
     _attr_native_value: Incomplete
+    @override
     def on_player_option_update(self, player_option: PlayerOption) -> None: ...

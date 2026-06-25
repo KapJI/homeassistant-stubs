@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.ulid import ulid_now as ulid_now
-from typing import Any, Final, TypedDict
+from typing import Any, Final, TypedDict, override
 
 _LOGGER: Incomplete
 STORAGE_VERSION: Final[int]
@@ -33,6 +33,7 @@ class PlatformControllerBase(ABC, metaclass=abc.ABCMeta):
     async def update_entity(self, entity_entry: er.RegistryEntry, config: dict[str, Any]) -> None: ...
 
 class _KNXConfigStoreStorage(Store[KNXConfigStoreModel]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class KNXConfigStore:

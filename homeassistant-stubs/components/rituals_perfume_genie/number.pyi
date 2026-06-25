@@ -7,7 +7,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyrituals import Diffuser as Diffuser
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,5 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RitualsConfigEntr
 class RitualsNumberEntity(DiffuserEntity, NumberEntity):
     entity_description: RitualsNumberEntityDescription
     @property
+    @override
     def native_value(self) -> int: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

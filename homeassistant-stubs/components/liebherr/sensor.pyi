@@ -11,6 +11,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pyliebherrhomeapi import TemperatureControl as TemperatureControl
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,8 +32,11 @@ class LiebherrSensor(LiebherrZoneEntity, SensorEntity):
     _attr_translation_key: Incomplete
     def __init__(self, coordinator: LiebherrCoordinator, zone_id: int, description: LiebherrSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def available(self) -> bool: ...

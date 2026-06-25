@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from zwave_js_server.model.driver import Driver as Driver
 from zwave_js_server.model.node import Node as ZwaveNode
 
@@ -18,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntr
 class ZwaveBooleanNodeButton(ZWaveBaseEntity, ButtonEntity):
     _attr_name: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    @override
     async def async_press(self) -> None: ...
 
 class ZWaveNodePingButton(ZWaveNodeBaseEntity, ButtonEntity):
@@ -25,6 +27,7 @@ class ZWaveNodePingButton(ZWaveNodeBaseEntity, ButtonEntity):
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, driver: Driver, node: ZwaveNode) -> None: ...
+    @override
     async def async_press(self) -> None: ...
 
 class ZWaveNotificationIdleButton(ZWaveBaseEntity, ButtonEntity):
@@ -32,4 +35,5 @@ class ZWaveNotificationIdleButton(ZWaveBaseEntity, ButtonEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, config_entry: ZwaveJSConfigEntry, driver: Driver, info: ZwaveDiscoveryInfo) -> None: ...
+    @override
     async def async_press(self) -> None: ...

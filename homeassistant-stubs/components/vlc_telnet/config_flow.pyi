@@ -8,7 +8,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -22,9 +22,11 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 class VLCTelnetConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     hassio_discovery: dict[str, Any] | None
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...
     async def async_step_hassio_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

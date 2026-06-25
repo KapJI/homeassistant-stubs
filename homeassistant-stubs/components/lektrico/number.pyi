@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_T
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lektricowifi import Device as Device
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LektricoNumberEntityDescription(NumberEntityDescription):
@@ -24,5 +24,7 @@ class LektricoNumber(LektricoEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, description: LektricoNumberEntityDescription, coordinator: LektricoDeviceDataUpdateCoordinator, device_name: str) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

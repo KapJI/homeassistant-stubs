@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
 from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import SectionConfig as SectionConfig, section as section
-from typing import Any
+from typing import Any, override
 
 DATA_SCHEMA: Incomplete
 
@@ -15,7 +15,9 @@ class DnsIPConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> DnsIPOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class DnsIPOptionsFlowHandler(OptionsFlowWithReload):

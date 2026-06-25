@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from python_homeassistant_analytics import CustomIntegration as CustomIntegration, HomeassistantAnalyticsClient as HomeassistantAnalyticsClient
 from python_homeassistant_analytics.models import Addon as Addon
+from typing import override
 
 @dataclass(frozen=True)
 class AnalyticsData:
@@ -22,6 +23,7 @@ class HomeassistantAnalyticsDataUpdateCoordinator(DataUpdateCoordinator[Analytic
     _tracked_integrations: Incomplete
     _tracked_custom_integrations: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AnalyticsInsightsConfigEntry, client: HomeassistantAnalyticsClient) -> None: ...
+    @override
     async def _async_update_data(self) -> AnalyticsData: ...
 
 def get_app_value(data: dict[str, Addon], name_slug: str) -> int: ...

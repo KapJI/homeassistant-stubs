@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.components.camera import Camera as Camera, CameraEntityDescription as CameraEntityDescription, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -12,6 +13,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class ReolinkCameraEntityDescription(CameraEntityDescription, ReolinkChannelEntityDescription):
     stream: str
+    lens_entity: bool = ...
 
 CAMERA_ENTITIES: Incomplete
 
@@ -22,6 +24,8 @@ class ReolinkCamera(ReolinkChannelCoordinatorEntity, Camera):
     _attr_supported_features: Incomplete
     _attr_translation_key: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkCameraEntityDescription) -> None: ...
+    @override
     async def stream_source(self) -> str | None: ...
     @raise_translated_error
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...

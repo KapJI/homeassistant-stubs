@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyloadapi import PyLoadAPI as PyLoadAPI
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -29,4 +29,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: PyLoadConfigEntry, async
 
 class PyLoadBinarySensor(BasePyLoadEntity, ButtonEntity):
     entity_description: PyLoadButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...

@@ -8,6 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -22,13 +23,17 @@ class EsphomeSensor(EsphomeEntity[SensorInfo, SensorState], SensorEntity):
     _attr_device_class: Incomplete
     _attr_state_class: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | int | float | None: ...
 
 class EsphomeTextSensor(EsphomeEntity[TextSensorInfo, TextSensorState], SensorEntity):
     _attr_device_class: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
+    @override
     def native_value(self) -> str | datetime | date | None: ...

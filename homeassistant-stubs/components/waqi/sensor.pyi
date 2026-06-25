@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class WAQISensorEntityDescription(SensorEntityDescription):
@@ -29,4 +30,5 @@ class WaqiSensor(CoordinatorEntity[WAQIDataUpdateCoordinator], SensorEntity):
     _attr_attribution: Incomplete
     def __init__(self, coordinator: WAQIDataUpdateCoordinator, entity_description: WAQISensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

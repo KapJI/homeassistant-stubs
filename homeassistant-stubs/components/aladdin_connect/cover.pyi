@@ -6,7 +6,7 @@ from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass,
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -18,11 +18,16 @@ class AladdinCoverEntity(AladdinConnectEntity, CoverEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AladdinConnectCoordinator, door_id: str) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_closed(self) -> bool | None: ...
     @property
+    @override
     def is_closing(self) -> bool | None: ...
     @property
+    @override
     def is_opening(self) -> bool | None: ...

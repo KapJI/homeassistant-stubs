@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from stookwijzer import Stookwijzer as Stookwijzer
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class StookwijzerSensorDescription(SensorEntityDescription):
@@ -27,4 +28,5 @@ class StookwijzerSensor(CoordinatorEntity[StookwijzerCoordinator], SensorEntity)
     _attr_device_info: Incomplete
     def __init__(self, description: StookwijzerSensorDescription, entry: StookwijzerConfigEntry) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float | str | None: ...

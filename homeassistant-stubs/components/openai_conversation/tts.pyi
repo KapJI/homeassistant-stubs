@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -26,7 +26,10 @@ class OpenAITTSEntity(TextToSpeechEntity, OpenAIBaseLLMEntity):
     _attr_name: Incomplete
     def __init__(self, entry: OpenAIConfigEntry, subentry: ConfigSubentry) -> None: ...
     @callback
+    @override
     def async_get_supported_voices(self, language: str) -> list[Voice]: ...
     @cached_property
+    @override
     def default_options(self) -> Mapping[str, Any]: ...
+    @override
     async def async_get_tts_audio(self, message: str, language: str, options: dict[str, Any]) -> TtsAudioType: ...

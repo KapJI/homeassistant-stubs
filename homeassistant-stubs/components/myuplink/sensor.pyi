@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from myuplink import DevicePoint as DevicePoint
+from typing import override
 
 DEVICE_POINT_UNIT_DESCRIPTIONS: dict[str, SensorEntityDescription]
 MARKER_FOR_UNKNOWN_VALUE: int
@@ -24,6 +25,7 @@ class MyUplinkDevicePointSensor(MyUplinkEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, device_point: DevicePoint, entity_description: SensorEntityDescription | None, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class MyUplinkEnumSensor(MyUplinkDevicePointSensor):
@@ -31,6 +33,7 @@ class MyUplinkEnumSensor(MyUplinkDevicePointSensor):
     options_map: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, device_point: DevicePoint, entity_description: SensorEntityDescription | None, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
 
 class MyUplinkEnumRawSensor(MyUplinkDevicePointSensor):

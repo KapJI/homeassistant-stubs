@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -27,8 +27,11 @@ class BondLight(BondBaseLight, BondEntity, LightEntity):
     def __init__(self, data: BondData, device: BondDevice, sub_device: str | None = None) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
+    @override
     def _apply_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
     def _async_has_action_or_raise(self, action: str) -> None: ...
@@ -38,14 +41,20 @@ class BondLight(BondBaseLight, BondEntity, LightEntity):
 
 class BondDownLight(BondBaseLight, BondEntity, LightEntity):
     _attr_is_on: Incomplete
+    @override
     def _apply_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class BondUpLight(BondBaseLight, BondEntity, LightEntity):
     _attr_is_on: Incomplete
+    @override
     def _apply_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class BondFireplace(BondEntity, LightEntity):
@@ -54,8 +63,11 @@ class BondFireplace(BondEntity, LightEntity):
     _attr_translation_key: str
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
+    @override
     def _apply_state(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_set_brightness_belief(self, brightness: int) -> None: ...
     async def async_set_power_belief(self, power_state: bool) -> None: ...

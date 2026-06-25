@@ -10,7 +10,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import final
+from typing import final, override
 
 _LOGGER: Incomplete
 DATA_COMPONENT: HassKey[EntityComponent[ButtonEntity]]
@@ -42,15 +42,19 @@ class ButtonEntity(RestoreEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_
     _attr_device_class: ButtonDeviceClass | None
     _attr_state: None
     __last_pressed_isoformat: str | None
+    @override
     def _default_to_device_class_name(self) -> bool: ...
     @cached_property
+    @override
     def device_class(self) -> ButtonDeviceClass | None: ...
     @cached_property
     @final
+    @override
     def state(self) -> str | None: ...
     def __set_state(self, state: str | None) -> None: ...
     @final
     async def _async_press_action(self) -> None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     def press(self) -> None: ...
     async def async_press(self) -> None: ...

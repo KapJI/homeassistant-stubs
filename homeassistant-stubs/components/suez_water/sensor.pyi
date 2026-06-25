@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pysuez.const import ATTRIBUTION
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class SuezWaterSensorEntityDescription(SensorEntityDescription):
@@ -29,8 +29,11 @@ class SuezWaterSensor(CoordinatorEntity[SuezWaterCoordinator], SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SuezWaterCoordinator, counter_id: int, entity_description: SuezWaterSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> float | str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

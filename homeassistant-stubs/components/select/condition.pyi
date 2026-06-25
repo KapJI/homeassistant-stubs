@@ -6,7 +6,7 @@ from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityStateConditionBase as EntityStateConditionBase
 
 IS_OPTION_SELECTED_SCHEMA: Incomplete
-SELECT_DOMAIN_SPECS: Incomplete
+SELECT_DOMAIN_SPECS: dict[str, DomainSpec]
 
 class IsOptionSelectedCondition(EntityStateConditionBase):
     _domain_specs = SELECT_DOMAIN_SPECS

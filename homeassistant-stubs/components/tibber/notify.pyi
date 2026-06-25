@@ -4,6 +4,7 @@ from homeassistant.components.notify import ATTR_TITLE_DEFAULT as ATTR_TITLE_DEF
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: TibberConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,4 +15,5 @@ class TibberNotificationEntity(NotifyEntity):
     _attr_unique_id: Incomplete
     _entry: Incomplete
     def __init__(self, entry: TibberConfigEntry) -> None: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

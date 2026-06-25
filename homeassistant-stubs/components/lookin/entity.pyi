@@ -8,6 +8,7 @@ from aiolookin import Climate as Climate, MeteoSensor, Remote
 from aiolookin.models import Device as Device, UDPEvent as UDPEvent
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 LOGGER: Incomplete
 
@@ -55,4 +56,5 @@ class LookinPowerPushRemoteEntity(LookinPowerEntity, metaclass=abc.ABCMeta):
     def _update_from_status(self, status: str) -> None: ...
     def _async_push_update(self, event: UDPEvent) -> None: ...
     async def _async_push_update_device(self, event: UDPEvent) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

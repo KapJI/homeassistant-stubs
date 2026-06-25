@@ -12,7 +12,7 @@ from sqlalchemy.dialects import sqlite
 from sqlalchemy.engine.interfaces import Dialect as Dialect
 from sqlalchemy.orm import DeclarativeBase, Mapped as Mapped
 from sqlalchemy.types import TypeDecorator as TypeDecorator
-from typing import Any, Final, Protocol, Self
+from typing import Any, Final, Protocol, Self, override
 
 class Base(DeclarativeBase): ...
 class LegacyBase(DeclarativeBase): ...
@@ -59,9 +59,11 @@ def compile_char_zero(type_: TypeDecorator, compiler: Any, **kw: Any) -> str: ..
 def compile_char_one(type_: TypeDecorator, compiler: Any, **kw: Any) -> str: ...
 
 class FAST_PYSQLITE_DATETIME(sqlite.DATETIME):
+    @override
     def result_processor(self, dialect: Dialect, coltype: Any) -> Callable | None: ...
 
 class NativeLargeBinary(LargeBinary):
+    @override
     def result_processor(self, dialect: Dialect, coltype: Any) -> Callable | None: ...
 
 ID_TYPE: Incomplete
@@ -82,6 +84,7 @@ class _LiteralProcessorType(Protocol):
     def __call__(self, value: Any) -> str: ...
 
 class JSONLiteral(JSON):
+    @override
     def literal_processor(self, dialect: Dialect) -> _LiteralProcessorType: ...
 
 class Events(Base):
@@ -104,6 +107,7 @@ class Events(Base):
     event_type_id: Mapped[int | None]
     event_data_rel: Mapped[EventData | None]
     event_type_rel: Mapped[EventTypes | None]
+    @override
     def __repr__(self) -> str: ...
     @property
     def _time_fired_isotime(self) -> str | None: ...
@@ -122,6 +126,7 @@ class EventData(Base):
     data_id: Mapped[int]
     hash: Mapped[int | None]
     shared_data: Mapped[str | None]
+    @override
     def __repr__(self) -> str: ...
     @staticmethod
     def shared_data_bytes_from_event(event: Event, dialect: SupportedDialect | None) -> bytes: ...
@@ -133,6 +138,7 @@ class EventTypes(Base):
     __tablename__ = TABLE_EVENT_TYPES
     event_type_id: Mapped[int]
     event_type: Mapped[str | None]
+    @override
     def __repr__(self) -> str: ...
 
 class States(Base):
@@ -161,6 +167,7 @@ class States(Base):
     context_parent_id_bin: Mapped[bytes | None]
     metadata_id: Mapped[int | None]
     states_meta_rel: Mapped[StatesMeta | None]
+    @override
     def __repr__(self) -> str: ...
     @property
     def _last_updated_isotime(self) -> str | None: ...
@@ -181,6 +188,7 @@ class StateAttributes(Base):
     attributes_id: Mapped[int]
     hash: Mapped[int | None]
     shared_attrs: Mapped[str | None]
+    @override
     def __repr__(self) -> str: ...
     @staticmethod
     def shared_attrs_bytes_from_event(event: Event[EventStateChangedData], dialect: SupportedDialect | None) -> bytes: ...
@@ -192,6 +200,7 @@ class StatesMeta(Base):
     __tablename__ = TABLE_STATES_META
     metadata_id: Mapped[int]
     entity_id: Mapped[str | None]
+    @override
     def __repr__(self) -> str: ...
 
 class StatisticsBase:
@@ -259,6 +268,7 @@ class RecorderRuns(Base):
     end: Mapped[datetime | None]
     closed_incorrect: Mapped[bool]
     created: Mapped[datetime]
+    @override
     def __repr__(self) -> str: ...
 
 class MigrationChanges(Base):
@@ -273,6 +283,7 @@ class SchemaChanges(Base):
     change_id: Mapped[int]
     schema_version: Mapped[int | None]
     changed: Mapped[datetime]
+    @override
     def __repr__(self) -> str: ...
 
 class StatisticsRuns(Base):
@@ -280,6 +291,7 @@ class StatisticsRuns(Base):
     __table_args__: Incomplete
     run_id: Mapped[int]
     start: Mapped[datetime]
+    @override
     def __repr__(self) -> str: ...
 
 EVENT_DATA_JSON: Incomplete

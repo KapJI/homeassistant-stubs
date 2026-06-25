@@ -5,7 +5,7 @@ from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import Any
+from typing import Any, override
 
 class ActronAirConfigFlow(ConfigFlow, domain=DOMAIN):
     _api: ActronAirAPI | None
@@ -15,6 +15,7 @@ class ActronAirConfigFlow(ConfigFlow, domain=DOMAIN):
     _expires_minutes: str
     login_task: asyncio.Task[None] | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_finish_login(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_timeout(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

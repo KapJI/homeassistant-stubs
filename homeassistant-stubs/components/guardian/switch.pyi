@@ -11,7 +11,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 ATTR_AVG_CURRENT: str
 ATTR_CONNECTED_CLIENTS: str
@@ -45,10 +45,14 @@ class ValveControllerSwitch(ValveControllerEntity, SwitchEntity):
     _client: Incomplete
     def __init__(self, entry: GuardianConfigEntry, data: GuardianData, description: ValveControllerSwitchDescription) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @convert_exceptions_to_homeassistant_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @convert_exceptions_to_homeassistant_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

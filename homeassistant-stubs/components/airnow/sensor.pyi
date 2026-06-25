@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 ATTRIBUTION: str
 PARALLEL_UPDATES: int
@@ -38,6 +38,8 @@ class AirNowSensor(CoordinatorEntity[AirNowDataUpdateCoordinator], SensorEntity)
     _attr_device_info: Incomplete
     def __init__(self, coordinator: AirNowDataUpdateCoordinator, description: AirNowEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str] | None: ...

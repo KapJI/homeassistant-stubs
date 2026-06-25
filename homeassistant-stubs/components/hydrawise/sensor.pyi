@@ -8,7 +8,7 @@ from homeassistant.const import UnitOfTime as UnitOfTime, UnitOfVolume as UnitOf
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydrawise.schema import Controller as Controller, ControllerWaterUseSummary, Zone as Zone
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -30,8 +30,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: HydrawiseConfigEn
 class HydrawiseSensor(HydrawiseEntity, SensorEntity):
     entity_description: HydrawiseSensorEntityDescription
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def icon(self) -> str | None: ...
     _attr_native_value: Incomplete
+    @override
     def _update_attrs(self) -> None: ...

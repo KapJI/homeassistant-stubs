@@ -8,6 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pythonkuma import UptimeKumaMonitor, UptimeKumaVersion as UptimeKumaVersion
 from pythonkuma.update import LatestRelease, UpdateChecker as UpdateChecker
+from typing import override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
@@ -19,6 +20,7 @@ class UptimeKumaDataUpdateCoordinator(DataUpdateCoordinator[dict[str | int, Upti
     api: Incomplete
     version: UptimeKumaVersion | None
     def __init__(self, hass: HomeAssistant, config_entry: UptimeKumaConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str | int, UptimeKumaMonitor]: ...
 
 @callback
@@ -27,4 +29,5 @@ def async_migrate_entities_unique_ids(hass: HomeAssistant, coordinator: UptimeKu
 class UptimeKumaSoftwareUpdateCoordinator(DataUpdateCoordinator[LatestRelease]):
     update_checker: Incomplete
     def __init__(self, hass: HomeAssistant, update_checker: UpdateChecker) -> None: ...
+    @override
     async def _async_update_data(self) -> LatestRelease: ...

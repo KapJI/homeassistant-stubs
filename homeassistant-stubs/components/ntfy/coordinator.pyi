@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type NtfyConfigEntry = ConfigEntry[NtfyRuntimeData]
@@ -26,17 +27,21 @@ class BaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass
     def __init__(self, hass: HomeAssistant, config_entry: NtfyConfigEntry, ntfy: Ntfy) -> None: ...
     @abstractmethod
     async def async_update_data(self) -> _DataT: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
 
 class NtfyDataUpdateCoordinator(BaseDataUpdateCoordinator[NtfyAccount]):
     update_interval: Incomplete
+    @override
     async def async_update_data(self) -> NtfyAccount: ...
 
 class NtfyVersionDataUpdateCoordinator(BaseDataUpdateCoordinator[Version | None]):
     update_interval: Incomplete
+    @override
     async def async_update_data(self) -> Version | None: ...
 
 class NtfyLatestReleaseUpdateCoordinator(DataUpdateCoordinator[LatestRelease]):
     update_checker: Incomplete
     def __init__(self, hass: HomeAssistant, update_checker: UpdateChecker) -> None: ...
+    @override
     async def _async_update_data(self) -> LatestRelease: ...

@@ -3,7 +3,7 @@ from homeassistant.components.humidifier import HumidifierAction as HumidifierAc
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SUPPORT_FLAGS: Incomplete
 
@@ -22,7 +22,11 @@ class DemoHumidifier(HumidifierEntity):
     _attr_device_class: Incomplete
     _attr_target_humidity_step: Incomplete
     def __init__(self, name: str, mode: str | None, target_humidity: float, current_humidity: float | None = None, available_modes: list[str] | None = None, is_on: bool = True, action: HumidifierAction | None = None, device_class: HumidifierDeviceClass | None = None, target_humidity_step: float | None = None) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_humidity(self, humidity: int) -> None: ...
+    @override
     async def async_set_mode(self, mode: str) -> None: ...

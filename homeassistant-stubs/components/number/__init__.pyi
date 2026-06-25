@@ -6,7 +6,7 @@ from homeassistant.core import callback
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
-from typing import Any, Self, final
+from typing import Any, Self, final, override
 
 __all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
 
@@ -43,12 +43,17 @@ class NumberEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_native_value: float | None
     _deprecated_number_entity_reported: bool
     _number_option_unit_of_measurement: str | None
+    @override
     def __init_subclass__(cls, **kwargs: Any) -> None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @property
+    @override
     def capability_attributes(self) -> dict[str, Any]: ...
+    @override
     def _default_to_device_class_name(self) -> bool: ...
     @cached_property
+    @override
     def device_class(self) -> NumberDeviceClass | None: ...
     @cached_property
     def native_min_value(self) -> float: ...
@@ -70,6 +75,7 @@ class NumberEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def mode(self) -> NumberMode: ...
     @property
     @final
+    @override
     def state(self) -> float | None: ...
     @cached_property
     def native_unit_of_measurement(self) -> str | None: ...
@@ -78,6 +84,7 @@ class NumberEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def __native_unit_of_measurement_compat(self) -> str | None: ...
     @property
     @final
+    @override
     def unit_of_measurement(self) -> str | None: ...
     @cached_property
     def native_value(self) -> float | None: ...
@@ -93,6 +100,7 @@ class NumberEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def _convert_to_state_value(self, value: float, method: Callable[[float, int], float], device_class: NumberDeviceClass | None) -> float: ...
     def convert_to_native_value(self, value: float) -> float: ...
     @callback
+    @override
     def async_registry_entry_updated(self) -> None: ...
 
 @dataclasses.dataclass
@@ -102,11 +110,13 @@ class NumberExtraStoredData(ExtraStoredData):
     native_step: float | None
     native_unit_of_measurement: str | None
     native_value: float | None
+    @override
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
     def from_dict(cls, restored: dict[str, Any]) -> Self | None: ...
 
 class RestoreNumber(NumberEntity, RestoreEntity):
     @property
+    @override
     def extra_restore_state_data(self) -> NumberExtraStoredData: ...
     async def async_get_last_number_data(self) -> NumberExtraStoredData | None: ...

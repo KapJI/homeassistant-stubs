@@ -1,6 +1,6 @@
 import dataclasses
 from . import Bootstrap as Bootstrap
-from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, EVENT_TYPE_FINGERPRINT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_IDENTIFIED, EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED, EVENT_TYPE_NFC_SCANNED as EVENT_TYPE_NFC_SCANNED, EVENT_TYPE_VEHICLE_DETECTED as EVENT_TYPE_VEHICLE_DETECTED, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS, VEHICLE_EVENT_DELAY_SECONDS as VEHICLE_EVENT_DELAY_SECONDS
+from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, EVENT_TYPE_FINGERPRINT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_IDENTIFIED, EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED, EVENT_TYPE_NFC_SCANNED as EVENT_TYPE_NFC_SCANNED, EVENT_TYPE_PACKAGE_DETECTED as EVENT_TYPE_PACKAGE_DETECTED, EVENT_TYPE_VEHICLE_DETECTED as EVENT_TYPE_VEHICLE_DETECTED, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS, VEHICLE_EVENT_DELAY_SECONDS as VEHICLE_EVENT_DELAY_SECONDS
 from .data import EventType as EventType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEventMixin as ProtectEventMixin
 from _typeshed import Incomplete
@@ -8,7 +8,8 @@ from homeassistant.components.event import DoorbellEventType as DoorbellEventTyp
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_at as async_call_at
-from typing import Any
+from typing import Any, override
+from uiprotect import ProtectEvent as ProtectEvent
 from uiprotect.data.nvr import Event as Event, EventDetectedThumbnail as EventDetectedThumbnail
 
 PARALLEL_UPDATES: int
@@ -22,16 +23,17 @@ class ProtectEventEntityDescription(ProtectEventMixin, EventEntityDescription):
 
 class ProtectDeviceRingEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
     entity_description: ProtectEventEntityDescription
-    _event: Incomplete
-    _event_end: Incomplete
+    @override
+    async def async_added_to_hass(self) -> None: ...
     @callback
-    def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    def _async_ring_event(self, event: ProtectEvent) -> None: ...
 
 class ProtectDeviceNFCEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
     entity_description: ProtectEventEntityDescription
     _event: Incomplete
     _event_end: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDeviceFingerprintEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
@@ -39,6 +41,7 @@ class ProtectDeviceFingerprintEventEntity(EventEntityMixin, ProtectDeviceEntity,
     _event: Incomplete
     _event_end: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDeviceVehicleEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
@@ -49,6 +52,7 @@ class ProtectDeviceVehicleEventEntity(EventEntityMixin, ProtectDeviceEntity, Eve
     _thumbnail_timer_due: float
     _fired_event_id: str | None
     _fired_event_data: dict[str, Any] | None
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _cancel_thumbnail_timer(self) -> None: ...
@@ -65,7 +69,15 @@ class ProtectDeviceVehicleEventEntity(EventEntityMixin, ProtectDeviceEntity, Eve
     _event: Incomplete
     _event_end: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+
+class ProtectDeviceSmartDetectEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
+    entity_description: ProtectEventEntityDescription
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _async_smart_detect_event(self, event: ProtectEvent) -> None: ...
 
 EVENT_DESCRIPTIONS: tuple[ProtectEventEntityDescription, ...]
 

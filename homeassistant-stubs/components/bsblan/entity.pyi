@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class BSBLanEntityBase[_T: BSBLanCoordinator](CoordinatorEntity[_T]):
     _attr_has_entity_name: bool
@@ -21,6 +22,7 @@ class BSBLanCircuitEntity(BSBLanEntity):
 class BSBLanDualCoordinatorEntity(BSBLanEntity):
     slow_coordinator: Incomplete
     def __init__(self, fast_coordinator: BSBLanFastCoordinator, slow_coordinator: BSBLanSlowCoordinator, data: BSBLanData) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class BSBLanWaterHeaterDeviceEntity(BSBLanDualCoordinatorEntity):

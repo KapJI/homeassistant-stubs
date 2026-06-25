@@ -5,6 +5,7 @@ from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 CALENDAR_TYPE: Incomplete
 
@@ -13,8 +14,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: RadarrConfigEntry, async
 class RadarrCalendarEntity(RadarrEntity, CalendarEntity):
     coordinator: CalendarUpdateCoordinator
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[RadarrEvent]: ...
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _async_write_ha_state(self) -> None: ...

@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 BASE_FAN_SPEEDS: Final[dict[int, str]]
 FAN_SPEED_MAPS: Final[dict[int, dict[int, str]]]
@@ -31,12 +31,18 @@ class AirzoneClimate(AirzoneZoneEntity, ClimateEntity):
     def __init__(self, coordinator: AirzoneUpdateCoordinator, entry: ConfigEntry, system_zone_id: str, zone_data: dict) -> None: ...
     _attr_fan_modes: Incomplete
     def _set_fan_speeds(self) -> None: ...
+    @override
     async def async_turn_on(self) -> None: ...
+    @override
     async def async_turn_off(self) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete

@@ -8,7 +8,7 @@ from datetime import timedelta
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[str, Any]]], metaclass=abc.ABCMeta):
     default_interval: timedelta
@@ -22,6 +22,7 @@ class FroniusCoordinatorBase(ABC, DataUpdateCoordinator[dict[SolarNetId, dict[st
     @abstractmethod
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> dict[SolarNetId, Any]: ...
     @callback
     def add_entities_for_seen_keys[_FroniusEntityT: _FroniusSensorEntity](self, async_add_entities: AddEntitiesCallback, entity_constructor: type[_FroniusEntityT]) -> None: ...
@@ -33,34 +34,40 @@ class FroniusInverterUpdateCoordinator(FroniusCoordinatorBase):
     SILENT_RETRIES: int
     inverter_info: Incomplete
     def __init__(self, *args: Any, inverter_info: FroniusDeviceInfo, **kwargs: Any) -> None: ...
+    @override
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusLoggerUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
     valid_descriptions = LOGGER_ENTITY_DESCRIPTIONS
+    @override
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusMeterUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
     valid_descriptions = METER_ENTITY_DESCRIPTIONS
+    @override
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusOhmpilotUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
     valid_descriptions = OHMPILOT_ENTITY_DESCRIPTIONS
+    @override
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusPowerFlowUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
     valid_descriptions = POWER_FLOW_ENTITY_DESCRIPTIONS
+    @override
     async def _update_method(self) -> dict[SolarNetId, Any]: ...
 
 class FroniusStorageUpdateCoordinator(FroniusCoordinatorBase):
     default_interval: Incomplete
     error_interval: Incomplete
     valid_descriptions = STORAGE_ENTITY_DESCRIPTIONS
+    @override
     async def _update_method(self) -> dict[SolarNetId, Any]: ...

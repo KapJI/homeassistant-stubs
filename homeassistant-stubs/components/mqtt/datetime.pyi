@@ -16,7 +16,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.dt import async_get_time_zone as async_get_time_zone
-from typing import Any
+from typing import Any, override
 from zoneinfo import ZoneInfo
 
 _LOGGER: Incomplete
@@ -39,14 +39,20 @@ class MqttDateTime(MqttEntity, DateTimeEntity):
     _command_template: Callable[[PublishPayloadType, dict[str, Any]], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _timezone_config: Incomplete
     _attr_assumed_state: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
+    @override
     async def _async_finish_update_config(self) -> None: ...
     @callback
     def _handle_state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_set_value(self, value: datetime_library.datetime) -> None: ...

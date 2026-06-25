@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysmlight.web import CmdWrapper as CmdWrapper
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -30,4 +31,5 @@ class SmButton(SmEntity, ButtonEntity):
     idx: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmButtonDescription, idx: int = 0) -> None: ...
+    @override
     async def async_press(self) -> None: ...

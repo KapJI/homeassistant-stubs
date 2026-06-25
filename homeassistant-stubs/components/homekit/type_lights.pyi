@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_TURN_O
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, State as State, callback as callback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.util.color import color_temperature_kelvin_to_mired as color_temperature_kelvin_to_mired, color_temperature_mired_to_kelvin as color_temperature_mired_to_kelvin, color_temperature_to_hs as color_temperature_to_hs, color_temperature_to_rgbww as color_temperature_to_rgbww
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CHANGE_COALESCE_TIME_WINDOW: float
@@ -39,4 +39,5 @@ class Light(HomeAccessory):
     @callback
     def _async_send_events(self, _now: datetime) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...

@@ -3,6 +3,7 @@ from amberelectric.models.site import Site as Site
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_API_TOKEN as CONF_API_TOKEN
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
+from typing import override
 
 API_URL: str
 
@@ -16,5 +17,6 @@ class AmberElectricConfigFlow(ConfigFlow, domain=DOMAIN):
     _api_token: str | None
     def __init__(self) -> None: ...
     def _fetch_sites(self, token: str) -> list[Site] | None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def async_step_site(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...

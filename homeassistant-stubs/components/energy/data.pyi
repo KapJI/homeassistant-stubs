@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.helpers import singleton as singleton, storage as storage
-from typing import Any, Literal, NotRequired, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict, override
 
 STORAGE_VERSION: int
 STORAGE_MINOR_VERSION: int
@@ -135,6 +135,7 @@ def _migrate_legacy_grid_to_unified(old_grid: dict[str, Any]) -> list[dict[str, 
 def _is_legacy_grid_format(source: dict[str, Any]) -> bool: ...
 
 class _EnergyPreferencesStore(storage.Store[EnergyPreferences]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class EnergyManager:

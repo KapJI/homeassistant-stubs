@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 NO_SENSOR: str
@@ -33,6 +34,8 @@ class CompitBinarySensor(CoordinatorEntity[CompitDataUpdateCoordinator], BinaryS
     parameter_code: Incomplete
     def __init__(self, coordinator: CompitDataUpdateCoordinator, device_id: int, device_name: str, parameter_code: CompitParameter, entity_description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

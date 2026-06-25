@@ -5,6 +5,7 @@ from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_TYPE as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type MinecraftServerConfigEntry = ConfigEntry[MinecraftServerCoordinator]
 SCAN_INTERVAL: Incomplete
@@ -14,5 +15,7 @@ class MinecraftServerCoordinator(DataUpdateCoordinator[MinecraftServerData]):
     config_entry: MinecraftServerConfigEntry
     _api: MinecraftServer
     def __init__(self, hass: HomeAssistant, config_entry: MinecraftServerConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> MinecraftServerData: ...

@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class RAVEnSensorEntityDescription(SensorEntityDescription):
@@ -28,8 +28,10 @@ class RAVEnSensor(CoordinatorEntity[RAVEnDataCoordinator], SensorEntity):
     @property
     def _data(self) -> Any: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class RAVEnMeterSensor(RAVEnSensor):
@@ -37,4 +39,5 @@ class RAVEnMeterSensor(RAVEnSensor):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: RAVEnDataCoordinator, entity_description: RAVEnSensorEntityDescription, meter_mac_addr: str) -> None: ...
     @property
+    @override
     def _data(self) -> Any: ...

@@ -1,3 +1,4 @@
+from .const import RemoteEntityStateAttribute as RemoteEntityStateAttribute
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from enum import IntFlag
@@ -9,7 +10,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 _LOGGER: Incomplete
 DOMAIN: str
@@ -59,6 +60,7 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     _attr_current_activity: str | None
     _attr_supported_features: RemoteEntityFeature
     @cached_property
+    @override
     def supported_features(self) -> RemoteEntityFeature: ...
     @cached_property
     def current_activity(self) -> str | None: ...
@@ -66,6 +68,7 @@ class RemoteEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_)
     def activity_list(self) -> list[str] | None: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any] | None: ...
     def send_command(self, command: Iterable[str], **kwargs: Any) -> None: ...
     async def async_send_command(self, command: Iterable[str], **kwargs: Any) -> None: ...

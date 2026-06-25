@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CONF_T
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from lektricowifi import Device
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LektricoButtonEntityDescription(ButtonEntityDescription):
@@ -23,4 +23,5 @@ class LektricoButton(LektricoEntity, ButtonEntity):
     entity_description: LektricoButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, description: LektricoButtonEntityDescription, coordinator: LektricoDeviceDataUpdateCoordinator, device_name: str) -> None: ...
+    @override
     async def async_press(self) -> None: ...

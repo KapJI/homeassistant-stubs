@@ -9,6 +9,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class BAFNumberDescription(NumberEntityDescription):
@@ -24,5 +25,7 @@ class BAFNumber(BAFDescriptionEntity, NumberEntity):
     entity_description: BAFNumberDescription
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

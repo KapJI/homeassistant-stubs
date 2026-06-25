@@ -5,6 +5,7 @@ from bosch_alarm_mode2 import Panel as Panel
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BoschAlarmConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -18,7 +19,11 @@ class AreaAlarmControlPanel(BoschAlarmAreaEntity, AlarmControlPanelEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, area_id: int, unique_id: str) -> None: ...
     @property
+    @override
     def alarm_state(self) -> AlarmControlPanelState | None: ...
+    @override
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_home(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_away(self, code: str | None = None) -> None: ...

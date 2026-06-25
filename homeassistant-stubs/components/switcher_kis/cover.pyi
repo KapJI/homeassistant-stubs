@@ -7,7 +7,7 @@ from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, Cover
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 API_SET_POSITION: str
@@ -23,10 +23,15 @@ class SwitcherBaseCoverEntity(SwitcherEntity, CoverEntity):
     _attr_is_closed: Incomplete
     _attr_is_closing: Incomplete
     _attr_is_opening: Incomplete
+    @override
     def _update_data(self) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
 
 class SwitcherSingleCoverEntity(SwitcherBaseCoverEntity):

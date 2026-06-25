@@ -4,6 +4,7 @@ from .models import PermissionLookup as PermissionLookup
 from .types import PolicyType as PolicyType
 from _typeshed import Incomplete
 from collections.abc import Callable, Iterable
+from typing import override
 
 __all__ = ['POLICY_SCHEMA', 'AbstractPermissions', 'OwnerPermissions', 'PermissionLookup', 'PolicyPermissions', 'PolicyType', 'filter_entity_ids_by_permission', 'merge_policies']
 
@@ -21,12 +22,17 @@ class PolicyPermissions(AbstractPermissions):
     _policy: Incomplete
     _perm_lookup: Incomplete
     def __init__(self, policy: PolicyType, perm_lookup: PermissionLookup) -> None: ...
+    @override
     def access_all_entities(self, key: str) -> bool: ...
+    @override
     def _entity_func(self) -> Callable[[str, str], bool]: ...
+    @override
     def __eq__(self, other: object) -> bool: ...
 
 class _OwnerPermissions(AbstractPermissions):
+    @override
     def access_all_entities(self, key: str) -> bool: ...
+    @override
     def _entity_func(self) -> Callable[[str, str], bool]: ...
 
 OwnerPermissions: Incomplete

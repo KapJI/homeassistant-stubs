@@ -7,7 +7,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -22,7 +22,10 @@ class RedgtechSwitch(CoordinatorEntity[RedgtechDataUpdateCoordinator], SwitchEnt
     _attr_device_info: Incomplete
     def __init__(self, coordinator: RedgtechDataUpdateCoordinator, device: RedgtechDevice) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     async def _set_state(self, new_state: bool) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

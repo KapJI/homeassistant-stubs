@@ -7,7 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from librehardwaremonitor_api.model import DeviceId as DeviceId, LibreHardwareMonitorSensorData as LibreHardwareMonitorSensorData
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -29,4 +29,5 @@ class LibreHardwareMonitorSensor(CoordinatorEntity[LibreHardwareMonitorCoordinat
     _attr_native_unit_of_measurement: Incomplete
     def _set_state(self, is_deprecated_lhm_version: bool, sensor_data: LibreHardwareMonitorSensorData) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.components.device_tracker import TrackerEntity as TrackerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import as_utc as as_utc
+from typing import override
 
 _LOGGER: Incomplete
 ATTR_ALTITUDE: str
@@ -26,10 +27,12 @@ class TileDeviceTracker(TileEntity, TrackerEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: TileCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_longitude: Incomplete
     _attr_latitude: Incomplete
     _attr_location_accuracy: Incomplete
     @callback
     def _update_from_latest_data(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

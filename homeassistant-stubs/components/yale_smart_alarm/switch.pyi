@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from yalesmartalarmclient import YaleLock as YaleLock
 
 async def async_setup_entry(hass: HomeAssistant, entry: YaleConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -15,7 +15,10 @@ class YaleAutolockSwitch(YaleLockEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     _attr_is_on: Incomplete
     def __init__(self, coordinator: YaleDataUpdateCoordinator, lock: YaleLock) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

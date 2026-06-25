@@ -8,6 +8,7 @@ from homeassistant.const import UnitOfTemperature as UnitOfTemperature, UnitOfTi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class AnovaSensorEntityDescription(SensorEntityDescription):
@@ -21,4 +22,5 @@ def setup_coordinator(coordinator: AnovaCoordinator, async_add_entities: AddConf
 class AnovaSensor(AnovaDescriptionEntity, SensorEntity):
     entity_description: AnovaSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

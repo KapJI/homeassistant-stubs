@@ -9,6 +9,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -33,13 +34,17 @@ class KrakenSensor(CoordinatorEntity[DataUpdateCoordinator[KrakenResponse | None
     _available: bool
     _attr_device_info: Incomplete
     def __init__(self, kraken_data: KrakenData, tracked_asset_pair: str, description: KrakenSensorEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     def _update_internal_state(self) -> None: ...
     @property
+    @override
     def icon(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 def create_device_name(tracked_asset_pair: str) -> str: ...

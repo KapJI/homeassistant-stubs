@@ -6,7 +6,7 @@ from homeassistant.core import State as State, callback as callback
 from homeassistant.helpers.selector import EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig
 from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util import slugify as slugify
-from typing import Any
+from typing import Any, override
 
 RESULT_SUCCESS: str
 
@@ -17,7 +17,9 @@ class ProximityConfigFlow(ConfigFlow, domain=DOMAIN):
     def _user_form_schema(self, user_input: dict[str, Any] | None = None) -> vol.Schema: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> ProximityOptionsFlow: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class ProximityOptionsFlow(OptionsFlowWithReload):

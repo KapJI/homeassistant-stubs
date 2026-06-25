@@ -9,7 +9,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, A
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _CC_COLOR_MODE: Incomplete
 COLOR_MODE_MAP: Incomplete
@@ -39,7 +39,9 @@ class MatterLight(MatterEntity, LightEntity):
     def _get_color_temperature(self) -> int: ...
     def _get_brightness(self) -> int | None: ...
     def _get_color_mode(self) -> ColorMode: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_supported_color_modes: Incomplete
     _attr_is_on: Incomplete
@@ -49,6 +51,7 @@ class MatterLight(MatterEntity, LightEntity):
     _attr_hs_color: Incomplete
     _attr_xy_color: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     def _check_transition_blocklist(self) -> None: ...
 

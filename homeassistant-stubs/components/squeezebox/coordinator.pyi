@@ -8,7 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pysqueezebox import Player as Player, Server as Server
 from pysqueezebox.player import Alarm as Alarm
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -17,7 +17,9 @@ class LMSStatusDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     lms: Incomplete
     can_server_restart: bool
     def __init__(self, hass: HomeAssistant, config_entry: SqueezeboxConfigEntry, lms: Server) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class SqueezeBoxPlayerUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -29,6 +31,7 @@ class SqueezeBoxPlayerUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     player_uuid: Incomplete
     server_uuid: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SqueezeboxConfigEntry, player: Player, server_uuid: str) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
     @callback
     def rediscovered(self, unique_id: str, connected: bool) -> None: ...

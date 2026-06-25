@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -20,4 +20,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: AcaiaConfigEntry, async_
 
 class AcaiaButton(AcaiaEntity, ButtonEntity):
     entity_description: AcaiaButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...

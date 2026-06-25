@@ -7,7 +7,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol, DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from ring_doorbell import Ring as Ring, RingDevices, RingEvent as RingEvent
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -25,6 +25,7 @@ class RingDataCoordinator(DataUpdateCoordinator[RingDevices]):
     first_call: bool
     def __init__(self, hass: HomeAssistant, config_entry: RingConfigEntry, ring_api: Ring) -> None: ...
     async def _call_api[*_Ts, _R](self, target: Callable[[*_Ts], Coroutine[Any, Any, _R]], *args: *_Ts) -> _R: ...
+    @override
     async def _async_update_data(self) -> RingDevices: ...
 
 class RingListenCoordinator(BaseDataUpdateCoordinatorProtocol):
@@ -46,4 +47,5 @@ class RingListenCoordinator(BaseDataUpdateCoordinatorProtocol):
     @callback
     def _async_update_listeners(self, doorbot_id: int | None = None) -> None: ...
     @callback
+    @override
     def async_add_listener(self, update_callback: CALLBACK_TYPE, context: Any = None) -> Callable[[], None]: ...

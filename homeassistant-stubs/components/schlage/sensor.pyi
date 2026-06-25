@@ -5,6 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _SENSOR_DESCRIPTIONS: list[SensorEntityDescription]
 
@@ -16,4 +17,5 @@ class SchlageBatterySensor(SchlageEntity, SensorEntity):
     _attr_native_value: Incomplete
     def __init__(self, coordinator: SchlageDataUpdateCoordinator, description: SensorEntityDescription, device_id: str) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

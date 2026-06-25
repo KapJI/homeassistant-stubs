@@ -1,17 +1,21 @@
-from .const import DEVICE_SUPPORT_MAP as DEVICE_SUPPORT_MAP, DOMAIN as DOMAIN, ENTRY_TITLE as ENTRY_TITLE
+from .const import CONF_CLOUDHOOK_URL as CONF_CLOUDHOOK_URL, DEVICE_SUPPORT_MAP as DEVICE_SUPPORT_MAP, DOMAIN as DOMAIN, ENTRY_TITLE as ENTRY_TITLE
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
+from .service import async_register_services as async_register_services
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass, field
-from homeassistant.components import webhook as webhook
+from homeassistant.components import cloud as cloud, webhook as webhook
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_API_TOKEN as CONF_API_TOKEN, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from switchbot_api import Device, Remote, SwitchBotAPI
 
+CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 PLATFORMS: list[Platform]
 
@@ -40,7 +44,10 @@ async def coordinator_for_device(hass: HomeAssistant, entry: SwitchbotCloudConfi
 async def make_switchbot_devices(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry, api: SwitchBotAPI, devices: list[Device | Remote], coordinators_by_id: dict[str, SwitchBotCoordinator]) -> SwitchbotDevices: ...
 async def make_device_data(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry, api: SwitchBotAPI, device: Device | Remote, devices_data: SwitchbotDevices, coordinators_by_id: dict[str, SwitchBotCoordinator]) -> None: ...
 async def make_new_device_data(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry, api: SwitchBotAPI, device: Device | Remote, devices_data: SwitchbotDevices, coordinators_by_id: dict[str, SwitchBotCoordinator]) -> None: ...
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry) -> bool: ...
 async def _initialize_webhook(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry, api: SwitchBotAPI, coordinators_by_id: dict[str, SwitchBotCoordinator]) -> None: ...
+async def _async_get_webhook_url(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry) -> str: ...
+async def async_remove_entry(hass: HomeAssistant, entry: SwitchbotCloudConfigEntry) -> None: ...
 def _create_handle_webhook(coordinators_by_id: dict[str, SwitchBotCoordinator]) -> Callable[[HomeAssistant, str, web.Request], Awaitable[None]]: ...

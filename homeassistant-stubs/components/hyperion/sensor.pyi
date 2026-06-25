@@ -7,7 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from hyperion import client as client
-from typing import Any
+from typing import Any, override
 
 SENSORS: Incomplete
 PRIORITY_SENSOR_DESCRIPTION: Incomplete
@@ -25,8 +25,11 @@ class HyperionSensor(SensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, server_id: str, instance_num: int, instance_name: str, hyperion_client: client.HyperionClient, entity_description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
 
 class HyperionVisiblePrioritySensor(HyperionSensor):

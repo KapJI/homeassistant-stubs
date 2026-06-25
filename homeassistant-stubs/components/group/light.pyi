@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 CONF_ALL: str
@@ -38,7 +38,9 @@ class LightGroup(GroupEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     def __init__(self, unique_id: str | None, name: str, entity_ids: list[str], mode: bool | None) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
@@ -52,4 +54,5 @@ class LightGroup(GroupEntity, LightEntity):
     _attr_effect: Incomplete
     _attr_supported_features: Incomplete
     @callback
+    @override
     def async_update_group_state(self) -> None: ...

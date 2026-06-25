@@ -4,10 +4,12 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_USERNAME as CONF_USERNAME
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from slack_sdk.web.async_client import AsyncSlackResponse as AsyncSlackResponse
+from typing import override
 
 _LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 class SlackFlowHandler(ConfigFlow, domain=DOMAIN):
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
     async def _async_try_connect(self, token: str) -> tuple[str, None] | tuple[None, AsyncSlackResponse]: ...

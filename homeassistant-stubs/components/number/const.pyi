@@ -14,6 +14,12 @@ DEFAULT_STEP: float
 DOMAIN: str
 SERVICE_SET_VALUE: str
 
+class NumberEntityCapabilityAttribute(StrEnum):
+    MIN = 'min'
+    MAX = 'max'
+    STEP = 'step'
+    MODE = 'mode'
+
 class NumberMode(StrEnum):
     AUTO = 'auto'
     BOX = 'box'

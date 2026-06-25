@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttOutput as QbusMqttOutput
 from qbusmqttapi.state import QbusMqttGaugeState, QbusMqttHumidityState, QbusMqttThermoState, QbusMqttVentilationState, QbusMqttWeatherState
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,6 +33,7 @@ class QbusGaugeVariantSensor(QbusEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput) -> None: ...
     _attr_native_value: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttGaugeState) -> None: ...
     def _find_matching_unit(self, unit: str | None, allowed_units: set[type[StrEnum] | str | None] | None) -> str | None: ...
 
@@ -42,6 +44,7 @@ class QbusHumiditySensor(QbusEntity, SensorEntity):
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class: Incomplete
     _attr_native_value: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttHumidityState) -> None: ...
 
 class QbusThermoSensor(QbusEntity, SensorEntity):
@@ -50,6 +53,7 @@ class QbusThermoSensor(QbusEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _attr_native_value: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttThermoState) -> None: ...
 
 class QbusVentilationSensor(QbusEntity, SensorEntity):
@@ -60,6 +64,7 @@ class QbusVentilationSensor(QbusEntity, SensorEntity):
     _attr_state_class: Incomplete
     _attr_suggested_display_precision: int
     _attr_native_value: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttVentilationState) -> None: ...
 
 class QbusWeatherSensor(QbusEntity, SensorEntity):
@@ -68,4 +73,5 @@ class QbusWeatherSensor(QbusEntity, SensorEntity):
     _attr_name: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput, description: QbusWeatherDescription) -> None: ...
     native_value: Incomplete
+    @override
     async def _handle_state_received(self, state: QbusMqttWeatherState) -> None: ...

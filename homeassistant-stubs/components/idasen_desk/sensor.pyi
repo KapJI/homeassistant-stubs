@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import UnitOfLength as UnitOfLength
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class IdasenDeskSensorDescription(SensorEntityDescription):
@@ -20,4 +21,5 @@ class IdasenDeskSensor(IdasenDeskEntity, SensorEntity):
     entity_description: IdasenDeskSensorDescription
     def __init__(self, coordinator: IdasenDeskCoordinator, description: IdasenDeskSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

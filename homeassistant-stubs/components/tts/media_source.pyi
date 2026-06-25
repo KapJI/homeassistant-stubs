@@ -5,7 +5,7 @@ from homeassistant.components.media_player import BrowseError as BrowseError, Me
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from typing import TypedDict
+from typing import TypedDict, override
 
 URL_QUERY_TTS_OPTIONS: str
 
@@ -33,7 +33,9 @@ class TTSMediaSource(MediaSource):
     name: str
     hass: Incomplete
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
+    @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
     @callback
     def _engine_item(self, engine: str, params: str | None = None) -> BrowseMediaSource: ...

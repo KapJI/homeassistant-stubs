@@ -10,6 +10,7 @@ from pydeconz.models.group import Group as PydeconzGroup
 from pydeconz.models.light import LightBase as PydeconzLightBase
 from pydeconz.models.scene import Scene as PydeconzScene
 from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
+from typing import override
 
 type _DeviceType = PydeconzGroup | PydeconzLightBase | PydeconzSensorBase | PydeconzScene
 class DeconzBase[_DeviceT: _DeviceType]:
@@ -32,13 +33,16 @@ class DeconzDevice[_DeviceT: _DeviceType](DeconzBase[_DeviceT], Entity):
     TYPE: str
     _attr_name: Incomplete
     def __init__(self, device: _DeviceT, hub: DeconzHub) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @callback
     def async_update_connection_state(self) -> None: ...
     @callback
     def async_update_callback(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class DeconzSceneMixin(DeconzDevice[PydeconzScene]):
@@ -50,6 +54,8 @@ class DeconzSceneMixin(DeconzDevice[PydeconzScene]):
     def get_device_identifier(self) -> str: ...
     def get_parent_identifier(self) -> str: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

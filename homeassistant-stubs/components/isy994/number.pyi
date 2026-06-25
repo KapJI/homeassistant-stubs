@@ -13,7 +13,7 @@ from homeassistant.util.percentage import percentage_to_ranged_value as percenta
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
 from pyisy.nodes import Node as Node, NodeChangedEvent as NodeChangedEvent
 from pyisy.variables import Variable as Variable
-from typing import Any
+from typing import Any, override
 
 ISY_MAX_SIZE: Incomplete
 ON_RANGE: Incomplete
@@ -25,7 +25,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: IsyConfigEntry, a
 class ISYAuxControlNumberEntity(ISYAuxControlEntity, NumberEntity):
     _attr_mode: Incomplete
     @property
+    @override
     def native_value(self) -> float | int | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ISYVariableNumberEntity(NumberEntity):
@@ -38,13 +40,17 @@ class ISYVariableNumberEntity(NumberEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, node: Variable, unique_id: str, description: NumberEntityDescription, device_info: DeviceInfo, init_entity: bool = False) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_on_update(self, event: NodeProperty) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class ISYBacklightNumberEntity(ISYAuxControlEntity, RestoreNumber):
@@ -52,7 +58,9 @@ class ISYBacklightNumberEntity(ISYAuxControlEntity, RestoreNumber):
     _memory_change_handler: EventListener | None
     _attr_native_value: int
     def __init__(self, node: Node, control: str, unique_id: str, description: NumberEntityDescription, device_info: DeviceInfo | None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_on_memory_write(self, event: NodeChangedEvent, key: str) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

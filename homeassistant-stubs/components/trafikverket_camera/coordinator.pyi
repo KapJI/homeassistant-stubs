@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pytrafikverket import CameraInfoModel as CameraInfoModel
+from typing import override
 
 _LOGGER: Incomplete
 TIME_BETWEEN_UPDATES: Incomplete
@@ -22,4 +23,5 @@ class TVDataUpdateCoordinator(DataUpdateCoordinator[CameraData]):
     _camera_api: Incomplete
     _id: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TVCameraConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> CameraData: ...

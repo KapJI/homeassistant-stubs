@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.script import Script as Script
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
@@ -26,8 +26,12 @@ class WolSwitch(SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, hass: HomeAssistant, name: str, host: str | None, mac_address: str, off_action: list[Any] | None, broadcast_address: str | None, broadcast_port: int | None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
     def update(self) -> None: ...

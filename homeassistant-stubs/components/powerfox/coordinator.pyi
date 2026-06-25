@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from powerfox import Device as Device, DeviceReport, Powerfox as Powerfox, Poweropti
+from typing import override
 
 type PowerfoxCoordinator = PowerfoxDataUpdateCoordinator | PowerfoxReportDataUpdateCoordinator
 type PowerfoxConfigEntry = ConfigEntry[list[PowerfoxCoordinator]]
@@ -13,11 +14,14 @@ class PowerfoxBaseCoordinator[T](DataUpdateCoordinator[T]):
     client: Incomplete
     device: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: PowerfoxConfigEntry, client: Powerfox, device: Device) -> None: ...
+    @override
     async def _async_update_data(self) -> T: ...
     async def _async_fetch_data(self) -> T: ...
 
 class PowerfoxDataUpdateCoordinator(PowerfoxBaseCoordinator[Poweropti]):
+    @override
     async def _async_fetch_data(self) -> Poweropti: ...
 
 class PowerfoxReportDataUpdateCoordinator(PowerfoxBaseCoordinator[DeviceReport]):
+    @override
     async def _async_fetch_data(self) -> DeviceReport: ...

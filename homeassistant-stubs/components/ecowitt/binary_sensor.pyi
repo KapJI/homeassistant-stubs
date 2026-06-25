@@ -6,7 +6,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 ECOWITT_BINARYSENSORS_MAPPING: Final[Incomplete]
@@ -17,4 +17,5 @@ class EcowittBinarySensorEntity(EcowittEntity, BinarySensorEntity):
     entity_description: Incomplete
     def __init__(self, sensor: EcoWittSensor, description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

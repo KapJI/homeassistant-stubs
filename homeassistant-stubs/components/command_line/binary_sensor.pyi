@@ -12,6 +12,7 @@ from homeassistant.helpers.event import async_track_time_interval as async_track
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.trigger_template_entity import ManualTriggerEntity as ManualTriggerEntity, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from typing import override
 
 DEFAULT_NAME: str
 DEFAULT_PAYLOAD_ON: str
@@ -30,6 +31,7 @@ class CommandBinarySensor(ManualTriggerEntity, BinarySensorEntity):
     _scan_interval: Incomplete
     _process_updates: asyncio.Lock | None
     def __init__(self, data: CommandSensorData, config: ConfigType, payload_on: str, payload_off: str, value_template: ValueTemplate | None, scan_interval: timedelta) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _update_entity_state(self, now: datetime | None = None) -> None: ...
     async def _async_update(self) -> None: ...

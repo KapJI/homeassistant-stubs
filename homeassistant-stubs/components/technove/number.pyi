@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from technove import TechnoVE as TechnoVE
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class TechnoVENumberDescription(NumberEntityDescription):
@@ -29,8 +29,11 @@ class TechnoVENumberEntity(TechnoVEEntity, NumberEntity):
     entity_description: TechnoVENumberDescription
     def __init__(self, coordinator: TechnoVEDataUpdateCoordinator, description: TechnoVENumberDescription) -> None: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def native_value(self) -> float: ...
     @technove_exception_handler
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, NAME as NAME
 from .coordinator import JvcProjectorDataUpdateCoordinator as JvcProjectorDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from jvcprojector import Command as Command, JvcProjector as JvcProjector
 

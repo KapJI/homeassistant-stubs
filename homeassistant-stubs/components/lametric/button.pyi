@@ -9,7 +9,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class LaMetricButtonEntityDescription(ButtonEntityDescription):
@@ -24,4 +24,5 @@ class LaMetricButtonEntity(LaMetricEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LaMetricDataUpdateCoordinator, description: LaMetricButtonEntityDescription) -> None: ...
     @lametric_exception_handler
+    @override
     async def async_press(self) -> None: ...

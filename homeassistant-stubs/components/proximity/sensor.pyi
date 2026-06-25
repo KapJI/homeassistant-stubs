@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import NamedTuple
+from typing import NamedTuple, override
 
 DIRECTIONS: Incomplete
 SENSORS_PER_ENTITY: list[SensorEntityDescription]
@@ -28,6 +28,7 @@ class ProximitySensor(CoordinatorEntity[ProximityDataUpdateCoordinator], SensorE
     _attr_device_info: Incomplete
     def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> str | float | None: ...
 
 class ProximityTrackedEntitySensor(CoordinatorEntity[ProximityDataUpdateCoordinator], SensorEntity):
@@ -38,10 +39,13 @@ class ProximityTrackedEntitySensor(CoordinatorEntity[ProximityDataUpdateCoordina
     _attr_device_info: Incomplete
     _attr_translation_placeholders: Incomplete
     def __init__(self, description: SensorEntityDescription, coordinator: ProximityDataUpdateCoordinator, tracked_entity_descriptor: TrackedEntityDescriptor) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
     def data(self) -> dict[str, str | int | None]: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> str | float | None: ...

@@ -29,7 +29,7 @@ from pydeconz.models.sensor.power import Power
 from pydeconz.models.sensor.pressure import Pressure
 from pydeconz.models.sensor.temperature import Temperature
 from pydeconz.models.sensor.time import Time
-from typing import Generic, TypeVar
+from typing import Generic, TypeVar, override
 
 PROVIDES_EXTRA_ATTRIBUTES: Incomplete
 ATTR_CURRENT: str
@@ -59,8 +59,10 @@ class DeconzSensor(DeconzDevice[SensorResources], SensorEntity):
     _name_suffix: Incomplete
     def __init__(self, device: SensorResources, hub: DeconzHub, description: DeconzSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, bool | float | int | str | None]: ...
 
 class DeconzBatteryTracker:

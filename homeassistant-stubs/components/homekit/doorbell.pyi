@@ -6,7 +6,7 @@ from homeassistant.const import STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, State as State, callback as ha_callback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from pyhap.util import callback as pyhap_callback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DOORBELL_SINGLE_PRESS: int
@@ -21,6 +21,7 @@ class HomeDoorbellAccessory(HomeAccessory):
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @ha_callback
     @pyhap_callback
+    @override
     def run(self) -> None: ...
     @ha_callback
     def async_update_doorbell_state_event(self, event: Event[EventStateChangedData]) -> None: ...

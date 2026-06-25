@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 from xknx import XKNX as XKNX
 from xknx.devices import Device as XknxDevice, RawValue
 
@@ -22,7 +23,10 @@ class KNXSelect(KnxYamlEntity, SelectEntity, RestoreEntity):
     _attr_options: Incomplete
     _attr_current_option: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     def after_update_callback(self, device: XknxDevice) -> None: ...
     def option_from_payload(self, payload: int | None) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

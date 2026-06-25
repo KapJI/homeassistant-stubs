@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatmo import modules as NaModules
-from typing import Final
+from typing import Final, override
 
 _LOGGER: Incomplete
 DEFAULT_PERCENTAGE: Final[int]
@@ -25,7 +25,9 @@ class NetatmoFan(NetatmoModuleEntity, FanEntity):
     device: NaModules.Fan
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     _attr_preset_mode: Incomplete
     @callback
+    @override
     def async_update_callback(self) -> None: ...

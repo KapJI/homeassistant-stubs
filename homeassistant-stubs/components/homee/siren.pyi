@@ -6,7 +6,7 @@ from homeassistant.components.siren import SirenEntity as SirenEntity, SirenEnti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.model import HomeeNode as HomeeNode
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -17,6 +17,9 @@ class HomeeSiren(HomeeEntity, SirenEntity):
     _attr_name: Incomplete
     _attr_supported_features: Incomplete
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

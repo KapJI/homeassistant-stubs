@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import NamedTuple
+from typing import NamedTuple, override
 
 type PureEnergieConfigEntry = ConfigEntry[PureEnergieDataUpdateCoordinator]
 class PureEnergieData(NamedTuple):
@@ -17,4 +17,5 @@ class PureEnergieDataUpdateCoordinator(DataUpdateCoordinator[PureEnergieData]):
     config_entry: PureEnergieConfigEntry
     gridnet: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: PureEnergieConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> PureEnergieData: ...

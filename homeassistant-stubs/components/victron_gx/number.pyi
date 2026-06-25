@@ -5,7 +5,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from victron_mqtt import Device as VictronVenusDevice, MetricType, WritableMetric as VictronVenusWritableMetric
 
 PARALLEL_UPDATES: int
@@ -22,5 +22,7 @@ class VictronNumber(VictronBaseEntity, NumberEntity):
     _attr_native_step: Incomplete
     def __init__(self, device: VictronVenusDevice, metric: VictronVenusWritableMetric, device_info: DeviceInfo, installation_id: str) -> None: ...
     @callback
+    @override
     def _on_update_cb(self, value: Any) -> None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

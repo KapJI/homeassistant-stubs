@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
-from typing import Any
+from typing import Any, override
 
 DICT_HA_TO_MYS: Incomplete
 DICT_MYS_TO_HA: Incomplete
@@ -21,25 +21,38 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, asyn
 class MySensorsHVAC(MySensorsChildEntity, ClimateEntity):
     _attr_hvac_modes = OPERATION_LIST
     @property
+    @override
     def supported_features(self) -> ClimateEntityFeature: ...
     @property
+    @override
     def temperature_unit(self) -> str: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature_high(self) -> float | None: ...
     @property
+    @override
     def target_temperature_low(self) -> float | None: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def fan_mode(self) -> str | None: ...
     @property
+    @override
     def fan_modes(self) -> list[str]: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @callback
+    @override
     def _async_update(self) -> None: ...

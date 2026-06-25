@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,8 +23,10 @@ class ModbusBinarySensor(ModbusBaseEntity, RestoreEntity, BinarySensorEntity):
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, entry: dict[str, Any], slave_count: int) -> None: ...
     async def async_setup_slaves(self, hass: HomeAssistant, slave_count: int, entry: dict[str, Any]) -> list[SlaveSensor]: ...
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: bool
+    @override
     async def _async_update(self) -> None: ...
 
 class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], RestoreEntity, BinarySensorEntity):
@@ -35,6 +37,8 @@ class SlaveSensor(CoordinatorEntity[DataUpdateCoordinator[list[int] | None]], Re
     _result_inx: Incomplete
     def __init__(self, coordinator: DataUpdateCoordinator[list[int] | None], idx: int, entry: dict[str, Any]) -> None: ...
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

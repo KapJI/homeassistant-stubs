@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY, SUPPORTED_PLATFORMS_UI as SUPPORTED_PLATFORMS_UI
+from .const import CONF_KNX_TELEGRAM_DB_LOAD_HOURS as CONF_KNX_TELEGRAM_DB_LOAD_HOURS, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY, SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM as SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM, SIGNAL_KNX_TELEGRAM as SIGNAL_KNX_TELEGRAM, SUPPORTED_PLATFORMS_UI as SUPPORTED_PLATFORMS_UI
 from .dpt import get_supported_dpts as get_supported_dpts
 from .knx_module import KNXModule as KNXModule
 from .storage.config_store import ConfigStoreException as ConfigStoreException
@@ -8,7 +8,7 @@ from .storage.entity_store_validation import EntityStoreValidationException as E
 from .storage.expose_controller import validate_expose_data as validate_expose_data
 from .storage.serialize import get_serialized_schema as get_serialized_schema
 from .storage.time_server import validate_time_server_data as validate_time_server_data
-from .telegrams import SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM as SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM, SIGNAL_KNX_TELEGRAM as SIGNAL_KNX_TELEGRAM, TelegramDict as TelegramDict
+from .telegrams import TelegramDict as TelegramDict
 from collections.abc import Awaitable, Callable
 from homeassistant.components import panel_custom as panel_custom, websocket_api as websocket_api
 from homeassistant.components.frontend import async_panel_exists as async_panel_exists
@@ -47,13 +47,17 @@ async def ws_project_file_process(hass: HomeAssistant, knx: KNXModule, connectio
 @provide_knx
 async def ws_project_file_remove(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 @websocket_api.require_admin
+@websocket_api.async_response
 @provide_knx
-@callback
-def ws_group_monitor_info(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+async def ws_group_monitor_info(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 @websocket_api.require_admin
 @provide_knx
 @callback
 def ws_group_telegrams(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@provide_knx
+async def ws_query_telegrams(hass: HomeAssistant, knx: KNXModule, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
 @websocket_api.require_admin
 @callback
 def ws_subscribe_telegram(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...

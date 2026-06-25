@@ -10,6 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
+from typing import override
 
 TOPIC_TO_EVENT_TYPE: Incomplete
 
@@ -24,6 +25,7 @@ class AxisEntity(Entity):
     hub: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, hub: AxisHub) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: Incomplete
     @callback
@@ -40,4 +42,5 @@ class AxisEventEntity(AxisEntity, metaclass=abc.ABCMeta):
     @callback
     @abstractmethod
     def async_event_callback(self, event: Event) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

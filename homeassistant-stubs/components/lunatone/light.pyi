@@ -8,7 +8,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
 from lunatone_rest_api_client import DALIBroadcast as DALIBroadcast
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,26 +28,38 @@ class LunatoneLight(CoordinatorEntity[LunatoneDevicesDataUpdateCoordinator], Lig
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LunatoneDevicesDataUpdateCoordinator, device_id: int, config_entry_unique_id: str) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def brightness(self) -> int | None: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def supported_color_modes(self) -> set[ColorMode]: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def rgb_color(self) -> tuple[int, int, int] | None: ...
     @property
+    @override
     def rgbw_color(self) -> tuple[int, int, int, int] | None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class LunatoneLineBroadcastLight(CoordinatorEntity[LunatoneInfoDataUpdateCoordinator], LightEntity):
@@ -63,6 +75,9 @@ class LunatoneLineBroadcastLight(CoordinatorEntity[LunatoneInfoDataUpdateCoordin
     _attr_device_info: Incomplete
     def __init__(self, coordinator_info: LunatoneInfoDataUpdateCoordinator, coordinator_devices: LunatoneDevicesDataUpdateCoordinator, broadcast: DALIBroadcast, config_entry_unique_id: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

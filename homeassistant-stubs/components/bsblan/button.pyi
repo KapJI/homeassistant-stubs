@@ -7,6 +7,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 BUTTON_DESCRIPTIONS: tuple[ButtonEntityDescription, ...]
@@ -18,4 +19,5 @@ class BSBLanButtonEntity(BSBLanEntity, ButtonEntity):
     _attr_unique_id: Incomplete
     _data: Incomplete
     def __init__(self, coordinator: BSBLanFastCoordinator, data: BSBLanData, description: ButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

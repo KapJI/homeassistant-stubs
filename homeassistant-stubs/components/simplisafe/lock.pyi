@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from simplipy.device.lock import Lock as Lock
 from simplipy.system.v3 import SystemV3
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
-from typing import Any
+from typing import Any, override
 
 ATTR_LOCK_LOW_BATTERY: str
 ATTR_PIN_PAD_LOW_BATTERY: str
@@ -23,10 +23,14 @@ class SimpliSafeLock(SimpliSafeEntity, LockEntity):
     _device: Lock
     def __init__(self, simplisafe: SimpliSafe, system: SystemV3, lock: Lock) -> None: ...
     _attr_is_locked: bool
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     _attr_is_jammed: Incomplete
     @callback
+    @override
     def async_update_from_rest_api(self) -> None: ...
     @callback
+    @override
     def async_update_from_websocket_event(self, event: WebsocketEvent) -> None: ...

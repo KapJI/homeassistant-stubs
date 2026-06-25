@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ohme import OhmeApiClient as OhmeApiClient
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -26,5 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: OhmeConfigEntry, 
 class OhmeNumber(OhmeEntity, NumberEntity):
     entity_description: OhmeNumberDescription
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

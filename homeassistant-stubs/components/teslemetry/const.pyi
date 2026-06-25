@@ -7,6 +7,7 @@ AUTHORIZE_URL: str
 TOKEN_URL: str
 CLIENT_ID: str
 ENERGY_HISTORY_FIELDS: Incomplete
+VEHICLE_ISSUE_LEARN_MORE: dict[str, str | None]
 
 class TeslemetryState(StrEnum):
     ONLINE = 'online'

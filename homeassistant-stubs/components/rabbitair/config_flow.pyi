@@ -6,7 +6,7 @@ from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_HOS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -15,7 +15,9 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 class RabbitAirConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _discovered_host: str | None
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
 
 class CannotConnect(HomeAssistantError): ...

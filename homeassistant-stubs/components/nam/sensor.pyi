@@ -12,6 +12,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.dt import utcnow as utcnow
 from nettigo_air_monitor import NAMSensors as NAMSensors
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -31,6 +32,8 @@ class NAMSensor(CoordinatorEntity[NAMDataUpdateCoordinator], SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: NAMDataUpdateCoordinator, description: NAMSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

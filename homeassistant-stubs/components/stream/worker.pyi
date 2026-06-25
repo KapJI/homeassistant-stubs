@@ -16,7 +16,7 @@ from collections.abc import Callable as Callable, Generator, Iterator, Mapping
 from homeassistant.core import HomeAssistant as HomeAssistant
 from io import BytesIO
 from threading import Event
-from typing import Any, Self
+from typing import Any, Self, override
 
 _LOGGER: Incomplete
 NEGATIVE_INF: Incomplete
@@ -75,7 +75,9 @@ class PeekIterator(Iterator[av.Packet]):
     _buffer: deque[av.Packet]
     _next: Incomplete
     def __init__(self, iterator: Iterator[av.Packet]) -> None: ...
+    @override
     def __iter__(self) -> Self: ...
+    @override
     def __next__(self) -> av.Packet: ...
     def _pop_buffer(self) -> av.Packet: ...
     def peek(self) -> Generator[av.Packet]: ...

@@ -4,7 +4,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, SwitchInfo, SwitchState
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity
 from homeassistant.core import callback as callback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -12,13 +12,17 @@ class EsphomeSwitch(EsphomeEntity[SwitchInfo, SwitchState], SwitchEntity):
     _attr_assumed_state: Incomplete
     _attr_device_class: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
+    @override
     def is_on(self) -> bool: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 async_setup_entry: Incomplete

@@ -6,6 +6,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityNumericalConditionBase as EntityNumericalConditionBase, EntityStateConditionBase as EntityStateConditionBase, make_entity_state_condition as make_entity_state_condition
 from homeassistant.helpers.entity import get_supported_features as get_supported_features
+from typing import override
 
 IS_MODE_CONDITION_SCHEMA: Incomplete
 
@@ -14,6 +15,7 @@ def _supports_feature(hass: HomeAssistant, entity_id: str, features: int) -> boo
 class IsTargetHumidityCondition(EntityNumericalConditionBase):
     _domain_specs: Incomplete
     _valid_unit = PERCENTAGE
+    @override
     def _should_include(self, state: State) -> bool: ...
 
 class IsModeCondition(EntityStateConditionBase):
@@ -21,6 +23,7 @@ class IsModeCondition(EntityStateConditionBase):
     _schema = IS_MODE_CONDITION_SCHEMA
     _states: Incomplete
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
+    @override
     def entity_filter(self, entities: set[str]) -> set[str]: ...
 
 CONDITIONS: dict[str, type[Condition]]

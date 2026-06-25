@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.util.json import json_loads_object as json_loads_object
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 MAX_CHUNK_SIZE: Incomplete
@@ -34,14 +34,19 @@ class OneDriveBackupAgent(BackupAgent):
     _cache_expiration: Incomplete
     def __init__(self, hass: HomeAssistant, entry: OneDriveConfigEntry) -> None: ...
     @handle_backup_errors
+    @override
     async def async_download_backup(self, backup_id: str, **kwargs: Any) -> AsyncIterator[bytes]: ...
     @handle_backup_errors
+    @override
     async def async_upload_backup(self, *, open_stream: Callable[[], Coroutine[Any, Any, AsyncIterator[bytes]]], backup: AgentBackup, on_progress: OnProgressCallback, **kwargs: Any) -> None: ...
     @handle_backup_errors
+    @override
     async def async_delete_backup(self, backup_id: str, **kwargs: Any) -> None: ...
     @handle_backup_errors
+    @override
     async def async_list_backups(self, **kwargs: Any) -> list[AgentBackup]: ...
     @handle_backup_errors
+    @override
     async def async_get_backup(self, backup_id: str, **kwargs: Any) -> AgentBackup: ...
     async def _list_cached_metadata_files(self) -> dict[str, AgentBackup]: ...
     async def _find_backup_by_id(self, backup_id: str) -> AgentBackup: ...

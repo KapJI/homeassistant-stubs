@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
-from typing import Any
+from typing import Any, override
 
 AUTH_SCHEMA: Incomplete
 REAUTH_SCHEMA: Incomplete
@@ -23,4 +23,5 @@ class NotionFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...

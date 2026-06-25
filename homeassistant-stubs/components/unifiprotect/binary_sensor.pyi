@@ -7,11 +7,15 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from uiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor as Sensor
 from uiprotect.data.nvr import UOSDisk as UOSDisk
+from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
 
 _KEY_DOOR: str
 PARALLEL_UPDATES: int
+
+def _async_motion_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(ProtectEntityDescription, BinarySensorEntityDescription): ...
@@ -24,7 +28,6 @@ LIGHT_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 MOUNTABLE_SENSE_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 SENSE_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 EVENT_SENSORS: tuple[ProtectBinaryEventEntityDescription, ...]
-DOORLOCK_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 VIEWER_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 DISK_SENSORS: tuple[ProtectBinaryEntityDescription, ...]
 _MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
@@ -38,6 +41,7 @@ class MountableProtectDeviceBinarySensor(ProtectDeviceBinarySensor):
     _state_attrs: Incomplete
     _attr_device_class: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
@@ -48,6 +52,7 @@ class ProtectDiskBinarySensor(ProtectNVREntity, BinarySensorEntity):
     _attr_available: bool
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
@@ -56,12 +61,14 @@ class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     _attr_is_on: bool
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _set_event_done(self) -> None: ...
     @callback
     def _find_active_event_with_object_type(self, device: ProtectDeviceType) -> Event | None: ...
     _event: Incomplete
     _event_end: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
 MODEL_DESCRIPTIONS_WITH_CLASS: Incomplete

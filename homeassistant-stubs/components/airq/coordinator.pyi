@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_create_clientsession as async_create_clientsession
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -17,4 +18,5 @@ class AirQCoordinator(DataUpdateCoordinator):
     clip_negative: Incomplete
     return_average: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, clip_negative: bool = True, return_average: bool = True) -> None: ...
+    @override
     async def _async_update_data(self) -> dict: ...

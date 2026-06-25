@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Chime as Chime, Host as Host
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -45,8 +45,10 @@ class ReolinkSelectEntity(ReolinkChannelCoordinatorEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @raise_translated_error
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ReolinkHostSelectEntity(ReolinkHostCoordinatorEntity, SelectEntity):
@@ -54,8 +56,10 @@ class ReolinkHostSelectEntity(ReolinkHostCoordinatorEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @raise_translated_error
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ReolinkChimeSelectEntity(ReolinkChimeCoordinatorEntity, SelectEntity):
@@ -63,8 +67,10 @@ class ReolinkChimeSelectEntity(ReolinkChimeCoordinatorEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @raise_translated_error
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class ReolinkHostChimeSelectEntity(ReolinkHostChimeCoordinatorEntity, SelectEntity):
@@ -72,6 +78,8 @@ class ReolinkHostChimeSelectEntity(ReolinkHostChimeCoordinatorEntity, SelectEnti
     _attr_options: Incomplete
     def __init__(self, reolink_data: ReolinkData, chime: Chime, entity_description: ReolinkChimeSelectEntityDescription) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @raise_translated_error
+    @override
     async def async_select_option(self, option: str) -> None: ...

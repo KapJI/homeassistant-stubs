@@ -17,6 +17,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -44,9 +45,12 @@ class MqttSensor(MqttEntity, RestoreSensor):
     _template: Callable[[ReceivePayloadType, PayloadSentinel], ReceivePayloadType] | None
     _last_reset_template: Callable[[ReceivePayloadType], ReceivePayloadType] | None
     _attr_native_value: Incomplete
+    @override
     async def mqtt_async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_force_update: Incomplete
@@ -54,6 +58,7 @@ class MqttSensor(MqttEntity, RestoreSensor):
     _attr_native_unit_of_measurement: Incomplete
     _attr_options: Incomplete
     _attr_state_class: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _update_state(self, msg: ReceiveMessage) -> None: ...
@@ -62,9 +67,12 @@ class MqttSensor(MqttEntity, RestoreSensor):
     @callback
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     @callback
     def _value_is_expired(self, *_: datetime) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

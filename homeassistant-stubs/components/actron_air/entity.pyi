@@ -6,7 +6,7 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 def actron_air_command[_EntityT: ActronAirEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...
 
@@ -15,6 +15,7 @@ class ActronAirEntity(CoordinatorEntity[ActronAirSystemCoordinator]):
     _serial_number: Incomplete
     def __init__(self, coordinator: ActronAirSystemCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class ActronAirAcEntity(ActronAirEntity):

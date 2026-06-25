@@ -8,6 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 NAME_TO_POWER_RESTORE_STATE: Incomplete
 
@@ -28,30 +29,40 @@ class FluxPowerStateSelect(FluxConfigAtStartSelect, SelectEntity):
     _attr_current_option: Incomplete
     @callback
     def _async_set_current_option_from_device(self) -> None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxICTypeSelect(FluxConfigSelect):
     _attr_translation_key: str
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxWiringsSelect(FluxConfigSelect):
     _attr_translation_key: str
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxOperatingModesSelect(FluxConfigSelect):
     _attr_translation_key: str
     @property
+    @override
     def options(self) -> list[str]: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxRemoteConfigSelect(FluxConfigSelect):
@@ -60,7 +71,9 @@ class FluxRemoteConfigSelect(FluxConfigSelect):
     _attr_options: Incomplete
     def __init__(self, coordinator: FluxLedUpdateCoordinator, base_unique_id: str, key: str) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class FluxWhiteChannelSelect(FluxConfigAtStartSelect):
@@ -69,5 +82,7 @@ class FluxWhiteChannelSelect(FluxConfigAtStartSelect):
     _attr_unique_id: Incomplete
     def __init__(self, device: AIOWifiLedBulb, entry: FluxLedConfigEntry) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...

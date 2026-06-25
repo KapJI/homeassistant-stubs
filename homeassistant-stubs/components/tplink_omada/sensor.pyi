@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from tplink_omada_client.devices import OmadaListDevice as OmadaListDevice
+from typing import override
 
 PARALLEL_UPDATES: int
 DEVICE_STATUS_MAP: Incomplete
@@ -31,4 +32,5 @@ class OmadaDeviceSensor(OmadaDeviceEntity[OmadaDevicesCoordinator], SensorEntity
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: OmadaDevicesCoordinator, device: OmadaListDevice, entity_description: OmadaDeviceSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

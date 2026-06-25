@@ -9,7 +9,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from wled import WLED as WLED
 
 PARALLEL_UPDATES: int
@@ -29,12 +29,16 @@ class WLEDNightlightSwitch(WLEDEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @wled_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WLEDSyncSendSwitch(WLEDEntity, SwitchEntity):
@@ -43,12 +47,16 @@ class WLEDSyncSendSwitch(WLEDEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @wled_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WLEDSyncReceiveSwitch(WLEDEntity, SwitchEntity):
@@ -57,12 +65,16 @@ class WLEDSyncReceiveSwitch(WLEDEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @wled_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
 
 class WLEDSegmentSwitch(WLEDEntity, SwitchEntity):
@@ -74,13 +86,17 @@ class WLEDSegmentSwitch(WLEDEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int, description: WLEDSegmentSwitchEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     async def _async_set_state(self, value: bool) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @wled_exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 @callback

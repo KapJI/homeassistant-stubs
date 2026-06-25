@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 ATTR_ALTITUDE: Final[str]
 ATTR_ATMOSPHERIC_PRESSURE: Final[str]
@@ -30,6 +30,8 @@ class SensorPushCloudSensor(CoordinatorEntity[SensorPushCloudCoordinator], Senso
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SensorPushCloudCoordinator, entity_description: SensorEntityDescription, device_id: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

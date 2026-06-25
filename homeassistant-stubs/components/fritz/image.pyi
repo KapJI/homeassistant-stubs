@@ -7,6 +7,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -24,6 +25,8 @@ class FritzGuestWifiQRImage(FritzBoxBaseEntity, ImageEntity):
     def __init__(self, hass: HomeAssistant, avm_wrapper: AvmWrapper, device_friendly_name: str, ssid: str) -> None: ...
     def _fetch_image(self) -> bytes: ...
     _attr_image_last_updated: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def async_update(self) -> None: ...
+    @override
     async def async_image(self) -> bytes | None: ...

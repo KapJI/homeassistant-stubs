@@ -3,6 +3,10 @@ from typing import Final
 
 DOMAIN: Final[str]
 DEFAULT_NAME: Final[str]
+ELEVATION_HORIZON: Final[float]
+ELEVATION_CIVIL: Final[float]
+ELEVATION_NAUTICAL: Final[float]
+ELEVATION_ASTRONOMICAL: Final[float]
 SIGNAL_POSITION_CHANGED: Incomplete
 SIGNAL_EVENTS_CHANGED: Incomplete
 STATE_ABOVE_HORIZON: str

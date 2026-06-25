@@ -4,7 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.storage import Store as Store
 from pathlib import Path
 from roborock.devices.cache import Cache, CacheData
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 STORAGE_PATH: Incomplete
@@ -16,13 +16,16 @@ async def async_cleanup_map_storage(hass: HomeAssistant, entry_id: str) -> None:
 
 class StoreImpl(Store[dict[str, Any]]):
     def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class CacheStore(Cache):
     _cache_store: Incomplete
     _cache_data: CacheData | None
     def __init__(self, hass: HomeAssistant, entry_id: str) -> None: ...
+    @override
     async def get(self) -> CacheData: ...
+    @override
     async def set(self, value: CacheData) -> None: ...
     async def flush(self) -> None: ...
     async def async_remove(self) -> None: ...

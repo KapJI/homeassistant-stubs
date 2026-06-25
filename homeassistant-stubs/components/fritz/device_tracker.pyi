@@ -9,6 +9,7 @@ from homeassistant.components.device_tracker import ScannerEntity as ScannerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -23,10 +24,14 @@ class FritzBoxTracker(FritzDeviceBase, ScannerEntity):
     _last_activity: datetime.datetime | None
     def __init__(self, avm_wrapper: AvmWrapper, device: FritzDevice) -> None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def mac_address(self) -> str: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str]: ...

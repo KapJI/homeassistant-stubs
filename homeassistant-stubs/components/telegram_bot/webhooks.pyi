@@ -10,6 +10,7 @@ from homeassistant.helpers.network import get_url as get_url
 from ipaddress import IPv4Network
 from telegram import Bot as Bot
 from telegram.ext import Application as Application
+from typing import override
 
 _LOGGER: Incomplete
 TELEGRAM_WEBHOOK_URL: str
@@ -26,6 +27,7 @@ class PushBot(BaseTelegramBot):
     base_url: Incomplete
     webhook_url: Incomplete
     def __init__(self, hass: HomeAssistant, bot: Bot, config: TelegramBotConfigEntry, secret_token: str) -> None: ...
+    @override
     async def shutdown(self) -> None: ...
     async def _try_to_set_webhook(self) -> bool: ...
     async def start_application(self) -> None: ...

@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class AutarcoBatterySensorEntityDescription(SensorEntityDescription):
@@ -43,6 +44,7 @@ class AutarcoBatterySensorEntity(AutarcoSensorBase):
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: AutarcoDataUpdateCoordinator, description: AutarcoBatterySensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class AutarcoSolarSensorEntity(AutarcoSensorBase):
@@ -51,6 +53,7 @@ class AutarcoSolarSensorEntity(AutarcoSensorBase):
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: AutarcoDataUpdateCoordinator, description: AutarcoSolarSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class AutarcoInverterSensorEntity(AutarcoSensorBase):
@@ -60,4 +63,5 @@ class AutarcoInverterSensorEntity(AutarcoSensorBase):
     _attr_device_info: Incomplete
     def __init__(self, *, coordinator: AutarcoDataUpdateCoordinator, description: AutarcoInverterSensorEntityDescription, serial_number: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

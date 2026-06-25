@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ohme import OhmeApiClient as OhmeApiClient
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,4 +23,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: OhmeConfigEntry, 
 
 class OhmeButton(OhmeEntity, ButtonEntity):
     entity_description: OhmeButtonDescription
+    @override
     async def async_press(self) -> None: ...

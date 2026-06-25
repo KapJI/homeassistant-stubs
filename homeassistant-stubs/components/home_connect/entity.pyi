@@ -12,7 +12,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 
@@ -26,20 +26,24 @@ class HomeConnectEntity(CoordinatorEntity[HomeConnectApplianceCoordinator], meta
     @abstractmethod
     def update_native_value(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
     def bsh_key(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     async def async_set_option_with_key(self, option_key: OptionKey, value: Any) -> None: ...
 
 class HomeConnectOptionEntity(HomeConnectEntity, metaclass=abc.ABCMeta):
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def option_value(self) -> str | int | float | bool | None: ...
     async def async_set_option(self, value: Any) -> None: ...
     @property
+    @override
     def bsh_key(self) -> OptionKey: ...
 
 def constraint_fetcher[_EntityT: HomeConnectEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...

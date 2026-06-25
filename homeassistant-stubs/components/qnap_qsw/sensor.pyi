@@ -10,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfDataRate
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True)
 class QswSensorEntityDescription(SensorEntityDescription, QswEntityDescription):
@@ -33,4 +33,5 @@ class QswSensor(QswSensorEntity, SensorEntity):
     def __init__(self, coordinator: QswDataCoordinator, description: QswSensorEntityDescription, entry: QnapQswConfigEntry, type_id: int | None = None) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

@@ -4,6 +4,7 @@ from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityConditionBase as EntityConditionBase
+from typing import override
 
 CONF_VALUE: str
 _TEXT_CONDITION_SCHEMA: Incomplete
@@ -14,7 +15,9 @@ class TextIsEqualToCondition(EntityConditionBase):
     _value: str
     def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
     @property
+    @override
     def _needs_duration_tracking(self) -> bool: ...
+    @override
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 CONDITIONS: dict[str, type[Condition]]

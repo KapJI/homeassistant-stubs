@@ -12,6 +12,7 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, StateType as StateType
 from pytautulli import PyTautulliApiActivity as PyTautulliApiActivity, PyTautulliApiHomeStats as PyTautulliApiHomeStats, PyTautulliApiSession as PyTautulliApiSession, PyTautulliApiUser as PyTautulliApiUser
+from typing import override
 
 def get_top_stats(home_stats: PyTautulliApiHomeStats, activity: PyTautulliApiActivity, key: str) -> str | None: ...
 
@@ -33,6 +34,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: TautulliConfigEntry, asy
 class TautulliSensor(TautulliEntity, SensorEntity):
     entity_description: TautulliSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class TautulliSessionSensor(TautulliEntity, SensorEntity):
@@ -40,4 +42,5 @@ class TautulliSessionSensor(TautulliEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: TautulliDataUpdateCoordinator, description: EntityDescription, user: PyTautulliApiUser) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

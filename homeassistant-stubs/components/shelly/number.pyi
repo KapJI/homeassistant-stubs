@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -38,12 +38,15 @@ class RpcNumber(ShellyRpcAttributeEntity, NumberEntity):
     _attr_mode: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcNumberDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
     @rpc_call
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class RpcCuryIntensityNumber(RpcNumber):
     @rpc_call
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class RpcBluTrvNumber(RpcNumber):
@@ -53,7 +56,9 @@ class RpcBluTrvNumber(RpcNumber):
 class RpcBluTrvExtTempNumber(RpcBluTrvNumber):
     _reported_value: float | None
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 BLOCK_NUMBERS: dict[tuple[str, str], BlockNumberDescription]
@@ -69,7 +74,10 @@ class BlockSleepingNumber(ShellySleepingBlockAttributeEntity, RestoreNumber):
     entity_description: BlockNumberDescription
     restored_data: NumberExtraStoredData | None
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block | None, attribute: str, description: BlockNumberDescription, entry: RegistryEntry | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

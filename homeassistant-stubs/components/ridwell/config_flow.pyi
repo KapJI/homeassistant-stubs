@@ -8,7 +8,7 @@ from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as
 from homeassistant.core import callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client, selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
-from typing import Any
+from typing import Any, override
 
 STEP_REAUTH_CONFIRM_DATA_SCHEMA: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
@@ -23,7 +23,9 @@ class RidwellConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _async_validate(self, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: RidwellConfigEntry) -> SchemaOptionsFlowHandler: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

@@ -12,7 +12,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PAYLOAD_ON as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
@@ -27,9 +27,14 @@ class MqttScene(MqttEntity, Scene):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     @staticmethod
+    @override
     def config_schema() -> vol.Schema: ...
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_activate(self, **kwargs: Any) -> None: ...

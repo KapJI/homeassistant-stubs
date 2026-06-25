@@ -5,7 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 type FullyKioskConfigEntry = ConfigEntry[FullyKioskDataUpdateCoordinator]
 class FullyKioskDataUpdateCoordinator(DataUpdateCoordinator):
@@ -13,4 +13,5 @@ class FullyKioskDataUpdateCoordinator(DataUpdateCoordinator):
     use_ssl: Incomplete
     fully: Incomplete
     def __init__(self, hass: HomeAssistant, entry: FullyKioskConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

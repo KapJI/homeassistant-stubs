@@ -8,6 +8,7 @@ from deebot_client.models import CleanAction
 from homeassistant.components.lawn_mower import LawnMowerActivity as LawnMowerActivity, LawnMowerEntity as LawnMowerEntity, LawnMowerEntityEntityDescription as LawnMowerEntityEntityDescription, LawnMowerEntityFeature as LawnMowerEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 _STATE_TO_MOWER_STATE: Incomplete
@@ -19,8 +20,12 @@ class EcovacsMower(EcovacsEntity[Capabilities], LawnMowerEntity):
     entity_description: Incomplete
     def __init__(self, device: Device) -> None: ...
     _attr_activity: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _clean_command(self, action: CleanAction) -> None: ...
+    @override
     async def async_start_mowing(self) -> None: ...
+    @override
     async def async_pause(self) -> None: ...
+    @override
     async def async_dock(self) -> None: ...

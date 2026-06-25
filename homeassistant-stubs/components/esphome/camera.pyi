@@ -7,7 +7,7 @@ from collections.abc import Callable as Callable
 from homeassistant.components import camera as camera
 from homeassistant.components.camera import Camera as Camera
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -18,11 +18,15 @@ class EsphomeCamera(Camera, EsphomeEntity[CameraInfo, CameraState]):
     @callback
     def _set_futures(self, result: bool) -> None: ...
     @callback
+    @override
     def _on_device_update(self) -> None: ...
     @callback
+    @override
     def _on_state_update(self) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     async def _async_request_image(self, request_method: Callable[[], None]) -> bytes | None: ...
+    @override
     async def handle_async_mjpeg_stream(self, request: web.Request) -> web.StreamResponse: ...
 
 async_setup_entry: Incomplete

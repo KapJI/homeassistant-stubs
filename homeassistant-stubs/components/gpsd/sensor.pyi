@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 _LOGGER: Incomplete
 ATTR_CLIMB: str
@@ -39,4 +40,5 @@ class GpsdSensor(SensorEntity):
     agps_thread: Incomplete
     def __init__(self, agps_thread: AGPS3mechanism, unique_id: str, description: GpsdSensorDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

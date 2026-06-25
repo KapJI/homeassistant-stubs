@@ -5,7 +5,7 @@ from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, C
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyvlx import DimmableDevice as DimmableDevice
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -17,10 +17,13 @@ class VeluxOnOffLight(VeluxEntity, LightEntity):
     _attr_name: Incomplete
     node: DimmableDevice
     @property
+    @override
     def is_on(self) -> bool: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class VeluxDimmableLight(VeluxOnOffLight):
@@ -28,6 +31,8 @@ class VeluxDimmableLight(VeluxOnOffLight):
     _attr_color_mode: Incomplete
     _attr_name: Incomplete
     @property
+    @override
     def brightness(self) -> int: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

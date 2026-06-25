@@ -10,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -26,5 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: TailwindConfigEntry, asy
 class TailwindNumberEntity(TailwindEntity, NumberEntity):
     entity_description: TailwindNumberEntityDescription
     @property
+    @override
     def native_value(self) -> int | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ class ElgatoSensorEntity(ElgatoEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ElgatoDataUpdateCoordinator, description: ElgatoSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | None: ...

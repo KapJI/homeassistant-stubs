@@ -5,6 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 
 DEFAULT_HOST: str
 PLATFORM_SCHEMA: Incomplete
@@ -15,6 +16,8 @@ class ArrisDeviceScanner(DeviceScanner):
     connect_box: Incomplete
     last_results: list[Device]
     def __init__(self, connect_box: ConnectBox) -> None: ...
+    @override
     async def async_scan_devices(self) -> list[str]: ...
+    @override
     async def async_get_device_name(self, device: str) -> str | None: ...
     async def _async_update_info(self) -> None: ...

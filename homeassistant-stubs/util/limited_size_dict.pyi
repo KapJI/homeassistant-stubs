@@ -1,9 +1,10 @@
 from _typeshed import Incomplete
 from collections import OrderedDict
-from typing import Any
+from typing import Any, override
 
 class LimitedSizeDict[_KT, _VT](OrderedDict[_KT, _VT]):
     size_limit: Incomplete
     def __init__(self, *args: Any, **kwds: Any) -> None: ...
+    @override
     def __setitem__(self, key: _KT, value: _VT) -> None: ...
     def _check_size_limit(self) -> None: ...

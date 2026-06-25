@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from py_dormakaba_dkey import DKEYLock as DKEYLock
+from typing import override
 
 _LOGGER: Incomplete
 type DormakabaDkeyConfigEntry = ConfigEntry[DormakabaDkeyCoordinator]
@@ -12,4 +13,5 @@ type DormakabaDkeyConfigEntry = ConfigEntry[DormakabaDkeyCoordinator]
 class DormakabaDkeyCoordinator(DataUpdateCoordinator[None]):
     lock: Incomplete
     def __init__(self, hass: HomeAssistant, entry: DormakabaDkeyConfigEntry, lock: DKEYLock) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

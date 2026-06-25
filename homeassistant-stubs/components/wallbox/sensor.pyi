@@ -8,6 +8,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(frozen=True)
 class WallboxSensorEntityDescription(SensorEntityDescription):
@@ -24,6 +25,8 @@ class WallboxSensor(WallboxEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WallboxCoordinator, description: WallboxSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...

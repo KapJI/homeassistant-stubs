@@ -13,6 +13,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyblu import Player as Player
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: BluesoundConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -32,4 +33,5 @@ class BluesoundButton(CoordinatorEntity[BluesoundCoordinator], ButtonEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: BluesoundCoordinator, player: Player, port: int, description: BluesoundButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

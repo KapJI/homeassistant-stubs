@@ -5,6 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 LOGGER: Incomplete
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
@@ -17,4 +18,5 @@ class LookinSensorEntity(LookinDeviceCoordinatorEntity, SensorEntity):
     _attr_native_value: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, description: SensorEntityDescription, lookin_data: LookinData) -> None: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...

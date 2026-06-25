@@ -5,6 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 SENSORS: tuple[SensorEntityDescription, ...]
 POWER_SENSORS: tuple[SensorEntityDescription, ...]
@@ -17,9 +18,11 @@ class WizSensor(WizEntity, SensorEntity):
     def __init__(self, wiz_data: WizData, name: str, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class WizPowerSensor(WizSensor):
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

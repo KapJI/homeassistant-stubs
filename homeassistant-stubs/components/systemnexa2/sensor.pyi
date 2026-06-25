@@ -6,6 +6,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,4 +22,5 @@ class SystemNexa2Sensor(SystemNexa2Entity, SensorEntity):
     entity_description: SystemNexa2SensorEntityDescription
     def __init__(self, coordinator: SystemNexa2DataUpdateCoordinator, entity_description: SystemNexa2SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | None: ...

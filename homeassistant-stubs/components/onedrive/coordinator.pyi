@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from onedrive_personal_sdk import OneDriveClient as OneDriveClient
 from onedrive_personal_sdk.models.items import Drive
+from typing import override
 
 SCAN_INTERVAL: Incomplete
 _LOGGER: Incomplete
@@ -24,4 +25,5 @@ class OneDriveUpdateCoordinator(DataUpdateCoordinator[Drive]):
     config_entry: OneDriveConfigEntry
     _client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: OneDriveConfigEntry, client: OneDriveClient) -> None: ...
+    @override
     async def _async_update_data(self) -> Drive: ...

@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.const import AttributeType
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
+from typing import override
 
 PARALLEL_UPDATES: int
 BUTTON_DESCRIPTIONS: dict[AttributeType, ButtonEntityDescription]
@@ -21,4 +22,5 @@ class HomeeButton(HomeeEntity, ButtonEntity):
     _attr_translation_key: Incomplete
     _attr_translation_placeholders: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: ButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

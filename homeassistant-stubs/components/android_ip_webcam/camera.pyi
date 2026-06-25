@@ -7,6 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidIPCamConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,4 +18,5 @@ class IPWebcamCamera(MjpegCamera):
     _attr_device_info: Incomplete
     _coordinator: Incomplete
     def __init__(self, coordinator: AndroidIPCamDataUpdateCoordinator) -> None: ...
+    @override
     async def stream_source(self) -> str: ...

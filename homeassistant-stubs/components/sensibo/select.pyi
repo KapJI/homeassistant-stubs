@@ -8,7 +8,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pysensibo.model import SensiboDevice as SensiboDevice
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,11 +28,15 @@ class SensiboSelect(SensiboDeviceBaseEntity, SelectEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboSelectEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
     @async_handle_api_call
     async def async_send_api_call(self, key: str, value: Any) -> bool: ...

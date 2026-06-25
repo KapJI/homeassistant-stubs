@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor.ancillary_control import AncillaryControl
+from typing import override
 
 DECONZ_TO_ALARM_STATE: Incomplete
 
@@ -21,10 +22,16 @@ class DeconzAlarmControlPanel(DeconzDevice[AncillaryControl], AlarmControlPanelE
     alarm_system_id: Incomplete
     def __init__(self, device: AncillaryControl, hub: DeconzHub, alarm_system_id: str) -> None: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...
     @property
+    @override
     def alarm_state(self) -> AlarmControlPanelState | None: ...
+    @override
     async def async_alarm_arm_away(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_home(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_arm_night(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...

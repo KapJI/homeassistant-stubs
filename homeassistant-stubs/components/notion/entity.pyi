@@ -8,6 +8,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class NotionEntityDescription:
@@ -24,6 +25,7 @@ class NotionEntity(CoordinatorEntity[NotionDataUpdateCoordinator]):
     entity_description: Incomplete
     def __init__(self, coordinator: NotionDataUpdateCoordinator, listener_id: str, sensor_id: str, bridge_id: int, description: EntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def listener(self) -> Listener: ...
@@ -32,4 +34,5 @@ class NotionEntity(CoordinatorEntity[NotionDataUpdateCoordinator]):
     @callback
     def _async_update_bridge_id(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

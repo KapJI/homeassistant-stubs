@@ -9,6 +9,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,6 +20,7 @@ class MatterBinarySensor(MatterEntity, BinarySensorEntity):
     entity_description: MatterBinarySensorEntityDescription
     _attr_is_on: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 _PUMP_STATUS: Incomplete

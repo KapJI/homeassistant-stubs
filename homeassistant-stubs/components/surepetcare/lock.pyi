@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from surepy.entities import SurepyEntity as SurepyEntity
 from surepy.enums import LockState as SurepyLockState
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: SurePetcareConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,11 +17,15 @@ class SurePetcareLock(SurePetcareEntity, LockEntity):
     _attr_unique_id: Incomplete
     def __init__(self, surepetcare_id: int, coordinator: SurePetcareDataCoordinator, lock_state: SurepyLockState) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     _attr_is_locked: Incomplete
     @callback
+    @override
     def _update_attr(self, surepy_entity: SurepyEntity) -> None: ...
     _attr_is_locking: bool
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
     _attr_is_unlocking: bool
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...

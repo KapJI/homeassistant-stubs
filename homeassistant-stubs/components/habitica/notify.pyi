@@ -12,6 +12,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,6 +26,7 @@ class HabiticaBaseNotifyEntity(HabiticaBase, NotifyEntity, metaclass=abc.ABCMeta
     def __init__(self, coordinator: HabiticaDataUpdateCoordinator) -> None: ...
     @abstractmethod
     async def _send_message(self, message: str) -> None: ...
+    @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...
 
 class HabiticaPartyChatNotifyEntity(HabiticaBaseNotifyEntity):
@@ -32,6 +34,7 @@ class HabiticaPartyChatNotifyEntity(HabiticaBaseNotifyEntity):
     entity_description: Incomplete
     party: Incomplete
     def __init__(self, coordinator: HabiticaDataUpdateCoordinator, party: GroupData) -> None: ...
+    @override
     async def _send_message(self, message: str) -> None: ...
 
 class HabiticaPrivateMessageNotifyEntity(HabiticaBaseNotifyEntity):
@@ -39,4 +42,5 @@ class HabiticaPrivateMessageNotifyEntity(HabiticaBaseNotifyEntity):
     entity_description: Incomplete
     member: Incomplete
     def __init__(self, coordinator: HabiticaDataUpdateCoordinator, member: UserData) -> None: ...
+    @override
     async def _send_message(self, message: str) -> None: ...

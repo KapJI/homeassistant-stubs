@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -26,6 +27,7 @@ class ArcamFmjCoordinator(DataUpdateCoordinator[None]):
     device_info: Incomplete
     zone_unique_id: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ArcamFmjConfigEntry, client: Client, zone: int) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
     @callback
     def _async_notify_packet(self, packet: ResponsePacket | AmxDuetResponse) -> None: ...

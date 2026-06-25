@@ -2,13 +2,15 @@ from .const import CONF_SERVER_ID as CONF_SERVER_ID, CONF_SERVER_NAME as CONF_SE
 from .coordinator import SpeedTestConfigEntry as SpeedTestConfigEntry
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 class SpeedTestFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: SpeedTestConfigEntry) -> SpeedTestOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class SpeedTestOptionsFlowHandler(OptionsFlowWithReload):

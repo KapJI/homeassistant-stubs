@@ -5,13 +5,14 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from rabbitair import Client as Client, State
-from typing import Any
+from typing import Any, override
 
 type RabbitAirConfigEntry = ConfigEntry[RabbitAirDataUpdateCoordinator]
 _LOGGER: Incomplete
 
 class RabbitAirDebouncer(Debouncer[Coroutine[Any, Any, None]]):
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def async_call(self) -> None: ...
     def has_pending_call(self) -> bool: ...
 
@@ -19,5 +20,7 @@ class RabbitAirDataUpdateCoordinator(DataUpdateCoordinator[State]):
     config_entry: RabbitAirConfigEntry
     device: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RabbitAirConfigEntry, device: Client) -> None: ...
+    @override
     async def _async_update_data(self) -> State: ...
+    @override
     async def _async_refresh(self, log_failures: bool = True, raise_on_auth_failed: bool = False, scheduled: bool = False, raise_on_entry_error: bool = False) -> None: ...

@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 ENTITY_DESCRIPTIONS: Incomplete
 
@@ -22,6 +23,8 @@ class LD2410BLEBinarySensor(CoordinatorEntity[LD2410BLECoordinator], BinarySenso
     _attr_is_on: Incomplete
     def __init__(self, coordinator: LD2410BLECoordinator, device: LD2410BLE, name: str, description: BinarySensorEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

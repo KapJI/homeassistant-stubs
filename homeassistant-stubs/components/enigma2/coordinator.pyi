@@ -8,6 +8,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity_component import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from openwebif.api import OpenWebIfDevice, OpenWebIfStatus
+from typing import override
 
 LOGGER: Incomplete
 SETUP_TIMEOUT: int
@@ -19,5 +20,7 @@ class Enigma2UpdateCoordinator(DataUpdateCoordinator[OpenWebIfStatus]):
     unique_id: str | None
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: Enigma2ConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> OpenWebIfStatus: ...

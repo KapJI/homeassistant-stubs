@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type SpeedTestConfigEntry = ConfigEntry[SpeedTestDataCoordinator]
@@ -16,4 +16,5 @@ class SpeedTestDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     def __init__(self, hass: HomeAssistant, config_entry: SpeedTestConfigEntry, api: speedtest.Speedtest) -> None: ...
     def update_servers(self) -> None: ...
     def update_data(self) -> dict[str, Any]: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

@@ -7,7 +7,7 @@ from collections.abc import AsyncIterable
 from homeassistant.components import websocket_api
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.restore_state import RestoreEntity
-from typing import final
+from typing import final, override
 
 __all__ = ['DOMAIN', 'DetectionResult', 'WakeWord', 'WakeWordDetectionEntity', 'async_default_entity', 'async_get_wake_word_detection_entity']
 
@@ -22,10 +22,12 @@ class WakeWordDetectionEntity(RestoreEntity, metaclass=abc.ABCMeta):
     __last_detected: str | None
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @abstractmethod
     async def get_supported_wake_words(self) -> list[WakeWord]: ...
     @abstractmethod
     async def _async_process_audio_stream(self, stream: AsyncIterable[tuple[bytes, int]], wake_word_id: str | None) -> DetectionResult | None: ...
     async def async_process_audio_stream(self, stream: AsyncIterable[tuple[bytes, int]], wake_word_id: str | None) -> DetectionResult | None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...

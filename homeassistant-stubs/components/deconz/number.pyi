@@ -13,7 +13,7 @@ from pydeconz.interfaces.sensors import SensorResources
 from pydeconz.models.event import EventType as EventType
 from pydeconz.models.sensor import SensorBase as PydeconzSensorBase
 from pydeconz.models.sensor.presence import Presence
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class DeconzNumberDescription[_T: (Presence, PydeconzSensorBase)](NumberEntityDescription):
@@ -35,5 +35,7 @@ class DeconzNumber(DeconzDevice[SensorResources], NumberEntity):
     _update_key: Incomplete
     def __init__(self, device: SensorResources, hub: DeconzHub, description: DeconzNumberDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

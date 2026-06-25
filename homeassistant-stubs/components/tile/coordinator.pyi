@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pytile.api import API as API
 from pytile.tile import Tile as Tile
+from typing import override
 
 type TileConfigEntry = ConfigEntry[dict[str, TileCoordinator]]
 class TileCoordinator(DataUpdateCoordinator[None]):
@@ -15,4 +16,5 @@ class TileCoordinator(DataUpdateCoordinator[None]):
     client: Incomplete
     username: Incomplete
     def __init__(self, hass: HomeAssistant, entry: TileConfigEntry, client: API, tile: Tile) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

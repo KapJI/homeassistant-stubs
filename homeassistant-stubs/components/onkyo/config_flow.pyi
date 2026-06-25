@@ -10,7 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import section as section
 from homeassistant.helpers.selector import NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, Selector as Selector, TextSelector as TextSelector
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 INPUT_SOURCES_DEFAULT: list[InputSource]
@@ -24,14 +24,17 @@ STEP_CONFIGURE_SCHEMA: Incomplete
 class OnkyoConfigFlow(ConfigFlow, domain=DOMAIN):
     _receiver_info: ReceiverInfo
     _discovered_infos: dict[str, ReceiverInfo]
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_manual(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_eiscp_discovery(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_ssdp(self, discovery_info: SsdpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_configure_receiver(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: OnkyoConfigEntry) -> OptionsFlowWithReload: ...
 
 OPTIONS_STEP_INIT_SCHEMA: Incomplete

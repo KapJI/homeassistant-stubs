@@ -4,7 +4,7 @@ from collections.abc import Mapping
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, Platform as Platform
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.schema_config_entry_flow import SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, wrapped_entity_config_entry_title as wrapped_entity_config_entry_title
-from typing import Any
+from typing import Any, override
 
 TARGET_DOMAIN_OPTIONS: Incomplete
 CONFIG_FLOW: Incomplete
@@ -16,4 +16,5 @@ class SwitchAsXConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):
     options_flow_reloads: bool
     VERSION: int
     MINOR_VERSION: int
+    @override
     def async_config_entry_title(self, options: Mapping[str, Any]) -> str: ...

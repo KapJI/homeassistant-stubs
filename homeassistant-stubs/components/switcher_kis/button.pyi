@@ -12,7 +12,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -30,4 +30,5 @@ class SwitcherThermostatButtonEntity(SwitcherEntity, ButtonEntity):
     _remote: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator, description: SwitcherThermostatButtonEntityDescription, remote: SwitcherBreezeRemote) -> None: ...
+    @override
     async def async_press(self) -> None: ...

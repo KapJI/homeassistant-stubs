@@ -7,7 +7,7 @@ from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeatur
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pytradfri.command import Command as Command
-from typing import Any
+from typing import Any, override
 
 ATTR_AUTO: str
 ATTR_MAX_FAN_STEPS: int
@@ -24,14 +24,22 @@ class TradfriAirPurifierFan(TradfriBaseEntity, FanEntity):
     _device_control: Incomplete
     _device_data: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str) -> None: ...
+    @override
     def _refresh(self) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def percentage(self) -> int | None: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

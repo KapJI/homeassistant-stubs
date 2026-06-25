@@ -6,6 +6,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pydiscovergy import Discovergy as Discovergy
 from pydiscovergy.models import Meter as Meter, Reading
+from typing import override
 
 _LOGGER: Incomplete
 type DiscovergyConfigEntry = ConfigEntry[list[DiscovergyUpdateCoordinator]]
@@ -15,4 +16,5 @@ class DiscovergyUpdateCoordinator(DataUpdateCoordinator[Reading]):
     meter: Incomplete
     discovergy_client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: DiscovergyConfigEntry, meter: Meter, discovergy_client: Discovergy) -> None: ...
+    @override
     async def _async_update_data(self) -> Reading: ...

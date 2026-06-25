@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from jvcprojector import Command as Command, JvcProjector as JvcProjector
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 INTERVAL_SLOW: Incomplete
@@ -23,6 +23,7 @@ class JvcProjectorDataUpdateCoordinator(DataUpdateCoordinator[dict[str, str]]):
     state: dict[type[Command], str]
     def __init__(self, hass: HomeAssistant, config_entry: JVCConfigEntry, device: JvcProjector) -> None: ...
     update_interval: Incomplete
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
     async def _get_device_state(self, commands: set[type[Command]]) -> dict[type[Command], str]: ...
     async def _update_command_state(self, command: type[Command], new_state: dict[type[Command], str]) -> str | None: ...

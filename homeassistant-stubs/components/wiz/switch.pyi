@@ -4,11 +4,12 @@ from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: WizConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class WizSocketEntity(WizToggleEntity, SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, wiz_data: WizData, name: str) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

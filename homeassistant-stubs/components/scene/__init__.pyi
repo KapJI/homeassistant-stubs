@@ -8,7 +8,7 @@ from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Final, final
+from typing import Any, Final, final, override
 
 DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[BaseScene]]
@@ -28,12 +28,14 @@ class BaseScene(RestoreEntity):
     __last_activated: str | None
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @final
     def _record_activation(self) -> None: ...
     @final
     @callback
     def _async_record_activation(self) -> None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     async def _async_activate(self, **kwargs: Any) -> None: ...
     def activate(self, **kwargs: Any) -> None: ...
@@ -41,4 +43,5 @@ class BaseScene(RestoreEntity):
 
 class Scene(BaseScene):
     @final
+    @override
     async def _async_activate(self, **kwargs: Any) -> None: ...

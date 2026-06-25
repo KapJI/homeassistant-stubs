@@ -4,6 +4,7 @@ from .fmp4utils import read_init as read_init, transform_init as transform_init
 from _typeshed import Incomplete
 from homeassistant.components.camera import DynamicStreamSettings as DynamicStreamSettings
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -14,7 +15,9 @@ class RecorderOutput(StreamOutput):
     video_path: str
     def __init__(self, hass: HomeAssistant, idle_timer: IdleTimer, stream_settings: StreamSettings, dynamic_stream_settings: DynamicStreamSettings) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     def prepend(self, segments: list[Segment]) -> None: ...
+    @override
     def cleanup(self) -> None: ...
     async def async_record(self) -> None: ...

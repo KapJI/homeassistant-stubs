@@ -9,7 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.data_entry_flow import SectionConfig as SectionConfig, section as section
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig
-from typing import Any
+from typing import Any, override
 
 ALLOWED_PROTOCOL: Incomplete
 RESULT_CONN_ERROR: str
@@ -33,9 +33,11 @@ class AsusWrtFlowHandler(ConfigFlow, domain=DOMAIN):
     @callback
     def _show_setup_form(self, error: str | None = None) -> ConfigFlowResult: ...
     async def _async_check_connection(self, user_input: dict[str, str | int]) -> tuple[str, str | None]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_legacy(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_save_entry(self) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler: ...

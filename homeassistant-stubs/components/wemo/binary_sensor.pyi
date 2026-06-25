@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywemo import Insight, Maker
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, _config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -15,10 +16,12 @@ class MakerBinarySensor(WemoEntity, BinarySensorEntity):
     _name_suffix: str
     wemo: Maker
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class InsightBinarySensor(WemoBinarySensor):
     _name_suffix: str
     wemo: Insight
     @property
+    @override
     def is_on(self) -> bool: ...

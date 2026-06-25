@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywizlight import PilotBuilder
 from pywizlight.bulblibrary import BulbType as BulbType, Features as Features
-from typing import Any
+from typing import Any, override
 
 RGB_WHITE_CHANNELS_COLOR_MODE: Incomplete
 
@@ -29,5 +29,7 @@ class WizBulbEntity(WizToggleEntity, LightEntity):
     _attr_rgbw_color: Incomplete
     _attr_effect: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

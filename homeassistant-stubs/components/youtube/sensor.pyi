@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_ICON as ATTR_ICON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class YouTubeSensorEntityDescription(SensorEntityDescription):
@@ -25,10 +25,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: YouTubeConfigEntry, asyn
 class YouTubeSensor(YouTubeChannelEntity, SensorEntity):
     entity_description: YouTubeSensorEntityDescription
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...

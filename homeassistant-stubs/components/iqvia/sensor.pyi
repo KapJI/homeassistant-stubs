@@ -6,7 +6,7 @@ from homeassistant.components.sensor import SensorEntity as SensorEntity, Sensor
 from homeassistant.const import ATTR_STATE as ATTR_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import NamedTuple
+from typing import NamedTuple, override
 
 ATTR_ALLERGEN_AMOUNT: str
 ATTR_ALLERGEN_GENUS: str
@@ -39,9 +39,11 @@ def calculate_trend(indices: list[float]) -> str: ...
 class ForecastSensor(IQVIAEntity, SensorEntity):
     _attr_native_value: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class IndexSensor(IQVIAEntity, SensorEntity):
     _attr_native_value: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...

@@ -14,7 +14,7 @@ from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as C
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from sqlalchemy.engine import Result as Result
 from sqlalchemy.orm import scoped_session as scoped_session
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 TRIGGER_ENTITY_OPTIONS: Incomplete
@@ -36,9 +36,12 @@ class SQLSensor(ManualTriggerSensorEntity):
     _attr_device_info: Incomplete
     def __init__(self, trigger_entity_config: ConfigType, sessmaker: scoped_session, query: ValueTemplate, column: str, value_template: ValueTemplate | None, yaml: bool, use_database_executor: bool) -> None: ...
     @property
+    @override
     def name(self) -> str | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     async def async_update(self) -> None: ...
     _attr_native_value: Incomplete

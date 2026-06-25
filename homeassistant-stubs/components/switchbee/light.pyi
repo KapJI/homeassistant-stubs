@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbee.device import SwitchBeeDimmer
-from typing import Any
+from typing import Any, override
 
 MAX_BRIGHTNESS: int
 
@@ -21,7 +21,10 @@ class SwitchBeeLightEntity(SwitchBeeDeviceEntity[SwitchBeeDimmer], LightEntity):
     _attr_brightness: int
     def __init__(self, device: SwitchBeeDimmer, coordinator: SwitchBeeCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     def _update_attrs_from_coordinator(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

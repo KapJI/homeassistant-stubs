@@ -4,6 +4,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from luftdaten import Luftdaten as Luftdaten
+from typing import override
 
 _LOGGER: Incomplete
 type LuftdatenConfigEntry = ConfigEntry[LuftdatenDataUpdateCoordinator]
@@ -12,4 +13,5 @@ class LuftdatenDataUpdateCoordinator(DataUpdateCoordinator[dict[str, float | int
     config_entry: LuftdatenConfigEntry
     _sensor_community: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: LuftdatenConfigEntry, sensor_community: Luftdaten) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, float | int]: ...

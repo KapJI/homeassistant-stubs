@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from ring_doorbell import RingEventKind, RingGeneric
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 PARALLEL_UPDATES: int
 
@@ -25,6 +25,7 @@ class RingSensor(RingEntity[RingDeviceT], SensorEntity):
     _device: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 def _get_last_event(history_data: list[dict[str, Any]], kind: RingEventKind | None) -> dict[str, Any] | None: ...

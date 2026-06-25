@@ -7,7 +7,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -15,6 +15,8 @@ async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_ad
 
 class ModbusFan(ModbusToggleEntity, FanEntity):
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict[str, Any]) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

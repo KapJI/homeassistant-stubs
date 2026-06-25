@@ -9,7 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 class QswEntityType(StrEnum):
     LACP_PORT = QSD_LACP_PORTS
@@ -33,6 +33,7 @@ class QswEntityDescription(EntityDescription, QswEntityDescriptionMixin):
 class QswSensorEntity(QswDataEntity):
     entity_description: QswEntityDescription
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_extra_state_attributes: Incomplete
     @callback

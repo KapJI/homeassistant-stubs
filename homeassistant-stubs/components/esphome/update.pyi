@@ -13,7 +13,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 KEY_UPDATE_LOCK: str
@@ -39,45 +39,60 @@ class ESPHomeDashboardUpdateEntity(CoordinatorEntity[ESPHomeDashboardCoordinator
     @callback
     def _update_attrs(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
     def _device_info(self) -> ESPHomeDeviceInfo: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
     def _handle_device_update(self, static_info: list[EntityInfo] | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     async def _async_wait_available(self) -> None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
 
 class ESPHomeUpdateEntity(EsphomeEntity[UpdateInfo, UpdateState], UpdateEntity):
     _attr_supported_features: Incomplete
     _attr_device_class: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
+    @override
     def version_is_newer(self, latest_version: str, installed_version: str) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def installed_version(self) -> str: ...
     @property
     @esphome_state_property
+    @override
     def in_progress(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def latest_version(self) -> str | None: ...
     @async_esphome_state_property
+    @override
     async def async_release_notes(self) -> str | None: ...
     @property
     @esphome_state_property
+    @override
     def release_url(self) -> str: ...
     @property
     @esphome_state_property
+    @override
     def title(self) -> str: ...
     @property
     @esphome_state_property
+    @override
     def update_percentage(self) -> int | None: ...
     @convert_api_error_ha_error
     async def async_update(self) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

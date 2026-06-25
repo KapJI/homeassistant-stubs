@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -20,4 +21,5 @@ class NAMButton(CoordinatorEntity[NAMDataUpdateCoordinator], ButtonEntity):
     _attr_unique_id: Incomplete
     entity_description: Incomplete
     def __init__(self, coordinator: NAMDataUpdateCoordinator, description: ButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

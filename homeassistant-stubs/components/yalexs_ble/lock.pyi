@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from yalexs_ble import ConnectionInfo as ConnectionInfo, LockInfo as LockInfo, LockState as LockState
 
 async def async_setup_entry(hass: HomeAssistant, entry: YALEXSBLEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -17,11 +17,14 @@ class YaleXSBLEBaseLock(YALEXSBLEEntity, LockEntity):
     _attr_is_unlocking: bool
     _attr_is_jammed: bool
     @callback
+    @override
     def _async_update_state(self, new_state: LockState, lock_info: LockInfo, connection_info: ConnectionInfo) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
 
 class YaleXSBLELock(YaleXSBLEBaseLock, LockEntity):
     _attr_name: Incomplete
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
 
 class YaleXSBLESecureModeLock(YaleXSBLEBaseLock):
@@ -30,4 +33,5 @@ class YaleXSBLESecureModeLock(YaleXSBLEBaseLock):
     _secure_mode: bool
     _attr_unique_id: Incomplete
     def __init__(self, data: YaleXSBLEData) -> None: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...

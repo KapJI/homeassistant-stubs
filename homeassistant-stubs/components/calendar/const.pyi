@@ -1,12 +1,19 @@
 from . import CalendarEntity as CalendarEntity
 from _typeshed import Incomplete
-from enum import IntFlag
+from enum import IntFlag, StrEnum
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.util.hass_dict import HassKey as HassKey
 
 DOMAIN: str
 DATA_COMPONENT: HassKey[EntityComponent[CalendarEntity]]
-CONF_EVENT: str
+
+class CalendarEntityStateAttribute(StrEnum):
+    MESSAGE = 'message'
+    ALL_DAY = 'all_day'
+    START_TIME = 'start_time'
+    END_TIME = 'end_time'
+    LOCATION = 'location'
+    DESCRIPTION = 'description'
 
 class CalendarEntityFeature(IntFlag):
     CREATE_EVENT = 1

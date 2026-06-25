@@ -4,10 +4,11 @@ from homeassistant.components.script.config import async_validate_config_item as
 from homeassistant.config import SCRIPT_CONFIG_PATH as SCRIPT_CONFIG_PATH
 from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from typing import Any
+from typing import Any, override
 
 @callback
 def async_setup(hass: HomeAssistant) -> bool: ...
 
 class EditScriptConfigView(EditKeyBasedConfigView):
+    @override
     def _write_value(self, hass: HomeAssistant, data: dict[str, dict[str, Any]], config_key: str, new_value: dict[str, Any]) -> None: ...

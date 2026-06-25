@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.redact import async_redact_data as async_redact_data
 from homeassistant.helpers.service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
-from typing import Any
+from typing import Any, override
 
 DEFAULT_HOST: str
 DEFAULT_PORT: int
@@ -27,7 +27,9 @@ class VictronGXConfigFlow(ConfigFlow, domain=DOMAIN):
     friendly_name: str | None
     model_name: str | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_ssdp(self, discovery_info: SsdpServiceInfo) -> ConfigFlowResult: ...
     async def async_step_ssdp_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_ssdp_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

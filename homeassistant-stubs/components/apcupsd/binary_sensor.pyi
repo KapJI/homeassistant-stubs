@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 _DESCRIPTION: Incomplete
@@ -15,4 +15,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: APCUPSdConfigEntr
 class OnlineStatus(APCUPSdEntity, BinarySensorEntity):
     def __init__(self, coordinator: APCUPSdCoordinator, description: BinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

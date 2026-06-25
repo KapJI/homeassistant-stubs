@@ -9,6 +9,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -26,10 +27,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: Tami4ConfigEntry, async_
 
 class Tami4EdgeButton(Tami4EdgeBaseEntity, ButtonEntity):
     entity_description: Tami4EdgeButtonEntityDescription
+    @override
     def press(self) -> None: ...
 
 class Tami4EdgeDrinkButton(Tami4EdgeBaseEntity, ButtonEntity):
     entity_description: Tami4EdgeDrinkButtonEntityDescription
     drink: Incomplete
     def __init__(self, api: Tami4EdgeAPI, entity_description: EntityDescription, drink: Drink) -> None: ...
+    @override
     def press(self) -> None: ...

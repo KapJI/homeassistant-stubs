@@ -7,6 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 class RuuviGatewayUpdateCoordinator(DataUpdateCoordinator[list[TagData]]):
     config_entry: ConfigEntry
@@ -14,4 +15,5 @@ class RuuviGatewayUpdateCoordinator(DataUpdateCoordinator[list[TagData]]):
     token: Incomplete
     last_tag_datas: dict[str, TagData]
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, logger: logging.Logger) -> None: ...
+    @override
     async def _async_update_data(self) -> list[TagData]: ...

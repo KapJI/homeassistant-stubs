@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 COMPIT_GEAR_TO_HA: Incomplete
@@ -28,11 +28,17 @@ class CompitFan(CoordinatorEntity[CompitDataUpdateCoordinator], FanEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: CompitDataUpdateCoordinator, device_id: int, entity_description: FanEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def percentage(self) -> int | None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...

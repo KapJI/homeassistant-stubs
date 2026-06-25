@@ -5,7 +5,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, FanDirection, FanInfo, FanSt
 from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import callback as callback
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item, percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 ORDERED_NAMED_FAN_SPEEDS: Incomplete
@@ -13,37 +13,49 @@ _FAN_DIRECTIONS: EsphomeEnumMapper[FanDirection, str]
 
 class EsphomeFan(EsphomeEntity[FanInfo, FanState], FanEntity):
     _supports_speed_levels: bool
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
     @convert_api_error_ha_error
     async def _async_set_percentage(self, percentage: int | None) -> None: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_oscillate(self, oscillating: bool) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_direction(self, direction: str) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
     @esphome_state_property
+    @override
     def is_on(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def percentage(self) -> int | None: ...
     @property
     @esphome_state_property
+    @override
     def oscillating(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def current_direction(self) -> str | None: ...
     @property
     @esphome_state_property
+    @override
     def preset_mode(self) -> str: ...
     _attr_supported_features: Incomplete
     _attr_preset_modes: Incomplete
     _attr_speed_count: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
 
 async_setup_entry: Incomplete

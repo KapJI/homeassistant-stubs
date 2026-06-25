@@ -10,7 +10,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import VolDictType as VolDictType
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 CONF_EVENT_CODE: str
 CONF_MANUAL_PATH: str
@@ -44,6 +44,7 @@ class RfxtrxOptionsFlow(OptionsFlow):
 
 class RfxtrxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_setup_network(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_setup_serial(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
@@ -51,6 +52,7 @@ class RfxtrxConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_validate_rfx(self, host: str | None = None, port: int | None = None, device: str | None = None) -> dict[str, Any]: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> RfxtrxOptionsFlow: ...
 
 def _test_transport(host: str | None, port: int | None, device: str | None) -> bool: ...

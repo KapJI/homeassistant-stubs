@@ -8,6 +8,7 @@ DOMAIN: Final[str]
 LOGGER: logging.Logger
 CONF_API_TYPE: Final[str]
 CONF_HUB: Final[str]
+CONF_GATEWAY_ID: Final[str]
 DEFAULT_SERVER: Final[Incomplete]
 DEFAULT_HOST: Final[str]
 UPDATE_INTERVAL: Final[Incomplete]

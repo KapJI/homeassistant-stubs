@@ -7,7 +7,7 @@ from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pydrawise import Controller as Controller, HydrawiseBase as HydrawiseBase, Zone as Zone
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -26,6 +26,9 @@ class HydrawiseSwitch(HydrawiseEntity, SwitchEntity):
     entity_description: HydrawiseSwitchEntityDescription
     zone: Zone
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _update_attrs(self) -> None: ...

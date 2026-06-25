@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SWITCH_TYPES: dict[str, SwitchEntityDescription]
 
@@ -18,8 +18,12 @@ class WallboxSwitch(WallboxEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WallboxCoordinator, description: SwitchEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

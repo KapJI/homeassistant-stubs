@@ -2,6 +2,10 @@ from enum import IntFlag, StrEnum
 
 DOMAIN: str
 
+class ValveEntityStateAttribute(StrEnum):
+    IS_CLOSED = 'is_closed'
+    CURRENT_POSITION = 'current_position'
+
 class ValveDeviceClass(StrEnum):
     WATER = 'water'
     GAS = 'gas'

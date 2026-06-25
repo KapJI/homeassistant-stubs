@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity, TrackerEntityDescription as TrackerEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: StarlinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,8 +22,11 @@ DEVICE_TRACKERS: Incomplete
 class StarlinkDeviceTrackerEntity(StarlinkEntity, TrackerEntity):
     entity_description: StarlinkDeviceTrackerEntityDescription
     @property
+    @override
     def latitude(self) -> float | None: ...
     @property
+    @override
     def longitude(self) -> float | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...

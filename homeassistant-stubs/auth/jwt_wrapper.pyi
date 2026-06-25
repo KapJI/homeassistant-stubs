@@ -9,6 +9,7 @@ from typing import Any, override
 __all__ = ['unverified_hs256_token_decode', 'verify_and_decode']
 
 class _PyJWSWithLoadCache(PyJWS):
+    @override
     def _load(self, jwt: str | bytes) -> tuple[bytes, bytes, dict, bytes]: ...
 
 class _PyJWTWithVerify(PyJWT):

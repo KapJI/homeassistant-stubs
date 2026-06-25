@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from tailscale import Device
+from typing import override
 
 type TailscaleConfigEntry = ConfigEntry[TailscaleDataUpdateCoordinator]
 class TailscaleDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
@@ -14,5 +15,6 @@ class TailscaleDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     tailscale: Incomplete
     previous_devices: set[str]
     def __init__(self, hass: HomeAssistant, config_entry: TailscaleConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Device]: ...
     async def _remove_stale_devices(self, stale_device_ids: set[str]) -> None: ...

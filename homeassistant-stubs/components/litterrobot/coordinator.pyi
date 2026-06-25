@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pylitterbot import FeederRobot, LitterRobot
+from typing import override
 
 _LOGGER: Incomplete
 UPDATE_INTERVAL: Incomplete
@@ -18,7 +19,9 @@ class LitterRobotDataUpdateCoordinator(DataUpdateCoordinator[None]):
     account: Incomplete
     previous_members: set[str]
     def __init__(self, hass: HomeAssistant, config_entry: LitterRobotConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
     def litter_robots(self) -> Generator[LitterRobot]: ...
     def feeder_robots(self) -> Generator[FeederRobot]: ...

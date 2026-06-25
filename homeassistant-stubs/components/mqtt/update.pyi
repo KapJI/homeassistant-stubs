@@ -15,7 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -37,8 +37,10 @@ class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     _default_name = DEFAULT_NAME
     _entity_id_format: Incomplete
     @property
+    @override
     def entity_picture(self) -> str | None: ...
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_device_class: Incomplete
     _attr_display_precision: Incomplete
@@ -46,6 +48,7 @@ class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     _attr_release_url: Incomplete
     _attr_title: Incomplete
     _templates: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
@@ -57,8 +60,12 @@ class MqttUpdate(MqttEntity, UpdateEntity, RestoreEntity):
     @callback
     def _handle_latest_version_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...
     @property
+    @override
     def supported_features(self) -> UpdateEntityFeature: ...

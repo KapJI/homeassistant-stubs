@@ -9,12 +9,12 @@ from homeassistant.components.script import scripts_with_entity as scripts_with_
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, CoordinatorEntity as CoordinatorEntity
 from ring_doorbell import RingDevices as RingDevices, RingGeneric
-from typing import Any, Concatenate, Generic, TypeVar
+from typing import Any, Concatenate, Generic, TypeVar, override
 
 RingDeviceT = TypeVar('RingDeviceT', bound=RingGeneric, default=RingGeneric)
 _RingCoordinatorT = TypeVar('_RingCoordinatorT', bound=RingDataCoordinator | RingListenCoordinator)
@@ -46,4 +46,5 @@ class RingEntity(RingBaseEntity[RingDataCoordinator, RingDeviceT], CoordinatorEn
     def _get_coordinator_data(self) -> RingDevices: ...
     _device: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

@@ -3,6 +3,7 @@ from .entity import VelbusEntity as VelbusEntity
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 from velbusaio.channels import Button as VelbusButton
 
 PARALLEL_UPDATES: int
@@ -12,4 +13,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: VelbusConfigEntry, async
 class VelbusBinarySensor(VelbusEntity, BinarySensorEntity):
     _channel: VelbusButton
     @property
+    @override
     def is_on(self) -> bool: ...

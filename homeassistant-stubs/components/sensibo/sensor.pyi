@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pysensibo.model import MotionSensor as MotionSensor, PureAQI, SensiboDevice as SensiboDevice
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -44,6 +44,7 @@ class SensiboMotionSensor(SensiboMotionBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, sensor_id: str, sensor_data: MotionSensor, entity_description: SensiboMotionSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class SensiboDeviceSensor(SensiboDeviceBaseEntity, SensorEntity):
@@ -51,6 +52,8 @@ class SensiboDeviceSensor(SensiboDeviceBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SensiboDataUpdateCoordinator, device_id: str, entity_description: SensiboDeviceSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...

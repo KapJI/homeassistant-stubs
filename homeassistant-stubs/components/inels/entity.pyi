@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from inelsmqtt.devices import Device as Device
+from typing import override
 
 class InelsBaseEntity(Entity):
     _attr_should_poll: bool
@@ -14,7 +15,9 @@ class InelsBaseEntity(Entity):
     _index: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device: Device, key: str, index: int) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _callback(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

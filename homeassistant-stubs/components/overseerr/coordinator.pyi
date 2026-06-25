@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type OverseerrConfigEntry = ConfigEntry[OverseerrCoordinator]
 class OverseerrCoordinator(DataUpdateCoordinator[OverseerrData]):
@@ -15,4 +16,5 @@ class OverseerrCoordinator(DataUpdateCoordinator[OverseerrData]):
     url: Incomplete
     push: bool
     def __init__(self, hass: HomeAssistant, entry: OverseerrConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> OverseerrData: ...

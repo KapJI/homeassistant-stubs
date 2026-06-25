@@ -8,7 +8,7 @@ from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, ST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywemo import Switch as Switch
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
@@ -28,12 +28,16 @@ async def async_setup_entry(hass: HomeAssistant, _config_entry: ConfigEntry, asy
 class WemoSwitch(WemoBinaryStateEntity, SwitchEntity):
     wemo: Switch
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @staticmethod
     def as_uptime(_seconds: int) -> str: ...
     @property
     def detail_state(self) -> str: ...
     @property
+    @override
     def icon(self) -> str | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

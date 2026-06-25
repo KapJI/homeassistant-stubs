@@ -5,7 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -14,6 +14,7 @@ class SwitcherEntity(CoordinatorEntity[SwitcherDataUpdateCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: SwitcherDataUpdateCoordinator) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     def _update_data(self) -> None: ...
     async def _async_call_api(self, api: str, *args: Any, **kwargs: Any) -> None: ...

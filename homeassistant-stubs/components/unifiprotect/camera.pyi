@@ -3,21 +3,20 @@ from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDevice
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from .utils import async_ufp_instance_command as async_ufp_instance_command, get_camera_base_name as get_camera_base_name
 from _typeshed import Incomplete
-from collections.abc import Generator
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
+from typing import override
 from uiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 @callback
-def _create_rtsp_repair(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, camera: UFPCamera) -> None: ...
+def _create_rtsp_repair(hass: HomeAssistant, entry: UFPConfigEntry, camera: UFPCamera) -> None: ...
 @callback
-def _get_camera_channels(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> Generator[tuple[UFPCamera, CameraChannel, bool]]: ...
 def _async_camera_entities(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -28,13 +27,12 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     device: UFPCamera
     _state_attrs: Incomplete
     channel: Incomplete
-    _secure: Incomplete
     _disable_stream: Incomplete
     _last_image: bytes | None
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, data: ProtectData, camera: UFPCamera, channel: CameraChannel, is_default: bool, secure: bool, disable_stream: bool) -> None: ...
+    def __init__(self, data: ProtectData, camera: UFPCamera, channel: CameraChannel, is_default: bool, disable_stream: bool) -> None: ...
     _attr_supported_features: Incomplete
     _stream_source: Incomplete
     @callback
@@ -44,10 +42,15 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     _attr_available: Incomplete
     _attr_extra_state_attributes: Incomplete
     @callback
+    @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
+    @override
     async def stream_source(self) -> str | None: ...
     @async_ufp_instance_command
+    @override
     async def async_enable_motion_detection(self) -> None: ...
     @async_ufp_instance_command
+    @override
     async def async_disable_motion_detection(self) -> None: ...

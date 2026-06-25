@@ -3,6 +3,7 @@ from .coordinator import TileCoordinator as TileCoordinator
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class TileEntity(CoordinatorEntity[TileCoordinator]):
     _attr_has_entity_name: bool
@@ -10,4 +11,5 @@ class TileEntity(CoordinatorEntity[TileCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: TileCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

@@ -10,6 +10,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _MAX_FAN_SETPOINT: int
 _MIN_FAN_SETPOINT: int
@@ -34,9 +35,13 @@ class FlexitNumber(FlexitEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FlexitCoordinator, entity_description: FlexitNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def native_min_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

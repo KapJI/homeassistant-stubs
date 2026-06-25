@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from music_assistant_client.client import MusicAssistantClient as MusicAssistantClient
 from music_assistant_models.player import PlayerOption as PlayerOption
-from typing import Any, Final
+from typing import Any, Final, override
 
 PLAYER_OPTIONS_SWITCH: Final[dict[str, bool]]
 
@@ -18,8 +18,11 @@ class MusicAssistantPlayerConfigSwitch(MusicAssistantPlayerOptionEntity, SwitchE
     entity_description: Incomplete
     def __init__(self, mass: MusicAssistantClient, player_id: str, player_option: PlayerOption, entity_description: SwitchEntityDescription) -> None: ...
     @catch_musicassistant_error
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @catch_musicassistant_error
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def on_player_option_update(self, player_option: PlayerOption) -> None: ...

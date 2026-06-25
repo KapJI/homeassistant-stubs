@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from visionpluspython.models import SwitchDevice
 
 _LOGGER: Incomplete
@@ -20,6 +20,9 @@ class WattsVisionSwitch(WattsVisionEntity[SwitchDevice], SwitchEntity):
     _attr_name: Incomplete
     def __init__(self, coordinator: WattsVisionDeviceCoordinator, switch: SwitchDevice) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

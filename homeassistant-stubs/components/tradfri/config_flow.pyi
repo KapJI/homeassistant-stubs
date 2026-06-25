@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.service_info.zeroconf import ATTR_PROPERTIES_ID as ATTR_PROPERTIES_ID, ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 KEY_SECURITY_CODE: str
 
@@ -16,8 +16,10 @@ class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION: int
     _host: str | None
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_homekit(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def _entry_from_data(self, data: dict[str, Any]) -> ConfigFlowResult: ...
 

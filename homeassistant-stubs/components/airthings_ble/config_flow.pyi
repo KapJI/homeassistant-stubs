@@ -7,7 +7,7 @@ from homeassistant.components import bluetooth as bluetooth
 from homeassistant.components.bluetooth import BluetoothServiceInfo as BluetoothServiceInfo, async_discovered_service_info as async_discovered_service_info
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 SERVICE_UUIDS: Incomplete
@@ -29,6 +29,8 @@ class AirthingsConfigFlow(ConfigFlow, domain=DOMAIN):
     _discovered_devices: dict[str, Discovery]
     def __init__(self) -> None: ...
     async def _get_device(self, data: AirthingsBluetoothDeviceData, discovery_info: BluetoothServiceInfo) -> AirthingsDevice: ...
+    @override
     async def async_step_bluetooth(self, discovery_info: BluetoothServiceInfo) -> ConfigFlowResult: ...
     async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

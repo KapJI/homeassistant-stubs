@@ -1,6 +1,6 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pyatmo.modules.device_types import DeviceType as NetatmoDeviceType
-from uuid import UUID
+from uuid import UUID, uuid4
 
 def device_type_to_str(device_type: NetatmoDeviceType) -> str: ...
 
@@ -13,4 +13,4 @@ class NetatmoArea:
     lon_sw: float
     mode: str
     show_on_map: bool
-    uuid: UUID = ...
+    uuid: UUID = field(default_factory=uuid4)

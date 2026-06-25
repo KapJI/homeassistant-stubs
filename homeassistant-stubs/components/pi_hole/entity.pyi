@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from hole import Hole as Hole
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class PiHoleEntity(CoordinatorEntity[PiHoleUpdateCoordinator]):
     api: Incomplete
@@ -11,4 +12,5 @@ class PiHoleEntity(CoordinatorEntity[PiHoleUpdateCoordinator]):
     _server_unique_id: Incomplete
     def __init__(self, api: Hole, coordinator: PiHoleUpdateCoordinator, name: str, server_unique_id: str) -> None: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...

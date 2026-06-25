@@ -7,6 +7,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -23,4 +24,5 @@ class PiHoleUpdateCoordinator(DataUpdateCoordinator[None]):
     _name: Incomplete
     _host: Incomplete
     def __init__(self, hass: HomeAssistant, api: HoleV5 | HoleV6, config_entry: PiHoleConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

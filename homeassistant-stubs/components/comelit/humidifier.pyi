@@ -9,7 +9,7 @@ from homeassistant.components.humidifier import HumidifierAction as HumidifierAc
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -51,12 +51,17 @@ class ComelitHumidifierEntity(ComelitBridgeBaseEntity, HumidifierEntity):
     _attr_target_humidity: Incomplete
     def _update_attributes(self) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @bridge_api_call
+    @override
     async def async_set_humidity(self, humidity: int) -> None: ...
     @bridge_api_call
+    @override
     async def async_set_mode(self, mode: str) -> None: ...
     @bridge_api_call
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @bridge_api_call
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

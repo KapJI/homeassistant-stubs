@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import VolvoConfigEntry as VolvoConfigEntry
+from .coordinator import VolvoConfigEntry as VolvoConfigEntry, schedule_location_update as schedule_location_update
 from .entity import VolvoEntity as VolvoEntity, VolvoEntityDescription as VolvoEntityDescription
 from _typeshed import Incomplete
 from dataclasses import dataclass
@@ -7,7 +7,7 @@ from homeassistant.components.lock import LockEntity as LockEntity, LockEntityDe
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from volvocarsapi.models import VolvoCarsApiBaseModel as VolvoCarsApiBaseModel
 
 PARALLEL_UPDATES: int
@@ -27,9 +27,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: VolvoConfigEntry, async_
 
 class VolvoLock(VolvoEntity, LockEntity):
     entity_description: VolvoLockDescription
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     _attr_is_locked: Incomplete
+    @override
     def _update_state(self, api_field: VolvoCarsApiBaseModel | None) -> None: ...
     _attr_is_locking: bool
     _attr_is_unlocking: bool

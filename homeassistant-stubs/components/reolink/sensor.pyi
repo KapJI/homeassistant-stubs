@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from reolink_aio.api import Host as Host
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,12 +33,14 @@ class ReolinkSensorEntity(ReolinkChannelCoordinatorEntity, SensorEntity):
     entity_description: ReolinkSensorEntityDescription
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | date | datetime | Decimal: ...
 
 class ReolinkHostSensorEntity(ReolinkHostCoordinatorEntity, SensorEntity):
     entity_description: ReolinkHostSensorEntityDescription
     def __init__(self, reolink_data: ReolinkData, entity_description: ReolinkHostSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | date | datetime | Decimal: ...
 
 class ReolinkHddSensorEntity(ReolinkHostCoordinatorEntity, SensorEntity):
@@ -48,6 +51,8 @@ class ReolinkHddSensorEntity(ReolinkHostCoordinatorEntity, SensorEntity):
     _attr_translation_key: str
     def __init__(self, reolink_data: ReolinkData, hdd_index: int, entity_description: ReolinkSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | date | datetime | Decimal: ...
     @property
+    @override
     def available(self) -> bool: ...

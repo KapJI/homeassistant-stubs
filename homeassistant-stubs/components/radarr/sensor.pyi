@@ -9,7 +9,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfInformation as UnitOfInformation
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Generic
+from typing import Any, Generic, override
 
 def get_space(data: list[Diskspace], name: str) -> str: ...
 def get_modified_description(description: RadarrSensorEntityDescription[T], mount: RootFolder) -> tuple[RadarrSensorEntityDescription[T], str]: ...
@@ -34,4 +34,5 @@ class RadarrSensor(RadarrEntity[T], SensorEntity):
     folder_name: Incomplete
     def __init__(self, coordinator: RadarrDataUpdateCoordinator[T], description: RadarrSensorEntityDescription[T], folder_name: str = '') -> None: ...
     @property
+    @override
     def native_value(self) -> str | int | datetime: ...

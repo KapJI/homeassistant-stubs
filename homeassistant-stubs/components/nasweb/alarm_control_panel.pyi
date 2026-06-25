@@ -7,6 +7,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import BaseCoordinatorEntity as BaseCoordinatorEntity, BaseDataUpdateCoordinatorProtocol as BaseDataUpdateCoordinatorProtocol
+from typing import override
 from webio_api import Zone as NASwebZone
 
 _LOGGER: Incomplete
@@ -25,6 +26,7 @@ class ZoneEntity(AlarmControlPanelEntity, BaseCoordinatorEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: BaseDataUpdateCoordinatorProtocol, nasweb_zone: NASwebZone) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: bool
     def _set_attr_available(self, entity_last_update: float, available: bool | None) -> None: ...
@@ -32,9 +34,14 @@ class ZoneEntity(AlarmControlPanelEntity, BaseCoordinatorEntity):
     _attr_code_format: Incomplete
     _attr_code_arm_required: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_update(self) -> None: ...
     @property
+    @override
     def supported_features(self) -> AlarmControlPanelEntityFeature: ...
+    @override
     async def async_alarm_arm_away(self, code: str | None = None) -> None: ...
+    @override
     async def async_alarm_disarm(self, code: str | None = None) -> None: ...

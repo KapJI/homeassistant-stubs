@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from myuplink import DevicePoint as DevicePoint
+from typing import override
 
 DEVICE_POINT_UNIT_DESCRIPTIONS: dict[str, NumberEntityDescription]
 CATEGORY_BASED_DESCRIPTIONS: dict[str, dict[str, NumberEntityDescription]]
@@ -25,5 +26,7 @@ class MyUplinkNumber(MyUplinkEntity, NumberEntity):
     entity_description: Incomplete
     def __init__(self, coordinator: MyUplinkDataCoordinator, device_id: str, device_point: DevicePoint, entity_description: NumberEntityDescription | None, unique_id_suffix: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

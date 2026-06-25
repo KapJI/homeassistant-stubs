@@ -6,7 +6,7 @@ from homeassistant.components.update import UpdateEntity as UpdateEntity, Update
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 PARALLEL_UPDATES: int
@@ -22,5 +22,7 @@ class AdGuardHomeUpdate(AdGuardHomeEntity, UpdateEntity):
     _attr_latest_version: Incomplete
     _attr_release_summary: Incomplete
     _attr_release_url: Incomplete
+    @override
     async def _adguard_update(self) -> None: ...
+    @override
     async def async_install(self, version: str | None, backup: bool, **kwargs: Any) -> None: ...

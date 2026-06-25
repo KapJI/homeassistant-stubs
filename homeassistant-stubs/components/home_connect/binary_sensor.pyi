@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 REFRIGERATION_DOOR_BOOLEAN_MAP: Incomplete
@@ -25,11 +26,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 class HomeConnectBinarySensor(HomeConnectEntity, BinarySensorEntity):
     entity_description: HomeConnectBinarySensorEntityDescription
     _attr_is_on: Incomplete
+    @override
     def update_native_value(self) -> None: ...
 
 class HomeConnectConnectivityBinarySensor(HomeConnectEntity, BinarySensorEntity):
     _attr_entity_category: Incomplete
     _attr_is_on: Incomplete
+    @override
     def update_native_value(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

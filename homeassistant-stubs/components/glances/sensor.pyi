@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class GlancesSensorEntityDescription(SensorEntityDescription):
@@ -27,8 +28,10 @@ class GlancesSensor(CoordinatorEntity[GlancesDataUpdateCoordinator], SensorEntit
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: GlancesDataUpdateCoordinator, description: GlancesSensorEntityDescription, sensor_label: str = '') -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     def _update_native_value(self) -> None: ...

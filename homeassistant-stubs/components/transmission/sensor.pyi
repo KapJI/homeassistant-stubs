@@ -9,7 +9,7 @@ from homeassistant.const import STATE_IDLE as STATE_IDLE, UnitOfDataRate as Unit
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,8 +27,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: TransmissionConfi
 class TransmissionSensor(TransmissionEntity, SensorEntity):
     entity_description: TransmissionSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
 
 def get_state(upload: int, download: int) -> str: ...

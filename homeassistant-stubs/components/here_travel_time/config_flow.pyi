@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow 
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, EntitySelector as EntitySelector, LocationSelector as LocationSelector, TimeSelector as TimeSelector
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 DEFAULT_OPTIONS: Incomplete
@@ -21,7 +21,9 @@ class HERETravelTimeConfigFlow(ConfigFlow, domain=DOMAIN):
     def __init__(self) -> None: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> HERETravelTimeOptionsFlow: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_origin_menu(self, _: None = None) -> ConfigFlowResult: ...

@@ -9,6 +9,7 @@ from homeassistant.components.button import ButtonEntity as ButtonEntity, Button
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -23,12 +24,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 class HomeConnectButtonEntity(HomeConnectEntity, ButtonEntity):
     entity_description: ButtonEntityDescription
     def __init__(self, appliance_coordinator: HomeConnectApplianceCoordinator, desc: ButtonEntityDescription) -> None: ...
+    @override
     def update_native_value(self) -> None: ...
 
 class HomeConnectCommandButtonEntity(HomeConnectButtonEntity):
     entity_description: HomeConnectCommandButtonEntityDescription
+    @override
     async def async_press(self) -> None: ...
 
 class HomeConnectStopProgramButtonEntity(HomeConnectButtonEntity):
     def __init__(self, appliance_coordinator: HomeConnectApplianceCoordinator) -> None: ...
+    @override
     async def async_press(self) -> None: ...

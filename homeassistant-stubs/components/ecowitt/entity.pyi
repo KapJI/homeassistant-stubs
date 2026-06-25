@@ -3,6 +3,7 @@ from _typeshed import Incomplete
 from aioecowitt import EcoWittSensor as EcoWittSensor
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
+from typing import override
 
 class EcowittEntity(Entity):
     _attr_has_entity_name: bool
@@ -11,6 +12,8 @@ class EcowittEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, sensor: EcoWittSensor) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

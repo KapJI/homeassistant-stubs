@@ -7,7 +7,7 @@ from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEnti
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,29 +19,41 @@ class SwitchBotCloudVacuum(SwitchBotCloudEntity, StateVacuumEntity):
     _attr_name: Incomplete
     _attr_fan_speed_list: list[str]
     _attr_fan_speed: Incomplete
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
+    @override
     async def async_pause(self) -> None: ...
+    @override
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
+    @override
     async def async_start(self) -> None: ...
     _attr_battery_level: Incomplete
     _attr_available: Incomplete
     _attr_activity: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 class SwitchBotCloudVacuumV2(SwitchBotCloudVacuum):
     _attr_fan_speed: Incomplete
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
+    @override
     async def async_pause(self) -> None: ...
+    @override
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
+    @override
     async def async_start(self) -> None: ...
 
 class SwitchBotCloudVacuumK10PlusProCombo(SwitchBotCloudVacuumV2):
     _attr_fan_speed: Incomplete
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
 
 class SwitchBotCloudVacuumV3(SwitchBotCloudVacuumV2):
     _attr_fan_speed: Incomplete
+    @override
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
+    @override
     async def async_start(self) -> None: ...
 
 @callback

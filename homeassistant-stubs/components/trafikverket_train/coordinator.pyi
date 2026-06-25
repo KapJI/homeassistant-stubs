@@ -10,6 +10,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pytrafikverket import StationInfoModel as StationInfoModel, TrainStopModel as TrainStopModel
+from typing import override
 
 @dataclass
 class TrainData:
@@ -41,5 +42,7 @@ class TVDataUpdateCoordinator(DataUpdateCoordinator[TrainData]):
     _weekdays: list[str]
     _filter_product: str | None
     def __init__(self, hass: HomeAssistant, config_entry: TVTrainConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> TrainData: ...

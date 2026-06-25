@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from reolink_aio.api import Host as Host
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -36,12 +37,13 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntr
 
 class ReolinkBinarySensorEntity(ReolinkChannelCoordinatorEntity, BinarySensorEntity):
     entity_description: ReolinkBinarySensorEntityDescription
-    _attr_translation_key: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class ReolinkPushBinarySensorEntity(ReolinkBinarySensorEntity):
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def _async_handle_event(self, event: str) -> None: ...
 
@@ -52,6 +54,7 @@ class ReolinkSmartAIBinarySensorEntity(ReolinkChannelCoordinatorEntity, BinarySe
     _attr_translation_placeholders: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, location: int, entity_description: ReolinkSmartAIBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class ReolinkIndexBinarySensorEntity(ReolinkChannelCoordinatorEntity, BinarySensorEntity):
@@ -61,4 +64,5 @@ class ReolinkIndexBinarySensorEntity(ReolinkChannelCoordinatorEntity, BinarySens
     _attr_translation_placeholders: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, index: int, entity_description: ReolinkIndexBinarySensorEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...

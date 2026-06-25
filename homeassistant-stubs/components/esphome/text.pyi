@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, TextInfo, TextMode as EsphomeTextMode, TextState
 from homeassistant.components.text import TextEntity as TextEntity, TextMode as TextMode
 from homeassistant.core import callback as callback
+from typing import override
 
 PARALLEL_UPDATES: int
 TEXT_MODES: EsphomeEnumMapper[EsphomeTextMode, TextMode]
@@ -14,11 +15,14 @@ class EsphomeText(EsphomeEntity[TextInfo, TextState], TextEntity):
     _attr_pattern: Incomplete
     _attr_mode: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
+    @override
     def native_value(self) -> str | None: ...
     @convert_api_error_ha_error
+    @override
     async def async_set_value(self, value: str) -> None: ...
 
 async_setup_entry: Incomplete

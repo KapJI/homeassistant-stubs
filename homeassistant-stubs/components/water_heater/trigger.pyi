@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR as ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR, EntityNumericalStateChangedTriggerWithUnitBase as EntityNumericalStateChangedTriggerWithUnitBase, EntityNumericalStateCrossedThresholdTriggerWithUnitBase as EntityNumericalStateCrossedThresholdTriggerWithUnitBase, EntityNumericalStateTriggerWithUnitBase as EntityNumericalStateTriggerWithUnitBase, EntityTargetStateTriggerBase as EntityTargetStateTriggerBase, Trigger as Trigger, TriggerConfig as TriggerConfig, make_entity_origin_state_trigger as make_entity_origin_state_trigger, make_entity_target_state_trigger as make_entity_target_state_trigger
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
+from typing import override
 
 CONF_OPERATION_MODE: str
 _OPERATION_MODE_CHANGED_TRIGGER_SCHEMA: Incomplete
@@ -19,7 +20,9 @@ class _WaterHeaterTargetTemperatureTriggerMixin(EntityNumericalStateTriggerWithU
     _base_unit: Incomplete
     _domain_specs: Incomplete
     _unit_converter = TemperatureConverter
+    @override
     def _should_include(self, state: State) -> bool: ...
+    @override
     def _get_entity_unit(self, state: State) -> str | None: ...
 
 class WaterHeaterTargetTemperatureChangedTrigger(_WaterHeaterTargetTemperatureTriggerMixin, EntityNumericalStateChangedTriggerWithUnitBase): ...

@@ -12,7 +12,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 ENERGY_VOLT_AMPERE_REACTIVE_HOUR: Final[str]
@@ -44,6 +44,7 @@ class _FroniusSensorEntity(CoordinatorEntity['FroniusCoordinatorBase'], SensorEn
     def _device_data(self) -> dict[str, Any]: ...
     def _get_entity_value(self) -> Any: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
 
 class InverterSensor(_FroniusSensorEntity):

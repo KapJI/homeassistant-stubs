@@ -6,7 +6,7 @@ from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFe
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 LOCK_STATE_UNLOCKED: float
@@ -22,17 +22,26 @@ class HomeeLock(HomeeEntity, LockEntity):
     _attr_supported_features: Incomplete
     def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry) -> None: ...
     @property
+    @override
     def is_locked(self) -> bool: ...
     @property
+    @override
     def is_open(self) -> bool: ...
     @property
+    @override
     def is_locking(self) -> bool: ...
     @property
+    @override
     def is_unlocking(self) -> bool: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @property
+    @override
     def changed_by(self) -> str: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open(self, **kwargs: Any) -> None: ...

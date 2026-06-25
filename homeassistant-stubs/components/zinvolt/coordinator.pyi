@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 from zinvolt import ZinvoltClient as ZinvoltClient
 from zinvolt.models import Battery as Battery, BatteryState as BatteryState, Unit as Unit
 
@@ -26,5 +27,7 @@ class ZinvoltDeviceCoordinator(DataUpdateCoordinator[ZinvoltData]):
     battery: Incomplete
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: ZinvoltConfigEntry, client: ZinvoltClient, battery: Battery) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> ZinvoltData: ...

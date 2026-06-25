@@ -9,7 +9,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -34,6 +34,8 @@ class ComelitVedoBinarySensorEntity(CoordinatorEntity[ComelitVedoSystem | Comeli
     @property
     def _object(self) -> ComelitVedoAreaObject | ComelitVedoZoneObject: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...

@@ -15,7 +15,7 @@ from homeassistant.helpers.reload import async_setup_reload_service as async_set
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util.dt import utcnow as utcnow
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -45,9 +45,11 @@ class SensorTrend(BinarySensorEntity, RestoreEntity):
     entity_id: Incomplete
     def __init__(self, hass: HomeAssistant, *, name: str, entity_id: str, attribute: str | None, invert: bool, sample_duration: int, min_gradient: float, min_samples: int, max_samples: int, unique_id: str | None = None, device_class: BinarySensorDeviceClass | None = None, sensor_entity_id: str | None = None) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any]: ...
     _attr_available: bool
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     async def async_update(self) -> None: ...
     def _calculate_gradient(self) -> None: ...

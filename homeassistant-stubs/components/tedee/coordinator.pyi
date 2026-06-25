@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 GET_LOCKS_INTERVAL_SECONDS: int
@@ -25,7 +25,9 @@ class TedeeApiCoordinator(DataUpdateCoordinator[dict[int, TedeeLock]]):
     new_lock_callbacks: list[Callable[[list[TedeeLock]], None]]
     tedee_webhook_id: int | None
     def __init__(self, hass: HomeAssistant, entry: TedeeConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[int, TedeeLock]: ...
     async def _async_update(self, update_fn: Callable[[], Awaitable[None]]) -> None: ...
     def webhook_received(self, message: dict[str, Any]) -> None: ...

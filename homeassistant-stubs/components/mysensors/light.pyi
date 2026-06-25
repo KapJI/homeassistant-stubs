@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.color import rgb_hex_to_rgb_list as rgb_hex_to_rgb_list
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,9 +17,11 @@ class MySensorsLight(MySensorsChildEntity, LightEntity):
     _state: bool | None
     def __init__(self, *args: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     def _turn_on_light(self) -> None: ...
     def _turn_on_dimmer(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
     def _async_update_light(self) -> None: ...
@@ -30,16 +32,20 @@ class MySensorsLight(MySensorsChildEntity, LightEntity):
 class MySensorsLightDimmer(MySensorsLight):
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _async_update(self) -> None: ...
 
 class MySensorsLightRGB(MySensorsLight):
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     def _turn_on_rgb(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def _async_update(self) -> None: ...
     _attr_rgb_color: Incomplete
     @callback
@@ -48,8 +54,10 @@ class MySensorsLightRGB(MySensorsLight):
 class MySensorsLightRGBW(MySensorsLightRGB):
     _attr_supported_color_modes: Incomplete
     _attr_color_mode: Incomplete
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     def _turn_on_rgbw(self, **kwargs: Any) -> None: ...
     _attr_rgbw_color: Incomplete
     @callback
+    @override
     def _async_update_rgb_or_w(self) -> None: ...

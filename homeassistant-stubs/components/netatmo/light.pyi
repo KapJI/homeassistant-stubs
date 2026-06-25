@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyatmo import modules as NaModules
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -24,14 +24,19 @@ class NetatmoCameraLight(NetatmoModuleEntity, LightEntity):
     _attr_unique_id: Incomplete
     _signal_name: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def handle_event(self, event: dict) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...
 
 class NetatmoLight(NetatmoModuleEntity, LightEntity):
@@ -45,7 +50,10 @@ class NetatmoLight(NetatmoModuleEntity, LightEntity):
     _signal_name: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice) -> None: ...
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @callback
+    @override
     def async_update_callback(self) -> None: ...

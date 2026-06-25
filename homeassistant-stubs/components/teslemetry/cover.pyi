@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
-from typing import Any
+from typing import Any, override
 
 OPEN: int
 CLOSED: int
@@ -19,6 +19,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, a
 
 class CoverRestoreEntity(RestoreEntity, CoverEntity):
     _attr_is_closed: bool
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class TeslemetryWindowEntity(TeslemetryRootEntity, CoverEntity):
@@ -26,7 +27,9 @@ class TeslemetryWindowEntity(TeslemetryRootEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
 
 class TeslemetryVehiclePollingWindowEntity(TeslemetryVehiclePollingEntity, TeslemetryWindowEntity, CoverEntity):
@@ -34,6 +37,7 @@ class TeslemetryVehiclePollingWindowEntity(TeslemetryVehiclePollingEntity, Tesle
     _attr_supported_features: Incomplete
     def __init__(self, data: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_is_closed: bool
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingWindowEntity(TeslemetryVehicleStreamEntity, TeslemetryWindowEntity, CoverRestoreEntity):
@@ -45,6 +49,7 @@ class TeslemetryStreamingWindowEntity(TeslemetryVehicleStreamEntity, TeslemetryW
     _attr_supported_features: Incomplete
     _attr_is_closed: Incomplete
     def __init__(self, data: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _handle_stream_update(self, data: dict[str, Any]) -> None: ...
 
@@ -53,7 +58,9 @@ class TeslemetryChargePortEntity(TeslemetryRootEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
 
 class TeslemetryVehiclePollingChargePortEntity(TeslemetryVehiclePollingEntity, TeslemetryChargePortEntity):
@@ -61,6 +68,7 @@ class TeslemetryVehiclePollingChargePortEntity(TeslemetryVehiclePollingEntity, T
     _attr_supported_features: Incomplete
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_is_closed: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingChargePortEntity(TeslemetryVehicleStreamEntity, TeslemetryChargePortEntity, CoverRestoreEntity):
@@ -68,6 +76,7 @@ class TeslemetryStreamingChargePortEntity(TeslemetryVehicleStreamEntity, Tesleme
     _attr_supported_features: Incomplete
     _attr_is_closed: Incomplete
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_value_from_stream(self, value: bool | None) -> None: ...
 
@@ -76,6 +85,7 @@ class TeslemetryFrontTrunkEntity(TeslemetryRootEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
 
 class TeslemetryVehiclePollingFrontTrunkEntity(TeslemetryVehiclePollingEntity, TeslemetryFrontTrunkEntity):
@@ -83,6 +93,7 @@ class TeslemetryVehiclePollingFrontTrunkEntity(TeslemetryVehiclePollingEntity, T
     _attr_supported_features: Incomplete
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_is_closed: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingFrontTrunkEntity(TeslemetryVehicleStreamEntity, TeslemetryFrontTrunkEntity, CoverRestoreEntity):
@@ -90,6 +101,7 @@ class TeslemetryStreamingFrontTrunkEntity(TeslemetryVehicleStreamEntity, Tesleme
     _attr_supported_features: Incomplete
     _attr_is_closed: Incomplete
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_value_from_stream(self, value: bool | None) -> None: ...
 
@@ -98,7 +110,9 @@ class TeslemetryRearTrunkEntity(TeslemetryRootEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
 
 class TeslemetryVehiclePollingRearTrunkEntity(TeslemetryVehiclePollingEntity, TeslemetryRearTrunkEntity):
@@ -106,6 +120,7 @@ class TeslemetryVehiclePollingRearTrunkEntity(TeslemetryVehiclePollingEntity, Te
     _attr_supported_features: Incomplete
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_is_closed: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingRearTrunkEntity(TeslemetryVehicleStreamEntity, TeslemetryRearTrunkEntity, CoverRestoreEntity):
@@ -113,6 +128,7 @@ class TeslemetryStreamingRearTrunkEntity(TeslemetryVehicleStreamEntity, Teslemet
     _attr_supported_features: Incomplete
     _attr_is_closed: Incomplete
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_value_from_stream(self, value: bool | None) -> None: ...
 
@@ -125,7 +141,11 @@ class TeslemetrySunroofEntity(TeslemetryVehiclePollingEntity, CoverEntity):
     def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_is_closed: Incomplete
     _attr_current_cover_position: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...

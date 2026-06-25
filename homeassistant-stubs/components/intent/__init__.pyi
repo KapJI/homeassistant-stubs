@@ -5,7 +5,7 @@ from aiohttp import web
 from homeassistant.components import http
 from homeassistant.core import HomeAssistant, State
 from homeassistant.helpers import intent
-from typing import Any, Protocol
+from typing import Any, Protocol, override
 
 __all__ = ['DOMAIN', 'TimerEventType', 'TimerInfo', 'async_device_supports_timers', 'async_register_timer_handler']
 
@@ -13,41 +13,49 @@ class IntentPlatformProtocol(Protocol):
     async def async_setup_intents(self, hass: HomeAssistant) -> None: ...
 
 class OnOffIntentHandler(intent.ServiceIntentHandler):
+    @override
     async def async_call_service(self, domain: str, service: str, intent_obj: intent.Intent, state: State) -> None: ...
 
 class GetStateIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class NevermindIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class SetPositionIntentHandler(intent.DynamicServiceIntentHandler):
     def __init__(self) -> None: ...
+    @override
     def get_domain_and_service(self, intent_obj: intent.Intent, state: State) -> tuple[str, str]: ...
 
 class StopMovingIntentHandler(intent.DynamicServiceIntentHandler):
     def __init__(self) -> None: ...
+    @override
     def get_domain_and_service(self, intent_obj: intent.Intent, state: State) -> tuple[str, str]: ...
 
 class GetCurrentDateIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class GetCurrentTimeIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class RespondIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class GetTemperatureIntent(intent.IntentHandler):
@@ -55,6 +63,7 @@ class GetTemperatureIntent(intent.IntentHandler):
     description: str
     slot_schema: Incomplete
     platforms: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class IntentHandleView(http.HomeAssistantView):

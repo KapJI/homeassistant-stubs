@@ -8,6 +8,7 @@ from google_nest_sdm.auth import AbstractAuth
 from google_nest_sdm.google_nest_subscriber import GoogleNestSubscriber
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client, config_entry_oauth2_flow as config_entry_oauth2_flow
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -16,13 +17,17 @@ class AsyncConfigEntryAuth(AbstractAuth):
     _client_id: Incomplete
     _client_secret: Incomplete
     def __init__(self, websession: ClientSession, oauth_session: config_entry_oauth2_flow.OAuth2Session, client_id: str, client_secret: str) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...
+    @override
     async def async_get_creds(self) -> Credentials: ...
 
 class AccessTokenAuthImpl(AbstractAuth):
     _access_token: Incomplete
     def __init__(self, websession: ClientSession, access_token: str, host: str) -> None: ...
+    @override
     async def async_get_access_token(self) -> str: ...
+    @override
     async def async_get_creds(self) -> Credentials: ...
 
 async def new_auth(hass: HomeAssistant, entry: NestConfigEntry) -> AbstractAuth: ...

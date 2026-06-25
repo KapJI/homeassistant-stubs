@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 WEEK: Incomplete
 
@@ -28,6 +29,7 @@ class MealieDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metacla
     _update_interval: timedelta
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: MealieConfigEntry, client: MealieClient) -> None: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
     @abstractmethod
     async def _async_update_internal(self) -> _DataT: ...
@@ -35,6 +37,7 @@ class MealieDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metacla
 class MealieMealplanCoordinator(MealieDataUpdateCoordinator[dict[MealplanEntryType, list[Mealplan]]]):
     _name: str
     _update_interval: Incomplete
+    @override
     async def _async_update_internal(self) -> dict[MealplanEntryType, list[Mealplan]]: ...
 
 @dataclass
@@ -45,9 +48,11 @@ class ShoppingListData:
 class MealieShoppingListCoordinator(MealieDataUpdateCoordinator[dict[str, ShoppingListData]]):
     _name: str
     _update_interval: Incomplete
+    @override
     async def _async_update_internal(self) -> dict[str, ShoppingListData]: ...
 
 class MealieStatisticsCoordinator(MealieDataUpdateCoordinator[Statistics]):
     _name: str
     _update_interval: Incomplete
+    @override
     async def _async_update_internal(self) -> Statistics: ...

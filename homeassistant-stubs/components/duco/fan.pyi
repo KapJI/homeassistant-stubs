@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ordered_list_item as percentage_to_ordered_list_item
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -27,9 +28,13 @@ class DucoVentilationFanEntity(DucoEntity, FanEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: DucoCoordinator, node: Node) -> None: ...
     @property
+    @override
     def percentage(self) -> int | None: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
     async def _async_set_state(self, state: VentilationState) -> None: ...

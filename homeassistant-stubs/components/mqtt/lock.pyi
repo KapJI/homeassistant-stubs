@@ -16,7 +16,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -38,11 +38,13 @@ class MqttLock(MqttEntity, LockEntity):
     _command_template: Callable[[PublishPayloadType, TemplateVarsType], PublishPayloadType]
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
+    @override
     def config_schema() -> vol.Schema: ...
     _attr_is_locked: bool
     _attr_assumed_state: Incomplete
     _attr_code_format: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_unlocking: Incomplete
     _attr_is_open: Incomplete
@@ -52,8 +54,13 @@ class MqttLock(MqttEntity, LockEntity):
     @callback
     def _message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_open(self, **kwargs: Any) -> None: ...

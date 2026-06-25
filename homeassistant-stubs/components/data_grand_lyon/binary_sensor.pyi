@@ -5,6 +5,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity as BinaryS
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 VELOV_BINARY_SENSOR_DESCRIPTIONS: tuple[BinarySensorEntityDescription, ...]
@@ -13,4 +14,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: DataGrandLyonConfigEntry
 
 class DataGrandLyonVelovBinarySensor(DataGrandLyonVelovEntity, BinarySensorEntity):
     @property
+    @override
     def is_on(self) -> bool: ...

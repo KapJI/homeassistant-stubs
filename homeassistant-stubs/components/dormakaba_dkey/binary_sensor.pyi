@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from py_dormakaba_dkey.commands import Notifications as Notifications
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class DormakabaDkeyBinarySensorDescription(BinarySensorEntityDescription):
@@ -23,4 +24,5 @@ class DormakabaDkeyBinarySensor(DormakabaDkeyEntity, BinarySensorEntity):
     def __init__(self, coordinator: DormakabaDkeyCoordinator, description: DormakabaDkeyBinarySensorDescription) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

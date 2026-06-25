@@ -6,7 +6,7 @@ from homeassistant.components.humidifier import HumidifierDeviceClass as Humidif
 from homeassistant.const import STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -23,10 +23,15 @@ class SwitchBotHumidifier(SwitchBotCloudEntity, HumidifierEntity):
     _attr_is_on: Incomplete
     _attr_mode: Incomplete
     _attr_current_humidity: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_set_humidity(self, humidity: int) -> None: ...
+    @override
     async def async_set_mode(self, mode: str) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def _map_humidity_to_supported_level(self, humidity: int) -> tuple[int, int]: ...
 
@@ -40,8 +45,13 @@ class SwitchBotEvaporativeHumidifier(SwitchBotCloudEntity, HumidifierEntity):
     _attr_is_on: Incomplete
     _attr_mode: Incomplete
     _attr_current_humidity: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
+    @override
     async def async_set_humidity(self, humidity: int) -> None: ...
+    @override
     async def async_set_mode(self, mode: str) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

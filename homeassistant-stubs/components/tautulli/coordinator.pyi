@@ -6,6 +6,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pytautulli import PyTautulli as PyTautulli, PyTautulliApiActivity as PyTautulliApiActivity, PyTautulliApiHomeStats as PyTautulliApiHomeStats, PyTautulliApiUser as PyTautulliApiUser
 from pytautulli.models.host_configuration import PyTautulliHostConfiguration as PyTautulliHostConfiguration
+from typing import override
 
 type TautulliConfigEntry = ConfigEntry[TautulliDataUpdateCoordinator]
 class TautulliDataUpdateCoordinator(DataUpdateCoordinator[None]):
@@ -16,4 +17,5 @@ class TautulliDataUpdateCoordinator(DataUpdateCoordinator[None]):
     home_stats: list[PyTautulliApiHomeStats] | None
     users: list[PyTautulliApiUser] | None
     def __init__(self, hass: HomeAssistant, config_entry: TautulliConfigEntry, host_configuration: PyTautulliHostConfiguration, api_client: PyTautulli) -> None: ...
+    @override
     async def _async_update_data(self) -> None: ...

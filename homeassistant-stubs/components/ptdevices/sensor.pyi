@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -32,4 +33,5 @@ class PTDevicesSensorEntity(PTDevicesEntity, SensorEntity):
     entity_description: PTDevicesSensorEntityDescription
     def __init__(self, coordinator: PTDevicesCoordinator, description: PTDevicesSensorEntityDescription, device_id: str) -> None: ...
     @property
+    @override
     def native_value(self) -> float | int | str | None: ...

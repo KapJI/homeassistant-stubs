@@ -1,5 +1,5 @@
 import asyncio
-from .const import BATTERY_ALL_WAKE_UPDATE_INTERVAL as BATTERY_ALL_WAKE_UPDATE_INTERVAL, BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL as BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL, BATTERY_WAKE_UPDATE_INTERVAL as BATTERY_WAKE_UPDATE_INTERVAL, CONF_BC_CONNECT as CONF_BC_CONNECT, CONF_BC_ONLY as CONF_BC_ONLY, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
+from .const import BATTERY_ALL_WAKE_UPDATE_INTERVAL as BATTERY_ALL_WAKE_UPDATE_INTERVAL, BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL as BATTERY_PASSIVE_WAKE_UPDATE_INTERVAL, BATTERY_WAKE_UPDATE_INTERVAL as BATTERY_WAKE_UPDATE_INTERVAL, CONF_BC_CONNECT as CONF_BC_CONNECT, CONF_BC_ONLY as CONF_BC_ONLY, CONF_BC_PORT as CONF_BC_PORT, CONF_SUPPORTS_PRIVACY_MODE as CONF_SUPPORTS_PRIVACY_MODE, CONF_UID as CONF_UID, CONF_USE_HTTPS as CONF_USE_HTTPS, DOMAIN as DOMAIN
 from .exceptions import PasswordIncompatible as PasswordIncompatible, ReolinkSetupException as ReolinkSetupException, ReolinkWebhookException as ReolinkWebhookException, UserNotAdmin as UserNotAdmin
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, get_store as get_store
 from _typeshed import Incomplete
@@ -13,7 +13,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_call_later as async_call_later
-from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError, get_url as get_url
+from homeassistant.helpers.network import NoURLAvailableError as NoURLAvailableError
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList
 from reolink_aio.api import Host
@@ -28,6 +28,8 @@ SUBSCRIPTION_RENEW_THRESHOLD: int
 POLL_INTERVAL_NO_PUSH: int
 LONG_POLL_COOLDOWN: float
 LONG_POLL_ERROR_COOLDOWN: int
+ONVIF: str
+BC: str
 _LOGGER: Incomplete
 
 class ReolinkHost:
@@ -43,11 +45,11 @@ class ReolinkHost:
     starting: bool
     privacy_mode: bool | None
     credential_errors: int
-    webhook_id: str | None
+    _base_url: str
+    _webhook_ids: dict[str, str]
+    _webhook_url: dict[str, str]
     _onvif_push_supported: bool
     _onvif_long_poll_supported: bool
-    _base_url: str
-    _webhook_url: str
     _webhook_reachable: bool
     _long_poll_received: bool
     _long_poll_error: bool
@@ -83,12 +85,13 @@ class ReolinkHost:
     async def subscribe(self) -> None: ...
     async def renew(self) -> None: ...
     async def _renew(self, sub_type: Literal[SubType.push, SubType.long_poll]) -> None: ...
-    def register_webhook(self) -> None: ...
-    def unregister_webhook(self) -> None: ...
+    def register_webhook(self, id: str) -> None: ...
+    def unregister_webhook(self, id: str) -> None: ...
     async def _async_long_polling(self, *_: Any) -> None: ...
     async def _async_poll_all_motion(self, *_: Any) -> None: ...
     async def handle_webhook(self, hass: HomeAssistant, webhook_id: str, request: Request) -> None: ...
-    async def _process_webhook_data(self, hass: HomeAssistant, webhook_id: str, data: bytes | None) -> None: ...
+    async def _process_webhook_data(self, webhook_id: str, data: bytes | None) -> None: ...
+    async def _process_ONVIF_webhook_data(self, data: bytes) -> None: ...
     def _signal_write_ha_state(self, channels: list[int] | None = None) -> None: ...
     @property
     def event_connection(self) -> str: ...

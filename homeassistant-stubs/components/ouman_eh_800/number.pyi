@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from ouman_eh_800_api import FloatControlOumanEndpoint, IntControlOumanEndpoint
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,5 +29,7 @@ class OumanEh800NumberEntity(OumanEh800Entity, NumberEntity):
     _attr_native_step: Incomplete
     def __init__(self, coordinator: OumanEh800Coordinator, endpoint: IntControlOumanEndpoint | FloatControlOumanEndpoint, description: OumanEh800NumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

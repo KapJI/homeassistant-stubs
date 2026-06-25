@@ -5,7 +5,7 @@ from datetime import datetime
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -20,9 +20,12 @@ class TeslemetryTariffSchedule(TeslemetryEnergyInfoEntity, CalendarEntity):
     charges: dict[str, dict[str, Any]]
     def __init__(self, data: Any, key_base: str) -> None: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...
     def _get_current_season(self, date_to_check: datetime) -> str | None: ...
     def _get_price_for_period(self, season_name: str, period_name: str) -> float | None: ...
     _attr_available: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_ID as CONF_ID, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -29,7 +30,9 @@ class BRouteUpdateCoordinator(DataUpdateCoordinator[BRouteData]):
     _password: Incomplete
     api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: BRouteConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
     def _fetch_device_info(self) -> None: ...
     def _get_data(self) -> BRouteData: ...
+    @override
     async def _async_update_data(self) -> BRouteData: ...

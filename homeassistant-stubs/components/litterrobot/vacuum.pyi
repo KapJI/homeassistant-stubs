@@ -6,7 +6,7 @@ from homeassistant.components.vacuum import StateVacuumEntity as StateVacuumEnti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylitterbot import LitterRobot
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 LITTER_BOX_STATUS_STATE_MAP: Incomplete
@@ -17,10 +17,13 @@ async def async_setup_entry(hass: HomeAssistant, entry: LitterRobotConfigEntry, 
 class LitterRobotCleaner(LitterRobotEntity[LitterRobot], StateVacuumEntity):
     _attr_supported_features: Incomplete
     @property
+    @override
     def activity(self) -> VacuumActivity: ...
     @whisker_command
+    @override
     async def async_start(self) -> None: ...
     @whisker_command
+    @override
     async def async_stop(self, **kwargs: Any) -> None: ...
     @whisker_command
     async def async_set_sleep_mode(self, enabled: bool, start_time: str | None = None) -> None: ...

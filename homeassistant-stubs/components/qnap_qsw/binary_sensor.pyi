@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
-from typing import Final
+from typing import Final, override
 
 @dataclass(frozen=True)
 class QswBinarySensorEntityDescription(BinarySensorEntityDescription, QswEntityDescription):
@@ -30,4 +30,5 @@ class QswBinarySensor(QswSensorEntity, BinarySensorEntity):
     def __init__(self, coordinator: QswDataCoordinator, description: QswBinarySensorEntityDescription, entry: QnapQswConfigEntry, type_id: int | None = None) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

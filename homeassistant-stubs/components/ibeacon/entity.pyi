@@ -8,6 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
+from typing import override
 
 class IBeaconEntity(Entity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool
@@ -18,6 +19,7 @@ class IBeaconEntity(Entity, metaclass=abc.ABCMeta):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: IBeaconCoordinator, identifier: str, device_unique_id: str, ibeacon_advertisement: iBeaconAdvertisement) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, str | int]: ...
     @abstractmethod
     @callback
@@ -25,4 +27,5 @@ class IBeaconEntity(Entity, metaclass=abc.ABCMeta):
     @abstractmethod
     @callback
     def _async_unavailable(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

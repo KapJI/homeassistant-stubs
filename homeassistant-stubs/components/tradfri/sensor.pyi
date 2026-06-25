@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class TradfriSensorEntityDescription(SensorEntityDescription):
@@ -31,4 +31,5 @@ class TradfriSensor(TradfriBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str, description: TradfriSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    @override
     def _refresh(self) -> None: ...

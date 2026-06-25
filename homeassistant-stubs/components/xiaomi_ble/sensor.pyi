@@ -8,6 +8,7 @@ from homeassistant.const import CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER as CONC
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info as sensor_device_info_to_hass_device_info
+from typing import override
 from xiaomi_ble import SensorUpdate as SensorUpdate
 
 SENSOR_DESCRIPTIONS: Incomplete
@@ -17,6 +18,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: XiaomiBLEConfigEntry, as
 
 class XiaomiBluetoothSensorEntity(PassiveBluetoothProcessorEntity[XiaomiPassiveBluetoothDataProcessor[float | None]], SensorEntity):
     @property
+    @override
     def native_value(self) -> int | float | None: ...
     @property
+    @override
     def available(self) -> bool: ...

@@ -10,6 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.util import Throttle as Throttle
+from typing import override
 
 @dataclass(frozen=True)
 class AmcrestSensorEntityDescription(BinarySensorEntityDescription):
@@ -49,6 +50,7 @@ class AmcrestBinarySensor(BinarySensorEntity):
     _attr_should_poll: Incomplete
     def __init__(self, name: str, device: AmcrestDevice, entity_description: AmcrestSensorEntityDescription) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     async def async_update(self) -> None: ...
     _attr_is_on: Incomplete
@@ -60,4 +62,5 @@ class AmcrestBinarySensor(BinarySensorEntity):
     def async_on_demand_update_online(self) -> None: ...
     @callback
     def async_event_received(self, state: bool) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

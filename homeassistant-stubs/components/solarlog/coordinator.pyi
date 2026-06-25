@@ -10,6 +10,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homeassistant.util import slugify as slugify
 from solarlog_cli.solarlog_connector import SolarLogConnector as SolarLogConnector
 from solarlog_cli.solarlog_models import EnergyData, InverterData, SolarlogData
+from typing import override
 
 _LOGGER: Incomplete
 type SolarlogConfigEntry = ConfigEntry[SolarlogIntegrationData]
@@ -19,7 +20,9 @@ class SolarLogBasicDataCoordinator(DataUpdateCoordinator[SolarlogData]):
     unique_id: Incomplete
     solarlog: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SolarlogConfigEntry, api: SolarLogConnector) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> SolarlogData: ...
     async def renew_authentication(self) -> bool: ...
 
@@ -30,6 +33,7 @@ class SolarLogDeviceDataCoordinator(DataUpdateCoordinator[dict[int, InverterData
     solarlog: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SolarlogConfigEntry, api: SolarLogConnector) -> None: ...
     data: Incomplete
+    @override
     async def _async_update_data(self) -> dict[int, InverterData]: ...
     def _async_add_remove_devices(self, inverter_data: dict[int, InverterData]) -> None: ...
 
@@ -38,5 +42,7 @@ class SolarLogLongtimeDataCoordinator(DataUpdateCoordinator[EnergyData]):
     solarlog: Incomplete
     connection_timeout: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SolarlogConfigEntry, api: SolarLogConnector, timeout: float) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> EnergyData: ...

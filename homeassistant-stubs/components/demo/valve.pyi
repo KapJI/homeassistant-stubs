@@ -7,7 +7,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as 
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_utc_time_change as async_track_utc_time_change
-from typing import Any
+from typing import Any, override
 
 OPEN_CLOSE_DELAY: int
 
@@ -28,16 +28,24 @@ class DemoValve(ValveEntity):
     _position: int
     def __init__(self, unique_id: str, name: str, state: str, moveable: bool = True, position: int | None = None) -> None: ...
     @property
+    @override
     def current_valve_position(self) -> int: ...
     @property
+    @override
     def is_opening(self) -> bool: ...
     @property
+    @override
     def is_closing(self) -> bool: ...
     @property
+    @override
     def is_closed(self) -> bool: ...
+    @override
     async def async_open_valve(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_valve(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_valve(self) -> None: ...
+    @override
     async def async_set_valve_position(self, position: int) -> None: ...
     @callback
     def _listen_valve(self) -> None: ...

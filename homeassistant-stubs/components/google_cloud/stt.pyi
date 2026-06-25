@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from propcache.api import cached_property
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -21,15 +22,22 @@ class GoogleCloudSpeechToTextEntity(SpeechToTextEntity):
     _model: Incomplete
     def __init__(self, entry: ConfigEntry, client: speech_v1.SpeechAsyncClient) -> None: ...
     @cached_property
+    @override
     def supported_languages(self) -> list[str]: ...
     @property
+    @override
     def supported_formats(self) -> list[AudioFormats]: ...
     @property
+    @override
     def supported_codecs(self) -> list[AudioCodecs]: ...
     @property
+    @override
     def supported_bit_rates(self) -> list[AudioBitRates]: ...
     @property
+    @override
     def supported_sample_rates(self) -> list[AudioSampleRates]: ...
     @property
+    @override
     def supported_channels(self) -> list[AudioChannels]: ...
+    @override
     async def async_process_audio_stream(self, metadata: SpeechMetadata, stream: AsyncIterable[bytes]) -> SpeechResult: ...

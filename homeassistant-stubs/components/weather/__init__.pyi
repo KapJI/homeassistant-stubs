@@ -1,5 +1,5 @@
 import abc
-from .const import ATTR_WEATHER_APPARENT_TEMPERATURE as ATTR_WEATHER_APPARENT_TEMPERATURE, ATTR_WEATHER_CLOUD_COVERAGE as ATTR_WEATHER_CLOUD_COVERAGE, ATTR_WEATHER_DEW_POINT as ATTR_WEATHER_DEW_POINT, ATTR_WEATHER_HUMIDITY as ATTR_WEATHER_HUMIDITY, ATTR_WEATHER_OZONE as ATTR_WEATHER_OZONE, ATTR_WEATHER_PRECIPITATION_UNIT as ATTR_WEATHER_PRECIPITATION_UNIT, ATTR_WEATHER_PRESSURE as ATTR_WEATHER_PRESSURE, ATTR_WEATHER_PRESSURE_UNIT as ATTR_WEATHER_PRESSURE_UNIT, ATTR_WEATHER_TEMPERATURE as ATTR_WEATHER_TEMPERATURE, ATTR_WEATHER_TEMPERATURE_UNIT as ATTR_WEATHER_TEMPERATURE_UNIT, ATTR_WEATHER_UV_INDEX as ATTR_WEATHER_UV_INDEX, ATTR_WEATHER_VISIBILITY as ATTR_WEATHER_VISIBILITY, ATTR_WEATHER_VISIBILITY_UNIT as ATTR_WEATHER_VISIBILITY_UNIT, ATTR_WEATHER_WIND_BEARING as ATTR_WEATHER_WIND_BEARING, ATTR_WEATHER_WIND_GUST_SPEED as ATTR_WEATHER_WIND_GUST_SPEED, ATTR_WEATHER_WIND_SPEED as ATTR_WEATHER_WIND_SPEED, ATTR_WEATHER_WIND_SPEED_UNIT as ATTR_WEATHER_WIND_SPEED_UNIT, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, INTENT_GET_WEATHER as INTENT_GET_WEATHER, UNIT_CONVERSIONS as UNIT_CONVERSIONS, VALID_UNITS as VALID_UNITS, WeatherEntityFeature as WeatherEntityFeature
+from .const import ATTR_WEATHER_APPARENT_TEMPERATURE as ATTR_WEATHER_APPARENT_TEMPERATURE, ATTR_WEATHER_CLOUD_COVERAGE as ATTR_WEATHER_CLOUD_COVERAGE, ATTR_WEATHER_DEW_POINT as ATTR_WEATHER_DEW_POINT, ATTR_WEATHER_HUMIDITY as ATTR_WEATHER_HUMIDITY, ATTR_WEATHER_OZONE as ATTR_WEATHER_OZONE, ATTR_WEATHER_PRECIPITATION_UNIT as ATTR_WEATHER_PRECIPITATION_UNIT, ATTR_WEATHER_PRESSURE as ATTR_WEATHER_PRESSURE, ATTR_WEATHER_PRESSURE_UNIT as ATTR_WEATHER_PRESSURE_UNIT, ATTR_WEATHER_TEMPERATURE as ATTR_WEATHER_TEMPERATURE, ATTR_WEATHER_TEMPERATURE_UNIT as ATTR_WEATHER_TEMPERATURE_UNIT, ATTR_WEATHER_UV_INDEX as ATTR_WEATHER_UV_INDEX, ATTR_WEATHER_VISIBILITY as ATTR_WEATHER_VISIBILITY, ATTR_WEATHER_VISIBILITY_UNIT as ATTR_WEATHER_VISIBILITY_UNIT, ATTR_WEATHER_WIND_BEARING as ATTR_WEATHER_WIND_BEARING, ATTR_WEATHER_WIND_GUST_SPEED as ATTR_WEATHER_WIND_GUST_SPEED, ATTR_WEATHER_WIND_SPEED as ATTR_WEATHER_WIND_SPEED, ATTR_WEATHER_WIND_SPEED_UNIT as ATTR_WEATHER_WIND_SPEED_UNIT, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, INTENT_GET_WEATHER as INTENT_GET_WEATHER, UNIT_CONVERSIONS as UNIT_CONVERSIONS, VALID_UNITS as VALID_UNITS, WeatherEntityFeature as WeatherEntityFeature, WeatherEntityStateAttribute as WeatherEntityStateAttribute
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from datetime import timedelta
@@ -15,7 +15,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
 from propcache.api import cached_property
-from typing import Any, Final, Generic, Literal, Required, TypeVar, TypedDict, final
+from typing import Any, Final, Generic, Literal, Required, TypeVar, TypedDict, final, override
 
 _LOGGER: Incomplete
 ENTITY_ID_FORMAT: Incomplete
@@ -101,6 +101,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: .
 class WeatherEntityDescription(EntityDescription, frozen_or_thawed=True): ...
 
 class PostInitMeta(ABCCachedProperties):
+    @override
     def __call__(cls, *args: Any, **kwargs: Any) -> Any: ...
 
 class PostInit(metaclass=PostInitMeta):
@@ -137,7 +138,9 @@ class WeatherEntity(Entity, PostInit, cached_properties=CACHED_PROPERTIES_WITH_A
     _weather_option_visibility_unit: str | None
     _weather_option_precipitation_unit: str | None
     _weather_option_wind_speed_unit: str | None
+    @override
     def __post_init__(self, *args: Any, **kwargs: Any) -> None: ...
+    @override
     async def async_internal_added_to_hass(self) -> None: ...
     @cached_property
     def native_apparent_temperature(self) -> float | None: ...
@@ -210,15 +213,18 @@ class WeatherEntity(Entity, PostInit, cached_properties=CACHED_PROPERTIES_WITH_A
     def precision(self) -> float: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, Any]: ...
     @final
     def _convert_forecast(self, native_forecast_list: list[Forecast]) -> list[JsonValueType]: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def condition(self) -> str | None: ...
     @callback
+    @override
     def async_registry_entry_updated(self) -> None: ...
     @callback
     def _async_subscription_started(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
@@ -238,9 +244,11 @@ class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT]
     forecast_valid: Incomplete
     unsub_forecast: dict[str, Callable[[], None] | None]
     def __init__(self, observation_coordinator: _ObservationUpdateCoordinatorT, *, context: Any = None, daily_coordinator: _DailyForecastUpdateCoordinatorT | None = None, hourly_coordinator: _HourlyForecastUpdateCoordinatorT | None = None, twice_daily_coordinator: _TwiceDailyForecastUpdateCoordinatorT | None = None, daily_forecast_valid: timedelta | None = None, hourly_forecast_valid: timedelta | None = None, twice_daily_forecast_valid: timedelta | None = None) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _remove_forecast_listener(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
     @callback
+    @override
     def _async_subscription_started(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
     @callback
     def _handle_daily_forecast_coordinator_update(self) -> None: ...
@@ -252,6 +260,7 @@ class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT]
     @callback
     def _handle_forecast_update(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
     @callback
+    @override
     def _async_subscription_ended(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> None: ...
     @final
     async def _async_refresh_forecast(self, coordinator: TimestampDataUpdateCoordinator[Any], forecast_valid_time: timedelta | None) -> bool: ...
@@ -264,13 +273,17 @@ class CoordinatorWeatherEntity(CoordinatorEntity[_ObservationUpdateCoordinatorT]
     @final
     async def _async_forecast(self, forecast_type: Literal['daily', 'hourly', 'twice_daily']) -> list[Forecast] | None: ...
     @final
+    @override
     async def async_forecast_daily(self) -> list[Forecast] | None: ...
     @final
+    @override
     async def async_forecast_hourly(self) -> list[Forecast] | None: ...
     @final
+    @override
     async def async_forecast_twice_daily(self) -> list[Forecast] | None: ...
 
 class SingleCoordinatorWeatherEntity(CoordinatorWeatherEntity[_ObservationUpdateCoordinatorT, TimestampDataUpdateCoordinator[None]]):
     def __init__(self, coordinator: _ObservationUpdateCoordinatorT, context: Any = None) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

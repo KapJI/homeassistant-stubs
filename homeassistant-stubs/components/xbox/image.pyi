@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pythonxbox.api.provider.people.models import Person as Person
 from pythonxbox.api.provider.titlehub.models import Title as Title
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -31,4 +32,5 @@ class XboxImageEntity(XboxBaseEntity, ImageEntity):
     _attr_image_last_updated: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: XboxPresenceCoordinator, xuid: str, entity_description: XboxImageEntityDescription) -> None: ...
     _cached_image: Incomplete
+    @override
     def _handle_coordinator_update(self) -> None: ...

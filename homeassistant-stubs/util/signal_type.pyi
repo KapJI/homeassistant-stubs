@@ -1,10 +1,12 @@
-from typing import Any
+from typing import Any, override
 
 __all__ = ['SignalType', 'SignalTypeFormat']
 
 class _SignalTypeBase[*_Ts]:
     def __init__(self, value: str, /) -> None: ...
+    @override
     def __hash__(self) -> int: ...
+    @override
     def __eq__(self, other: object) -> bool: ...
 
 class SignalType[*_Ts](_SignalTypeBase[*_Ts]): ...

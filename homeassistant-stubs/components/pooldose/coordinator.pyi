@@ -4,6 +4,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pooldose.client import PooldoseClient as PooldoseClient
 from pooldose.type_definitions import DeviceInfoDict as DeviceInfoDict, StructuredValuesDict
+from typing import override
 
 _LOGGER: Incomplete
 type PooldoseConfigEntry = ConfigEntry[PooldoseCoordinator]
@@ -13,5 +14,7 @@ class PooldoseCoordinator(DataUpdateCoordinator[StructuredValuesDict]):
     config_entry: PooldoseConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, client: PooldoseClient, config_entry: PooldoseConfigEntry) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> StructuredValuesDict: ...

@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class ZinvoltBatteryStateDescription(SensorEntityDescription):
@@ -21,4 +22,5 @@ class ZinvoltBatteryStateSensor(ZinvoltEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator, description: ZinvoltBatteryStateDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float | None: ...

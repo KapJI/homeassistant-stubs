@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.unit_conversion import InformationConverter as InformationConverter
 from pypaperless.models import Statistic, Status
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -24,4 +25,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: PaperlessConfigEntry, as
 class PaperlessSensor[CoordinatorT: PaperlessCoordinator](PaperlessEntity[CoordinatorT], SensorEntity):
     entity_description: PaperlessEntityDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

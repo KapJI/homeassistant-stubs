@@ -20,7 +20,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util import slugify as slugify
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 _LOGGER: Incomplete
 FRITZ_DATA_KEY: HassKey[FritzData]
@@ -76,6 +76,7 @@ class FritzBoxTools(DataUpdateCoordinator[UpdateCoordinatorDataType]):
     def setup(self) -> None: ...
     async def async_register_entity_updates(self, key: str, update_fn: Callable[[FritzStatus, StateType], Any]) -> Callable[[], None]: ...
     def _entity_states_update(self) -> dict: ...
+    @override
     async def _async_update_data(self) -> UpdateCoordinatorDataType: ...
     @property
     def unique_id(self) -> str: ...

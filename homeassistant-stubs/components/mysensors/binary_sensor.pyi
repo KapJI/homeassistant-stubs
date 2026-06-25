@@ -9,7 +9,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True)
 class MySensorsBinarySensorDescription(BinarySensorEntityDescription):
@@ -23,4 +23,5 @@ class MySensorsBinarySensor(MySensorsChildEntity, BinarySensorEntity):
     entity_description: MySensorsBinarySensorDescription
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

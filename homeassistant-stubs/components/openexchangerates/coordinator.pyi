@@ -7,6 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 type OpenexchangeratesConfigEntry = ConfigEntry[OpenexchangeratesCoordinator]
 class OpenexchangeratesCoordinator(DataUpdateCoordinator[Latest]):
@@ -14,4 +15,5 @@ class OpenexchangeratesCoordinator(DataUpdateCoordinator[Latest]):
     base: Incomplete
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: OpenexchangeratesConfigEntry, session: ClientSession, api_key: str, base: str, update_interval: timedelta) -> None: ...
+    @override
     async def _async_update_data(self) -> Latest: ...

@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM, US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
@@ -24,4 +24,5 @@ class EcowittSensorEntity(EcowittEntity, SensorEntity):
     entity_description: Incomplete
     def __init__(self, sensor: EcoWittSensor, description: SensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

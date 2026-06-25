@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from switchbee.device import SwitchBeeBaseDevice as SwitchBeeBaseDevice
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -19,6 +20,7 @@ class SwitchBeeDeviceEntity[_DeviceTypeT: SwitchBeeBaseDevice](SwitchBeeEntity[_
     _attr_device_info: Incomplete
     def __init__(self, device: _DeviceTypeT, coordinator: SwitchBeeCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     def _check_if_became_offline(self) -> None: ...
     def _check_if_became_online(self) -> None: ...

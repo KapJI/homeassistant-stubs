@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from mastodon.Mastodon import Account as Account, Instance as Instance, InstanceV2 as InstanceV2
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -29,8 +29,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: MastodonConfigEntry, asy
 class MastodonSensorEntity(MastodonEntity, SensorEntity):
     entity_description: MastodonSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @property
+    @override
     def entity_picture(self) -> str | None: ...

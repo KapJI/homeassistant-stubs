@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -18,4 +19,5 @@ class DemoTime(TimeEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, unique_id: str, device_name: str, state: time, assumed_state: bool) -> None: ...
+    @override
     async def async_set_value(self, value: time) -> None: ...

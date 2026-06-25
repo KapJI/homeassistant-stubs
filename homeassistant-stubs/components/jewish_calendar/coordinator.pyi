@@ -8,6 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import event as event
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 _LOGGER: Incomplete
 type JewishCalendarConfigEntry = ConfigEntry[JewishCalendarUpdateCoordinator]
@@ -28,6 +29,7 @@ class JewishCalendarUpdateCoordinator(DataUpdateCoordinator[JewishCalendarData])
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: JewishCalendarConfigEntry, data: JewishCalendarData) -> None: ...
     _unsub_refresh: Incomplete
+    @override
     async def _async_update_data(self) -> JewishCalendarData: ...
     @callback
     def _handle_midnight_update(self, _now: dt.datetime) -> None: ...

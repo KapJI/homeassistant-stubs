@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, SERVICE_ALARM_ARM_AWAY as SERVICE_ALARM_ARM_AWAY, SERVICE_ALARM_ARM_HOME as SERVICE_ALARM_ARM_HOME, SERVICE_ALARM_ARM_NIGHT as SERVICE_ALARM_ARM_NIGHT, SERVICE_ALARM_DISARM as SERVICE_ALARM_DISARM, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import State as State, callback as callback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 HK_ALARM_STAY_ARMED: int
@@ -24,4 +24,5 @@ class SecuritySystem(HomeAccessory):
     def __init__(self, *args: Any) -> None: ...
     def set_security_state(self, value: int) -> None: ...
     @callback
+    @override
     def async_update_state(self, new_state: State) -> None: ...

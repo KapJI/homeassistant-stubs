@@ -10,7 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfVolume a
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
-from typing import Any
+from typing import Any, override
 
 DEFAULT_ZONE_COMPLETION_TIME_WOBBLE_TOLERANCE: Incomplete
 TYPE_FLOW_SENSOR_CLICK_M3: str
@@ -46,21 +46,27 @@ class TimeRemainingSensor(RainMachineEntity, RestoreSensor):
     @property
     def status_key(self) -> str: ...
     _attr_native_value: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def calculate_seconds_remaining(self) -> int: ...
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class ProgramTimeRemainingSensor(TimeRemainingSensor):
     @property
+    @override
     def status_key(self) -> str: ...
+    @override
     def calculate_seconds_remaining(self) -> int: ...
 
 class ProvisionSettingsSensor(RainMachineEntity, SensorEntity):
     entity_description: RainMachineSensorDataDescription
     _attr_native_value: Incomplete
     @callback
+    @override
     def update_from_latest_data(self) -> None: ...
 
 class ZoneTimeRemainingSensor(TimeRemainingSensor):
+    @override
     def calculate_seconds_remaining(self) -> int: ...

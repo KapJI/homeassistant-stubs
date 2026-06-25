@@ -6,6 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -21,4 +22,5 @@ class NutCoordinator(DataUpdateCoordinator[dict[str, str]]):
     config_entry: NutConfigEntry
     _data: Incomplete
     def __init__(self, hass: HomeAssistant, data: PyNUTData, config_entry: NutConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, str]: ...

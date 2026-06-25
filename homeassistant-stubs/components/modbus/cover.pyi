@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -29,11 +29,15 @@ class ModbusCover(ModbusBaseEntity, CoverEntity, RestoreEntity):
     _address: Incomplete
     _input_type: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict[str, Any]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_is_opening: Incomplete
     _attr_is_closing: Incomplete
     def _set_attr_state(self, value: str | bool | int) -> None: ...
     _attr_available: Incomplete
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def _async_update(self) -> None: ...

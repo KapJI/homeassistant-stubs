@@ -19,7 +19,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from paho.mqtt.client import MQTTMessage as MQTTMessage
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 class PayloadSentinel(StrEnum):
     NONE = 'none'
@@ -91,6 +91,7 @@ class MqttCommandTemplateException(ServiceValidationError):
     translation_key: str
     translation_placeholders: Incomplete
     def __init__(self, *args: object, base_exception: Exception, command_template: str, value: PublishPayloadType, entity_id: str | None = None) -> None: ...
+    @override
     def __str__(self) -> str: ...
 
 class MqttCommandTemplate:
@@ -104,6 +105,7 @@ class MqttCommandTemplate:
 class MqttValueTemplateException(TemplateError):
     _message: str
     def __init__(self, *args: object, base_exception: Exception, value_template: str, default: ReceivePayloadType | PayloadSentinel, payload: ReceivePayloadType, entity_id: str | None = None) -> None: ...
+    @override
     def __str__(self) -> str: ...
 
 class MqttValueTemplate:

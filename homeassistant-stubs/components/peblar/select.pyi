@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from peblar import Peblar as Peblar, PeblarUserConfiguration as PeblarUserConfiguration
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -25,6 +25,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 class PeblarSelectEntity(PeblarEntity[PeblarUserConfigurationDataUpdateCoordinator], SelectEntity):
     entity_description: PeblarSelectEntityDescription
     @property
+    @override
     def current_option(self) -> str | None: ...
     @peblar_exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...

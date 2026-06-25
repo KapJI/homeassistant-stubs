@@ -4,7 +4,7 @@ from .manager import BackupManager as BackupManager, StoredKnownBackup as Stored
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.storage import Store as Store
-from typing import Any, TypedDict
+from typing import Any, TypedDict, override
 
 STORE_DELAY_SAVE: int
 STORAGE_KEY = DOMAIN
@@ -18,6 +18,7 @@ class StoredBackupData(TypedDict):
 class _BackupStore(Store[StoredBackupData]):
     _MAX_READABLE_VERSION: int
     def __init__(self, hass: HomeAssistant) -> None: ...
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, Any]) -> dict[str, Any]: ...
 
 class BackupStore:

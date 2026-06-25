@@ -17,7 +17,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads_object as json_loads_object
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 DEFAULT_NAME: str
@@ -43,20 +43,27 @@ class MqttSiren(MqttEntity, SirenEntity):
     _state_off: str
     _optimistic: bool
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_available_tones: Incomplete
     _attr_supported_features: Incomplete
     _attr_assumed_state: Incomplete
     _attr_is_on: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any] | None: ...
     async def _async_publish(self, topic: str, template: str, value: Any, variables: dict[str, Any] | None = None) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     def _update(self, data: SirenTurnOnServiceParameters) -> None: ...

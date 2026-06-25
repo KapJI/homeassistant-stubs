@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MAC as CONF_MAC
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 type AmbientNetworkConfigEntry = ConfigEntry[AmbientNetworkDataUpdateCoordinator]
@@ -18,4 +18,5 @@ class AmbientNetworkDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]])
     last_measured: datetime | None
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: AmbientNetworkConfigEntry, api: OpenAPI) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

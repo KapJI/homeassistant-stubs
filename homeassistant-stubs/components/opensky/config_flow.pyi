@@ -4,12 +4,14 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_PASSWORD as CONF_PASSWORD, CONF_RADIUS as CONF_RADIUS, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from typing import Any
+from typing import Any, override
 
 class OpenSkyConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: OpenSkyConfigEntry) -> OpenSkyOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
 class OpenSkyOptionsFlowHandler(OptionsFlow):

@@ -4,6 +4,7 @@ from ..entity import OverkizEntity as OverkizEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, HVACMode as HVACMode
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
+from typing import override
 
 FAN_BOOST: str
 FAN_KITCHEN: str
@@ -27,12 +28,18 @@ class AtlanticHeatRecoveryVentilation(OverkizEntity, ClimateEntity):
     temperature_device: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: str) -> None: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
+    @override
     def fan_mode(self) -> str | None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     async def _set_ventilation_mode(self, cooling: str | None = None, prog: str | None = None) -> None: ...

@@ -6,7 +6,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Contex
 from homeassistant.helpers.automation import DomainSpec as DomainSpec, filter_by_domain_specs as filter_by_domain_specs
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.target import TargetStateChangedData as TargetStateChangedData, async_track_target_selector_state_change_event as async_track_target_selector_state_change_event
-from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_STATE_TRIGGER_SCHEMA, Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, make_entity_target_state_trigger as make_entity_target_state_trigger
+from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_STATE_TRIGGER_SCHEMA, Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter, make_entity_target_state_trigger as make_entity_target_state_trigger
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import override
 
@@ -24,7 +24,7 @@ class TimeRemainingTrigger(Trigger):
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
     def entity_filter(self, entities: set[str]) -> set[str]: ...
     @override
-    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+    async def async_attach_runner(self, run_action: TriggerActionRunner, did_not_trigger: TriggerNotTriggeredReporter | None = None) -> CALLBACK_TYPE: ...
 
 TRIGGERS: dict[str, type[Trigger]]
 

@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from nextdns import Settings as Settings
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -28,7 +28,10 @@ class NextDnsSwitch(NextDnsEntity, SwitchEntity):
     _attr_is_on: Incomplete
     def __init__(self, coordinator: NextDnsUpdateCoordinator[Settings], description: NextDnsSwitchEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def async_set_setting(self, new_state: bool) -> None: ...

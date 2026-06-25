@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PIN as CONF_PIN, CONF_PORT as CONF_PORT, CONF_UUID as CONF_UUID
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -16,7 +16,9 @@ class MotionMountFlowHandler(ConfigFlow, domain=DOMAIN):
     backoff_task: asyncio.Task | None
     backoff_time: int
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, user_input: Mapping[str, Any]) -> ConfigFlowResult: ...

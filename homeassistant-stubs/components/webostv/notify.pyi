@@ -7,7 +7,7 @@ from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, AT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -16,4 +16,5 @@ async def async_get_service(hass: HomeAssistant, config: ConfigType, discovery_i
 class LgWebOSNotificationService(BaseNotificationService):
     _entry: Incomplete
     def __init__(self, entry: WebOsTvConfigEntry) -> None: ...
+    @override
     async def async_send_message(self, message: str = '', **kwargs: Any) -> None: ...

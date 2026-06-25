@@ -5,7 +5,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyvlx import OnOffSwitch
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -15,8 +15,11 @@ class VeluxOnOffSwitch(VeluxEntity, SwitchEntity):
     _attr_name: Incomplete
     node: OnOffSwitch
     @property
+    @override
     def is_on(self) -> bool: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @wrap_pyvlx_call_exceptions
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

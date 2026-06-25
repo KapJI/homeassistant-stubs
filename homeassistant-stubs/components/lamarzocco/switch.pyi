@@ -11,7 +11,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylamarzocco import LaMarzoccoMachine as LaMarzoccoMachine
 from pylamarzocco.models import WakeUpScheduleSettings as WakeUpScheduleSettings
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -27,13 +27,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, a
 
 class LaMarzoccoSwitchEntity(LaMarzoccoEntity, SwitchEntity):
     entity_description: LaMarzoccoSwitchEntityDescription
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class LaMarzoccoMainSwitchEntity(LaMarzoccoSwitchEntity):
     @property
+    @override
     def entity_picture(self) -> str | None: ...
 
 class LaMarzoccoAutoOnOffSwitchEntity(LaMarzoccoBaseEntity, SwitchEntity):
@@ -45,7 +49,10 @@ class LaMarzoccoAutoOnOffSwitchEntity(LaMarzoccoBaseEntity, SwitchEntity):
     _attr_entity_category: Incomplete
     def __init__(self, coordinator: LaMarzoccoUpdateCoordinator, schedule_entry: WakeUpScheduleSettings) -> None: ...
     async def _async_enable(self, state: bool) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

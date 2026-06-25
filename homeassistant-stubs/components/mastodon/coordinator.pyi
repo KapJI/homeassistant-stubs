@@ -7,6 +7,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from mastodon import Mastodon as Mastodon
 from mastodon.Mastodon import Account, Instance as Instance, InstanceV2 as InstanceV2
+from typing import override
 
 @dataclass
 class MastodonData:
@@ -20,4 +21,5 @@ class MastodonCoordinator(DataUpdateCoordinator[Account]):
     config_entry: MastodonConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: MastodonConfigEntry, client: Mastodon) -> None: ...
+    @override
     async def _async_update_data(self) -> Account: ...

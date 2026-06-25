@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 from zinvolt.models import Unit as Unit
 
 class ZinvoltEntity(CoordinatorEntity[ZinvoltDeviceCoordinator]):
@@ -11,6 +12,7 @@ class ZinvoltEntity(CoordinatorEntity[ZinvoltDeviceCoordinator]):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ZinvoltDeviceCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class ZinvoltUnitEntity(ZinvoltEntity):
@@ -23,4 +25,5 @@ class ZinvoltUnitEntity(ZinvoltEntity):
     @property
     def battery_unit(self) -> Unit: ...
     @property
+    @override
     def available(self) -> bool: ...

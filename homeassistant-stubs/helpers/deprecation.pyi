@@ -2,7 +2,7 @@ import functools
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from enum import EnumType, IntEnum as IntEnum, IntFlag as IntFlag, StrEnum as StrEnum, _EnumDict
-from typing import Any, NamedTuple
+from typing import Any, NamedTuple, override
 
 def deprecated_substitute[_ObjectT: object](substitute_name: str) -> Callable[[Callable[[_ObjectT], Any]], Callable[[_ObjectT], Any]]: ...
 def get_deprecated(config: dict[str, Any], new_name: str, old_name: str, default: Any | None = None) -> Any | None: ...
@@ -43,4 +43,5 @@ def all_with_deprecated_constants(module_globals: dict[str, Any]) -> list[str]: 
 
 class EnumWithDeprecatedMembers(EnumType):
     def __new__(mcs, cls: str, bases: tuple[type, ...], classdict: _EnumDict, *, deprecated: dict[str, tuple[str, str]], **kwds: Any) -> Any: ...
+    @override
     def __getattribute__(cls, name: str) -> Any: ...

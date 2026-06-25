@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class AsekoBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -18,4 +19,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: AsekoConfigEntry,
 class AsekoBinarySensorEntity(AsekoEntity, BinarySensorEntity):
     entity_description: AsekoBinarySensorEntityDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...

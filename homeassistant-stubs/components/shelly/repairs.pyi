@@ -6,6 +6,7 @@ from aioshelly.block_device import BlockDevice as BlockDevice
 from aioshelly.rpc_device import RpcDevice as RpcDevice
 from homeassistant.components.repairs import ConfirmRepairFlow as ConfirmRepairFlow, RepairsFlow as RepairsFlow, RepairsFlowResult as RepairsFlowResult
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from typing import override
 
 @callback
 def async_manage_ble_scanner_firmware_unsupported_issue(hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
@@ -33,10 +34,12 @@ class ShellyRpcRepairsFlow(RepairsFlow):
     async def _async_step_confirm(self) -> RepairsFlowResult: ...
 
 class FirmwareUpdateFlow(ShellyRpcRepairsFlow):
+    @override
     async def _async_step_confirm(self) -> RepairsFlowResult: ...
     async def async_step_update_firmware(self, user_input: dict[str, str] | None = None) -> RepairsFlowResult: ...
 
 class DisableOutboundWebSocketFlow(ShellyRpcRepairsFlow):
+    @override
     async def _async_step_confirm(self) -> RepairsFlowResult: ...
     async def async_step_disable_outbound_websocket(self, user_input: dict[str, str] | None = None) -> RepairsFlowResult: ...
 

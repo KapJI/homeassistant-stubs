@@ -9,6 +9,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 _LOGGER: Incomplete
 NETROLE_OPTIONS: Incomplete
@@ -30,4 +31,5 @@ class AirOSSensor(AirOSEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirOSDataUpdateCoordinator, description: AirOSSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

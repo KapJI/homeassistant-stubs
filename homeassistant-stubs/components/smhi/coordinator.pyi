@@ -7,6 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pysmhi import SMHIFireForecast as SMHIFireForecast, SMHIForecast as SMHIForecast
+from typing import override
 
 type SMHIConfigEntry = ConfigEntry[tuple[SMHIDataUpdateCoordinator, SMHIFireDataUpdateCoordinator]]
 @dataclass
@@ -24,6 +25,7 @@ class SMHIDataUpdateCoordinator(DataUpdateCoordinator[SMHIForecastData]):
     config_entry: SMHIConfigEntry
     _smhi_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SMHIConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> SMHIForecastData: ...
     @property
     def current(self) -> SMHIForecast: ...
@@ -32,6 +34,7 @@ class SMHIFireDataUpdateCoordinator(DataUpdateCoordinator[SMHIFireForecastData])
     config_entry: SMHIConfigEntry
     _smhi_fire_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: SMHIConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> SMHIFireForecastData: ...
     @property
     def fire_current(self) -> SMHIFireForecast: ...

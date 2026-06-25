@@ -10,6 +10,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperat
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,5 +28,7 @@ class AirobotNumber(AirobotEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirobotDataUpdateCoordinator, description: AirobotNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

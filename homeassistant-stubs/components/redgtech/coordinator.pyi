@@ -7,7 +7,7 @@ from homeassistant.const import CONF_EMAIL as CONF_EMAIL, CONF_PASSWORD as CONF_
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 UPDATE_INTERVAL: Incomplete
 _LOGGER: Incomplete
@@ -29,4 +29,5 @@ class RedgtechDataUpdateCoordinator(DataUpdateCoordinator[dict[str, RedgtechDevi
     async def login(self, email: str, password: str) -> str | None: ...
     async def renew_token(self, email: str, password: str) -> None: ...
     async def call_api_with_valid_token[_R, *_Ts](self, api_call: Callable[[*_Ts], Coroutine[Any, Any, _R]], *args: *_Ts) -> _R: ...
+    @override
     async def _async_update_data(self) -> dict[str, RedgtechDevice]: ...

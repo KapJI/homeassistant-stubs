@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 
@@ -22,4 +22,5 @@ class IndevoltButtonEntity(IndevoltEntity, ButtonEntity):
     entity_description: IndevoltButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: IndevoltCoordinator, description: IndevoltButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

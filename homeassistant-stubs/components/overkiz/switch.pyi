@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyoverkiz.types import StateType as OverkizStateType
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class OverkizSwitchDescription(SwitchEntityDescription):
@@ -26,6 +26,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, 
 class OverkizSwitch(OverkizDescriptiveEntity, SwitchEntity):
     entity_description: OverkizSwitchDescription
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

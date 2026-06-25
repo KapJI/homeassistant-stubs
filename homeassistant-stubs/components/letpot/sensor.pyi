@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from letpot.models import LetPotDeviceStatus as LetPotDeviceStatus, LetPotGardenStatus
+from typing import override
 
 PARALLEL_UPDATES: int
 LETPOT_TEMPERATURE_UNIT_HA_UNIT: Incomplete
@@ -27,6 +28,8 @@ class LetPotSensorEntity[_DataT: LetPotDeviceStatus](LetPotEntity[_DataT], Senso
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: LetPotDeviceCoordinator[_DataT], description: LetPotSensorEntityDescription[_DataT]) -> None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

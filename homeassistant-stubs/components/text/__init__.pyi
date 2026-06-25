@@ -6,7 +6,7 @@ from enum import StrEnum
 from homeassistant.helpers.entity import Entity, EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
-from typing import Any, final
+from typing import Any, final, override
 
 __all__ = ['DOMAIN', 'TextEntity', 'TextEntityDescription', 'TextMode']
 
@@ -31,9 +31,11 @@ class TextEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_state: None
     __pattern_cmp: re.Pattern | None
     @property
+    @override
     def capability_attributes(self) -> dict[str, Any]: ...
     @property
     @final
+    @override
     def state(self) -> str | None: ...
     @cached_property
     def mode(self) -> TextMode: ...
@@ -62,11 +64,13 @@ class TextExtraStoredData(ExtraStoredData):
     native_value: str | None
     native_min: int
     native_max: int
+    @override
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
     def from_dict(cls, restored: dict[str, Any]) -> TextExtraStoredData | None: ...
 
 class RestoreText(TextEntity, RestoreEntity):
     @property
+    @override
     def extra_restore_state_data(self) -> TextExtraStoredData: ...
     async def async_get_last_text_data(self) -> TextExtraStoredData | None: ...

@@ -7,7 +7,7 @@ from homeassistant.components.siren import SirenEntity as SirenEntity, SirenEnti
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,10 +17,13 @@ class MatterSirenEntityDescription(SirenEntityDescription, MatterEntityDescripti
 class MatterSiren(MatterEntity, SirenEntity):
     entity_description: MatterSirenEntityDescription
     _attr_supported_features: Incomplete
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
 
 DISCOVERY_SCHEMAS: Incomplete

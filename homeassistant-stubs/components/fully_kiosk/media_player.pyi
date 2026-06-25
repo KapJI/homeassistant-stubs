@@ -8,7 +8,7 @@ from homeassistant.components.media_player import BrowseMedia as BrowseMedia, Me
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: FullyKioskConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -20,10 +20,15 @@ class FullyMediaPlayer(FullyKioskEntity, MediaPlayerEntity):
     _attr_state: Incomplete
     def __init__(self, coordinator: FullyKioskDataUpdateCoordinator) -> None: ...
     _attr_media_content_type: Incomplete
+    @override
     async def async_play_media(self, media_type: MediaType | str, media_id: str, **kwargs: Any) -> None: ...
+    @override
     async def async_media_stop(self) -> None: ...
     _attr_volume_level: Incomplete
+    @override
     async def async_set_volume_level(self, volume: float) -> None: ...
+    @override
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...

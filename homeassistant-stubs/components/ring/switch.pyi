@@ -8,7 +8,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Generic, Self
+from typing import Any, Generic, Self, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -34,8 +34,11 @@ class RingSwitch(RingEntity[RingDeviceT], SwitchEntity):
     def __init__(self, device: RingDeviceT, coordinator: RingDataCoordinator, description: RingSwitchEntityDescription[RingDeviceT]) -> None: ...
     _device: Incomplete
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @refresh_after
     async def _async_set_switch(self, switch_on: bool) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

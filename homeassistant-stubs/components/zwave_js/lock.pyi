@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse a
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 from zwave_js_server.const.command_class.lock import OperationType as OperationType
 
 PARALLEL_UPDATES: int
@@ -20,9 +20,12 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ZwaveJSConfigEntr
 
 class ZWaveLock(ZWaveBaseEntity, LockEntity):
     @property
+    @override
     def is_locked(self) -> bool | None: ...
     async def _set_lock_state(self, target_state: LockState, **kwargs: Any) -> None: ...
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     async def async_set_lock_usercode(self, code_slot: int, usercode: str) -> None: ...
     async def async_get_lock_usercode(self, code_slot: int | None = None) -> ServiceResponse: ...

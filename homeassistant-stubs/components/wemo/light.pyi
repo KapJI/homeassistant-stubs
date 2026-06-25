@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import CONNECTION_ZIGBEE as CONNECTION_ZIGBEE, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pywemo import BridgeLight as BridgeLight, Dimmer as Dimmer
-from typing import Any
+from typing import Any, override
 
 WEMO_OFF: int
 
@@ -26,26 +26,38 @@ class WemoLight(WemoEntity, LightEntity):
     _model_name: Incomplete
     def __init__(self, coordinator: DeviceCoordinator, light: BridgeLight) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def device_info(self) -> DeviceInfo: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def xy_color(self) -> tuple[float, float] | None: ...
     @property
+    @override
     def color_temp_kelvin(self) -> int | None: ...
     @property
+    @override
     def color_mode(self) -> ColorMode: ...
     @property
+    @override
     def supported_color_modes(self) -> set[ColorMode]: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class WemoDimmer(WemoBinaryStateEntity, LightEntity):
@@ -53,6 +65,9 @@ class WemoDimmer(WemoBinaryStateEntity, LightEntity):
     _attr_color_mode: Incomplete
     wemo: Dimmer
     @property
+    @override
     def brightness(self) -> int: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

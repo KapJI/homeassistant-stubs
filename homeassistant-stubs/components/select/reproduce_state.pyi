@@ -1,7 +1,7 @@
-from .const import ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION
+from .const import ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_OPTION as ATTR_OPTION, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State
 from typing import Any
 

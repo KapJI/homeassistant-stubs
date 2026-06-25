@@ -5,7 +5,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from tololib import ToloSettings as ToloSettings, ToloStatus as ToloStatus
-from typing import NamedTuple
+from typing import NamedTuple, override
 
 _LOGGER: Incomplete
 type ToloConfigEntry = ConfigEntry[ToloSaunaUpdateCoordinator]
@@ -18,5 +18,6 @@ class ToloSaunaUpdateCoordinator(DataUpdateCoordinator[ToloSaunaData]):
     config_entry: ToloConfigEntry
     client: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ToloConfigEntry) -> None: ...
+    @override
     async def _async_update_data(self) -> ToloSaunaData: ...
     def _get_tolo_sauna_data(self) -> ToloSaunaData: ...

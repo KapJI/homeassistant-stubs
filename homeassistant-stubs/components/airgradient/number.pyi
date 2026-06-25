@@ -10,6 +10,7 @@ from homeassistant.components.number import NumberEntity as NumberEntity, Number
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -28,6 +29,8 @@ class AirGradientNumber(AirGradientEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> int | None: ...
     @exception_handler
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

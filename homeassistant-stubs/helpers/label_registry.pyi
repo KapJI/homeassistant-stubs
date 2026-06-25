@@ -10,7 +10,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, override
 
 DATA_REGISTRY: HassKey[LabelRegistry]
 EVENT_LABEL_REGISTRY_UPDATED: EventType[EventLabelRegistryUpdatedData]
@@ -43,6 +43,7 @@ class LabelEntry(NormalizedNameBaseRegistryEntry):
     icon: str | None = ...
 
 class LabelRegistryStore(Store[LabelRegistryStoreData]):
+    @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: dict[str, list[dict[str, Any]]]) -> LabelRegistryStoreData: ...
 
 class LabelRegistry(BaseRegistry[LabelRegistryStoreData]):
@@ -64,8 +65,10 @@ class LabelRegistry(BaseRegistry[LabelRegistryStoreData]):
     def async_delete(self, label_id: str) -> None: ...
     @callback
     def async_update(self, label_id: str, *, color: str | None | UndefinedType = ..., description: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., name: str | UndefinedType = ...) -> LabelEntry: ...
+    @override
     async def _async_load(self) -> None: ...
     @callback
+    @override
     def _data_to_save(self) -> LabelRegistryStoreData: ...
 
 @callback

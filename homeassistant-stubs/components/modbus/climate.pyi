@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 HVACMODE_TO_TARG_TEMP_REG_INDEX_ARRAY: Incomplete
@@ -56,12 +56,18 @@ class ModbusThermostat(ModbusStructEntity, RestoreEntity, ClimateEntity):
     _hvac_off_value: Incomplete
     _hvac_onoff_coil: Incomplete
     def __init__(self, hass: HomeAssistant, hub: ModbusHub, config: dict[str, Any]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
     async def async_set_swing_mode(self, swing_mode: str) -> None: ...
     _attr_available: Incomplete
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def _async_update(self) -> None: ...
     _value: Incomplete
     async def _async_read_register(self, register_type: str, register: int, scale: float, offset: float, raw: bool | None = False) -> float | None: ...

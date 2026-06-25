@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ID as ATT
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import intent as intent
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 TIMER_NOT_FOUND_RESPONSE: str
@@ -103,6 +103,7 @@ class StartTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
     async def _validate_conversation_command(self, intent_obj: intent.Intent, conversation_command: str) -> bool: ...
 
@@ -110,40 +111,47 @@ class CancelTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class CancelAllTimersIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class IncreaseTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class DecreaseTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class PauseTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class UnpauseTimerIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...
 
 class TimerStatusIntentHandler(intent.IntentHandler):
     intent_type: Incomplete
     description: str
     slot_schema: Incomplete
+    @override
     async def async_handle(self, intent_obj: intent.Intent) -> intent.IntentResponse: ...

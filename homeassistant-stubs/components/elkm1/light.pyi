@@ -8,7 +8,7 @@ from elkm1_lib.lights import Light as Light
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ElkM1ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -19,9 +19,14 @@ class ElkLight(ElkEntity, LightEntity):
     _brightness: Incomplete
     def __init__(self, element: Element, elk: Elk, elk_data: ELKM1Data) -> None: ...
     @property
+    @override
     def brightness(self) -> int: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def _element_changed(self, element: Element, changeset: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -6,11 +6,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyairvisual.cloud_api import CloudAPI as CloudAPI
-from typing import Any
+from typing import Any, override
 
 type AirVisualConfigEntry = ConfigEntry[AirVisualDataUpdateCoordinator]
 class AirVisualDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: AirVisualConfigEntry
     _cloud_api: Incomplete
     def __init__(self, hass: HomeAssistant, entry: AirVisualConfigEntry, cloud_api: CloudAPI, name: str) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

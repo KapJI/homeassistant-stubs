@@ -5,7 +5,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
-from typing import Any
+from typing import Any, override
 
 class TractiveEntity(Entity):
     _attr_has_entity_name: bool
@@ -15,6 +15,7 @@ class TractiveEntity(Entity):
     _client: Incomplete
     _dispatcher_signal: Incomplete
     def __init__(self, client: TractiveClient, trackable: dict[str, Any], tracker_details: dict[str, Any], dispatcher_signal: str, hardware_entity: bool = True) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: Incomplete
     @callback

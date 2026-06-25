@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.color import brightness_to_value as brightness_to_value, value_to_brightness as value_to_brightness
-from typing import Any
+from typing import Any, override
 
 BRIGHTNESS_SCALE: Incomplete
 PARALLEL_UPDATES: int
@@ -28,10 +28,13 @@ class LcnOutputLight(LcnEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_available: Incomplete
     async def async_update(self) -> None: ...
+    @override
     def input_received(self, input_obj: InputType) -> None: ...
 
 class LcnRelayLight(LcnEntity, LightEntity):
@@ -40,8 +43,11 @@ class LcnRelayLight(LcnEntity, LightEntity):
     _attr_is_on: bool
     output: Incomplete
     def __init__(self, config: ConfigType, config_entry: LcnConfigEntry) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_available: Incomplete
     async def async_update(self) -> None: ...
+    @override
     def input_received(self, input_obj: InputType) -> None: ...

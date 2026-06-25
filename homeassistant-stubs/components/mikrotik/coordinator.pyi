@@ -9,7 +9,7 @@ from homeassistant.const import ATTR_MODEL as ATTR_MODEL, CONF_HOST as CONF_HOST
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 type MikrotikConfigEntry = ConfigEntry[MikrotikDataUpdateCoordinator]
@@ -62,6 +62,7 @@ class MikrotikDataUpdateCoordinator(DataUpdateCoordinator[None]):
     def option_detection_time(self) -> timedelta: ...
     @property
     def api(self) -> MikrotikData: ...
+    @override
     async def _async_update_data(self) -> None: ...
 
 def get_api(entry: dict[str, Any]) -> librouteros.Api: ...

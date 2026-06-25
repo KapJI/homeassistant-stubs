@@ -5,6 +5,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylutron import Button as Button, Keypad as Keypad, Led, Lutron as Lutron
+from typing import override
 
 _LED_STATE_TO_OPTION: Incomplete
 _LED_OPTION_TO_STATE: Incomplete
@@ -18,6 +19,9 @@ class LutronLedSelect(LutronKeypad, SelectEntity):
     _attr_name: Incomplete
     def __init__(self, area_name: str, keypad: Keypad, scene_device: Button, led_device: Led, controller: Lutron) -> None: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     def select_option(self, option: str) -> None: ...
+    @override
     def _request_state(self) -> None: ...

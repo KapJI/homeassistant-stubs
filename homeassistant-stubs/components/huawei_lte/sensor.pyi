@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -49,19 +50,28 @@ class HuaweiLteSensor(HuaweiLteBaseEntityWithDevice, SensorEntity):
     key: Incomplete
     item: Incomplete
     def __init__(self, router: Router, key: str, item: str, entity_description: HuaweiSensorEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @property
+    @override
     def _device_unique_id(self) -> str: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def icon(self) -> str | None: ...
     @property
+    @override
     def device_class(self) -> SensorDeviceClass | None: ...
     @property
+    @override
     def last_reset(self) -> datetime | None: ...
     _available: Incomplete
+    @override
     async def async_update(self) -> None: ...

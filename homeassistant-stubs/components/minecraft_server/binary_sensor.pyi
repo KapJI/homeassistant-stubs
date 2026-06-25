@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 KEY_STATUS: str
 BINARY_SENSOR_DESCRIPTIONS: Incomplete
@@ -17,6 +18,8 @@ class MinecraftServerBinarySensorEntity(MinecraftServerEntity, BinarySensorEntit
     _attr_is_on: bool
     def __init__(self, coordinator: MinecraftServerCoordinator, description: BinarySensorEntityDescription, config_entry: MinecraftServerConfigEntry) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def is_on(self) -> bool: ...

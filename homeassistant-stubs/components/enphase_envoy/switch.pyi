@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import Envoy as Envoy, EnvoyDryContactStatus as EnvoyDryContactStatus, EnvoyEnpower as EnvoyEnpower
 from pyenphase.models.tariff import EnvoyStorageSettings as EnvoyStorageSettings
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -47,10 +47,13 @@ class EnvoyEnpowerSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyEnpowerSwitchEntityDescription, enpower: EnvoyEnpower) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class EnvoyDryContactSwitchEntity(EnvoyBaseEntity, SwitchEntity):
@@ -62,10 +65,13 @@ class EnvoyDryContactSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyDryContactSwitchEntityDescription, relay_id: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
 class EnvoyStorageSettingsSwitchEntity(EnvoyBaseEntity, SwitchEntity):
@@ -77,8 +83,11 @@ class EnvoyStorageSettingsSwitchEntity(EnvoyBaseEntity, SwitchEntity):
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyStorageSettingsSwitchEntityDescription, enpower: EnvoyEnpower | None) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

@@ -10,7 +10,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -40,17 +40,25 @@ class MatterVacuum(MatterEntity, StateVacuumEntity):
     entity_description: MatterStateVacuumEntityDescription
     _platform_translation_key: str
     def _get_run_mode_by_tag(self, tag: ModeTag) -> clusters.RvcRunMode.Structs.ModeOptionStruct | None: ...
+    @override
     async def async_stop(self, **kwargs: Any) -> None: ...
+    @override
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
+    @override
     async def async_locate(self, **kwargs: Any) -> None: ...
+    @override
     async def async_start(self) -> None: ...
+    @override
     async def async_pause(self) -> None: ...
     @property
     def _current_segments(self) -> dict[str, Segment]: ...
+    @override
     async def async_get_segments(self) -> list[Segment]: ...
+    @override
     async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
     _attr_activity: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     _attr_supported_features: Incomplete
     @callback

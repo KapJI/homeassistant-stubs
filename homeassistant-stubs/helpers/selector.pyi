@@ -8,7 +8,7 @@ from homeassistant.core import split_entity_id as split_entity_id, valid_entity_
 from homeassistant.generated.countries import COUNTRIES as COUNTRIES
 from homeassistant.util import decorator as decorator
 from homeassistant.util.yaml import dumper as dumper
-from typing import Any, Literal, Required, TypedDict
+from typing import Any, Literal, Required, TypedDict, override
 
 SELECTORS: decorator.Registry[str, type[Selector]]
 
@@ -22,6 +22,7 @@ class Selector[_T: Mapping[str, Any]]:
     selector_type: str
     allowed_context_keys: dict[str, set[str]]
     def __init__(self, config: Mapping[str, Any] | None = None) -> None: ...
+    @override
     def __eq__(self, other: object) -> bool: ...
     def serialize(self) -> dict[str, dict[str, _T]]: ...
 
@@ -167,6 +168,7 @@ class ChooseSelector(Selector[ChooseSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ChooseSelectorConfig | None = None) -> None: ...
+    @override
     def serialize(self) -> dict[str, dict[str, ChooseSelectorConfig]]: ...
     def __call__(self, data: Any) -> Any: ...
 
@@ -443,6 +445,7 @@ class ObjectSelector(Selector[ObjectSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ObjectSelectorConfig | None = None) -> None: ...
+    @override
     def serialize(self) -> dict[str, dict[str, ObjectSelectorConfig]]: ...
     def __call__(self, data: Any) -> Any: ...
 

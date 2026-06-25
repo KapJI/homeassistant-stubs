@@ -6,6 +6,7 @@ from homeassistant.components.infrared import InfraredCommand as InfraredCommand
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -15,4 +16,5 @@ class SmInfraredEntity(SmEntity, InfraredEmitterEntity):
     _attr_translation_key: str
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: SmDataUpdateCoordinator) -> None: ...
+    @override
     async def async_send_command(self, command: InfraredCommand) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.trigger import PluggableAction as PluggableAction
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 DEPRECATED_IMPLICIT_WAKE_ON_LAN: str
 
@@ -22,7 +22,9 @@ class SamsungTVEntity(CoordinatorEntity[SamsungTVDataUpdateCoordinator], Entity)
     _turn_on_action: Incomplete
     def __init__(self, *, coordinator: SamsungTVDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _wake_on_lan(self) -> None: ...
     async def async_turn_off(self, **kwargs: Any) -> None: ...

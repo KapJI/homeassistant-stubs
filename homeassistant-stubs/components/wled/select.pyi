@@ -6,6 +6,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -18,8 +19,10 @@ class WLEDLiveOverrideSelect(WLEDEntity, SelectEntity):
     _attr_options: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def current_option(self) -> str: ...
     @wled_exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class WLEDPresetSelect(WLEDEntity, SelectEntity):
@@ -27,12 +30,16 @@ class WLEDPresetSelect(WLEDEntity, SelectEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @wled_exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class WLEDPlaylistSelect(WLEDEntity, SelectEntity):
@@ -40,12 +47,16 @@ class WLEDPlaylistSelect(WLEDEntity, SelectEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @wled_exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 class WLEDPaletteSelect(WLEDEntity, SelectEntity):
@@ -56,12 +67,16 @@ class WLEDPaletteSelect(WLEDEntity, SelectEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: WLEDDataUpdateCoordinator, segment: int) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def current_option(self) -> str | None: ...
     @property
+    @override
     def options(self) -> list[str]: ...
     @wled_exception_handler
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 @callback

@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 DEVICE_CLASS_MAPPING: Incomplete
 STATE_CLASS_MAPPING: Incomplete
@@ -15,6 +16,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigE
 
 class DevoloMultiLevelDeviceEntity(DevoloDeviceEntity, SensorEntity):
     @property
+    @override
     def native_value(self) -> float: ...
 
 class DevoloGenericMultiLevelDeviceEntity(DevoloMultiLevelDeviceEntity):
@@ -43,5 +45,7 @@ class DevoloConsumptionEntity(DevoloMultiLevelDeviceEntity):
     _value: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str, consumption: str) -> None: ...
     @property
+    @override
     def unique_id(self) -> str: ...
+    @override
     def sync_callback(self, message: tuple) -> None: ...

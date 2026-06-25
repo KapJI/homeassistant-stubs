@@ -11,7 +11,7 @@ from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONC
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Final
+from typing import Final, override
 
 PARALLEL_UPDATES: int
 type ValueFn = Callable[[AmazonDevice, str, AmazonDevicesCoordinator], StateType | datetime]
@@ -40,8 +40,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async
 class AmazonSensorEntity(AmazonEntity, SensorEntity):
     entity_description: AmazonSensorEntityDescription | AmazonNotificationEntityDescription
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
     @property
+    @override
     def available(self) -> bool: ...

@@ -3,10 +3,10 @@ from .const import ATTRIBUTION as ATTRIBUTION, DOMAIN as DOMAIN
 from .coordinator import SynologyDSMCentralUpdateCoordinator as SynologyDSMCentralUpdateCoordinator, SynologyDSMUpdateCoordinator as SynologyDSMUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class SynologyDSMEntityDescription(EntityDescription):
@@ -21,6 +21,7 @@ class SynologyDSMBaseEntity[_CoordinatorT: SynologyDSMUpdateCoordinator[Any]](Co
     _attr_unique_id: str
     _attr_device_info: Incomplete
     def __init__(self, api: SynoApi, coordinator: _CoordinatorT, description: SynologyDSMEntityDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
 
 class SynologyDSMDeviceEntity(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordinator]):

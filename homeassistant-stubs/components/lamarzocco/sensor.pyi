@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from pylamarzocco.const import WidgetType
 from pylamarzocco.models import BaseWidgetOutput as BaseWidgetOutput
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -25,9 +26,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: LaMarzoccoConfigEntry, a
 class LaMarzoccoSensorEntity(LaMarzoccoEntity, SensorEntity):
     entity_description: LaMarzoccoSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime | None: ...
 
 class LaMarzoccoStatisticSensorEntity(LaMarzoccoSensorEntity):
     _unavailable_when_machine_off: bool
     @property
+    @override
     def native_value(self) -> StateType | datetime | None: ...

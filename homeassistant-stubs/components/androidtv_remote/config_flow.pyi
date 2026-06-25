@@ -9,7 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 APPS_NEW_ID: str
@@ -25,9 +25,11 @@ class AndroidTVRemoteConfigFlow(ConfigFlow, domain=DOMAIN):
     host: str
     name: str
     mac: str
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_start_pair(self) -> ConfigFlowResult: ...
     async def async_step_pair(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_zeroconf_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
@@ -35,6 +37,7 @@ class AndroidTVRemoteConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: AndroidTVRemoteConfigEntry) -> AndroidTVRemoteOptionsFlowHandler: ...
 
 class AndroidTVRemoteOptionsFlowHandler(OptionsFlowWithReload):

@@ -10,6 +10,7 @@ from pyisy import ISY as ISY
 from pyisy.helpers import EventListener as EventListener, NodeProperty as NodeProperty
 from pyisy.networking import NetworkCommand as NetworkCommand
 from pyisy.nodes import Node as Node
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: IsyConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -25,17 +26,22 @@ class ISYNodeButtonEntity(ButtonEntity):
     _availability_handler: EventListener | None
     def __init__(self, node: Node | ISY | NetworkCommand, name: str, unique_id: str, device_info: DeviceInfo, entity_category: EntityCategory | None = None) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def async_on_update(self, event: NodeProperty, key: str) -> None: ...
 
 class ISYNodeQueryButtonEntity(ISYNodeButtonEntity):
+    @override
     async def async_press(self) -> None: ...
 
 class ISYNodeBeepButtonEntity(ISYNodeButtonEntity):
+    @override
     async def async_press(self) -> None: ...
 
 class ISYNetworkResourceButtonEntity(ISYNodeButtonEntity):
     _attr_has_entity_name: bool
+    @override
     async def async_press(self) -> None: ...

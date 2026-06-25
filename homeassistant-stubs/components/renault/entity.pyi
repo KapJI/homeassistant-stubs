@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from renault_api.kamereon.models import KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class RenaultDataEntityDescription(EntityDescription):
@@ -21,4 +22,5 @@ class RenaultEntity(Entity):
 class RenaultDataEntity[T: KamereonVehicleDataAttributes](CoordinatorEntity[RenaultDataUpdateCoordinator[T]], RenaultEntity):
     def __init__(self, vehicle: RenaultVehicleProxy, description: RenaultDataEntityDescription) -> None: ...
     @property
+    @override
     def assumed_state(self) -> bool: ...

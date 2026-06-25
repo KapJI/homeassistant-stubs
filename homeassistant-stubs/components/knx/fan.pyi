@@ -14,7 +14,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from homeassistant.util.scaling import int_states_in_range as int_states_in_range
 from propcache.api import cached_property
-from typing import Any
+from typing import Any, override
 from xknx.devices import Fan as XknxFan
 
 _LOGGER: Incomplete
@@ -27,19 +27,28 @@ class _KnxFan(FanEntity):
     _device: XknxFan
     _step_range: tuple[int, int] | None
     def _get_knx_speed(self, percentage: int) -> int: ...
+    @override
     async def async_set_percentage(self, percentage: int) -> None: ...
     @cached_property
+    @override
     def supported_features(self) -> FanEntityFeature: ...
     @property
+    @override
     def percentage(self) -> int | None: ...
     @cached_property
+    @override
     def speed_count(self) -> int: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     async def async_turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_oscillate(self, oscillating: bool) -> None: ...
     @property
+    @override
     def oscillating(self) -> bool | None: ...
 
 class KnxYamlFan(_KnxFan, KnxYamlEntity):

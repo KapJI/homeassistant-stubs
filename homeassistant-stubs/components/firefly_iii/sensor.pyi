@@ -6,6 +6,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyfirefly.models import Account as Account, Budget as Budget, Category as Category
+from typing import override
 
 ACCOUNT_ROLE_MAPPING: Incomplete
 ACCOUNT_TYPE_ICONS: Incomplete
@@ -24,6 +25,7 @@ class FireflyAccountBalanceSensor(FireflyAccountBaseEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, account: Account, key: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class FireflyAccountRoleSensor(FireflyAccountBaseEntity, SensorEntity):
@@ -31,6 +33,7 @@ class FireflyAccountRoleSensor(FireflyAccountBaseEntity, SensorEntity):
     _attr_entity_category: Incomplete
     _attr_entity_registry_enabled_default: bool
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class FireflyAccountTypeSensor(FireflyAccountBaseEntity, SensorEntity):
@@ -40,6 +43,7 @@ class FireflyAccountTypeSensor(FireflyAccountBaseEntity, SensorEntity):
     _attr_icon: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, account: Account, key: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class FireflyCategorySensor(FireflyCategoryBaseEntity, SensorEntity):
@@ -49,6 +53,7 @@ class FireflyCategorySensor(FireflyCategoryBaseEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, category: Category, key: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class FireflyBudgetSensor(FireflyBudgetBaseEntity, SensorEntity):
@@ -58,4 +63,5 @@ class FireflyBudgetSensor(FireflyBudgetBaseEntity, SensorEntity):
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: FireflyDataUpdateCoordinator, budget: Budget, key: str) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

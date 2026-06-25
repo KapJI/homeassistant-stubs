@@ -11,6 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class ValveControllerButtonDescription(ButtonEntityDescription, ValveControllerEntityDescription):
@@ -33,4 +34,5 @@ class GuardianButton(ValveControllerEntity, ButtonEntity):
     _client: Incomplete
     def __init__(self, entry: GuardianConfigEntry, data: GuardianData, description: ValveControllerButtonDescription) -> None: ...
     @convert_exceptions_to_homeassistant_error
+    @override
     async def async_press(self) -> None: ...

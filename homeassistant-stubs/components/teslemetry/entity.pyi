@@ -11,7 +11,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from tesla_fleet_api.const import Scope as Scope
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Vehicle as Vehicle
-from typing import Any
+from typing import Any, override
 
 class TeslemetryRootEntity(Entity):
     _attr_has_entity_name: bool
@@ -23,6 +23,7 @@ class TeslemetryPollingEntity(TeslemetryRootEntity, CoordinatorEntity[Teslemetry
     _attr_translation_key: Incomplete
     def __init__(self, coordinator: TeslemetryVehicleDataCoordinator | TeslemetryEnergyHistoryCoordinator | TeslemetryEnergySiteLiveCoordinator | TeslemetryEnergySiteInfoCoordinator, key: str) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def _value(self) -> Any | None: ...
@@ -30,6 +31,7 @@ class TeslemetryPollingEntity(TeslemetryRootEntity, CoordinatorEntity[Teslemetry
     def get_number(self, key: str, default: float) -> float: ...
     @property
     def is_none(self) -> bool: ...
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @abstractmethod
     def _async_update_attrs(self) -> None: ...
@@ -43,6 +45,7 @@ class TeslemetryVehiclePollingEntity(TeslemetryPollingEntity, metaclass=abc.ABCM
     _attr_entity_registry_enabled_default: bool
     def __init__(self, data: TeslemetryVehicleData, key: str) -> None: ...
     @property
+    @override
     def _value(self) -> Any | None: ...
 
 class TeslemetryEnergyLiveEntity(TeslemetryPollingEntity, metaclass=abc.ABCMeta):
@@ -71,6 +74,7 @@ class TeslemetryWallConnectorEntity(TeslemetryPollingEntity, metaclass=abc.ABCMe
     _attr_device_info: Incomplete
     def __init__(self, data: TeslemetryEnergyData, din: str, key: str) -> None: ...
     @property
+    @override
     def _value(self) -> StateType: ...
     @property
     def exists(self) -> bool: ...

@@ -5,6 +5,7 @@ from collections.abc import Callable as Callable
 from contextvars import ContextVar
 from homeassistant.core import split_entity_id as split_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
+from typing import override
 
 ALL_STATES_RATE_LIMIT: int
 DOMAIN_STATES_RATE_LIMIT: int
@@ -29,6 +30,7 @@ class RenderInfo:
     rate_limit: float | None
     has_time: bool
     def __init__(self, template: Template) -> None: ...
+    @override
     def __repr__(self) -> str: ...
     def _filter_domains_and_entities(self, entity_id: str) -> bool: ...
     def _filter_entities(self, entity_id: str) -> bool: ...

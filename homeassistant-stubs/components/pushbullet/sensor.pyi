@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 SENSOR_TYPES: tuple[SensorEntityDescription, ...]
 SENSOR_KEYS: list[str]
@@ -26,4 +27,5 @@ class PushBulletNotificationSensor(SensorEntity):
     _attr_extra_state_attributes: Incomplete
     @callback
     def async_update_callback(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

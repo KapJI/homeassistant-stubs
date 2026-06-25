@@ -14,7 +14,7 @@ from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.trigger_template_entity import CONF_AVAILABILITY as CONF_AVAILABILITY, CONF_PICTURE as CONF_PICTURE, ManualTriggerSensorEntity as ManualTriggerSensorEntity, ValueTemplate as ValueTemplate
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PLATFORM_SCHEMA: Incomplete
@@ -29,7 +29,10 @@ class RestSensor(ManualTriggerSensorEntity, RestEntity):
     _attr_extra_state_attributes: Incomplete
     def __init__(self, hass: HomeAssistant, coordinator: DataUpdateCoordinator[None] | None, rest: RestData, config: ConfigType, trigger_entity_config: ConfigType) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
+    @override
     def _update_from_rest_data(self) -> None: ...

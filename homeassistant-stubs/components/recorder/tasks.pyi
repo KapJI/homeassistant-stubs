@@ -13,7 +13,7 @@ from datetime import datetime
 from homeassistant.helpers.recorder import DATA_RECORDER as DATA_RECORDER
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
 from homeassistant.util.event_type import EventType as EventType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -28,12 +28,14 @@ class ChangeStatisticsUnitTask(RecorderTask):
     statistic_id: str
     new_unit_of_measurement: str
     old_unit_of_measurement: str
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class ClearStatisticsTask(RecorderTask):
     on_done: Callable[[], None] | None
     statistic_ids: list[str]
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -43,12 +45,14 @@ class UpdateStatisticsMetadataTask(RecorderTask):
     new_statistic_id: str | None | UndefinedType
     new_unit_class: str | None | UndefinedType
     new_unit_of_measurement: str | None | UndefinedType
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class UpdateStatesMetadataTask(RecorderTask):
     entity_id: str
     new_entity_id: str
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -56,26 +60,31 @@ class PurgeTask(RecorderTask):
     purge_before: datetime
     repack: bool
     apply_filter: bool
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class PurgeEntitiesTask(RecorderTask):
     entity_filter: Callable[[str], bool]
     purge_before: datetime
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class PerodicCleanupTask(RecorderTask):
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class StatisticsTask(RecorderTask):
     start: datetime
     fire_events: bool
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class CompileMissingStatisticsTask(RecorderTask):
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -83,6 +92,7 @@ class ImportStatisticsTask(RecorderTask):
     metadata: StatisticMetaData
     statistics: Iterable[StatisticData]
     table: type[Statistics | StatisticsShortTerm]
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -91,11 +101,13 @@ class AdjustStatisticsTask(RecorderTask):
     start_time: datetime
     sum_adjustment: float
     adjustment_unit: str
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class WaitTask(RecorderTask):
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -103,21 +115,25 @@ class DatabaseLockTask(RecorderTask):
     database_locked: asyncio.Event
     database_unlock: threading.Event
     queue_overflow: bool
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class StopTask(RecorderTask):
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class KeepAliveTask(RecorderTask):
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class CommitTask(RecorderTask):
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
@@ -125,20 +141,24 @@ class AddRecorderPlatformTask(RecorderTask):
     domain: str
     platform: Any
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class SynchronizeTask(RecorderTask):
     future: asyncio.Future
+    @override
     def run(self, instance: Recorder) -> None: ...
     def _set_result_if_not_done(self) -> None: ...
 
 @dataclass(slots=True)
 class AdjustLRUSizeTask(RecorderTask):
     commit_before = ...
+    @override
     def run(self, instance: Recorder) -> None: ...
 
 @dataclass(slots=True)
 class RefreshEventTypesTask(RecorderTask):
     event_types: list[EventType[Any] | str]
+    @override
     def run(self, instance: Recorder) -> None: ...

@@ -7,7 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 @dataclass(frozen=True)
 class AirzoneBinarySensorEntityDescription(BinarySensorEntityDescription):
@@ -22,8 +22,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneCloudConfigEntry,
 class AirzoneBinarySensor(AirzoneEntity, BinarySensorEntity, metaclass=abc.ABCMeta):
     entity_description: AirzoneBinarySensorEntityDescription
     @property
+    @override
     def available(self) -> bool: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_is_on: Incomplete
     _attr_extra_state_attributes: Incomplete

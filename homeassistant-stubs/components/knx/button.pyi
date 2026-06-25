@@ -8,6 +8,7 @@ from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CO
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import override
 from xknx.devices import RawValue as XknxRawValue
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -16,4 +17,5 @@ class KNXButton(KnxYamlEntity, ButtonEntity):
     _device: XknxRawValue
     _payload: Incomplete
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
+    @override
     async def async_press(self) -> None: ...

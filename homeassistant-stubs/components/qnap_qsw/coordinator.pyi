@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 
 DATA_SCAN_INTERVAL: Incomplete
 FW_SCAN_INTERVAL: Incomplete
@@ -21,10 +21,12 @@ class QswDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: QnapQswConfigEntry
     qsw: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: QnapQswConfigEntry, qsw: QnapQswApi) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class QswFirmwareCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: QnapQswConfigEntry
     qsw: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: QnapQswConfigEntry, qsw: QnapQswApi) -> None: ...
+    @override
     async def _async_update_data(self) -> dict[str, Any]: ...

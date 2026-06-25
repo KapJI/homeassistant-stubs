@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
+from typing import override
 
 STATES: Incomplete
 DISPLAY_STATES: Incomplete
@@ -23,11 +24,16 @@ class TeslemetryMediaEntity(TeslemetryRootEntity, MediaPlayerEntity):
     _attr_device_class: Incomplete
     _attr_volume_step = VOLUME_STEP
     _attr_volume_level: Incomplete
+    @override
     async def async_set_volume_level(self, volume: float) -> None: ...
     _attr_state: Incomplete
+    @override
     async def async_media_play(self) -> None: ...
+    @override
     async def async_media_pause(self) -> None: ...
+    @override
     async def async_media_next_track(self) -> None: ...
+    @override
     async def async_media_previous_track(self) -> None: ...
 
 class TeslemetryVehiclePollingMediaEntity(TeslemetryVehiclePollingEntity, TeslemetryMediaEntity):
@@ -43,6 +49,7 @@ class TeslemetryVehiclePollingMediaEntity(TeslemetryVehiclePollingEntity, Teslem
     _attr_media_album_name: Incomplete
     _attr_media_playlist: Incomplete
     _attr_source: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryStreamingMediaEntity(TeslemetryVehicleStreamEntity, TeslemetryMediaEntity, RestoreEntity):
@@ -58,6 +65,7 @@ class TeslemetryStreamingMediaEntity(TeslemetryVehicleStreamEntity, TeslemetryMe
     _attr_media_duration: Incomplete
     _attr_media_position: Incomplete
     _attr_source: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _async_handle_center_display(self, value: str | None) -> None: ...
     def _async_handle_media_playback_status(self, value: str | None) -> None: ...

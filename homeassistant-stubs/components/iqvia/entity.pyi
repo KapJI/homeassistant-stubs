@@ -4,6 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class IQVIAEntity(CoordinatorEntity[IqviaUpdateCoordinator]):
     _attr_has_entity_name: bool
@@ -13,7 +14,9 @@ class IQVIAEntity(CoordinatorEntity[IqviaUpdateCoordinator]):
     entity_description: Incomplete
     def __init__(self, coordinator: IqviaUpdateCoordinator, entry: IqviaConfigEntry, description: EntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def update_from_latest_data(self) -> None: ...

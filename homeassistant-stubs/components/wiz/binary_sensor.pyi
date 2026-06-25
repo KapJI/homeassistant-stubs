@@ -8,6 +8,7 @@ from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 OCCUPANCY_UNIQUE_ID: str
 
@@ -19,4 +20,5 @@ class WizOccupancyEntity(WizEntity, BinarySensorEntity):
     def __init__(self, wiz_data: WizData, name: str) -> None: ...
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...

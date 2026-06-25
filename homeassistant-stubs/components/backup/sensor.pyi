@@ -8,6 +8,7 @@ from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class BackupSensorEntityDescription(SensorEntityDescription):
@@ -20,4 +21,5 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: BackupConfigEntry
 class BackupManagerSensor(BackupManagerEntity, SensorEntity):
     entity_description: BackupSensorEntityDescription
     @property
+    @override
     def native_value(self) -> str | datetime | None: ...

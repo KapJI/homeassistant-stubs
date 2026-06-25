@@ -16,7 +16,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -38,21 +38,28 @@ class MqttBinarySensor(MqttEntity, BinarySensorEntity, RestoreEntity):
     _expire_after: int | None
     _expiration_trigger: CALLBACK_TYPE | None
     _attr_is_on: Incomplete
+    @override
     async def mqtt_async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...
     @staticmethod
+    @override
     def config_schema() -> vol.Schema: ...
     _attr_force_update: Incomplete
     _attr_device_class: Incomplete
     _value_template: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _off_delay_listener(self, now: datetime) -> None: ...
     def _state_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
     @callback
     def _value_is_expired(self, *_: Any) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

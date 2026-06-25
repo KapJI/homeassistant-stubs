@@ -6,6 +6,7 @@ from homeassistant.const import CONF_BRIGHTNESS as CONF_BRIGHTNESS, CONF_DEVICE_
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from pypck.device import DeviceConnection as DeviceConnection
+from typing import override
 
 class LcnServiceCall:
     schema: Incomplete
@@ -17,54 +18,67 @@ class LcnServiceCall:
 
 class OutputAbs(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class OutputRel(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class OutputToggle(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class Relays(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class Led(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class VarAbs(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class VarReset(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class VarRel(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class LockRegulator(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class SendKeys(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class LockKeys(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class DynText(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class Pck(LcnServiceCall):
     schema: Incomplete
+    @override
     async def async_call_service(self, service: ServiceCall) -> None: ...
 
 class LcnService(StrEnum):

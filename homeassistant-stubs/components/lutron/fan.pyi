@@ -5,7 +5,7 @@ from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeatur
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pylutron import Output as Output
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: LutronConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,10 +16,15 @@ class LutronFan(LutronDevice, FanEntity):
     _attr_supported_features: Incomplete
     _lutron_device: Output
     _prev_percentage: int | None
+    @override
     def set_percentage(self, percentage: int) -> None: ...
+    @override
     def turn_on(self, percentage: int | None = None, preset_mode: str | None = None, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _request_state(self) -> None: ...
     _attr_is_on: Incomplete
     _attr_percentage: Incomplete
+    @override
     def _update_attrs(self) -> None: ...

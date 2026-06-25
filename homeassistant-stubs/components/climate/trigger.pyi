@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR as ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR, EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateChangedTriggerWithUnitBase as EntityNumericalStateChangedTriggerWithUnitBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateCrossedThresholdTriggerWithUnitBase as EntityNumericalStateCrossedThresholdTriggerWithUnitBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityNumericalStateTriggerWithUnitBase as EntityNumericalStateTriggerWithUnitBase, EntityTargetStateTriggerBase as EntityTargetStateTriggerBase, Trigger as Trigger, TriggerConfig as TriggerConfig, make_entity_target_state_trigger as make_entity_target_state_trigger, make_entity_transition_trigger as make_entity_transition_trigger
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
+from typing import override
 
 CONF_HVAC_MODE: str
 HVAC_MODE_CHANGED_TRIGGER_SCHEMA: Incomplete
@@ -19,7 +20,9 @@ class _ClimateTargetTemperatureTriggerMixin(EntityNumericalStateTriggerWithUnitB
     _base_unit: Incomplete
     _domain_specs: Incomplete
     _unit_converter = TemperatureConverter
+    @override
     def _should_include(self, state: State) -> bool: ...
+    @override
     def _get_entity_unit(self, state: State) -> str | None: ...
 
 class ClimateTargetTemperatureChangedTrigger(_ClimateTargetTemperatureTriggerMixin, EntityNumericalStateChangedTriggerWithUnitBase): ...
@@ -28,6 +31,7 @@ class ClimateTargetTemperatureCrossedThresholdTrigger(_ClimateTargetTemperatureT
 class _ClimateTargetHumidityTriggerMixin(EntityNumericalStateTriggerBase):
     _domain_specs: Incomplete
     _valid_unit: str
+    @override
     def _should_include(self, state: State) -> bool: ...
 
 class ClimateTargetHumidityChangedTrigger(_ClimateTargetHumidityTriggerMixin, EntityNumericalStateChangedTriggerBase): ...

@@ -6,6 +6,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.entity import get_supported_features as get_supported_features
 from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR as ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR, EntityTargetStateTriggerBase as EntityTargetStateTriggerBase, Trigger as Trigger, TriggerConfig as TriggerConfig, make_entity_target_state_trigger as make_entity_target_state_trigger
+from typing import override
 
 MODE_CHANGED_TRIGGER_SCHEMA: Incomplete
 
@@ -16,6 +17,7 @@ class ModeChangedTrigger(EntityTargetStateTriggerBase):
     _schema = MODE_CHANGED_TRIGGER_SCHEMA
     _to_states: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
+    @override
     def entity_filter(self, entities: set[str]) -> set[str]: ...
 
 TRIGGERS: dict[str, type[Trigger]]

@@ -8,6 +8,7 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,7 +22,9 @@ class MotionMountExtension(MotionMountEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mm: motionmount.MotionMount, config_entry: MotionMountConfigEntry) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class MotionMountTurn(MotionMountEntity, NumberEntity):
@@ -32,5 +35,7 @@ class MotionMountTurn(MotionMountEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, mm: motionmount.MotionMount, config_entry: MotionMountConfigEntry) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

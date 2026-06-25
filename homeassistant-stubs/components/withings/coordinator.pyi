@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
 
 UPDATE_INTERVAL: Incomplete
 
@@ -24,6 +25,7 @@ class WithingsDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metac
     update_interval: Incomplete
     def webhook_subscription_listener(self, connected: bool) -> None: ...
     async def async_webhook_data_updated(self, notification_category: NotificationCategory) -> None: ...
+    @override
     async def _async_update_data(self) -> _DataT: ...
     @abstractmethod
     async def _internal_update_data(self) -> _DataT: ...
@@ -34,12 +36,14 @@ class WithingsMeasurementDataUpdateCoordinator(WithingsDataUpdateCoordinator[dic
     _previous_data: dict[tuple[MeasurementType, MeasurementPosition | None], float]
     def __init__(self, hass: HomeAssistant, config_entry: WithingsConfigEntry, client: WithingsClient) -> None: ...
     _last_valid_update: Incomplete
+    @override
     async def _internal_update_data(self) -> dict[tuple[MeasurementType, MeasurementPosition | None], float]: ...
 
 class WithingsSleepDataUpdateCoordinator(WithingsDataUpdateCoordinator[SleepSummary | None]):
     coordinator_name: str
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: WithingsConfigEntry, client: WithingsClient) -> None: ...
+    @override
     async def _internal_update_data(self) -> SleepSummary | None: ...
 
 class WithingsBedPresenceDataUpdateCoordinator(WithingsDataUpdateCoordinator[None]):
@@ -48,13 +52,17 @@ class WithingsBedPresenceDataUpdateCoordinator(WithingsDataUpdateCoordinator[Non
     _default_update_interval: Incomplete
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: WithingsConfigEntry, client: WithingsClient) -> None: ...
+    @override
     async def async_webhook_data_updated(self, notification_category: NotificationCategory) -> None: ...
+    @override
     async def _internal_update_data(self) -> None: ...
 
 class WithingsGoalsDataUpdateCoordinator(WithingsDataUpdateCoordinator[Goals]):
     coordinator_name: str
     _default_update_interval: Incomplete
+    @override
     def webhook_subscription_listener(self, connected: bool) -> None: ...
+    @override
     async def _internal_update_data(self) -> Goals: ...
 
 class WithingsActivityDataUpdateCoordinator(WithingsDataUpdateCoordinator[Activity | None]):
@@ -63,6 +71,7 @@ class WithingsActivityDataUpdateCoordinator(WithingsDataUpdateCoordinator[Activi
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: WithingsConfigEntry, client: WithingsClient) -> None: ...
     _last_valid_update: Incomplete
+    @override
     async def _internal_update_data(self) -> Activity | None: ...
 
 class WithingsWorkoutDataUpdateCoordinator(WithingsDataUpdateCoordinator[Workout | None]):
@@ -71,9 +80,11 @@ class WithingsWorkoutDataUpdateCoordinator(WithingsDataUpdateCoordinator[Workout
     notification_categories: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: WithingsConfigEntry, client: WithingsClient) -> None: ...
     _last_valid_update: Incomplete
+    @override
     async def _internal_update_data(self) -> Workout | None: ...
 
 class WithingsDeviceDataUpdateCoordinator(WithingsDataUpdateCoordinator[dict[str, Device]]):
     coordinator_name: str
     _default_update_interval: Incomplete
+    @override
     async def _internal_update_data(self) -> dict[str, Device]: ...

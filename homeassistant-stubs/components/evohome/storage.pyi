@@ -4,7 +4,7 @@ from evohomeasync.auth import AbstractSessionManager
 from evohomeasync2.auth import AbstractTokenManager
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.storage import Store as Store
-from typing import Any, NotRequired, TypedDict
+from typing import Any, NotRequired, TypedDict, override
 
 class _SessionIdEntryT(TypedDict):
     session_id: str
@@ -22,12 +22,17 @@ class TokenManager(AbstractTokenManager, AbstractSessionManager):
     _store: Incomplete
     _store_initialized: bool
     def __init__(self, hass: HomeAssistant, *args: Any, **kwargs: Any) -> None: ...
+    @override
     async def get_access_token(self) -> str: ...
+    @override
     async def get_session_id(self) -> str: ...
     async def _load_cache_from_store(self) -> None: ...
     _session_id: Incomplete
     _session_id_expires: Incomplete
+    @override
     def _import_session_id(self, session: _SessionIdEntryT) -> None: ...
+    @override
     async def save_access_token(self) -> None: ...
+    @override
     async def save_session_id(self) -> None: ...
     async def save_cache_to_store(self) -> None: ...

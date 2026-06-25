@@ -6,7 +6,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from trmnl.models import Device as Device
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 class TRMNLEntity(CoordinatorEntity[TRMNLCoordinator]):
     _attr_has_entity_name: bool
@@ -16,6 +16,7 @@ class TRMNLEntity(CoordinatorEntity[TRMNLCoordinator]):
     @property
     def _device(self) -> Device: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 def exception_handler[_EntityT: TRMNLEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...

@@ -8,7 +8,7 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.entity import Entity as Entity, ToggleEntity as ToggleEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pywizlight.bulblibrary import BulbType as BulbType
-from typing import Any
+from typing import Any, override
 
 class WizEntity(CoordinatorEntity[WizCoordinator], Entity, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
@@ -17,6 +17,7 @@ class WizEntity(CoordinatorEntity[WizCoordinator], Entity, metaclass=abc.ABCMeta
     _attr_device_info: Incomplete
     def __init__(self, wiz_data: WizData, name: str) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @callback
     @abstractmethod
@@ -25,5 +26,7 @@ class WizEntity(CoordinatorEntity[WizCoordinator], Entity, metaclass=abc.ABCMeta
 class WizToggleEntity(WizEntity, ToggleEntity):
     _attr_is_on: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

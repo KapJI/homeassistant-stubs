@@ -7,6 +7,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass as Bi
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(kw_only=True, frozen=True)
 class BoschAlarmFaultEntityDescription(BinarySensorEntityDescription):
@@ -25,6 +26,7 @@ class PanelFaultsSensor(BoschAlarmEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, unique_id: str, entity_description: BoschAlarmFaultEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class AreaReadyToArmSensor(BoschAlarmAreaEntity, BinarySensorEntity):
@@ -35,6 +37,7 @@ class AreaReadyToArmSensor(BoschAlarmAreaEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, area_id: int, unique_id: str, arm_type: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
 
 class PointSensor(BoschAlarmPointEntity, BinarySensorEntity):
@@ -42,4 +45,5 @@ class PointSensor(BoschAlarmPointEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, panel: Panel, point_id: int, unique_id: str) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...

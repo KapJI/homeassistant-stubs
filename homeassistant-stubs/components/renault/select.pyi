@@ -6,7 +6,7 @@ from homeassistant.components.select import SelectEntity as SelectEntity, Select
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from renault_api.kamereon.models import KamereonVehicleDataAttributes as KamereonVehicleDataAttributes
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -20,7 +20,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntr
 class RenaultSelectEntity[T: KamereonVehicleDataAttributes](RenaultDataEntity[T], SelectEntity):
     entity_description: RenaultSelectEntityDescription[T]
     @property
+    @override
     def current_option(self) -> str | None: ...
+    @override
     async def async_select_option(self, option: str) -> None: ...
 
 SENSOR_TYPES: tuple[RenaultSelectEntityDescription, ...]

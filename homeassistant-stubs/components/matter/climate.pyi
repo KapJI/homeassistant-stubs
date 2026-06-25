@@ -9,7 +9,7 @@ from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, A
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 HUMIDITY_SCALING_FACTOR: int
 TEMPERATURE_SCALING_FACTOR: int
@@ -46,12 +46,16 @@ class MatterClimate(MatterEntity, ClimateEntity):
     _preset_handle_by_name: dict[str, bytes | None]
     _preset_name_by_handle: dict[bytes | None, str]
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_current_humidity: Incomplete
     @callback
+    @override
     def _update_from_device(self) -> None: ...
     @callback
     def _update_presets(self) -> None: ...

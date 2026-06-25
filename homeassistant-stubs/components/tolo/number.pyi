@@ -8,7 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tololib import ToloClient as ToloClient, ToloSettings as ToloSettings
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class ToloNumberEntityDescription(NumberEntityDescription):
@@ -27,5 +27,7 @@ class ToloNumberEntity(ToloSaunaCoordinatorEntity, NumberEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ToloConfigEntry, entity_description: ToloNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     def set_native_value(self, value: float) -> None: ...

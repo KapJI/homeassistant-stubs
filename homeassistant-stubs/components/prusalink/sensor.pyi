@@ -13,6 +13,7 @@ from homeassistant.util.dt import utcnow as utcnow
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from pyprusalink.types import JobInfo, PrinterInfo, PrinterStatus
 from pyprusalink.types_legacy import LegacyPrinterStatus
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class PrusaLinkSensorEntityDescription[T: (PrinterStatus, LegacyPrinterStatus, JobInfo, PrinterInfo)](SensorEntityDescription, PrusaLinkEntityDescription):
@@ -27,4 +28,5 @@ class PrusaLinkSensorEntity(PrusaLinkEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PrusaLinkUpdateCoordinator, description: PrusaLinkSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | StateType: ...

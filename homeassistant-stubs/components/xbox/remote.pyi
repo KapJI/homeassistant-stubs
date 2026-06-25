@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pythonxbox.api.provider.smartglass import SmartglassProvider as SmartglassProvider
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -19,10 +19,14 @@ def exception_handler[**_P, _R](func: Callable[Concatenate[XboxRemote, _P], Awai
 
 class XboxRemote(XboxConsoleBaseEntity, RemoteEntity):
     @property
+    @override
     def is_on(self) -> bool: ...
     @exception_handler
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @exception_handler
+    @override
     async def async_send_command(self, command: Iterable[str], **kwargs: Any) -> None: ...

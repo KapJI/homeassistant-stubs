@@ -4,12 +4,14 @@ from homeassistant.const import CONF_CODE as CONF_CODE, CONF_DEVICE_ID as CONF_D
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from pydroplet.droplet import DropletDiscovery
-from typing import Any
+from typing import Any, override
 
 def normalize_pairing_code(code: str) -> str: ...
 
 class DropletConfigFlow(ConfigFlow, domain=DOMAIN):
     _droplet_discovery: DropletDiscovery
+    @override
     async def async_step_zeroconf(self, discovery_info: ZeroconfServiceInfo) -> ConfigFlowResult: ...
     async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

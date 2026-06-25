@@ -7,7 +7,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfEnergy as UnitOfEnergy
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 MIN_CHARGING_CURRENT: int
@@ -30,13 +30,18 @@ class NRGkickNumber(NRGkickEntity, NumberEntity):
     entity_description: NRGkickNumberEntityDescription
     def __init__(self, coordinator: NRGkickDataUpdateCoordinator, description: NRGkickNumberEntityDescription) -> None: ...
     @property
+    @override
     def native_max_value(self) -> float: ...
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class NRGkickPhaseCountNumber(NRGkickNumber):
     _last_phase_count: float | None
     @property
+    @override
     def native_value(self) -> float | None: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...

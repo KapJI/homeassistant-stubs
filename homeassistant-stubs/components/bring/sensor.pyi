@@ -11,6 +11,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -35,4 +36,5 @@ class BringSensorEntity(BringBaseEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: BringDataUpdateCoordinator, bring_list: BringList, entity_description: BringSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

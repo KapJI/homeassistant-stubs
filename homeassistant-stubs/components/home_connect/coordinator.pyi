@@ -1,4 +1,4 @@
-from .const import API_DEFAULT_RETRY_AFTER as API_DEFAULT_RETRY_AFTER, APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPERATION_STATE_PAUSE as BSH_OPERATION_STATE_PAUSE, DOMAIN as DOMAIN
+from .const import API_DEFAULT_RETRY_AFTER as API_DEFAULT_RETRY_AFTER, APPLIANCES_WITH_PROGRAMS as APPLIANCES_WITH_PROGRAMS, BSH_OPERATION_STATE_PAUSE as BSH_OPERATION_STATE_PAUSE, DOMAIN as DOMAIN, FAVORITE_PROGRAMS as FAVORITE_PROGRAMS
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
 from aiohomeconnect.client import Client as HomeConnectClient
@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 MAX_EXECUTIONS_TIME_WINDOW: Incomplete
@@ -58,6 +59,7 @@ class HomeConnectApplianceCoordinator(DataUpdateCoordinator[HomeConnectAppliance
     def _call_event_listener(self, event_message: EventMessage) -> None: ...
     @callback
     def call_all_event_listeners(self) -> None: ...
+    @override
     async def _async_update_data(self) -> HomeConnectApplianceData: ...
     async def get_appliance_data(self) -> None: ...
     async def get_options_definitions(self, program_key: ProgramKey) -> dict[OptionKey, ProgramDefinitionOption]: ...

@@ -7,7 +7,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity, Switch
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tololib import ToloClient as ToloClient, ToloStatus as ToloStatus
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class ToloSwitchEntityDescription(SwitchEntityDescription):
@@ -23,6 +23,9 @@ class ToloSwitchEntity(ToloSaunaCoordinatorEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ToloSaunaUpdateCoordinator, entry: ToloConfigEntry, entity_description: ToloSwitchEntityDescription) -> None: ...
     @property
+    @override
     def is_on(self) -> bool: ...
+    @override
     def turn_on(self, **kwargs: Any) -> None: ...
+    @override
     def turn_off(self, **kwargs: Any) -> None: ...

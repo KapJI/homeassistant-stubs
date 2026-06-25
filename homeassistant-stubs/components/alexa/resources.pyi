@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from typing import Any
+from typing import Any, override
 
 class AlexaGlobalCatalog:
     DEVICE_NAME_AIR_PURIFIER: str
@@ -73,6 +73,7 @@ class AlexaModeResource(AlexaCapabilityResource):
     _mode_ordered: bool
     def __init__(self, labels: list[str], ordered: bool = False) -> None: ...
     def add_mode(self, value: str, labels: list[str]) -> None: ...
+    @override
     def serialize_configuration(self) -> dict[str, Any]: ...
 
 class AlexaPresetResource(AlexaCapabilityResource):
@@ -83,6 +84,7 @@ class AlexaPresetResource(AlexaCapabilityResource):
     _unit_of_measure: Incomplete
     def __init__(self, labels: list[str], min_value: float, max_value: float, precision: float, unit: str | None = None) -> None: ...
     def add_preset(self, value: float, labels: list[str]) -> None: ...
+    @override
     def serialize_configuration(self) -> dict[str, Any]: ...
 
 class AlexaSemantics:

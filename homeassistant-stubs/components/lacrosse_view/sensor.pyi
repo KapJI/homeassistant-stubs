@@ -10,6 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity, DataUpdateCoordinator as DataUpdateCoordinator
 from lacrosse_view import Sensor
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -33,6 +34,8 @@ class LaCrosseViewSensor(CoordinatorEntity[DataUpdateCoordinator[list[Sensor]]],
     index: Incomplete
     def __init__(self, description: LaCrosseSensorEntityDescription, coordinator: DataUpdateCoordinator[list[Sensor]], sensor: Sensor, index: int) -> None: ...
     @property
+    @override
     def native_value(self) -> int | float | str | None: ...
     @property
+    @override
     def available(self) -> bool: ...

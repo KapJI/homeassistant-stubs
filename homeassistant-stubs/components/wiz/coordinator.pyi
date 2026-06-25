@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pywizlight import wizlight as wizlight
+from typing import override
 
 _LOGGER: Incomplete
 REQUEST_REFRESH_DELAY: float
@@ -21,4 +22,5 @@ class WizCoordinator(DataUpdateCoordinator[float | None]):
     config_entry: WizConfigEntry
     _bulb: Incomplete
     def __init__(self, hass: HomeAssistant, entry: WizConfigEntry, bulb: wizlight) -> None: ...
+    @override
     async def _async_update_data(self) -> float | None: ...

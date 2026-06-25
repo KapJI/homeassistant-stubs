@@ -6,7 +6,7 @@ from homeassistant.core import Event as Event, EventStateChangedData as EventSta
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 DEFAULT_NAME: str
 PLATFORM_SCHEMA: Incomplete
@@ -21,8 +21,11 @@ class LightSwitch(LightEntity):
     _attr_unique_id: Incomplete
     _switch_entity_id: Incomplete
     def __init__(self, name: str, switch_entity_id: str, unique_id: str | None) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_available: bool
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...

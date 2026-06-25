@@ -10,7 +10,7 @@ from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemp
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from kasa import Device as Device
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 STATE_TO_ACTION: Incomplete
@@ -36,16 +36,21 @@ class TPLinkClimateEntity(CoordinatedTPLinkModuleEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     def __init__(self, device: Device, coordinator: TPLinkDataUpdateCoordinator, description: TPLinkClimateEntityDescription, *, parent: Device) -> None: ...
     @async_refresh_after
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @async_refresh_after
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_on(self) -> None: ...
     @async_refresh_after
+    @override
     async def async_turn_off(self) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_target_temperature: Incomplete
     _attr_hvac_mode: Incomplete
     _attr_hvac_action: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> bool: ...

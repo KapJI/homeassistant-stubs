@@ -9,6 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class SkybellSensorEntityDescription(SensorEntityDescription):
@@ -21,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: SkybellConfigEntry, asyn
 class SkybellSensor(SkybellEntity, SensorEntity):
     entity_description: SkybellSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...

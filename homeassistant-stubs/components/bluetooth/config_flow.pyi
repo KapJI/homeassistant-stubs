@@ -10,7 +10,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaOptionsFlowHandler as SchemaOptionsFlowHandler
 from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.typing import DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _MODE_SELECTOR: Incomplete
 
@@ -28,18 +28,22 @@ class BluetoothConfigFlow(ConfigFlow, domain=DOMAIN):
     _adapters: dict[str, AdapterDetails]
     _placeholders: dict[str, str]
     def __init__(self) -> None: ...
+    @override
     async def async_step_integration_discovery(self, discovery_info: DiscoveryInfoType) -> ConfigFlowResult: ...
     @callback
     def _async_set_adapter_info(self, adapter: str, details: AdapterDetails) -> None: ...
     async def async_step_single_adapter(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_multiple_adapters(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_external_scanner(self, user_input: dict[str, Any]) -> ConfigFlowResult: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SchemaOptionsFlowHandler | RemoteAdapterOptionsFlowHandler | LocalNoPassiveOptionsFlowHandler: ...
     @classmethod
     @callback
+    @override
     def async_supports_options_flow(cls, config_entry: ConfigEntry) -> bool: ...
 
 class RemoteAdapterOptionsFlowHandler(OptionsFlow):

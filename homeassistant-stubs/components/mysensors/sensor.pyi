@@ -10,7 +10,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from mysensors import BaseAsyncGateway as BaseAsyncGateway
-from typing import Any
+from typing import Any, override
 
 SENSORS: dict[str, SensorEntityDescription]
 
@@ -22,11 +22,14 @@ class MyBatterySensor(MySensorNodeEntity, SensorEntity):
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_force_update: bool
     @property
+    @override
     def unique_id(self) -> str: ...
     @property
+    @override
     def name(self) -> str: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_callback(self) -> None: ...
 
 class MySensorsSensor(MySensorsChildEntity, SensorEntity):
@@ -34,7 +37,9 @@ class MySensorsSensor(MySensorsChildEntity, SensorEntity):
     entity_description: Incomplete
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...
     @property
+    @override
     def native_unit_of_measurement(self) -> str | None: ...
     def _get_entity_description(self) -> SensorEntityDescription | None: ...

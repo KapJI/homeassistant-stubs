@@ -8,6 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -27,4 +28,5 @@ class PegelOnlineSensor(PegelOnlineEntity, SensorEntity):
     @property
     def measurement(self) -> CurrentMeasurement: ...
     @property
+    @override
     def native_value(self) -> float: ...

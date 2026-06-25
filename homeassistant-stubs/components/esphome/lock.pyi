@@ -4,7 +4,7 @@ from aioesphomeapi import EntityInfo as EntityInfo, LockEntityState, LockInfo
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
 from homeassistant.const import ATTR_CODE as ATTR_CODE
 from homeassistant.core import callback as callback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -13,24 +13,32 @@ class EsphomeLock(EsphomeEntity[LockInfo, LockEntityState], LockEntity):
     _attr_supported_features: Incomplete
     _attr_code_format: Incomplete
     @callback
+    @override
     def _on_static_info_update(self, static_info: EntityInfo) -> None: ...
     @property
     @esphome_state_property
+    @override
     def is_locked(self) -> bool | None: ...
     @property
     @esphome_state_property
+    @override
     def is_locking(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def is_unlocking(self) -> bool: ...
     @property
     @esphome_state_property
+    @override
     def is_jammed(self) -> bool: ...
     @convert_api_error_ha_error
+    @override
     async def async_lock(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_unlock(self, **kwargs: Any) -> None: ...
     @convert_api_error_ha_error
+    @override
     async def async_open(self, **kwargs: Any) -> None: ...
 
 async_setup_entry: Incomplete

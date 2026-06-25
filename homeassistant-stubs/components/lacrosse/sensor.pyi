@@ -8,7 +8,7 @@ from homeassistant.helpers.entity import async_generate_entity_id as async_gener
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 CONF_BAUD: str
@@ -40,6 +40,7 @@ class LaCrosseSensor(SensorEntity):
     _attr_name: Incomplete
     def __init__(self, hass: HomeAssistant, lacrosse: pylacrosse.LaCrosse, device_id: str, name: str, expire_after: int | None, config: ConfigType) -> None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     def _callback_lacrosse(self, lacrosse_sensor: pylacrosse.LaCrosseSensor, user_data: None) -> None: ...
     @callback
@@ -50,6 +51,7 @@ class LaCrosseTemperature(LaCrosseSensor):
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     @property
+    @override
     def native_value(self) -> float | None: ...
 
 class LaCrosseHumidity(LaCrosseSensor):
@@ -57,12 +59,15 @@ class LaCrosseHumidity(LaCrosseSensor):
     _attr_state_class: Incomplete
     _attr_device_class: Incomplete
     @property
+    @override
     def native_value(self) -> int | None: ...
 
 class LaCrosseBattery(LaCrosseSensor):
     @property
+    @override
     def native_value(self) -> str | None: ...
     @property
+    @override
     def icon(self) -> str: ...
 
 TYPE_CLASSES: dict[str, type[LaCrosseSensor]]

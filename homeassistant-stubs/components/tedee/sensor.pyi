@@ -7,6 +7,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -21,4 +22,5 @@ async def async_setup_entry(hass: HomeAssistant, entry: TedeeConfigEntry, async_
 class TedeeSensorEntity(TedeeDescriptionEntity, SensorEntity):
     entity_description: TedeeSensorEntityDescription
     @property
+    @override
     def native_value(self) -> float | None: ...

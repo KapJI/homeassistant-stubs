@@ -16,7 +16,7 @@ from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as Receiv
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -44,6 +44,7 @@ class MqttCover(MqttEntity, CoverEntity):
     _pos_range: tuple[int, int]
     _tilt_range: tuple[int, int]
     @staticmethod
+    @override
     def config_schema() -> VolSchemaType: ...
     _attr_assumed_state: Incomplete
     _value_template: Incomplete
@@ -53,6 +54,7 @@ class MqttCover(MqttEntity, CoverEntity):
     _tilt_status_template: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    @override
     def _setup_from_config(self, config: ConfigType) -> None: ...
     _attr_is_opening: Incomplete
     _attr_is_closing: Incomplete
@@ -66,17 +68,28 @@ class MqttCover(MqttEntity, CoverEntity):
     @callback
     def _position_message_received(self, msg: ReceiveMessage) -> None: ...
     @callback
+    @override
     def _prepare_subscribe_topics(self) -> None: ...
+    @override
     async def _subscribe_topics(self) -> None: ...
+    @override
     async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
     _attr_current_cover_tilt_position: Incomplete
+    @override
     async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
+    @override
     async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...
+    @override
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
+    @override
     async def async_toggle_tilt(self, **kwargs: Any) -> None: ...
     @callback
     def tilt_payload_received(self, _payload: Any) -> None: ...

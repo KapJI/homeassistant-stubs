@@ -8,7 +8,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import snakecase as snakecase
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 _DEVICE_SCAN: Incomplete
@@ -30,18 +30,26 @@ class HuaweiLteScannerEntity(HuaweiLteBaseEntity, ScannerEntity):
     _mac_address: Incomplete
     def __init__(self, router: Router, mac_address: str) -> None: ...
     @property
+    @override
     def name(self) -> str: ...
     @property
+    @override
     def _device_unique_id(self) -> str: ...
     @property
+    @override
     def ip_address(self) -> str | None: ...
     @property
+    @override
     def mac_address(self) -> str: ...
     @property
+    @override
     def hostname(self) -> str | None: ...
     @property
+    @override
     def is_connected(self) -> bool: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     _available: bool
+    @override
     async def async_update(self) -> None: ...

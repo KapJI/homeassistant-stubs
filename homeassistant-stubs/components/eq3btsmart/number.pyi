@@ -10,6 +10,7 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class Eq3NumberEntityDescription(NumberEntityDescription):
@@ -26,7 +27,10 @@ class Eq3NumberEntity(Eq3Entity, NumberEntity):
     entity_description: Eq3NumberEntityDescription
     def __init__(self, entry: Eq3ConfigEntry, entity_description: Eq3NumberEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...

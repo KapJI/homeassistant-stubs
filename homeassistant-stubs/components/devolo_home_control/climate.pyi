@@ -7,7 +7,7 @@ from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATUR
 from homeassistant.const import PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, entry: DevoloHomeControlConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,8 +22,12 @@ class DevoloClimateDeviceEntity(DevoloMultiLevelSwitchDeviceEntity, ClimateEntit
     _attr_max_temp: Incomplete
     def __init__(self, homecontrol: HomeControl, device_instance: Zwave, element_uid: str) -> None: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float | None: ...
+    @override
     def set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
+    @override
     def set_temperature(self, **kwargs: Any) -> None: ...

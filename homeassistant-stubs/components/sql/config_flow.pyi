@@ -12,7 +12,7 @@ from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers import selector as selector
 from sqlalchemy.engine import Engine as Engine, Result as Result
 from sqlalchemy.orm import Session as Session
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 OPTIONS_SCHEMA: vol.Schema
@@ -27,7 +27,9 @@ class SQLConfigFlow(ConfigFlow, domain=DOMAIN):
     data: dict[str, Any]
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> SQLOptionsFlowHandler: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_options(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

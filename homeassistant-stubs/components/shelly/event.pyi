@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from homeassistant.components.event import EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
 
@@ -39,6 +39,7 @@ class ShellyBlockEvent(ShellyBlockEntity, EventEntity):
     _attr_translation_placeholders: Incomplete
     _attr_name: Incomplete
     def __init__(self, coordinator: ShellyBlockCoordinator, block: Block, description: ShellyBlockEventDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self, event: dict[str, Any]) -> None: ...
@@ -50,6 +51,7 @@ class ShellyRpcEvent(ShellyRpcEntity, EventEntity):
     _attr_translation_placeholders: Incomplete
     event_id: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, description: ShellyRpcEventDescription) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self, event: dict[str, Any]) -> None: ...
@@ -61,6 +63,7 @@ class ShellyRpcScriptEvent(ShellyRpcEntity, EventEntity):
     _attr_name: Incomplete
     event_id: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, description: ShellyRpcEventDescription, event_types: list[str]) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_handle_event(self, event: dict[str, Any]) -> None: ...

@@ -5,6 +5,7 @@ from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class PortainerCoordinatorEntity(CoordinatorEntity[PortainerCoordinator]):
     _attr_has_entity_name: bool
@@ -20,6 +21,7 @@ class PortainerEndpointEntity(PortainerCoordinatorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PortainerCoordinator, entity_description: EntityDescription, device_info: PortainerCoordinatorData) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class PortainerContainerEntity(PortainerCoordinatorEntity):
@@ -32,6 +34,7 @@ class PortainerContainerEntity(PortainerCoordinatorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PortainerCoordinator, entity_description: EntityDescription, device_info: PortainerContainerData, via_device: PortainerCoordinatorData) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def container_data(self) -> PortainerContainerData: ...
@@ -47,6 +50,7 @@ class PortainerStackEntity(PortainerCoordinatorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PortainerCoordinator, entity_description: EntityDescription, device_info: PortainerStackData, via_device: PortainerCoordinatorData) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def stack_data(self) -> PortainerStackData: ...
@@ -59,6 +63,7 @@ class PortainerDockerSystemDiskSpaceEndpointEntity(PortainerDockerDiskSpaceCoord
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PortainerDockerDiskSpaceCoordinator, entity_description: EntityDescription, device_info: PortainerCoordinatorData) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
 
 class PortainerVolumeEntity(PortainerCoordinatorEntity):
@@ -71,6 +76,7 @@ class PortainerVolumeEntity(PortainerCoordinatorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: PortainerCoordinator, entity_description: EntityDescription, device_info: DockerVolume, via_device: PortainerCoordinatorData) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @property
     def volume_data(self) -> PortainerVolumeData: ...

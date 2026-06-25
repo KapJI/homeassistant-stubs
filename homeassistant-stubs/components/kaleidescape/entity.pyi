@@ -4,6 +4,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from kaleidescape import Device as KaleidescapeDevice
+from typing import override
 
 _LOGGER: Incomplete
 
@@ -14,4 +15,5 @@ class KaleidescapeEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, device: KaleidescapeDevice) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...

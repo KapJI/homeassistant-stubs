@@ -5,6 +5,7 @@ from homeassistant.components.device_tracker import TrackerEntity as TrackerEnti
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from renault_api.kamereon.models import KamereonVehicleLocationData
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -16,8 +17,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RenaultConfigEntr
 class RenaultDeviceTracker(RenaultDataEntity[KamereonVehicleLocationData], TrackerEntity):
     entity_description: RenaultTrackerEntityDescription
     @property
+    @override
     def latitude(self) -> float | None: ...
     @property
+    @override
     def longitude(self) -> float | None: ...
 
 DEVICE_TRACKER_TYPES: tuple[RenaultTrackerEntityDescription, ...]

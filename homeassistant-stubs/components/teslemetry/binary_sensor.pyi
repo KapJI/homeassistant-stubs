@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import StateType as StateType
 from teslemetry_stream.vehicle import TeslemetryStreamVehicle as TeslemetryStreamVehicle
+from typing import override
 
 PARALLEL_UPDATES: int
 WINDOW_STATES: Incomplete
@@ -34,12 +35,14 @@ class TeslemetryVehiclePollingBinarySensorEntity(TeslemetryVehiclePollingEntity,
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryBinarySensorEntityDescription) -> None: ...
     _attr_available: Incomplete
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryVehicleStreamingBinarySensorEntity(TeslemetryVehicleStreamEntity, BinarySensorEntity, RestoreEntity):
     entity_description: TeslemetryBinarySensorEntityDescription
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryBinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: Incomplete
     def _async_value_from_stream(self, value: bool | None) -> None: ...
@@ -48,10 +51,12 @@ class TeslemetryEnergyLiveBinarySensorEntity(TeslemetryEnergyLiveEntity, BinaryS
     entity_description: TeslemetryBinarySensorEntityDescription
     def __init__(self, data: TeslemetryEnergyData, description: TeslemetryBinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...
 
 class TeslemetryEnergyInfoBinarySensorEntity(TeslemetryEnergyInfoEntity, BinarySensorEntity):
     entity_description: TeslemetryBinarySensorEntityDescription
     def __init__(self, data: TeslemetryEnergyData, description: TeslemetryBinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _async_update_attrs(self) -> None: ...

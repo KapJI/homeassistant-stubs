@@ -12,15 +12,19 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
+from typing import override
 from xknx.devices import NumericValue
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class _KnxNumber(RestoreNumber):
     _device: NumericValue
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def native_value(self) -> float: ...
+    @override
     async def async_set_native_value(self, value: float) -> None: ...
 
 class KnxYamlNumber(_KnxNumber, KnxYamlEntity):

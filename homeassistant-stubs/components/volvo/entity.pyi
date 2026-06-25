@@ -9,6 +9,7 @@ from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 from volvocarsapi.models import VolvoCarsApiBaseModel as VolvoCarsApiBaseModel
 
 def get_unique_id(vin: str, key: str) -> str: ...
@@ -30,8 +31,10 @@ class VolvoBaseEntity(Entity):
 class VolvoEntity(CoordinatorEntity[VolvoBaseCoordinator], VolvoBaseEntity, metaclass=abc.ABCMeta):
     def __init__(self, coordinator: VolvoBaseCoordinator, description: VolvoEntityDescription) -> None: ...
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     @property
+    @override
     def available(self) -> bool: ...
     @abstractmethod
     def _update_state(self, api_field: VolvoCarsApiBaseModel | None) -> None: ...

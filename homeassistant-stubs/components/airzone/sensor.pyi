@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, Final
+from typing import Any, Final, override
 
 HOT_WATER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
 WEBSERVER_SENSOR_TYPES: Final[tuple[SensorEntityDescription, ...]]
@@ -17,6 +17,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AirzoneConfigEntry, asyn
 
 class AirzoneSensor(AirzoneEntity, SensorEntity):
     @callback
+    @override
     def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     @callback

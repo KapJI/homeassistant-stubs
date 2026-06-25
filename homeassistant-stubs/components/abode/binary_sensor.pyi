@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from jaraco.abode.devices.binary_sensor import BinarySensor as BinarySensor
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: AbodeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -13,6 +14,8 @@ class AbodeBinarySensor(AbodeDevice, BinarySensorEntity):
     _attr_name: Incomplete
     _device: BinarySensor
     @property
+    @override
     def is_on(self) -> bool: ...
     @property
+    @override
     def device_class(self) -> BinarySensorDeviceClass | None: ...

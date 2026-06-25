@@ -7,6 +7,7 @@ from homeassistant.const import CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from typing import override
 
 _LOGGER: Incomplete
 type GiosConfigEntry = ConfigEntry[GiosDataUpdateCoordinator]
@@ -16,4 +17,5 @@ class GiosDataUpdateCoordinator(DataUpdateCoordinator[GiosSensors]):
     gios: Incomplete
     device_info: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: GiosConfigEntry, gios: Gios) -> None: ...
+    @override
     async def _async_update_data(self) -> GiosSensors: ...

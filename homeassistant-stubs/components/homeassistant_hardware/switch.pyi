@@ -4,7 +4,7 @@ from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -17,7 +17,10 @@ class BaseBetaFirmwareSwitch(SwitchEntity, RestoreEntity):
     _config_entry: Incomplete
     def __init__(self, coordinator: FirmwareUpdateCoordinator, config_entry: ConfigEntry) -> None: ...
     _attr_is_on: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     async def _update_coordinator_prerelease(self) -> None: ...

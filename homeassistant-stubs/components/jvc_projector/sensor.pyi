@@ -8,6 +8,7 @@ from homeassistant.const import EntityCategory as EntityCategory, UnitOfTime as 
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from jvcprojector import Command as Command
+from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class JvcProjectorSensorDescription(SensorEntityDescription):
@@ -25,6 +26,8 @@ class JvcProjectorSensorEntity(JvcProjectorEntity, SensorEntity):
     _options_map: dict[str, str]
     def __init__(self, coordinator: JvcProjectorDataUpdateCoordinator, description: JvcProjectorSensorDescription) -> None: ...
     @property
+    @override
     def options(self) -> list[str] | None: ...
     @property
+    @override
     def native_value(self) -> str | None: ...

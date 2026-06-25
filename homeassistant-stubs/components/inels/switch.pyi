@@ -9,7 +9,7 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from inelsmqtt.devices import Device as Device
 from inelsmqtt.utils.common import Bit as Bit, Relay as Relay, SimpleRelay as SimpleRelay
-from typing import Any
+from typing import Any, override
 
 @dataclass(frozen=True, kw_only=True)
 class InelsSwitchEntityDescription(SwitchEntityDescription):
@@ -29,6 +29,9 @@ class InelsSwitch(InelsBaseEntity, SwitchEntity):
     def __init__(self, device: Device, description: InelsSwitchEntityDescription, index: int = 0, switch_count: int = 1) -> None: ...
     def _check_alerts(self, current_state: Bit | SimpleRelay | Relay) -> None: ...
     @property
+    @override
     def is_on(self) -> bool | None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

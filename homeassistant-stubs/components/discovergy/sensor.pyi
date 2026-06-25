@@ -11,6 +11,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pydiscovergy.models import Reading as Reading
+from typing import override
 
 PARALLEL_UPDATES: int
 
@@ -36,4 +37,5 @@ class DiscovergySensor(CoordinatorEntity[DiscovergyUpdateCoordinator], SensorEnt
     _attr_device_info: Incomplete
     def __init__(self, data_key: str, description: DiscovergySensorEntityDescription, coordinator: DiscovergyUpdateCoordinator) -> None: ...
     @property
+    @override
     def native_value(self) -> datetime | float | None: ...

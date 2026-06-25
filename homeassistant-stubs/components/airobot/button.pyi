@@ -9,7 +9,7 @@ from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 
@@ -25,4 +25,5 @@ class AirobotButton(AirobotEntity, ButtonEntity):
     entity_description: AirobotButtonEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: AirobotDataUpdateCoordinator, description: AirobotButtonEntityDescription) -> None: ...
+    @override
     async def async_press(self) -> None: ...

@@ -12,7 +12,7 @@ from homeassistant.data_entry_flow import AbortFlow as AbortFlow
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.hassio import is_hassio as is_hassio
-from typing import Any
+from typing import Any, override
 from universal_silabs_flasher.flasher import DeviceSpecificFlasher as DeviceSpecificFlasher
 
 _LOGGER: Incomplete
@@ -87,10 +87,12 @@ class BaseFirmwareConfigFlow(BaseFirmwareInstallFlow, ConfigFlow, metaclass=abc.
     @staticmethod
     @callback
     @abstractmethod
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlow: ...
     _probed_firmware_info: Incomplete
     async def async_step_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @callback
+    @override
     def _continue_zha_flow(self, zha_result: ConfigFlowResult) -> ConfigFlowResult: ...
 
 class BaseFirmwareOptionsFlow(BaseFirmwareInstallFlow, OptionsFlow, metaclass=abc.ABCMeta):
@@ -99,7 +101,10 @@ class BaseFirmwareOptionsFlow(BaseFirmwareInstallFlow, OptionsFlow, metaclass=ab
     context: Incomplete
     def __init__(self, config_entry: ConfigEntry, *args: Any, **kwargs: Any) -> None: ...
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_pick_firmware_zigbee(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_pick_firmware_thread(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @callback
+    @override
     def _continue_zha_flow(self, zha_result: ConfigFlowResult) -> ConfigFlowResult: ...

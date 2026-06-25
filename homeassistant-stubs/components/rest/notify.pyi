@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.template import Template as Template
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
-from typing import Any
+from typing import Any, override
 
 CONF_DATA: str
 CONF_DATA_TEMPLATE: str
@@ -35,4 +35,5 @@ class RestNotificationService(BaseNotificationService):
     _auth: Incomplete
     _verify_ssl: Incomplete
     def __init__(self, hass: HomeAssistant, resource: str, method: str, headers: dict[str, str] | None, params: dict[str, str] | None, message_param_name: str, title_param_name: str | None, target_param_name: str | None, data: dict[str, Any] | None, data_template: dict[str, Any] | None, auth: httpx.Auth | None, verify_ssl: bool) -> None: ...
+    @override
     async def async_send_message(self, message: str = '', **kwargs: Any) -> None: ...

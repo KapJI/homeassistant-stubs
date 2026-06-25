@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote, SwitchBotAPI as SwitchBotAPI
-from typing import Any
+from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -16,11 +16,15 @@ class SwitchBotCloudSwitch(SwitchBotCloudEntity, SwitchEntity):
     _attr_device_class: Incomplete
     _attr_name: Incomplete
     _attr_is_on: bool
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
+    @override
     def _set_attributes(self) -> None: ...
 
 class SwitchBotCloudRemoteSwitch(SwitchBotCloudSwitch):
+    @override
     def _set_attributes(self) -> None: ...
 
 class SwitchBotCloudPlugSwitch(SwitchBotCloudSwitch):
@@ -28,6 +32,7 @@ class SwitchBotCloudPlugSwitch(SwitchBotCloudSwitch):
 
 class SwitchBotCloudRelaySwitchSwitch(SwitchBotCloudSwitch):
     _attr_is_on: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 class SwitchBotCloudRelaySwitch2PMSwitch(SwitchBotCloudSwitch):
@@ -36,9 +41,12 @@ class SwitchBotCloudRelaySwitch2PMSwitch(SwitchBotCloudSwitch):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator, channel: str) -> None: ...
+    @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     _attr_is_on: Incomplete
+    @override
     def _set_attributes(self) -> None: ...
 
 @callback

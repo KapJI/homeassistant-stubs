@@ -6,7 +6,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any
+from typing import Any, override
 from unifi_access_api import Door as Door, DoorLockRuleStatus, EmergencyStatus, UnifiAccessApiClient as UnifiAccessApiClient, WsMessageHandler as WsMessageHandler
 from unifi_access_api.models.websocket import LocationUpdateState as LocationUpdateState, ThumbnailInfo, V2LocationState as V2LocationState, WebsocketMessage as WebsocketMessage
 
@@ -41,7 +41,9 @@ class UnifiAccessCoordinator(DataUpdateCoordinator[UnifiAccessData]):
     def _normalize_interval(self, value: float | None) -> int: ...
     data: Incomplete
     async def async_set_lock_rule(self, door_id: str, rule_type: str, interval: float | None = None) -> None: ...
+    @override
     async def _async_setup(self) -> None: ...
+    @override
     async def _async_update_data(self) -> UnifiAccessData: ...
     async def _async_get_door_lock_rule(self, door_id: str) -> DoorLockRuleStatus | None: ...
     @callback

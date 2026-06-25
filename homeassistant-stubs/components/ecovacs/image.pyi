@@ -8,6 +8,7 @@ from homeassistant.components.image import ImageEntity as ImageEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -17,7 +18,10 @@ class EcovacsMap(EcovacsEntity[CapabilityMap], ImageEntity):
     _map: Incomplete
     def __init__(self, device: Device, capability: CapabilityMap, hass: HomeAssistant) -> None: ...
     entity_description: Incomplete
+    @override
     def image(self) -> bytes | None: ...
     _attr_image_last_updated: Incomplete
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_update(self) -> None: ...

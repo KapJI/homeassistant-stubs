@@ -12,9 +12,9 @@ from homeassistant.helpers.automation import move_top_level_schema_fields_to_opt
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_point_in_time as async_track_point_in_time, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.target import TargetEntityChangeTracker as TargetEntityChangeTracker, TargetSelection as TargetSelection
-from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig
+from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 EVENT_START: str
@@ -40,6 +40,7 @@ class Timespan:
     def with_offset(self, offset: datetime.timedelta) -> Timespan: ...
     def __contains__(self, trigger: datetime.datetime) -> bool: ...
     def next_upcoming(self, now: datetime.datetime, interval: datetime.timedelta) -> Timespan: ...
+    @override
     def __str__(self) -> str: ...
 type EventFetcher = Callable[[Timespan], Awaitable[list[tuple[str, CalendarEvent]]]]
 type QueuedEventFetcher = Callable[[Timespan], Awaitable[list[QueuedCalendarEvent]]]
@@ -77,27 +78,34 @@ class TargetCalendarEventListener(TargetEntityChangeTracker):
     _calendar_event_listener: CalendarEventListener | None
     def __init__(self, hass: HomeAssistant, target_selection: TargetSelection, event_type: str, offset: datetime.timedelta, run_action: TriggerActionRunner) -> None: ...
     @callback
+    @override
     def _handle_entities_update(self, tracked_entities: set[str]) -> None: ...
     async def _start_listening(self, tracked_entities: set[str]) -> None: ...
+    @override
     def _unsubscribe(self) -> None: ...
 
 class SingleEntityEventTrigger(Trigger):
     _options: dict[str, Any]
     @classmethod
+    @override
     async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     @classmethod
+    @override
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
-    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+    @override
+    async def async_attach_runner(self, run_action: TriggerActionRunner, did_not_trigger: TriggerNotTriggeredReporter | None = None) -> CALLBACK_TYPE: ...
 
 class EventTrigger(Trigger):
     _options: dict[str, Any]
     _event_type: str
     @classmethod
+    @override
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     _target: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
-    async def async_attach_runner(self, run_action: TriggerActionRunner) -> CALLBACK_TYPE: ...
+    @override
+    async def async_attach_runner(self, run_action: TriggerActionRunner, did_not_trigger: TriggerNotTriggeredReporter | None = None) -> CALLBACK_TYPE: ...
 
 class EventStartedTrigger(EventTrigger):
     _event_type = EVENT_START

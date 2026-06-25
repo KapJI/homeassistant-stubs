@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.util.hass_dict import HassKey as HassKey
-from typing import Final, final
+from typing import Final, final, override
 
 _LOGGER: Final[Incomplete]
 DATA_COMPONENT: HassKey[EntityComponent[AirQualityEntity]]
@@ -57,8 +57,11 @@ class AirQualityEntity(Entity):
     def nitrogen_dioxide(self) -> StateType: ...
     @final
     @property
+    @override
     def state_attributes(self) -> dict[str, str | int | float]: ...
     @property
+    @override
     def state(self) -> StateType: ...
     @property
+    @override
     def unit_of_measurement(self) -> str: ...

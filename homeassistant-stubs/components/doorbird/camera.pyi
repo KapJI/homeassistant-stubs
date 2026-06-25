@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from typing import override
 
 _LAST_VISITOR_INTERVAL: Incomplete
 _LAST_MOTION_INTERVAL: Incomplete
@@ -24,7 +25,11 @@ class DoorBirdCamera(DoorBirdEntity, Camera):
     _last_update: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, door_bird_data: DoorBirdData, url: str, camera_id: str, interval: datetime.timedelta, stream_url: str | None = None) -> None: ...
+    @override
     async def stream_source(self) -> str | None: ...
+    @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_will_remove_from_hass(self) -> None: ...

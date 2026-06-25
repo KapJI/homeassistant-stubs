@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_D
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er, selector as selector
 from homeassistant.loader import async_get_integrations as async_get_integrations
-from typing import Any, Final, TypedDict
+from typing import Any, Final, TypedDict, override
 
 CONF_CAMERA_AUDIO: str
 CONF_CAMERA_COPY: str
@@ -43,6 +43,7 @@ class HomeKitConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     hk_data: dict[str, Any]
     def __init__(self) -> None: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_pairing(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def _async_add_entries_for_accessory_mode_entities(self, last_assigned_port: int) -> None: ...
@@ -56,6 +57,7 @@ class HomeKitConfigFlow(ConfigFlow, domain=DOMAIN):
     def _async_is_unique_name_port(self, user_input: dict[str, Any]) -> bool: ...
     @staticmethod
     @callback
+    @override
     def async_get_options_flow(config_entry: ConfigEntry) -> OptionsFlowHandler: ...
 
 class OptionsFlowHandler(OptionsFlow):

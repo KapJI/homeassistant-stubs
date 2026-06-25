@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from ical.event import Event as Event
 from ical.timeline import Timeline as Timeline
+from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -24,8 +25,11 @@ class RemoteCalendarEntity(CoordinatorEntity[RemoteCalendarDataUpdateCoordinator
     _timeline: Timeline | None
     def __init__(self, coordinator: RemoteCalendarDataUpdateCoordinator, entry: RemoteCalendarConfigEntry) -> None: ...
     @property
+    @override
     def event(self) -> CalendarEvent | None: ...
+    @override
     async def async_get_events(self, hass: HomeAssistant, start_date: datetime, end_date: datetime) -> list[CalendarEvent]: ...
+    @override
     async def async_update(self) -> None: ...
 
 def _get_calendar_event(event: Event) -> CalendarEvent: ...

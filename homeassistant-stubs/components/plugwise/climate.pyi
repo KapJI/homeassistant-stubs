@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
-from typing import Any
+from typing import Any, override
 
 ERROR_NO_SCHEDULE: str
 PARALLEL_UPDATES: int
@@ -21,6 +21,7 @@ def _check_for_schedule(active: bool, last_active: str | None) -> None: ...
 class PlugwiseClimateExtraStoredData(ExtraStoredData):
     last_active_schedule: str | None
     previous_action_mode: str | None
+    @override
     def as_dict(self) -> dict[str, Any]: ...
     @classmethod
     def from_dict(cls, restored: dict[str, Any]) -> PlugwiseClimateExtraStoredData: ...
@@ -43,29 +44,42 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity, RestoreEntity):
     _attr_max_temp: Incomplete
     _attr_target_temperature_step: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     @property
+    @override
     def extra_restore_state_data(self) -> PlugwiseClimateExtraStoredData: ...
     @property
+    @override
     def current_temperature(self) -> float | None: ...
     @property
+    @override
     def target_temperature(self) -> float: ...
     @property
+    @override
     def target_temperature_high(self) -> float: ...
     @property
+    @override
     def target_temperature_low(self) -> float: ...
     @property
+    @override
     def hvac_mode(self) -> HVACMode: ...
     @property
+    @override
     def hvac_modes(self) -> list[HVACMode]: ...
     @property
+    @override
     def hvac_action(self) -> HVACAction: ...
     @property
+    @override
     def preset_mode(self) -> str | None: ...
     @plugwise_command
+    @override
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     def _regulation_mode_for_hvac(self, hvac_mode: HVACMode) -> str: ...
     @plugwise_command
+    @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @plugwise_command
+    @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...

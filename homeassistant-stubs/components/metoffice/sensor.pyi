@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from typing import Any
+from typing import Any, override
 
 ATTR_LAST_UPDATE: str
 
@@ -30,8 +30,11 @@ class MetOfficeCurrentSensor(CoordinatorEntity[MetOfficeUpdateCoordinator], Sens
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: MetOfficeUpdateCoordinator, hass_data: MetOfficeRuntimeData, description: MetOfficeSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...
     @property
+    @override
     def icon(self) -> str | None: ...
     @property
+    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...

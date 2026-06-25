@@ -5,7 +5,7 @@ from homeassistant.components.device_tracker import DeviceScanner as DeviceScann
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Final
+from typing import Final, override
 
 _LOGGER: Final[Incomplete]
 PLATFORM_SCHEMA: Final[Incomplete]
@@ -19,7 +19,9 @@ class ActiontecDeviceScanner(DeviceScanner):
     last_results: list[Device]
     success_init: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
+    @override
     def scan_devices(self) -> list[str]: ...
+    @override
     def get_device_name(self, device: str) -> str | None: ...
     def _update_info(self) -> bool: ...
     def get_actiontec_data(self) -> list[Device] | None: ...

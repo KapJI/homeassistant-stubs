@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import XboxConfigEntry as XboxConfigEntry, XboxConsolesCoordinator as XboxConsolesCoordinator
-from .entity import MAP_MODEL as MAP_MODEL, XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, check_deprecated_entity as check_deprecated_entity, to_https as to_https
+from .entity import MAP_MODEL as MAP_MODEL, XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, to_https as to_https
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -16,7 +16,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from pythonxbox.api.provider.people.models import Person as Person
 from pythonxbox.api.provider.smartglass.models import SmartglassConsole as SmartglassConsole, StorageDevice as StorageDevice
 from pythonxbox.api.provider.titlehub.models import Title as Title
-from typing import Any
+from typing import Any, override
 
 PARALLEL_UPDATES: int
 MAP_JOIN_RESTRICTIONS: Incomplete
@@ -25,8 +25,6 @@ MAP_PLATFORM_NAME: Incomplete
 class XboxSensor(StrEnum):
     STATUS = 'status'
     GAMER_SCORE = 'gamer_score'
-    ACCOUNT_TIER = 'account_tier'
-    GOLD_TENURE = 'gold_tenure'
     LAST_ONLINE = 'last_online'
     FOLLOWING = 'following'
     FOLLOWER = 'follower'
@@ -59,6 +57,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: XboxConfigEntry, 
 class XboxSensorEntity(XboxBaseEntity, SensorEntity):
     entity_description: XboxSensorEntityDescription
     @property
+    @override
     def native_value(self) -> StateType | datetime: ...
 
 class XboxStorageDeviceSensorEntity(CoordinatorEntity[XboxConsolesCoordinator], SensorEntity):
@@ -74,4 +73,5 @@ class XboxStorageDeviceSensorEntity(CoordinatorEntity[XboxConsolesCoordinator], 
     @property
     def data(self) -> StorageDevice | None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

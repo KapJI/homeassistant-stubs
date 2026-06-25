@@ -6,6 +6,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from knocki import Event as Event, KnockiClient as KnockiClient, Trigger as Trigger
+from typing import override
 
 async def async_setup_entry(hass: HomeAssistant, entry: KnockiConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -22,5 +23,6 @@ class KnockiTrigger(EventEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, trigger: Trigger, client: KnockiClient) -> None: ...
+    @override
     async def async_added_to_hass(self) -> None: ...
     def _handle_event(self, event: Event) -> None: ...

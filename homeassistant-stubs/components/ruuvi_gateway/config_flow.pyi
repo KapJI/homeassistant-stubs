@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_TOKEN as CONF_TOKEN
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from typing import Any
+from typing import Any, override
 
 _LOGGER: Incomplete
 
@@ -15,5 +15,7 @@ class RuuviConfigFlow(ConfigFlow, domain=DOMAIN):
     config_schema: Incomplete
     def __init__(self) -> None: ...
     async def _async_validate(self, user_input: dict[str, Any]) -> tuple[ConfigFlowResult | None, dict[str, str]]: ...
+    @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
     async def async_step_dhcp(self, discovery_info: DhcpServiceInfo) -> ConfigFlowResult: ...

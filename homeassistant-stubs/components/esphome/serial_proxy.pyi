@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from serialx.platforms.serial_esphome import ESPHomeSerial, ESPHomeSerialTransport
+from typing import override
 from yarl import URL
 
 _HASS_LOOP: asyncio.AbstractEventLoop | None
@@ -19,6 +20,7 @@ class HassESPHomeSerial(ESPHomeSerial):
     _path: str | None
     _port_name: Incomplete
     _client_loop: Incomplete
+    @override
     async def _async_open(self) -> None: ...
 
 class HassESPHomeSerialTransport(ESPHomeSerialTransport):

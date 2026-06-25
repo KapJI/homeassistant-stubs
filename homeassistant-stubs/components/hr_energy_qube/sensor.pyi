@@ -9,6 +9,7 @@ from homeassistant.const import REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from typing import override
 
 PARALLEL_UPDATES: int
 STATUS_MAP: dict[int, str]
@@ -28,4 +29,5 @@ class QubeSensor(QubeEntity, SensorEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: QubeCoordinator, entry: QubeConfigEntry, description: QubeSensorEntityDescription) -> None: ...
     @property
+    @override
     def native_value(self) -> StateType: ...

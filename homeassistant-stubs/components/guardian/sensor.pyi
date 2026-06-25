@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
-from typing import Any
+from typing import Any, override
 
 SENSOR_KIND_AVG_CURRENT: str
 SENSOR_KIND_BATTERY: str
@@ -36,9 +36,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: GuardianConfigEntry, asy
 class PairedSensorSensor(PairedSensorEntity, SensorEntity):
     entity_description: PairedSensorDescription
     @property
+    @override
     def native_value(self) -> StateType: ...
 
 class ValveControllerSensor(ValveControllerEntity, SensorEntity):
     entity_description: ValveControllerSensorDescription
     @property
+    @override
     def native_value(self) -> StateType: ...

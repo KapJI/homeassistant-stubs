@@ -18,8 +18,8 @@ class SynologyDSMSelectEntityDescription(SynologyDSMEntityDescription, SelectEnt
 async def async_setup_entry(hass: HomeAssistant, entry: SynologyDSMConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class SynologyDSMFanSpeedMode(SynologyDSMBaseEntity[SynologyDSMCentralUpdateCoordinator], SelectEntity):
-    _attr_options: Incomplete
     entity_description: SynologyDSMSelectEntityDescription
+    _attr_options: Incomplete
     def __init__(self, api: SynoApi, coordinator: SynologyDSMCentralUpdateCoordinator) -> None: ...
     @property
     @override

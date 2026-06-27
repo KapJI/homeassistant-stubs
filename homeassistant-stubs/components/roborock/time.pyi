@@ -20,7 +20,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class RoborockTimeDescription(TimeEntityDescription):
     trait: Callable[[Any], Any | None]
-    get_value: Callable[[Any], datetime.time]
+    get_value: Callable[[Any], datetime.time | None]
     update_value: Callable[[Any, datetime.time], Coroutine[Any, Any, None]]
 
 TIME_DESCRIPTIONS: list[RoborockTimeDescription]

@@ -19,7 +19,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class RoborockNumberDescription(NumberEntityDescription):
     trait: Callable[[PropertiesApi], Any | None]
-    get_value: Callable[[Any], float]
+    get_value: Callable[[Any], float | None]
     set_value: Callable[[Any, float], Coroutine[Any, Any, None]]
 
 NUMBER_DESCRIPTIONS: list[RoborockNumberDescription]

@@ -1,6 +1,7 @@
-from . import backup as backup, entity_registry as entity_registry, websocket_api as websocket_api
+from . import backup as backup, entity_options as entity_options, entity_registry as entity_registry, websocket_api as websocket_api
 from .const import CONF_DB_INTEGRITY_CHECK as CONF_DB_INTEGRITY_CHECK, DOMAIN as DOMAIN, INTEGRATION_PLATFORM_COMPILE_STATISTICS as INTEGRATION_PLATFORM_COMPILE_STATISTICS, INTEGRATION_PLATFORM_METHODS as INTEGRATION_PLATFORM_METHODS, SQLITE_URL_PREFIX as SQLITE_URL_PREFIX, SupportedDialect as SupportedDialect
 from .core import Recorder as Recorder
+from .entity_options import is_entity_recorded as is_entity_recorded
 from .services import async_setup_services as async_setup_services
 from .tasks import AddRecorderPlatformTask as AddRecorderPlatformTask
 from .util import get_instance as get_instance
@@ -38,7 +39,6 @@ def validate_db_url(db_url: str) -> Any: ...
 
 CONFIG_SCHEMA: Incomplete
 
-def is_entity_recorded(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def _async_setup_integration_platform(hass: HomeAssistant, instance: Recorder) -> None: ...
 def get_default_url(hass: HomeAssistant) -> str: ...

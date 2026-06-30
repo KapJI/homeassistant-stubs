@@ -1,4 +1,4 @@
-from .const import BOX_NODE_ID as BOX_NODE_ID, DOMAIN as DOMAIN
+from .const import BOX_NODE_ID as BOX_NODE_ID, DOMAIN as DOMAIN, VENTILATION_CAPABLE_NODE_TYPES as VENTILATION_CAPABLE_NODE_TYPES
 from .coordinator import DucoConfigEntry as DucoConfigEntry, DucoCoordinator as DucoCoordinator
 from .entity import DucoEntity as DucoEntity
 from _typeshed import Incomplete

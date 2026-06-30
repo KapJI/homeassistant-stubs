@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, VENTILATION_CAPABLE_NODE_TYPES as VENTILATION_CAPABLE_NODE_TYPES
 from .coordinator import DucoConfigEntry as DucoConfigEntry, DucoCoordinator as DucoCoordinator
 from .entity import DucoEntity as DucoEntity
 from _typeshed import Incomplete
@@ -11,7 +11,6 @@ from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
-SUPPORTED_SELECT_NODE_TYPES: Incomplete
 
 def _get_ventilation_options(action: ActionItem) -> tuple[str, ...] | None: ...
 def _discover_ventilation_options(node_actions: NodeListActionItemList) -> dict[int, tuple[str, ...]]: ...

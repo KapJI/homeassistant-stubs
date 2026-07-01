@@ -45,6 +45,7 @@ CONTEXT_PARENT_ID_BIN_POS: Final[int]
 STATE_POS: Final[int]
 ENTITY_ID_POS: Final[int]
 ICON_POS: Final[int]
+ATTRIBUTES_POS: Final[int]
 CONTEXT_ONLY_POS: Final[int]
 DATA_POS: Final[int]
 CONTEXT_POS: Final[int]
@@ -60,6 +61,7 @@ class EventAsRow(NamedTuple):
     state: str | None
     entity_id: str | None
     icon: str | None
+    attributes: Mapping[str, Any] | None
     context_only: bool | None
     data: Mapping[str, Any]
     context: Context

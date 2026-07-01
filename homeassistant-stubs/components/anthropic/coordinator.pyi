@@ -13,12 +13,18 @@ UPDATE_INTERVAL_CONNECTED: Incomplete
 UPDATE_INTERVAL_DISCONNECTED: Incomplete
 type AnthropicConfigEntry = ConfigEntry[AnthropicCoordinator]
 
+async def async_create_client(hass: HomeAssistant, api_key: str) -> anthropic.AsyncAnthropic: ...
 @callback
 def model_alias(model_id: str) -> str: ...
 
 class AnthropicCoordinator(DataUpdateCoordinator[list[anthropic.types.ModelInfo]]):
-    client: anthropic.AsyncAnthropic
+    config_entry: AnthropicConfigEntry
+    _client: anthropic.AsyncAnthropic
     def __init__(self, hass: HomeAssistant, config_entry: AnthropicConfigEntry) -> None: ...
+    @property
+    def client(self) -> anthropic.AsyncAnthropic: ...
+    @override
+    async def _async_setup(self) -> None: ...
     update_interval: Incomplete
     @callback
     @override

@@ -3,14 +3,14 @@ from .models import CoverDomainSpec as CoverDomainSpec
 from collections.abc import Mapping
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
-from homeassistant.helpers.trigger import EntityTriggerBase as EntityTriggerBase, Trigger as Trigger
+from homeassistant.helpers.trigger import EntityTriggerBase as EntityTriggerBase, NotTriggeredReasonReporter as NotTriggeredReasonReporter, Trigger as Trigger
 from typing import override
 
 class CoverTriggerBase(EntityTriggerBase):
     _domain_specs: Mapping[str, CoverDomainSpec]
     def _get_value(self, state: State) -> str | bool | None: ...
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
     @override
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
 

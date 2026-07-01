@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.automation import DomainSpec as DomainSpec, move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
 from homeassistant.helpers.condition import ATTR_BEHAVIOR as ATTR_BEHAVIOR, BEHAVIOR_ANY as BEHAVIOR_ANY, Condition as Condition, ConditionCheckParams as ConditionCheckParams, ConditionConfig as ConditionConfig, EntityNumericalConditionBase as EntityNumericalConditionBase, condition_trace_set_result as condition_trace_set_result, condition_trace_update_result as condition_trace_update_result
 from homeassistant.helpers.selector import NumericThresholdMode as NumericThresholdMode, NumericThresholdSelector as NumericThresholdSelector, NumericThresholdSelectorConfig as NumericThresholdSelectorConfig
-from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_date, get_astral_observer as get_astral_observer
+from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_date, get_astral_observer as get_astral_observer, is_up as is_up
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Unpack, override
 

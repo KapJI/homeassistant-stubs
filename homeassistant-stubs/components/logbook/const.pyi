@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from homeassistant.components.automation import EVENT_AUTOMATION_TRIGGERED as EVENT_AUTOMATION_TRIGGERED
+from homeassistant.components.event import EventEntityStateAttribute as EventEntityStateAttribute
 from homeassistant.components.script import EVENT_SCRIPT_STARTED as EVENT_SCRIPT_STARTED
 from homeassistant.const import EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY
 
@@ -25,6 +26,8 @@ LOGBOOK_ENTRY_SOURCE: str
 LOGBOOK_ENTRY_MESSAGE: str
 LOGBOOK_ENTRY_NAME: str
 LOGBOOK_ENTRY_STATE: str
+LOGBOOK_ENTRY_ATTRIBUTES: str
 LOGBOOK_ENTRY_WHEN: str
+EXPOSED_STATE_ATTRIBUTES: Incomplete
 AUTOMATION_EVENTS: Incomplete
 BUILT_IN_EVENTS: Incomplete

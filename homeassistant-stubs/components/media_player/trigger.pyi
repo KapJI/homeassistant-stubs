@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
-from homeassistant.helpers.trigger import EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityTriggerBase as EntityTriggerBase, Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
+from homeassistant.helpers.trigger import EntityNumericalStateChangedTriggerBase as EntityNumericalStateChangedTriggerBase, EntityNumericalStateCrossedThresholdTriggerBase as EntityNumericalStateCrossedThresholdTriggerBase, EntityNumericalStateTriggerBase as EntityNumericalStateTriggerBase, EntityTriggerBase as EntityTriggerBase, NotTriggeredReasonReporter as NotTriggeredReasonReporter, Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger
 from typing import override
 
 VOLUME_DOMAIN_SPECS: dict[str, DomainSpec]
@@ -18,7 +18,7 @@ class _MediaPlayerMutedStateTriggerBase(EntityTriggerBase):
     @override
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 class MediaPlayerMutedTrigger(_MediaPlayerMutedStateTriggerBase):
     _target_muted: bool

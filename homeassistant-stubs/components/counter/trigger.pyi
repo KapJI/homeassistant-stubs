@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.const import CONF_MAXIMUM as CONF_MAXIMUM, CONF_MINIMUM as CONF_MINIMUM
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
-from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_STATE_TRIGGER_SCHEMA, EntityTriggerBase as EntityTriggerBase, Trigger as Trigger
+from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_STATE_TRIGGER_SCHEMA, EntityTriggerBase as EntityTriggerBase, NotTriggeredReasonReporter as NotTriggeredReasonReporter, Trigger as Trigger
 from typing import override
 
 def _is_integer_state(state: State) -> bool: ...
@@ -12,7 +12,7 @@ class CounterBaseIntegerTrigger(EntityTriggerBase):
     _domain_specs: Incomplete
     _schema = ENTITY_STATE_TRIGGER_SCHEMA
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 class CounterDecrementedTrigger(CounterBaseIntegerTrigger):
     @override
@@ -27,15 +27,15 @@ class CounterValueBaseTrigger(EntityTriggerBase):
 
 class CounterMaxReachedTrigger(CounterValueBaseTrigger):
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 class CounterMinReachedTrigger(CounterValueBaseTrigger):
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 class CounterResetTrigger(CounterValueBaseTrigger):
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 TRIGGERS: dict[str, type[Trigger]]
 

@@ -9,7 +9,7 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, E
 from homeassistant.helpers import location as location
 from homeassistant.helpers.automation import DomainSpec as DomainSpec, move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
-from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR as ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR, EntityTriggerBase as EntityTriggerBase, Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter
+from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR as ENTITY_STATE_TRIGGER_SCHEMA_WITH_BEHAVIOR, EntityTriggerBase as EntityTriggerBase, NotTriggeredReasonReporter as NotTriggeredReasonReporter, Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, override
 
@@ -49,13 +49,13 @@ class EnteredZoneTrigger(ZoneTriggerBase):
     @override
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 class LeftZoneTrigger(ZoneTriggerBase):
     @override
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
 
 _OCCUPANCY_TRIGGER_SCHEMA: Incomplete
 
@@ -72,13 +72,13 @@ class _ZoneOccupancyTriggerBase(EntityTriggerBase):
 
 class OccupancyDetectedTrigger(_ZoneOccupancyTriggerBase):
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
     @override
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
 
 class OccupancyClearedTrigger(_ZoneOccupancyTriggerBase):
     @override
-    def is_valid_state(self, state: State) -> bool: ...
+    def is_valid_state(self, state: State, report_not_triggered: NotTriggeredReasonReporter) -> bool: ...
     @override
     def is_valid_transition(self, from_state: State, to_state: State) -> bool: ...
 

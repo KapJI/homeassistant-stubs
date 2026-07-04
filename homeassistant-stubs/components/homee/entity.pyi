@@ -8,6 +8,8 @@ from homeassistant.helpers.entity import Entity as Entity
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 from typing import override
 
+FIRST_UNAVAILABLE_ATTRIBUTE_STATE: int
+
 class HomeeEntity(Entity):
     _attr_has_entity_name: bool
     _attr_should_poll: bool

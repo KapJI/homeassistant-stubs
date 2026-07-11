@@ -26,7 +26,7 @@ FORWARDED_ATTRIBUTES: Incomplete
 
 class LightGroup(GroupEntity, LightEntity):
     _attr_available: bool
-    _attr_icon: str
+    _attr_translation_key: str
     _attr_max_color_temp_kelvin: int
     _attr_min_color_temp_kelvin: int
     _attr_should_poll: bool

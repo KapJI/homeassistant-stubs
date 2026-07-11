@@ -1,6 +1,7 @@
 import logging
 from .const import CONF_API_TYPE as CONF_API_TYPE, CONF_GATEWAY_ID as CONF_GATEWAY_ID, CONF_HUB as CONF_HUB, DEFAULT_SERVER as DEFAULT_SERVER, DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Mapping
+from homeassistant.components.application_credentials import ClientCredential as ClientCredential, async_import_client_credential as async_import_client_credential
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_TOKEN as CONF_TOKEN, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
@@ -32,6 +33,8 @@ class OverkizConfigFlow(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, doma
     @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_local_or_cloud(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
+    async def async_step_pick_implementation(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_cloud(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_local(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @override

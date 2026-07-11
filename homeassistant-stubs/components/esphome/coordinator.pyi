@@ -7,6 +7,7 @@ from typing import override
 
 _LOGGER: Incomplete
 MIN_VERSION_SUPPORTS_UPDATE: Incomplete
+MIN_VERSION_SUPPORTS_BUILD_QUEUE: Incomplete
 REFRESH_INTERVAL: Incomplete
 
 class ESPHomeDashboardCoordinator(DataUpdateCoordinator[dict[str, ConfiguredDevice]]):
@@ -14,6 +15,7 @@ class ESPHomeDashboardCoordinator(DataUpdateCoordinator[dict[str, ConfiguredDevi
     url: Incomplete
     api: Incomplete
     supports_update: bool | None
+    supports_build_queue: bool
     def __init__(self, hass: HomeAssistant, addon_slug: str, url: str) -> None: ...
     @override
     async def _async_update_data(self) -> dict[str, ConfiguredDevice]: ...

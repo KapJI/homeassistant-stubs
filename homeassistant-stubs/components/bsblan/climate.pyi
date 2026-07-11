@@ -2,7 +2,7 @@ from . import BSBLanConfigEntry as BSBLanConfigEntry, BSBLanData as BSBLanData
 from .const import ATTR_TARGET_TEMPERATURE as ATTR_TARGET_TEMPERATURE, DOMAIN as DOMAIN
 from .entity import BSBLanCircuitEntity as BSBLanCircuitEntity
 from _typeshed import Incomplete
-from bsblan import State as State
+from bsblan import EntityInfo as EntityInfo, State as State
 from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -17,6 +17,7 @@ PRESET_MODES: Incomplete
 HA_TO_BSBLAN_HVAC_MODE: Final[dict[HVACMode, int]]
 BSBLAN_TO_HA_HVAC_MODE: Final[dict[int, HVACMode]]
 
+def _resolve_temperature_bound(*sources: EntityInfo[float] | None) -> float | None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: BSBLanConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class BSBLANClimate(BSBLanCircuitEntity, ClimateEntity):

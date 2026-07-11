@@ -2,7 +2,7 @@ from . import HomeeConfigEntry as HomeeConfigEntry
 from .entity import HomeeNodeEntity as HomeeNodeEntity
 from .helpers import setup_homee_platform as setup_homee_platform
 from _typeshed import Incomplete
-from enum import Enum
+from enum import IntEnum
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -14,17 +14,17 @@ PARALLEL_UPDATES: int
 COVER_DEVICE_PROFILES: Incomplete
 IS_CLOSED_ATTRIBUTES: Incomplete
 
-class HomeeCoverState(float, Enum):
-    OPEN = 0.0
-    CLOSED = 1.0
-    STOPPED = 2.0
-    OPENING = 3.0
-    CLOSING = 4.0
+class HomeeCoverState(IntEnum):
+    OPEN = 0
+    CLOSED = 1
+    STOPPED = 2
+    OPENING = 3
+    CLOSING = 4
 
-class HomeeSlatState(float, Enum):
-    STOPPED = 0.0
-    CLOSED = 1.0
-    OPEN = 2.0
+class HomeeSlatState(IntEnum):
+    STOPPED = 0
+    CLOSED = 1
+    OPEN = 2
 
 def get_open_close_attribute(node: HomeeNode) -> HomeeAttribute | None: ...
 def get_cover_features(node: HomeeNode, open_close_attribute: HomeeAttribute | None) -> CoverEntityFeature: ...

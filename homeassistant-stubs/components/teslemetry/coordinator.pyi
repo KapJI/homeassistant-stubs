@@ -20,6 +20,7 @@ ENERGY_LIVE_INTERVAL: Incomplete
 ENERGY_INFO_INTERVAL: Incomplete
 ENERGY_HISTORY_INTERVAL: Incomplete
 METADATA_INTERVAL: Incomplete
+INSUFFICIENT_CREDITS_RETRY_AFTER: Incomplete
 ENDPOINTS: Incomplete
 
 class TeslemetryMetadataCoordinator(DataUpdateCoordinator[dict[str, Any]]):

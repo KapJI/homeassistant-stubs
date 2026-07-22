@@ -1,4 +1,4 @@
-from .const import SELECT_DHW_MODE as SELECT_DHW_MODE, SELECT_GATEWAY_MODE as SELECT_GATEWAY_MODE, SELECT_REGULATION_MODE as SELECT_REGULATION_MODE, SELECT_SCHEDULE as SELECT_SCHEDULE, SELECT_ZONE_PROFILE as SELECT_ZONE_PROFILE, SelectOptionsType as SelectOptionsType, SelectType as SelectType
+from .const import LOCATION as LOCATION, SELECT_DHW_MODE as SELECT_DHW_MODE, SELECT_GATEWAY_MODE as SELECT_GATEWAY_MODE, SELECT_REGULATION_MODE as SELECT_REGULATION_MODE, SELECT_SCHEDULE as SELECT_SCHEDULE, SELECT_ZONE_PROFILE as SELECT_ZONE_PROFILE, SelectOptionsType as SelectOptionsType, SelectType as SelectType
 from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry, PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
@@ -24,7 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: PlugwiseConfigEntry, asy
 class PlugwiseSelectEntity(PlugwiseEntity, SelectEntity):
     entity_description: PlugwiseSelectEntityDescription
     _attr_unique_id: Incomplete
-    _location: Incomplete
+    _device_or_location: Incomplete
     def __init__(self, coordinator: PlugwiseDataUpdateCoordinator, device_id: str, entity_description: PlugwiseSelectEntityDescription) -> None: ...
     @property
     @override

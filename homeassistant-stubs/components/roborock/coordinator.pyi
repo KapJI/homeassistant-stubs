@@ -97,16 +97,20 @@ class RoborockDataUpdateCoordinatorA01[_V: RoborockDyadDataProtocol | RoborockZe
     @property
     def device(self) -> RoborockDevice: ...
 
+ZEO_REQUEST_PROTOCOLS: Incomplete
+
 class RoborockWashingMachineUpdateCoordinator(RoborockDataUpdateCoordinatorA01[RoborockZeoProtocol]):
     api: Incomplete
-    request_protocols: list[RoborockZeoProtocol]
+    request_protocols: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: ZeoApi) -> None: ...
     @override
     async def _async_update_data(self) -> dict[RoborockZeoProtocol, StateType]: ...
 
+DYAD_REQUEST_PROTOCOLS: Incomplete
+
 class RoborockWetDryVacUpdateCoordinator(RoborockDataUpdateCoordinatorA01[RoborockDyadDataProtocol]):
     api: Incomplete
-    request_protocols: list[RoborockDyadDataProtocol]
+    request_protocols: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: DyadApi) -> None: ...
     @override
     async def _async_update_data(self) -> dict[RoborockDyadDataProtocol, StateType]: ...

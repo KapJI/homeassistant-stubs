@@ -20,6 +20,10 @@ class HitachiAirToWaterHeatingZone(OverkizEntity, ClimateEntity):
     _attr_target_temperature_step: float
     _attr_temperature_unit: Incomplete
     _attr_translation_key = DOMAIN
+    _auto_manu_mode_state: Incomplete
+    _room_temperature_state: Incomplete
+    _thermostat_setting_state: Incomplete
+    _set_thermostat_setting_command: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
     @override

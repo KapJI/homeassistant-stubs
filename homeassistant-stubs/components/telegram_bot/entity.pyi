@@ -1,8 +1,5 @@
-from . import TelegramBotConfigEntry as TelegramBotConfigEntry
-from .const import DOMAIN as DOMAIN
+from . import TelegramBotConfigEntry as TelegramBotConfigEntry, bot_device_info as bot_device_info
 from _typeshed import Incomplete
-from homeassistant.const import CONF_PLATFORM as CONF_PLATFORM
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 
 class TelegramBotEntity(Entity):

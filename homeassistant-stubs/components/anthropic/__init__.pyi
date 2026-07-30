@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 
 PLATFORMS: Incomplete
 CONFIG_SCHEMA: Incomplete

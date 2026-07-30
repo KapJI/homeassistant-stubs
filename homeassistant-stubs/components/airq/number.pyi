@@ -4,7 +4,7 @@ from aioairq.core import AirQ as AirQ
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.const import PERCENTAGE as PERCENTAGE
+from homeassistant.const import UnitOfRatio as UnitOfRatio
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity

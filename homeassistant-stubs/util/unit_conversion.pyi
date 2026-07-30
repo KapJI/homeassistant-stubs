@@ -1,7 +1,7 @@
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from functools import lru_cache
-from homeassistant.const import UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfApparentPower as UnitOfApparentPower, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfDensity as UnitOfDensity, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfFrequency as UnitOfFrequency, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfRatio as UnitOfRatio, UnitOfReactiveEnergy as UnitOfReactiveEnergy, UnitOfReactivePower as UnitOfReactivePower, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.const import UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfApparentPower as UnitOfApparentPower, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfDensity as UnitOfDensity, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfFrequency as UnitOfFrequency, UnitOfInformation as UnitOfInformation, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfRadiationConcentration as UnitOfRadiationConcentration, UnitOfRatio as UnitOfRatio, UnitOfReactiveEnergy as UnitOfReactiveEnergy, UnitOfReactivePower as UnitOfReactivePower, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.deprecation import deprecated_function as deprecated_function
 from typing import override
@@ -51,6 +51,7 @@ _NITROGEN_DIOXIDE_MOLAR_MASS: float
 _NITROGEN_MONOXIDE_MOLAR_MASS: float
 _OZONE_MOLAR_MASS: float
 _SULPHUR_DIOXIDE_MOLAR_MASS: float
+_PICOCURIES_PER_LITER_TO_BECQUEREL_PER_CUBIC_METER: int
 
 class BaseUnitConverter:
     UNIT_CLASS: str
@@ -179,6 +180,11 @@ class PowerConverter(BaseUnitConverter):
     VALID_UNITS: Incomplete
 
 class PressureConverter(BaseUnitConverter):
+    UNIT_CLASS: str
+    _UNIT_CONVERSION: dict[str | None, float]
+    VALID_UNITS: Incomplete
+
+class RadiationConcentrationConverter(BaseUnitConverter):
     UNIT_CLASS: str
     _UNIT_CONVERSION: dict[str | None, float]
     VALID_UNITS: Incomplete

@@ -1,4 +1,4 @@
-from .const import UPTIME_DEVIATION as UPTIME_DEVIATION
+from .const import UPTIME_DEVIATION as UPTIME_DEVIATION, ZWAVE_TYPES as ZWAVE_TYPES
 from .coordinator import SmConfigEntry as SmConfigEntry, SmDataUpdateCoordinator as SmDataUpdateCoordinator
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete

@@ -11,7 +11,6 @@ from typing import Any
 from victron_mqtt import Device as VictronVenusDevice, Hub as VictronVenusHub, Metric as VictronVenusMetric, MetricKind as MetricKind
 
 _LOGGER: Incomplete
-UPDATE_INTERVAL_SECONDS: int
 TO_REDACT: Incomplete
 type VictronGxConfigEntry = ConfigEntry[Hub]
 type NewMetricCallback = Callable[[VictronVenusDevice, VictronVenusMetric, DeviceInfo, str], None]

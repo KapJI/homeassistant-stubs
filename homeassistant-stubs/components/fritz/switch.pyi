@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, MeshRoles as MeshRoles, Platform as Platform, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, MeshRoles as MeshRoles, SWITCH_TYPE_DEFLECTION as SWITCH_TYPE_DEFLECTION, SWITCH_TYPE_PORTFORWARD as SWITCH_TYPE_PORTFORWARD, SWITCH_TYPE_PROFILE as SWITCH_TYPE_PROFILE, SWITCH_TYPE_WIFINETWORK as SWITCH_TYPE_WIFINETWORK
 from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity
 from .helpers import device_filter_out_from_trackers as device_filter_out_from_trackers
@@ -6,7 +6,7 @@ from .models import FritzDevice as FritzDevice, SwitchInfo as SwitchInfo
 from _typeshed import Incomplete
 from homeassistant.components.network import async_get_source_ip as async_get_source_ip
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -16,7 +16,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from homeassistant.util import slugify as slugify
 from typing import Any, override
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 WIFI_STANDARD: Incomplete
 WIFI_BAND: Incomplete

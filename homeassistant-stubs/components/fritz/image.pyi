@@ -1,15 +1,14 @@
-from .const import DOMAIN as DOMAIN, Platform as Platform
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import AvmWrapper as AvmWrapper, FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseEntity as FritzBoxBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.image import ImageEntity as ImageEntity
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util import slugify as slugify
 from typing import override
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 async def _migrate_to_new_unique_id(hass: HomeAssistant, avm_wrapper: AvmWrapper, ssid: str) -> None: ...

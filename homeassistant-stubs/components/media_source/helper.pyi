@@ -1,13 +1,13 @@
-from .const import DOMAIN as DOMAIN, MEDIA_SOURCE_DATA as MEDIA_SOURCE_DATA
+from .const import DOMAIN as DOMAIN
 from .error import UnknownMediaSource as UnknownMediaSource, Unresolvable as Unresolvable
-from .models import BrowseMediaSource as BrowseMediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, RootBrowseMediaSource as RootBrowseMediaSource
+from .models import BrowseMediaSource as BrowseMediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, RootBrowseMediaSource as RootBrowseMediaSource, _async_get_media_source as _async_get_media_source, _async_get_media_sources as _async_get_media_sources
 from collections.abc import Callable as Callable
-from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.frame import report_usage as report_usage
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 
-@callback
-def _get_media_item(hass: HomeAssistant, media_content_id: str | None, target_media_player: str | None) -> MediaSourceItem: ...
+async def _get_media_item(hass: HomeAssistant, media_content_id: str | None, target_media_player: str | None) -> MediaSourceItem: ...
 async def async_browse_media(hass: HomeAssistant, media_content_id: str | None, *, content_filter: Callable[[BrowseMedia], bool] | None = None) -> BrowseMediaSource | RootBrowseMediaSource: ...
-async def async_resolve_media(hass: HomeAssistant, media_content_id: str, target_media_player: str | None | UndefinedType = ...) -> PlayMedia: ...
+async def async_search_media(hass: HomeAssistant, media_content_id: str | None, query: SearchMediaQuery) -> SearchMedia: ...
+async def async_resolve_media(hass: HomeAssistant, media_content_id: str, target_media_player: str | UndefinedType | None = ...) -> PlayMedia: ...

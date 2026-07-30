@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, ZWAVE_TYPES as ZWAVE_TYPES
 from .coordinator import SmConfigEntry as SmConfigEntry, SmDataUpdateCoordinator as SmDataUpdateCoordinator
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
@@ -30,6 +30,7 @@ class SmButton(SmEntity, ButtonEntity):
     _attr_entity_category: Incomplete
     idx: Incomplete
     _attr_unique_id: Incomplete
+    _attr_translation_key: str
     def __init__(self, coordinator: SmDataUpdateCoordinator, description: SmButtonDescription, idx: int = 0) -> None: ...
     @override
     async def async_press(self) -> None: ...

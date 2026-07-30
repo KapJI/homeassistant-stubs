@@ -1,5 +1,5 @@
 from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, ColorTempModes as ColorTempModes, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
-from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity
+from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import LightSchema as LightSchema
 from .storage.const import CONF_COLOR as CONF_COLOR, CONF_COLOR_TEMP_MAX as CONF_COLOR_TEMP_MAX, CONF_COLOR_TEMP_MIN as CONF_COLOR_TEMP_MIN, CONF_ENTITY as CONF_ENTITY, CONF_GA_BLUE_BRIGHTNESS as CONF_GA_BLUE_BRIGHTNESS, CONF_GA_BLUE_SWITCH as CONF_GA_BLUE_SWITCH, CONF_GA_BRIGHTNESS as CONF_GA_BRIGHTNESS, CONF_GA_COLOR as CONF_GA_COLOR, CONF_GA_COLOR_TEMP as CONF_GA_COLOR_TEMP, CONF_GA_GREEN_BRIGHTNESS as CONF_GA_GREEN_BRIGHTNESS, CONF_GA_GREEN_SWITCH as CONF_GA_GREEN_SWITCH, CONF_GA_HUE as CONF_GA_HUE, CONF_GA_RED_BRIGHTNESS as CONF_GA_RED_BRIGHTNESS, CONF_GA_RED_SWITCH as CONF_GA_RED_SWITCH, CONF_GA_SATURATION as CONF_GA_SATURATION, CONF_GA_SWITCH as CONF_GA_SWITCH, CONF_GA_WHITE_BRIGHTNESS as CONF_GA_WHITE_BRIGHTNESS, CONF_GA_WHITE_SWITCH as CONF_GA_WHITE_SWITCH
@@ -8,7 +8,7 @@ from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_XY_COLOR as ATTR_XY_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.const import CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -16,6 +16,7 @@ from propcache.api import cached_property
 from typing import Any, override
 from xknx import XKNX as XKNX
 from xknx.devices.light import Light as XknxLight
+from xknx.telegram.address import DeviceGroupAddress as DeviceGroupAddress
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _create_yaml_light(xknx: XKNX, config: ConfigType) -> XknxLight: ...
@@ -61,7 +62,7 @@ class KnxYamlLight(_KnxLight, KnxYamlEntity):
     _attr_max_color_temp_kelvin: int
     _attr_min_color_temp_kelvin: int
     def __init__(self, knx_module: KNXModule, config: ConfigType) -> None: ...
-    def _device_unique_id(self) -> str: ...
+    def _unique_id_parts(self) -> tuple[DeviceGroupAddress | None, ...]: ...
 
 class KnxUiLight(_KnxLight, KnxUiEntity):
     _device: XknxLight

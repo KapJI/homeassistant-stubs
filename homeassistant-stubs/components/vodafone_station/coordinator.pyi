@@ -1,4 +1,4 @@
-from .const import CONF_DEVICE_DETAILS as CONF_DEVICE_DETAILS, DEVICE_TYPE as DEVICE_TYPE, DEVICE_URL as DEVICE_URL, DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as _LOGGER
+from .const import CONF_DEVICE_DETAILS as CONF_DEVICE_DETAILS, DEVICE_TYPE as DEVICE_TYPE, DEVICE_URL as DEVICE_URL, DOMAIN as DOMAIN, LOGGER as LOGGER, SCAN_INTERVAL as SCAN_INTERVAL
 from .helpers import cleanup_device_tracker as cleanup_device_tracker
 from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete

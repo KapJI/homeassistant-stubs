@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import StrEnum
 from homeassistant.components.sensor import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
+from homeassistant.const import LIGHT_LUX as LIGHT_LUX, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfRatio as UnitOfRatio, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from qbusmqttapi.discovery import QbusMqttOutput as QbusMqttOutput
@@ -41,7 +41,7 @@ class QbusHumiditySensor(QbusEntity, SensorEntity):
     _state_cls = QbusMqttHumidityState
     _attr_device_class: Incomplete
     _attr_name: Incomplete
-    _attr_native_unit_of_measurement = PERCENTAGE
+    _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _attr_native_value: Incomplete
     @override
@@ -60,7 +60,7 @@ class QbusVentilationSensor(QbusEntity, SensorEntity):
     _state_cls = QbusMqttVentilationState
     _attr_device_class: Incomplete
     _attr_name: Incomplete
-    _attr_native_unit_of_measurement = CONCENTRATION_PARTS_PER_MILLION
+    _attr_native_unit_of_measurement: Incomplete
     _attr_state_class: Incomplete
     _attr_suggested_display_precision: int
     _attr_native_value: Incomplete

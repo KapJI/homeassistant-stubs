@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
+from .const import CONF_ADDITIONAL_OPTIONS as CONF_ADDITIONAL_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
 from .util import EmptyQueryError as EmptyQueryError, InvalidSqlQuery as InvalidSqlQuery, MultipleQueryError as MultipleQueryError, NotSelectQueryError as NotSelectQueryError, UnknownQueryTypeError as UnknownQueryTypeError, check_and_render_sql_query as check_and_render_sql_query, resolve_db_url as resolve_db_url
 from _typeshed import Incomplete
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, get_instance as get_instance

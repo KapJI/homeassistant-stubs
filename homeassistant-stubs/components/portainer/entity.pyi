@@ -1,5 +1,6 @@
 from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from .coordinator import DockerVolume as DockerVolume, PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData, PortainerDockerDiskSpaceCoordinator as PortainerDockerDiskSpaceCoordinator, PortainerStackData as PortainerStackData, PortainerVolumeData as PortainerVolumeData
+from .util import sanitize_container_name as sanitize_container_name
 from _typeshed import Incomplete
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo

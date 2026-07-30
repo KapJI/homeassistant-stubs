@@ -11,13 +11,12 @@ from .template import Template as Template, render_complex as render_complex
 from .trace import TraceElement as TraceElement, trace_append_element as trace_append_element, trace_path as trace_path, trace_path_get as trace_path_get, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections.abc import Callable, Container, Coroutine, Generator, Iterable, Mapping
-from contextlib import contextmanager
+from collections.abc import Callable, Container, Coroutine, Iterable, Mapping
 from dataclasses import dataclass
 from datetime import datetime, time as dt_time, timedelta
 from homeassistant.components.recorder import Recorder as Recorder
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_OPTIONS as CONF_OPTIONS, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_TARGET as CONF_TARGET, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
-from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_AFTER as CONF_AFTER, CONF_ATTRIBUTE as CONF_ATTRIBUTE, CONF_BEFORE as CONF_BEFORE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENABLED as CONF_ENABLED, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_ID as CONF_ID, CONF_MATCH as CONF_MATCH, CONF_OPTIONS as CONF_OPTIONS, CONF_SELECTOR as CONF_SELECTOR, CONF_STATE as CONF_STATE, CONF_TARGET as CONF_TARGET, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, CONF_WEEKDAY as CONF_WEEKDAY, CONF_ZONE as CONF_ZONE, ENTITY_MATCH_ALL as ENTITY_MATCH_ALL, ENTITY_MATCH_ANY as ENTITY_MATCH_ANY, EntityStateAttribute as EntityStateAttribute, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, WEEKDAYS as WEEKDAYS
+from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import ConditionError as ConditionError, ConditionErrorContainer as ConditionErrorContainer, ConditionErrorIndex as ConditionErrorIndex, ConditionErrorMessage as ConditionErrorMessage, HomeAssistantError as HomeAssistantError, TemplateError as TemplateError
 from homeassistant.loader import Integration as Integration, IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integrations as async_get_integrations
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
@@ -164,7 +163,7 @@ NUMERICAL_CONDITION_SCHEMA: Incomplete
 
 class EntityNumericalConditionBase(EntityConditionBase):
     _schema = NUMERICAL_CONDITION_SCHEMA
-    _valid_unit: str | None | UndefinedType
+    _valid_unit: str | UndefinedType | None
     threshold: Incomplete
     lower_threshold: Incomplete
     upper_threshold: Incomplete
@@ -176,7 +175,7 @@ class EntityNumericalConditionBase(EntityConditionBase):
     @override
     def is_valid_state(self, entity_state: State) -> bool: ...
 
-def make_entity_numerical_condition(domain_specs: Mapping[str, DomainSpec] | str, valid_unit: str | None | UndefinedType = ..., *, primary_entities_only: bool = True) -> type[EntityNumericalConditionBase]: ...
+def make_entity_numerical_condition(domain_specs: Mapping[str, DomainSpec] | str, valid_unit: str | UndefinedType | None = ..., *, primary_entities_only: bool = True) -> type[EntityNumericalConditionBase]: ...
 def _make_numerical_condition_with_unit_schema(unit_converter: type[BaseUnitConverter]) -> vol.Schema: ...
 
 class EntityNumericalConditionWithUnitBase(EntityNumericalConditionBase):
@@ -208,8 +207,16 @@ type ConditionCheckerTypeOptional = Callable[[HomeAssistant, TemplateVarsType], 
 def condition_trace_append(variables: TemplateVarsType, path: str) -> TraceElement: ...
 def condition_trace_set_result(result: bool, **kwargs: Any) -> None: ...
 def condition_trace_update_result(**kwargs: Any) -> None: ...
-@contextmanager
-def trace_condition(variables: TemplateVarsType) -> Generator[TraceElement]: ...
+
+class trace_condition:
+    __slots__: Incomplete
+    _should_pop: bool
+    _trace_element: TraceElement
+    _variables: Incomplete
+    def __init__(self, variables: TemplateVarsType) -> None: ...
+    def __enter__(self) -> TraceElement: ...
+    def __exit__(self, exc_type: object, exc_val: BaseException | None, exc_tb: object) -> None: ...
+
 @overload
 def trace_condition_function(condition: ConditionCheckerType) -> ConditionCheckerType: ...
 @overload

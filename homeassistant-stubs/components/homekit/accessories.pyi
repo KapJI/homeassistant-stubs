@@ -1,7 +1,10 @@
-from .const import ATTR_DISPLAY_NAME as ATTR_DISPLAY_NAME, ATTR_INTEGRATION as ATTR_INTEGRATION, ATTR_VALUE as ATTR_VALUE, BRIDGE_MODEL as BRIDGE_MODEL, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CHAR_BATTERY_LEVEL as CHAR_BATTERY_LEVEL, CHAR_CHARGING_STATE as CHAR_CHARGING_STATE, CHAR_HARDWARE_REVISION as CHAR_HARDWARE_REVISION, CHAR_STATUS_LOW_BATTERY as CHAR_STATUS_LOW_BATTERY, CONF_FEATURE_LIST as CONF_FEATURE_LIST, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LOW_BATTERY_THRESHOLD as CONF_LOW_BATTERY_THRESHOLD, DEFAULT_LOW_BATTERY_THRESHOLD as DEFAULT_LOW_BATTERY_THRESHOLD, EMPTY_MAC as EMPTY_MAC, EVENT_HOMEKIT_CHANGED as EVENT_HOMEKIT_CHANGED, HK_CHARGING as HK_CHARGING, HK_NOT_CHARGABLE as HK_NOT_CHARGABLE, HK_NOT_CHARGING as HK_NOT_CHARGING, MANUFACTURER as MANUFACTURER, MAX_MANUFACTURER_LENGTH as MAX_MANUFACTURER_LENGTH, MAX_MODEL_LENGTH as MAX_MODEL_LENGTH, MAX_SERIAL_LENGTH as MAX_SERIAL_LENGTH, MAX_VERSION_LENGTH as MAX_VERSION_LENGTH, SERV_ACCESSORY_INFO as SERV_ACCESSORY_INFO, SERV_BATTERY_SERVICE as SERV_BATTERY_SERVICE, SIGNAL_RELOAD_ENTITIES as SIGNAL_RELOAD_ENTITIES, TYPE_AIR_PURIFIER as TYPE_AIR_PURIFIER, TYPE_FAN as TYPE_FAN, TYPE_FAUCET as TYPE_FAUCET, TYPE_OUTLET as TYPE_OUTLET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_SWITCH as TYPE_SWITCH, TYPE_VALVE as TYPE_VALVE
+from .aidmanager import AccessoryAidStorage as AccessoryAidStorage
+from .climate_util import get_fan_modes_and_speeds as get_fan_modes_and_speeds, get_swing_on_mode as get_swing_on_mode, has_swing_off_mode as has_swing_off_mode
+from .const import ATTR_DISPLAY_NAME as ATTR_DISPLAY_NAME, ATTR_INTEGRATION as ATTR_INTEGRATION, ATTR_VALUE as ATTR_VALUE, BRIDGE_MODEL as BRIDGE_MODEL, BRIDGE_SERIAL_NUMBER as BRIDGE_SERIAL_NUMBER, CHAR_BATTERY_LEVEL as CHAR_BATTERY_LEVEL, CHAR_CHARGING_STATE as CHAR_CHARGING_STATE, CHAR_HARDWARE_REVISION as CHAR_HARDWARE_REVISION, CHAR_STATUS_LOW_BATTERY as CHAR_STATUS_LOW_BATTERY, CONF_FEATURE_LIST as CONF_FEATURE_LIST, CONF_LINKED_BATTERY_CHARGING_SENSOR as CONF_LINKED_BATTERY_CHARGING_SENSOR, CONF_LINKED_BATTERY_SENSOR as CONF_LINKED_BATTERY_SENSOR, CONF_LOW_BATTERY_THRESHOLD as CONF_LOW_BATTERY_THRESHOLD, DEFAULT_LOW_BATTERY_THRESHOLD as DEFAULT_LOW_BATTERY_THRESHOLD, EMPTY_MAC as EMPTY_MAC, EVENT_HOMEKIT_CHANGED as EVENT_HOMEKIT_CHANGED, HK_CHARGING as HK_CHARGING, HK_NOT_CHARGABLE as HK_NOT_CHARGABLE, HK_NOT_CHARGING as HK_NOT_CHARGING, MANUFACTURER as MANUFACTURER, MAX_MANUFACTURER_LENGTH as MAX_MANUFACTURER_LENGTH, MAX_MODEL_LENGTH as MAX_MODEL_LENGTH, MAX_SERIAL_LENGTH as MAX_SERIAL_LENGTH, MAX_VERSION_LENGTH as MAX_VERSION_LENGTH, SERV_ACCESSORY_INFO as SERV_ACCESSORY_INFO, SERV_BATTERY_SERVICE as SERV_BATTERY_SERVICE, SIGNAL_RELOAD_ENTITIES as SIGNAL_RELOAD_ENTITIES, TYPE_AIR_PURIFIER as TYPE_AIR_PURIFIER, TYPE_FAN as TYPE_FAN, TYPE_FAUCET as TYPE_FAUCET, TYPE_HEATER_COOLER as TYPE_HEATER_COOLER, TYPE_OUTLET as TYPE_OUTLET, TYPE_SHOWER as TYPE_SHOWER, TYPE_SPRINKLER as TYPE_SPRINKLER, TYPE_SWITCH as TYPE_SWITCH, TYPE_THERMOSTAT as TYPE_THERMOSTAT, TYPE_VALVE as TYPE_VALVE
 from .iidmanager import AccessoryIIDStorage as AccessoryIIDStorage
 from .util import accessory_friendly_name as accessory_friendly_name, async_dismiss_setup_message as async_dismiss_setup_message, async_show_setup_message as async_show_setup_message, cleanup_name_for_homekit as cleanup_name_for_homekit, convert_to_float as convert_to_float, format_version as format_version, validate_media_player_features as validate_media_player_features
 from _typeshed import Incomplete
+from homeassistant.components.climate import ClimateEntityFeature as ClimateEntityFeature
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntityFeature as CoverEntityFeature
 from homeassistant.components.lawn_mower import LawnMowerEntityFeature as LawnMowerEntityFeature
 from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass
@@ -10,6 +13,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass
 from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SERVICE as ATTR_SERVICE, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as ha_callback, split_entity_id as split_entity_id
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.util.decorator import Registry as Registry
@@ -25,9 +29,16 @@ from uuid import UUID
 _LOGGER: Incomplete
 SWITCH_TYPES: Incomplete
 FAN_TYPES: Incomplete
+CLIMATE_TYPES: Incomplete
 TYPES: Registry[str, type[HomeAccessory]]
 RELOAD_ON_CHANGE_ATTRS: Incomplete
 
+def climate_controls_target_humidity(state: State) -> bool: ...
+def climate_supports_heater_cooler(state: State) -> bool: ...
+@ha_callback
+def async_resolve_accessory_type(aid_storage: AccessoryAidStorage, state: State, conf: dict[str, Any], *, allow_auto: bool) -> str | None: ...
+@ha_callback
+def _async_resolve_climate_type(aid_storage: AccessoryAidStorage, state: State, conf: dict[str, Any], *, allow_auto: bool) -> str | None: ...
 def get_accessory(hass: HomeAssistant, driver: HomeDriver, state: State, aid: int | None, config: dict) -> HomeAccessory | None: ...
 
 class HomeAccessory(Accessory):
@@ -67,6 +78,7 @@ class HomeAccessory(Accessory):
     def async_update_state(self, new_state: State) -> None: ...
     @ha_callback
     def async_call_service(self, domain: str, service: str, service_data: dict[str, Any], value: Any | None = None) -> None: ...
+    async def async_call_service_and_wait(self, domain: str, service: str, service_data: dict[str, Any], value: Any | None = None) -> bool: ...
     @ha_callback
     def async_reload(self) -> None: ...
     @ha_callback

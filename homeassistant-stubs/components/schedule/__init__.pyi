@@ -1,4 +1,4 @@
-from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, CONF_ALL_DAYS as CONF_ALL_DAYS, CONF_DATA as CONF_DATA, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_GET as SERVICE_GET, WEEKDAY_TO_CONF as WEEKDAY_TO_CONF
+from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, CONF_ALL_DAYS as CONF_ALL_DAYS, CONF_DATA as CONF_DATA, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO, DOMAIN as DOMAIN, LOGGER as LOGGER, SERVICE_GET as SERVICE_GET, ScheduleEntityCapabilityAttribute as ScheduleEntityCapabilityAttribute, ScheduleEntityStateAttribute as ScheduleEntityStateAttribute, WEEKDAY_TO_CONF as WEEKDAY_TO_CONF
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime

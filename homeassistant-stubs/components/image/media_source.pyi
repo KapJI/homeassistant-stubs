@@ -2,7 +2,7 @@ from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
-from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from typing import override
 

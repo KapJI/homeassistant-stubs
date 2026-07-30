@@ -1,8 +1,8 @@
-from .const import ATTR_PASSIVE as ATTR_PASSIVE, ATTR_RADIUS as ATTR_RADIUS, CONF_PASSIVE as CONF_PASSIVE, DOMAIN as DOMAIN, HOME_ZONE as HOME_ZONE
+from .const import ATTR_PASSIVE as ATTR_PASSIVE, ATTR_RADIUS as ATTR_RADIUS, CONF_PASSIVE as CONF_PASSIVE, DOMAIN as DOMAIN, HOME_ZONE as HOME_ZONE, ZoneEntityStateAttribute as ZoneEntityStateAttribute
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant import config_entries as config_entries
-from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME, CONF_RADIUS as CONF_RADIUS, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SERVICE_RELOAD as SERVICE_RELOAD, STATE_UNAVAILABLE as STATE_UNAVAILABLE
+from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_PERSONS as ATTR_PERSONS, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_NAME as CONF_NAME, CONF_RADIUS as CONF_RADIUS, DEFAULT_RADIUS as DEFAULT_RADIUS, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, EntityStateAttribute as EntityStateAttribute, SERVICE_RELOAD as SERVICE_RELOAD, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, State as State, callback as callback
 from homeassistant.helpers import collection as collection, entity_component as entity_component, event as event, service as service, storage as storage
 from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
@@ -12,7 +12,6 @@ from typing import Any, Self, override
 
 _LOGGER: Incomplete
 DEFAULT_PASSIVE: bool
-DEFAULT_RADIUS: int
 ENTITY_ID_FORMAT: str
 ENTITY_ID_HOME: Incomplete
 ICON_HOME: str

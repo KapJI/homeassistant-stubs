@@ -41,9 +41,6 @@ class TPLinkVacuumEntity(CoordinatedTPLinkModuleEntity, StateVacuumEntity):
     async def async_set_fan_speed(self, fan_speed: str, **kwargs: Any) -> None: ...
     @override
     async def async_locate(self, **kwargs: Any) -> None: ...
-    @property
-    @override
-    def battery_level(self) -> int | None: ...
     _attr_activity: Incomplete
     _attr_fan_speed: Incomplete
     @override

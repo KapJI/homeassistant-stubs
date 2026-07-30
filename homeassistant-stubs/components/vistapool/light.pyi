@@ -1,11 +1,12 @@
 from . import VistapoolConfigEntry as VistapoolConfigEntry
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_NEW_POOL as SIGNAL_NEW_POOL
 from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCoordinator
 from .entity import VistapoolEntity as VistapoolEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ColorMode as ColorMode, LightEntity as LightEntity
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 

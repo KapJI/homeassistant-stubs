@@ -6,12 +6,14 @@ from _typeshed import Incomplete
 from dataclasses import dataclass, field
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
 from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.config_entry_oauth2_flow import ImplementationUnavailableError as ImplementationUnavailableError, OAuth2Session as OAuth2Session, async_get_config_entry_implementation as async_get_config_entry_implementation
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import Final
 
 PLATFORMS: Incomplete
+DISCONNECT_TIMEOUT: Final[int]
 CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
@@ -25,6 +27,7 @@ class TibberRuntimeData:
     _client: tibber.Tibber | None = ...
     async def _async_get_access_token(self) -> str: ...
     async def async_get_client(self, hass: HomeAssistant) -> tibber.Tibber: ...
+    async def async_disconnect(self) -> None: ...
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: TibberConfigEntry) -> bool: ...

@@ -7,7 +7,7 @@ from airgradient import AirGradientClient as AirGradientClient, Config as Config
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfRatio as UnitOfRatio
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override

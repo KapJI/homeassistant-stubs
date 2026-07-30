@@ -1,6 +1,6 @@
-from .const import ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_HVAC_ACTION as ATTR_HVAC_ACTION, DOMAIN as DOMAIN, HVACAction as HVACAction, HVACMode as HVACMode
+from .const import ClimateEntityStateAttribute as ClimateEntityStateAttribute, DOMAIN as DOMAIN, HVACAction as HVACAction, HVACMode as HVACMode
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_OPTIONS as CONF_OPTIONS, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.condition import Condition as Condition, ConditionConfig as ConditionConfig, ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL as ENTITY_STATE_CONDITION_SCHEMA_ANY_ALL, EntityConditionBase as EntityConditionBase, EntityNumericalConditionBase as EntityNumericalConditionBase, EntityNumericalConditionWithUnitBase as EntityNumericalConditionWithUnitBase, make_entity_state_condition as make_entity_state_condition

@@ -1,12 +1,13 @@
 from . import VistapoolConfigEntry as VistapoolConfigEntry
-from .const import PATH_HASCD as PATH_HASCD, PATH_HASCL as PATH_HASCL, PATH_HASHIDRO as PATH_HASHIDRO, PATH_HASIO as PATH_HASIO, PATH_HASPH as PATH_HASPH, PATH_HASRX as PATH_HASRX
+from .const import PATH_HASCD as PATH_HASCD, PATH_HASCL as PATH_HASCL, PATH_HASHIDRO as PATH_HASHIDRO, PATH_HASIO as PATH_HASIO, PATH_HASPH as PATH_HASPH, PATH_HASRX as PATH_HASRX, SIGNAL_NEW_POOL as SIGNAL_NEW_POOL
 from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCoordinator
 from .entity import VistapoolEntity as VistapoolEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
 
@@ -20,6 +21,7 @@ class VistapoolBinarySensorEntityDescription(BinarySensorEntityDescription):
 
 BINARY_SENSOR_DESCRIPTIONS: tuple[VistapoolBinarySensorEntityDescription, ...]
 
+def _build_binary_sensor_entities(coordinator: VistapoolDataUpdateCoordinator) -> list[BinarySensorEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: VistapoolConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VistapoolBinarySensor(VistapoolEntity, BinarySensorEntity):

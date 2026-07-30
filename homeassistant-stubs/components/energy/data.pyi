@@ -69,6 +69,7 @@ class BatterySourceType(TypedDict):
     stat_rate: NotRequired[str]
     power_config: NotRequired[PowerConfig]
     stat_soc: NotRequired[str]
+    capacity: NotRequired[float]
     name: NotRequired[str]
 
 class GasSourceType(TypedDict):

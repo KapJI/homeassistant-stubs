@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, ObjectClassType as ObjectClassType, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, ObjectClassType as ObjectClassType
 from .coordinator import ComelitBaseCoordinator as ComelitBaseCoordinator
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from aiocomelit.api import ComelitSerialBridgeObject as ComelitSerialBridgeObject

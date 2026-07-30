@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from .entity import EnvoyBaseEntity as EnvoyBaseEntity
+from .entity import EnvoyACBBatteryEntity as EnvoyACBBatteryEntity, EnvoyBaseEntity as EnvoyBaseEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyenphase import EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnpower as EnvoyEnpower
+from pyenphase.models.acb import EnvoyACB as EnvoyACB
 from typing import override
 
 PARALLEL_UPDATES: int
@@ -37,6 +38,12 @@ class EnvoyC6CCBinarySensorEntityDescription(BinarySensorEntityDescription):
     value_fn: Callable[[EnvoyC6CC], bool]
 
 C6CC_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyACBBinarySensorEntityDescription(BinarySensorEntityDescription):
+    value_fn: Callable[[EnvoyACB], bool]
+
+ACB_INVENTORY_SENSORS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -78,3 +85,9 @@ class EnvoyC6CCBinarySensorEntity(EnvoyBaseBinarySensorEntity):
     @property
     @override
     def is_on(self) -> bool: ...
+
+class EnvoyACBBinarySensorEntity(EnvoyACBBatteryEntity, BinarySensorEntity):
+    entity_description: EnvoyACBBinarySensorEntityDescription
+    @property
+    @override
+    def is_on(self) -> bool | None: ...

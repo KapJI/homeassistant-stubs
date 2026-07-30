@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, ValveDeviceClass as ValveDeviceClass, ValveEntityFeature as ValveEntityFeature, ValveState as ValveState
+from .const import DOMAIN as DOMAIN, ValveDeviceClass as ValveDeviceClass, ValveEntityFeature as ValveEntityFeature, ValveEntityStateAttribute as ValveEntityStateAttribute, ValveState as ValveState
 from .entity import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_IS_CLOSED as ATTR_IS_CLOSED, ValveEntity as ValveEntity, ValveEntityDescription as ValveEntityDescription
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

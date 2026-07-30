@@ -1,5 +1,5 @@
 from . import TelegramBotConfigEntry as TelegramBotConfigEntry
-from .const import ATTR_TITLE as ATTR_TITLE, CONF_CHAT_ID as CONF_CHAT_ID
+from .const import ATTR_TITLE as ATTR_TITLE, CONF_CHAT_ID as CONF_CHAT_ID, DOMAIN as DOMAIN
 from .entity import TelegramBotEntity as TelegramBotEntity
 from _typeshed import Incomplete
 from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityDescription as NotifyEntityDescription, NotifyEntityFeature as NotifyEntityFeature
@@ -11,9 +11,9 @@ from typing import override
 async def async_setup_entry(hass: HomeAssistant, config_entry: TelegramBotConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TelegramBotNotifyEntity(TelegramBotEntity, NotifyEntity):
+    _attr_name: Incomplete
     _attr_supported_features: Incomplete
     chat_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, config_entry: TelegramBotConfigEntry, subentry: ConfigSubentry) -> None: ...
     @override
     async def async_send_message(self, message: str, title: str | None = None) -> None: ...

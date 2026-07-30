@@ -1,4 +1,4 @@
-from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, DOMAIN as DOMAIN, MeshRoles as MeshRoles
+from .const import BUTTON_TYPE_WOL as BUTTON_TYPE_WOL, CONNECTION_TYPE_LAN as CONNECTION_TYPE_LAN, DOMAIN as DOMAIN, LOGGER as LOGGER, MeshRoles as MeshRoles
 from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .entity import FritzDeviceBase as FritzDeviceBase
 from .helpers import _is_tracked as _is_tracked
@@ -7,14 +7,13 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonDeviceClass as ButtonDeviceClass, ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, Final, override
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)

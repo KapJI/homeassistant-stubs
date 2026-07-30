@@ -1,5 +1,5 @@
 import abc
-from .const import DOMAIN as DOMAIN, ObjectClassType as ObjectClassType, SCAN_INTERVAL as SCAN_INTERVAL, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, ObjectClassType as ObjectClassType, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from abc import abstractmethod
 from aiocomelit.api import ComelitCommonApi as ComelitCommonApi, ComelitVedoApi, ComeliteSerialBridgeApi

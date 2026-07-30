@@ -1,5 +1,4 @@
 from . import AutomowerConfigEntry as AutomowerConfigEntry
-from .const import DOMAIN as DOMAIN
 from .coordinator import AutomowerDataUpdateCoordinator as AutomowerDataUpdateCoordinator
 from .entity import AutomowerBaseEntity as AutomowerBaseEntity
 from _typeshed import Incomplete

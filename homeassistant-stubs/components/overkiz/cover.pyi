@@ -37,6 +37,7 @@ class OverkizCoverDescription(CoverEntityDescription):
 
 COVER_DESCRIPTIONS: list[OverkizCoverDescription]
 SUPPORTED_DEVICES: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

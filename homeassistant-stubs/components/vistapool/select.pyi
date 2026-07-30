@@ -1,13 +1,14 @@
 from . import VistapoolConfigEntry as VistapoolConfigEntry
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SIGNAL_NEW_POOL as SIGNAL_NEW_POOL
 from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCoordinator
 from .entity import VistapoolEntity as VistapoolEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 
@@ -23,6 +24,7 @@ class VistapoolSelectEntityDescription(SelectEntityDescription):
 
 SELECT_DESCRIPTIONS: tuple[VistapoolSelectEntityDescription, ...]
 
+def _build_select_entities(coordinator: VistapoolDataUpdateCoordinator) -> list[SelectEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: VistapoolConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _to_index(raw: Any) -> int | None: ...
 

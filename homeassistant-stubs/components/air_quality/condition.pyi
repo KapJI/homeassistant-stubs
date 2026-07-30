@@ -1,6 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONCENTRATION_PARTS_PER_BILLION as CONCENTRATION_PARTS_PER_BILLION, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfDensity as UnitOfDensity, UnitOfRatio as UnitOfRatio
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.condition import Condition as Condition, make_entity_numerical_condition as make_entity_numerical_condition, make_entity_numerical_condition_with_unit as make_entity_numerical_condition_with_unit, make_entity_state_condition as make_entity_state_condition

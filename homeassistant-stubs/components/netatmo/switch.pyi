@@ -1,6 +1,6 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_SWITCH as NETATMO_CREATE_SWITCH
-from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .entity import NetatmoModuleEntity as NetatmoModuleEntity
+from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
+from .entity import NetatmoReachabilityEntity as NetatmoReachabilityEntity
 from .helper import device_type_to_str as device_type_to_str
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
@@ -11,10 +11,11 @@ from pyatmo import modules as NaModules
 from typing import Any, override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class NetatmoSwitch(NetatmoModuleEntity, SwitchEntity):
+class NetatmoSwitch(NetatmoReachabilityEntity, SwitchEntity):
     _attr_name: Incomplete
     _attr_configuration_url = CONF_URL_CONTROL
     device: NaModules.Switch

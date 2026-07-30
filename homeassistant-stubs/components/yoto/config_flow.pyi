@@ -1,5 +1,5 @@
 import logging
-from .const import DOMAIN as DOMAIN, YOTO_AUDIENCE as YOTO_AUDIENCE, YOTO_SCOPES as YOTO_SCOPES, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, YOTO_AUDIENCE as YOTO_AUDIENCE, YOTO_SCOPES as YOTO_SCOPES
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow

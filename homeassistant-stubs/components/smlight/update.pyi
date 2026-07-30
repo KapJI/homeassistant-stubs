@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, ZWAVE_TYPES as ZWAVE_TYPES
 from .coordinator import SmConfigEntry as SmConfigEntry, SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmFwData as SmFwData
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
@@ -38,6 +38,7 @@ class SmUpdateEntity(SmEntity, UpdateEntity):
     _firmware: Firmware | None
     _unload: list[Callable]
     idx: Incomplete
+    _attr_translation_key: str
     def __init__(self, coordinator: SmFirmwareUpdateCoordinator, description: SmUpdateEntityDescription, idx: int = 0) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...

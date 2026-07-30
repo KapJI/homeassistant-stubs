@@ -1,5 +1,5 @@
-from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_SELECT as NETATMO_CREATE_SELECT
-from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoHome as NetatmoHome, SIGNAL_NAME as SIGNAL_NAME
+from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, DOMAIN as DOMAIN, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_SELECT as NETATMO_CREATE_SELECT
+from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoHome as NetatmoHome, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.select import SelectEntity as SelectEntity
@@ -10,6 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

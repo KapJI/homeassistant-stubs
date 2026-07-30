@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Generator
 from datetime import datetime
 from functools import cache
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, valid_domain as valid_domain, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import TemplateError as TemplateError
 from homeassistant.helpers.translation import async_translate_state as async_translate_state, async_translate_state_attr as async_translate_state_attr

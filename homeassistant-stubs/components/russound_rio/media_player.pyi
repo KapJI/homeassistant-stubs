@@ -1,6 +1,6 @@
 import datetime as dt
 from . import RussoundConfigEntry as RussoundConfigEntry, media_browser as media_browser
-from .const import DOMAIN as DOMAIN, RUSSOUND_MEDIA_TYPE_PRESET as RUSSOUND_MEDIA_TYPE_PRESET, SELECT_SOURCE_DELAY as SELECT_SOURCE_DELAY
+from .const import CONF_ZONE_SOURCE_EXCLUSION as CONF_ZONE_SOURCE_EXCLUSION, DOMAIN as DOMAIN, RUSSOUND_MEDIA_TYPE_PRESET as RUSSOUND_MEDIA_TYPE_PRESET, SELECT_SOURCE_DELAY as SELECT_SOURCE_DELAY
 from .entity import RussoundBaseEntity as RussoundBaseEntity, command as command
 from _typeshed import Incomplete
 from aiorussound.rio import Controller as Controller, Source as Source
@@ -23,7 +23,8 @@ class RussoundZoneDevice(RussoundBaseEntity, MediaPlayerEntity):
     _attr_name: Incomplete
     _sources: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, controller: Controller, zone_id: int, sources: dict[int, Source]) -> None: ...
+    _zone_source_exclusion: Incomplete
+    def __init__(self, controller: Controller, zone_id: int, sources: dict[int, Source], zone_source_exclusion: bool) -> None: ...
     @property
     def _source(self) -> Source: ...
     @property

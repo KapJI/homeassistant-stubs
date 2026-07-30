@@ -61,6 +61,11 @@ class DeviceFilterSelectorConfig(TypedDict, total=False):
     model: str
     model_id: str
 
+ENTITY_WITH_DEVICE_FILTER_SELECTOR_CONFIG_SCHEMA: Incomplete
+
+class EntityWithDeviceFilterSelectorConfig(EntityFilterSelectorConfig, total=False):
+    device: DeviceFilterSelectorConfig
+
 class ActionSelectorConfig(BaseSelectorConfig): ...
 
 class ActionSelector(Selector[ActionSelectorConfig]):
@@ -288,7 +293,7 @@ class EntitySelectorConfig(BaseSelectorConfig, _LegacyEntityFilterSelectorConfig
     include_entities: list[str]
     multiple: bool
     reorder: bool
-    filter: EntityFilterSelectorConfig | list[EntityFilterSelectorConfig]
+    filter: EntityWithDeviceFilterSelectorConfig | list[EntityWithDeviceFilterSelectorConfig]
 
 class EntitySelector(Selector[EntitySelectorConfig]):
     selector_type: str

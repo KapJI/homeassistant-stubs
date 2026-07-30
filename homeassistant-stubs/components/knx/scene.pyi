@@ -1,12 +1,12 @@
 from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY, SceneConf as SceneConf
-from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, _KnxEntityBase as _KnxEntityBase
+from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, _KnxEntityBase as _KnxEntityBase, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import SceneSchema as SceneSchema
 from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SCENE as CONF_GA_SCENE
 from .storage.util import ConfigExtractor as ConfigExtractor
 from homeassistant import config_entries as config_entries
 from homeassistant.components.scene import BaseScene as BaseScene
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.const import CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType

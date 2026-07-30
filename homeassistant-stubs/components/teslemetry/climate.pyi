@@ -4,7 +4,7 @@ from .entity import TeslemetryRootEntity as TeslemetryRootEntity, TeslemetryVehi
 from .helpers import handle_vehicle_command as handle_vehicle_command
 from .models import TeslemetryVehicleData as TeslemetryVehicleData
 from _typeshed import Incomplete
-from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, HVAC_MODES as HVAC_MODES
+from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, ClimateEntityStateAttribute as ClimateEntityStateAttribute, HVACMode as HVACMode, HVAC_MODES as HVAC_MODES
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_WHOLE as PRECISION_WHOLE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError

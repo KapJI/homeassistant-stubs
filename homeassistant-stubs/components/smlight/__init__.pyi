@@ -1,3 +1,4 @@
+from .bluetooth import async_setup_ble_scanner as async_setup_ble_scanner
 from .const import DOMAIN as DOMAIN
 from .coordinator import SmConfigEntry as SmConfigEntry, SmDataUpdateCoordinator as SmDataUpdateCoordinator, SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmlightData as SmlightData
 from .services import async_setup_services as async_setup_services

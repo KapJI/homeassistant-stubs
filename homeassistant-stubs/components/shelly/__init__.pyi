@@ -5,7 +5,7 @@ from .services import async_setup_services as async_setup_services
 from .utils import async_create_issue_unsupported_firmware as async_create_issue_unsupported_firmware, async_migrate_rpc_sensor_description_unique_ids as async_migrate_rpc_sensor_description_unique_ids, async_migrate_rpc_virtual_components_unique_ids as async_migrate_rpc_virtual_components_unique_ids, get_coap_context as get_coap_context, get_device_entry_gen as get_device_entry_gen, get_http_port as get_http_port, get_rpc_scripts_event_types as get_rpc_scripts_event_types, get_ws_context as get_ws_context, is_rpc_ble_scanner_supported as is_rpc_ble_scanner_supported, remove_empty_sub_devices as remove_empty_sub_devices, remove_stale_blu_trv_devices as remove_stale_blu_trv_devices
 from _typeshed import Incomplete
 from homeassistant.components.bluetooth import async_remove_scanner as async_remove_scanner
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, Platform as Platform
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

@@ -1,15 +1,17 @@
-from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_EVENT_SCORE as ATTR_EVENT_SCORE, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
+from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_EVENT_SCORE as ATTR_EVENT_SCORE, ATTR_SMART_DETECT_TYPES as ATTR_SMART_DETECT_TYPES, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Sequence
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from homeassistant.core import callback as callback
+from homeassistant.const import Platform as Platform
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from typing import Any, Generic, TypeVar, override
 from uiprotect.data import Event as Event, ModelType, NVR, ProtectAdoptableDeviceModel, PublicDeviceModel as PublicDeviceModel, SmartDetectObjectType as SmartDetectObjectType
+from uiprotect.data.public_devices import SensorFeatureCapability as SensorFeatureCapability
 
 _LOGGER: Incomplete
 T = TypeVar('T', bound=ProtectAdoptableDeviceModel | NVR)
@@ -19,6 +21,10 @@ class PermRequired(int, Enum):
     WRITE = 2
     DELETE = 3
 
+@callback
+def _async_capability_supported(data: ProtectData, device: ProtectAdoptableDeviceModel, description: ProtectEntityDescription) -> bool: ...
+@callback
+def async_remove_unsupported_sense_entities(hass: HomeAssistant, platform: Platform, data: ProtectData, descs: Sequence[ProtectEntityDescription]) -> None: ...
 @callback
 def _async_device_entities(data: ProtectData, klass: type[BaseProtectEntity], model_type: ModelType, descs: Sequence[ProtectEntityDescription], unadopted_descs: Sequence[ProtectEntityDescription] | None = None, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[BaseProtectEntity]: ...
 
@@ -39,6 +45,7 @@ class BaseProtectEntity(Entity):
     _async_get_ufp_public_enabled: Callable[[PublicDeviceModel], bool] | None
     _ufp_public_obj: PublicDeviceModel | None
     _ufp_uses_public: bool
+    _ufp_requires_events_ws: bool
     data: Incomplete
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
@@ -100,8 +107,10 @@ class ProtectEntityDescription(EntityDescription, Generic[T]):
     ufp_value_fn: Callable[[T], Any] | None = ...
     ufp_public_value: str | None = ...
     ufp_public_value_fn: Callable[[PublicDeviceModel], Any] | None = ...
+    ufp_event_driven: bool = ...
     ufp_enabled: str | None = ...
     ufp_public_enabled_fn: Callable[[PublicDeviceModel], bool] | None = ...
+    ufp_capability: SensorFeatureCapability | None = ...
     ufp_perm: PermRequired | None = ...
     has_required: Callable[[T], bool] = ...
     get_ufp_enabled: Callable[[T], bool] | None = ...

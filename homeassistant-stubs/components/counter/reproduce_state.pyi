@@ -1,4 +1,4 @@
-from . import ATTR_MAXIMUM as ATTR_MAXIMUM, ATTR_MINIMUM as ATTR_MINIMUM, ATTR_STEP as ATTR_STEP, DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE, VALUE as VALUE
+from . import DOMAIN as DOMAIN, SERVICE_SET_VALUE as SERVICE_SET_VALUE, VALUE as VALUE
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID

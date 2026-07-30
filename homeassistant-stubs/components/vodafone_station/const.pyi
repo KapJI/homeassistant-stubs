@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 
-_LOGGER: Incomplete
+LOGGER: Incomplete
 DOMAIN: str
 SCAN_INTERVAL: int
 CONF_DEVICE_DETAILS: str

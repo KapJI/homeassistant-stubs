@@ -1,12 +1,15 @@
-from ..const import LOGGER as LOGGER, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
+from ..const import CLIENT_RESTORE_MAX_AGE as CLIENT_RESTORE_MAX_AGE, LOGGER as LOGGER, UNIFI_WIRELESS_CLIENTS as UNIFI_WIRELESS_CLIENTS
 from ..coordinator import UnifiDataUpdateCoordinator as UnifiDataUpdateCoordinator
 from ..entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import APIHandler as APIHandler
+from aiounifi.models.client import Client as Client
 from collections.abc import Callable as Callable, Coroutine, Sequence
+from datetime import datetime
 from homeassistant.const import Platform as Platform
 from homeassistant.core import callback as callback
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
 from typing import Any
@@ -26,6 +29,10 @@ class UnifiEntityLoader:
     async def _refresh_api_data(self) -> None: ...
     @callback
     def _restore_inactive_clients(self) -> None: ...
+    @callback
+    def _client_is_stale(self, client: Client, now: datetime) -> bool: ...
+    @callback
+    def _remove_client(self, entity_registry: er.EntityRegistry, device_registry: dr.DeviceRegistry, entity_id: str, mac: str) -> None: ...
     @callback
     def register_platform(self, async_add_entities: AddEntitiesCallback, entity_class: type[UnifiEntity], descriptions: tuple[UnifiEntityDescription, ...], requires_admin: bool = False) -> None: ...
     @callback

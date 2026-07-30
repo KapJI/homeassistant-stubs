@@ -1,4 +1,4 @@
-from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature
+from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature, UpdateEntityStateAttribute as UpdateEntityStateAttribute
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.components import websocket_api
@@ -8,7 +8,7 @@ from homeassistant.helpers.restore_state import RestoreEntity
 from propcache.api import cached_property
 from typing import Any, final, override
 
-__all__ = ['ATTR_BACKUP', 'ATTR_INSTALLED_VERSION', 'ATTR_LATEST_VERSION', 'ATTR_VERSION', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'SERVICE_INSTALL', 'SERVICE_SKIP', 'UpdateDeviceClass', 'UpdateEntity', 'UpdateEntityDescription', 'UpdateEntityFeature']
+__all__ = ['ATTR_BACKUP', 'ATTR_INSTALLED_VERSION', 'ATTR_LATEST_VERSION', 'ATTR_VERSION', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'SERVICE_INSTALL', 'SERVICE_SKIP', 'UpdateDeviceClass', 'UpdateEntity', 'UpdateEntityDescription', 'UpdateEntityFeature', 'UpdateEntityStateAttribute']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

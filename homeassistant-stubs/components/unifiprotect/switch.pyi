@@ -13,7 +13,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, Literal, override
-from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicRelayOutput as PublicRelayOutput, Relay as Relay, RelayOutputState
+from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicDeviceModel as PublicDeviceModel, PublicRelayOutput as PublicRelayOutput, Relay as Relay, RelayOutputState
 
 ATTR_PREV_MIC: str
 ATTR_PREV_RECORD: str
@@ -91,7 +91,7 @@ class ProtectRelayOutputSwitch(SwitchEntity):
     @callback
     def _update_from_relay(self, relay: Relay) -> None: ...
     @callback
-    def _async_updated(self, relay: Relay) -> None: ...
+    def _async_updated(self, _obj: PublicDeviceModel | None) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     async def _activate_output(self, state: Literal['on', 'off']) -> None: ...

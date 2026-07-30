@@ -1,4 +1,4 @@
-from .const import LINE_TYPES as LINE_TYPES, _LOGGER as _LOGGER
+from .const import LINE_TYPES as LINE_TYPES, LOGGER as LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry, VodafoneStationRouter as VodafoneStationRouter
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

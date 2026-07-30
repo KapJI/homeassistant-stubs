@@ -5,9 +5,9 @@ from .helpers import generate_power_sensor_entity_id as generate_power_sensor_en
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping
 from dataclasses import dataclass
-from homeassistant.components.sensor import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute, SensorEntityStateAttribute as SensorEntityStateAttribute, SensorStateClass as SensorStateClass
 from homeassistant.components.sensor.recorder import reset_detected as reset_detected
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

@@ -13,6 +13,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import override
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class AnalyticsSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[AnalyticsData], StateType]

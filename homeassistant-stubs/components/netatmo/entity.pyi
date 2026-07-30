@@ -1,9 +1,9 @@
 import abc
-from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_WEATHER as CONF_URL_WEATHER, DATA_DEVICE_IDS as DATA_DEVICE_IDS, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DOMAIN as DOMAIN, SIGNAL_NAME as SIGNAL_NAME
-from .data_handler import NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
+from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_WEATHER as CONF_URL_WEATHER, DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DOMAIN as DOMAIN, SIGNAL_NAME as SIGNAL_NAME
+from .coordinator import NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
 from _typeshed import Incomplete
 from abc import abstractmethod
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
@@ -18,6 +18,9 @@ class NetatmoBaseEntity(Entity):
     _publishers: list[dict[str, Any]]
     _attr_extra_state_attributes: Incomplete
     def __init__(self, data_handler: NetatmoDataHandler) -> None: ...
+    @property
+    @override
+    def available(self) -> bool: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override
@@ -54,6 +57,11 @@ class NetatmoModuleEntity(NetatmoDeviceEntity):
     @property
     @override
     def device_type(self) -> DeviceType: ...
+
+class NetatmoReachabilityEntity(NetatmoModuleEntity):
+    @property
+    @override
+    def available(self) -> bool: ...
 
 class NetatmoWeatherModuleEntity(NetatmoModuleEntity):
     _attr_configuration_url = CONF_URL_WEATHER

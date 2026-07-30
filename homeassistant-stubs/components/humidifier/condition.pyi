@@ -1,6 +1,6 @@
-from .const import ATTR_ACTION as ATTR_ACTION, ATTR_HUMIDITY as ATTR_HUMIDITY, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityFeature as HumidifierEntityFeature
+from .const import DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityFeature as HumidifierEntityFeature, HumidifierEntityStateAttribute as HumidifierEntityStateAttribute
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_MODE as ATTR_MODE, CONF_MODE as CONF_MODE, CONF_OPTIONS as CONF_OPTIONS, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import CONF_MODE as CONF_MODE, CONF_OPTIONS as CONF_OPTIONS, PERCENTAGE as PERCENTAGE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.automation import DomainSpec as DomainSpec

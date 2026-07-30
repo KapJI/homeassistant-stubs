@@ -15,12 +15,14 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: VictronGxConfigEn
 
 class VictronNumber(VictronBaseEntity, NumberEntity):
     _attr_device_class: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
     _attr_native_value: Incomplete
     _attr_native_min_value: Incomplete
     _attr_native_max_value: Incomplete
     _attr_native_step: Incomplete
     def __init__(self, device: VictronVenusDevice, metric: VictronVenusWritableMetric, device_info: DeviceInfo, installation_id: str) -> None: ...
+    @property
+    @override
+    def native_unit_of_measurement(self) -> str | None: ...
     @callback
     @override
     def _on_update_cb(self, value: Any) -> None: ...

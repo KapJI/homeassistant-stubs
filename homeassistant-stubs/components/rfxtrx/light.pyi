@@ -3,7 +3,7 @@ from . import DeviceTuple as DeviceTuple, async_setup_platform_entry as async_se
 from .const import COMMAND_OFF_LIST as COMMAND_OFF_LIST, COMMAND_ON_LIST as COMMAND_ON_LIST
 from .entity import RfxtrxCommandEntity as RfxtrxCommandEntity
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityStateAttribute as LightEntityStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

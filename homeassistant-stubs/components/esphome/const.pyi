@@ -5,6 +5,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: str
+CLIENT_INFO: Incomplete
 ESPHOME_DATA: HassKey[DomainData]
 CONF_ALLOW_SERVICE_CALLS: str
 CONF_SUBSCRIBE_LOGS: str

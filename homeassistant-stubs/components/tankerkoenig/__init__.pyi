@@ -1,4 +1,4 @@
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL
 from .coordinator import TankerkoenigConfigEntry as TankerkoenigConfigEntry, TankerkoenigDataUpdateCoordinator as TankerkoenigDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform

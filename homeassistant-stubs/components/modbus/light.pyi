@@ -3,7 +3,7 @@ from .const import CALL_TYPE_REGISTER_HOLDING as CALL_TYPE_REGISTER_HOLDING, CAL
 from .entity import ModbusToggleEntity as ModbusToggleEntity
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ColorMode as ColorMode, LightEntity as LightEntity
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityStateAttribute as LightEntityStateAttribute
 from homeassistant.const import CONF_LIGHTS as CONF_LIGHTS, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback

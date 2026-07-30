@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SelectEntityCapabilityAttribute as SelectEntityCapabilityAttribute
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA, async_get_entity_registry_entry_or_raise as async_get_entity_registry_entry_or_raise
 from homeassistant.components.homeassistant.triggers.state import CONF_FOR as CONF_FOR, CONF_FROM as CONF_FROM, CONF_TO as CONF_TO

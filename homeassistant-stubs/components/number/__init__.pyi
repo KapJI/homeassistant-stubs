@@ -1,5 +1,5 @@
 import dataclasses
-from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, NumberDeviceClass as NumberDeviceClass, NumberMode as NumberMode
+from .const import ATTR_MAX as ATTR_MAX, ATTR_MIN as ATTR_MIN, ATTR_STEP as ATTR_STEP, ATTR_VALUE as ATTR_VALUE, DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, DEFAULT_STEP as DEFAULT_STEP, DOMAIN as DOMAIN, NumberDeviceClass as NumberDeviceClass, NumberEntityCapabilityAttribute as NumberEntityCapabilityAttribute, NumberMode as NumberMode
 from _typeshed import Incomplete
 from collections.abc import Callable
 from homeassistant.core import callback
@@ -8,7 +8,7 @@ from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
 from typing import Any, Self, final, override
 
-__all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
+__all__ = ['ATTR_MAX', 'ATTR_MIN', 'ATTR_STEP', 'ATTR_VALUE', 'DEFAULT_MAX_VALUE', 'DEFAULT_MIN_VALUE', 'DEFAULT_STEP', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'NumberDeviceClass', 'NumberEntity', 'NumberEntityCapabilityAttribute', 'NumberEntityDescription', 'NumberExtraStoredData', 'NumberMode', 'RestoreNumber']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

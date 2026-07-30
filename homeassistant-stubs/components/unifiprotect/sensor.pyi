@@ -1,16 +1,17 @@
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectNVREntity as ProtectNVREntity, T as T, async_all_device_entities as async_all_device_entities
-from .utils import async_get_light_motion_current as async_get_light_motion_current
+from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectNVREntity as ProtectNVREntity, T as T, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
+from .utils import async_get_light_motion_current_public as async_get_light_motion_current_public
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfDataRate as UnitOfDataRate, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfDataRate as UnitOfDataRate, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 from uiprotect.data import Camera, ModelType, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel, Sensor
+from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
 
 _LOGGER: Incomplete
 OBJECT_TYPE_NONE: str
@@ -26,6 +27,7 @@ class ProtectSensorEntityDescription(ProtectEntityDescription[T], SensorEntityDe
 @dataclass(frozen=True, kw_only=True)
 class ProtectSensorEventEntityDescription(ProtectEventMixin[T], SensorEntityDescription): ...
 
+def _get_last_motion_public(obj: PublicDeviceModel) -> datetime | None: ...
 def _get_uptime(obj: ProtectDeviceModel) -> datetime | None: ...
 def _get_nvr_recording_capacity(obj: NVR) -> int: ...
 def _get_nvr_memory(obj: NVR) -> float | None: ...

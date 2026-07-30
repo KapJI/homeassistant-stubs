@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .entry_data import DeviceEntityKey as DeviceEntityKey, ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData, build_device_unique_id as build_device_unique_id
+from .entry_data import DeviceEntityKey as DeviceEntityKey, ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState

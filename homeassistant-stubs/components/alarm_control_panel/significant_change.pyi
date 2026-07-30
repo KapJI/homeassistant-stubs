@@ -1,4 +1,4 @@
-from . import ATTR_CHANGED_BY as ATTR_CHANGED_BY, ATTR_CODE_ARM_REQUIRED as ATTR_CODE_ARM_REQUIRED
+from .const import AlarmControlPanelEntityStateAttribute as AlarmControlPanelEntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 

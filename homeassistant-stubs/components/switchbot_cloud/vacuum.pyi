@@ -27,7 +27,6 @@ class SwitchBotCloudVacuum(SwitchBotCloudEntity, StateVacuumEntity):
     async def async_return_to_base(self, **kwargs: Any) -> None: ...
     @override
     async def async_start(self) -> None: ...
-    _attr_battery_level: Incomplete
     _attr_available: Incomplete
     _attr_activity: Incomplete
     @override

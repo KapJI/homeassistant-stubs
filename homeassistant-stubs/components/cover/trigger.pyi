@@ -1,4 +1,4 @@
-from .const import ATTR_IS_CLOSED as ATTR_IS_CLOSED, CoverDeviceClass as CoverDeviceClass, DOMAIN as DOMAIN
+from .const import CoverDeviceClass as CoverDeviceClass, CoverEntityStateAttribute as CoverEntityStateAttribute, DOMAIN as DOMAIN
 from .models import CoverDomainSpec as CoverDomainSpec
 from collections.abc import Mapping
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON

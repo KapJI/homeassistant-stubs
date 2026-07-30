@@ -54,6 +54,7 @@ class EventStateReportedData(EventStateEventData):
     old_last_reported: datetime.datetime
 
 TIMEOUT_EVENT_START: int
+TIMEOUT_STARTUP_JOBS: int
 EVENTS_EXCLUDED_FROM_MATCH_ALL: Incomplete
 _LOGGER: Incomplete
 
@@ -146,6 +147,7 @@ class HomeAssistant:
     timeout: TimeoutManager
     _stop_future: concurrent.futures.Future[None] | None
     _shutdown_jobs: list[HassJobWithArgs]
+    _startup_jobs: list[HassJobWithArgs]
     import_executor: Incomplete
     loop_thread_id: Incomplete
     def __init__(self, config_dir: str) -> None: ...
@@ -217,6 +219,12 @@ class HomeAssistant:
     @overload
     @callback
     def async_add_shutdown_job(self, hassjob: HassJob[..., Coroutine[Any, Any, Any] | Any], *args: Any) -> CALLBACK_TYPE: ...
+    @overload
+    @callback
+    def async_add_startup_job(self, hassjob: HassJob[..., Coroutine[Any, Any, Any]], *args: Any) -> CALLBACK_TYPE: ...
+    @overload
+    @callback
+    def async_add_startup_job(self, hassjob: HassJob[..., Coroutine[Any, Any, Any] | Any], *args: Any) -> CALLBACK_TYPE: ...
     def stop(self) -> None: ...
     async def async_stop(self, exit_code: int = 0, *, force: bool = False) -> None: ...
     def _cancel_cancellable_timers(self) -> None: ...

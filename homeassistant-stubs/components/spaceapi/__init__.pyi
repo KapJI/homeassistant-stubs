@@ -2,7 +2,7 @@ from _typeshed import Incomplete
 from aiohttp import web as web
 from homeassistant import core as ha
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_LOCATION as ATTR_LOCATION, ATTR_NAME as ATTR_NAME, ATTR_STATE as ATTR_STATE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_ADDRESS as CONF_ADDRESS, CONF_EMAIL as CONF_EMAIL, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_LOCATION as CONF_LOCATION, CONF_SENSORS as CONF_SENSORS, CONF_STATE as CONF_STATE, CONF_URL as CONF_URL
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_LOCATION as ATTR_LOCATION, ATTR_NAME as ATTR_NAME, ATTR_STATE as ATTR_STATE, CONF_ADDRESS as CONF_ADDRESS, CONF_EMAIL as CONF_EMAIL, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_LOCATION as CONF_LOCATION, CONF_SENSORS as CONF_SENSORS, CONF_STATE as CONF_STATE, CONF_URL as CONF_URL, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any

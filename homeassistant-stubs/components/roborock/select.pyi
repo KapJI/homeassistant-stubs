@@ -69,6 +69,18 @@ class RoborockSelectEntity(RoborockCoordinatedEntityV1, SelectEntity):
     @override
     def current_option(self) -> str | None: ...
 
+class RoborockCleaningModeSelectEntity(RoborockCoordinatedEntityV1, SelectEntity):
+    _attr_entity_category: Incomplete
+    _attr_translation_key: str
+    _status_trait: Incomplete
+    _attr_options: Incomplete
+    def __init__(self, coordinator: RoborockDataUpdateCoordinator) -> None: ...
+    @property
+    @override
+    def current_option(self) -> str | None: ...
+    @override
+    async def async_select_option(self, option: str) -> None: ...
+
 class RoborockCurrentMapSelectEntity(RoborockCoordinatedEntityV1, SelectEntity):
     _attr_entity_category: Incomplete
     _attr_translation_key: str

@@ -28,5 +28,6 @@ class Controllable(StrEnum):
 WIDGET_TO_CLIMATE_ENTITY: Incomplete
 WIDGET_AND_CONTROLLABLE_TO_CLIMATE_ENTITY: Incomplete
 WIDGET_AND_PROTOCOL_TO_CLIMATE_ENTITY: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

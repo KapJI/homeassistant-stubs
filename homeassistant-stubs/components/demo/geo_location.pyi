@@ -12,7 +12,7 @@ AVG_KM_PER_DEGREE: float
 DEFAULT_UPDATE_INTERVAL: Incomplete
 MAX_RADIUS_IN_KM: int
 NUMBER_OF_DEMO_DEVICES: int
-EVENT_NAMES: Incomplete
+EVENTS: Incomplete
 SOURCE: str
 
 def setup_platform(hass: HomeAssistant, config: ConfigType, add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
@@ -33,7 +33,8 @@ class DemoGeolocationEvent(GeolocationEvent):
     _latitude: Incomplete
     _longitude: Incomplete
     _unit_of_measurement: Incomplete
-    def __init__(self, name: str, distance: float, latitude: float, longitude: float, unit_of_measurement: str) -> None: ...
+    _attr_icon: Incomplete
+    def __init__(self, name: str, icon: str, distance: float, latitude: float, longitude: float, unit_of_measurement: str) -> None: ...
     @property
     @override
     def source(self) -> str: ...

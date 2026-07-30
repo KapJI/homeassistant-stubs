@@ -1,4 +1,4 @@
-from .const import _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_registry as er

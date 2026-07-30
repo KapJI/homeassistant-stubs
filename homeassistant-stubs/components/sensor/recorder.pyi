@@ -1,11 +1,11 @@
 import datetime
-from .const import AMBIGUOUS_UNITS as AMBIGUOUS_UNITS, ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorStateClass as SensorStateClass, UNIT_CONVERTERS as UNIT_CONVERTERS, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
+from .const import AMBIGUOUS_UNITS as AMBIGUOUS_UNITS, DOMAIN as DOMAIN, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute, SensorEntityStateAttribute as SensorEntityStateAttribute, SensorStateClass as SensorStateClass, UNIT_CONVERTERS as UNIT_CONVERTERS, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.components.recorder import get_instance as get_instance, history as history, statistics as statistics
 from homeassistant.components.recorder.models import StatisticData as StatisticData, StatisticMeanType as StatisticMeanType, StatisticMetaData as StatisticMetaData, StatisticResult as StatisticResult
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfIrradiance as UnitOfIrradiance, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfVolume as UnitOfVolume
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, REVOLUTIONS_PER_MINUTE as REVOLUTIONS_PER_MINUTE, UnitOfIrradiance as UnitOfIrradiance, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import entity_sources as entity_sources

@@ -14,6 +14,7 @@ _LOGGER: Incomplete
 type HeosConfigEntry = ConfigEntry[HeosCoordinator]
 
 class HeosCoordinator(DataUpdateCoordinator[None]):
+    config_entry: HeosConfigEntry
     heos: Incomplete
     _platform_callbacks: list[Callable[[Sequence[HeosPlayer]], None]]
     _update_sources_debouncer: Incomplete

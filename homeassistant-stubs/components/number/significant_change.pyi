@@ -1,5 +1,5 @@
 from .const import NumberDeviceClass as NumberDeviceClass
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, PERCENTAGE as PERCENTAGE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.significant_change import check_absolute_change as check_absolute_change, check_percentage_change as check_percentage_change, check_valid_float as check_valid_float
 from typing import Any

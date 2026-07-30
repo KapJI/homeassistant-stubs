@@ -1,6 +1,6 @@
 from .coordinator import AcaiaConfigEntry as AcaiaConfigEntry
 from .entity import AcaiaEntity as AcaiaEntity
-from aioacaia.acaiascale import AcaiaScale as AcaiaScale
+from aioacaia import AcaiaScale as AcaiaScale
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription

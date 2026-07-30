@@ -1,4 +1,5 @@
-from . import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_FAN_SPEED as ATTR_FAN_SPEED
+from . import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL
+from .const import VacuumEntityStateAttribute as VacuumEntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.significant_change import check_absolute_change as check_absolute_change, check_valid_float as check_valid_float
 from typing import Any

@@ -9,6 +9,7 @@ from homeassistant.const import CONTENT_TYPE_JSON as CONTENT_TYPE_JSON, EVENT_HO
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant
 from homeassistant.exceptions import InvalidEntityFormatError as InvalidEntityFormatError, InvalidStateError as InvalidStateError, ServiceNotFound as ServiceNotFound, TemplateError as TemplateError, Unauthorized as Unauthorized
 from homeassistant.helpers import recorder as recorder, template as template
+from homeassistant.helpers.http import MIN_COMPRESSED_RESPONSE_SIZE as MIN_COMPRESSED_RESPONSE_SIZE
 from homeassistant.helpers.json import json_dumps as json_dumps, json_fragment as json_fragment
 from homeassistant.helpers.service import async_get_all_descriptions as async_get_all_descriptions
 from homeassistant.helpers.typing import ConfigType as ConfigType

@@ -2,8 +2,6 @@ from _typeshed import Incomplete
 
 DOMAIN: str
 MFCT_ID: int
-VOLUME_BECQUEREL: str
-VOLUME_PICOCURIE: str
 DEVICE_MODEL: str
 DEFAULT_SCAN_INTERVAL: int
 DEVICE_SPECIFIC_SCAN_INTERVAL: Incomplete

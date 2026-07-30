@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 
-_LOGGER: Incomplete
+LOGGER: Incomplete
 DOMAIN: str
 CONF_LOGIN_DATA: str
 CONF_SITE: str

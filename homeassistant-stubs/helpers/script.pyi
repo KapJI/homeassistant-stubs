@@ -10,8 +10,7 @@ from .template import Template as Template
 from .trace import TraceElement as TraceElement, async_trace_path as async_trace_path, script_execution_set as script_execution_set, trace_append_element as trace_append_element, trace_id_get as trace_id_get, trace_path as trace_path, trace_path_get as trace_path_get, trace_path_stack_cv as trace_path_stack_cv, trace_set_result as trace_set_result, trace_stack_cv as trace_stack_cv, trace_stack_pop as trace_stack_pop, trace_stack_push as trace_stack_push, trace_stack_top as trace_stack_top, trace_update_result as trace_update_result
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
-from collections.abc import AsyncGenerator, Callable as Callable, Mapping, Sequence
-from contextlib import asynccontextmanager
+from collections.abc import Callable as Callable, Mapping, Sequence
 from contextvars import ContextVar
 from dataclasses import dataclass
 from datetime import datetime, timedelta
@@ -19,7 +18,7 @@ from homeassistant import exceptions as exceptions
 from homeassistant.components import scene as scene
 from homeassistant.components.logger import LOGSEVERITY as LOGSEVERITY
 from homeassistant.const import ATTR_AREA_ID as ATTR_AREA_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FLOOR_ID as ATTR_FLOOR_ID, ATTR_LABEL_ID as ATTR_LABEL_ID, CONF_ALIAS as CONF_ALIAS, CONF_CHOOSE as CONF_CHOOSE, CONF_CONDITION as CONF_CONDITION, CONF_CONDITIONS as CONF_CONDITIONS, CONF_CONTINUE_ON_ERROR as CONF_CONTINUE_ON_ERROR, CONF_CONTINUE_ON_TIMEOUT as CONF_CONTINUE_ON_TIMEOUT, CONF_COUNT as CONF_COUNT, CONF_DEFAULT as CONF_DEFAULT, CONF_DELAY as CONF_DELAY, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ELSE as CONF_ELSE, CONF_ENABLED as CONF_ENABLED, CONF_ERROR as CONF_ERROR, CONF_EVENT as CONF_EVENT, CONF_EVENT_DATA as CONF_EVENT_DATA, CONF_EVENT_DATA_TEMPLATE as CONF_EVENT_DATA_TEMPLATE, CONF_FOR_EACH as CONF_FOR_EACH, CONF_IF as CONF_IF, CONF_MODE as CONF_MODE, CONF_PARALLEL as CONF_PARALLEL, CONF_REPEAT as CONF_REPEAT, CONF_RESPONSE_VARIABLE as CONF_RESPONSE_VARIABLE, CONF_SCENE as CONF_SCENE, CONF_SEQUENCE as CONF_SEQUENCE, CONF_SERVICE as CONF_SERVICE, CONF_SERVICE_DATA as CONF_SERVICE_DATA, CONF_SERVICE_DATA_TEMPLATE as CONF_SERVICE_DATA_TEMPLATE, CONF_SET_CONVERSATION_RESPONSE as CONF_SET_CONVERSATION_RESPONSE, CONF_STOP as CONF_STOP, CONF_TARGET as CONF_TARGET, CONF_THEN as CONF_THEN, CONF_TIMEOUT as CONF_TIMEOUT, CONF_UNTIL as CONF_UNTIL, CONF_VARIABLES as CONF_VARIABLES, CONF_WAIT_FOR_TRIGGER as CONF_WAIT_FOR_TRIGGER, CONF_WAIT_TEMPLATE as CONF_WAIT_TEMPLATE, CONF_WHILE as CONF_WHILE, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, SERVICE_TURN_ON as SERVICE_TURN_ON
-from homeassistant.core import Context as Context, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, State as State, SupportsResponse as SupportsResponse, callback as callback
+from homeassistant.core import Context as Context, Event as Event, HassJob as HassJob, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, State as State, SupportsResponse as SupportsResponse, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.util import slugify as slugify
 from homeassistant.util.async_ import create_eager_task as create_eager_task
 from homeassistant.util.dt import utcnow as utcnow
@@ -64,8 +63,17 @@ class ScriptStoppedError(Exception): ...
 
 def _set_result_unless_done(future: asyncio.Future[None]) -> None: ...
 def action_trace_append(variables: TemplateVarsType, path: str) -> TraceElement: ...
-@asynccontextmanager
-async def trace_action(hass: HomeAssistant, script_run: _ScriptRun, stop: asyncio.Future[None], variables: TemplateVarsType) -> AsyncGenerator[TraceElement]: ...
+
+class trace_action:
+    __slots__: Incomplete
+    _trace_element: TraceElement
+    _hass: Incomplete
+    _stop: Incomplete
+    _variables: Incomplete
+    def __init__(self, hass: HomeAssistant, script_run: _ScriptRun, stop: asyncio.Future[None], variables: TemplateVarsType) -> None: ...
+    async def __aenter__(self) -> TraceElement: ...
+    async def __aexit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: object) -> None: ...
+
 def make_script_schema(schema: Mapping[Any, Any], default_script_mode: str, extra: int = ...) -> vol.Schema: ...
 
 STATIC_VALIDATION_ACTION_TYPES: Incomplete
@@ -82,7 +90,7 @@ class _ConditionFail(_HaltScript): ...
 class _StopScript(_HaltScript):
     response: Incomplete
     conversation_response: Incomplete
-    def __init__(self, message: str, response: Any, conversation_response: str | None | UndefinedType = ...) -> None: ...
+    def __init__(self, message: str, response: Any, conversation_response: str | UndefinedType | None = ...) -> None: ...
 
 class _ScriptRun:
     _action: dict[str, Any]
@@ -95,7 +103,7 @@ class _ScriptRun:
     _started: bool
     _stop: Incomplete
     _stopped: Incomplete
-    _conversation_response: str | None | UndefinedType
+    _conversation_response: str | UndefinedType | None
     def __init__(self, hass: HomeAssistant, script: Script, variables: ScriptRunVariables, context: Context | None, log_exceptions: bool) -> None: ...
     def _changed(self) -> None: ...
     def _log(self, msg: str, *args: Any, level: int = ..., **kwargs: Any) -> None: ...
@@ -162,7 +170,7 @@ class _IfData(TypedDict):
 
 @dataclass
 class ScriptRunResult:
-    conversation_response: str | None | UndefinedType
+    conversation_response: str | UndefinedType | None
     service_response: ServiceResponse
     variables: Mapping[str, Any]
 

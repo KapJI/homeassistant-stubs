@@ -1,5 +1,5 @@
 from ..const import ATTR_EVENT as ATTR_EVENT, ATTR_EVENT_DATA as ATTR_EVENT_DATA, ATTR_EVENT_SOURCE as ATTR_EVENT_SOURCE, ATTR_NODE_ID as ATTR_NODE_ID, ATTR_PARTIAL_DICT_MATCH as ATTR_PARTIAL_DICT_MATCH, DOMAIN as DOMAIN
-from ..helpers import async_get_nodes_from_targets as async_get_nodes_from_targets, get_device_id as get_device_id, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry
+from ..helpers import async_get_config_entry_from_node as async_get_config_entry_from_node, async_get_nodes_from_targets as async_get_nodes_from_targets, get_device_id as get_device_id, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry
 from .trigger_helpers import async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

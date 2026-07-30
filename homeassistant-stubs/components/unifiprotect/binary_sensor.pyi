@@ -1,14 +1,14 @@
 import dataclasses
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities
+from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
-from uiprotect.data import Event as Event, ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor as Sensor
+from uiprotect.data import ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor as Sensor
 from uiprotect.data.nvr import UOSDisk as UOSDisk
 from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
 
@@ -16,6 +16,8 @@ _KEY_DOOR: str
 PARALLEL_UPDATES: int
 
 def _async_motion_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
+def _async_contact_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
+def _async_leak_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(ProtectEntityDescription, BinarySensorEntityDescription): ...
@@ -63,8 +65,6 @@ class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     @callback
     @override
     def _set_event_done(self) -> None: ...
-    @callback
-    def _find_active_event_with_object_type(self, device: ProtectDeviceType) -> Event | None: ...
     _event: Incomplete
     _event_end: Incomplete
     @callback

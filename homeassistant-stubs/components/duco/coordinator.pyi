@@ -3,7 +3,7 @@ from .validation import UnsupportedBoardError as UnsupportedBoardError, async_ge
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from duco_connectivity import DucoClient as DucoClient
-from duco_connectivity.models import BoardInfo as BoardInfo, Node as Node, NodeListActionItemList
+from duco_connectivity.models import BoardInfo as BoardInfo, Node as Node, NodeListActionItemList, VentilationTemperatureInfo as VentilationTemperatureInfo
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
@@ -13,19 +13,23 @@ from typing import override
 _LOGGER: Incomplete
 type DucoConfigEntry = ConfigEntry[DucoCoordinator]
 
-@dataclass
+@dataclass(slots=True, kw_only=True)
 class DucoData:
     nodes: dict[int, Node]
     node_actions: NodeListActionItemList
     rssi_wifi: int | None
     time_filter_remain: int | None
+    ventilation_temperatures: VentilationTemperatureInfo | None
 
 class DucoCoordinator(DataUpdateCoordinator[DucoData]):
     config_entry: DucoConfigEntry
     board_info: BoardInfo
     _supports_time_filter_remain: bool
+    _supports_ventilation_temperatures: bool
+    _configured_node_names: dict[int, str]
     client: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: DucoConfigEntry, client: DucoClient) -> None: ...
+    async def _async_load_node_names(self) -> None: ...
     @override
     async def _async_setup(self) -> None: ...
     @override

@@ -21,6 +21,7 @@ def _select_option_active_zone(option: str, execute_command: Callable[..., Await
 
 SELECT_DESCRIPTIONS: list[OverkizSelectDescription]
 SUPPORTED_STATES: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

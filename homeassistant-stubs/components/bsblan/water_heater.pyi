@@ -24,9 +24,13 @@ class BSBLANWaterHeater(BSBLanWaterHeaterDeviceEntity, WaterHeaterEntity):
     _attr_unique_id: Incomplete
     _attr_temperature_unit: Incomplete
     _attr_available: bool
-    _attr_min_temp: Incomplete
-    _attr_max_temp: Incomplete
     def __init__(self, data: BSBLanData) -> None: ...
+    @property
+    @override
+    def min_temp(self) -> float: ...
+    @property
+    @override
+    def max_temp(self) -> float: ...
     @property
     def _dhw(self) -> HotWaterState: ...
     @property

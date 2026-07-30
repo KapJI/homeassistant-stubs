@@ -1,6 +1,6 @@
 from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, CONF_URL_CONTROL as CONF_URL_CONTROL, CONF_URL_SECURITY as CONF_URL_SECURITY, DOMAIN as DOMAIN, EVENT_TYPE_LIGHT_MODE as EVENT_TYPE_LIGHT_MODE, NETATMO_CREATE_CAMERA_LIGHT as NETATMO_CREATE_CAMERA_LIGHT, NETATMO_CREATE_LIGHT as NETATMO_CREATE_LIGHT
-from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .entity import NetatmoModuleEntity as NetatmoModuleEntity
+from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
+from .entity import NetatmoModuleEntity as NetatmoModuleEntity, NetatmoReachabilityEntity as NetatmoReachabilityEntity
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -10,6 +10,7 @@ from pyatmo import modules as NaModules
 from typing import Any, override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -39,7 +40,7 @@ class NetatmoCameraLight(NetatmoModuleEntity, LightEntity):
     @override
     def async_update_callback(self) -> None: ...
 
-class NetatmoLight(NetatmoModuleEntity, LightEntity):
+class NetatmoLight(NetatmoReachabilityEntity, LightEntity):
     _attr_name: Incomplete
     _attr_configuration_url = CONF_URL_CONTROL
     _attr_brightness: int | None

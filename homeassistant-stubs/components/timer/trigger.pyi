@@ -1,4 +1,5 @@
-from . import ATTR_FINISHES_AT as ATTR_FINISHES_AT, ATTR_LAST_TRANSITION as ATTR_LAST_TRANSITION, DOMAIN as DOMAIN, STATUS_ACTIVE as STATUS_ACTIVE
+from . import DOMAIN as DOMAIN, STATUS_ACTIVE as STATUS_ACTIVE
+from .const import TimerEntityStateAttribute as TimerEntityStateAttribute
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_OPTIONS as CONF_OPTIONS

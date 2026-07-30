@@ -1,5 +1,5 @@
 import voluptuous as vol
-from . import CoverEntityFeature as CoverEntityFeature, CoverState as CoverState, DOMAIN as DOMAIN
+from . import CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

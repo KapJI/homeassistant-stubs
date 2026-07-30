@@ -1,5 +1,5 @@
 from . import get_hub as get_hub
-from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, _LOGGER as _LOGGER
+from .const import CALL_TYPE_COIL as CALL_TYPE_COIL, CALL_TYPE_DISCRETE as CALL_TYPE_DISCRETE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, LOGGER as LOGGER
 from .entity import ModbusBaseEntity as ModbusBaseEntity
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete

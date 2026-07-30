@@ -1,4 +1,4 @@
-from .const import CONF_LOGIN_DATA as CONF_LOGIN_DATA, DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import CONF_LOGIN_DATA as CONF_LOGIN_DATA, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aioamazondevices.structures import AmazonDevice, AmazonListEvent as AmazonListEvent, AmazonListItem as AmazonListItem, AmazonMediaState as AmazonMediaState, AmazonVocalRecord as AmazonVocalRecord, AmazonVolumeState as AmazonVolumeState
 from aiohttp import ClientSession as ClientSession

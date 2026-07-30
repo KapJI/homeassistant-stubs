@@ -1,4 +1,5 @@
 import voluptuous as vol
+from .auth import AuthenticateHeader as AuthenticateHeader
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Awaitable, Callable
@@ -6,7 +7,7 @@ from contextlib import asynccontextmanager
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -27,8 +28,9 @@ class ModelContextProtocolTool(llm.Tool):
     description: Incomplete
     parameters: Incomplete
     server_url: Incomplete
+    config_entry: Incomplete
     token_manager: Incomplete
-    def __init__(self, name: str, description: str | None, parameters: vol.Schema, server_url: str, token_manager: TokenManager | None = None) -> None: ...
+    def __init__(self, name: str, description: str | None, parameters: vol.Schema, server_url: str, config_entry: ConfigEntry, token_manager: TokenManager | None = None) -> None: ...
     @override
     async def async_call(self, hass: HomeAssistant, tool_input: llm.ToolInput, llm_context: llm.LLMContext) -> JsonObjectType: ...
 

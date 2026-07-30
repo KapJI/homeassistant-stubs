@@ -1,5 +1,5 @@
 import abc
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCAN_FIRMWARE_INTERVAL as SCAN_FIRMWARE_INTERVAL, SCAN_INTERVAL as SCAN_INTERVAL
+from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN, LOGGER as LOGGER, SCAN_FIRMWARE_INTERVAL as SCAN_FIRMWARE_INTERVAL, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Coroutine
@@ -8,7 +8,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.device_registry import format_mac as format_mac
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo, format_mac as format_mac
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pysmlight import Api2 as Api2, Info as Info, Sensors
@@ -32,6 +32,8 @@ class SmFwData:
     esp_firmware: FirmwareList
     zb_firmware: list[FirmwareList]
 type SmConfigEntry = ConfigEntry[SmlightData]
+
+def base_device_info(info: Info, host: str) -> DeviceInfo: ...
 
 class SmBaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=abc.ABCMeta):
     config_entry: SmConfigEntry

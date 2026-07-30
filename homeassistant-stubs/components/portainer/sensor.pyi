@@ -3,7 +3,7 @@ from .entity import PortainerContainerEntity as PortainerContainerEntity, Portai
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfInformation as UnitOfInformation
+from homeassistant.const import UnitOfInformation as UnitOfInformation, UnitOfRatio as UnitOfRatio
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer.models.docker import DockerSystemDF as DockerSystemDF
@@ -14,6 +14,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class PortainerContainerSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[PortainerContainerData], StateType]
+    supported_fn: Callable[[PortainerContainerData], bool] = ...
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerEndpointSensorEntityDescription(SensorEntityDescription):

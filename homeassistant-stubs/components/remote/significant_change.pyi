@@ -1,4 +1,4 @@
-from . import ATTR_CURRENT_ACTIVITY as ATTR_CURRENT_ACTIVITY
+from .const import RemoteEntityStateAttribute as RemoteEntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any
 

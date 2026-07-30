@@ -1,4 +1,4 @@
-from .const import _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry, AmazonDevicesCoordinator as AmazonDevicesCoordinator
 from .entity import AmazonEntity as AmazonEntity
 from .utils import async_remove_entity_from_virtual_group as async_remove_entity_from_virtual_group

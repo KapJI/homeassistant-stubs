@@ -18,7 +18,7 @@ ANY_DEVICE_CLASS: Incomplete
 
 @dataclass(frozen=True, slots=True)
 class DomainSpec:
-    device_class: str | None | AnyDeviceClassType = ...
+    device_class: str | AnyDeviceClassType | None = ...
     value_source: str | None = ...
 
 def filter_by_domain_specs(hass: HomeAssistant, domain_specs: Mapping[str, DomainSpec], entities: set[str]) -> set[str]: ...
@@ -32,6 +32,6 @@ class ThresholdConfig:
     numerical: bool
     entity: str | None
     number: float | None
-    unit: str | None | UndefinedType
+    unit: str | UndefinedType | None
     @classmethod
     def from_config(cls, config: dict[str, Any] | None) -> Self | None: ...

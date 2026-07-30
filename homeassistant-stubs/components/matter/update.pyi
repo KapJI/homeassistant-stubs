@@ -4,7 +4,7 @@ from .models import MatterDiscoverySchema as MatterDiscoverySchema
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
-from homeassistant.components.update import ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature, UpdateEntityStateAttribute as UpdateEntityStateAttribute
 from homeassistant.const import Platform as Platform, STATE_ON as STATE_ON
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

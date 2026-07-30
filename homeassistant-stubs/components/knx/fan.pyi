@@ -1,5 +1,5 @@
 from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, FanConf as FanConf, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
-from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity
+from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import FanSchema as FanSchema
 from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_OSCILLATION as CONF_GA_OSCILLATION, CONF_GA_SPEED as CONF_GA_SPEED, CONF_GA_STEP as CONF_GA_STEP, CONF_GA_SWITCH as CONF_GA_SWITCH, CONF_SPEED as CONF_SPEED
@@ -7,7 +7,7 @@ from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform
+from homeassistant.const import CONF_NAME as CONF_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType

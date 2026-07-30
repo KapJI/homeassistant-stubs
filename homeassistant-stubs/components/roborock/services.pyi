@@ -3,6 +3,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse 
 from homeassistant.helpers import service as service
 
 GET_MAPS_SERVICE_NAME: str
+SET_VACUUM_ZONED_CLEANING_SERVICE_NAME: str
 SET_VACUUM_GOTO_POSITION_SERVICE_NAME: str
 GET_VACUUM_CURRENT_POSITION_SERVICE_NAME: str
 

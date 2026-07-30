@@ -1,13 +1,13 @@
 import evohomeasync2 as evo
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_PERIOD as ATTR_PERIOD, DOMAIN as DOMAIN, EVOHOME_DATA as EVOHOME_DATA, EvoService as EvoService, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION
+from .const import DOMAIN as DOMAIN, EVOHOME_DATA as EVOHOME_DATA, EvoService as EvoService, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .entity import EvoChild as EvoChild, EvoEntity as EvoEntity, is_valid_zone as is_valid_zone, unique_zone_id as unique_zone_id
 from .helpers import async_create_deprecation_issue_once as async_create_deprecation_issue_once
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
-from evohomeasync2.schemas.const import SystemMode as EvoSystemMode
+from evohomeasync2.const import SystemMode as EvoSystemMode
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
-from homeassistant.const import ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect

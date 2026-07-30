@@ -1,10 +1,11 @@
-from .const import CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_SUPPORT_AUDIO as CONF_SUPPORT_AUDIO, CONF_VIDEO_CODEC as CONF_VIDEO_CODEC, DEFAULT_CONFIG_FLOW_PORT as DEFAULT_CONFIG_FLOW_PORT, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DOMAIN as DOMAIN, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, HOMEKIT_MODE_BRIDGE as HOMEKIT_MODE_BRIDGE, SHORT_BRIDGE_NAME as SHORT_BRIDGE_NAME, VIDEO_CODEC_COPY as VIDEO_CODEC_COPY
+from .const import CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_EXCLUDE_ACCESSORY_MODE as CONF_EXCLUDE_ACCESSORY_MODE, CONF_FILTER as CONF_FILTER, CONF_HOMEKIT_MODE as CONF_HOMEKIT_MODE, CONF_SUPPORT_AUDIO as CONF_SUPPORT_AUDIO, CONF_VIDEO_CODEC as CONF_VIDEO_CODEC, DEFAULT_CONFIG_FLOW_PORT as DEFAULT_CONFIG_FLOW_PORT, DEFAULT_HOMEKIT_MODE as DEFAULT_HOMEKIT_MODE, DOMAIN as DOMAIN, HOMEKIT_MODES as HOMEKIT_MODES, HOMEKIT_MODE_ACCESSORY as HOMEKIT_MODE_ACCESSORY, HOMEKIT_MODE_BRIDGE as HOMEKIT_MODE_BRIDGE, SHORT_BRIDGE_NAME as SHORT_BRIDGE_NAME, TYPE_HEATER_COOLER as TYPE_HEATER_COOLER, TYPE_THERMOSTAT as TYPE_THERMOSTAT, VIDEO_CODEC_COPY as VIDEO_CODEC_COPY
+from .models import HomeKitEntryData as HomeKitEntryData
 from .util import async_find_next_available_port as async_find_next_available_port, state_needs_accessory_mode as state_needs_accessory_mode
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components import device_automation as device_automation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_DEVICES as CONF_DEVICES, CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT
+from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_DEVICES as CONF_DEVICES, CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er, selector as selector
 from homeassistant.loader import async_get_integrations as async_get_integrations
@@ -13,6 +14,8 @@ from typing import Any, Final, TypedDict, override
 CONF_CAMERA_AUDIO: str
 CONF_CAMERA_COPY: str
 CONF_INCLUDE_EXCLUDE_MODE: str
+CLIMATE_TYPE_AUTOMATIC: str
+CLIMATE_ACCESSORY_NAMES: Incomplete
 MODE_INCLUDE: str
 MODE_EXCLUDE: str
 INCLUDE_EXCLUDE_MODES: Incomplete
@@ -36,7 +39,9 @@ def _make_entity_filter(include_domains: list[str] | None = None, include_entiti
 async def _async_domain_names(hass: HomeAssistant, domains: list[str]) -> str: ...
 @callback
 def _async_build_entities_filter(domains: list[str], entities: list[str]) -> EntityFilterDict: ...
-def _async_cameras_from_entities(entities: list[str]) -> list[str]: ...
+def _async_entities_in_domain(entities: list[str], domain: str) -> list[str]: ...
+@callback
+def _async_included_domain_entities(hass: HomeAssistant, entity_filter: EntityFilterDict, entities: list[str], domain: str) -> list[str]: ...
 async def _async_name_to_type_map(hass: HomeAssistant) -> dict[str, str]: ...
 
 class HomeKitConfigFlow(ConfigFlow, domain=DOMAIN):
@@ -63,7 +68,12 @@ class HomeKitConfigFlow(ConfigFlow, domain=DOMAIN):
 class OptionsFlowHandler(OptionsFlow):
     hk_options: dict[str, Any]
     included_cameras: list[str]
+    included_climates: list[str]
+    _climate_choices: dict[str, str]
     def __init__(self) -> None: ...
+    async def async_step_climate(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @callback
+    def _async_current_climate_accessories(self) -> dict[str, str]: ...
     async def async_step_yaml(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_bridged_device_triggers(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_cameras(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

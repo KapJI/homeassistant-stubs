@@ -5,7 +5,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigSuben
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 
 CONFIG_SCHEMA: Incomplete
 PLATFORMS: list[Platform]

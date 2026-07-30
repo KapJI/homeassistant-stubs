@@ -13,8 +13,8 @@ type MonzoConfigEntry = ConfigEntry[MonzoCoordinator]
 
 @dataclass
 class MonzoData:
-    accounts: list[dict[str, Any]]
-    pots: list[dict[str, Any]]
+    accounts: dict[str, dict[str, Any]]
+    pots: dict[str, dict[str, Any]]
 
 class MonzoCoordinator(DataUpdateCoordinator[MonzoData]):
     config_entry: MonzoConfigEntry

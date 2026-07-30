@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import NutConfigEntry as NutConfigEntry
 from _typeshed import Incomplete
-from homeassistant.components.diagnostics import async_redact_data as async_redact_data
+from homeassistant.components.diagnostics import async_redact_data as async_redact_data, device_entry_as_dict as device_entry_as_dict, entity_entry_as_dict as entity_entry_as_dict
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from typing import Any

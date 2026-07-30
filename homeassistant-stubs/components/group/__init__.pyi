@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_ICON as ATTR_ICON, ATTR_NAME as ATTR_NAME, CONF_ENTITIES as CONF_ENTITIES, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.helpers.group import expand_entity_ids as _expand_entity_ids, get_entity_ids as _get_entity_ids
+from homeassistant.helpers.group import expand_entity_ids as _expand_entity_ids, get_entity_ids as _get_entity_ids, get_group_entities as get_group_entities
 from homeassistant.helpers.reload import async_reload_integration_platforms as async_reload_integration_platforms
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any

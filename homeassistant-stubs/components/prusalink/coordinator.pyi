@@ -12,7 +12,7 @@ from typing import TypeVar, override
 
 _LOGGER: Incomplete
 _MINIMUM_REFRESH_INTERVAL: float
-T = TypeVar('T', bound=PrinterStatus | LegacyPrinterStatus | JobInfo | None | PrinterInfo | VersionInfo)
+T = TypeVar('T', bound=PrinterStatus | LegacyPrinterStatus | JobInfo | PrinterInfo | VersionInfo | None)
 type PrusaLinkConfigEntry = ConfigEntry[dict[str, PrusaLinkUpdateCoordinator]]
 
 class PrusaLinkUpdateCoordinator(DataUpdateCoordinator[T], ABC, metaclass=abc.ABCMeta):

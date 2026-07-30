@@ -5,3 +5,4 @@ from typing import Final
 DOMAIN: Final[str]
 PLATFORMS: Final[Incomplete]
 DEFAULT_NAME: Final[str]
+CONF_PHASE: Final[str]

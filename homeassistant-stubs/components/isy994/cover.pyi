@@ -1,4 +1,4 @@
-from .const import UOM_8_BIT_RANGE as UOM_8_BIT_RANGE, _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER, UOM_8_BIT_RANGE as UOM_8_BIT_RANGE
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete

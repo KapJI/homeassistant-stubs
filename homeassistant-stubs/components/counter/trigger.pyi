@@ -1,6 +1,6 @@
-from . import CONF_INITIAL as CONF_INITIAL, DOMAIN as DOMAIN
+from . import DOMAIN as DOMAIN
+from .const import CounterEntityStateAttribute as CounterEntityStateAttribute
 from _typeshed import Incomplete
-from homeassistant.const import CONF_MAXIMUM as CONF_MAXIMUM, CONF_MINIMUM as CONF_MINIMUM
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.trigger import ENTITY_STATE_TRIGGER_SCHEMA as ENTITY_STATE_TRIGGER_SCHEMA, EntityTriggerBase as EntityTriggerBase, NotTriggeredReasonReporter as NotTriggeredReasonReporter, Trigger as Trigger

@@ -12,6 +12,7 @@ SCAN_INTERVAL: Incomplete
 @dataclass
 class VeluxLimitationData:
     limitation_min: Position
+    limitation_max: Position
 
 class VeluxLimitationCoordinator(DataUpdateCoordinator[VeluxLimitationData | None]):
     node: Incomplete

@@ -3,7 +3,7 @@ from .entity import TankerkoenigCoordinatorEntity as TankerkoenigCoordinatorEnti
 from _typeshed import Incomplete
 from aiotankerkoenig import PriceInfo as PriceInfo, Station as Station
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override

@@ -3,14 +3,15 @@ from aiohttp import web
 from collections.abc import Callable as Callable, Sequence
 from dataclasses import dataclass
 from homeassistant.components.alarm_control_panel import AlarmControlPanelState as AlarmControlPanelState
-from homeassistant.components.climate import ATTR_CURRENT_TEMPERATURE as ATTR_CURRENT_TEMPERATURE, ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_FAN_MODES as ATTR_FAN_MODES, ATTR_HVAC_ACTION as ATTR_HVAC_ACTION, ATTR_HVAC_MODES as ATTR_HVAC_MODES, ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, HVACAction as HVACAction
-from homeassistant.components.cover import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION
-from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, ATTR_PRESET_MODES as ATTR_PRESET_MODES, DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE
+from homeassistant.components.climate import ClimateEntityCapabilityAttribute as ClimateEntityCapabilityAttribute, ClimateEntityStateAttribute as ClimateEntityStateAttribute, HVACAction as HVACAction
+from homeassistant.components.cover import CoverEntityStateAttribute as CoverEntityStateAttribute
+from homeassistant.components.fan import DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, FanEntityCapabilityAttribute as FanEntityCapabilityAttribute, FanEntityStateAttribute as FanEntityStateAttribute
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
-from homeassistant.components.humidifier import ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_HUMIDITY as ATTR_HUMIDITY
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
+from homeassistant.components.humidifier import HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute, HumidifierEntityStateAttribute as HumidifierEntityStateAttribute
+from homeassistant.components.light import LightEntityStateAttribute as LightEntityStateAttribute
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, ATTR_MODE as ATTR_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, PERCENTAGE as PERCENTAGE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature
+from homeassistant.components.water_heater import WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute, WaterHeaterStateAttribute as WaterHeaterStateAttribute
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONTENT_TYPE_TEXT_PLAIN as CONTENT_TYPE_TEXT_PLAIN, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EntityStateAttribute as EntityStateAttribute, PERCENTAGE as PERCENTAGE, STATE_CLOSED as STATE_CLOSED, STATE_CLOSING as STATE_CLOSING, STATE_ON as STATE_ON, STATE_OPEN as STATE_OPEN, STATE_OPENING as STATE_OPENING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers import area_registry as ar, device_registry as dr, entity_registry as er, entityfilter as entityfilter, floor_registry as fr
 from homeassistant.helpers.area_registry import AreaEntry as AreaEntry, EVENT_AREA_REGISTRY_UPDATED as EVENT_AREA_REGISTRY_UPDATED, EventAreaRegistryUpdatedData as EventAreaRegistryUpdatedData

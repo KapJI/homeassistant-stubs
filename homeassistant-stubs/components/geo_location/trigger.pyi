@@ -1,4 +1,5 @@
 from . import DOMAIN as DOMAIN
+from .const import GeolocationEntityStateAttribute as GeolocationEntityStateAttribute
 from _typeshed import Incomplete
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_PLATFORM as CONF_PLATFORM, CONF_SOURCE as CONF_SOURCE, CONF_ZONE as CONF_ZONE
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HassJob as HassJob, HomeAssistant as HomeAssistant, State as State, callback as callback

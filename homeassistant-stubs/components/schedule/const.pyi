@@ -1,8 +1,16 @@
 from _typeshed import Incomplete
+from enum import StrEnum
 from typing import Final
 
 DOMAIN: Final[str]
 LOGGER: Incomplete
+
+class ScheduleEntityCapabilityAttribute(StrEnum):
+    EDITABLE = 'editable'
+
+class ScheduleEntityStateAttribute(StrEnum):
+    NEXT_EVENT = 'next_event'
+
 CONF_DATA: Final[str]
 CONF_FRIDAY: Final[str]
 CONF_FROM: Final[str]

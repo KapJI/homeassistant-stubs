@@ -1,7 +1,7 @@
 from . import MusicAssistantConfigEntry as MusicAssistantConfigEntry
 from .const import ATTR_ACTIVE as ATTR_ACTIVE, ATTR_ACTIVE_QUEUE as ATTR_ACTIVE_QUEUE, ATTR_CURRENT_INDEX as ATTR_CURRENT_INDEX, ATTR_CURRENT_ITEM as ATTR_CURRENT_ITEM, ATTR_ELAPSED_TIME as ATTR_ELAPSED_TIME, ATTR_ITEMS as ATTR_ITEMS, ATTR_MASS_PLAYER_TYPE as ATTR_MASS_PLAYER_TYPE, ATTR_NEXT_ITEM as ATTR_NEXT_ITEM, ATTR_QUEUE_ID as ATTR_QUEUE_ID, ATTR_RADIO_MODE as ATTR_RADIO_MODE, ATTR_REPEAT_MODE as ATTR_REPEAT_MODE, ATTR_SHUFFLE_ENABLED as ATTR_SHUFFLE_ENABLED, DOMAIN as DOMAIN
 from .entity import MusicAssistantEntity as MusicAssistantEntity
-from .helpers import catch_musicassistant_error as catch_musicassistant_error
+from .helpers import async_resolve_mass_username as async_resolve_mass_username, catch_musicassistant_error as catch_musicassistant_error
 from .media_browser import async_browse_media as async_browse_media, async_search_media as async_search_media
 from .schemas import QUEUE_DETAILS_SCHEMA as QUEUE_DETAILS_SCHEMA, queue_item_dict_from_mass_item as queue_item_dict_from_mass_item
 from _typeshed import Incomplete

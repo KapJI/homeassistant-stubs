@@ -1,19 +1,11 @@
 from .const import DOMAIN as DOMAIN
+from .helpers import MOON_PHASES as MOON_PHASES, moon_phase as moon_phase
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-
-STATE_FIRST_QUARTER: str
-STATE_FULL_MOON: str
-STATE_LAST_QUARTER: str
-STATE_NEW_MOON: str
-STATE_WANING_CRESCENT: str
-STATE_WANING_GIBBOUS: str
-STATE_WAXING_CRESCENT: str
-STATE_WAXING_GIBBOUS: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

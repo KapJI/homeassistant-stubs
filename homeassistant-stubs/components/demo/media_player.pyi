@@ -134,9 +134,11 @@ class DemoTVShowPlayer(AbstractDemoPlayer):
     def select_source(self, source: str) -> None: ...
 
 class DemoBrowsePlayer(AbstractDemoPlayer):
-    _attr_supported_features = BROWSE_PLAYER_SUPPORT
+    _attr_supported_features = BROWSE_PLAYER_SUPPORT | SEARCH_PLAYER_SUPPORT
     @override
     async def async_browse_media(self, media_content_type: MediaType | str | None = None, media_content_id: str | None = None) -> BrowseMedia: ...
+    @override
+    async def async_search_media(self, query: SearchMediaQuery) -> SearchMedia: ...
 
 class DemoGroupPlayer(AbstractDemoPlayer):
     _attr_supported_features: Incomplete

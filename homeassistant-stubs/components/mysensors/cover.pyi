@@ -2,7 +2,7 @@ from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .entity import MySensorsChildEntity as MySensorsChildEntity
 from enum import Enum
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverEntity as CoverEntity
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntity as CoverEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -40,3 +40,14 @@ class MySensorsCover(MySensorsChildEntity, CoverEntity):
     async def async_set_cover_position(self, **kwargs: Any) -> None: ...
     @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
+    @property
+    @override
+    def current_cover_tilt_position(self) -> int | None: ...
+    @override
+    async def async_set_cover_tilt_position(self, **kwargs: Any) -> None: ...
+    @override
+    async def async_open_cover_tilt(self, **kwargs: Any) -> None: ...
+    @override
+    async def async_close_cover_tilt(self, **kwargs: Any) -> None: ...
+    @override
+    async def async_stop_cover_tilt(self, **kwargs: Any) -> None: ...

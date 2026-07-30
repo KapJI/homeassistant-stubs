@@ -2,7 +2,7 @@ from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudConfig
 from .const import CLIMATE_PRESET_SCHEDULE as CLIMATE_PRESET_SCHEDULE, SMART_RADIATOR_THERMOSTAT_AFTER_COMMAND_REFRESH as SMART_RADIATOR_THERMOSTAT_AFTER_COMMAND_REFRESH
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
-from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
+from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, ClimateEntityStateAttribute as ClimateEntityStateAttribute, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

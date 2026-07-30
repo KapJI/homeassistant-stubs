@@ -7,7 +7,7 @@ from homeassistant.components import hassio as hassio
 from homeassistant.components.api import ATTR_INSTALLATION_TYPE as ATTR_INSTALLATION_TYPE
 from homeassistant.components.labs import async_is_preview_feature_enabled as async_is_preview_feature_enabled
 from homeassistant.config_entries import SOURCE_IGNORE as SOURCE_IGNORE
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_DOMAIN as ATTR_DOMAIN, BASE_PLATFORMS as BASE_PLATFORMS
+from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, BASE_PLATFORMS as BASE_PLATFORMS, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_release_channel as get_release_channel
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

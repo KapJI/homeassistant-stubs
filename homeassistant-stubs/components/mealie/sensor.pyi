@@ -5,6 +5,7 @@ from aiomealie import Statistics as Statistics
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -21,6 +22,7 @@ SENSOR_TYPES: tuple[MealieStatisticsSensorEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: MealieConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MealieStatisticSensors(MealieEntity, SensorEntity):
+    _attr_entity_category: Incomplete
     entity_description: MealieStatisticsSensorEntityDescription
     coordinator: MealieStatisticsCoordinator
     _attr_translation_key: Incomplete

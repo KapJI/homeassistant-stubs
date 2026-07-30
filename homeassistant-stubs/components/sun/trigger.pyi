@@ -1,7 +1,7 @@
 import voluptuous as vol
 from .const import DOMAIN as DOMAIN, ELEVATION_ASTRONOMICAL as ELEVATION_ASTRONOMICAL, ELEVATION_CIVIL as ELEVATION_CIVIL, ELEVATION_NAUTICAL as ELEVATION_NAUTICAL, STATE_ATTR_ELEVATION as STATE_ATTR_ELEVATION
 from _typeshed import Incomplete
-from datetime import datetime, timedelta
+from datetime import datetime
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_FOR as CONF_FOR, CONF_OFFSET as CONF_OFFSET, CONF_OPTIONS as CONF_OPTIONS, CONF_TYPE as CONF_TYPE, DEGREE as DEGREE, EVENT_CORE_CONFIG_UPDATE as EVENT_CORE_CONFIG_UPDATE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.automation import DomainSpec as DomainSpec, move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
@@ -19,6 +19,10 @@ _SUN_EVENT_DUSK: str
 _TWILIGHT_CIVIL: str
 _TWILIGHT_NAUTICAL: str
 _TWILIGHT_ASTRONOMICAL: str
+CONF_OFFSET_TYPE: str
+OFFSET_TYPE_BEFORE: str
+OFFSET_TYPE_AFTER: str
+_OFFSET_OPTIONS: dict[vol.Marker, Any]
 _TWILIGHT_ELEVATIONS: Incomplete
 _SUN_ENTITY_ID: Incomplete
 _ELEVATION_DOMAIN_SPECS: Incomplete
@@ -45,6 +49,7 @@ class SunEventTrigger(Trigger):
     @classmethod
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     _options: Incomplete
+    _offset: Incomplete
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
     def _get_next_event(self, utc_point_in_time: datetime) -> datetime: ...
     def _action_payload(self) -> dict[str, Any]: ...
@@ -89,10 +94,7 @@ class LegacySunTrigger(SunEventTrigger):
     @classmethod
     async def async_validate_complete_config(cls, hass: HomeAssistant, complete_config: ConfigType) -> ConfigType: ...
     _event: Incomplete
-    _offset: timedelta
     def __init__(self, hass: HomeAssistant, config: TriggerConfig) -> None: ...
-    @override
-    def _get_next_event(self, utc_point_in_time: datetime) -> datetime: ...
     @override
     def _action_payload(self) -> dict[str, Any]: ...
 

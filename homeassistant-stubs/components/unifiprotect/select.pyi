@@ -1,13 +1,13 @@
 from .const import DOMAIN as DOMAIN, TYPE_EMPTY_VALUE as TYPE_EMPTY_VALUE
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectNVREntity as ProtectNVREntity, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
-from .utils import async_get_light_motion_current as async_get_light_motion_current, async_ufp_instance_command as async_ufp_instance_command
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectNVREntity as ProtectNVREntity, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
+from .utils import async_get_light_motion_current_public as async_get_light_motion_current_public, async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
 from dataclasses import dataclass
 from enum import Enum
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
@@ -15,6 +15,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import Any, override
 from uiprotect.api import ProtectApiClient as ProtectApiClient
 from uiprotect.data import Camera, Light, ModelType, NVR as NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor, Viewer
+from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
 
 _LOGGER: Incomplete
 _KEY_LIGHT_MOTION: str
@@ -52,7 +53,9 @@ async def _set_liveview(obj: Viewer, liveview_id: str) -> None: ...
 async def _set_ptz_patrol(obj: Camera, patrol_slot: str) -> None: ...
 
 _HDR_MODE_MAP: Incomplete
+_HDR_MODE_MAP_INVERSE: Incomplete
 
+def _get_hdr_mode_public(obj: PublicDeviceModel) -> str | None: ...
 async def _set_hdr_mode(obj: Camera, mode: str) -> None: ...
 
 PTZ_PATROL_DESCRIPTION: Incomplete

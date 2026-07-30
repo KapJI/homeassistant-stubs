@@ -3,7 +3,7 @@ from .entity import TeslemetryRootEntity as TeslemetryRootEntity, TeslemetryVehi
 from .helpers import handle_vehicle_command as handle_vehicle_command
 from .models import TeslemetryVehicleData as TeslemetryVehicleData
 from _typeshed import Incomplete
-from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState
+from homeassistant.components.media_player import MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerEntityStateAttribute as MediaPlayerEntityStateAttribute, MediaPlayerState as MediaPlayerState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity

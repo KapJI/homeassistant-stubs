@@ -2,6 +2,7 @@ import av
 import av.audio
 import av.container
 import av.stream
+import contextlib
 from . import redact_credentials as redact_credentials
 from .const import AUDIO_CODECS as AUDIO_CODECS, HLS_PROVIDER as HLS_PROVIDER, MAX_MISSING_DTS as MAX_MISSING_DTS, MAX_TIMESTAMP_GAP as MAX_TIMESTAMP_GAP, PACKETS_TO_WAIT_FOR_AUDIO as PACKETS_TO_WAIT_FOR_AUDIO, SEGMENT_CONTAINER_FORMAT as SEGMENT_CONTAINER_FORMAT, SOURCE_TIMEOUT as SOURCE_TIMEOUT, StreamClientError as StreamClientError
 from .core import KeyFrameConverter as KeyFrameConverter, Part as Part, STREAM_SETTINGS_NON_LL_HLS as STREAM_SETTINGS_NON_LL_HLS, Segment as Segment, StreamOutput as StreamOutput, StreamSettings as StreamSettings
@@ -70,6 +71,9 @@ class StreamMuxer:
     def flush(self, packet: av.Packet, last_part: bool) -> None: ...
     def close(self) -> None: ...
 
+@contextlib.contextmanager
+def closing_stream_worker(container: InputContainer, muxer: StreamMuxer) -> Generator[None]: ...
+
 class PeekIterator(Iterator[av.Packet]):
     _iterator: Incomplete
     _buffer: deque[av.Packet]
@@ -81,6 +85,8 @@ class PeekIterator(Iterator[av.Packet]):
     def __next__(self) -> av.Packet: ...
     def _pop_buffer(self) -> av.Packet: ...
     def peek(self) -> Generator[av.Packet]: ...
+
+def repair_initial_missing_dts(packets: PeekIterator) -> None: ...
 
 class TimestampValidator:
     _last_dts: dict[av.stream.Stream, int | float]

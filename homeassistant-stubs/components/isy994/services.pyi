@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_CODE as CONF_CODE, CONF_COMMAND as CONF_COMMAND, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT

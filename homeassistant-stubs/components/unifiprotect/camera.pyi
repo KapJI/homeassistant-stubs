@@ -1,23 +1,28 @@
-from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DOMAIN as DOMAIN
+from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from .utils import async_ufp_instance_command as async_ufp_instance_command, get_camera_base_name as get_camera_base_name
 from _typeshed import Incomplete
 from homeassistant.components.camera import Camera as Camera, CameraEntityFeature as CameraEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import entity_platform as entity_platform
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from typing import override
-from uiprotect.data import Camera as UFPCamera, CameraChannel as CameraChannel, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
+from uiprotect.data import Camera as UFPCamera, ChannelQuality, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicDeviceModel as PublicDeviceModel
+from uiprotect.data.public_devices import PublicCamera
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
+_MAIN_QUALITIES: Incomplete
 
 @callback
-def _create_rtsp_repair(hass: HomeAssistant, entry: UFPConfigEntry, camera: UFPCamera) -> None: ...
+def _create_rtsp_repair(hass: HomeAssistant, entry: UFPConfigEntry, public: PublicCamera) -> None: ...
 @callback
-def _async_camera_entities(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None) -> list[ProtectDeviceEntity]: ...
+def _async_camera_entities(hass: HomeAssistant, entry: UFPConfigEntry, data: ProtectData, ufp_device: UFPCamera | None = None, public_device: PublicCamera | None = None) -> list[ProtectDeviceEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 _DISABLE_FEATURE: Incomplete
@@ -26,17 +31,26 @@ _ENABLE_FEATURE: Incomplete
 class ProtectCamera(ProtectDeviceEntity, Camera):
     device: UFPCamera
     _state_attrs: Incomplete
-    channel: Incomplete
+    _public: Incomplete
+    _public_missing: bool
+    _private: Incomplete
+    _quality: Incomplete
+    _is_package: Incomplete
+    _channel_id: Incomplete
     _disable_stream: Incomplete
     _last_image: bytes | None
     _attr_unique_id: Incomplete
     _attr_name: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, data: ProtectData, camera: UFPCamera, channel: CameraChannel, is_default: bool, disable_stream: bool) -> None: ...
+    def __init__(self, data: ProtectData, public: PublicCamera, private: UFPCamera | None, quality: ChannelQuality, is_default: bool, disable_stream: bool) -> None: ...
     _attr_supported_features: Incomplete
     _stream_source: Incomplete
     @callback
     def _async_set_stream_source(self) -> None: ...
+    _attr_device_info: Incomplete
+    @callback
+    @override
+    def _async_set_device_info(self) -> None: ...
     _attr_motion_detection_enabled: Incomplete
     _attr_is_recording: Incomplete
     _attr_available: Incomplete
@@ -44,6 +58,10 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     @callback
     @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
+    @callback
+    def _async_public_camera_updated(self, obj: PublicDeviceModel | None) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
     @override
     async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...
     @override
@@ -54,3 +72,4 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     @async_ufp_instance_command
     @override
     async def async_disable_motion_detection(self) -> None: ...
+    async def _async_set_motion_detection(self, enabled: bool) -> None: ...

@@ -4,7 +4,7 @@ from homeassistant.components.homeassistant import exposed_entities as exposed_e
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.helper_integration import async_handle_source_entity_changes as async_handle_source_entity_changes, async_remove_helper_config_entry_from_source_device as async_remove_helper_config_entry_from_source_device
+from homeassistant.helpers.helper_integration import async_handle_source_entity_changes as async_handle_source_entity_changes, async_remove_helper_devices as async_remove_helper_devices
 
 _LOGGER: Incomplete
 

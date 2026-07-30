@@ -1,10 +1,9 @@
 import voluptuous as vol
 from . import condition as condition
-from .condition import _IN_ZONES_DOMAINS as _IN_ZONES_DOMAINS
 from .const import DOMAIN as DOMAIN
+from .helpers import get_in_zones_attribute as get_in_zones_attribute
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ATTR_IN_ZONES as ATTR_IN_ZONES
-from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_FOR as CONF_FOR, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, CONF_ZONE as CONF_ZONE
+from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_FOR as CONF_FOR, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, CONF_ZONE as CONF_ZONE, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import location as location
 from homeassistant.helpers.automation import DomainSpec as DomainSpec, move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options

@@ -1,6 +1,6 @@
 from .coordinator import AcaiaConfigEntry as AcaiaConfigEntry
 from .entity import AcaiaEntity as AcaiaEntity
-from aioacaia.acaiascale import AcaiaScale as AcaiaScale
+from aioacaia import AcaiaScale as AcaiaScale
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription

@@ -1,8 +1,7 @@
-from .const import DSL_CONNECTION as DSL_CONNECTION
+from .const import DSL_CONNECTION as DSL_CONNECTION, LOGGER as LOGGER
 from .coordinator import FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from .models import ConnectionInfo as ConnectionInfo
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
@@ -15,7 +14,6 @@ from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.util.dt import utcnow as utcnow
 from typing import override
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 def _retrieve_device_uptime_state(status: FritzStatus, last_value: datetime | None) -> datetime: ...

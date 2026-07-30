@@ -47,6 +47,10 @@ class TodoItem:
     description: str | None = ...
     completed: datetime.datetime | None = ...
 
+_TODO_ITEM_FIELD_NAMES: tuple[str, ...]
+
+def _serialize_todo_item(item: TodoItem) -> dict[str, Any]: ...
+
 CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 
 class TodoListEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):

@@ -11,3 +11,4 @@ PATH_HASPH: Incomplete
 PATH_HASRX: Incomplete
 PATH_HASUV: Incomplete
 PATH_HASHIDRO: Incomplete
+SIGNAL_NEW_POOL: Incomplete

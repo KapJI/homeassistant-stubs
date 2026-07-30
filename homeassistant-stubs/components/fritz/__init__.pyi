@@ -1,4 +1,4 @@
-from .const import CONF_FEATURE_DEVICE_TRACKING as CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_SSL as DEFAULT_SSL, DOMAIN as DOMAIN, FRITZ_AUTH_EXCEPTIONS as FRITZ_AUTH_EXCEPTIONS, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, PLATFORMS as PLATFORMS
+from .const import CONF_FEATURE_DEVICE_TRACKING as CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_SSL as DEFAULT_SSL, DOMAIN as DOMAIN, FRITZ_AUTH_EXCEPTIONS as FRITZ_AUTH_EXCEPTIONS, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, LOGGER as LOGGER, PLATFORMS as PLATFORMS
 from .coordinator import AvmWrapper as AvmWrapper, FRITZ_DATA_KEY as FRITZ_DATA_KEY, FritzConfigEntry as FritzConfigEntry, FritzData as FritzData
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
@@ -7,7 +7,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.typing import ConfigType as ConfigType
 
-_LOGGER: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

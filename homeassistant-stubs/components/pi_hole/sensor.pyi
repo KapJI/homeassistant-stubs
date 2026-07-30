@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from hole import Hole as Hole
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
-from homeassistant.const import CONF_NAME as CONF_NAME, PERCENTAGE as PERCENTAGE
+from homeassistant.const import PERCENTAGE as PERCENTAGE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType

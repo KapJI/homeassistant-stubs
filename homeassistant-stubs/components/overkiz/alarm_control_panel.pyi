@@ -45,6 +45,7 @@ def _state_alarm_panel_controller(select_state: Callable[[str], OverkizStateType
 
 ALARM_DESCRIPTIONS: list[OverkizAlarmDescription]
 SUPPORTED_DEVICES: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

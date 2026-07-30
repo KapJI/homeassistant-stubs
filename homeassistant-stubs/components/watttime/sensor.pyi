@@ -3,7 +3,7 @@ from .coordinator import WattTimeConfigEntry as WattTimeConfigEntry, WattTimeCoo
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, PERCENTAGE as PERCENTAGE, UnitOfMass as UnitOfMass
+from homeassistant.const import CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, EntityStateAttribute as EntityStateAttribute, PERCENTAGE as PERCENTAGE, UnitOfMass as UnitOfMass
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

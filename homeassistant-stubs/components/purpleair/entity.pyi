@@ -3,7 +3,7 @@ from .coordinator import PurpleAirConfigEntry as PurpleAirConfigEntry, PurpleAir
 from _typeshed import Incomplete
 from aiopurpleair.models.sensors import SensorModel as SensorModel
 from collections.abc import Mapping
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP
+from homeassistant.const import CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, EntityStateAttribute as EntityStateAttribute
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, override

@@ -1,5 +1,6 @@
 from .. import OverkizDataConfigEntry as OverkizDataConfigEntry
 from ..entity import OverkizEntity as OverkizEntity
+from .atlantic_domestic_hot_water_production_io_component import AtlanticDomesticHotWaterProductionIOComponent as AtlanticDomesticHotWaterProductionIOComponent
 from .atlantic_domestic_hot_water_production_mlb_component import AtlanticDomesticHotWaterProductionMBLComponent as AtlanticDomesticHotWaterProductionMBLComponent
 from .atlantic_domestic_hot_water_production_v2_ce_flat_c2_io_component import AtlanticDomesticHotWaterProductionV2CEFLATC2IOComponent as AtlanticDomesticHotWaterProductionV2CEFLATC2IOComponent
 from .atlantic_domestic_hot_water_production_v2_io_component import AtlanticDomesticHotWaterProductionV2IOComponent as AtlanticDomesticHotWaterProductionV2IOComponent
@@ -10,6 +11,8 @@ from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

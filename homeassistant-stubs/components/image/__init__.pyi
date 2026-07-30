@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -59,7 +59,7 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _entity_component_unrecorded_attributes: Incomplete
     _attr_content_type: str
     _attr_image_last_updated: datetime | None
-    _attr_image_url: str | None | UndefinedType
+    _attr_image_url: str | UndefinedType | None
     _attr_should_poll: bool
     _attr_state: None
     _cached_image: Image | None
@@ -74,7 +74,7 @@ class ImageEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @cached_property
     def image_last_updated(self) -> datetime | None: ...
     @cached_property
-    def image_url(self) -> str | None | UndefinedType: ...
+    def image_url(self) -> str | UndefinedType | None: ...
     def image(self) -> bytes | None: ...
     async def _fetch_url(self, url: str) -> httpx.Response | None: ...
     async def _async_load_image_from_url(self, url: str) -> Image | None: ...

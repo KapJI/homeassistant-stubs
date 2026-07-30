@@ -1,7 +1,8 @@
 from .coordinator import AcaiaConfigEntry as AcaiaConfigEntry
 from .entity import AcaiaEntity as AcaiaEntity
 from _typeshed import Incomplete
-from aioacaia.acaiascale import AcaiaDeviceState as AcaiaDeviceState, AcaiaScale as AcaiaScale
+from aioacaia import AcaiaScale as AcaiaScale
+from aioacaia.scale import AcaiaDeviceState as AcaiaDeviceState
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorExtraStoredData as SensorExtraStoredData, SensorStateClass as SensorStateClass

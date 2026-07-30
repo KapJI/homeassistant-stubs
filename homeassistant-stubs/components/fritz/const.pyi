@@ -3,6 +3,8 @@ from enum import StrEnum
 from homeassistant.const import Platform as Platform
 from typing import Literal
 
+LOGGER: Incomplete
+
 class MeshRoles(StrEnum):
     NONE = 'none'
     MASTER = 'master'

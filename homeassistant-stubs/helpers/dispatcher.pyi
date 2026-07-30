@@ -8,7 +8,7 @@ from typing import Any, overload
 
 _LOGGER: Incomplete
 DATA_DISPATCHER: str
-type _DispatcherDataType[*_Ts] = dict[SignalType[*_Ts] | str, dict[Callable[[*_Ts], Any] | Callable[..., Any], HassJob[..., None | Coroutine[Any, Any, None]] | None]]
+type _DispatcherDataType[*_Ts] = dict[SignalType[*_Ts] | str, dict[Callable[[*_Ts], Any] | Callable[..., Any], HassJob[..., Coroutine[Any, Any, None] | None] | None]]
 
 @overload
 def dispatcher_connect[*_Ts](hass: HomeAssistant, signal: SignalType[*_Ts], target: Callable[[*_Ts], None]) -> Callable[[], None]: ...

@@ -1,4 +1,4 @@
-from .const import CONF_VEDO_PIN as CONF_VEDO_PIN, DEFAULT_PORT as DEFAULT_PORT, DEVICE_TYPE_LIST as DEVICE_TYPE_LIST, DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import CONF_VEDO_PIN as CONF_VEDO_PIN, DEFAULT_PORT as DEFAULT_PORT, DEVICE_TYPE_LIST as DEVICE_TYPE_LIST, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete
 from aiocomelit.api import ComelitCommonApi as ComelitCommonApi

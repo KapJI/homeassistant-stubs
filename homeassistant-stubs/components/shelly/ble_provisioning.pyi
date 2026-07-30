@@ -1,11 +1,9 @@
 import asyncio
-from _typeshed import Incomplete
+from .const import LOGGER as LOGGER
 from dataclasses import dataclass, field
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.util.hass_dict import HassKey as HassKey
-
-_LOGGER: Incomplete
 
 @dataclass
 class ProvisioningState:

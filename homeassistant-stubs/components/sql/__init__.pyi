@@ -1,4 +1,4 @@
-from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .const import CONF_ADDITIONAL_OPTIONS as CONF_ADDITIONAL_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .services import async_setup_services as async_setup_services
 from .util import redact_credentials as redact_credentials, validate_sql_select as validate_sql_select
 from _typeshed import Incomplete

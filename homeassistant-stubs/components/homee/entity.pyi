@@ -8,6 +8,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from pyHomee.model import HomeeAttribute as HomeeAttribute, HomeeNode as HomeeNode
 from typing import override
 
+_LOGGER: Incomplete
 FIRST_UNAVAILABLE_ATTRIBUTE_STATE: int
 
 class HomeeEntity(Entity):

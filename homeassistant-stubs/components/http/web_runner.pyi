@@ -2,22 +2,7 @@ import socket
 from _typeshed import Incomplete
 from aiohttp import web
 from pathlib import Path
-from ssl import SSLContext
 from typing import override
-
-class HomeAssistantTCPSite(web.BaseSite):
-    __slots__: Incomplete
-    _host: Incomplete
-    _port: Incomplete
-    _reuse_address: Incomplete
-    _reuse_port: Incomplete
-    def __init__(self, runner: web.BaseRunner, host: str | list[str] | None, port: int, *, ssl_context: SSLContext | None = None, backlog: int = 128, reuse_address: bool | None = None, reuse_port: bool | None = None) -> None: ...
-    @property
-    @override
-    def name(self) -> str: ...
-    _server: Incomplete
-    @override
-    async def start(self) -> None: ...
 
 class HomeAssistantUnixSite(web.BaseSite):
     __slots__: Incomplete

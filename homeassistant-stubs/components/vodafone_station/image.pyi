@@ -1,4 +1,4 @@
-from .const import _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry, VodafoneStationRouter as VodafoneStationRouter
 from _typeshed import Incomplete
 from homeassistant.components.image import ImageEntity as ImageEntity, ImageEntityDescription as ImageEntityDescription

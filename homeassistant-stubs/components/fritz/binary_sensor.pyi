@@ -1,7 +1,7 @@
+from .const import LOGGER as LOGGER
 from .coordinator import FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from .models import ConnectionInfo as ConnectionInfo
-from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
@@ -10,7 +10,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)

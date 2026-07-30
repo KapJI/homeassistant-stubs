@@ -18,16 +18,19 @@ from typing import Any, override
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class PortainerButtonDescription(ButtonEntityDescription):
-    press_action: Callable[[Portainer, int, str], Coroutine[Any, Any, None | DockerContainer]]
+class PortainerEndpointButtonDescription(ButtonEntityDescription):
+    press_action: Callable[[Portainer, int], Coroutine[Any, Any, DockerContainer | None]]
 
-ENDPOINT_BUTTONS: tuple[PortainerButtonDescription, ...]
-CONTAINER_BUTTONS: tuple[PortainerButtonDescription, ...]
+@dataclass(frozen=True, kw_only=True)
+class PortainerContainerButtonDescription(ButtonEntityDescription):
+    press_action: Callable[[Portainer, int, str], Coroutine[Any, Any, DockerContainer | None]]
+
+ENDPOINT_BUTTONS: tuple[PortainerEndpointButtonDescription, ...]
+CONTAINER_BUTTONS: tuple[PortainerContainerButtonDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class PortainerBaseButton(ButtonEntity, metaclass=abc.ABCMeta):
-    entity_description: PortainerButtonDescription
     coordinator: PortainerCoordinator
     @abstractmethod
     async def _async_press_call(self) -> None: ...
@@ -35,11 +38,11 @@ class PortainerBaseButton(ButtonEntity, metaclass=abc.ABCMeta):
     async def async_press(self) -> None: ...
 
 class PortainerEndpointButton(PortainerEndpointEntity, PortainerBaseButton):
-    entity_description: PortainerButtonDescription
+    entity_description: PortainerEndpointButtonDescription
     @override
     async def _async_press_call(self) -> None: ...
 
 class PortainerContainerButton(PortainerContainerEntity, PortainerBaseButton):
-    entity_description: PortainerButtonDescription
+    entity_description: PortainerContainerButtonDescription
     @override
     async def _async_press_call(self) -> None: ...

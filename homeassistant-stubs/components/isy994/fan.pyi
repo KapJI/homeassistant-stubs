@@ -1,4 +1,4 @@
-from .const import _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER
 from .entity import ISYNodeEntity as ISYNodeEntity, ISYProgramEntity as ISYProgramEntity
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete

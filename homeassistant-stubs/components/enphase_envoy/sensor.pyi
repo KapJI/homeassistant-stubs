@@ -1,9 +1,9 @@
 import datetime
 from .const import DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from .entity import EnvoyBaseEntity as EnvoyBaseEntity
+from .entity import EnvoyACBAggregateEntity as EnvoyACBAggregateEntity, EnvoyACBBatteryEntity as EnvoyACBBatteryEntity, EnvoyBaseEntity as EnvoyBaseEntity
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
+from collections.abc import Callable as Callable, Iterable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfApparentPower as UnitOfApparentPower, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pyenphase import EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
+from pyenphase import EnvoyACB as EnvoyACB, EnvoyACBPower as EnvoyACBPower, EnvoyBatteryAggregate as EnvoyBatteryAggregate, EnvoyC6CC as EnvoyC6CC, EnvoyCollar as EnvoyCollar, EnvoyEncharge as EnvoyEncharge, EnvoyEnchargeAggregate as EnvoyEnchargeAggregate, EnvoyEnchargePower as EnvoyEnchargePower, EnvoyEnpower as EnvoyEnpower, EnvoyInverter as EnvoyInverter, EnvoySystemConsumption as EnvoySystemConsumption, EnvoySystemProduction as EnvoySystemProduction
 from pyenphase.models.meters import CtMeterStatus, CtState as CtState, CtStatusFlags as CtStatusFlags, CtType, EnvoyMeterData as EnvoyMeterData
 from typing import override
 
@@ -101,6 +101,18 @@ class EnvoyAcbBatterySensorEntityDescription(SensorEntityDescription):
 
 ACB_BATTERY_POWER_SENSORS: Incomplete
 ACB_BATTERY_ENERGY_SENSORS: Incomplete
+
+@dataclass(frozen=True, kw_only=True)
+class EnvoyACBInventorySensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[EnvoyACB], int | str | datetime.datetime | None]
+
+ACB_INVENTORY_SENSORS: Incomplete
+ACB_AGGREGATE_SLEEP_STATE_MIXED: str
+ACB_AGGREGATE_SLEEP_STATES: Incomplete
+
+def aggregate_acb_sleep_state(acbs: Iterable[EnvoyACB]) -> str: ...
+
+ACB_AGGREGATE_SLEEP_STATE_SENSOR: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyAggregateBatterySensorEntityDescription(SensorEntityDescription):
@@ -208,11 +220,8 @@ class EnvoyEnpowerEntity(EnvoySensorBaseEntity):
     @override
     def native_value(self) -> datetime.datetime | int | float | None: ...
 
-class EnvoyAcbBatteryPowerEntity(EnvoySensorBaseEntity):
+class EnvoyAcbBatteryPowerEntity(EnvoyACBAggregateEntity, SensorEntity):
     entity_description: EnvoyAcbBatterySensorEntityDescription
-    _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
-    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EnvoyAcbBatterySensorEntityDescription) -> None: ...
     @property
     @override
     def native_value(self) -> int | str | None: ...
@@ -228,6 +237,17 @@ class AggregateBatteryEntity(EnvoySystemSensorEntity):
     @property
     @override
     def native_value(self) -> int: ...
+
+class EnvoyACBInventoryEntity(EnvoyACBBatteryEntity, SensorEntity):
+    entity_description: EnvoyACBInventorySensorEntityDescription
+    @property
+    @override
+    def native_value(self) -> int | str | datetime.datetime | None: ...
+
+class EnvoyACBAggregateSleepStateEntity(EnvoyACBAggregateEntity, SensorEntity):
+    @property
+    @override
+    def native_value(self) -> str | None: ...
 
 class EnvoyCollarEntity(EnvoySensorBaseEntity):
     entity_description: EnvoyCollarSensorEntityDescription

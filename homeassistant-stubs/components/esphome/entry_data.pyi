@@ -1,5 +1,5 @@
 import asyncio
-from .const import DOMAIN as DOMAIN
+from .const import CONF_NOISE_PSK as CONF_NOISE_PSK, DOMAIN as DOMAIN
 from .dashboard import async_get_dashboard as async_get_dashboard
 from _typeshed import Incomplete
 from aioesphomeapi import APIClient as APIClient, APIVersion, DeviceInfo, EntityInfo, EntityState, MediaPlayerSupportedFormat as MediaPlayerSupportedFormat, UserService
@@ -26,8 +26,6 @@ _SENTINEL: Incomplete
 SAVE_DELAY: int
 _LOGGER: Incomplete
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], Platform]
-
-def build_device_unique_id(mac: str, entity_info: EntityInfo) -> str: ...
 
 class StoreData(TypedDict, total=False):
     device_info: dict[str, Any]

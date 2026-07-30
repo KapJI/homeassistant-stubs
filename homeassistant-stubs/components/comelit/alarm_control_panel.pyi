@@ -1,3 +1,4 @@
+from .const import LOGGER as LOGGER
 from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerialBridge as ComelitSerialBridge, ComelitVedoSystem as ComelitVedoSystem
 from _typeshed import Incomplete
 from aiocomelit.api import ComelitVedoAreaObject
@@ -9,7 +10,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import override
 
 PARALLEL_UPDATES: int
-_LOGGER: Incomplete
 AWAY: str
 DISABLE: str
 HOME: str

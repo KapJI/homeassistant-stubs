@@ -16,6 +16,7 @@ KNX_ADDRESS: Final[str]
 CONF_INVERT: Final[str]
 CONF_KNX_EXPOSE: Final[str]
 CONF_KNX_INDIVIDUAL_ADDRESS: Final[str]
+CONF_VALUE: Final[str]
 CONF_KNX_CONNECTION_TYPE: Final[str]
 CONF_KNX_AUTOMATIC: Final[str]
 CONF_KNX_ROUTING: Final[str]
@@ -35,8 +36,18 @@ CONF_KNX_STATE_UPDATER: Final[str]
 CONF_KNX_DEFAULT_STATE_UPDATER: Final[bool]
 CONF_KNX_DEFAULT_RATE_LIMIT: Final[int]
 DEFAULT_ROUTING_IA: Final[str]
+CONF_KNX_TELEGRAM_DB_BACKEND: Final[str]
 CONF_KNX_TELEGRAM_DB_RETENTION_DAYS: Final[str]
 CONF_KNX_TELEGRAM_DB_LOAD_HOURS: Final[str]
+CONF_KNX_TELEGRAM_DB_POSTGRES_DSN: Final[str]
+CONF_KNX_TELEGRAM_DB_HOST: Final[str]
+CONF_KNX_TELEGRAM_DB_PORT: Final[str]
+CONF_KNX_TELEGRAM_DB_USER: Final[str]
+CONF_KNX_TELEGRAM_DB_PASSWORD: Final[str]
+CONF_KNX_TELEGRAM_DB_DATABASE: Final[str]
+CONF_KNX_TELEGRAM_DB_TLS: Final[str]
+KNX_TELEGRAM_BACKEND_SQLITE: Final[str]
+KNX_TELEGRAM_BACKEND_POSTGRES: Final[str]
 KNX_TELEGRAM_DB_RETENTION_DEFAULT: Final[int]
 KNX_TELEGRAM_LOAD_HOURS_DEFAULT: Final[int]
 KNX_TELEGRAM_DB_PATH_SQLITE: Final[str]
@@ -48,6 +59,7 @@ CONF_KNX_KNXKEY_PASSWORD: Final[str]
 CONF_KNX_SECURE_USER_ID: Final[str]
 CONF_KNX_SECURE_USER_PASSWORD: Final[str]
 CONF_KNX_SECURE_DEVICE_AUTHENTICATION: Final[str]
+CONF_DEFAULT_ENTITY_ID: Final[str]
 CONF_CONTEXT_TIMEOUT: Final[str]
 CONF_IGNORE_INTERNAL_STATE: Final[str]
 CONF_PAYLOAD_LENGTH: Final[str]
@@ -94,6 +106,8 @@ class KNXConfigEntryOptions(TypedDict, total=False):
     rate_limit: int
     telegram_db_retention_days: int
     telegram_db_load_hours: int
+    telegram_db_backend: str
+    telegram_db_postgres_dsn: str
 
 class ColorTempModes(Enum):
     ABSOLUTE = '7.600'

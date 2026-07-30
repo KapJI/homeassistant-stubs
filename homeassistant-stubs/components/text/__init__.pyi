@@ -1,5 +1,5 @@
 import re
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, TextEntityCapabilityAttribute as TextEntityCapabilityAttribute
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from enum import StrEnum
@@ -8,7 +8,7 @@ from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
 from typing import Any, final, override
 
-__all__ = ['DOMAIN', 'TextEntity', 'TextEntityDescription', 'TextMode']
+__all__ = ['DOMAIN', 'TextEntity', 'TextEntityCapabilityAttribute', 'TextEntityDescription', 'TextMode']
 
 class TextMode(StrEnum):
     PASSWORD = 'password'

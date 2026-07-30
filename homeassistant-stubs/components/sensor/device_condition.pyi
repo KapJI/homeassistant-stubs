@@ -1,5 +1,5 @@
 import voluptuous as vol
-from . import ATTR_STATE_CLASS as ATTR_STATE_CLASS, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass
+from . import DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig, async_get_entity_registry_entry_or_raise as async_get_entity_registry_entry_or_raise
 from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE
@@ -48,6 +48,7 @@ CONF_IS_POWER_FACTOR: str
 CONF_IS_PRECIPITATION: str
 CONF_IS_PRECIPITATION_INTENSITY: str
 CONF_IS_PRESSURE: str
+CONF_IS_RADON: str
 CONF_IS_SPEED: str
 CONF_IS_REACTIVE_ENERGY: str
 CONF_IS_REACTIVE_POWER: str

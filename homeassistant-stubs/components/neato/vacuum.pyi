@@ -50,7 +50,6 @@ class NeatoConnectedVacuum(NeatoEntity, StateVacuumEntity):
     _robot_stats: dict[str, Any] | None
     def __init__(self, neato: NeatoHub, robot: Robot, mapdata: dict[str, Any] | None, persistent_maps: dict[str, Any] | None) -> None: ...
     _attr_activity: Incomplete
-    _attr_battery_level: Incomplete
     def update(self) -> None: ...
     @property
     @override

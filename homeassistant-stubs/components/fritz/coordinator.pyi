@@ -1,4 +1,4 @@
-from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_AUTH_EXCEPTIONS as FRITZ_AUTH_EXCEPTIONS, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, MeshRoles as MeshRoles, SCAN_INTERVAL as SCAN_INTERVAL
+from .const import CONF_OLD_DISCOVERY as CONF_OLD_DISCOVERY, DEFAULT_CONF_FEATURE_DEVICE_TRACKING as DEFAULT_CONF_FEATURE_DEVICE_TRACKING, DEFAULT_CONF_OLD_DISCOVERY as DEFAULT_CONF_OLD_DISCOVERY, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FRITZ_AUTH_EXCEPTIONS as FRITZ_AUTH_EXCEPTIONS, FRITZ_EXCEPTIONS as FRITZ_EXCEPTIONS, LOGGER as LOGGER, MeshRoles as MeshRoles, SCAN_INTERVAL as SCAN_INTERVAL
 from .helpers import ha_is_stopping as ha_is_stopping
 from .models import ConnectionInfo as ConnectionInfo, Device as Device, FritzDevice as FritzDevice, HostAttributes as HostAttributes, HostInfo as HostInfo, Interface as Interface
 from _typeshed import Incomplete
@@ -22,7 +22,6 @@ from homeassistant.util import slugify as slugify
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, TypedDict, override
 
-_LOGGER: Incomplete
 FRITZ_DATA_KEY: HassKey[FritzData]
 type FritzConfigEntry = ConfigEntry[AvmWrapper]
 

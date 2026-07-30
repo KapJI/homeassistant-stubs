@@ -10,7 +10,7 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later
 from typing import Any, override
-from uiprotect.data import Siren as Siren
+from uiprotect.data import PublicDeviceModel as PublicDeviceModel, Siren as Siren
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -38,7 +38,7 @@ class ProtectSiren(SirenEntity):
     @callback
     def _update_from_siren(self, siren: Siren) -> None: ...
     @callback
-    def _async_updated(self, siren: Siren) -> None: ...
+    def _async_updated(self, _obj: PublicDeviceModel | None) -> None: ...
     @callback
     def _async_scheduled_off(self, _now: datetime) -> None: ...
     @override

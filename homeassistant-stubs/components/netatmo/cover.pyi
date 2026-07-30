@@ -1,6 +1,6 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_COVER as NETATMO_CREATE_COVER
-from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .entity import NetatmoModuleEntity as NetatmoModuleEntity
+from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
+from .entity import NetatmoReachabilityEntity as NetatmoReachabilityEntity
 from .helper import device_type_to_str as device_type_to_str
 from _typeshed import Incomplete
 from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
@@ -11,10 +11,11 @@ from pyatmo import modules as NaModules
 from typing import Any, override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class NetatmoCover(NetatmoModuleEntity, CoverEntity):
+class NetatmoCover(NetatmoReachabilityEntity, CoverEntity):
     _attr_supported_features: Incomplete
     _attr_configuration_url = CONF_URL_CONTROL
     _attr_device_class: Incomplete

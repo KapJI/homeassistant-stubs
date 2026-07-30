@@ -1,4 +1,4 @@
-from .const import _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry, VodafoneStationDeviceInfo as VodafoneStationDeviceInfo, VodafoneStationRouter as VodafoneStationRouter
 from _typeshed import Incomplete
 from homeassistant.components.device_tracker import ScannerEntity as ScannerEntity

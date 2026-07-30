@@ -1,5 +1,5 @@
 from . import VistapoolConfigEntry as VistapoolConfigEntry
-from .const import PATH_HASCD as PATH_HASCD, PATH_HASCL as PATH_HASCL, PATH_HASHIDRO as PATH_HASHIDRO, PATH_HASPH as PATH_HASPH, PATH_HASRX as PATH_HASRX, PATH_HASUV as PATH_HASUV
+from .const import PATH_HASCD as PATH_HASCD, PATH_HASCL as PATH_HASCL, PATH_HASHIDRO as PATH_HASHIDRO, PATH_HASPH as PATH_HASPH, PATH_HASRX as PATH_HASRX, PATH_HASUV as PATH_HASUV, SIGNAL_NEW_POOL as SIGNAL_NEW_POOL
 from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCoordinator
 from .entity import VistapoolEntity as VistapoolEntity
 from _typeshed import Incomplete
@@ -7,7 +7,8 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 
@@ -24,6 +25,7 @@ class VistapoolSensorEntityDescription(SensorEntityDescription):
 
 SENSOR_DESCRIPTIONS: tuple[VistapoolSensorEntityDescription, ...]
 
+def _build_sensor_entities(coordinator: VistapoolDataUpdateCoordinator) -> list[VistapoolSensorEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: VistapoolConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VistapoolSensorEntity(VistapoolEntity, SensorEntity):

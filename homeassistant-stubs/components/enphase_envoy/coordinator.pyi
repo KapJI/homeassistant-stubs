@@ -1,5 +1,5 @@
 import datetime
-from .const import DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS, OPERATIONAL_RETRY_TIMEOUT as OPERATIONAL_RETRY_TIMEOUT, SETUP_RETRY_TIMEOUT as SETUP_RETRY_TIMEOUT
+from .const import ACB_SLEEP_SOC_BANDS as ACB_SLEEP_SOC_BANDS, CONF_MANUAL_TOKEN as CONF_MANUAL_TOKEN, DEFAULT_ACB_SLEEP_SOC_BAND as DEFAULT_ACB_SLEEP_SOC_BAND, DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS, OPERATIONAL_RETRY_TIMEOUT as OPERATIONAL_RETRY_TIMEOUT, SETUP_RETRY_TIMEOUT as SETUP_RETRY_TIMEOUT
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -14,8 +14,8 @@ from typing import Any, override
 
 SCAN_INTERVAL: Incomplete
 TOKEN_REFRESH_CHECK_INTERVAL: Incomplete
-STALE_TOKEN_THRESHOLD: Incomplete
-NOTIFICATION_ID: str
+STALE_TOKEN_THRESHOLD: int
+TOKEN_REPAIR_ID: str
 FIRMWARE_REFRESH_INTERVAL: Incomplete
 MAC_VERIFICATION_DELAY: Incomplete
 _LOGGER: Incomplete
@@ -26,15 +26,24 @@ class EnphaseUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     envoy_firmware: str
     config_entry: EnphaseConfigEntry
     interface: EnvoyInterfaceInformation | None
+    token_lifetime: int
     envoy: Incomplete
     username: Incomplete
     password: Incomplete
+    manual_token: Incomplete
     _setup_complete: bool
     _operational_timeout: bool
     _cancel_token_refresh: CALLBACK_TYPE | None
     _cancel_firmware_refresh: CALLBACK_TYPE | None
     _cancel_mac_verification: CALLBACK_TYPE | None
+    _acb_sleep_soc_band: str | None
     def __init__(self, hass: HomeAssistant, envoy: Envoy, entry: EnphaseConfigEntry) -> None: ...
+    def _track_token_lifetime(self) -> bool: ...
+    @property
+    def acb_sleep_soc_band(self) -> str: ...
+    @acb_sleep_soc_band.setter
+    def acb_sleep_soc_band(self, value: str) -> None: ...
+    def acb_sleep_soc(self) -> tuple[int, int]: ...
     @callback
     def _async_refresh_token_if_needed(self, now: datetime.datetime) -> None: ...
     async def _async_try_refresh_token(self) -> None: ...

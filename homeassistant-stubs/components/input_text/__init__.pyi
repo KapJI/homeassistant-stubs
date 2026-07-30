@@ -1,5 +1,7 @@
+from .const import InputTextEntityStateAttribute as InputTextEntityStateAttribute
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, ATTR_MODE as ATTR_MODE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, SERVICE_RELOAD as SERVICE_RELOAD
+from homeassistant.components.text import TextEntity as TextEntity
+from homeassistant.const import ATTR_MODE as ATTR_MODE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -45,13 +47,21 @@ class InputTextStorageCollection(collection.DictStorageCollection):
     @override
     async def _update_data(self, item: dict[str, Any], update_data: dict[str, Any]) -> dict[str, Any]: ...
 
-class InputText(collection.CollectionEntity, RestoreEntity):
+class InputText(collection.CollectionEntity, TextEntity, RestoreEntity):
     _unrecorded_attributes: Incomplete
     _attr_should_poll: bool
-    _current_value: str | None
     editable: bool
-    _config: Incomplete
+    _attr_native_value: Incomplete
     def __init__(self, config: ConfigType) -> None: ...
+    _attr_icon: Incomplete
+    _attr_mode: Incomplete
+    _attr_name: Incomplete
+    _attr_native_min: Incomplete
+    _attr_native_max: Incomplete
+    _attr_pattern: Incomplete
+    _attr_unit_of_measurement: Incomplete
+    _attr_unique_id: Incomplete
+    def _update_config_attributes(self, config: ConfigType) -> None: ...
     @classmethod
     @override
     def from_storage(cls, config: ConfigType) -> Self: ...
@@ -60,28 +70,10 @@ class InputText(collection.CollectionEntity, RestoreEntity):
     def from_yaml(cls, config: ConfigType) -> Self: ...
     @property
     @override
-    def name(self) -> str | None: ...
-    @property
-    @override
-    def icon(self) -> str | None: ...
-    @property
-    def _maximum(self) -> int: ...
-    @property
-    def _minimum(self) -> int: ...
-    @property
-    @override
-    def state(self) -> str | None: ...
-    @property
-    @override
-    def unit_of_measurement(self) -> str | None: ...
-    @property
-    @override
-    def unique_id(self) -> str: ...
-    @property
-    @override
     def extra_state_attributes(self) -> dict[str, Any]: ...
     @override
     async def async_added_to_hass(self) -> None: ...
+    @override
     async def async_set_value(self, value: str) -> None: ...
     @override
     async def async_update_config(self, config: ConfigType) -> None: ...

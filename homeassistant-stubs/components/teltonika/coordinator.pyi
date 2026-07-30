@@ -11,7 +11,6 @@ from typing import override
 
 _LOGGER: Incomplete
 SCAN_INTERVAL: Incomplete
-AUTH_ERROR_CODES: Incomplete
 
 class TeltonikaDataUpdateCoordinator(DataUpdateCoordinator[dict[str, ModemStatusFull]]):
     device_info: DeviceInfo

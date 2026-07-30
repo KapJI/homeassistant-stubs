@@ -42,6 +42,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ReolinkConfigEntr
 
 class ReolinkSwitchEntity(ReolinkChannelCoordinatorEntity, SwitchEntity):
     entity_description: ReolinkSwitchEntityDescription
+    _attr_translation_key: Incomplete
+    _attr_translation_placeholders: Incomplete
     def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkSwitchEntityDescription) -> None: ...
     @property
     @override

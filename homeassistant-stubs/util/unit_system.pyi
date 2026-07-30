@@ -2,7 +2,7 @@ from .unit_conversion import AreaConverter as AreaConverter, DistanceConverter a
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
-from homeassistant.const import ACCUMULATED_PRECIPITATION as ACCUMULATED_PRECIPITATION, AREA as AREA, LENGTH as LENGTH, MASS as MASS, PRESSURE as PRESSURE, TEMPERATURE as TEMPERATURE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux, VOLUME as VOLUME, WIND_SPEED as WIND_SPEED
+from homeassistant.const import ACCUMULATED_PRECIPITATION as ACCUMULATED_PRECIPITATION, AREA as AREA, LENGTH as LENGTH, MASS as MASS, PRESSURE as PRESSURE, TEMPERATURE as TEMPERATURE, UNIT_NOT_RECOGNIZED_TEMPLATE as UNIT_NOT_RECOGNIZED_TEMPLATE, UnitOfArea as UnitOfArea, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfRadiationConcentration as UnitOfRadiationConcentration, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumetricFlux as UnitOfVolumetricFlux, VOLUME as VOLUME, WIND_SPEED as WIND_SPEED
 from typing import Final
 
 _CONF_UNIT_SYSTEM_IMPERIAL: Final[str]

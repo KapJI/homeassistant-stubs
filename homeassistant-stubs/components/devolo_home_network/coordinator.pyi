@@ -16,6 +16,7 @@ SEMAPHORE: Incomplete
 type DevoloHomeNetworkConfigEntry = ConfigEntry[DevoloHomeNetworkData]
 
 class DevoloDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT]):
+    config_entry: DevoloHomeNetworkConfigEntry
     device: Incomplete
     def __init__(self, hass: HomeAssistant, logger: Logger, *, config_entry: DevoloHomeNetworkConfigEntry, name: str, update_interval: timedelta | None = None) -> None: ...
     @override

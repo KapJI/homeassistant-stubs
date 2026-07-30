@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, HLS_PROVIDER as HLS_PROVIDER
-from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import override

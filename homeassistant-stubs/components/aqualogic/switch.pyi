@@ -1,17 +1,16 @@
-from . import AquaLogicProcessor as AquaLogicProcessor, DOMAIN as DOMAIN, UPDATE_TOPIC as UPDATE_TOPIC
+from . import AquaLogicConfigEntry as AquaLogicConfigEntry, AquaLogicProcessor as AquaLogicProcessor
+from .const import UPDATE_TOPIC as UPDATE_TOPIC
 from _typeshed import Incomplete
+from aqualogic.core import States
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
-from homeassistant.const import CONF_MONITORED_CONDITIONS as CONF_MONITORED_CONDITIONS
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 
-SWITCH_TYPES: Incomplete
-PLATFORM_SCHEMA: Incomplete
+_SWITCH_MAP: dict[str, tuple[str, States]]
 
-async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, entry: AquaLogicConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AquaLogicSwitch(SwitchEntity):
     _attr_should_poll: bool

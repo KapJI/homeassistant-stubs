@@ -2,13 +2,14 @@ import evohomeasync2 as evo
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from evohomeasync2.schemas.typedefs import DayOfWeekDhwT as DayOfWeekDhwT
+from evohomeasync2.typedefs import EvoDayOfWeekDhwT as EvoDayOfWeekDhwT
 from homeassistant.core import callback as callback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, override
 
 _LOGGER: Incomplete
 
+def _recurse_and_revert(val: Any, _key: str | None = None) -> Any: ...
 def is_valid_zone(zone: evo.Zone) -> bool: ...
 def unique_zone_id(evo_device: evo.Zone) -> str: ...
 
@@ -30,7 +31,7 @@ class EvoChild(EvoEntity):
     _evo_device: evo.HotWater | evo.Zone
     _evo_id: str
     _evo_tcs: Incomplete
-    _schedule: list[DayOfWeekDhwT] | None
+    _schedule: list[EvoDayOfWeekDhwT] | None
     _setpoints: dict[str, Any]
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.HotWater | evo.Zone) -> None: ...
     @property

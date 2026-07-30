@@ -1,7 +1,7 @@
 from . import OmadaConfigEntry as OmadaConfigEntry
 from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
 from .coordinator import OmadaCoordinator as OmadaCoordinator
-from .entity import OmadaDeviceEntity as OmadaDeviceEntity
+from .entity import OmadaDeviceEntity as OmadaDeviceEntity, get_switch_port_base_name as get_switch_port_base_name
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -17,7 +17,6 @@ from typing import Any, override
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OmadaConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
-def _get_switch_port_base_name(port: OmadaSwitchPortDetails) -> str: ...
 
 @dataclass(frozen=True, kw_only=True)
 class OmadaDevicePortSwitchEntityDescription[TCoordinator: OmadaCoordinator[Any], TDevice: OmadaDevice, TPort](SwitchEntityDescription):

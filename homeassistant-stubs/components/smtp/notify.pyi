@@ -1,7 +1,7 @@
 from . import SmtpConfigEntry as SmtpConfigEntry
-from .const import ATTR_HTML as ATTR_HTML, ATTR_IMAGES as ATTR_IMAGES, CONF_ENCRYPTION as CONF_ENCRYPTION, CONF_SENDER_NAME as CONF_SENDER_NAME, CONF_SERVER as CONF_SERVER, DEFAULT_DEBUG as DEFAULT_DEBUG, DEFAULT_ENCRYPTION as DEFAULT_ENCRYPTION, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DOMAIN as DOMAIN, ENCRYPTION_OPTIONS as ENCRYPTION_OPTIONS
-from .helpers import SmtpClient as SmtpClient, _build_html_msg as _build_html_msg, _build_multipart_msg as _build_multipart_msg, _build_text_msg as _build_text_msg
-from .issue import async_deprecate_yaml_issue as async_deprecate_yaml_issue
+from .const import ATTR_ATTACHMENTS as ATTR_ATTACHMENTS, ATTR_CONTENT_ID as ATTR_CONTENT_ID, ATTR_FILENAME as ATTR_FILENAME, ATTR_HTML as ATTR_HTML, ATTR_IMAGES as ATTR_IMAGES, ATTR_MEDIA_SOURCE as ATTR_MEDIA_SOURCE, CONF_ENCRYPTION as CONF_ENCRYPTION, CONF_SENDER_NAME as CONF_SENDER_NAME, CONF_SERVER as CONF_SERVER, DEFAULT_DEBUG as DEFAULT_DEBUG, DEFAULT_ENCRYPTION as DEFAULT_ENCRYPTION, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DOMAIN as DOMAIN, ENCRYPTION_OPTIONS as ENCRYPTION_OPTIONS
+from .helpers import SmtpClient as SmtpClient, _build_html_msg as _build_html_msg, _build_multipart_msg as _build_multipart_msg, _build_text_msg as _build_text_msg, _resolve_media as _resolve_media
+from .issue import async_deprecate_yaml_issue as async_deprecate_yaml_issue, deprecated_notify_action_call as deprecated_notify_action_call
 from _typeshed import Incomplete
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -10,7 +10,7 @@ from homeassistant.config_entries import ConfigSubentry as ConfigSubentry, SOURC
 from homeassistant.const import CONF_DEBUG as CONF_DEBUG, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_RECIPIENT as CONF_RECIPIENT, CONF_SENDER as CONF_SENDER, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import FlowResultType as FlowResultType
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -39,6 +39,7 @@ class MailNotifyEntity(NotifyEntity):
     def __init__(self, entry: SmtpConfigEntry, subentry: ConfigSubentry, client: SmtpClient) -> None: ...
     @override
     def send_message(self, message: str, title: str | None = None) -> None: ...
+    async def smtp_send_message(self, message: str, title: str | None = None, **kwargs: Any) -> None: ...
     def _send_email(self, msg: MIMEMultipart | MIMEText) -> None: ...
 
 class MailNotificationService(SmtpClient, BaseNotificationService):

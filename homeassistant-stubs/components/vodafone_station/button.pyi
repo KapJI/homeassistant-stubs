@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry, VodafoneStationRouter as VodafoneStationRouter
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

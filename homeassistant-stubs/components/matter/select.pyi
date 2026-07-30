@@ -63,6 +63,15 @@ class MatterModeSelectEntity(MatterAttributeSelectEntity):
     @override
     def _update_from_device(self) -> None: ...
 
+class MatterChimeSelectEntity(MatterAttributeSelectEntity):
+    @override
+    async def async_select_option(self, option: str) -> None: ...
+    _attr_options: Incomplete
+    _attr_current_option: Incomplete
+    @callback
+    @override
+    def _update_from_device(self) -> None: ...
+
 class MatterDoorLockOperatingModeSelectEntity(MatterAttributeSelectEntity):
     entity_description: MatterMapSelectEntityDescription
     _attr_options: Incomplete

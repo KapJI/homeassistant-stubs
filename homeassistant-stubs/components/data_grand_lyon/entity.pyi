@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import DataGrandLyonTclCoordinator as DataGrandLyonTclCoordinator, DataGrandLyonVelovCoordinator as DataGrandLyonVelovCoordinator
+from .coordinator import DataGrandLyonParkAndRideCoordinator as DataGrandLyonParkAndRideCoordinator, DataGrandLyonTclCoordinator as DataGrandLyonTclCoordinator, DataGrandLyonVelovCoordinator as DataGrandLyonVelovCoordinator
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigSubentry as ConfigSubentry
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
@@ -23,3 +23,6 @@ class DataGrandLyonTclEntity(DataGrandLyonEntity[DataGrandLyonTclCoordinator]):
 
 class DataGrandLyonVelovEntity(DataGrandLyonEntity[DataGrandLyonVelovCoordinator]):
     def __init__(self, coordinator: DataGrandLyonVelovCoordinator, subentry: ConfigSubentry, description: EntityDescription) -> None: ...
+
+class DataGrandLyonParkAndRideEntity(DataGrandLyonEntity[DataGrandLyonParkAndRideCoordinator]):
+    def __init__(self, coordinator: DataGrandLyonParkAndRideCoordinator, subentry: ConfigSubentry, description: EntityDescription) -> None: ...

@@ -7,7 +7,7 @@ from .typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from dataclasses import dataclass, field
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.util.dt import utc_from_timestamp as utc_from_timestamp, utcnow as utcnow
 from homeassistant.util.event_type import EventType as EventType
@@ -94,9 +94,9 @@ class AreaRegistry(BaseRegistry[AreasRegistryStoreData]):
     @callback
     def async_delete(self, area_id: str) -> None: ...
     @callback
-    def async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., humidity_entity_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ..., temperature_entity_id: str | None | UndefinedType = ...) -> AreaEntry: ...
+    def async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | UndefinedType | None = ..., humidity_entity_id: str | UndefinedType | None = ..., icon: str | UndefinedType | None = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | UndefinedType | None = ..., temperature_entity_id: str | UndefinedType | None = ...) -> AreaEntry: ...
     @callback
-    def _async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | None | UndefinedType = ..., humidity_entity_id: str | None | UndefinedType = ..., icon: str | None | UndefinedType = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | None | UndefinedType = ..., temperature_entity_id: str | None | UndefinedType = ...) -> AreaEntry: ...
+    def _async_update(self, area_id: str, *, aliases: set[str] | UndefinedType = ..., floor_id: str | UndefinedType | None = ..., humidity_entity_id: str | UndefinedType | None = ..., icon: str | UndefinedType | None = ..., labels: set[str] | UndefinedType = ..., name: str | UndefinedType = ..., picture: str | UndefinedType | None = ..., temperature_entity_id: str | UndefinedType | None = ...) -> AreaEntry: ...
     @callback
     def async_reorder(self, area_ids: list[str]) -> None: ...
     @override

@@ -1,15 +1,17 @@
 import voluptuous as vol
-from .const import ATTR_DURATION as ATTR_DURATION, ATTR_PERIOD as ATTR_PERIOD, ATTR_SETPOINT as ATTR_SETPOINT, DOMAIN as DOMAIN, EvoService as EvoService, REFRESH_BREAKS_IN_HA_VERSION as REFRESH_BREAKS_IN_HA_VERSION, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION, SERVICE_BREAKS_IN_HA_VERSION as SERVICE_BREAKS_IN_HA_VERSION
+from .const import DOMAIN as DOMAIN, EvoService as EvoService, REFRESH_BREAKS_IN_HA_VERSION as REFRESH_BREAKS_IN_HA_VERSION, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION, SERVICE_BREAKS_IN_HA_VERSION as SERVICE_BREAKS_IN_HA_VERSION
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .helpers import async_create_deprecation_issue_once as async_create_deprecation_issue_once
 from evohomeasync2 import ControlSystem as ControlSystem
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, ATTR_STATE as ATTR_STATE
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import service as service
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.service import verify_domain_control as verify_domain_control
 from typing import Any, Final
+
+def _as_snake_case(mode: str) -> str: ...
 
 SET_SYSTEM_MODE_SCHEMA: Final[dict[str | vol.Marker, Any]]
 SET_ZONE_OVERRIDE_SCHEMA: Final[dict[str | vol.Marker, Any]]

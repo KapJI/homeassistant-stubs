@@ -26,7 +26,7 @@ class BryantEvolutionClimate(ClimateEntity):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, client: BryantEvolutionLocalClient, system_id: int, zone_id: int, sam_uid: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, client: BryantEvolutionLocalClient, system_id: int, zone_id: int, sam_uid: str) -> None: ...
     _attr_current_temperature: Incomplete
     _attr_fan_mode: Incomplete
     _attr_target_temperature: Incomplete

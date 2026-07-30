@@ -1,8 +1,8 @@
-from . import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntityFeature as CoverEntityFeature, CoverState as CoverState, DOMAIN as DOMAIN
+from . import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Coroutine, Iterable
 from functools import partial
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityStateAttribute as EntityStateAttribute, SERVICE_CLOSE_COVER as SERVICE_CLOSE_COVER, SERVICE_CLOSE_COVER_TILT as SERVICE_CLOSE_COVER_TILT, SERVICE_OPEN_COVER as SERVICE_OPEN_COVER, SERVICE_OPEN_COVER_TILT as SERVICE_OPEN_COVER_TILT, SERVICE_SET_COVER_POSITION as SERVICE_SET_COVER_POSITION, SERVICE_SET_COVER_TILT_POSITION as SERVICE_SET_COVER_TILT_POSITION
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, State as State
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
 from typing import Any, Final

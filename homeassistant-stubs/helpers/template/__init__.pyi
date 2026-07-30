@@ -3,7 +3,7 @@ import weakref
 from .context import render_with_context as render_with_context, template_context_manager as template_context_manager, template_cv as template_cv
 from .extensions import AreaExtension as AreaExtension, Base64Extension as Base64Extension, CollectionExtension as CollectionExtension, ConfigEntryExtension as ConfigEntryExtension, CryptoExtension as CryptoExtension, DateTimeExtension as DateTimeExtension, DeviceExtension as DeviceExtension, EntityExtension as EntityExtension, FloorExtension as FloorExtension, FunctionalExtension as FunctionalExtension, IssuesExtension as IssuesExtension, LabelExtension as LabelExtension, MathExtension as MathExtension, RegexExtension as RegexExtension, SerializationExtension as SerializationExtension, StateExtension as StateExtension, StringExtension as StringExtension, TypeCastExtension as TypeCastExtension, VersionExtension as VersionExtension
 from .render_info import RenderInfo as RenderInfo, render_info_cv as render_info_cv
-from .states import AllStates as AllStates, CACHED_TEMPLATE_LRU as CACHED_TEMPLATE_LRU, CACHED_TEMPLATE_NO_COLLECT_LRU as CACHED_TEMPLATE_NO_COLLECT_LRU, DomainStates as DomainStates, ENTITY_COUNT_GROWTH_FACTOR as ENTITY_COUNT_GROWTH_FACTOR, StateAttrTranslated as StateAttrTranslated, StateTranslated as StateTranslated
+from .states import AllStates as AllStates, CACHED_TEMPLATE_LRU as CACHED_TEMPLATE_LRU, CACHED_TEMPLATE_NO_COLLECT_LRU as CACHED_TEMPLATE_NO_COLLECT_LRU, DomainStates as DomainStates, ENTITY_COUNT_GROWTH_FACTOR as ENTITY_COUNT_GROWTH_FACTOR, StateAttrTranslated as StateAttrTranslated, StateTranslated as StateTranslated, TemplateStateBase as TemplateStateBase
 from _typeshed import Incomplete, OptExcInfo as OptExcInfo
 from collections.abc import Callable as Callable
 from homeassistant.const import EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -17,6 +17,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
 from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
+from lru import LRU
 from types import CodeType
 from typing import Any, Literal, Self, overload, override
 
@@ -29,6 +30,7 @@ _ENVIRONMENT_STRICT: HassKey[TemplateEnvironment]
 _HASS_LOADER: str
 _IS_NUMERIC: Incomplete
 EVAL_CACHE_SIZE: int
+COMPILED_CODE_PIN_SIZE: int
 MAX_CUSTOM_TEMPLATE_SIZE: Incomplete
 MAX_TEMPLATE_OUTPUT: Incomplete
 
@@ -54,6 +56,7 @@ _types: tuple[type[dict | list | set], ...]
 RESULT_WRAPPERS: dict[type, type]
 
 def _parse_result(render_result: str) -> Any: ...
+def _cached_parse_result(render_result: str) -> Any: ...
 
 class Template:
     __slots__: Incomplete
@@ -109,6 +112,7 @@ class TemplateEnvironment(ImmutableSandboxedEnvironment):
     hass: Incomplete
     limited: Incomplete
     template_cache: weakref.WeakValueDictionary[str | jinja2.nodes.Template, CodeType | None]
+    compiled_code_pin: LRU[str | jinja2.nodes.Template, CodeType]
     loader: Incomplete
     def __init__(self, hass: HomeAssistant | None, limited: bool | None = False, strict: bool | None = False, log_fn: Callable[[int, str], None] | None = None) -> None: ...
     @override

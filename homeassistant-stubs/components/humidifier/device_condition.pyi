@@ -13,6 +13,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsT
 TOGGLE_CONDITION: Incomplete
 MODE_CONDITION: Incomplete
 CONDITION_SCHEMA: Incomplete
+_STATE_ATTRIBUTE_TO_CONFIG_KEY: Incomplete
 
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 @callback

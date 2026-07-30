@@ -1,4 +1,4 @@
-from . import ATTR_IS_CLOSED as ATTR_IS_CLOSED, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, ValveEntityStateAttribute as ValveEntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.automation import DomainSpec as DomainSpec
 from homeassistant.helpers.trigger import Trigger as Trigger, make_entity_transition_trigger as make_entity_transition_trigger

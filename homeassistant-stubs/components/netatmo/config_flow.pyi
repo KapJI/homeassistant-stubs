@@ -1,10 +1,10 @@
 import logging
 from .api import get_api_scopes as get_api_scopes
 from .const import CONF_AREA_NAME as CONF_AREA_NAME, CONF_LAT_NE as CONF_LAT_NE, CONF_LAT_SW as CONF_LAT_SW, CONF_LON_NE as CONF_LON_NE, CONF_LON_SW as CONF_LON_SW, CONF_NEW_AREA as CONF_NEW_AREA, CONF_PUBLIC_MODE as CONF_PUBLIC_MODE, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DOMAIN as DOMAIN
-from .data_handler import NetatmoConfigEntry as NetatmoConfigEntry
+from .coordinator import NetatmoConfigEntry as NetatmoConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_REAUTH as SOURCE_REAUTH
+from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
 from homeassistant.const import CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, CONF_UUID as CONF_UUID
 from homeassistant.core import callback as callback
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow

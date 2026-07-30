@@ -7,15 +7,18 @@ from dataclasses import dataclass
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyoverkiz.enums import UIClass, UIWidget as UIWidget
 from pyoverkiz.types import StateType as OverkizStateType
 from typing import override
 
 @dataclass(frozen=True, kw_only=True)
 class OverkizBinarySensorDescription(BinarySensorEntityDescription):
     value_fn: Callable[[OverkizStateType], bool]
+    device_types: list[UIWidget | UIClass] | None = ...
 
 BINARY_SENSOR_DESCRIPTIONS: list[OverkizBinarySensorDescription]
 SUPPORTED_STATES: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

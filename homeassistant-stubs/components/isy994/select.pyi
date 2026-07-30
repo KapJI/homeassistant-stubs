@@ -1,4 +1,4 @@
-from .const import UOM_INDEX as UOM_INDEX, _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER, UOM_INDEX as UOM_INDEX
 from .entity import ISYAuxControlEntity as ISYAuxControlEntity
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete

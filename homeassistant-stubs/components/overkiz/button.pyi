@@ -16,6 +16,7 @@ class OverkizButtonDescription(ButtonEntityDescription):
 
 BUTTON_DESCRIPTIONS: list[OverkizButtonDescription]
 SUPPORTED_COMMANDS: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

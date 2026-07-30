@@ -1,3 +1,4 @@
+from .const import TimerEntityStateAttribute as TimerEntityStateAttribute
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from datetime import datetime, timedelta

@@ -34,7 +34,7 @@ class HomeConnectSwitch(HomeConnectEntity, SwitchEntity):
     def update_native_value(self) -> None: ...
 
 class HomeConnectPowerSwitch(HomeConnectEntity, SwitchEntity):
-    power_off_state: str | None | UndefinedType
+    power_off_state: str | UndefinedType | None
     _attr_is_on: bool
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

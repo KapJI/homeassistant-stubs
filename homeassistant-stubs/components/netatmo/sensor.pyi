@@ -1,13 +1,14 @@
+import abc
 import pyatmo
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_PUBLIC_WEATHER as CONF_URL_PUBLIC_WEATHER, CONF_URL_SECURITY as CONF_URL_SECURITY, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DOMAIN as DOMAIN, NETATMO_CREATE_CLIMATE_BATTERY_SENSOR as NETATMO_CREATE_CLIMATE_BATTERY_SENSOR, NETATMO_CREATE_LEGACY_SENSOR as NETATMO_CREATE_LEGACY_SENSOR, NETATMO_CREATE_ROOM_SENSOR as NETATMO_CREATE_ROOM_SENSOR, NETATMO_CREATE_SENSOR as NETATMO_CREATE_SENSOR, NETATMO_CREATE_WEATHER_SENSOR as NETATMO_CREATE_WEATHER_SENSOR, SIGNAL_NAME as SIGNAL_NAME
-from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
-from .entity import NetatmoBaseEntity as NetatmoBaseEntity, NetatmoModuleEntity as NetatmoModuleEntity, NetatmoRoomEntity as NetatmoRoomEntity, NetatmoWeatherModuleEntity as NetatmoWeatherModuleEntity
+from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity, NetatmoDeviceEntity as NetatmoDeviceEntity, NetatmoModuleEntity as NetatmoModuleEntity, NetatmoRoomEntity as NetatmoRoomEntity, NetatmoWeatherModuleEntity as NetatmoWeatherModuleEntity
 from .helper import NetatmoArea as NetatmoArea
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONCENTRATION_PARTS_PER_MILLION as CONCENTRATION_PARTS_PER_MILLION, DEGREE as DEGREE, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfPower as UnitOfPower, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory, EntityStateAttribute as EntityStateAttribute, UnitOfPower as UnitOfPower, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfRatio as UnitOfRatio, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
@@ -18,6 +19,7 @@ from pyatmo.modules.device_types import DeviceCategory as NetatmoDeviceCategory
 from typing import Any, Final, override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DIRECTION_OPTIONS: Incomplete
 
 def process_health(health: StateType) -> str | None: ...
@@ -47,7 +49,12 @@ DEVICE_CATEGORY_SENSOR_URLS: Final[dict[NetatmoDeviceCategory, str]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class NetatmoBaseSensor(NetatmoModuleEntity, SensorEntity):
+class NetatmoLegacyReachableSensor(NetatmoDeviceEntity, SensorEntity, metaclass=abc.ABCMeta):
+    _attr_available: bool
+    @callback
+    def _async_set_unavailable_if_unreachable(self) -> bool: ...
+
+class NetatmoBaseSensor(NetatmoModuleEntity, NetatmoLegacyReachableSensor):
     entity_description: NetatmoSensorEntityDescription
     _attr_configuration_url: Incomplete
     def __init__(self, netatmo_device: NetatmoDevice, description: NetatmoSensorEntityDescription, **kwargs: Any) -> None: ...
@@ -98,10 +105,11 @@ class NetatmoSensor(NetatmoBaseSensor):
     @override
     def async_update_callback(self) -> None: ...
 
-class NetatmoRoomSensor(NetatmoRoomEntity, SensorEntity):
+class NetatmoRoomSensor(NetatmoRoomEntity, NetatmoLegacyReachableSensor):
     entity_description: NetatmoSensorEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, netatmo_room: NetatmoRoom, description: NetatmoSensorEntityDescription) -> None: ...
+    _attr_available: bool
     _attr_native_value: Incomplete
     @callback
     @override
@@ -119,6 +127,7 @@ class NetatmoPublicSensor(NetatmoBaseEntity, SensorEntity):
     def __init__(self, data_handler: NetatmoDataHandler, area: NetatmoArea, description: NetatmoPublicWeatherSensorEntityDescription) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
+    _publishers: Incomplete
     async def async_config_update_callback(self, area: NetatmoArea) -> None: ...
     _attr_available: bool
     _attr_native_value: Incomplete

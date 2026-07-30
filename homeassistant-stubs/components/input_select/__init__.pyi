@@ -1,5 +1,6 @@
+from .const import InputSelectEntityStateAttribute as InputSelectEntityStateAttribute
 from _typeshed import Incomplete
-from homeassistant.components.select import ATTR_CYCLE as ATTR_CYCLE, ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, SERVICE_SELECT_FIRST as SERVICE_SELECT_FIRST, SERVICE_SELECT_LAST as SERVICE_SELECT_LAST, SERVICE_SELECT_NEXT as SERVICE_SELECT_NEXT, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION, SERVICE_SELECT_PREVIOUS as SERVICE_SELECT_PREVIOUS, SelectEntity as SelectEntity
+from homeassistant.components.select import ATTR_CYCLE as ATTR_CYCLE, ATTR_OPTION as ATTR_OPTION, ATTR_OPTIONS as ATTR_OPTIONS, SERVICE_SELECT_FIRST as SERVICE_SELECT_FIRST, SERVICE_SELECT_LAST as SERVICE_SELECT_LAST, SERVICE_SELECT_NEXT as SERVICE_SELECT_NEXT, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION, SERVICE_SELECT_PREVIOUS as SERVICE_SELECT_PREVIOUS, SelectEntity as SelectEntity, SelectEntityCapabilityAttribute as SelectEntityCapabilityAttribute
 from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_OPTIONS as CONF_OPTIONS, SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

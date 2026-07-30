@@ -2,8 +2,8 @@ import asyncio
 from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IN_ZONES as ATTR_IN_ZONES, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, ATTR_TRACKING_TYPE as ATTR_TRACKING_TYPE, CONF_ASSOCIATED_ZONE as CONF_ASSOCIATED_ZONE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, DOMAIN as DOMAIN, DeviceTrackerEntityCapabilityAttribute as DeviceTrackerEntityCapabilityAttribute, DeviceTrackerEntityStateAttribute as DeviceTrackerEntityStateAttribute, LOGGER as LOGGER, ScannerEntityStateAttribute as ScannerEntityStateAttribute, SourceType as SourceType, TrackerEntityStateAttribute as TrackerEntityStateAttribute, TrackingType as TrackingType
 from _typeshed import Incomplete
 from homeassistant.components import zone as zone
-from homeassistant.components.zone import ATTR_PASSIVE as ATTR_PASSIVE, ATTR_RADIUS as ATTR_RADIUS
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, EntityCategory as EntityCategory, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
+from homeassistant.components.zone import ZoneEntityStateAttribute as ZoneEntityStateAttribute
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, EntityCategory as EntityCategory, EntityStateAttribute as EntityStateAttribute, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, async_get_hass_or_none as async_get_hass_or_none, callback as callback
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData

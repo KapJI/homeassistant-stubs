@@ -1,3 +1,4 @@
+from .const import LOGGER as LOGGER
 from .coordinator import AvmWrapper as AvmWrapper, FritzConfigEntry as FritzConfigEntry
 from .entity import FritzBoxBaseCoordinatorEntity as FritzBoxBaseCoordinatorEntity, FritzEntityDescription as FritzEntityDescription
 from _typeshed import Incomplete
@@ -8,7 +9,6 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 
-_LOGGER: Incomplete
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)

@@ -12,7 +12,7 @@ from collections.abc import Generator
 from contextlib import contextmanager
 from io import TextIOWrapper
 from pathlib import Path
-from typing import Any
+from typing import Any, override
 
 MAX_EXECUTOR_WORKERS: int
 TASK_CANCELATION_TIMEOUT: int
@@ -48,6 +48,7 @@ class HassEventLoopPolicy(asyncio.DefaultEventLoopPolicy):
     def __init__(self, debug: bool) -> None: ...
     @property
     def loop_name(self) -> str: ...
+    @override
     def new_event_loop(self) -> asyncio.AbstractEventLoop: ...
 
 @callback

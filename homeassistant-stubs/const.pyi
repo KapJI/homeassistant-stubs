@@ -1,6 +1,6 @@
 from .core import EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData
 from .generated.entity_platforms import EntityPlatforms as EntityPlatforms
-from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
+from .helpers.deprecation import DeprecatedConstant as DeprecatedConstant, DeprecatedConstantEnum as DeprecatedConstantEnum, all_with_deprecated_constants as all_with_deprecated_constants, check_if_deprecated_constant as check_if_deprecated_constant, dir_with_deprecated_constants as dir_with_deprecated_constants
 from .helpers.typing import NoEventData as NoEventData
 from .util.event_type import EventType as EventType
 from .util.hass_dict import HassKey as HassKey
@@ -24,6 +24,7 @@ ENTITY_MATCH_NONE: Final[str]
 ENTITY_MATCH_ALL: Final[str]
 ENTITY_MATCH_ANY: Final[str]
 DEVICE_DEFAULT_NAME: Final[str]
+DEFAULT_RADIUS: Final[int]
 MAX_LENGTH_EVENT_EVENT_TYPE: Final[int]
 MAX_LENGTH_EVENT_ORIGIN: Final[int]
 MAX_LENGTH_EVENT_CONTEXT_ID: Final[int]
@@ -345,6 +346,8 @@ class EntityStateAttribute(StrEnum):
     ENTITY_PICTURE = 'entity_picture'
     FRIENDLY_NAME = 'friendly_name'
     ICON = 'icon'
+    LATITUDE = 'latitude'
+    LONGITUDE = 'longitude'
     RESTORED = 'restored'
     SUPPORTED_FEATURES = 'supported_features'
     UNIT_OF_MEASUREMENT = 'unit_of_measurement'
@@ -541,18 +544,22 @@ class UnitOfRatio(StrEnum):
     PARTS_PER_BILLION = 'ppb'
     PERCENTAGE = '%'
 
-CONCENTRATION_GRAMS_PER_CUBIC_METER: Final[Incomplete]
-CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Final[Incomplete]
-CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Final[Incomplete]
-CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Final[Incomplete]
+_DEPRECATED_CONCENTRATION_GRAMS_PER_CUBIC_METER: Incomplete
+_DEPRECATED_CONCENTRATION_MILLIGRAMS_PER_CUBIC_METER: Incomplete
+_DEPRECATED_CONCENTRATION_MICROGRAMS_PER_CUBIC_METER: Incomplete
+_DEPRECATED_CONCENTRATION_MICROGRAMS_PER_CUBIC_FOOT: Incomplete
 _DEPRECATED_CONCENTRATION_PARTS_PER_CUBIC_METER: Incomplete
-CONCENTRATION_PARTS_PER_MILLION: Final[Incomplete]
-CONCENTRATION_PARTS_PER_BILLION: Final[Incomplete]
+_DEPRECATED_CONCENTRATION_PARTS_PER_MILLION: Incomplete
+_DEPRECATED_CONCENTRATION_PARTS_PER_BILLION: Incomplete
 PERCENTAGE: Final[Incomplete]
 
 class UnitOfBloodGlucoseConcentration(StrEnum):
     MILLIGRAMS_PER_DECILITER = 'mg/dL'
     MILLIMOLE_PER_LITER = 'mmol/L'
+
+class UnitOfRadiationConcentration(StrEnum):
+    BECQUEREL_PER_CUBIC_METER = 'Bq/m³'
+    PICOCURIES_PER_LITER = 'pCi/L'
 
 class UnitOfSpeed(StrEnum):
     BEAUFORT = 'Beaufort'
@@ -702,6 +709,7 @@ CAST_APP_ID_HOMEASSISTANT_LOVELACE: Final[str]
 HASSIO_USER_NAME: str
 SIGNAL_BOOTSTRAP_INTEGRATIONS: SignalType[dict[str, float]]
 KEY_DATA_LOGGING: HassKey[str]
+KEY_DATA_LOGGING_DISABLED_REASON: HassKey[str]
 FORMAT_DATE: Final[str]
 FORMAT_TIME: Final[str]
 FORMAT_DATETIME: Final[Incomplete]

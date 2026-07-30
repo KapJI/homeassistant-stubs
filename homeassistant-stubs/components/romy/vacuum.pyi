@@ -26,7 +26,6 @@ class RomyVacuumEntity(RomyEntity, StateVacuumEntity):
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: RomyVacuumCoordinator) -> None: ...
     _attr_fan_speed: Incomplete
-    _attr_battery_level: Incomplete
     _attr_activity: Incomplete
     @callback
     @override

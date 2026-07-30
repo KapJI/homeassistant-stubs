@@ -16,23 +16,25 @@ async def async_setup_platform(hass: HomeAssistant, _: ConfigType, async_add_ent
 class EvoResetButtonBase(CoordinatorEntity[EvoDataUpdateCoordinator], ButtonEntity):
     _attr_entity_category: Incomplete
     _evo_device: evo.ControlSystem | evo.HotWater | evo.Zone
+    _attr_unique_id: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.ControlSystem | evo.HotWater | evo.Zone) -> None: ...
     @override
     async def async_press(self) -> None: ...
 
-class EvoResetSystemButton(EvoResetButtonBase):
+class EvoSystemResetButton(EvoResetButtonBase):
     _evo_device: evo.ControlSystem
-    _attr_unique_id: Incomplete
-    _attr_name: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.ControlSystem) -> None: ...
+    @property
+    @override
+    def name(self) -> str: ...
 
-class EvoResetDhwButton(EvoResetButtonBase):
+class EvoDhwResetButton(EvoResetButtonBase):
     _evo_device: evo.HotWater
-    _attr_unique_id: Incomplete
-    _attr_name: Incomplete
-    def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.HotWater) -> None: ...
+    @property
+    @override
+    def name(self) -> str: ...
 
-class EvoResetZoneButton(EvoResetButtonBase):
+class EvoZoneResetButton(EvoResetButtonBase):
     _evo_device: evo.Zone
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: EvoDataUpdateCoordinator, evo_device: evo.Zone) -> None: ...

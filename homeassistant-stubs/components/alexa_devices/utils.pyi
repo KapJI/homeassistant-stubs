@@ -1,5 +1,6 @@
-from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import AmazonDevicesCoordinator as AmazonDevicesCoordinator
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 async def async_update_unique_id(hass: HomeAssistant, coordinator: AmazonDevicesCoordinator, platform: str, old_key: str, new_key: str) -> None: ...

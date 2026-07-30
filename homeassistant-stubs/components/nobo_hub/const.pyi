@@ -1,0 +1,17 @@
+from _typeshed import Incomplete
+from typing import Final
+
+DOMAIN: str
+CONF_SERIAL: str
+CONF_OVERRIDE_TYPE: str
+OVERRIDE_TYPE_CONSTANT: str
+OVERRIDE_TYPE_NOW: str
+SERIAL_PREFIX_LENGTH: int
+SERIAL_LENGTH: Incomplete
+NOBO_MANUFACTURER: str
+ATTR_HARDWARE_VERSION: Final[str]
+ATTR_SOFTWARE_VERSION: Final[str]
+ATTR_SERIAL: Final[str]
+ATTR_TEMP_COMFORT_C: Final[str]
+ATTR_TEMP_ECO_C: Final[str]
+ATTR_ZONE_ID: Final[str]

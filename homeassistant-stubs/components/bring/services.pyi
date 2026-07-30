@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import BringConfigEntry as BringConfigEntry
 from _typeshed import Incomplete
-from homeassistant.components.event import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE
+from homeassistant.components.event import EventEntityStateAttribute as EventEntityStateAttribute
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError

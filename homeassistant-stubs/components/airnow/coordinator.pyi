@@ -14,8 +14,7 @@ class AirNowDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: AirNowConfigEntry
     latitude: Incomplete
     longitude: Incomplete
-    distance: Incomplete
     airnow: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: AirNowConfigEntry, session: ClientSession, api_key: str, latitude: float, longitude: float, distance: int, update_interval: timedelta) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: AirNowConfigEntry, session: ClientSession, api_key: str, latitude: float, longitude: float, update_interval: timedelta) -> None: ...
     @override
     async def _async_update_data(self) -> dict[str, Any]: ...

@@ -1,33 +1,15 @@
 import aiodhcpwatcher
 import asyncio
-import re
-from . import websocket_api as websocket_api
-from .const import DOMAIN as DOMAIN, HOSTNAME as HOSTNAME, IP_ADDRESS as IP_ADDRESS, MAC_ADDRESS as MAC_ADDRESS
-from .models import DATA_DHCP as DATA_DHCP, DHCPAddressData as DHCPAddressData, DHCPData as DHCPData, DhcpMatchers as DhcpMatchers
+from .helpers import async_discovered_service_info as async_discovered_service_info
+from .models import DHCPData
 from _typeshed import Incomplete
 from aiodiscover import DiscoverHosts
-from collections.abc import Callable as Callable
-from homeassistant import config_entries as config_entries
-from homeassistant.components import network as network
-from homeassistant.components.device_tracker import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, SourceType as SourceType
-from homeassistant.const import EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, STATE_HOME as STATE_HOME
-from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
-from homeassistant.helpers import discovery_flow as discovery_flow
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, format_mac as format_mac
-from homeassistant.helpers.discovery_flow import DiscoveryKey as DiscoveryKey
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
-from homeassistant.helpers.event import async_track_state_added_domain as async_track_state_added_domain, async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.loader import DHCPMatcher as DHCPMatcher, async_get_dhcp as async_get_dhcp
-from typing import Any, Final, override
+from collections.abc import Callable
+from homeassistant import config_entries
+from homeassistant.core import Event, EventStateChangedData, HomeAssistant, State, callback
+from typing import Any, override
 
-CONFIG_SCHEMA: Incomplete
-REGISTERED_DEVICES: Final[str]
-SCAN_INTERVAL: Incomplete
-_LOGGER: Incomplete
-
-def async_index_integration_matchers(integration_matchers: list[DHCPMatcher]) -> DhcpMatchers: ...
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+__all__ = ['async_discovered_service_info']
 
 class WatcherBase:
     hass: Incomplete
@@ -84,6 +66,3 @@ class RediscoveryWatcher(WatcherBase):
     _unsub: Incomplete
     @callback
     def async_start(self) -> None: ...
-
-def _compile_fnmatch(pattern: str) -> re.Pattern: ...
-def _memorized_fnmatch(name: str, pattern: str) -> bool: ...

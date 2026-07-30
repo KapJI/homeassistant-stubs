@@ -3,9 +3,13 @@ from _typeshed import Incomplete
 DOMAIN: str
 LOGGER: Incomplete
 REQUESTS: str
+ATTR_MEDIA_TYPE: str
+ATTR_QUERY: str
+ATTR_REQUESTED_BY: str
+ATTR_SEASONS: str
 ATTR_STATUS: str
 ATTR_SORT_ORDER: str
-ATTR_REQUESTED_BY: str
+ATTR_MEDIA_ID: str
 EVENT_KEY: Incomplete
 REGISTERED_NOTIFICATIONS: Incomplete
 JSON_PAYLOAD: str

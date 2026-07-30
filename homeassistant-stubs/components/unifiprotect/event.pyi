@@ -1,6 +1,6 @@
 import dataclasses
 from . import Bootstrap as Bootstrap
-from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, EVENT_TYPE_FINGERPRINT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_IDENTIFIED, EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED, EVENT_TYPE_NFC_SCANNED as EVENT_TYPE_NFC_SCANNED, EVENT_TYPE_PACKAGE_DETECTED as EVENT_TYPE_PACKAGE_DETECTED, EVENT_TYPE_VEHICLE_DETECTED as EVENT_TYPE_VEHICLE_DETECTED, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS, VEHICLE_EVENT_DELAY_SECONDS as VEHICLE_EVENT_DELAY_SECONDS
+from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_SMART_DETECT_TYPES as ATTR_SMART_DETECT_TYPES, EVENT_TYPE_FINGERPRINT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_IDENTIFIED, EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED, EVENT_TYPE_NFC_SCANNED as EVENT_TYPE_NFC_SCANNED, EVENT_TYPE_PACKAGE_DETECTED as EVENT_TYPE_PACKAGE_DETECTED, EVENT_TYPE_VEHICLE_DETECTED as EVENT_TYPE_VEHICLE_DETECTED, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS, VEHICLE_EVENT_DELAY_SECONDS as VEHICLE_EVENT_DELAY_SECONDS
 from .data import EventType as EventType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEventMixin as ProtectEventMixin
 from _typeshed import Incomplete
@@ -10,9 +10,11 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_at as async_call_at
 from typing import Any, override
 from uiprotect import ProtectEvent as ProtectEvent
+from uiprotect.data import SmartDetectObjectType
 from uiprotect.data.nvr import Event as Event, EventDetectedThumbnail as EventDetectedThumbnail
 
 PARALLEL_UPDATES: int
+_MAX_TRACKED_EVENTS: int
 
 def _thumbnail_sort_key(t: EventDetectedThumbnail) -> tuple[bool, float, float]: ...
 def _add_ulp_user_infos(bootstrap: Bootstrap, event_data: dict[str, str], ulp_id: str) -> None: ...
@@ -21,7 +23,21 @@ def _add_ulp_user_infos(bootstrap: Bootstrap, event_data: dict[str, str], ulp_id
 class ProtectEventEntityDescription(ProtectEventMixin, EventEntityDescription):
     entity_class: type[ProtectDeviceEntity]
 
-class ProtectDeviceRingEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
+_SMART_DETECT_EVENT_TYPES: Incomplete
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class ProtectDetectionEventEntityDescription(ProtectEventEntityDescription):
+    ufp_public_event_types: tuple[EventType, ...]
+
+class ProtectDevicePublicEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
+    _ufp_uses_public: bool
+    _ufp_requires_events_ws: bool
+    entity_description: ProtectEventEntityDescription
+    _fired: dict[str, frozenset[str]] | None
+    @callback
+    def _fire_once(self, event: ProtectEvent, event_type: str, event_data: dict[str, Any]) -> None: ...
+
+class ProtectDeviceRingEventEntity(ProtectDevicePublicEventEntity):
     entity_description: ProtectEventEntityDescription
     @override
     async def async_added_to_hass(self) -> None: ...
@@ -72,12 +88,32 @@ class ProtectDeviceVehicleEventEntity(EventEntityMixin, ProtectDeviceEntity, Eve
     @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
-class ProtectDeviceSmartDetectEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
+class ProtectDeviceSmartDetectEventEntity(ProtectDevicePublicEventEntity):
     entity_description: ProtectEventEntityDescription
     @override
     async def async_added_to_hass(self) -> None: ...
     @callback
     def _async_smart_detect_event(self, event: ProtectEvent) -> None: ...
+
+_CAMEL_BOUNDARY: Incomplete
+_EVENT_TYPE_OVERRIDES: Incomplete
+
+def _event_type(detected: SmartDetectObjectType) -> str: ...
+
+_SMART_OBJECT_EVENT_TYPES: Incomplete
+_SMART_AUDIO_EVENT_TYPES: Incomplete
+
+class ProtectDeviceDetectionEventEntity(ProtectDevicePublicEventEntity):
+    entity_description: ProtectDetectionEventEntityDescription
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _async_detection_event(self, event: ProtectEvent) -> None: ...
+
+class ProtectDeviceMotionEventEntity(ProtectDeviceDetectionEventEntity):
+    @callback
+    @override
+    def _async_detection_event(self, event: ProtectEvent) -> None: ...
 
 EVENT_DESCRIPTIONS: tuple[ProtectEventEntityDescription, ...]
 

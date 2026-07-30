@@ -11,6 +11,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: MikrotikConfigEnt
 def update_items(coordinator: MikrotikDataUpdateCoordinator, async_add_entities: AddConfigEntryEntitiesCallback, tracked: dict[str, MikrotikDataUpdateCoordinatorTracker]) -> None: ...
 
 class MikrotikDataUpdateCoordinatorTracker(CoordinatorEntity[MikrotikDataUpdateCoordinator], ScannerEntity):
+    _attr_has_entity_name: bool
     device: Incomplete
     _attr_name: Incomplete
     _attr_unique_id: Incomplete

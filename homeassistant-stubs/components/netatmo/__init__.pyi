@@ -1,10 +1,11 @@
 from . import api as api
-from .const import CONF_CLOUDHOOK_URL as CONF_CLOUDHOOK_URL, DATA_CAMERAS as DATA_CAMERAS, DATA_DEVICE_IDS as DATA_DEVICE_IDS, DATA_EVENTS as DATA_EVENTS, DATA_HOMES as DATA_HOMES, DATA_PERSONS as DATA_PERSONS, DATA_SCHEDULES as DATA_SCHEDULES, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS, WEBHOOK_DEACTIVATION as WEBHOOK_DEACTIVATION, WEBHOOK_PUSH_TYPE as WEBHOOK_PUSH_TYPE
-from .data_handler import NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDataHandler as NetatmoDataHandler
-from .webhook import async_handle_webhook as async_handle_webhook
+from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
+from .coordinator import NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDataHandler as NetatmoDataHandler
+from .services import async_setup_services as async_setup_services
+from .webhook import async_register_webhook as async_register_webhook, async_unregister_webhook as async_unregister_webhook
 from _typeshed import Incomplete
 from homeassistant.components import cloud as cloud
-from homeassistant.const import CONF_WEBHOOK_ID as CONF_WEBHOOK_ID, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import CONF_WEBHOOK_ID as CONF_WEBHOOK_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError
 from homeassistant.helpers import aiohttp_client as aiohttp_client
@@ -21,7 +22,6 @@ MAX_WEBHOOK_RETRIES: int
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry) -> bool: ...
-async def async_cloudhook_generate_url(hass: HomeAssistant, entry: NetatmoConfigEntry) -> str: ...
 async def async_config_entry_updated(hass: HomeAssistant, entry: NetatmoConfigEntry) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: NetatmoConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: NetatmoConfigEntry) -> None: ...

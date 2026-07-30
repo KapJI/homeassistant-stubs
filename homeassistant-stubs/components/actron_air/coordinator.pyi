@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from actron_neo_api import ActronAirAPI as ActronAirAPI, ActronAirStatus
 from actron_neo_api.models.system import ActronAirSystemInfo as ActronAirSystemInfo

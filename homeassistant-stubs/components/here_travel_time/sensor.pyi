@@ -3,7 +3,7 @@ from .coordinator import HERERoutingDataUpdateCoordinator as HERERoutingDataUpda
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, UnitOfLength as UnitOfLength, UnitOfTime as UnitOfTime
+from homeassistant.const import CONF_MODE as CONF_MODE, EntityStateAttribute as EntityStateAttribute, UnitOfLength as UnitOfLength, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

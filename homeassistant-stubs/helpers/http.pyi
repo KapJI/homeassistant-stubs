@@ -14,6 +14,7 @@ from http import HTTPStatus
 from typing import Any, Final
 
 _LOGGER: Incomplete
+MIN_COMPRESSED_RESPONSE_SIZE: Final[int]
 type AllowCorsType = Callable[[AbstractRoute | AbstractResource], None]
 KEY_AUTHENTICATED: Final[str]
 KEY_ALLOW_ALL_CORS: Incomplete

@@ -16,6 +16,7 @@ class OverkizFanDescription(FanEntityDescription):
 
 FAN_DESCRIPTIONS: list[OverkizFanDescription]
 SUPPORTED_DEVICES: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

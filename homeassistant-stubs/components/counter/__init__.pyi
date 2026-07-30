@@ -1,5 +1,6 @@
+from .const import CounterEntityStateAttribute as CounterEntityStateAttribute
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_EDITABLE as ATTR_EDITABLE, CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MAXIMUM as CONF_MAXIMUM, CONF_MINIMUM as CONF_MINIMUM, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_ICON as CONF_ICON, CONF_ID as CONF_ID, CONF_MAXIMUM as CONF_MAXIMUM, CONF_MINIMUM as CONF_MINIMUM, CONF_NAME as CONF_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import collection as collection
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent

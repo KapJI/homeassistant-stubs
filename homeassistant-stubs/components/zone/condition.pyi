@@ -2,9 +2,11 @@ import abc
 import voluptuous as vol
 from . import in_zone as in_zone
 from .const import DOMAIN as DOMAIN
+from .helpers import get_in_zones_attribute as get_in_zones_attribute
 from _typeshed import Incomplete
-from homeassistant.components.device_tracker import ATTR_IN_ZONES as ATTR_IN_ZONES
-from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, CONF_ZONE as CONF_ZONE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
+from homeassistant.components.device_tracker import DeviceTrackerEntityStateAttribute as DeviceTrackerEntityStateAttribute
+from homeassistant.components.person import PersonEntityStateAttribute as PersonEntityStateAttribute
+from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, CONF_ZONE as CONF_ZONE, EntityStateAttribute as EntityStateAttribute, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.exceptions import ConditionErrorContainer as ConditionErrorContainer, ConditionErrorMessage as ConditionErrorMessage
 from homeassistant.helpers.automation import DomainSpec as DomainSpec, move_top_level_schema_fields_to_options as move_top_level_schema_fields_to_options
@@ -14,7 +16,6 @@ from typing import Any, Unpack, override
 
 _OPTIONS_SCHEMA_DICT: dict[vol.Marker, Any]
 _CONDITION_SCHEMA: Incomplete
-_IN_ZONES_DOMAINS: Incomplete
 
 def zone(hass: HomeAssistant, zone_ent: str | State | None, entity: str | State | None) -> bool: ...
 

@@ -8,9 +8,9 @@ from .util import valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import device_tracker as device_tracker
-from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity
+from homeassistant.components.device_tracker import SourceType as SourceType, TrackerEntity as TrackerEntity, TrackerEntityStateAttribute as TrackerEntityStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
+from homeassistant.const import CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, EntityStateAttribute as EntityStateAttribute, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.service_info.mqtt import ReceivePayloadType as ReceivePayloadType

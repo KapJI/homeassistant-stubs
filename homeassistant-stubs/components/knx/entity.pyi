@@ -1,16 +1,23 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONF_DEFAULT_ENTITY_ID as CONF_DEFAULT_ENTITY_ID, DOMAIN as DOMAIN
 from .knx_module import KNXModule as KNXModule
 from .storage.config_store import PlatformControllerBase as PlatformControllerBase
 from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, EntityCategory as EntityCategory
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
+from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any, override
 from xknx.devices import Device as XknxDevice
+from xknx.telegram.address import DeviceGroupAddress as DeviceGroupAddress
+
+def _stable_group_address_repr(part: DeviceGroupAddress | int | str | None) -> str: ...
+def build_yaml_unique_id(*parts: DeviceGroupAddress | int | str | None) -> tuple[str, str]: ...
+@callback
+def async_migrate_yaml_unique_id(hass: HomeAssistant, platform: str, legacy_id: str, new_id: str) -> None: ...
 
 @dataclass(slots=True, frozen=True)
 class KnxEntityIdentifier:
@@ -49,7 +56,8 @@ class KnxYamlEntity(_KnxEntityBase):
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
-    def __init__(self, knx_module: KNXModule, unique_id: str, name: str, entity_category: EntityCategory | None) -> None: ...
+    entity_id: Incomplete
+    def __init__(self, knx_module: KNXModule, unique_id: tuple[str, str], entity_config: dict[str, Any]) -> None: ...
 
 class KnxUiEntity(_KnxEntityBase):
     _attr_has_entity_name: bool

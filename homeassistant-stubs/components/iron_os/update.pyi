@@ -2,7 +2,7 @@ from . import IRON_OS_KEY as IRON_OS_KEY, IronOSConfigEntry as IronOSConfigEntry
 from .coordinator import IronOSFirmwareUpdateCoordinator as IronOSFirmwareUpdateCoordinator
 from .entity import IronOSBaseEntity as IronOSBaseEntity
 from _typeshed import Incomplete
-from homeassistant.components.update import ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature, UpdateEntityStateAttribute as UpdateEntityStateAttribute
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

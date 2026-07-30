@@ -10,7 +10,7 @@ from collections.abc import Callable, Collection, Iterable
 from dataclasses import dataclass, field
 from enum import Enum, StrEnum
 from homeassistant.components.homeassistant.exposed_entities import async_should_expose as async_should_expose
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey

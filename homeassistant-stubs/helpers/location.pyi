@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 
 _LOGGER: Incomplete

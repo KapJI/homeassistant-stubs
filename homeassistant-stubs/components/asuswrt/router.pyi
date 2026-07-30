@@ -19,6 +19,9 @@ CONF_REQ_RELOAD: Incomplete
 SCAN_INTERVAL: Incomplete
 SENSORS_TYPE_COUNT: str
 _LOGGER: Incomplete
+
+def get_device_identifier(entry: ConfigEntry) -> tuple[str, str]: ...
+
 _ENTITY_MIGRATION_ID: Incomplete
 
 class AsusWrtSensorDataHandler:

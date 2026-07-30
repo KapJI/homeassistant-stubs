@@ -21,6 +21,7 @@ class ProtectLight(ProtectDeviceEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
     _state_attrs: Incomplete
+    _ufp_uses_public: bool
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
     @callback

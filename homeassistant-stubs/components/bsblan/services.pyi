@@ -1,3 +1,4 @@
+import voluptuous as vol
 from . import BSBLanConfigEntry as BSBLanConfigEntry
 from .const import DOMAIN as DOMAIN
 from .helpers import async_sync_device_time as async_sync_device_time
@@ -8,6 +9,8 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import device_registry as dr
+from typing import Any, Final
 
 LOGGER: Incomplete
 ATTR_MONDAY_SLOTS: str
@@ -17,10 +20,16 @@ ATTR_THURSDAY_SLOTS: str
 ATTR_FRIDAY_SLOTS: str
 ATTR_SATURDAY_SLOTS: str
 ATTR_SUNDAY_SLOTS: str
+_DAY_NAME_SLOT_ATTR_PAIRS: tuple[tuple[str, str], ...]
 _SLOT_SCHEMA: Incomplete
+_WEEKLY_SCHEDULE_FIELDS: Final[dict[vol.Marker, Any]]
 SERVICE_SET_HOT_WATER_SCHEDULE_SCHEMA: Incomplete
 
 def _convert_time_slots_to_day_schedule(slots: list[dict[str, time]] | None) -> DaySchedule | None: ...
+def _build_weekly_schedule_days(service_call: ServiceCall) -> dict[str, DaySchedule | None]: ...
+def _resolve_config_entry(service_call: ServiceCall) -> tuple[BSBLanConfigEntry, dr.DeviceEntry]: ...
+def _device_name(device_entry: dr.DeviceEntry) -> str: ...
+def _ensure_water_heater_device(device_entry: dr.DeviceEntry) -> None: ...
 async def set_hot_water_schedule(service_call: ServiceCall) -> None: ...
 async def async_sync_time(service_call: ServiceCall) -> None: ...
 

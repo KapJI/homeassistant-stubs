@@ -1,5 +1,6 @@
 from _typeshed import Incomplete
 from enum import StrEnum
+from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
 from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Final
 
@@ -26,7 +27,7 @@ class DeviceTrackerEntityStateAttribute(StrEnum):
     SOURCE_TYPE = 'source_type'
     IN_ZONES = 'in_zones'
 
-class TrackerEntityStateAttribute(StrEnum):
+class TrackerEntityStateAttribute(StrEnum, deprecated={'LATITUDE': ('EntityStateAttribute.LATITUDE', '2027.2.0'), 'LONGITUDE': ('EntityStateAttribute.LONGITUDE', '2027.2.0')}, metaclass=EnumWithDeprecatedMembers):
     LATITUDE = 'latitude'
     LONGITUDE = 'longitude'
     GPS_ACCURACY = 'gps_accuracy'

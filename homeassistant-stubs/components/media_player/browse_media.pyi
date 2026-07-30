@@ -25,7 +25,8 @@ class BrowseMedia:
     thumbnail: Incomplete
     not_shown: Incomplete
     can_search: Incomplete
-    def __init__(self, *, media_class: MediaClass | str, media_content_id: str, media_content_type: MediaType | str, title: str, can_play: bool, can_expand: bool, children: Sequence[BrowseMedia] | None = None, children_media_class: MediaClass | str | None = None, thumbnail: str | None = None, not_shown: int = 0, can_search: bool = False) -> None: ...
+    search_media_classes: Incomplete
+    def __init__(self, *, media_class: MediaClass | str, media_content_id: str, media_content_type: MediaType | str, title: str, can_play: bool, can_expand: bool, children: Sequence[BrowseMedia] | None = None, children_media_class: MediaClass | str | None = None, thumbnail: str | None = None, not_shown: int = 0, can_search: bool = False, search_media_classes: list[MediaClass] | None = None) -> None: ...
     def as_dict(self, *, parent: bool = True) -> dict[str, Any]: ...
     def calculate_children_class(self) -> None: ...
     @override
@@ -34,7 +35,7 @@ class BrowseMedia:
 @dataclass(kw_only=True, frozen=True)
 class SearchMedia:
     version: int = field(default=1)
-    result: list[BrowseMedia]
+    result: Sequence[BrowseMedia]
     def as_dict(self, *, parent: bool = True) -> dict[str, Any]: ...
 
 @dataclass(kw_only=True, frozen=True)

@@ -147,6 +147,7 @@ class IndexView(web_urldispatcher.AbstractResource):
 
 class ManifestJSONView(HomeAssistantView):
     requires_auth: bool
+    cors_allowed: bool
     url: str
     name: str
     @callback

@@ -1,4 +1,4 @@
-from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, DOMAIN as DOMAIN, DoorbellEventType as DoorbellEventType, EventEntityCapabilityAttribute as EventEntityCapabilityAttribute, EventEntityStateAttribute as EventEntityStateAttribute
+from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, ATTR_MULTI_PRESS_COUNT as ATTR_MULTI_PRESS_COUNT, ButtonEventType as ButtonEventType, DOMAIN as DOMAIN, DoorbellEventType as DoorbellEventType, EventEntityCapabilityAttribute as EventEntityCapabilityAttribute, EventEntityStateAttribute as EventEntityStateAttribute
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
@@ -8,7 +8,7 @@ from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
 from typing import Any, Self, final, override
 
-__all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'DoorbellEventType', 'EventDeviceClass', 'EventEntity', 'EventEntityCapabilityAttribute', 'EventEntityDescription', 'EventEntityStateAttribute']
+__all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'ATTR_MULTI_PRESS_COUNT', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'ButtonEventType', 'DoorbellEventType', 'EventDeviceClass', 'EventEntity', 'EventEntityCapabilityAttribute', 'EventEntityDescription', 'EventEntityStateAttribute']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete

@@ -1,7 +1,7 @@
-from .const import CONF_LINE as CONF_LINE, CONF_STATION_ID as CONF_STATION_ID, CONF_STOP_ID as CONF_STOP_ID, DOMAIN as DOMAIN, SUBENTRY_TYPE_STOP as SUBENTRY_TYPE_STOP, SUBENTRY_TYPE_VELOV_STATION as SUBENTRY_TYPE_VELOV_STATION
+from .const import CONF_LINE as CONF_LINE, CONF_PARK_ID as CONF_PARK_ID, CONF_STATION_ID as CONF_STATION_ID, CONF_STOP_ID as CONF_STOP_ID, DOMAIN as DOMAIN, SUBENTRY_TYPE_PARK_AND_RIDE as SUBENTRY_TYPE_PARK_AND_RIDE, SUBENTRY_TYPE_STOP as SUBENTRY_TYPE_STOP, SUBENTRY_TYPE_VELOV_STATION as SUBENTRY_TYPE_VELOV_STATION
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from data_grand_lyon_ha import TclStop as TclStop, VelovStation as VelovStation
+from data_grand_lyon_ha import TclParkAndRide as TclParkAndRide, TclStop as TclStop, VelovStation as VelovStation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, SubentryFlowResult as SubentryFlowResult
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import callback as callback
@@ -45,3 +45,11 @@ class VelovStationSubentryFlowHandler(ConfigSubentryFlow):
     async def _async_load_stations(self) -> str | None: ...
 
 def _velov_station_label(station: VelovStation) -> str: ...
+
+class ParkAndRideSubentryFlowHandler(ConfigSubentryFlow):
+    _parks: list[TclParkAndRide]
+    def __init__(self) -> None: ...
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...
+    async def _async_load_park_and_rides(self) -> str | None: ...
+
+def _park_and_ride_label(park: TclParkAndRide) -> str: ...

@@ -4,6 +4,7 @@ from homeassistant import runner as runner
 from homeassistant.auth import auth_manager_from_config as auth_manager_from_config
 from homeassistant.auth.providers import homeassistant as hass_auth
 from homeassistant.config import get_default_config_dir as get_default_config_dir
+from homeassistant.config_entries import ConfigEntries as ConfigEntries
 from homeassistant.core import HomeAssistant as HomeAssistant
 
 def run(args: Sequence[str] | None) -> None: ...

@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
-from homeassistant.helpers.typing import ConfigType as ConfigType
+from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from openai.types.images_response import ImagesResponse as ImagesResponse
 from openai.types.responses import Response as Response, ResponseInputMessageContentListParam as ResponseInputMessageContentListParam, ResponseInputParam as ResponseInputParam
 

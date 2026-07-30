@@ -1,17 +1,18 @@
-from .const import ATTR_CONNECTION as ATTR_CONNECTION, ATTR_DNSSEC as ATTR_DNSSEC, ATTR_ENCRYPTION as ATTR_ENCRYPTION, ATTR_IP_VERSIONS as ATTR_IP_VERSIONS, ATTR_PROTOCOLS as ATTR_PROTOCOLS, ATTR_SETTINGS as ATTR_SETTINGS, ATTR_STATUS as ATTR_STATUS, CONF_PROFILE_ID as CONF_PROFILE_ID, DOMAIN as DOMAIN
+from .const import ATTR_CONNECTION as ATTR_CONNECTION, ATTR_DNSSEC as ATTR_DNSSEC, ATTR_ENCRYPTION as ATTR_ENCRYPTION, ATTR_IP_VERSIONS as ATTR_IP_VERSIONS, ATTR_PROTOCOLS as ATTR_PROTOCOLS, ATTR_SETTINGS as ATTR_SETTINGS, ATTR_STATUS as ATTR_STATUS, CONF_PROFILE_ID as CONF_PROFILE_ID, DOMAIN as DOMAIN, SUBENTRY_TYPE_PROFILE as SUBENTRY_TYPE_PROFILE
 from .coordinator import NextDnsConnectionUpdateCoordinator as NextDnsConnectionUpdateCoordinator, NextDnsDnssecUpdateCoordinator as NextDnsDnssecUpdateCoordinator, NextDnsEncryptionUpdateCoordinator as NextDnsEncryptionUpdateCoordinator, NextDnsIpVersionsUpdateCoordinator as NextDnsIpVersionsUpdateCoordinator, NextDnsProtocolsUpdateCoordinator as NextDnsProtocolsUpdateCoordinator, NextDnsSettingsUpdateCoordinator as NextDnsSettingsUpdateCoordinator, NextDnsStatusUpdateCoordinator as NextDnsStatusUpdateCoordinator, NextDnsUpdateCoordinator as NextDnsUpdateCoordinator
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigSubentry as ConfigSubentry
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from nextdns import AnalyticsDnssec as AnalyticsDnssec, AnalyticsEncryption as AnalyticsEncryption, AnalyticsIpVersions as AnalyticsIpVersions, AnalyticsProtocols as AnalyticsProtocols, AnalyticsStatus as AnalyticsStatus, ConnectionStatus as ConnectionStatus, Settings as Settings
+from homeassistant.helpers.typing import ConfigType as ConfigType
+from nextdns import AnalyticsDnssec as AnalyticsDnssec, AnalyticsEncryption as AnalyticsEncryption, AnalyticsIpVersions as AnalyticsIpVersions, AnalyticsProtocols as AnalyticsProtocols, AnalyticsStatus as AnalyticsStatus, ConnectionStatus as ConnectionStatus, NextDns, Settings as Settings
 
 type NextDnsConfigEntry = ConfigEntry[NextDnsData]
 @dataclass
-class NextDnsData:
+class NextDnsCoordinators:
     connection: NextDnsUpdateCoordinator[ConnectionStatus]
     dnssec: NextDnsUpdateCoordinator[AnalyticsDnssec]
     encryption: NextDnsUpdateCoordinator[AnalyticsEncryption]
@@ -20,8 +21,17 @@ class NextDnsData:
     settings: NextDnsUpdateCoordinator[Settings]
     status: NextDnsUpdateCoordinator[AnalyticsStatus]
 
+@dataclass
+class NextDnsData:
+    client: NextDns
+    profiles: dict[str, NextDnsCoordinators]
+
+CONFIG_SCHEMA: Incomplete
 PLATFORMS: Incomplete
 COORDINATORS: list[tuple[str, type[NextDnsUpdateCoordinator]]]
 
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+async def async_migrate_integration(hass: HomeAssistant) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: NextDnsConfigEntry) -> bool: ...
+async def _async_update_listener(hass: HomeAssistant, entry: NextDnsConfigEntry) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: NextDnsConfigEntry) -> bool: ...

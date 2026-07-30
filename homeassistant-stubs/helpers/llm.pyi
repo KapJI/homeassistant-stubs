@@ -1,20 +1,14 @@
 import abc
 import voluptuous as vol
 from . import intent as intent, selector as selector, service as service
+from .deprecation import deprecated_function as deprecated_function
 from .singleton import singleton as singleton
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Callable as Callable
 from dataclasses import dataclass, field as dc_field
-from homeassistant.components.calendar import SERVICE_GET_EVENTS as SERVICE_GET_EVENTS
-from homeassistant.components.cover import INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
-from homeassistant.components.homeassistant import async_should_expose as async_should_expose
-from homeassistant.components.intent import async_device_supports_timers as async_device_supports_timers
-from homeassistant.components.sensor import async_rounded_state as async_rounded_state
-from homeassistant.components.todo import TodoServices as TodoServices
-from homeassistant.components.weather import INTENT_GET_WEATHER as INTENT_GET_WEATHER
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_SERVICE as ATTR_SERVICE, EVENT_HOMEASSISTANT_CLOSE as EVENT_HOMEASSISTANT_CLOSE, EVENT_SERVICE_REMOVED as EVENT_SERVICE_REMOVED
-from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
+from homeassistant.core import Context as Context, Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JsonObjectType as JsonObjectType
@@ -22,12 +16,10 @@ from homeassistant.util.ulid import ulid_now as ulid_now
 from typing import Any, override
 
 ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, vol.Schema]]]]
+APIS_CACHE: HassKey[dict[str, API]]
 LLM_API_ASSIST: str
 DATE_TIME_PROMPT: str
 DEFAULT_INSTRUCTIONS_PROMPT: str
-NO_ENTITIES_PROMPT: str
-DEVICE_CONTROL_TOOL_USAGE_PROMPT: str
-DYNAMIC_CONTEXT_PROMPT: str
 
 @callback
 def async_render_no_api_prompt(hass: HomeAssistant) -> str: ...
@@ -44,7 +36,7 @@ class LLMContext:
     platform: str
     context: Context | None
     language: str | None
-    assistant: str | None
+    assistant: str
     device_id: str | None
 
 @dataclass(slots=True)
@@ -110,24 +102,6 @@ class MergedAPI(API):
     async def async_get_api_instance(self, llm_context: LLMContext) -> APIInstance: ...
     def _custom_serializer(self, llm_apis: list[APIInstance]) -> Callable[[Any], Any] | None: ...
 
-class AssistAPI(API):
-    IGNORE_INTENTS: Incomplete
-    cached_slugify: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
-    @override
-    async def async_get_api_instance(self, llm_context: LLMContext) -> APIInstance: ...
-    @callback
-    def _async_get_api_prompt(self, llm_context: LLMContext, exposed_entities: dict | None) -> str: ...
-    @callback
-    def _async_get_no_timer_prompt(self, llm_context: LLMContext) -> str | None: ...
-    @callback
-    def _async_get_voice_satellite_area_prompt(self, llm_context: LLMContext) -> str: ...
-    @callback
-    def _async_get_exposed_entities_prompt(self, exposed_entities: dict | None) -> list[str]: ...
-    @callback
-    def _async_get_tools(self, llm_context: LLMContext, exposed_entities: dict | None) -> list[Tool]: ...
-
-def _get_exposed_entities(hass: HomeAssistant, assistant: str, include_state: bool = True) -> dict[str, dict[str, dict[str, Any]]]: ...
 def selector_serializer(schema: Any) -> Any: ...
 def _get_cached_action_parameters(hass: HomeAssistant, domain: str, action: str) -> tuple[str | None, vol.Schema]: ...
 
@@ -136,40 +110,5 @@ class ActionTool(Tool):
     _action: Incomplete
     name: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str, action: str) -> None: ...
-    @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
-
-class ScriptTool(ActionTool):
-    name: Incomplete
-    def __init__(self, hass: HomeAssistant, script_entity_id: str) -> None: ...
-
-class CalendarGetEventsTool(Tool):
-    name: str
-    description: str
-    parameters: Incomplete
-    def __init__(self, calendars: list[str]) -> None: ...
-    @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
-
-class TodoGetItemsTool(Tool):
-    name: str
-    description: str
-    parameters: Incomplete
-    def __init__(self, todo_lists: list[str]) -> None: ...
-    @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
-
-def _live_context_match_error(match_result: intent.MatchTargetsResult, name_filter: str | None, area_filter: str | None, domain_filter: list[str] | None) -> str: ...
-
-class GetLiveContextTool(Tool):
-    name: str
-    description: str
-    parameters: Incomplete
-    @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
-
-class GetDateTimeTool(Tool):
-    name: str
-    description: str
     @override
     async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...

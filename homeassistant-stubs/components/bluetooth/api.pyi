@@ -1,7 +1,7 @@
 from .const import DATA_MANAGER as DATA_MANAGER
 from .manager import HomeAssistantBluetoothManager as HomeAssistantBluetoothManager
 from .match import BluetoothCallbackMatcher as BluetoothCallbackMatcher
-from .models import BluetoothCallback as BluetoothCallback, BluetoothChange as BluetoothChange, ProcessAdvertisementCallback as ProcessAdvertisementCallback
+from .models import BluetoothCallback as BluetoothCallback, BluetoothCallbackReplay as BluetoothCallbackReplay, BluetoothChange as BluetoothChange, ProcessAdvertisementCallback as ProcessAdvertisementCallback
 from bleak import BleakScanner
 from bleak.backends.device import BLEDevice as BLEDevice
 from collections.abc import Callable as Callable, Iterable
@@ -32,7 +32,7 @@ def async_scanner_devices_by_address(hass: HomeAssistant, address: str, connecta
 @hass_callback
 def async_address_present(hass: HomeAssistant, address: str, connectable: bool = True) -> bool: ...
 @hass_callback
-def async_register_callback(hass: HomeAssistant, callback: BluetoothCallback, match_dict: BluetoothCallbackMatcher | None, mode: BluetoothScanningMode, *, scan_interval: float | None = None, scan_duration: float | None = None) -> Callable[[], None]: ...
+def async_register_callback(hass: HomeAssistant, callback: BluetoothCallback, match_dict: BluetoothCallbackMatcher | None, mode: BluetoothScanningMode, *, scan_interval: float | None = None, scan_duration: float | None = None, replay: BluetoothCallbackReplay = ...) -> Callable[[], None]: ...
 async def async_process_advertisements(hass: HomeAssistant, callback: ProcessAdvertisementCallback, match_dict: BluetoothCallbackMatcher, mode: BluetoothScanningMode, timeout: int) -> BluetoothServiceInfoBleak: ...
 @hass_callback
 def async_track_unavailable(hass: HomeAssistant, callback: Callable[[BluetoothServiceInfoBleak], None], address: str, connectable: bool = True) -> Callable[[], None]: ...

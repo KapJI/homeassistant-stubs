@@ -1,4 +1,4 @@
-from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, EventEntityStateAttribute as EventEntityStateAttribute
 from _typeshed import Incomplete
 from homeassistant.const import CONF_OPTIONS as CONF_OPTIONS
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State

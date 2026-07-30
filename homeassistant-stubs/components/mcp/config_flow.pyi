@@ -1,6 +1,7 @@
 import httpx
 from . import async_get_config_entry_implementation as async_get_config_entry_implementation
 from .application_credentials import authorization_server_context as authorization_server_context
+from .auth import AuthenticateHeader as AuthenticateHeader
 from .const import CONF_AUTHORIZATION_URL as CONF_AUTHORIZATION_URL, CONF_SCOPE as CONF_SCOPE, CONF_TOKEN_URL as CONF_TOKEN_URL, DOMAIN as DOMAIN
 from .coordinator import TokenManager as TokenManager, mcp_client as mcp_client
 from _typeshed import Incomplete
@@ -17,17 +18,7 @@ from yarl import URL
 
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
-WWW_AUTHENTICATE_HEADER: str
-RESOURCE_METADATA_REGEXP: str
 OAUTH_PROTECTED_RESOURCE_ENDPOINT: str
-SCOPES_REGEXP: str
-
-@dataclass
-class AuthenticateHeader:
-    resource_metadata_url: str
-    scopes: list[str] | None = ...
-    @classmethod
-    def from_header(cls, url: str, error_response: httpx.Response) -> AuthenticateHeader | None: ...
 
 @dataclass
 class ResourceMetadata:

@@ -4,7 +4,7 @@ from .entity import TankerkoenigCoordinatorEntity as TankerkoenigCoordinatorEnti
 from _typeshed import Incomplete
 from aiotankerkoenig import GasType, Station as Station
 from homeassistant.components.sensor import SensorEntity as SensorEntity, SensorStateClass as SensorStateClass
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CURRENCY_EURO as CURRENCY_EURO
+from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override

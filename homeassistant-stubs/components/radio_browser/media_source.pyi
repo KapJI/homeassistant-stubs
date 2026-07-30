@@ -1,7 +1,7 @@
 from . import RadioBrowserConfigEntry as RadioBrowserConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
+from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -24,6 +24,8 @@ class RadioMediaSource(MediaSource):
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
+    @override
+    async def async_search_media(self, item: MediaSourceItem, query: SearchMediaQuery) -> SearchMedia: ...
     @callback
     @staticmethod
     def _async_get_station_mime_type(station: Station) -> str | None: ...

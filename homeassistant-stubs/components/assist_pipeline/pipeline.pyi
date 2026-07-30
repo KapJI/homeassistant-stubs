@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from hassil.recognize import RecognizeResult as RecognizeResult
 from homeassistant.components import conversation as conversation, media_player as media_player, stt as stt, tts as tts, wake_word as wake_word, websocket_api as websocket_api
-from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, MATCH_ALL as MATCH_ALL
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, MATCH_ALL as MATCH_ALL
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import chat_session as chat_session, intent as intent
@@ -53,7 +53,7 @@ def _async_get_pipeline_from_conversation_entity(hass: HomeAssistant, entity_id:
 def async_get_pipeline(hass: HomeAssistant, pipeline_id: str | None = None) -> Pipeline: ...
 @callback
 def async_get_pipelines(hass: HomeAssistant) -> list[Pipeline]: ...
-async def async_update_pipeline(hass: HomeAssistant, pipeline: Pipeline, *, conversation_engine: str | UndefinedType = ..., conversation_language: str | UndefinedType = ..., language: str | UndefinedType = ..., name: str | UndefinedType = ..., stt_engine: str | None | UndefinedType = ..., stt_language: str | None | UndefinedType = ..., tts_engine: str | None | UndefinedType = ..., tts_language: str | None | UndefinedType = ..., tts_voice: str | None | UndefinedType = ..., wake_word_entity: str | None | UndefinedType = ..., wake_word_id: str | None | UndefinedType = ..., prefer_local_intents: bool | UndefinedType = ...) -> None: ...
+async def async_update_pipeline(hass: HomeAssistant, pipeline: Pipeline, *, conversation_engine: str | UndefinedType = ..., conversation_language: str | UndefinedType = ..., language: str | UndefinedType = ..., name: str | UndefinedType = ..., stt_engine: str | UndefinedType | None = ..., stt_language: str | UndefinedType | None = ..., tts_engine: str | UndefinedType | None = ..., tts_language: str | UndefinedType | None = ..., tts_voice: str | UndefinedType | None = ..., wake_word_entity: str | UndefinedType | None = ..., wake_word_id: str | UndefinedType | None = ..., prefer_local_intents: bool | UndefinedType = ...) -> None: ...
 
 class PipelineEventType(StrEnum):
     RUN_START = 'run-start'

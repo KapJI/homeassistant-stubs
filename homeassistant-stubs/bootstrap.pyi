@@ -1,7 +1,6 @@
 import asyncio
 import logging
 from . import block_async_io as block_async_io, config_entries as config_entries, core as core, loader as loader, requirements as requirements
-from .components import http as http
 from .const import BASE_PLATFORMS as BASE_PLATFORMS, FORMAT_DATETIME as FORMAT_DATETIME, SIGNAL_BOOTSTRAP_INTEGRATIONS as SIGNAL_BOOTSTRAP_INTEGRATIONS
 from .core_config import async_process_ha_core_config as async_process_ha_core_config
 from .exceptions import HomeAssistantError as HomeAssistantError, UnsupportedStorageVersionError as UnsupportedStorageVersionError
@@ -26,6 +25,11 @@ from typing import Any, override
 _LOGGER: Incomplete
 SETUP_ORDER_SORT_KEY: Incomplete
 ERROR_LOG_FILENAME: str
+ENV_DISABLE_LOG_FILE: str
+ENV_DUPLICATE_LOG_FILE: str
+ENV_SUPERVISOR: str
+LOG_FILE_DISABLED_REASON_ENVIRONMENT: str
+LOG_FILE_DISABLED_REASON_SUPERVISOR: str
 DATA_REGISTRIES_LOADED: HassKey[None]
 LOG_SLOW_STARTUP_INTERVAL: int
 SLOW_STARTUP_CHECK_INTERVAL: int
@@ -52,6 +56,7 @@ def _init_blocking_io_modules_in_executor() -> None: ...
 async def async_load_base_functionality(hass: core.HomeAssistant) -> bool: ...
 async def async_from_config_dict(config: ConfigType, hass: core.HomeAssistant) -> core.HomeAssistant | None: ...
 async def async_enable_logging(hass: core.HomeAssistant, verbose: bool = False, log_rotate_days: int | None = None, log_file: str | None = None, log_no_color: bool = False) -> None: ...
+def _log_file_disabled_reason() -> str | None: ...
 def _create_log_file(err_log_path: str, log_rotate_days: int | None) -> RotatingFileHandler | TimedRotatingFileHandler: ...
 
 class _RotatingFileHandlerWithoutShouldRollOver(RotatingFileHandler):

@@ -3,6 +3,7 @@ import pathlib
 from .const import DOMAIN as DOMAIN
 from .device_info import NestDeviceInfo as NestDeviceInfo, async_nest_devices_by_device_id as async_nest_devices_by_device_id
 from .events import EVENT_NAME_MAP as EVENT_NAME_MAP, MEDIA_SOURCE_EVENT_TITLE_MAP as MEDIA_SOURCE_EVENT_TITLE_MAP
+from .types import NestConfigEntry as NestConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from dataclasses import dataclass
@@ -34,18 +35,19 @@ MEDIA_CACHE_PATH: str
 DISK_READ_LRU_MAX_SIZE: int
 ORPHANED_MEDIA_AGE_CUTOFF: Incomplete
 
-async def async_get_media_event_store(hass: HomeAssistant, subscriber: GoogleNestSubscriber) -> EventMediaStore: ...
+async def async_get_media_event_store(hass: HomeAssistant, config_entry: NestConfigEntry, subscriber: GoogleNestSubscriber) -> EventMediaStore: ...
 def _prepare_media_cache_dir(media_path: pathlib.Path, legacy_media_path: pathlib.Path) -> None: ...
 async def async_get_transcoder(hass: HomeAssistant) -> Transcoder: ...
 
 class NestEventMediaStore(EventMediaStore):
     _hass: Incomplete
+    _config_entry: Incomplete
     _subscriber: Incomplete
     _store: Incomplete
     _media_path: Incomplete
     _data: dict[str, Any] | None
     _devices: Mapping[str, str] | None
-    def __init__(self, hass: HomeAssistant, subscriber: GoogleNestSubscriber, store: Store[dict[str, Any]], media_path: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: NestConfigEntry, subscriber: GoogleNestSubscriber, store: Store[dict[str, Any]], media_path: str) -> None: ...
     @override
     async def async_load(self) -> dict | None: ...
     @override

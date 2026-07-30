@@ -8,7 +8,6 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from homeassistant.util.unit_system import METRIC_SYSTEM as METRIC_SYSTEM
 from typing import override
 
 _LOGGER: Incomplete

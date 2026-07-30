@@ -1,12 +1,12 @@
 import io
-from .const import DOMAIN as DOMAIN, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_MIME_TYPES as MEDIA_MIME_TYPES, MEDIA_SOURCE_DATA as MEDIA_SOURCE_DATA
+from .const import DATA_LOCAL_SOURCE as DATA_LOCAL_SOURCE, DOMAIN as DOMAIN, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_MIME_TYPES as MEDIA_MIME_TYPES
 from .error import Unresolvable as Unresolvable
 from .models import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia
 from _typeshed import Incomplete
 from aiohttp import web
 from homeassistant.components import http as http, websocket_api as websocket_api
 from homeassistant.components.http import require_admin as require_admin
-from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass
+from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename, raise_if_invalid_path as raise_if_invalid_path
@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Protocol, override
 
 MAX_UPLOAD_SIZE: Incomplete
+MAX_SEARCH_RESULTS: int
 LOGGER: Incomplete
 
 class PathNotSupportedError(HomeAssistantError): ...
@@ -42,6 +43,9 @@ class LocalSource(MediaSource):
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     @override
     async def async_browse_media(self, item: MediaSourceItem) -> BrowseMediaSource: ...
+    @override
+    async def async_search_media(self, item: MediaSourceItem, query: SearchMediaQuery) -> SearchMedia: ...
+    def _search_media(self, search_dirs: list[tuple[str, str]], query: SearchMediaQuery) -> SearchMedia: ...
     def _browse_media(self, source_dir_id: str | None, location: str) -> BrowseMediaSource: ...
     def _build_item_response(self, source_dir_id: str, path: Path, is_child: bool = False) -> BrowseMediaSource | None: ...
 

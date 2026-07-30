@@ -1,4 +1,4 @@
-from .const import CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, UOM_PERCENTAGE as UOM_PERCENTAGE, _LOGGER as _LOGGER
+from .const import CONF_RESTORE_LIGHT_STATE as CONF_RESTORE_LIGHT_STATE, LOGGER as LOGGER, UOM_PERCENTAGE as UOM_PERCENTAGE
 from .entity import ISYNodeEntity as ISYNodeEntity
 from .models import IsyConfigEntry as IsyConfigEntry
 from _typeshed import Incomplete

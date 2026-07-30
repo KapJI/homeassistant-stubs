@@ -1,5 +1,5 @@
 import asyncio
-from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorStateClass as SensorStateClass
+from .const import ATTR_LAST_RESET as ATTR_LAST_RESET, ATTR_OPTIONS as ATTR_OPTIONS, ATTR_STATE_CLASS as ATTR_STATE_CLASS, CONF_STATE_CLASS as CONF_STATE_CLASS, DEVICE_CLASS_STATE_CLASSES as DEVICE_CLASS_STATE_CLASSES, DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute, SensorEntityStateAttribute as SensorEntityStateAttribute, SensorStateClass as SensorStateClass
 from _typeshed import Incomplete
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -14,7 +14,7 @@ from homeassistant.helpers.typing import StateType, UndefinedType
 from propcache.api import cached_property
 from typing import Any, Self, final, override
 
-__all__ = ['ATTR_LAST_RESET', 'ATTR_OPTIONS', 'ATTR_STATE_CLASS', 'CONF_STATE_CLASS', 'DEVICE_CLASS_STATE_CLASSES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'RestoreSensor', 'SensorDeviceClass', 'SensorEntity', 'SensorEntityDescription', 'SensorExtraStoredData', 'SensorStateClass']
+__all__ = ['ATTR_LAST_RESET', 'ATTR_OPTIONS', 'ATTR_STATE_CLASS', 'CONF_STATE_CLASS', 'DEVICE_CLASS_STATE_CLASSES', 'DOMAIN', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'RestoreSensor', 'SensorDeviceClass', 'SensorEntity', 'SensorEntityCapabilityAttribute', 'SensorEntityDescription', 'SensorEntityStateAttribute', 'SensorExtraStoredData', 'SensorStateClass']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -47,7 +47,7 @@ class SensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _invalid_unit_of_measurement_reported: bool
     _last_reset_reported: bool
     _sensor_option_display_precision: int | None
-    _sensor_option_unit_of_measurement: str | None | UndefinedType
+    _sensor_option_unit_of_measurement: str | UndefinedType | None
     _invalid_suggested_unit_of_measurement_reported: bool
     _get_uptime: Callable[[datetime], datetime] | None
     def _normalize_uptime(self, current_uptime: datetime) -> datetime: ...
@@ -104,7 +104,7 @@ class SensorEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def _display_precision_or_none(self) -> int | None: ...
     def _get_adjusted_display_precision(self) -> int | None: ...
     def _update_suggested_precision(self) -> None: ...
-    def _custom_unit_or_undef(self, primary_key: str, secondary_key: str) -> str | None | UndefinedType: ...
+    def _custom_unit_or_undef(self, primary_key: str, secondary_key: str) -> str | UndefinedType | None: ...
     @callback
     @override
     def async_registry_entry_updated(self) -> None: ...

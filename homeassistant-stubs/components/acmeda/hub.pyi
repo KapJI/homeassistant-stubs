@@ -1,6 +1,6 @@
 import aiopulse
 import asyncio
-from .const import ACMEDA_ENTITY_REMOVE as ACMEDA_ENTITY_REMOVE, ACMEDA_HUB_UPDATE as ACMEDA_HUB_UPDATE, LOGGER as LOGGER
+from .const import ACMEDA_HUB_UPDATE as ACMEDA_HUB_UPDATE, LOGGER as LOGGER
 from .helpers import update_devices as update_devices
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -13,7 +13,6 @@ class PulseHub:
     config_entry: Incomplete
     hass: Incomplete
     tasks: list[asyncio.Task[None]]
-    current_rollers: dict[int, aiopulse.Roller]
     cleanup_callbacks: list[Callable[[], None]]
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry) -> None: ...
     @property

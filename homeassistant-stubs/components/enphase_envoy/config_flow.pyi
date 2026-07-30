@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS, OPTION_DIAGNOSTICS_INCLUDE_FIXTURES as OPTION_DIAGNOSTICS_INCLUDE_FIXTURES, OPTION_DIAGNOSTICS_INCLUDE_FIXTURES_DEFAULT_VALUE as OPTION_DIAGNOSTICS_INCLUDE_FIXTURES_DEFAULT_VALUE, OPTION_DISABLE_KEEP_ALIVE as OPTION_DISABLE_KEEP_ALIVE, OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE as OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE
+from .const import ACCESS_TOKEN_LOGIN_URL as ACCESS_TOKEN_LOGIN_URL, CONF_MANUAL_TOKEN as CONF_MANUAL_TOKEN, DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS, OPTION_DIAGNOSTICS_INCLUDE_FIXTURES as OPTION_DIAGNOSTICS_INCLUDE_FIXTURES, OPTION_DIAGNOSTICS_INCLUDE_FIXTURES_DEFAULT_VALUE as OPTION_DIAGNOSTICS_INCLUDE_FIXTURES_DEFAULT_VALUE, OPTION_DISABLE_KEEP_ALIVE as OPTION_DISABLE_KEEP_ALIVE, OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE as OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -17,15 +17,19 @@ ENVOY: str
 CONF_SERIAL: str
 INSTALLER_AUTH_USERNAME: str
 AVOID_REFLECT_KEYS: Incomplete
+UNKNOWN_TOKEN_TEXT: str
 
 def without_avoid_reflect_keys(dictionary: Mapping[str, Any]) -> dict[str, Any]: ...
-async def validate_input(hass: HomeAssistant, host: str, username: str, password: str, errors: dict[str, str], description_placeholders: dict[str, str]) -> Envoy: ...
+def token_lifetime(token: str) -> str: ...
+def descriptions(serial: str, token_days_left: str = ...) -> dict[str, str]: ...
+async def validate_input(hass: HomeAssistant, host: str, username: str, password: str, token: str | None, errors: dict[str, str], description_placeholders: dict[str, str]) -> Envoy: ...
 
 class EnphaseConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     ip_address: str | None
     username: Incomplete
     protovers: str | None
+    manual_token: bool
     def __init__(self) -> None: ...
     @staticmethod
     @callback

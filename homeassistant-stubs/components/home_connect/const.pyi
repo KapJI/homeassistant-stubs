@@ -1,5 +1,6 @@
 from .utils import bsh_key_to_translation_key as bsh_key_to_translation_key
 from _typeshed import Incomplete
+from aiohomeconnect.model import ProgramKey
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 
 DOMAIN: str
@@ -33,7 +34,7 @@ AFFECTS_TO_ACTIVE_PROGRAM: str
 AFFECTS_TO_SELECTED_PROGRAM: str
 FAVORITE_PROGRAMS: Incomplete
 TRANSLATION_KEYS_PROGRAMS_MAP: Incomplete
-PROGRAMS_TRANSLATION_KEYS_MAP: Incomplete
+PROGRAMS_TRANSLATION_KEYS_MAP: dict[ProgramKey, str]
 FAN_SPEED_MODE_OPTIONS: Incomplete
 AVAILABLE_MAPS_ENUM: Incomplete
 CLEANING_MODE_OPTIONS: Incomplete

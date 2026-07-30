@@ -1,5 +1,5 @@
 import voluptuous as vol
-from .const import CONF_DEVICE_DETAILS as CONF_DEVICE_DETAILS, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DEVICE_TYPE as DEVICE_TYPE, DEVICE_URL as DEVICE_URL, DOMAIN as DOMAIN, _LOGGER as _LOGGER
+from .const import CONF_DEVICE_DETAILS as CONF_DEVICE_DETAILS, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DEVICE_TYPE as DEVICE_TYPE, DEVICE_URL as DEVICE_URL, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry
 from .utils import async_client_session as async_client_session
 from _typeshed import Incomplete

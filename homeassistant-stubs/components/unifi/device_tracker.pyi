@@ -1,6 +1,6 @@
 import aiounifi
 from . import UnifiConfigEntry as UnifiConfigEntry
-from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn
+from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_device_available_fn as async_device_available_fn, is_locally_administered_mac as is_locally_administered_mac
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent

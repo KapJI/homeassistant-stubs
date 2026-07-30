@@ -1,11 +1,11 @@
 from .const import KNX_MODULE_KEY as KNX_MODULE_KEY
-from .entity import KnxYamlEntity as KnxYamlEntity
+from .entity import KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import WeatherSchema as WeatherSchema
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.weather import WeatherEntity as WeatherEntity
-from homeassistant.const import CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_NAME as CONF_NAME, Platform as Platform, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import CONF_NAME as CONF_NAME, Platform as Platform, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import ConfigType as ConfigType

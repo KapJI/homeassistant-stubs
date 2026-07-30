@@ -42,9 +42,9 @@ class ClearStatisticsTask(RecorderTask):
 class UpdateStatisticsMetadataTask(RecorderTask):
     on_done: Callable[[], None] | None
     statistic_id: str
-    new_statistic_id: str | None | UndefinedType
-    new_unit_class: str | None | UndefinedType
-    new_unit_of_measurement: str | None | UndefinedType
+    new_statistic_id: str | UndefinedType | None
+    new_unit_class: str | UndefinedType | None
+    new_unit_of_measurement: str | UndefinedType | None
     @override
     def run(self, instance: Recorder) -> None: ...
 

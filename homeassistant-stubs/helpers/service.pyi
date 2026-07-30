@@ -1,6 +1,5 @@
-import logging
-from . import device_registry as device_registry, entity_registry as entity_registry, selector as selector, target as target_helpers, template as template
-from .deprecation import deprecated_class as deprecated_class, deprecated_function as deprecated_function, deprecated_hass_argument as deprecated_hass_argument
+from . import device_registry as device_registry, entity_registry as entity_registry, selector as selector, template as template
+from .deprecation import deprecated_hass_argument as deprecated_hass_argument
 from .entity import Entity as Entity
 from .selector import TargetSelector as TargetSelector
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
@@ -18,7 +17,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from types import ModuleType
-from typing import Any, TypedDict, override
+from typing import Any, TypedDict
 
 CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
@@ -45,13 +44,6 @@ class ServiceParams(TypedDict):
     service_data: dict[str, Any]
     target: dict | None
 
-class ServiceTargetSelector(target_helpers.TargetSelection):
-    def __init__(self, service_call: ServiceCall) -> None: ...
-
-class SelectedEntities(target_helpers.SelectedEntities):
-    @override
-    def log_missing(self, missing_entities: set[str], logger: logging.Logger | None = None) -> None: ...
-
 def call_from_config(hass: HomeAssistant, config: ConfigType, blocking: bool = False, variables: TemplateVarsType = None, validate_config: bool = True) -> None: ...
 async def async_call_from_config(hass: HomeAssistant, config: ConfigType, blocking: bool = False, variables: TemplateVarsType = None, validate_config: bool = True, context: Context | None = None) -> None: ...
 @callback
@@ -59,7 +51,6 @@ def async_prepare_call_from_config(hass: HomeAssistant, config: ConfigType, vari
 def extract_entity_ids(service_call: ServiceCall, expand_group: bool = True) -> set[str]: ...
 async def async_extract_entities[_EntityT: Entity](entities: Iterable[_EntityT], service_call: ServiceCall, expand_group: bool = True) -> list[_EntityT]: ...
 async def async_extract_entity_ids(service_call: ServiceCall, expand_group: bool = True) -> set[str]: ...
-def async_extract_referenced_entity_ids(hass: HomeAssistant, service_call: ServiceCall, expand_group: bool = True) -> SelectedEntities: ...
 async def async_extract_config_entry_ids(service_call: ServiceCall, expand_group: bool = True) -> set[str]: ...
 def _load_services_file(integration: Integration) -> JSON_TYPE: ...
 def _load_services_files(integrations: Iterable[Integration]) -> dict[str, JSON_TYPE]: ...

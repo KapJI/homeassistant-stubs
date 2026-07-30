@@ -1,10 +1,11 @@
-from .const import DOMAIN as DOMAIN
+from .const import ACB_SLEEP_SOC_BANDS as ACB_SLEEP_SOC_BANDS, DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
-from .entity import EnvoyBaseEntity as EnvoyBaseEntity, exception_handler as exception_handler
+from .entity import EnvoyACBAggregateControlEntity as EnvoyACBAggregateControlEntity, EnvoyBaseEntity as EnvoyBaseEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -35,6 +36,7 @@ REVERSE_STORAGE_MODE_MAP: Incomplete
 STORAGE_MODE_OPTIONS: Incomplete
 RELAY_ENTITIES: Incomplete
 STORAGE_MODE_ENTITY: Incomplete
+ACB_SLEEP_SOC_ENTITY: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: EnphaseConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -65,5 +67,12 @@ class EnvoyStorageSettingsSelectEntity(EnvoyBaseEntity, SelectEntity):
     @override
     def current_option(self) -> str | None: ...
     @exception_handler
+    @override
+    async def async_select_option(self, option: str) -> None: ...
+
+class EnvoyACBSleepSocSelectEntity(EnvoyACBAggregateControlEntity, SelectEntity):
+    @property
+    @override
+    def current_option(self) -> str: ...
     @override
     async def async_select_option(self, option: str) -> None: ...

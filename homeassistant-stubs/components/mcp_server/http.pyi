@@ -12,6 +12,7 @@ from homeassistant.components import conversation as conversation
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_HASS as KEY_HASS
 from homeassistant.const import CONF_LLM_HASS_API as CONF_LLM_HASS_API, CONTENT_TYPE_JSON as CONTENT_TYPE_JSON
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import Unauthorized as Unauthorized
 from homeassistant.helpers import llm as llm
 from mcp.server import InitializationOptions as InitializationOptions, Server as Server
 from mcp.shared.message import SessionMessage
@@ -36,7 +37,7 @@ class Streams:
 
 @asynccontextmanager
 async def create_streams() -> AsyncGenerator[Streams]: ...
-async def create_mcp_server(hass: HomeAssistant, context: Context, entry: MCPServerConfigEntry) -> tuple[Server, InitializationOptions]: ...
+async def create_mcp_server(hass: HomeAssistant, context: Context, llm_api_id: str | list[str]) -> tuple[Server, InitializationOptions]: ...
 
 class ModelContextProtocolSSEView(HomeAssistantView):
     name: Incomplete
@@ -48,8 +49,14 @@ class ModelContextProtocolMessagesView(HomeAssistantView):
     url = MESSAGES_API
     async def post(self, request: web.Request, session_id: str) -> web.StreamResponse: ...
 
+async def _async_handle_streamable_message(request: web.Request, context: Context, llm_api_id: str | list[str]) -> web.StreamResponse: ...
+
 class ModelContextProtocolStreamableView(HomeAssistantView):
     name: Incomplete
     url = STREAMABLE_API
-    async def get(self, request: web.Request) -> web.StreamResponse: ...
     async def post(self, request: web.Request) -> web.StreamResponse: ...
+
+class ModelContextProtocolStreamableApiView(HomeAssistantView):
+    name: Incomplete
+    url: Incomplete
+    async def post(self, request: web.Request, api_id: str) -> web.StreamResponse: ...

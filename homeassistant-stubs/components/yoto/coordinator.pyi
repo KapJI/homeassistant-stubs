@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, SCAN_INTERVAL as SCAN_INTERVAL, STATUS_PUSH_INTERVAL as STATUS_PUSH_INTERVAL, _LOGGER as _LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCAN_INTERVAL as SCAN_INTERVAL, STATUS_PUSH_INTERVAL as STATUS_PUSH_INTERVAL
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry

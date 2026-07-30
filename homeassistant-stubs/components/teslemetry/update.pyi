@@ -3,7 +3,7 @@ from .entity import TeslemetryRootEntity as TeslemetryRootEntity, TeslemetryVehi
 from .helpers import handle_vehicle_command as handle_vehicle_command
 from .models import TeslemetryVehicleData as TeslemetryVehicleData
 from _typeshed import Incomplete
-from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityFeature as UpdateEntityFeature, UpdateEntityStateAttribute as UpdateEntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -41,9 +41,11 @@ class TeslemetryVehiclePollingUpdateEntity(TeslemetryVehiclePollingEntity, Tesle
 class TeslemetryStreamingUpdateEntity(TeslemetryVehicleStreamEntity, TeslemetryUpdateEntity, RestoreEntity):
     _download_percentage: int
     _install_percentage: int
+    _scheduled: bool
     scoped: Incomplete
     def __init__(self, data: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_in_progress: Incomplete
+    _attr_update_percentage: Incomplete
     _attr_installed_version: Incomplete
     _attr_latest_version: Incomplete
     _attr_supported_features: Incomplete
@@ -51,8 +53,7 @@ class TeslemetryStreamingUpdateEntity(TeslemetryVehicleStreamEntity, TeslemetryU
     async def async_added_to_hass(self) -> None: ...
     def _async_handle_software_update_download_percent_complete(self, value: float | None) -> None: ...
     def _async_handle_software_update_installation_percent_complete(self, value: float | None) -> None: ...
-    def _async_handle_software_update_scheduled_start_time(self, value: str | None) -> None: ...
+    def _async_handle_software_update_scheduled_start_time(self, value: int | None) -> None: ...
     def _async_handle_software_update_version(self, value: str | None) -> None: ...
     def _async_handle_version(self, value: str | None) -> None: ...
-    _attr_update_percentage: Incomplete
     def _async_update_progress(self) -> None: ...

@@ -1,6 +1,7 @@
-from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineData as RainMachineData, async_update_programs_and_zones as async_update_programs_and_zones
+from . import RainMachineConfigEntry as RainMachineConfigEntry, RainMachineData as RainMachineData
 from .const import CONF_ALLOW_INACTIVE_ZONES_TO_RUN as CONF_ALLOW_INACTIVE_ZONES_TO_RUN, CONF_DEFAULT_ZONE_RUN_TIME as CONF_DEFAULT_ZONE_RUN_TIME, CONF_DURATION as CONF_DURATION, CONF_USE_APP_RUN_TIMES as CONF_USE_APP_RUN_TIMES, DATA_PROGRAMS as DATA_PROGRAMS, DATA_PROVISION_SETTINGS as DATA_PROVISION_SETTINGS, DATA_RESTRICTIONS_UNIVERSAL as DATA_RESTRICTIONS_UNIVERSAL, DATA_ZONES as DATA_ZONES, DEFAULT_ZONE_RUN as DEFAULT_ZONE_RUN
 from .entity import RainMachineEntity as RainMachineEntity, RainMachineEntityDescription as RainMachineEntityDescription
+from .services import async_update_programs_and_zones as async_update_programs_and_zones
 from .util import RUN_STATE_MAP as RUN_STATE_MAP, key_exists as key_exists
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable, Coroutine

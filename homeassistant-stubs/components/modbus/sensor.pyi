@@ -1,5 +1,5 @@
 from . import get_hub as get_hub
-from .const import CONF_SCALE as CONF_SCALE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, DEFAULT_OFFSET as DEFAULT_OFFSET, DEFAULT_SCALE as DEFAULT_SCALE, _LOGGER as _LOGGER
+from .const import CONF_SCALE as CONF_SCALE, CONF_SLAVE_COUNT as CONF_SLAVE_COUNT, CONF_VIRTUAL_COUNT as CONF_VIRTUAL_COUNT, DEFAULT_OFFSET as DEFAULT_OFFSET, DEFAULT_SCALE as DEFAULT_SCALE, LOGGER as LOGGER
 from .entity import ModbusStructEntity as ModbusStructEntity
 from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete

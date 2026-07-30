@@ -2,7 +2,7 @@ from .const import ATTR_SENSOR_ID as ATTR_SENSOR_ID, CONF_SENSOR_ID as CONF_SENS
 from .coordinator import LuftdatenConfigEntry as LuftdatenConfigEntry, LuftdatenDataUpdateCoordinator as LuftdatenDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, CONCENTRATION_MICROGRAMS_PER_CUBIC_METER as CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, PERCENTAGE as PERCENTAGE, UnitOfPressure as UnitOfPressure, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import CONF_SHOW_ON_MAP as CONF_SHOW_ON_MAP, EntityStateAttribute as EntityStateAttribute, UnitOfDensity as UnitOfDensity, UnitOfPressure as UnitOfPressure, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

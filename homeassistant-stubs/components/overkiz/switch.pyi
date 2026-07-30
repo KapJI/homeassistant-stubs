@@ -20,6 +20,7 @@ class OverkizSwitchDescription(SwitchEntityDescription):
 
 SWITCH_DESCRIPTIONS: list[OverkizSwitchDescription]
 SUPPORTED_DEVICES: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

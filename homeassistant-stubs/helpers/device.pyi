@@ -1,4 +1,5 @@
 from . import device_registry as dr
+from .frame import ReportBehavior as ReportBehavior, report_usage as report_usage
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 
 @callback

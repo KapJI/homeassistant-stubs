@@ -1,13 +1,15 @@
-from .const import LOCATION as LOCATION, SELECT_DHW_MODE as SELECT_DHW_MODE, SELECT_GATEWAY_MODE as SELECT_GATEWAY_MODE, SELECT_REGULATION_MODE as SELECT_REGULATION_MODE, SELECT_SCHEDULE as SELECT_SCHEDULE, SELECT_ZONE_PROFILE as SELECT_ZONE_PROFILE, SelectOptionsType as SelectOptionsType, SelectType as SelectType
+from .const import DHW_MODE as DHW_MODE, LOCATION as LOCATION, SELECT_DHW_MODE as SELECT_DHW_MODE, SELECT_GATEWAY_MODE as SELECT_GATEWAY_MODE, SELECT_REGULATION_MODE as SELECT_REGULATION_MODE, SELECT_SCHEDULE as SELECT_SCHEDULE, SELECT_ZONE_PROFILE as SELECT_ZONE_PROFILE, SelectOptionsType as SelectOptionsType, SelectType as SelectType
 from .coordinator import PlugwiseConfigEntry as PlugwiseConfigEntry, PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from .entity import PlugwiseEntity as PlugwiseEntity
 from .util import plugwise_command as plugwise_command
 from _typeshed import Incomplete
+from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from plugwise import Smile as Smile
 from typing import override
 
 PARALLEL_UPDATES: int
@@ -16,6 +18,7 @@ PARALLEL_UPDATES: int
 class PlugwiseSelectEntityDescription(SelectEntityDescription):
     key: SelectType
     options_key: SelectOptionsType
+    set_value_fn: Callable[[Smile, str, str, str, int | str | None], Awaitable[None]]
 
 SELECT_TYPES: Incomplete
 

@@ -1,4 +1,4 @@
-from .const import ATTR_OPTIONS as ATTR_OPTIONS, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, SelectEntityCapabilityAttribute as SelectEntityCapabilityAttribute
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_OPTION as ATTR_OPTION, SERVICE_SELECT_OPTION as SERVICE_SELECT_OPTION

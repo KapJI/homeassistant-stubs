@@ -3,10 +3,11 @@ from .coordinator import EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from pyenphase import EnvoyData as EnvoyData
-from typing import Any, Concatenate
+from typing import Any, Concatenate, override
 
 ACTIONERRORS: Incomplete
 
@@ -19,3 +20,19 @@ class EnvoyBaseEntity(CoordinatorEntity[EnphaseUpdateCoordinator]):
     def data(self) -> EnvoyData: ...
 
 def exception_handler[_EntityT: EnvoyBaseEntity, **_P](func: Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_EntityT, _P], Coroutine[Any, Any, None]]: ...
+
+class EnvoyACBAggregateEntity(EnvoyBaseEntity):
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EntityDescription) -> None: ...
+
+class EnvoyACBAggregateControlEntity(EnvoyACBAggregateEntity):
+    @property
+    @override
+    def available(self) -> bool: ...
+
+class EnvoyACBBatteryEntity(EnvoyBaseEntity):
+    _serial_number: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: EnphaseUpdateCoordinator, description: EntityDescription, serial_number: str) -> None: ...

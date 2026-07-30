@@ -72,6 +72,7 @@ class NestRTSPEntity(NestCameraBaseEntity):
 class NestWebRTCEntity(NestCameraBaseEntity):
     _webrtc_sessions: dict[str, WebRtcStream]
     _refresh_unsub: dict[str, Callable[[], None]]
+    content_type: str
     def __init__(self, device: Device) -> None: ...
     async def _async_refresh_stream(self, session_id: str) -> datetime.datetime | None: ...
     @override

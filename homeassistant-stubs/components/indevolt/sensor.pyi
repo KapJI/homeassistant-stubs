@@ -4,7 +4,7 @@ from .entity import IndevoltEntity as IndevoltEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass, field
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfFrequency as UnitOfFrequency, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from indevolt_api import IndevoltEnergyMode
@@ -17,6 +17,7 @@ class IndevoltSensorEntityDescription(SensorEntityDescription):
     state_mapping: dict[str | int, str] = field(default_factory=dict)
     generation: tuple[int, ...] = ...
     energy_mode: IndevoltEnergyMode | None = ...
+    charge_discharge_state: int | None = ...
 
 SENSORS: Final[Incomplete]
 BATTERY_PACK_SENSOR_KEYS: Incomplete

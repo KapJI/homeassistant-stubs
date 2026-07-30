@@ -1,5 +1,5 @@
 import voluptuous as vol
-from . import CoverEntityFeature as CoverEntityFeature, CoverState as CoverState, DOMAIN as DOMAIN
+from . import CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_PLATFORM as CONF_PLATFORM, CONF_TYPE as CONF_TYPE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE

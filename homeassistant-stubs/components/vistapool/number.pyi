@@ -1,5 +1,5 @@
 from . import VistapoolConfigEntry as VistapoolConfigEntry
-from .const import DOMAIN as DOMAIN, PATH_HASHIDRO as PATH_HASHIDRO, PATH_HASPH as PATH_HASPH, PATH_HASRX as PATH_HASRX
+from .const import DOMAIN as DOMAIN, PATH_HASHIDRO as PATH_HASHIDRO, PATH_HASPH as PATH_HASPH, PATH_HASRX as PATH_HASRX, SIGNAL_NEW_POOL as SIGNAL_NEW_POOL
 from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCoordinator
 from .entity import VistapoolEntity as VistapoolEntity
 from _typeshed import Incomplete
@@ -7,8 +7,9 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
 
@@ -27,6 +28,7 @@ def _max_electrolysis(coordinator: VistapoolDataUpdateCoordinator) -> float: ...
 
 NUMBER_DESCRIPTIONS: tuple[VistapoolNumberEntityDescription, ...]
 
+def _build_number_entities(coordinator: VistapoolDataUpdateCoordinator) -> list[NumberEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: VistapoolConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VistapoolNumber(VistapoolEntity, NumberEntity):

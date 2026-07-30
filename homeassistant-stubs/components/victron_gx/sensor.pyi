@@ -18,9 +18,11 @@ class VictronSensor(VictronBaseEntity, SensorEntity):
     _attr_device_class: Incomplete
     _attr_options: Incomplete
     _attr_state_class: Incomplete
-    _attr_native_unit_of_measurement: Incomplete
     _attr_native_value: Incomplete
     def __init__(self, device: VictronVenusDevice, metric: VictronVenusMetric, device_info: DeviceInfo, installation_id: str) -> None: ...
+    @property
+    @override
+    def native_unit_of_measurement(self) -> str | None: ...
     @callback
     @override
     def _on_update_cb(self, value: Any) -> None: ...

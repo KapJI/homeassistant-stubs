@@ -1,4 +1,4 @@
-from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, TARGET_ANY as TARGET_ANY, _LOGGER as _LOGGER
+from .const import DATA_LIFX_MANAGER as DATA_LIFX_MANAGER, DOMAIN as DOMAIN, LOGGER as LOGGER, TARGET_ANY as TARGET_ANY
 from .coordinator import LIFXConfigEntry as LIFXConfigEntry, LIFXUpdateCoordinator as LIFXUpdateCoordinator
 from .discovery import async_discover_devices as async_discover_devices, async_trigger_discovery as async_trigger_discovery
 from .manager import LIFXManager as LIFXManager

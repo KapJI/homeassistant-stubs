@@ -1,5 +1,6 @@
 import abc
 from .const import DOMAIN as DOMAIN
+from .util import sanitize_container_name as sanitize_container_name
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable
@@ -11,10 +12,11 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyportainer import Portainer as Portainer
-from pyportainer.models.docker import DockerContainer as DockerContainer, DockerContainerStats as DockerContainerStats, DockerSystemDF, DockerVolume as DockerVolume
-from pyportainer.models.docker_inspect import DockerInfo as DockerInfo, DockerVersion as DockerVersion
+from pyportainer.models.docker import DockerContainer as DockerContainer, DockerContainerStats as DockerContainerStats, DockerSystemDF, DockerVolume as DockerVolume, LocalImageInformation as LocalImageInformation, PortainerImageUpdateStatus as PortainerImageUpdateStatus
+from pyportainer.models.docker_inspect import DockerInfo as DockerInfo, DockerInspect as DockerInspect, DockerVersion as DockerVersion
 from pyportainer.models.portainer import Endpoint as Endpoint
 from pyportainer.models.stacks import Stack as Stack
+from pyportainer.watcher import PortainerImageWatcher as PortainerImageWatcher
 from typing import override
 
 type PortainerConfigEntry = ConfigEntry[PortainerCoordinator]
@@ -36,9 +38,12 @@ class PortainerCoordinatorData:
 @dataclass(slots=True)
 class PortainerContainerData:
     container: DockerContainer
+    container_inspect: DockerInspect
+    local_image: LocalImageInformation
+    stack: Stack | None
     stats: DockerContainerStats | None
     stats_pre: DockerContainerStats | None
-    stack: Stack | None
+    image_status: PortainerImageUpdateStatus | None = ...
 
 @dataclass(slots=True)
 class PortainerStackData:
@@ -72,11 +77,14 @@ class PortainerBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=
 class PortainerCoordinator(PortainerBaseCoordinator[dict[int, PortainerCoordinatorData]]):
     config_entry: PortainerConfigEntry
     docker_disk_space: PortainerDockerDiskSpaceCoordinator | None
+    watcher: PortainerImageWatcher | None
     _update_interval = DEFAULT_SCAN_INTERVAL
+    _image_cache: dict[tuple[int, str], tuple[float, LocalImageInformation]]
+    def __init__(self, hass: HomeAssistant, config_entry: PortainerConfigEntry, portainer: Portainer) -> None: ...
     @override
     async def update_data(self) -> dict[int, PortainerCoordinatorData]: ...
     def _async_add_remove_endpoints(self, mapped_endpoints: dict[int, PortainerCoordinatorData]) -> None: ...
-    def _get_container_name(self, container_name: str) -> str: ...
+    async def _get_local_image(self, endpoint_id: int, image: str) -> LocalImageInformation: ...
 
 class PortainerDockerDiskSpaceCoordinator(PortainerBaseCoordinator[dict[int, DockerSystemDF]]):
     config_entry: PortainerConfigEntry

@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 
-_LOGGER: Incomplete
+LOGGER: Incomplete
 DOMAIN: str
 DEFAULT_NAME: str
 CONF_DOWNLOAD_DIR: str

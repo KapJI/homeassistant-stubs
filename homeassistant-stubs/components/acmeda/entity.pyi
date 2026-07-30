@@ -1,9 +1,8 @@
 import aiopulse
-from .const import ACMEDA_ENTITY_REMOVE as ACMEDA_ENTITY_REMOVE, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.core import callback as callback
 from homeassistant.helpers import device_registry as dr, entity as entity
-from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from typing import override
 
 class AcmedaEntity(entity.Entity):
@@ -11,7 +10,6 @@ class AcmedaEntity(entity.Entity):
     _attr_has_entity_name: bool
     roller: Incomplete
     def __init__(self, roller: aiopulse.Roller) -> None: ...
-    async def async_remove_and_unregister(self) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override

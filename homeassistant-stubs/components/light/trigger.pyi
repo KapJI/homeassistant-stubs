@@ -1,5 +1,4 @@
-from . import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, LightEntityStateAttribute as LightEntityStateAttribute
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from homeassistant.helpers.automation import DomainSpec as DomainSpec

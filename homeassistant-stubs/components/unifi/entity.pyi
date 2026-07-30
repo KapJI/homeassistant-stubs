@@ -16,6 +16,7 @@ from homeassistant.helpers.entity import Entity as Entity, EntityDescription as 
 from typing import override
 
 type SubscriptionType = Callable[[CallbackType, ItemEvent], UnsubscribeType]
+def is_locally_administered_mac(mac: str) -> bool: ...
 @callback
 def async_device_available_fn(hub: UnifiHub, obj_id: str) -> bool: ...
 @callback

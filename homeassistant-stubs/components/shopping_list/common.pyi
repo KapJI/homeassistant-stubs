@@ -4,7 +4,7 @@ from collections.abc import Callable as Callable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_NAME as ATTR_NAME
 from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 from homeassistant.helpers.json import save_json as save_json
 from homeassistant.util.json import JsonValueType as JsonValueType, load_json_array as load_json_array
 from typing import Any

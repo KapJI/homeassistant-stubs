@@ -1,4 +1,4 @@
-from . import ATTR_ACTION as ATTR_ACTION, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MODE as ATTR_MODE
+from .const import HumidifierEntityStateAttribute as HumidifierEntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.significant_change import check_absolute_change as check_absolute_change, check_valid_float as check_valid_float
 from typing import Any

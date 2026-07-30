@@ -2,7 +2,7 @@ from .const import ATTR_DURATION as ATTR_DURATION, ATTR_VOLUME as ATTR_VOLUME, D
 from .models import SnoozConfigEntry as SnoozConfigEntry, SnoozConfigurationData as SnoozConfigurationData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.components.fan import ATTR_PERCENTAGE as ATTR_PERCENTAGE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
+from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature, FanEntityStateAttribute as FanEntityStateAttribute
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

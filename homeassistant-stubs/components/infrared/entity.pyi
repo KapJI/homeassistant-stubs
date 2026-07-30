@@ -32,6 +32,8 @@ class InfraredEmitterEntity(RestoreEntity, metaclass=abc.ABCMeta):
     _attr_should_poll: bool
     _attr_state: None
     __last_command_sent: str | None
+    @override
+    def _default_to_device_class_name(self) -> bool: ...
     @property
     @final
     @override
@@ -52,6 +54,8 @@ class InfraredReceiverEntity(RestoreEntity):
     _attr_should_poll: bool
     _attr_state: None
     __last_signal_received: str | None
+    @override
+    def _default_to_device_class_name(self) -> bool: ...
     @cached_property
     def __signal_callbacks(self) -> set[Callable[[InfraredReceivedSignal], None]]: ...
     @property

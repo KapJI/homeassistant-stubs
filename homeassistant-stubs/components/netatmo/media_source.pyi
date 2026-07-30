@@ -1,7 +1,9 @@
-from .const import DATA_CAMERAS as DATA_CAMERAS, DATA_EVENTS as DATA_EVENTS, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from .const import DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER
+from .coordinator import NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDataHandler as NetatmoDataHandler, async_get_loaded_entry as async_get_loaded_entry
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, MediaType as MediaType
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceError as MediaSourceError, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
+from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import override
 
@@ -15,8 +17,12 @@ async def async_get_media_source(hass: HomeAssistant) -> NetatmoSource: ...
 class NetatmoSource(MediaSource):
     name: str
     hass: Incomplete
-    events: Incomplete
-    def __init__(self, hass: HomeAssistant) -> None: ...
+    entry: Incomplete
+    def __init__(self, hass: HomeAssistant, entry: NetatmoConfigEntry | None) -> None: ...
+    @property
+    def _data_handler(self) -> NetatmoDataHandler | None: ...
+    @property
+    def events(self) -> dict[str, dict]: ...
     @override
     async def async_resolve_media(self, item: MediaSourceItem) -> PlayMedia: ...
     @override

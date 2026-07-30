@@ -1,6 +1,6 @@
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, NETATMO_CREATE_FAN as NETATMO_CREATE_FAN
-from .data_handler import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
-from .entity import NetatmoModuleEntity as NetatmoModuleEntity
+from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDevice as NetatmoDevice, SIGNAL_NAME as SIGNAL_NAME
+from .entity import NetatmoReachabilityEntity as NetatmoReachabilityEntity
 from .helper import device_type_to_str as device_type_to_str
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
@@ -11,13 +11,14 @@ from pyatmo import modules as NaModules
 from typing import Final, override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 DEFAULT_PERCENTAGE: Final[int]
 PRESET_MAPPING: Incomplete
 PRESETS: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class NetatmoFan(NetatmoModuleEntity, FanEntity):
+class NetatmoFan(NetatmoReachabilityEntity, FanEntity):
     _attr_preset_modes: Incomplete
     _attr_supported_features: Incomplete
     _attr_configuration_url = CONF_URL_CONTROL

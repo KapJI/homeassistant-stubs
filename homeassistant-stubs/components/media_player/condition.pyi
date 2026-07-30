@@ -1,5 +1,4 @@
-from . import ATTR_MEDIA_VOLUME_LEVEL as ATTR_MEDIA_VOLUME_LEVEL, ATTR_MEDIA_VOLUME_MUTED as ATTR_MEDIA_VOLUME_MUTED
-from .const import DOMAIN as DOMAIN, MediaPlayerState as MediaPlayerState
+from .const import DOMAIN as DOMAIN, MediaPlayerEntityStateAttribute as MediaPlayerEntityStateAttribute, MediaPlayerState as MediaPlayerState
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State

@@ -1,4 +1,4 @@
-from .const import ATTR_NEXT_EVENT as ATTR_NEXT_EVENT, DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, ScheduleEntityStateAttribute as ScheduleEntityStateAttribute
 from _typeshed import Incomplete
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State

@@ -5,7 +5,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LLM_HASS_API 
 from homeassistant.core import callback as callback
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
-from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector
+from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TemplateSelector as TemplateSelector
 from python_open_router import Model as Model
 from typing import Any, override
 

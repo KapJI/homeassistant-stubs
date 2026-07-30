@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from elkm1_lib.areas import Area as Area
 from elkm1_lib.elements import Element as Element
 from elkm1_lib.elk import Elk as Elk
-from homeassistant.components.alarm_control_panel import ATTR_CHANGED_BY as ATTR_CHANGED_BY, AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelEntityStateAttribute as AlarmControlPanelEntityStateAttribute, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.const import SERVICE_ALARM_ARM_VACATION as SERVICE_ALARM_ARM_VACATION
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import entity_platform as entity_platform

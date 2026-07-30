@@ -7,9 +7,12 @@ from pyoverkiz.client import OverkizClient as OverkizClient
 from pyoverkiz.models import PersistedActionGroup as PersistedActionGroup
 from typing import Any, override
 
+PARALLEL_UPDATES: int
+
 async def async_setup_entry(hass: HomeAssistant, entry: OverkizDataConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class OverkizScene(Scene):
+    _attr_has_entity_name: bool
     scenario: Incomplete
     client: Incomplete
     _attr_name: Incomplete

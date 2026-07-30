@@ -1,4 +1,4 @@
-from .const import CONF_ADVANCED_OPTIONS as CONF_ADVANCED_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
+from .const import CONF_ADDITIONAL_OPTIONS as CONF_ADDITIONAL_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
 from .util import InvalidSqlQuery as InvalidSqlQuery, async_create_sessionmaker as async_create_sessionmaker, check_and_render_sql_query as check_and_render_sql_query, convert_value as convert_value, generate_lambda_stmt as generate_lambda_stmt, redact_credentials as redact_credentials, resolve_db_url as resolve_db_url, validate_query as validate_query
 from _typeshed import Incomplete
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, get_instance as get_instance

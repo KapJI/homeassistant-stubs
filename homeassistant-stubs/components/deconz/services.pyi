@@ -1,9 +1,9 @@
-from . import DeconzConfigEntry as DeconzConfigEntry
-from .const import CONF_BRIDGE_ID as CONF_BRIDGE_ID, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import CONF_BRIDGE_ID as CONF_BRIDGE_ID, DOMAIN as DOMAIN
 from .hub import DeconzHub as DeconzHub
 from .util import get_master_hub as get_master_hub
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 

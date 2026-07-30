@@ -6,8 +6,8 @@ from typing import Literal, TypedDict
 
 class _ErrorDescription(TypedDict):
     path: list[str] | None
-    error_message: str
-    error_class: str
+    message: str
+    code: str | None
 
 class EntityStoreValidationError(TypedDict):
     success: Literal[False]

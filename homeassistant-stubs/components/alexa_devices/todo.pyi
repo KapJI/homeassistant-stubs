@@ -1,4 +1,4 @@
-from .const import _LOGGER as _LOGGER
+from .const import LOGGER as LOGGER
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry, AmazonDevicesCoordinator as AmazonDevicesCoordinator, alexa_api_call as alexa_api_call
 from .entity import AmazonServiceEntity as AmazonServiceEntity
 from _typeshed import Incomplete

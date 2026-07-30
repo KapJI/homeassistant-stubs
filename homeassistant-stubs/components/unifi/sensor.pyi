@@ -1,6 +1,7 @@
 from . import UnifiConfigEntry as UnifiConfigEntry
 from .const import DEVICE_STATES as DEVICE_STATES
-from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn
+from .device_tracker import async_client_allowed_fn as async_client_allowed_fn
+from .entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as UnifiEntityDescription, async_client_device_info_fn as async_client_device_info_fn, async_device_available_fn as async_device_available_fn, async_device_device_info_fn as async_device_device_info_fn, async_wlan_available_fn as async_wlan_available_fn, async_wlan_device_info_fn as async_wlan_device_info_fn, is_locally_administered_mac as is_locally_administered_mac
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import APIHandler as APIHandler, ItemEvent as ItemEvent

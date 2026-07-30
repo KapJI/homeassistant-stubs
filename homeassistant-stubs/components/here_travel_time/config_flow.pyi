@@ -3,7 +3,7 @@ from .const import CONF_ARRIVAL_TIME as CONF_ARRIVAL_TIME, CONF_DEPARTURE_TIME a
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
-from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME
+from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, CONF_MODE as CONF_MODE
 from homeassistant.core import callback as callback
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, EntitySelector as EntitySelector, LocationSelector as LocationSelector, TimeSelector as TimeSelector
 from typing import Any, override

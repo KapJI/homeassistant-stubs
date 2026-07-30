@@ -1,12 +1,13 @@
-from .const import SUBENTRY_TYPE_STOP as SUBENTRY_TYPE_STOP, SUBENTRY_TYPE_VELOV_STATION as SUBENTRY_TYPE_VELOV_STATION
+from .const import SUBENTRY_TYPE_PARK_AND_RIDE as SUBENTRY_TYPE_PARK_AND_RIDE, SUBENTRY_TYPE_STOP as SUBENTRY_TYPE_STOP, SUBENTRY_TYPE_VELOV_STATION as SUBENTRY_TYPE_VELOV_STATION
 from .coordinator import DataGrandLyonConfigEntry as DataGrandLyonConfigEntry
-from .entity import DataGrandLyonTclEntity as DataGrandLyonTclEntity, DataGrandLyonVelovEntity as DataGrandLyonVelovEntity
+from .entity import DataGrandLyonParkAndRideEntity as DataGrandLyonParkAndRideEntity, DataGrandLyonTclEntity as DataGrandLyonTclEntity, DataGrandLyonVelovEntity as DataGrandLyonVelovEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from data_grand_lyon_ha import TclPassage as TclPassage, VelovStation as VelovStation
+from data_grand_lyon_ha import TclParkAndRide as TclParkAndRide, TclPassage as TclPassage, VelovStation as VelovStation
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
+from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -31,6 +32,12 @@ class DataGrandLyonVelovSensorEntityDescription(SensorEntityDescription):
 
 VELOV_SENSOR_DESCRIPTIONS: tuple[DataGrandLyonVelovSensorEntityDescription, ...]
 
+@dataclass(frozen=True, kw_only=True)
+class DataGrandLyonParkAndRideSensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[TclParkAndRide], StateType]
+
+PARK_AND_RIDE_SENSOR_DESCRIPTIONS: tuple[DataGrandLyonParkAndRideSensorEntityDescription, ...]
+
 async def async_setup_entry(hass: HomeAssistant, entry: DataGrandLyonConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class DataGrandLyonStopSensor(DataGrandLyonTclEntity, SensorEntity):
@@ -47,3 +54,9 @@ class DataGrandLyonVelovSensor(DataGrandLyonVelovEntity, SensorEntity):
     @property
     @override
     def native_value(self) -> StateType | datetime: ...
+
+class DataGrandLyonParkAndRideSensor(DataGrandLyonParkAndRideEntity, SensorEntity):
+    entity_description: DataGrandLyonParkAndRideSensorEntityDescription
+    @property
+    @override
+    def native_value(self) -> StateType: ...

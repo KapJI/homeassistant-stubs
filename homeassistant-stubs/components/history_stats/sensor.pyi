@@ -12,6 +12,7 @@ from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as C
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import PlatformNotReady as PlatformNotReady
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
+from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
 from homeassistant.helpers.template import Template as Template
@@ -52,7 +53,7 @@ class HistoryStatsSensor(HistoryStatsSensorBase):
     device_entry: Incomplete
     _attr_device_class: Incomplete
     _attr_suggested_display_precision: int
-    def __init__(self, hass: HomeAssistant, *, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, source_entity_id: str, state_class: SensorStateClass | None) -> None: ...
+    def __init__(self, *, coordinator: HistoryStatsUpdateCoordinator, sensor_type: str, name: str, unique_id: str | None, state_class: SensorStateClass | None, device: DeviceEntry | None = None) -> None: ...
     _attr_native_value: Incomplete
     @callback
     @override

@@ -3,11 +3,12 @@ from .const import ATTR_CONFIG as ATTR_CONFIG, CONF_SERVER_PORT as CONF_SERVER_P
 from .server import async_verify_can_bind as async_verify_can_bind
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.homeassistant import SERVICE_HOMEASSISTANT_RESTART as SERVICE_HOMEASSISTANT_RESTART
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, Final
 
 ERR_BIND_FAILED: Final[str]
+ERR_NOT_RUNNING: Final[str]
 
 @callback
 def async_register_websocket_commands(hass: HomeAssistant) -> None: ...

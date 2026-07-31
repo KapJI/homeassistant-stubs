@@ -8,6 +8,8 @@ from typing import Any, override
 
 _LOGGER: Incomplete
 
+def _is_casper_glow_discovery(discovery_info: BluetoothServiceInfoBleak) -> bool: ...
+
 class CasperGlowConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
     MINOR_VERSION: int

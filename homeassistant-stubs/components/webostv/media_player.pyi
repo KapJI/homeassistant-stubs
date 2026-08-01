@@ -49,6 +49,8 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     @override
     async def async_will_remove_from_hass(self) -> None: ...
     async def async_handle_state_update(self, tv_state: WebOsTvState) -> None: ...
+    _attr_extra_state_attributes: Incomplete
+    _attr_device_info: Incomplete
     _attr_state: Incomplete
     _attr_is_volume_muted: Incomplete
     _attr_volume_level: Incomplete
@@ -57,8 +59,6 @@ class LgWebOSMediaPlayerEntity(RestoreEntity, MediaPlayerEntity):
     _attr_media_content_type: Incomplete
     _attr_media_title: Incomplete
     _attr_media_image_url: Incomplete
-    _attr_device_info: Incomplete
-    _attr_extra_state_attributes: Incomplete
     def _update_states(self) -> None: ...
     def _update_sources(self) -> None: ...
     _attr_available: Incomplete

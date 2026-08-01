@@ -17,8 +17,10 @@ class OumanEh800Coordinator(DataUpdateCoordinator[dict[OumanEndpoint, OumanValue
     _registry_set: OumanRegistrySet
     config_entry: OumanEh800ConfigEntry
     client: OumanEh800Client
-    device_info: dict[OumanDevice, DeviceInfo]
+    _main_device_identifier: Incomplete
+    _device_info: dict[OumanDevice, DeviceInfo]
     def __init__(self, hass: HomeAssistant, config_entry: OumanEh800ConfigEntry) -> None: ...
+    def device_info(self, device: OumanDevice) -> DeviceInfo: ...
     @override
     async def _async_setup(self) -> None: ...
     @override

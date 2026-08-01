@@ -20,6 +20,7 @@ from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncode
 from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integration_descriptions as async_get_integration_descriptions, async_get_integrations as async_get_integrations
 from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations, async_get_setup_timings as async_get_setup_timings, async_wait_component as async_wait_component
+from homeassistant.util import slugify as slugify
 from homeassistant.util.json import format_unserializable_data as format_unserializable_data
 from typing import Any
 
@@ -72,6 +73,8 @@ async def handle_manifest_get(hass: HomeAssistant, connection: ActiveConnection,
 def handle_integration_setup_info(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @callback
 def handle_ping(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
+@callback
+def handle_slugify(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @lru_cache
 def _cached_template(template_str: str, hass: HomeAssistant) -> template.Template: ...
 @decorators.async_response

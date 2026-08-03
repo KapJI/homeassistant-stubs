@@ -21,6 +21,7 @@ class ActronAirRuntimeData:
 type ActronAirConfigEntry = ConfigEntry[ActronAirRuntimeData]
 
 class ActronAirSystemCoordinator(DataUpdateCoordinator[ActronAirStatus]):
+    config_entry: ActronAirConfigEntry
     system: Incomplete
     serial_number: Incomplete
     api: Incomplete

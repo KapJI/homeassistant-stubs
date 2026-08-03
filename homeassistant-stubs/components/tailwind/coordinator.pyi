@@ -11,6 +11,7 @@ from typing import override
 
 type TailwindConfigEntry = ConfigEntry[TailwindDataUpdateCoordinator]
 class TailwindDataUpdateCoordinator(DataUpdateCoordinator[TailwindDeviceStatus]):
+    config_entry: TailwindConfigEntry
     tailwind: Incomplete
     def __init__(self, hass: HomeAssistant, entry: TailwindConfigEntry) -> None: ...
     @override

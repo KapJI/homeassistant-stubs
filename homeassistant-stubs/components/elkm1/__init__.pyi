@@ -1,6 +1,7 @@
 import asyncio
 from .const import ATTR_KEY as ATTR_KEY, ATTR_KEYPAD_ID as ATTR_KEYPAD_ID, ATTR_KEYPAD_NAME as ATTR_KEYPAD_NAME, ATTR_KEY_NAME as ATTR_KEY_NAME, CONF_AREA as CONF_AREA, CONF_AUTO_CONFIGURE as CONF_AUTO_CONFIGURE, CONF_COUNTER as CONF_COUNTER, CONF_KEYPAD as CONF_KEYPAD, CONF_OUTPUT as CONF_OUTPUT, CONF_PLC as CONF_PLC, CONF_SETTING as CONF_SETTING, CONF_TASK as CONF_TASK, CONF_THERMOSTAT as CONF_THERMOSTAT, DISCOVERY_INTERVAL as DISCOVERY_INTERVAL, DISCOVER_SCAN_TIMEOUT as DISCOVER_SCAN_TIMEOUT, DOMAIN as DOMAIN, ELK_ELEMENTS as ELK_ELEMENTS, EVENT_ELKM1_KEYPAD_KEY_PRESSED as EVENT_ELKM1_KEYPAD_KEY_PRESSED, LOGIN_TIMEOUT as LOGIN_TIMEOUT
 from .discovery import async_discover_device as async_discover_device, async_discover_devices as async_discover_devices, async_trigger_discovery as async_trigger_discovery, async_update_entry_from_discovery as async_update_entry_from_discovery
+from .entity import create_elk_system_device_info as create_elk_system_device_info
 from .models import ELKM1Data as ELKM1Data
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete

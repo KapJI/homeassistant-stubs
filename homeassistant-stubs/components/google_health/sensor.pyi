@@ -7,12 +7,13 @@ from dataclasses import dataclass
 from datetime import datetime
 from google_health_api.model import PairedDevice as PairedDevice
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo, async_get_device_id_by_identifier as async_get_device_id_by_identifier
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from homeassistant.util.unit_system import US_CUSTOMARY_SYSTEM as US_CUSTOMARY_SYSTEM, UnitSystem as UnitSystem
 from typing import Any, override
 
 PARALLEL_UPDATES: int
@@ -20,6 +21,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class GoogleHealthSensorEntityDescription[_CoordinatorT: GoogleHealthDataUpdateCoordinator[Any], _ValueT: StateType](SensorEntityDescription):
     value_fn: Callable[[Any], _ValueT]
+    suggested_unit_fn: Callable[[UnitSystem], str | None] | None = ...
 
 ACTIVITY_SENSORS: list[GoogleHealthSensorEntityDescription[GoogleHealthActivityCoordinator, Any]]
 BODY_SENSORS: list[GoogleHealthSensorEntityDescription[GoogleHealthBodyCoordinator, Any]]
@@ -43,9 +45,13 @@ class GoogleHealthSensor[_CoordinatorT: GoogleHealthDataUpdateCoordinator[Any]](
     @property
     @override
     def native_value(self) -> StateType: ...
+    @property
+    @override
+    def suggested_unit_of_measurement(self) -> str | None: ...
 
 class GoogleHealthDeviceSensor(CoordinatorEntity[GoogleHealthDeviceCoordinator], SensorEntity):
     _attr_has_entity_name: bool
+    _attr_entity_category: Incomplete
     entity_description: GoogleHealthDeviceSensorEntityDescription
     device_id: Incomplete
     _attr_unique_id: Incomplete

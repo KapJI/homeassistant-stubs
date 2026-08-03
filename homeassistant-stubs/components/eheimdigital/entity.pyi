@@ -12,6 +12,8 @@ from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONN
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, Concatenate, override
 
+def async_device_info(coordinator: EheimDigitalUpdateCoordinator, device: EheimDigitalDevice) -> DeviceInfo: ...
+
 class EheimDigitalEntity[_DeviceT: EheimDigitalDevice](CoordinatorEntity[EheimDigitalUpdateCoordinator], ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     _attr_device_info: Incomplete

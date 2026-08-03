@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, METEO_UPDATE_INTERVAL as METEO_UPDATE_INTERVAL, PLATFORMS as PLATFORMS, REMOTE_UPDATE_INTERVAL as REMOTE_UPDATE_INTERVAL, TYPE_TO_PLATFORM as TYPE_TO_PLATFORM
 from .coordinator import LookinDataUpdateCoordinator as LookinDataUpdateCoordinator, LookinPushCoordinator as LookinPushCoordinator
+from .entity import _lookin_device_to_device_info as _lookin_device_to_device_info
 from .models import LookinConfigEntry as LookinConfigEntry, LookinData as LookinData
 from _typeshed import Incomplete
 from aiolookin import Climate as Climate, LookInHttpProtocol, LookinUDPSubscriptions, Remote as Remote

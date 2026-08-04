@@ -5,6 +5,8 @@ from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS, ATTR_IDENT
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
+def create_main_device_info(coordinator: HWEnergyDeviceUpdateCoordinator) -> DeviceInfo: ...
+
 class HomeWizardEntity(CoordinatorEntity[HWEnergyDeviceUpdateCoordinator]):
     _attr_has_entity_name: bool
     _attr_device_info: Incomplete

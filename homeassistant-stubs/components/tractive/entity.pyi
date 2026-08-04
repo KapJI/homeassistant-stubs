@@ -1,7 +1,7 @@
-from . import TractiveClient as TractiveClient
+from . import TractiveClient as TractiveClient, TractiveConfigEntry as TractiveConfigEntry
 from .const import DOMAIN as DOMAIN, SERVER_UNAVAILABLE as SERVER_UNAVAILABLE
 from _typeshed import Incomplete
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity import Entity as Entity
@@ -14,7 +14,7 @@ class TractiveEntity(Entity):
     _tracker_id: Incomplete
     _client: Incomplete
     _dispatcher_signal: Incomplete
-    def __init__(self, client: TractiveClient, trackable: dict[str, Any], tracker_details: dict[str, Any], dispatcher_signal: str, hardware_entity: bool = True) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: TractiveConfigEntry, client: TractiveClient, trackable: dict[str, Any], tracker_details: dict[str, Any], dispatcher_signal: str, hardware_entity: bool = True) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     _attr_available: Incomplete

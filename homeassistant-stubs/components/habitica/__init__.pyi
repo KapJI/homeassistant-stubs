@@ -1,4 +1,4 @@
-from .const import CONF_API_USER as CONF_API_USER, DOMAIN as DOMAIN, X_CLIENT as X_CLIENT
+from .const import CONF_API_USER as CONF_API_USER, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, NAME as NAME, X_CLIENT as X_CLIENT
 from .coordinator import HabiticaConfigEntry as HabiticaConfigEntry, HabiticaDataUpdateCoordinator as HabiticaDataUpdateCoordinator, HabiticaPartyCoordinator as HabiticaPartyCoordinator
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete

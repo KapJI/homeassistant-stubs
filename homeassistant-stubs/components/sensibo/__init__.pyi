@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, PLATFORMS as PLATFORMS
 from .coordinator import SensiboDataUpdateCoordinator as SensiboDataUpdateCoordinator
+from .entity import get_device_info as get_device_info
 from .services import async_setup_services as async_setup_services
 from .util import NoDevicesError as NoDevicesError, NoUsernameError as NoUsernameError, async_validate_api as async_validate_api
 from _typeshed import Incomplete

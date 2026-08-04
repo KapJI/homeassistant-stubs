@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_IDENTIFIERS as ATTR_IDENTIFIERS, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
 from pylutron import Keypad as Keypad, Lutron as Lutron, LutronEntity as LutronEntity, LutronEvent as LutronEvent
@@ -25,8 +25,9 @@ class LutronBaseEntity(Entity):
 
 class LutronDevice(LutronBaseEntity):
     _attr_device_info: Incomplete
-    def __init__(self, area_name: str, lutron_device: LutronEntity, controller: Lutron) -> None: ...
+    def __init__(self, hass: HomeAssistant, area_name: str, lutron_device: LutronEntity, controller: Lutron, config_entry_id: str) -> None: ...
 
 class LutronKeypad(LutronBaseEntity):
+    _keypad: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, area_name: str, lutron_device: LutronEntity, controller: Lutron, keypad: Keypad) -> None: ...
+    def __init__(self, hass: HomeAssistant, area_name: str, lutron_device: LutronEntity, controller: Lutron, keypad: Keypad, config_entry_id: str) -> None: ...

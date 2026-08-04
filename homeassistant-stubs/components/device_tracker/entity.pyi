@@ -5,7 +5,6 @@ from homeassistant.components import zone as zone
 from homeassistant.components.zone import ZoneEntityStateAttribute as ZoneEntityStateAttribute
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_GPS_ACCURACY as ATTR_GPS_ACCURACY, ATTR_LATITUDE as ATTR_LATITUDE, ATTR_LONGITUDE as ATTR_LONGITUDE, EntityCategory as EntityCategory, EntityStateAttribute as EntityStateAttribute, STATE_HOME as STATE_HOME, STATE_NOT_HOME as STATE_NOT_HOME
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, async_get_hass_or_none as async_get_hass_or_none, callback as callback
-from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
@@ -144,7 +143,7 @@ class ScannerEntity(BaseScannerEntity, cached_properties=CACHED_SCANNER_PROPERTI
     @override
     def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     @callback
-    def find_device_entry(self) -> dr.DeviceEntry | None: ...
+    def _async_mac_address_registered(self) -> bool: ...
     registry_entry: Incomplete
     @override
     async def async_internal_added_to_hass(self) -> None: ...

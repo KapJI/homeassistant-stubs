@@ -14,10 +14,12 @@ class VelbusEntity(Entity):
     _channel: Incomplete
     _module_address: Incomplete
     _attr_name: Incomplete
-    _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, channel: VelbusChannel | VelbusProperty) -> None: ...
     def _get_identifier(self) -> str: ...
+    @property
+    @override
+    def device_info(self) -> DeviceInfo: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override

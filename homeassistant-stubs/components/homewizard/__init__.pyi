@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import HWEnergyDeviceUpdateCoordinator as HWEnergyDeviceUpdateCoordinator, HomeWizardConfigEntry as HomeWizardConfigEntry
+from .entity import create_main_device_info as create_main_device_info
 from homeassistant.config_entries import SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant

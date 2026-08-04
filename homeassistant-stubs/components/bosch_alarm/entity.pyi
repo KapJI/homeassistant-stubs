@@ -2,6 +2,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from bosch_alarm_mode2 import Panel as Panel
 from homeassistant.components.sensor import Entity as Entity
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from typing import override
 
@@ -30,7 +31,7 @@ class BoschAlarmAreaEntity(BoschAlarmEntity):
     _observe_status: Incomplete
     _area: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, panel: Panel, area_id: int, unique_id: str, observe_alarms: bool, observe_ready: bool, observe_status: bool) -> None: ...
+    def __init__(self, hass: HomeAssistant, panel: Panel, area_id: int, unique_id: str, config_entry_id: str, observe_alarms: bool, observe_ready: bool, observe_status: bool) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override
@@ -41,7 +42,7 @@ class BoschAlarmPointEntity(BoschAlarmEntity):
     _point_unique_id: Incomplete
     _point: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, panel: Panel, point_id: int, unique_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, panel: Panel, point_id: int, unique_id: str, config_entry_id: str) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override
@@ -52,7 +53,7 @@ class BoschAlarmDoorEntity(BoschAlarmEntity):
     _door: Incomplete
     _door_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, panel: Panel, door_id: int, unique_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, panel: Panel, door_id: int, unique_id: str, config_entry_id: str) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override
@@ -63,7 +64,7 @@ class BoschAlarmOutputEntity(BoschAlarmEntity):
     _output: Incomplete
     _output_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, panel: Panel, output_id: int, unique_id: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, panel: Panel, output_id: int, unique_id: str, config_entry_id: str) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override

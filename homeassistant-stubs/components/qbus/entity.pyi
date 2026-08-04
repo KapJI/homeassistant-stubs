@@ -24,12 +24,16 @@ class QbusEntity[StateT: QbusMqttState](Entity, ABC, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
     _attr_should_poll: bool
     _mqtt_output: Incomplete
+    _link_to_main_device: Incomplete
     _topic_factory: Incomplete
     _message_factory: Incomplete
     _state_topic: Incomplete
+    _ref_id: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, mqtt_output: QbusMqttOutput, *, id_suffix: str = '', link_to_main_device: bool = False) -> None: ...
+    @property
+    @override
+    def device_info(self) -> DeviceInfo: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     async def _state_received(self, msg: ReceiveMessage) -> None: ...

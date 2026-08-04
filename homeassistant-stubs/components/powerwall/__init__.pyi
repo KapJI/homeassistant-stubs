@@ -1,4 +1,4 @@
-from .const import AUTH_COOKIE_KEY as AUTH_COOKIE_KEY, CONFIG_ENTRY_COOKIE as CONFIG_ENTRY_COOKIE, DOMAIN as DOMAIN, POWERWALL_API_CHANGED as POWERWALL_API_CHANGED, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR
+from .const import AUTH_COOKIE_KEY as AUTH_COOKIE_KEY, CONFIG_ENTRY_COOKIE as CONFIG_ENTRY_COOKIE, DOMAIN as DOMAIN, MANUFACTURER as MANUFACTURER, MODEL as MODEL, POWERWALL_API_CHANGED as POWERWALL_API_CHANGED, POWERWALL_COORDINATOR as POWERWALL_COORDINATOR
 from .coordinator import PowerwallBaseInfo as PowerwallBaseInfo, PowerwallConfigEntry as PowerwallConfigEntry, PowerwallData as PowerwallData, PowerwallRuntimeData as PowerwallRuntimeData, PowerwallUpdateCoordinator as PowerwallUpdateCoordinator
 from .helpers import is_api_404 as is_api_404
 from _typeshed import Incomplete

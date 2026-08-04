@@ -21,7 +21,7 @@ class TractiveSensor(TractiveEntity, SensorEntity):
     entity_description: TractiveSensorEntityDescription
     _attr_unique_id: Incomplete
     _attr_available: bool
-    def __init__(self, client: TractiveClient, item: Trackables, description: TractiveSensorEntityDescription) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: TractiveConfigEntry, client: TractiveClient, item: Trackables, description: TractiveSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
     @override

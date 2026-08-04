@@ -13,7 +13,6 @@ TOKEN_TYPE_SYSTEM: str
 TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN: str
 
 class AuthFlowContext(FlowContext, total=False):
-    credential_only: bool
     ip_address: IPv4Address | IPv6Address
     redirect_uri: str
 

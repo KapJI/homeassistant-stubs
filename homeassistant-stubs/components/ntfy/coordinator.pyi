@@ -7,8 +7,10 @@ from aiontfy.update import LatestRelease, UpdateChecker as UpdateChecker
 from dataclasses import dataclass
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import override
 
@@ -25,6 +27,8 @@ class BaseDataUpdateCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass
     update_interval: timedelta
     ntfy: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: NtfyConfigEntry, ntfy: Ntfy) -> None: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     @abstractmethod
     async def async_update_data(self) -> _DataT: ...
     @override

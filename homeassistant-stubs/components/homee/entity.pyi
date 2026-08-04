@@ -2,6 +2,7 @@ from . import HomeeConfigEntry as HomeeConfigEntry
 from .const import DOMAIN as DOMAIN
 from .helpers import get_name_for_enum as get_name_for_enum
 from _typeshed import Incomplete
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
@@ -20,7 +21,7 @@ class HomeeEntity(Entity):
     _attr_device_info: Incomplete
     _attr_name: Incomplete
     _host_connected: Incomplete
-    def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, attribute: HomeeAttribute, entry: HomeeConfigEntry) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @property
@@ -39,7 +40,7 @@ class HomeeNodeEntity(Entity):
     _entry: Incomplete
     _attr_device_info: Incomplete
     _host_connected: Incomplete
-    def __init__(self, node: HomeeNode, entry: HomeeConfigEntry) -> None: ...
+    def __init__(self, hass: HomeAssistant, node: HomeeNode, entry: HomeeConfigEntry) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @property

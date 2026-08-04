@@ -1,9 +1,11 @@
+from . import RussoundConfigEntry as RussoundConfigEntry
 from .const import DOMAIN as DOMAIN, RUSSOUND_RIO_EXCEPTIONS as RUSSOUND_RIO_EXCEPTIONS
 from _typeshed import Incomplete
 from aiorussound.rio import RussoundRIOClient as RussoundRIOClient
 from aiorussound.rio.client import Controller as Controller, ZoneControlSurface as ZoneControlSurface
 from aiorussound.rio.models import CallbackType
 from collections.abc import Awaitable, Callable as Callable, Coroutine
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
@@ -20,7 +22,7 @@ class RussoundBaseEntity(Entity):
     _device_identifier: Incomplete
     _zone_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, controller: Controller, zone_id: int | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, controller: Controller, entry: RussoundConfigEntry, zone_id: int | None = None) -> None: ...
     @property
     def _zone(self) -> ZoneControlSurface: ...
     _attr_available: Incomplete

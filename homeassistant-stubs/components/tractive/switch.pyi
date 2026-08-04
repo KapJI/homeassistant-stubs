@@ -25,7 +25,7 @@ class TractiveSwitch(TractiveEntity, SwitchEntity):
     _attr_unique_id: Incomplete
     _tracker: Incomplete
     _method: Incomplete
-    def __init__(self, client: TractiveClient, item: Trackables, description: TractiveSwitchEntityDescription) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: TractiveConfigEntry, client: TractiveClient, item: Trackables, description: TractiveSwitchEntityDescription) -> None: ...
     _attr_available: Incomplete
     _attr_is_on: Incomplete
     @callback

@@ -1,8 +1,9 @@
 from . import YaleConfigEntry as YaleConfigEntry
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, LOGGER as LOGGER, YALE_BASE_ERRORS as YALE_BASE_ERRORS
+from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, LOGGER as LOGGER, MANUFACTURER as MANUFACTURER, MODEL as MODEL, YALE_BASE_ERRORS as YALE_BASE_ERRORS
 from homeassistant.const import CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, override
 from yalesmartalarmclient import YaleLock
@@ -13,6 +14,8 @@ class YaleDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: YaleConfigEntry
     locks: list[YaleLock]
     def __init__(self, hass: HomeAssistant, config_entry: YaleConfigEntry) -> None: ...
+    @property
+    def device_info(self) -> DeviceInfo: ...
     def _yale_setup(self) -> tuple[YaleSmartAlarmClient, list[YaleLock]]: ...
     @override
     async def _async_setup(self) -> None: ...

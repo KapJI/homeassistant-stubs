@@ -14,7 +14,7 @@ class TractiveBinarySensor(TractiveEntity, BinarySensorEntity):
     _attr_unique_id: Incomplete
     _attr_available: bool
     entity_description: Incomplete
-    def __init__(self, client: TractiveClient, item: Trackables, description: TractiveBinarySensorEntityDescription) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: TractiveConfigEntry, client: TractiveClient, item: Trackables, description: TractiveBinarySensorEntityDescription) -> None: ...
     _attr_is_on: Incomplete
     @callback
     @override

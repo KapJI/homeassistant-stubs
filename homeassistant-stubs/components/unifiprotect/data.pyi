@@ -25,6 +25,7 @@ def async_last_update_was_successful(hass: HomeAssistant, entry: UFPConfigEntry)
 def _async_dispatch_id(entry: UFPConfigEntry, dispatch: str) -> str: ...
 
 class ProtectData:
+    nvr_device_id: str
     _entry: Incomplete
     _hass: Incomplete
     _update_interval: Incomplete

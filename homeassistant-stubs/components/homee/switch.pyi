@@ -26,7 +26,7 @@ class HomeeSwitchEntityDescription(SwitchEntityDescription):
 
 SWITCH_DESCRIPTIONS: dict[AttributeType, HomeeSwitchEntityDescription]
 
-async def add_switch_entities(config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
+async def add_switch_entities(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback, nodes: list[HomeeNode]) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: HomeeConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeeSwitch(HomeeEntity, SwitchEntity):
@@ -34,7 +34,7 @@ class HomeeSwitch(HomeeEntity, SwitchEntity):
     _attr_name: Incomplete
     _attr_translation_key: Incomplete
     _attr_translation_placeholders: Incomplete
-    def __init__(self, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: HomeeSwitchEntityDescription) -> None: ...
+    def __init__(self, hass: HomeAssistant, attribute: HomeeAttribute, entry: HomeeConfigEntry, description: HomeeSwitchEntityDescription) -> None: ...
     @property
     @override
     def is_on(self) -> bool: ...
@@ -52,12 +52,12 @@ class HomeegramSwitch(SwitchEntity):
     _homeegram: Incomplete
     _entry: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     _attr_translation_key: str
     _host_connected: Incomplete
     _attr_name: Incomplete
     _attr_entity_registry_enabled_default: Incomplete
-    def __init__(self, homeegram: HomeeGram, entry: HomeeConfigEntry) -> None: ...
+    _attr_device_info: Incomplete
+    def __init__(self, hass: HomeAssistant, homeegram: HomeeGram, entry: HomeeConfigEntry) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @property

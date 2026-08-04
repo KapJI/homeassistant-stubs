@@ -1,5 +1,5 @@
 from . import NoboHubConfigEntry as NoboHubConfigEntry
-from .const import ATTR_SERIAL as ATTR_SERIAL, ATTR_TEMP_COMFORT_C as ATTR_TEMP_COMFORT_C, ATTR_TEMP_ECO_C as ATTR_TEMP_ECO_C, CONF_OVERRIDE_TYPE as CONF_OVERRIDE_TYPE, DOMAIN as DOMAIN, OVERRIDE_TYPE_NOW as OVERRIDE_TYPE_NOW
+from .const import ATTR_TEMP_COMFORT_C as ATTR_TEMP_COMFORT_C, ATTR_TEMP_ECO_C as ATTR_TEMP_ECO_C, CONF_OVERRIDE_TYPE as CONF_OVERRIDE_TYPE, DOMAIN as DOMAIN, OVERRIDE_TYPE_NOW as OVERRIDE_TYPE_NOW
 from .entity import NoboBaseEntity as NoboBaseEntity
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode, PRESET_AWAY as PRESET_AWAY, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_NONE as PRESET_NONE
@@ -35,7 +35,7 @@ class NoboZone(NoboBaseEntity, ClimateEntity):
     _attr_unique_id: Incomplete
     _override_type: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, zone_id: str, hub: nobo, override_type: str) -> None: ...
+    def __init__(self, hass: HomeAssistant, zone_id: str, hub: nobo, override_type: str, entry_id: str) -> None: ...
     @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @override

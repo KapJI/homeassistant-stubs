@@ -1,5 +1,5 @@
 import abc
-from .const import DOMAIN as DOMAIN
+from .const import DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN
 from .util import sanitize_container_name as sanitize_container_name
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
+from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pyportainer import Portainer as Portainer
 from pyportainer.models.docker import DockerContainer as DockerContainer, DockerContainerStats as DockerContainerStats, DockerSystemDF, DockerVolume as DockerVolume, LocalImageInformation as LocalImageInformation, PortainerImageUpdateStatus as PortainerImageUpdateStatus
@@ -60,7 +61,7 @@ class PortainerBaseCoordinator[_DataT](DataUpdateCoordinator[_DataT], metaclass=
     portainer: Incomplete
     known_endpoints: set[int]
     known_containers: set[tuple[int, str]]
-    known_stacks: set[tuple[int, str]]
+    known_stacks: set[tuple[int, str, int]]
     known_volumes: set[tuple[int, str]]
     new_endpoints_callbacks: list[Callable[[list[PortainerCoordinatorData]], None]]
     new_containers_callbacks: list[Callable[[list[tuple[PortainerCoordinatorData, PortainerContainerData]]], None]]
@@ -83,6 +84,7 @@ class PortainerCoordinator(PortainerBaseCoordinator[dict[int, PortainerCoordinat
     def __init__(self, hass: HomeAssistant, config_entry: PortainerConfigEntry, portainer: Portainer) -> None: ...
     @override
     async def update_data(self) -> dict[int, PortainerCoordinatorData]: ...
+    def async_register_endpoint_and_stack_devices(self, mapped_endpoints: dict[int, PortainerCoordinatorData], endpoint_ids: set[int], stack_keys: set[tuple[int, str, int]]) -> None: ...
     def _async_add_remove_endpoints(self, mapped_endpoints: dict[int, PortainerCoordinatorData]) -> None: ...
     async def _get_local_image(self, endpoint_id: int, image: str) -> LocalImageInformation: ...
 

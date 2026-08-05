@@ -28,6 +28,8 @@ CLOUD_FACTOR: int
 CLOUD_LIMIT: int
 DEFAULT_INTERVALS: Incomplete
 SCAN_INTERVAL: int
+UNAVAILABLE_AFTER_ERRORS: int
+MAX_ERROR_BACKOFF: int
 type NetatmoConfigEntry = ConfigEntry[NetatmoDataHandler]
 
 def async_get_loaded_entry(hass: HomeAssistant) -> NetatmoConfigEntry | None: ...
@@ -62,6 +64,7 @@ class NetatmoPublisher:
     method: str
     kwargs: dict
     available: bool = ...
+    error_count: int = ...
 
 class NetatmoDataHandler:
     account: pyatmo.AsyncAccount

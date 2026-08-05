@@ -2,7 +2,6 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import DucoCoordinator as DucoCoordinator
 from _typeshed import Incomplete
 from duco_connectivity.models import Node as Node
-from homeassistant.const import ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import override

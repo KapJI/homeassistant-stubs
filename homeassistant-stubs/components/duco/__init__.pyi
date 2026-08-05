@@ -1,4 +1,4 @@
-from .const import PLATFORMS as PLATFORMS
+from .const import BOX_NODE_ID as BOX_NODE_ID, DOMAIN as DOMAIN, PLATFORMS as PLATFORMS
 from .coordinator import DucoConfigEntry as DucoConfigEntry, DucoCoordinator as DucoCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_HOST as CONF_HOST

@@ -23,6 +23,7 @@ class BatteryData:
     points: dict[str, bool]
 
 class ZinvoltDeviceCoordinator(DataUpdateCoordinator[ZinvoltData]):
+    config_entry: ZinvoltConfigEntry
     battery_units: dict[str, Unit]
     battery: Incomplete
     client: Incomplete

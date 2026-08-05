@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import ZinvoltConfigEntry as ZinvoltConfigEntry, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant

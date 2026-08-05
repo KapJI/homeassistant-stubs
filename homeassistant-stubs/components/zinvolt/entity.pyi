@@ -1,7 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import BatteryData as BatteryData, ZinvoltDeviceCoordinator as ZinvoltDeviceCoordinator
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_VIA_DEVICE as ATTR_VIA_DEVICE
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import override

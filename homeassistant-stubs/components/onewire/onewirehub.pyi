@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from aio_ownet.proxy import OWServerStatelessProxy
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send

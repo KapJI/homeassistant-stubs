@@ -1,8 +1,8 @@
 from .const import AVAILABLE as AVAILABLE, DOMAIN as DOMAIN
 from .coordinator import PlugwiseDataUpdateCoordinator as PlugwiseDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.const import ATTR_NAME as ATTR_NAME, ATTR_VIA_DEVICE as ATTR_VIA_DEVICE, CONF_HOST as CONF_HOST
-from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, CONNECTION_ZIGBEE as CONNECTION_ZIGBEE, DeviceInfo as DeviceInfo
+from homeassistant.const import ATTR_NAME as ATTR_NAME, CONF_HOST as CONF_HOST
+from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, CONNECTION_ZIGBEE as CONNECTION_ZIGBEE, DeviceInfo as DeviceInfo, async_get_device_id_by_identifier as async_get_device_id_by_identifier
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from plugwise import GwEntityData as GwEntityData
 from typing import override

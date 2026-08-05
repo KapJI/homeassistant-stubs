@@ -8,3 +8,4 @@ class OWDeviceDescription:
     id: str
     path: str
     type: str | None
+    parent_id: str | None = ...

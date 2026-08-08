@@ -7,6 +7,7 @@ from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.core import callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.typing import UndefinedType as UndefinedType
@@ -32,6 +33,8 @@ class MatterEntity(Entity):
     _attr_should_poll: bool
     _name_postfix: str | None
     _platform_translation_key: str | None
+    _write_state_debounce_cooldown: float | None
+    _write_state_debouncer: Debouncer[None] | None
     matter_client: Incomplete
     _endpoint: Incomplete
     _entity_info: Incomplete
@@ -55,6 +58,8 @@ class MatterEntity(Entity):
     def _compose_parent(self) -> MatterEndpoint | None: ...
     @callback
     def _get_bridged_reachable(self) -> bool: ...
+    @override
+    async def async_will_remove_from_hass(self) -> None: ...
     @callback
     def _on_matter_event(self, event: EventType, data: Any = None) -> None: ...
     @callback

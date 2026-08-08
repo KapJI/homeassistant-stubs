@@ -12,6 +12,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import Any, override
 
 OPERATIONAL_STATUS_MASK: int
+STATE_WRITE_DEBOUNCE_COOLDOWN: float
 TYPE_MAP: Incomplete
 
 class OperationalStatus(IntEnum):
@@ -26,6 +27,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry
 class MatterCoverEntityDescription(CoverEntityDescription, MatterEntityDescription): ...
 
 class MatterCover(MatterEntity, CoverEntity):
+    _write_state_debounce_cooldown = STATE_WRITE_DEBOUNCE_COOLDOWN
     entity_description: MatterCoverEntityDescription
     @property
     @override

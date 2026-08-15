@@ -16,6 +16,7 @@ from teslemetry_stream import TeslemetryStream as TeslemetryStream, TeslemetrySt
 from typing import Any, override
 
 PARALLEL_UPDATES: int
+ATM_TO_BAR: float
 BMS_STATES: Incomplete
 CHARGE_STATES: Incomplete
 DRIVE_INVERTER_STATES: Incomplete

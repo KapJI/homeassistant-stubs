@@ -1,8 +1,8 @@
 import librouteros
-from .const import ARP as ARP, ATTR_ROUTERBOARD_FIRMWARE as ATTR_ROUTERBOARD_FIRMWARE, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CAPSMAN as CAPSMAN, CONF_ARP_PING as CONF_ARP_PING, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_FORCE_DHCP as CONF_FORCE_DHCP, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DHCP as DHCP, DOMAIN as DOMAIN, HEALTH as HEALTH, IDENTITY as IDENTITY, IS_CAPSMAN as IS_CAPSMAN, IS_WIFI as IS_WIFI, IS_WIFIWAVE2 as IS_WIFIWAVE2, IS_WIRELESS as IS_WIRELESS, MIKROTIK_SERVICES as MIKROTIK_SERVICES, NAME as NAME, RESOURCE as RESOURCE, ROUTERBOARD as ROUTERBOARD, UPDATE as UPDATE, WIFI as WIFI, WIFIWAVE2 as WIFIWAVE2, WIRELESS as WIRELESS
+from .const import ARP as ARP, ATTR_ROUTERBOARD_FIRMWARE as ATTR_ROUTERBOARD_FIRMWARE, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CAPSMAN as CAPSMAN, CONF_ARP_PING as CONF_ARP_PING, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_FORCE_DHCP as CONF_FORCE_DHCP, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DHCP as DHCP, DOMAIN as DOMAIN, HEALTH as HEALTH, IDENTITY as IDENTITY, IS_CAPSMAN as IS_CAPSMAN, IS_WIFI as IS_WIFI, IS_WIFIWAVE2 as IS_WIFIWAVE2, IS_WIRELESS as IS_WIRELESS, LOGGER as LOGGER, MIKROTIK_SERVICES as MIKROTIK_SERVICES, NAME as NAME, RESOURCE as RESOURCE, ROUTERBOARD as ROUTERBOARD, UPDATE as UPDATE, WIFI as WIFI, WIFIWAVE2 as WIFIWAVE2, WIRELESS as WIRELESS
 from .device import Device as Device
 from .errors import CannotConnect as CannotConnect, LoginError as LoginError
-from .utils import mikrotik_config_entry_errors as mikrotik_config_entry_errors
+from .utils import calculate_uptime as calculate_uptime, mikrotik_config_entry_errors as mikrotik_config_entry_errors, percentage as percentage
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,9 +11,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
 from typing import Any, override
 
-_LOGGER: Incomplete
 type MikrotikConfigEntry = ConfigEntry[MikrotikDataUpdateCoordinator]
-
 class MikrotikData:
     hass: Incomplete
     config_entry: Incomplete
@@ -33,6 +31,8 @@ class MikrotikData:
     system: dict[str, Any]
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: librouteros.Api) -> None: ...
     def _get_system_details(self, during_setup: bool = False) -> None: ...
+    def _get_health_details(self) -> None: ...
+    def _get_resource_details(self) -> None: ...
     @staticmethod
     def load_mac(devices: list[dict[str, Any]]) -> dict[str, dict[str, Any]]: ...
     @property

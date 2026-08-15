@@ -4,7 +4,7 @@ import logging
 from _typeshed import Incomplete
 from collections.abc import Awaitable
 from datetime import timedelta
-from evohomeasync2.typedefs import EvoLocStatusResponseT as EvoLocStatusResponseT, EvoTcsConfigResponseT as EvoTcsConfigResponseT
+from evohomeasync2.typedefs import EvoLocStatusT as EvoLocStatusT, EvoTcsConfigResponseT as EvoTcsConfigResponseT
 from homeassistant.const import CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -16,7 +16,7 @@ class EvoDataUpdateCoordinator(DataUpdateCoordinator):
     client: Incomplete
     client_v1: Incomplete
     loc_idx: Incomplete
-    data: EvoLocStatusResponseT
+    data: EvoLocStatusT
     temps: dict[str, float | None]
     _first_refresh_done: bool
     def __init__(self, hass: HomeAssistant, logger: logging.Logger, client_v2: ec2.EvohomeClient, *, name: str, update_interval: timedelta, location_idx: int, client_v1: ec1.EvohomeClient | None = None) -> None: ...
@@ -28,4 +28,4 @@ class EvoDataUpdateCoordinator(DataUpdateCoordinator):
     async def _update_v2_api_state(self, *args: Any) -> None: ...
     async def _update_v2_schedules(self) -> None: ...
     @override
-    async def _async_update_data(self) -> EvoLocStatusResponseT: ...
+    async def _async_update_data(self) -> EvoLocStatusT: ...

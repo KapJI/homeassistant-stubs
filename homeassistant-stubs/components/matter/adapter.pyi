@@ -1,10 +1,11 @@
 from .const import DOMAIN as DOMAIN, ID_TYPE_DEVICE_ID as ID_TYPE_DEVICE_ID, ID_TYPE_SERIAL as ID_TYPE_SERIAL, LOGGER as LOGGER
 from .discovery import async_discover_entities as async_discover_entities
-from .helpers import MatterConfigEntry as MatterConfigEntry, get_device_id as get_device_id
+from .helpers import MatterConfigEntry as MatterConfigEntry, get_device_endpoint as get_device_endpoint, get_device_id as get_device_id
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from matter_server.client import MatterClient as MatterClient
 from matter_server.client.models.node import MatterEndpoint as MatterEndpoint, MatterNode as MatterNode
 

@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from typing import Final
 
+LOGGER: Incomplete
 DOMAIN: Final[str]
 DEFAULT_NAME: Final[str]
 DEFAULT_API_PORT: Final[int]

@@ -16,12 +16,14 @@ CONF_EMBED_IFRAME: str
 CONF_TRUST_EXTERNAL_SCRIPT: str
 CONF_URL_EXCLUSIVE_GROUP: str
 CONF_REQUIRE_ADMIN: str
+CONF_HANDLE_SAFE_AREA: str
 DEFAULT_EMBED_IFRAME: bool
 DEFAULT_TRUST_EXTERNAL: bool
+DEFAULT_HANDLE_SAFE_AREA: bool
 DEFAULT_ICON: str
 LEGACY_URL: str
 PANEL_DIR: str
 CONFIG_SCHEMA: Incomplete
 
-async def async_register_panel(hass: HomeAssistant, frontend_url_path: str, webcomponent_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, js_url: str | None = None, module_url: str | None = None, embed_iframe: bool = ..., trust_external: bool = ..., config: ConfigType | None = None, require_admin: bool = False, config_panel_domain: str | None = None) -> None: ...
+async def async_register_panel(hass: HomeAssistant, frontend_url_path: str, webcomponent_name: str, sidebar_title: str | None = None, sidebar_icon: str | None = None, js_url: str | None = None, module_url: str | None = None, embed_iframe: bool = ..., trust_external: bool = ..., config: ConfigType | None = None, require_admin: bool = False, config_panel_domain: str | None = None, handle_safe_area: bool = ...) -> None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

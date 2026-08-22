@@ -3,27 +3,30 @@ from .const import LEGACY_SUPPORTED_LIFESPANS as LEGACY_SUPPORTED_LIFESPANS, SUP
 from .entity import EcovacsCapabilityEntityDescription as EcovacsCapabilityEntityDescription, EcovacsDescriptionEntity as EcovacsDescriptionEntity, EcovacsEntity as EcovacsEntity, EcovacsLegacyEntity as EcovacsLegacyEntity
 from .util import get_name_key as get_name_key, get_options as get_options, get_supported_entities as get_supported_entities
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
-from dataclasses import dataclass
+from collections.abc import Callable as Callable, Mapping
+from dataclasses import dataclass, field
 from deebot_client.capabilities import CapabilityEvent, CapabilityLifeSpan, DeviceType
 from deebot_client.device import Device as Device
 from deebot_client.events import ErrorEvent, Event as Event, LifeSpan as LifeSpan, LifeSpanEvent as LifeSpanEvent
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DESCRIPTION as CONF_DESCRIPTION, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
-from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.helpers.typing import StateType as StateType, UNDEFINED as UNDEFINED, UndefinedType as UndefinedType
 from sucks import VacBot as VacBot
-from typing import Any, override
+from typing import Any, Self, override
+
+@dataclass(kw_only=True, frozen=True)
+class EcovacsSensorDeviceTypeOverride:
+    native_unit_of_measurement: str | UndefinedType | None = ...
+    translation_key: str | UndefinedType | None = ...
 
 @dataclass(kw_only=True, frozen=True)
 class EcovacsSensorEntityDescription[EventT: Event](EcovacsCapabilityEntityDescription, SensorEntityDescription):
     value_fn: Callable[[EventT], StateType]
-    native_unit_of_measurement_fn: Callable[[DeviceType], str | None] | None = ...
-
-@callback
-def get_area_native_unit_of_measurement(device_type: DeviceType) -> str | None: ...
+    device_type_overrides: Mapping[DeviceType, EcovacsSensorDeviceTypeOverride] = field(default_factory=dict)
+    def get_for(self, device: DeviceType) -> Self: ...
 
 ENTITY_DESCRIPTIONS: tuple[EcovacsSensorEntityDescription, ...]
 
@@ -44,7 +47,6 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: EcovacsConfigEntr
 
 class EcovacsSensor(EcovacsDescriptionEntity[CapabilityEvent], SensorEntity):
     entity_description: EcovacsSensorEntityDescription
-    _attr_native_unit_of_measurement: Incomplete
     def __init__(self, device: Device, capability: CapabilityEvent, entity_description: EcovacsSensorEntityDescription, **kwargs: Any) -> None: ...
     _attr_native_value: Incomplete
     @override

@@ -20,7 +20,6 @@ from typing import Any, override
 
 PARALLEL_UPDATES: int
 THERMOSTAT_TO_HA_MODE: Incomplete
-HA_TO_THERMOSTAT_MODE: Incomplete
 PRESET_FROST_PROTECTION: str
 
 @dataclass(kw_only=True, frozen=True)
@@ -48,6 +47,7 @@ class RpcLinkedgoThermostatClimate(ShellyRpcAttributeEntity, ClimateEntity):
     _attr_fan_modes: Incomplete
     _attr_hvac_modes: Incomplete
     _working_mode_key: Incomplete
+    _ha_to_thermostat_mode: Incomplete
     def __init__(self, coordinator: ShellyRpcCoordinator, key: str, attribute: str, description: RpcEntityDescription) -> None: ...
     @property
     def _status(self) -> dict[str, Any]: ...

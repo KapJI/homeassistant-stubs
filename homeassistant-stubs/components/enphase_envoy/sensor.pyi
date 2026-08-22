@@ -46,7 +46,7 @@ NET_CONSUMPTION_PHASE_SENSORS: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class EnvoyCTSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[EnvoyMeterData], int | float | str | CtType | CtMeterStatus | CtStatusFlags | CtState | None]
+    value_fn: Callable[[EnvoyMeterData | None], int | float | str | CtType | CtMeterStatus | CtStatusFlags | CtState | None]
     on_phase: str | None = ...
     cttype: str | None = ...
 

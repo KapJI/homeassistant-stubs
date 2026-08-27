@@ -1,16 +1,18 @@
 from .adapter import MatterAdapter as MatterAdapter
-from .helpers import MissingNode as MissingNode, get_matter as get_matter, node_from_ha_device_id as node_from_ha_device_id
+from .helpers import MissingNode as MissingNode, get_matter as get_matter, get_node_device_identifier as get_node_device_identifier, node_from_ha_device_id as node_from_ha_device_id
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
+from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection, ERR_NOT_SUPPORTED as ERR_NOT_SUPPORTED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from matter_server.client.models.node import MatterNode as MatterNode
+from matter_server.common.models import NetworkTopology as NetworkTopology
 from typing import Any, Concatenate
 
 ID: str
 TYPE: str
 DEVICE_ID: str
 ERROR_NODE_NOT_FOUND: str
+TOPOLOGY_SCHEMA_VERSION: int
 
 @callback
 def async_register_api(hass: HomeAssistant) -> None: ...
@@ -65,3 +67,17 @@ async def websocket_remove_matter_fabric(hass: HomeAssistant, connection: Active
 @async_get_matter_adapter
 @async_get_node
 async def websocket_interview_node(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], matter: MatterAdapter, node: MatterNode) -> None: ...
+@callback
+def _topology_supported(connection: ActiveConnection, msg: dict[str, Any], matter: MatterAdapter) -> bool: ...
+@callback
+def _serialize_topology(hass: HomeAssistant, matter: MatterAdapter, topology: NetworkTopology) -> dict[str, Any]: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_matter_adapter
+async def websocket_network_topology(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], matter: MatterAdapter) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_matter_adapter
+async def websocket_subscribe_network_topology(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], matter: MatterAdapter) -> None: ...

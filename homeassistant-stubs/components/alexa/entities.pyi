@@ -3,8 +3,16 @@ from .config import AbstractConfig as AbstractConfig
 from .const import CONF_DISPLAY_CATEGORIES as CONF_DISPLAY_CATEGORIES
 from _typeshed import Incomplete
 from collections.abc import Generator, Iterable
-from homeassistant.components import alarm_control_panel as alarm_control_panel, alert as alert, automation as automation, binary_sensor as binary_sensor, button as button, camera as camera, climate as climate, cover as cover, event as event, fan as fan, group as group, humidifier as humidifier, image_processing as image_processing, input_boolean as input_boolean, input_button as input_button, input_number as input_number, light as light, lock as lock, media_player as media_player, number as number, remote as remote, scene as scene, script as script, sensor as sensor, switch as switch, timer as timer, vacuum as vacuum, valve as valve, water_heater as water_heater
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
+from homeassistant.components import binary_sensor as binary_sensor, camera as camera, climate as climate, cover as cover, event as event, fan as fan, humidifier as humidifier, light as light, media_player as media_player, remote as remote, switch as switch, vacuum as vacuum, valve as valve, water_heater as water_heater
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityStateAttribute as AlarmControlPanelEntityStateAttribute
+from homeassistant.components.climate import ClimateEntityCapabilityAttribute as ClimateEntityCapabilityAttribute
+from homeassistant.components.fan import FanEntityCapabilityAttribute as FanEntityCapabilityAttribute
+from homeassistant.components.humidifier import HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute
+from homeassistant.components.light import LightEntityCapabilityAttribute as LightEntityCapabilityAttribute
+from homeassistant.components.media_player import MediaPlayerEntityCapabilityAttribute as MediaPlayerEntityCapabilityAttribute
+from homeassistant.components.remote import RemoteEntityStateAttribute as RemoteEntityStateAttribute
+from homeassistant.components.water_heater import WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute
+from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_NAME as CONF_NAME, EntityStateAttribute as EntityStateAttribute, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import intent as intent, network as network
 from homeassistant.helpers.entity import entity_sources as entity_sources

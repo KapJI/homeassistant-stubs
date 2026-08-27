@@ -1,4 +1,4 @@
-from .const import CONF_URL_ENERGY as CONF_URL_ENERGY, DOMAIN as DOMAIN, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, MANUFACTURER as MANUFACTURER, NETATMO_CREATE_SELECT as NETATMO_CREATE_SELECT
+from .const import DOMAIN as DOMAIN, EVENT_TYPE_SCHEDULE as EVENT_TYPE_SCHEDULE, NETATMO_CREATE_SELECT as NETATMO_CREATE_SELECT
 from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoHome as NetatmoHome, SIGNAL_NAME as SIGNAL_NAME
 from .entity import NetatmoBaseEntity as NetatmoBaseEntity
 from _typeshed import Incomplete
@@ -15,7 +15,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: NetatmoConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class NetatmoScheduleSelect(NetatmoBaseEntity, SelectEntity):
-    _attr_name: Incomplete
+    _attr_translation_key: str
     home: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete

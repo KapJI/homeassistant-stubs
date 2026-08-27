@@ -7,7 +7,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import event as event
-from homeassistant.components.event import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity
+from homeassistant.components.event import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityCapabilityAttribute as EventEntityCapabilityAttribute, EventEntityStateAttribute as EventEntityStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

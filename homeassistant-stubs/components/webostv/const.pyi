@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 
 DOMAIN: str
+LOGGER: Incomplete
 PLATFORMS: Incomplete
 DEFAULT_NAME: str
 ATTR_PAYLOAD: str

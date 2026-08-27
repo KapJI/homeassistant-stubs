@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
 from enum import StrEnum
 from functools import cache
-from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
+from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, Platform as Platform
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.generated.countries import COUNTRIES as COUNTRIES
 from homeassistant.util import decorator as decorator
@@ -263,6 +263,20 @@ class DateTimeSelector(Selector[DateTimeSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: DateTimeSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
+class DeviceClassSelectorConfig(BaseSelectorConfig, total=False):
+    domain: Required[Platform]
+    multiple: bool
+
+@cache
+def _enum_options(domain: str, enum_name: str) -> list[str]: ...
+
+class DeviceClassSelector(Selector[DeviceClassSelectorConfig]):
+    selector_type: str
+    SUPPORTED_PLATFORMS: Incomplete
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: DeviceClassSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> Any: ...
 
 class DeviceSelectorConfig(BaseSelectorConfig, DeviceFilterSelectorConfig, total=False):

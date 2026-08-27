@@ -4,14 +4,23 @@ from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from typing import Any, override
+from typing import Any, Final, override
+
+INPUT_IMAGES_SCOPE: Final[str]
 
 class OAuth2FlowHandler(config_entry_oauth2_flow.AbstractOAuth2FlowHandler, domain=DOMAIN):
     DOMAIN = DOMAIN
     MINOR_VERSION: int
+    images_scope: bool | None
     @property
     @override
     def logger(self) -> logging.Logger: ...
+    @property
+    @override
+    def extra_authorize_data(self) -> dict[str, str]: ...
+    @override
+    async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_scopes(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @override

@@ -1,8 +1,9 @@
-from .const import ATTR_ATTACHMENTS as ATTR_ATTACHMENTS, ATTR_EVENT as ATTR_EVENT, CONF_DEVICE_KEY as CONF_DEVICE_KEY, CONF_SALT as CONF_SALT
+from .const import ATTR_ATTACHMENTS as ATTR_ATTACHMENTS, ATTR_EVENT as ATTR_EVENT, CONF_DEVICE_KEY as CONF_DEVICE_KEY, CONF_SALT as CONF_SALT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TITLE as ATTR_TITLE, ATTR_TITLE_DEFAULT as ATTR_TITLE_DEFAULT, BaseNotificationService as BaseNotificationService
 from homeassistant.const import CONF_EVENT as CONF_EVENT, CONF_PASSWORD as CONF_PASSWORD
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, override
 

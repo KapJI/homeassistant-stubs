@@ -1,11 +1,16 @@
 from enum import IntFlag, StrEnum
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 ATTR_CURRENT_POSITION: str
 ATTR_CURRENT_TILT_POSITION: str
 ATTR_IS_CLOSED: str
 ATTR_POSITION: str
+ATTR_SPEED: str
 ATTR_TILT_POSITION: str
+
+class CoverEntityCapabilityAttribute(StrEnum):
+    SUPPORTED_SPEEDS = 'supported_speeds'
 
 class CoverEntityStateAttribute(StrEnum):
     IS_CLOSED = 'is_closed'
@@ -24,6 +29,7 @@ class CoverEntityFeature(IntFlag):
     CLOSE_TILT = 32
     STOP_TILT = 64
     SET_TILT_POSITION = 128
+    SPEED = 256
 
 class CoverState(StrEnum):
     CLOSED = 'closed'

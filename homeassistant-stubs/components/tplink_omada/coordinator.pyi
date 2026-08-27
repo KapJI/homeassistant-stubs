@@ -1,4 +1,5 @@
 from . import OmadaConfigEntry as OmadaConfigEntry
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed

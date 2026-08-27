@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from openevsehttp.__main__ import OpenEVSE as OpenEVSE
+from openevsehttp import OpenEVSE as OpenEVSE
 from typing import Any, override
 
 PARALLEL_UPDATES: int

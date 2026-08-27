@@ -2,10 +2,10 @@ from . import RainMachineConfigEntry as RainMachineConfigEntry
 from .const import CONF_DURATION as CONF_DURATION, DATA_PROGRAMS as DATA_PROGRAMS, DATA_ZONES as DATA_ZONES, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 from homeassistant.util.dt import as_timestamp as as_timestamp, utcnow as utcnow
 from regenmaschine.controller import Controller as Controller
 

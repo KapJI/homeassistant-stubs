@@ -11,7 +11,7 @@ from homeassistant.components.media_player import MediaPlayerDeviceClass as Medi
 from homeassistant.components.remote import RemoteEntityFeature as RemoteEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass
-from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SERVICE as ATTR_SERVICE, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_SW_VERSION as ATTR_SW_VERSION, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
+from homeassistant.const import ATTR_BATTERY_CHARGING as ATTR_BATTERY_CHARGING, ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_HW_VERSION as ATTR_HW_VERSION, ATTR_MANUFACTURER as ATTR_MANUFACTURER, ATTR_MODEL as ATTR_MODEL, ATTR_SERVICE as ATTR_SERVICE, ATTR_SW_VERSION as ATTR_SW_VERSION, CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, EntityStateAttribute as EntityStateAttribute, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature, __version__ as __version__
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HassJobType as HassJobType, HomeAssistant as HomeAssistant, State as State, callback as ha_callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
@@ -43,7 +43,7 @@ def get_accessory(hass: HomeAssistant, driver: HomeDriver, state: State, aid: in
 
 class HomeAccessory(Accessory):
     driver: HomeDriver
-    _reload_on_change_attrs: Incomplete
+    _reload_on_change_attrs: list[str]
     config: Incomplete
     device_id: str | None
     category: Incomplete

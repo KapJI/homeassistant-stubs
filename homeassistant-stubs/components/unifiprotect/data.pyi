@@ -1,18 +1,18 @@
-from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_MAX_MEDIA as CONF_MAX_MEDIA, DEFAULT_MAX_MEDIA as DEFAULT_MAX_MEDIA, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DISPATCH_ADD as DISPATCH_ADD, DISPATCH_ADOPT as DISPATCH_ADOPT, DISPATCH_CHANNELS as DISPATCH_CHANNELS, DOMAIN as DOMAIN
+from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_DISABLE_RTSP as CONF_DISABLE_RTSP, CONF_MAX_MEDIA as CONF_MAX_MEDIA, DEFAULT_MAX_MEDIA as DEFAULT_MAX_MEDIA, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DISPATCH_ADD as DISPATCH_ADD, DISPATCH_ADOPT as DISPATCH_ADOPT, DISPATCH_CHANNELS as DISPATCH_CHANNELS, DISPATCH_PUBLIC_ADD as DISPATCH_PUBLIC_ADD, DOMAIN as DOMAIN
 from .utils import async_get_devices_by_type as async_get_devices_by_type
 from _typeshed import Incomplete
 from collections import defaultdict
 from collections.abc import Callable as Callable, Generator, Iterable
 from datetime import datetime, timedelta
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from typing import Any
 from uiprotect import EventChange, ProtectApiClient as ProtectApiClient, ProtectEvent as ProtectEvent
 from uiprotect.api import RTSPSStreams as RTSPSStreams
-from uiprotect.data import Camera, EventType, ModelType, NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel, PublicDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
-from uiprotect.data.public_devices import PublicCamera as PublicCamera
+from uiprotect.data import Camera, EventType, Light as Light, ModelType, NVR, PTZPatrol as PTZPatrol, ProtectAdoptableDeviceModel, PublicDeviceModel, WSSubscriptionMessage as WSSubscriptionMessage
+from uiprotect.data.public_devices import PublicCamera as PublicCamera, PublicLight as PublicLight
 from uiprotect.websocket import WebsocketState
 
 _LOGGER: Incomplete
@@ -23,6 +23,7 @@ type UFPConfigEntry = ConfigEntry[ProtectData]
 def async_last_update_was_successful(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...
 @callback
 def _async_dispatch_id(entry: UFPConfigEntry, dispatch: str) -> str: ...
+def _pair_public_private[PublicDeviceT: PublicDeviceModel, PrivateDeviceT: ProtectAdoptableDeviceModel](public_devices: dict[str, PublicDeviceT], private_devices: dict[str, PrivateDeviceT]) -> Generator[tuple[PublicDeviceT | None, PrivateDeviceT | None]]: ...
 
 class ProtectData:
     nvr_device_id: str
@@ -33,6 +34,8 @@ class ProtectData:
     _public_event_subscriptions: defaultdict[tuple[str, EventType], set[Callable[[ProtectEvent], None]]]
     _public_subscriptions: defaultdict[str, set[Callable[[PublicDeviceModel | None], None]]]
     _pending_camera_ids: set[str]
+    _known_public_macs: set[str]
+    _public_baseline_taken: bool
     _unsubs: list[CALLBACK_TYPE]
     _auth_failures: int
     auth_retries: int
@@ -43,6 +46,7 @@ class ProtectData:
     adopt_signal: Incomplete
     add_signal: Incomplete
     channels_signal: Incomplete
+    public_add_signal: Incomplete
     ptz_patrols: dict[str, list[PTZPatrol]]
     def __init__(self, hass: HomeAssistant, protect: ProtectApiClient, update_interval: timedelta, entry: UFPConfigEntry) -> None: ...
     @property
@@ -55,12 +59,18 @@ class ProtectData:
     def get_by_types(self, device_types: Iterable[ModelType], ignore_unadopted: bool = True) -> Generator[ProtectAdoptableDeviceModel]: ...
     def get_cameras(self, ignore_unadopted: bool = True) -> Generator[Camera]: ...
     def get_public_cameras(self) -> Generator[tuple[PublicCamera | None, Camera | None]]: ...
+    def get_public_lights(self) -> Generator[tuple[PublicLight | None, Light | None]]: ...
     async def async_load_ptz_patrols(self) -> None: ...
     async def async_load_ptz_patrols_for_camera(self, camera: Camera) -> None: ...
     @callback
     def async_setup(self) -> None: ...
     @callback
     def async_subscribe_public_events(self) -> None: ...
+    async def async_update_public(self) -> None: ...
+    @callback
+    def async_reset_public_add_baseline(self) -> None: ...
+    @callback
+    def _async_dispatch_new_public_device(self, device: PublicDeviceModel) -> None: ...
     @callback
     def _async_process_public_devices_ws_message(self, message: WSSubscriptionMessage) -> None: ...
     @callback
@@ -72,6 +82,8 @@ class ProtectData:
     @callback
     def _async_public_ws_state_changed(self, state: WebsocketState) -> None: ...
     async def _async_resignal_after_public_resync(self) -> None: ...
+    @callback
+    def _async_signal_nvr_update(self) -> None: ...
     @callback
     def _async_events_ws_state_changed(self, state: WebsocketState) -> None: ...
     @callback

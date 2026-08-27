@@ -8,7 +8,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import alarm_control_panel as alarm
-from homeassistant.components.alarm_control_panel import AlarmControlPanelState as AlarmControlPanelState
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityStateAttribute as AlarmControlPanelEntityStateAttribute, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_CODE as CONF_CODE, CONF_NAME as CONF_NAME, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

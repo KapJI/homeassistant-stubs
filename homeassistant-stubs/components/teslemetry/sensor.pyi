@@ -17,6 +17,7 @@ from typing import Any, override
 
 PARALLEL_UPDATES: int
 ATM_TO_BAR: float
+DRIVER_ASSIST_HW4: str
 BMS_STATES: Incomplete
 CHARGE_STATES: Incomplete
 DRIVE_INVERTER_STATES: Incomplete
@@ -42,6 +43,7 @@ class TeslemetryVehicleSensorEntityDescription(SensorEntityDescription):
     nullable: bool = ...
     streaming_listener: Callable[[TeslemetryStreamVehicle, Callable[[StateType], None]], Callable[[], None]] | None = ...
     streaming_firmware: str = ...
+    requires_hw4: bool = ...
 
 VEHICLE_DESCRIPTIONS: tuple[TeslemetryVehicleSensorEntityDescription, ...]
 

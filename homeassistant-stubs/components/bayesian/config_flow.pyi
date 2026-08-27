@@ -4,9 +4,8 @@ from .const import CONF_PRIOR as CONF_PRIOR, CONF_PROBABILITY_THRESHOLD as CONF_
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from enum import StrEnum
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, ConfigSubentry as ConfigSubentry, ConfigSubentryFlow as ConfigSubentryFlow, FlowType as FlowType, SOURCE_USER as SOURCE_USER, SubentryFlowContext as SubentryFlowContext, SubentryFlowResult as SubentryFlowResult
-from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, CONF_STATE as CONF_STATE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
+from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PLATFORM as CONF_PLATFORM, CONF_STATE as CONF_STATE, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform
 from homeassistant.core import callback as callback
 from homeassistant.helpers import selector as selector, translation as translation
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep

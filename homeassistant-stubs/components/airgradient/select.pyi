@@ -1,5 +1,5 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
-from .const import DOMAIN as DOMAIN, PM_STANDARD as PM_STANDARD, PM_STANDARD_REVERSE as PM_STANDARD_REVERSE
+from .const import DOMAIN as DOMAIN, PM_STANDARD as PM_STANDARD, PM_STANDARD_REVERSE as PM_STANDARD_REVERSE, supports_config as supports_config
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
@@ -16,6 +16,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientSelectEntityDescription(SelectEntityDescription):
+    config_key: str
     value_fn: Callable[[Config], str | None]
     set_value_fn: Callable[[AirGradientClient, str], Awaitable[None]]
 
@@ -25,9 +26,13 @@ LED_BAR_ENTITIES: tuple[AirGradientSelectEntityDescription, ...]
 LEARNING_TIME_OFFSET_OPTIONS: Incomplete
 ABC_DAYS: Incomplete
 
-def _get_value(value: int, values: list[str]) -> str | None: ...
+def _get_value(value: int | None, values: list[str]) -> str | None: ...
+def _get_led_level(value: int | None, options: list[str]) -> str | None: ...
 
+LED_BRIGHTNESS_OPTIONS: Incomplete
+TOUCH_LED_INTENSITY_OPTIONS: Incomplete
 CONTROL_ENTITIES: tuple[AirGradientSelectEntityDescription, ...]
+GO_SELECT_ENTITIES: tuple[AirGradientSelectEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirGradientConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

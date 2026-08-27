@@ -74,6 +74,7 @@ class API(ABC, metaclass=abc.ABCMeta):
 
 class IntentTool(Tool):
     name: Incomplete
+    intent_type: Incomplete
     description: Incomplete
     extra_slots: Incomplete
     parameters: Incomplete

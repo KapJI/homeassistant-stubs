@@ -1,5 +1,6 @@
 from .api import AuthenticatedMonzoAPI as AuthenticatedMonzoAPI
 from .const import DOMAIN as DOMAIN
+from .webhook import MonzoWebhookManager as MonzoWebhookManager
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -9,7 +10,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any, override
 
 _LOGGER: Incomplete
-type MonzoConfigEntry = ConfigEntry[MonzoCoordinator]
 
 @dataclass
 class MonzoData:
@@ -22,3 +22,9 @@ class MonzoCoordinator(DataUpdateCoordinator[MonzoData]):
     def __init__(self, hass: HomeAssistant, config_entry: MonzoConfigEntry, api: AuthenticatedMonzoAPI) -> None: ...
     @override
     async def _async_update_data(self) -> MonzoData: ...
+
+@dataclass
+class MonzoRuntimeData:
+    coordinator: MonzoCoordinator
+    webhook_manager: MonzoWebhookManager
+type MonzoConfigEntry = ConfigEntry[MonzoRuntimeData]

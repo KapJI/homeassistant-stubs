@@ -1,6 +1,6 @@
 from .const import DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DOMAIN as DOMAIN
 from .data import ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
 from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Sequence

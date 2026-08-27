@@ -4,7 +4,7 @@ from .entity import BondEntity as BondEntity
 from .models import BondData as BondData
 from .utils import BondDevice as BondDevice
 from _typeshed import Incomplete
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ColorMode as ColorMode, LightEntity as LightEntity
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import Entity as Entity
@@ -24,9 +24,12 @@ class BondBaseLight(BondEntity, LightEntity, metaclass=abc.ABCMeta):
 class BondLight(BondBaseLight, BondEntity, LightEntity):
     _attr_color_mode: Incomplete
     _attr_supported_color_modes: Incomplete
+    _attr_min_color_temp_kelvin: Incomplete
+    _attr_max_color_temp_kelvin: Incomplete
     def __init__(self, data: BondData, device: BondDevice, sub_device: str | None = None) -> None: ...
     _attr_is_on: Incomplete
     _attr_brightness: Incomplete
+    _attr_color_temp_kelvin: Incomplete
     @override
     def _apply_state(self) -> None: ...
     @override

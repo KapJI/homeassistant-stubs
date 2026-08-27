@@ -1,12 +1,12 @@
 from .const import DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import BaseProtectEntity as BaseProtectEntity, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities
+from .entity import BaseProtectEntity as BaseProtectEntity, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, ProtectSettableKeysMixin as ProtectSettableKeysMixin, T as T, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
 from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from collections.abc import Sequence
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo

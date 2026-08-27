@@ -4,12 +4,11 @@ from .sensor import DEFAULT_MAX as DEFAULT_MAX, DEFAULT_MIN as DEFAULT_MIN
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine, Mapping
 from enum import StrEnum
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
-from homeassistant.components.sensor import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS, SensorDeviceClass as SensorDeviceClass
+from homeassistant.components.sensor import DEVICE_CLASS_UNITS as DEVICE_CLASS_UNITS
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_MAXIMUM as CONF_MAXIMUM, CONF_MINIMUM as CONF_MINIMUM, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, Platform as Platform
 from homeassistant.core import callback as callback
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowFormStep as SchemaFlowFormStep, SchemaFlowMenuStep as SchemaFlowMenuStep
-from homeassistant.helpers.selector import SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
+from homeassistant.helpers.selector import DeviceClassSelector as DeviceClassSelector, DeviceClassSelectorConfig as DeviceClassSelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
 from typing import Any, override
 
 class _FlowType(StrEnum):

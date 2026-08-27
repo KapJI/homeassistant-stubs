@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfPower as UnitOfPower, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -21,7 +21,7 @@ SENSORS: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, entry: MikrotikConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
-class MikrotikSensorEntity(MikrotikEntity[MikrotikSensorEntityDescription], SensorEntity):
+class MikrotikSensorEntity(MikrotikEntity, SensorEntity):
     entity_description: MikrotikSensorEntityDescription
     @property
     @override

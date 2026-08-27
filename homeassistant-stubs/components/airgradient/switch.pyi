@@ -1,5 +1,5 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, supports_config as supports_config
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
@@ -16,10 +16,13 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientSwitchEntityDescription(SwitchEntityDescription):
-    value_fn: Callable[[Config], bool]
+    config_key: str
+    value_fn: Callable[[Config], bool | None]
     set_value_fn: Callable[[AirGradientClient, bool], Awaitable[None]]
 
 POST_DATA_TO_AIRGRADIENT: Incomplete
+BUZZER_ENABLED: Incomplete
+CLOUD_CONNECTION: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: AirGradientConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -29,7 +32,7 @@ class AirGradientSwitch(AirGradientEntity, SwitchEntity):
     def __init__(self, coordinator: AirGradientCoordinator, description: AirGradientSwitchEntityDescription) -> None: ...
     @property
     @override
-    def is_on(self) -> bool: ...
+    def is_on(self) -> bool | None: ...
     @exception_handler
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

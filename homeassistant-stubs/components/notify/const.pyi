@@ -1,11 +1,12 @@
 from _typeshed import Incomplete
+from typing import Final
 
 ATTR_DATA: str
 ATTR_MESSAGE: str
 ATTR_TARGET: str
 ATTR_RECIPIENTS: str
 ATTR_TITLE: str
-DOMAIN: str
+DOMAIN: Final[str]
 LOGGER: Incomplete
 SERVICE_NOTIFY: str
 SERVICE_SEND_MESSAGE: str

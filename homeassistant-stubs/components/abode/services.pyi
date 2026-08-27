@@ -1,8 +1,9 @@
 from . import AbodeConfigEntry as AbodeConfigEntry, AbodeSystem as AbodeSystem
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import service as service
 from homeassistant.helpers.dispatcher import dispatcher_send as dispatcher_send
 

@@ -10,6 +10,7 @@ from homeassistant.config_entries import SOURCE_IGNORE as SOURCE_IGNORE
 from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, BASE_PLATFORMS as BASE_PLATFORMS, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HassJob as HassJob, HomeAssistant as HomeAssistant, ReleaseChannel as ReleaseChannel, callback as callback, get_release_channel as get_release_channel
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.hassio import is_hassio as is_hassio
@@ -102,5 +103,6 @@ DEFAULT_ANALYTICS_CONFIG: Incomplete
 DEFAULT_DEVICE_ANALYTICS_CONFIG: Incomplete
 DEFAULT_ENTITY_ANALYTICS_CONFIG: Incomplete
 
+def _device_payload(device_entry: dr.AnyDeviceEntry) -> dict[str, Any]: ...
 async def _async_snapshot_payload(hass: HomeAssistant) -> dict: ...
 async def async_devices_payload(hass: HomeAssistant) -> dict: ...

@@ -1,14 +1,16 @@
 from . import account_link as account_link, backup as backup, http_api as http_api
+from .assist_pipeline import async_create_cloud_pipeline as async_create_cloud_pipeline
 from .client import CloudClient as CloudClient
-from .const import CONF_ACCOUNT_LINK_SERVER as CONF_ACCOUNT_LINK_SERVER, CONF_ACME_SERVER as CONF_ACME_SERVER, CONF_ALEXA as CONF_ALEXA, CONF_ALIASES as CONF_ALIASES, CONF_API_SERVER as CONF_API_SERVER, CONF_COGNITO_CLIENT_ID as CONF_COGNITO_CLIENT_ID, CONF_DISCOVERY_SERVICE_ACTIONS as CONF_DISCOVERY_SERVICE_ACTIONS, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_FILTER as CONF_FILTER, CONF_GOOGLE_ACTIONS as CONF_GOOGLE_ACTIONS, CONF_RELAYER_SERVER as CONF_RELAYER_SERVER, CONF_REMOTESTATE_SERVER as CONF_REMOTESTATE_SERVER, CONF_SERVICEHANDLERS_SERVER as CONF_SERVICEHANDLERS_SERVER, CONF_USER_POOL_ID as CONF_USER_POOL_ID, DATA_CLOUD as DATA_CLOUD, DATA_CLOUD_LOG_HANDLER as DATA_CLOUD_LOG_HANDLER, DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, MODE_DEV as MODE_DEV, MODE_PROD as MODE_PROD
+from .const import CONF_ACCOUNT_LINK_SERVER as CONF_ACCOUNT_LINK_SERVER, CONF_ACME_SERVER as CONF_ACME_SERVER, CONF_ALEXA as CONF_ALEXA, CONF_ALIASES as CONF_ALIASES, CONF_API_SERVER as CONF_API_SERVER, CONF_COGNITO_CLIENT_ID as CONF_COGNITO_CLIENT_ID, CONF_DISCOVERY_SERVICE_ACTIONS as CONF_DISCOVERY_SERVICE_ACTIONS, CONF_ENTITY_CONFIG as CONF_ENTITY_CONFIG, CONF_FILTER as CONF_FILTER, CONF_GOOGLE_ACTIONS as CONF_GOOGLE_ACTIONS, CONF_RELAYER_SERVER as CONF_RELAYER_SERVER, CONF_REMOTESTATE_SERVER as CONF_REMOTESTATE_SERVER, CONF_SERVICEHANDLERS_SERVER as CONF_SERVICEHANDLERS_SERVER, CONF_USER_POOL_ID as CONF_USER_POOL_ID, DATA_CLOUD as DATA_CLOUD, DATA_CLOUD_LOG_HANDLER as DATA_CLOUD_LOG_HANDLER, DATA_PENDING_AUTO_LOGIN as DATA_PENDING_AUTO_LOGIN, DATA_PLATFORMS_SETUP as DATA_PLATFORMS_SETUP, DOMAIN as DOMAIN, EVENT_CLOUD_EVENT as EVENT_CLOUD_EVENT, MODE_DEV as MODE_DEV, MODE_PROD as MODE_PROD
 from .helpers import FixedSizeQueueLogHandler as FixedSizeQueueLogHandler
+from .models import auto_login_failure_key as auto_login_failure_key
 from .prefs import CloudPreferences as CloudPreferences
 from .repairs import async_manage_legacy_subscription_issue as async_manage_legacy_subscription_issue
 from .subscription import async_subscription_info as async_subscription_info
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from enum import Enum
-from hass_nabucasa import Cloud
+from hass_nabucasa import Cloud, CloudEvent as CloudEvent
 from homeassistant.components import alexa as alexa, google_assistant as google_assistant
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, SOURCE_SYSTEM as SOURCE_SYSTEM
 from homeassistant.const import CONF_DESCRIPTION as CONF_DESCRIPTION, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_REGION as CONF_REGION, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, FORMAT_DATETIME as FORMAT_DATETIME, Platform as Platform

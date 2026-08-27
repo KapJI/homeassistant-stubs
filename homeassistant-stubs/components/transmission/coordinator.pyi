@@ -32,6 +32,7 @@ class TransmissionDataUpdateCoordinator(DataUpdateCoordinator[SessionStats]):
     _started_torrents: list[transmission_rpc.Torrent]
     _event_listeners: dict[str, EventCallback]
     torrents: list[transmission_rpc.Torrent]
+    download_dir_free_space: int | None
     def __init__(self, hass: HomeAssistant, entry: TransmissionConfigEntry, api: transmission_rpc.Client) -> None: ...
     @property
     def limit(self) -> int: ...

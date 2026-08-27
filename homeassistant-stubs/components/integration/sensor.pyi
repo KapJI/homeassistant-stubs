@@ -11,7 +11,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_METHOD as CONF_METHOD, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EntityStateAttribute as EntityStateAttribute, STATE_UNAVAILABLE as STATE_UNAVAILABLE, UnitOfTime as UnitOfTime
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry as AnyDeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_state_change_event as async_track_state_change_event, async_track_state_report_event as async_track_state_report_event
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
@@ -96,7 +96,7 @@ class IntegrationSensor(RestoreSensor):
     _last_integration_time: datetime
     _last_integration_trigger: Incomplete
     _attr_suggested_display_precision: Incomplete
-    def __init__(self, *, integration_method: str, name: str | None, round_digits: int | None, source_entity: str, unique_id: str | None, unit_prefix: str | None, unit_time: UnitOfTime, max_sub_interval: timedelta | None, device: DeviceEntry | None = None) -> None: ...
+    def __init__(self, *, integration_method: str, name: str | None, round_digits: int | None, source_entity: str, unique_id: str | None, unit_prefix: str | None, unit_time: UnitOfTime, max_sub_interval: timedelta | None, device: AnyDeviceEntry | None = None) -> None: ...
     def _calculate_unit(self, source_unit: str) -> str: ...
     def _calculate_device_class(self, source_device_class: SensorDeviceClass | None, unit_of_measurement: str | None) -> SensorDeviceClass | None: ...
     _attr_device_class: Incomplete

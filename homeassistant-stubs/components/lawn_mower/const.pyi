@@ -1,4 +1,5 @@
 from enum import IntFlag, StrEnum
+from typing import Final
 
 class LawnMowerActivity(StrEnum):
     ERROR = 'error'
@@ -12,7 +13,7 @@ class LawnMowerEntityFeature(IntFlag):
     PAUSE = 2
     DOCK = 4
 
-DOMAIN: str
+DOMAIN: Final[str]
 SERVICE_START_MOWING: str
 SERVICE_PAUSE: str
 SERVICE_DOCK: str

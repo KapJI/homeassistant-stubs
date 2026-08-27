@@ -171,6 +171,7 @@ class RpcClimate(ShellyRpcEntity, ClimateEntity):
     _attr_name: Incomplete
     _id: Incomplete
     _thermostat_type: Incomplete
+    _invert_output: Incomplete
     _attr_hvac_modes: Incomplete
     _humidity_key: str | None
     def __init__(self, coordinator: ShellyRpcCoordinator, id_: int) -> None: ...

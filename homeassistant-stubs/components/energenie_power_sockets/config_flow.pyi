@@ -3,5 +3,6 @@ from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowRes
 from typing import Any, override
 
 class EGPSConfigFlow(ConfigFlow, domain=DOMAIN):
+    VERSION: int
     @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

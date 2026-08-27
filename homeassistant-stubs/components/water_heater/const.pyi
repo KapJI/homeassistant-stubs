@@ -1,6 +1,8 @@
 from enum import StrEnum
+from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 
 class WaterHeaterCapabilityAttribute(StrEnum):
     MIN_TEMP = 'min_temp'
@@ -8,8 +10,9 @@ class WaterHeaterCapabilityAttribute(StrEnum):
     TARGET_TEMP_STEP = 'target_temp_step'
     OPERATION_LIST = 'operation_list'
 
-class WaterHeaterStateAttribute(StrEnum):
+class WaterHeaterStateAttribute(StrEnum, deprecated={'TEMPERATURE': ('ClimateEntityStateAttribute.TARGET_TEMPERATURE', '2027.3.0')}, metaclass=EnumWithDeprecatedMembers):
     CURRENT_TEMPERATURE = 'current_temperature'
+    TARGET_TEMPERATURE = 'temperature'
     TEMPERATURE = 'temperature'
     TARGET_TEMP_HIGH = 'target_temp_high'
     TARGET_TEMP_LOW = 'target_temp_low'

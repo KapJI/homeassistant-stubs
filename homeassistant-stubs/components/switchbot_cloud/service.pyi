@@ -2,6 +2,7 @@ from .const import AI_ART_FRAME_UPLOAD_IMAGE_SERVICE as AI_ART_FRAME_UPLOAD_IMAG
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import service as service
 
 _LOGGER: Incomplete
 UPLOAD_IMAGE_SCHEMA: Incomplete

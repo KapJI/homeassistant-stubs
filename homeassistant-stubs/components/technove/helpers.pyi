@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .entity import TechnoVEEntity as TechnoVEEntity
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

@@ -12,7 +12,7 @@ from typing import override
 
 @dataclass(frozen=True)
 class OverkizButtonDescription(ButtonEntityDescription):
-    press_args: OverkizStateType | None = ...
+    press_args: list[OverkizStateType] | None = ...
 
 BUTTON_DESCRIPTIONS: list[OverkizButtonDescription]
 SUPPORTED_COMMANDS: Incomplete

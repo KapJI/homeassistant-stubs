@@ -2,7 +2,7 @@ import abc
 import pyatmo
 from .const import CONF_URL_CONTROL as CONF_URL_CONTROL, CONF_URL_ENERGY as CONF_URL_ENERGY, CONF_URL_PUBLIC_WEATHER as CONF_URL_PUBLIC_WEATHER, CONF_URL_SECURITY as CONF_URL_SECURITY, CONF_WEATHER_AREAS as CONF_WEATHER_AREAS, DOMAIN as DOMAIN, NETATMO_CREATE_CLIMATE_BATTERY_SENSOR as NETATMO_CREATE_CLIMATE_BATTERY_SENSOR, NETATMO_CREATE_LEGACY_SENSOR as NETATMO_CREATE_LEGACY_SENSOR, NETATMO_CREATE_ROOM_SENSOR as NETATMO_CREATE_ROOM_SENSOR, NETATMO_CREATE_SENSOR as NETATMO_CREATE_SENSOR, NETATMO_CREATE_WEATHER_SENSOR as NETATMO_CREATE_WEATHER_SENSOR, SIGNAL_NAME as SIGNAL_NAME
 from .coordinator import HOME as HOME, NetatmoConfigEntry as NetatmoConfigEntry, NetatmoDataHandler as NetatmoDataHandler, NetatmoDevice as NetatmoDevice, NetatmoRoom as NetatmoRoom, PUBLIC as PUBLIC
-from .entity import NetatmoBaseEntity as NetatmoBaseEntity, NetatmoDeviceEntity as NetatmoDeviceEntity, NetatmoModuleEntity as NetatmoModuleEntity, NetatmoRoomEntity as NetatmoRoomEntity, NetatmoWeatherModuleEntity as NetatmoWeatherModuleEntity
+from .entity import NetatmoBaseEntity as NetatmoBaseEntity, NetatmoDeviceEntity as NetatmoDeviceEntity, NetatmoModuleEntity as NetatmoModuleEntity, NetatmoRoomEntity as NetatmoRoomEntity, NetatmoWeatherModuleEntity as NetatmoWeatherModuleEntity, room_device_info as room_device_info
 from .helper import NetatmoArea as NetatmoArea
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable

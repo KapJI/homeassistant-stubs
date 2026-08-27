@@ -11,6 +11,7 @@ from homeassistant.util.json import json_loads as json_loads
 from typing import override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OpenAIConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

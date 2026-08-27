@@ -21,6 +21,9 @@ class PortainerContainerUpdateEntityDescription(UpdateEntityDescription):
 
 PARALLEL_UPDATES: int
 DEFAULT_RECREATE_TIMEOUT: Incomplete
+
+def _short_digest(digest: str) -> str: ...
+
 CONTAINER_IMAGE: tuple[PortainerContainerUpdateEntityDescription]
 
 async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

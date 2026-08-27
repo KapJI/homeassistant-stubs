@@ -11,7 +11,7 @@ from homeassistant.components.recorder import get_instance as get_instance
 from homeassistant.components.recorder.filters import Filters as Filters
 from homeassistant.components.recorder.models import bytes_to_uuid_hex_or_none as bytes_to_uuid_hex_or_none, decode_attributes_from_source as decode_attributes_from_source, extract_event_type_ids as extract_event_type_ids, extract_metadata_ids as extract_metadata_ids, process_timestamp_to_utc_isoformat as process_timestamp_to_utc_isoformat
 from homeassistant.components.recorder.util import execute_stmt_lambda_element as execute_stmt_lambda_element, session_scope as session_scope
-from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, ATTR_NAME as ATTR_NAME, ATTR_SERVICE as ATTR_SERVICE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY
+from homeassistant.const import ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, ATTR_SERVICE as ATTR_SERVICE, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er
 from homeassistant.util.collection import chunked_or_all as chunked_or_all

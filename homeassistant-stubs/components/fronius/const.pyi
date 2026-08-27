@@ -4,6 +4,8 @@ from homeassistant.helpers.typing import StateType as StateType
 from typing import Final, NamedTuple, TypedDict
 
 DOMAIN: Final[str]
+CONF_MODBUS_PORT: Final[str]
+DEFAULT_MODBUS_PORT: Final[int]
 type SolarNetId = str
 SOLAR_NET_DISCOVERY_NEW: Final[str]
 SOLAR_NET_ID_POWER_FLOW: SolarNetId
@@ -13,6 +15,7 @@ SOLAR_NET_RESCAN_TIMER: Final[int]
 class FroniusConfigEntryData(TypedDict):
     host: str
     is_logger: bool
+    modbus_port: int
 
 class FroniusDeviceInfo(NamedTuple):
     device_info: DeviceInfo

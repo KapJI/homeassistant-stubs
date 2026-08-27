@@ -1,8 +1,7 @@
 from . import TeslemetryConfigEntry as TeslemetryConfigEntry
 from .const import DOMAIN as DOMAIN, ENERGY_HISTORY_FIELDS as ENERGY_HISTORY_FIELDS, LOGGER as LOGGER
-from .helpers import flatten as flatten
+from .helpers import async_update_device_sw_version as async_update_device_sw_version, flatten as flatten
 from _typeshed import Incomplete
-from datetime import datetime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
@@ -16,10 +15,9 @@ def _get_retry_after(e: TeslaFleetError) -> float: ...
 
 VEHICLE_INTERVAL: Incomplete
 VEHICLE_WAIT: Incomplete
-ENERGY_LIVE_INTERVAL: Incomplete
-ENERGY_INFO_INTERVAL: Incomplete
 ENERGY_HISTORY_INTERVAL: Incomplete
 METADATA_INTERVAL: Incomplete
+TARIFF_SKIP_KEYS: Incomplete
 INSUFFICIENT_CREDITS_RETRY_AFTER: Incomplete
 ENDPOINTS: Incomplete
 
@@ -32,7 +30,7 @@ class TeslemetryMetadataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
 class TeslemetryVehicleDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: TeslemetryConfigEntry
-    last_active: datetime
+    vin: str
     update_interval: Incomplete
     api: Incomplete
     data: Incomplete
@@ -40,20 +38,29 @@ class TeslemetryVehicleDataCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
+def _index_wall_connectors(data: dict[str, Any]) -> dict[str, Any]: ...
+
 class TeslemetryEnergySiteLiveCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: TeslemetryConfigEntry
     updated_once: bool
     api: Incomplete
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: EnergySite, data: dict[str, Any]) -> None: ...
+    def handle_stream_update(self, data: dict[str, Any]) -> None: ...
     @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 
 class TeslemetryEnergySiteInfoCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: TeslemetryConfigEntry
     api: Incomplete
+    _site_info: dict[str, Any]
+    _tariff_content_v2: dict[str, Any] | None
     data: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: EnergySite, product: dict[str, Any]) -> None: ...
+    def _compose(self) -> dict[str, Any]: ...
+    def _ingest_site_info(self, site_info: dict[str, Any]) -> dict[str, Any]: ...
+    def handle_site_info(self, site_info: dict[str, Any]) -> None: ...
+    def handle_tariff_content_v2(self, tariff: dict[str, Any] | None) -> None: ...
     @override
     async def _async_update_data(self) -> dict[str, Any]: ...
 

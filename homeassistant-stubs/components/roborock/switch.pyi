@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinatorType as RoborockCoordinatorType, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01
-from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockEntityV1 as RoborockEntityV1
+from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1, RoborockEntityV1 as RoborockEntityV1
+from .models import DeviceState as DeviceState
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -11,11 +12,13 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from roborock.device_features import RoborockDockFeatures as RoborockDockFeatures
 from roborock.devices.traits.b01 import Q10PropertiesApi as Q10PropertiesApi
 from roborock.devices.traits.b01.q10 import ButtonLightTrait as ButtonLightTrait, ChildLockTrait, DoNotDisturbTrait, DustCollectionTrait
 from roborock.devices.traits.v1 import PropertiesApi as PropertiesApi
 from roborock.devices.traits.v1.common import RoborockSwitchBase as RoborockSwitchBase
 from roborock.roborock_message import RoborockDyadDataProtocol as RoborockDyadDataProtocol, RoborockZeoProtocol
+from roborock.roborock_typing import RoborockCommand
 from typing import Any, override
 
 _LOGGER: Incomplete
@@ -27,6 +30,18 @@ class RoborockSwitchDescription(SwitchEntityDescription):
     is_dock_entity: bool = ...
 
 SWITCH_DESCRIPTIONS: list[RoborockSwitchDescription]
+
+@dataclass(frozen=True, kw_only=True)
+class RoborockDockSwitchDescription(SwitchEntityDescription):
+    turn_on_command: RoborockCommand
+    turn_on_params: dict[str, Any] | None = ...
+    turn_off_command: RoborockCommand
+    turn_off_params: dict[str, Any] | None = ...
+    value_fn: Callable[[DeviceState], bool | None]
+    is_supported: Callable[[RoborockDockFeatures], bool]
+
+WASHING_STATES: Incomplete
+DOCK_SWITCH_DESCRIPTIONS: list[RoborockDockSwitchDescription]
 
 @dataclass(frozen=True, kw_only=True)
 class RoborockSwitchDescriptionA01(SwitchEntityDescription):
@@ -50,6 +65,17 @@ class RoborockSwitch(RoborockEntityV1, SwitchEntity):
     async def async_turn_off(self, **kwargs: Any) -> None: ...
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @property
+    @override
+    def is_on(self) -> bool | None: ...
+
+class RoborockDockSwitch(RoborockCoordinatedEntityV1, SwitchEntity):
+    entity_description: RoborockDockSwitchDescription
+    def __init__(self, coordinator: RoborockDataUpdateCoordinator, entity_description: RoborockDockSwitchDescription) -> None: ...
+    @override
+    async def async_turn_on(self, **kwargs: Any) -> None: ...
+    @override
+    async def async_turn_off(self, **kwargs: Any) -> None: ...
     @property
     @override
     def is_on(self) -> bool | None: ...

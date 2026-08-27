@@ -7,7 +7,7 @@ from .util import execute as execute, execute_stmt_lambda_element as execute_stm
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Iterable, Sequence
 from datetime import datetime, timedelta
-from homeassistant.const import ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.frame import report_usage as report_usage

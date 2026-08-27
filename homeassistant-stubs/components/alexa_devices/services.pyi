@@ -1,11 +1,10 @@
 from .const import DOMAIN as DOMAIN, INFO_SKILLS_MAPPING as INFO_SKILLS_MAPPING
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry, alexa_api_call as alexa_api_call
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import device_registry as dr, service as service
 
 ATTR_TEXT_COMMAND: str
 ATTR_SOUND: str

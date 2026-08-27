@@ -9,7 +9,7 @@ from .util import check_state_too_long as check_state_too_long
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import text as text
-from homeassistant.components.text import TextEntity as TextEntity
+from homeassistant.components.text import TextEntity as TextEntity, TextEntityCapabilityAttribute as TextEntityCapabilityAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, MAX_LENGTH_STATE_STATE as MAX_LENGTH_STATE_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

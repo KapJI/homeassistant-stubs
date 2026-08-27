@@ -39,6 +39,8 @@ class NetatmoDeviceEntity(NetatmoBaseEntity, metaclass=abc.ABCMeta):
     @property
     def home(self) -> Home: ...
 
+def room_device_info(room: Room, via_device_id: str) -> DeviceInfo: ...
+
 class NetatmoRoomEntity(NetatmoDeviceEntity):
     device: Room
     _attr_device_info: Incomplete

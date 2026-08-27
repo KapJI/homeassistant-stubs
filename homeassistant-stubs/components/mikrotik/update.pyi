@@ -3,7 +3,7 @@ from .coordinator import MikrotikConfigEntry as MikrotikConfigEntry, mikrotik_co
 from .entity import MikrotikEntity as MikrotikEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.update import UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
+from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -24,7 +24,7 @@ UPDATES: Incomplete
 async def async_setup_entry(hass: HomeAssistant, entry: MikrotikConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MikrotikUpdateEntity(MikrotikEntity, UpdateEntity):
-    update_description: MikrotikUpdateEntityDescription
+    entity_description: MikrotikUpdateEntityDescription
     @property
     @override
     def supported_features(self) -> UpdateEntityFeature: ...

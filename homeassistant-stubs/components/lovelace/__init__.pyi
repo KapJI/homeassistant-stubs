@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components import frontend as frontend, onboarding as onboarding, websocket_api as websocket_api
 from homeassistant.config import async_hass_config_yaml as async_hass_config_yaml, async_process_component_and_handle_errors as async_process_component_and_handle_errors
-from homeassistant.const import CONF_FILENAME as CONF_FILENAME, CONF_MODE as CONF_MODE, CONF_RESOURCES as CONF_RESOURCES
+from homeassistant.const import CONF_FILENAME as CONF_FILENAME, CONF_MODE as CONF_MODE, CONF_RESOURCES as CONF_RESOURCES, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection
@@ -34,6 +34,8 @@ class LovelaceData:
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def create_yaml_resource_col(hass: HomeAssistant, yaml_resources: list[ConfigType] | None) -> resources.ResourceYAMLCollection: ...
+def _missing_resource_files(candidates: dict[str, str]) -> list[tuple[str, str]]: ...
+async def _async_warn_missing_local_resources(hass: HomeAssistant, yaml_resources: list[ConfigType]) -> None: ...
 @callback
 def _async_ensure_default_panel(hass: HomeAssistant) -> None: ...
 @callback

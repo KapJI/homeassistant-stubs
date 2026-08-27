@@ -26,6 +26,7 @@ class SwitchbotDevices:
     climates: list[tuple[Remote | Device, SwitchBotCoordinator]] = field(default_factory=list)
     covers: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     switches: list[tuple[Device | Remote, SwitchBotCoordinator]] = field(default_factory=list)
+    selects: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     sensors: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     vacuums: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)
     locks: list[tuple[Device, SwitchBotCoordinator]] = field(default_factory=list)

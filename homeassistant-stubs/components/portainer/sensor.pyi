@@ -2,6 +2,7 @@ from .coordinator import PortainerConfigEntry as PortainerConfigEntry, Portainer
 from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerCoordinatorData as PortainerCoordinatorData, PortainerDockerSystemDiskSpaceEndpointEntity as PortainerDockerSystemDiskSpaceEndpointEntity, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity, PortainerVolumeEntity as PortainerVolumeEntity
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
+from datetime import datetime
 from homeassistant.components.sensor import EntityCategory as EntityCategory, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass, StateType as StateType
 from homeassistant.const import UnitOfInformation as UnitOfInformation, UnitOfRatio as UnitOfRatio
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,7 +14,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerContainerSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[PortainerContainerData], StateType]
+    value_fn: Callable[[PortainerContainerData], StateType | datetime]
     supported_fn: Callable[[PortainerContainerData], bool] = ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -44,7 +45,7 @@ class PortainerContainerSensor(PortainerContainerEntity, SensorEntity):
     entity_description: PortainerContainerSensorEntityDescription
     @property
     @override
-    def native_value(self) -> StateType: ...
+    def native_value(self) -> StateType | datetime: ...
 
 class PortainerEndpointSensor(PortainerEndpointEntity, SensorEntity):
     entity_description: PortainerEndpointSensorEntityDescription

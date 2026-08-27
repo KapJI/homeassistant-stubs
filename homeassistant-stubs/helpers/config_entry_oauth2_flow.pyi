@@ -9,7 +9,7 @@ from .service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from _typeshed import Incomplete
 from abc import ABC, ABCMeta, abstractmethod
 from aiohttp import client as client, web
-from collections.abc import Awaitable, Callable as Callable
+from collections.abc import Awaitable, Callable as Callable, Mapping
 from habluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
 from homeassistant import config_entries as config_entries
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -28,6 +28,7 @@ MY_AUTH_CALLBACK_PATH: str
 CLOCK_OUT_OF_SYNC_MAX_SEC: int
 OAUTH_AUTHORIZE_URL_TIMEOUT_SEC: int
 OAUTH_TOKEN_TIMEOUT_SEC: int
+_SHARED_ABORT_REASONS: Incomplete
 
 class ImplementationUnavailableError(HomeAssistantError): ...
 
@@ -97,6 +98,9 @@ class AbstractOAuth2FlowHandler(config_entries.ConfigFlow, metaclass=ABCMeta):
     external_data: Any
     flow_impl: AbstractOAuth2Implementation
     def __init__(self) -> None: ...
+    @callback
+    @override
+    def async_abort(self, *, reason: str, description_placeholders: Mapping[str, str] | None = None, translation_domain: str | None = None, next_flow: tuple[config_entries.FlowType, str] | None = None) -> config_entries.ConfigFlowResult: ...
     @property
     @abstractmethod
     def logger(self) -> logging.Logger: ...

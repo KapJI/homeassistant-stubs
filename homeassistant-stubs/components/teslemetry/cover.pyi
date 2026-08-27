@@ -13,6 +13,7 @@ from typing import Any, override
 
 OPEN: int
 CLOSED: int
+TONNEAU_CLOSED: str
 PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -149,3 +150,26 @@ class TeslemetrySunroofEntity(TeslemetryVehiclePollingEntity, CoverEntity):
     async def async_close_cover(self, **kwargs: Any) -> None: ...
     @override
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
+
+class TeslemetryTonneauEntity(TeslemetryRootEntity, CoverEntity):
+    api: Vehicle
+    _attr_device_class: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_is_closed: bool
+    @override
+    async def async_open_cover(self, **kwargs: Any) -> None: ...
+    @override
+    async def async_close_cover(self, **kwargs: Any) -> None: ...
+    @override
+    async def async_stop_cover(self, **kwargs: Any) -> None: ...
+
+class TeslemetryStreamingTonneauEntity(TeslemetryVehicleStreamEntity, TeslemetryTonneauEntity, CoverRestoreEntity):
+    scoped: Incomplete
+    _attr_supported_features: Incomplete
+    _attr_is_closed: Incomplete
+    def __init__(self, vehicle: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    def _async_position_from_stream(self, value: str | None) -> None: ...
+    _attr_current_cover_position: Incomplete
+    def _async_percent_from_stream(self, value: float | None) -> None: ...

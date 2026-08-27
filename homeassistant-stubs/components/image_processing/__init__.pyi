@@ -12,7 +12,7 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final, TypedDict, final, override
 
 _LOGGER: Incomplete
-DOMAIN: str
+DOMAIN: Final[str]
 SCAN_INTERVAL: Incomplete
 
 class ImageProcessingDeviceClass(StrEnum):

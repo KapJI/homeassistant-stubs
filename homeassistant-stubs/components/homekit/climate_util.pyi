@@ -1,7 +1,7 @@
 from .util import get_min_max as get_min_max, temperature_to_homekit as temperature_to_homekit
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from homeassistant.components.climate import ATTR_FAN_MODES as ATTR_FAN_MODES, ATTR_MAX_TEMP as ATTR_MAX_TEMP, ATTR_MIN_TEMP as ATTR_MIN_TEMP, ATTR_SWING_MODES as ATTR_SWING_MODES, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, FAN_MIDDLE as FAN_MIDDLE, SWING_BOTH as SWING_BOTH, SWING_HORIZONTAL as SWING_HORIZONTAL, SWING_OFF as SWING_OFF, SWING_ON as SWING_ON, SWING_VERTICAL as SWING_VERTICAL
+from homeassistant.components.climate import ClimateEntityCapabilityAttribute as ClimateEntityCapabilityAttribute, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, FAN_MIDDLE as FAN_MIDDLE, SWING_BOTH as SWING_BOTH, SWING_HORIZONTAL as SWING_HORIZONTAL, SWING_OFF as SWING_OFF, SWING_ON as SWING_ON, SWING_VERTICAL as SWING_VERTICAL
 from homeassistant.core import State as State
 from homeassistant.util.percentage import ordered_list_item_to_percentage as ordered_list_item_to_percentage, percentage_to_ordered_list_item as percentage_to_ordered_list_item
 from typing import Any

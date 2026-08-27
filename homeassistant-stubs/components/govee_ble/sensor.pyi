@@ -14,6 +14,7 @@ from typing import override
 
 type _SensorValueType = str | int | float | date | datetime | Decimal | None
 SENSOR_DESCRIPTIONS: Incomplete
+PROBE_SENSOR_DESCRIPTIONS: Incomplete
 
 def sensor_update_to_bluetooth_data_update(sensor_update: SensorUpdate) -> PassiveBluetoothDataUpdate[_SensorValueType]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: GoveeBLEConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

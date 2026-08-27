@@ -1,11 +1,11 @@
 from .const import DOMAIN as DOMAIN
-from .entry_data import DeviceEntityKey as DeviceEntityKey, ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
+from .entry_data import DeviceEntityKey as DeviceEntityKey, ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData, async_migrate_unique_id as async_migrate_unique_id
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
 from aioesphomeapi import DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from homeassistant.const import EntityCategory as EntityCategory
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr, entity_platform as entity_platform
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -18,6 +18,8 @@ _InfoT = TypeVar('_InfoT', bound=EntityInfo)
 _EntityT = TypeVar('_EntityT', bound='EsphomeEntity[Any,Any]')
 _StateT = TypeVar('_StateT', bound=EntityState)
 
+def _build_identity_indexes(current_infos: dict[DeviceEntityKey, EntityInfo], mac: str, new_unique_ids: set[str]) -> tuple[dict[str, DeviceEntityKey], dict[str, list[DeviceEntityKey]]]: ...
+def _move_cached_states(states: dict[DeviceEntityKey, EntityState], moves: list[tuple[DeviceEntityKey, DeviceEntityKey]]) -> None: ...
 @callback
 def async_static_info_updated(hass: HomeAssistant, entry_data: RuntimeEntryData, platform: entity_platform.EntityPlatform, async_add_entities: AddEntitiesCallback, info_type: type[_InfoT], entity_type: Callable[[RuntimeEntryData, EntityInfo, type[_StateT]], _EntityT], state_type: type[_StateT], infos: list[EntityInfo]) -> None: ...
 async def platform_async_setup_entry(hass: HomeAssistant, entry: ESPHomeConfigEntry, async_add_entities: AddEntitiesCallback, *, info_type: type[_InfoT], entity_type: Callable[[RuntimeEntryData, EntityInfo, type[_StateT]], _EntityT], state_type: type[_StateT], info_filter: Callable[[_InfoT], bool] | None = None) -> None: ...
@@ -44,10 +46,15 @@ class EsphomeEntity(EsphomeBaseEntity, Generic[_InfoT, _StateT]):
     _states: Incomplete
     _key: Incomplete
     _state_type: Incomplete
+    _key_unsubs: list[CALLBACK_TYPE]
     _attr_device_info: Incomplete
     def __init__(self, entry_data: RuntimeEntryData, entity_info: EntityInfo, state_type: type[_StateT]) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _subscribe_key_updates(self) -> None: ...
+    @callback
+    def _unsubscribe_key_updates(self) -> None: ...
     @callback
     def _on_removal_signal(self) -> None: ...
     _attr_unique_id: Incomplete

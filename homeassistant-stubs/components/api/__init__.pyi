@@ -28,7 +28,6 @@ ATTR_VERSION: str
 DOMAIN: str
 STREAM_PING_PAYLOAD: str
 STREAM_PING_INTERVAL: int
-SERVICE_WAIT_TIMEOUT: int
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

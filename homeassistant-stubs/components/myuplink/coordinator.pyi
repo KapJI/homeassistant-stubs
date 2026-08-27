@@ -1,6 +1,5 @@
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
@@ -14,7 +13,6 @@ class CoordinatorData:
     systems: list[System]
     devices: dict[str, Device]
     points: dict[str, dict[str, DevicePoint]]
-    time: datetime
 type MyUplinkConfigEntry = ConfigEntry[MyUplinkDataCoordinator]
 
 class MyUplinkDataCoordinator(DataUpdateCoordinator[CoordinatorData]):

@@ -17,7 +17,8 @@ class RestData:
     _resource: Incomplete
     _encoding: Incomplete
     _force_use_set_encoding: bool
-    _auth: aiohttp.BasicAuth | aiohttp.DigestAuthMiddleware | None
+    _basic_auth: str | None
+    _digest_auth: aiohttp.DigestAuthMiddleware | None
     _headers: Incomplete
     _params: Incomplete
     _request_data: Incomplete
@@ -28,7 +29,7 @@ class RestData:
     data: str | None
     last_exception: Exception | None
     headers: CIMultiDictProxy[str] | None
-    def __init__(self, hass: HomeAssistant, method: str, resource: str, encoding: str, auth: aiohttp.DigestAuthMiddleware | aiohttp.BasicAuth | tuple[str, str] | None, headers: dict[str, str] | None, params: dict[str, str] | None, data: str | None, verify_ssl: bool, ssl_cipher_list: str, timeout: int = ...) -> None: ...
+    def __init__(self, hass: HomeAssistant, method: str, resource: str, encoding: str, auth: aiohttp.DigestAuthMiddleware | tuple[str, str] | None, headers: dict[str, str] | None, params: dict[str, str] | None, data: str | None, verify_ssl: bool, ssl_cipher_list: str, timeout: int = ...) -> None: ...
     def set_payload(self, payload: str) -> None: ...
     @property
     def url(self) -> str: ...

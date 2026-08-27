@@ -5,6 +5,7 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_FILENAME as CONF_FILENAME, CONF_PORT as CONF_PORT, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 from typing import Any
 
 SERVICE_NAME_PAIR_SENSOR: str

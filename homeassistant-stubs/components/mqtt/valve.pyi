@@ -7,7 +7,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_topic as valid_subscribe_topic
 from _typeshed import Incomplete
 from homeassistant.components import valve as valve
-from homeassistant.components.valve import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, ValveEntity as ValveEntity, ValveEntityFeature as ValveEntityFeature, ValveState as ValveState
+from homeassistant.components.valve import DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, ValveEntity as ValveEntity, ValveEntityFeature as ValveEntityFeature, ValveEntityStateAttribute as ValveEntityStateAttribute, ValveState as ValveState
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

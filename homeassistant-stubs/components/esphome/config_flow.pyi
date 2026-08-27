@@ -4,7 +4,7 @@ from .encryption_key_storage import async_get_encryption_key_storage as async_ge
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry
 from .manager import async_replace_device as async_replace_device
 from _typeshed import Incomplete
-from aioesphomeapi import DeviceInfo as DeviceInfo
+from aioesphomeapi import ConnectionClosedEvent as ConnectionClosedEvent, DeviceInfo as DeviceInfo
 from collections.abc import AsyncIterator, Mapping
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode
@@ -24,6 +24,7 @@ from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as Z
 from homeassistant.util.json import json_loads_object as json_loads_object
 from typing import Any, override
 
+ERROR_PROVISIONING_CLOSED: str
 ERROR_REQUIRES_ENCRYPTION_KEY: str
 ERROR_INVALID_ENCRYPTION_KEY: str
 ERROR_INVALID_PASSWORD_AUTH: str

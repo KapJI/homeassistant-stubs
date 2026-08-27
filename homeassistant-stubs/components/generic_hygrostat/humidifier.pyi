@@ -8,7 +8,7 @@ from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_CL
 from homeassistant.core import Event as Event, EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers import condition as condition
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry as AnyDeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event, async_track_state_report_event as async_track_state_report_event, async_track_time_interval as async_track_time_interval
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
@@ -22,7 +22,7 @@ PLATFORM_SCHEMA: Incomplete
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def _time_period_or_none(value: Any) -> timedelta | None: ...
-async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback | AddConfigEntryEntitiesCallback, device: DeviceEntry | None = None) -> None: ...
+async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback | AddConfigEntryEntitiesCallback, device: AnyDeviceEntry | None = None) -> None: ...
 
 class GenericHygrostat(HumidifierEntity, RestoreEntity):
     _attr_should_poll: bool
@@ -50,7 +50,7 @@ class GenericHygrostat(HumidifierEntity, RestoreEntity):
     _is_away: bool
     _attr_action: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, *, name: str, switch_entity_id: str, sensor_entity_id: str, min_humidity: float | None, max_humidity: float | None, target_humidity: float | None, device_class: HumidifierDeviceClass | None, min_cycle_duration: timedelta | None, dry_tolerance: float, wet_tolerance: float, keep_alive: timedelta | None, initial_state: bool | None, away_humidity: int | None, away_fixed: bool | None, sensor_stale_duration: timedelta | None, unique_id: str | None, device: DeviceEntry | None = None) -> None: ...
+    def __init__(self, *, name: str, switch_entity_id: str, sensor_entity_id: str, min_humidity: float | None, max_humidity: float | None, target_humidity: float | None, device_class: HumidifierDeviceClass | None, min_cycle_duration: timedelta | None, dry_tolerance: float, wet_tolerance: float, keep_alive: timedelta | None, initial_state: bool | None, away_humidity: int | None, away_fixed: bool | None, sensor_stale_duration: timedelta | None, unique_id: str | None, device: AnyDeviceEntry | None = None) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @override

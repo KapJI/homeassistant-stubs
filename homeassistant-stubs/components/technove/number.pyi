@@ -6,17 +6,19 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
 from homeassistant.components.number import NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription, NumberMode as NumberMode
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfElectricCurrent as UnitOfElectricCurrent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from technove import TechnoVE as TechnoVE
+from technove import Station as TechnoVEStation
 from typing import Any, override
+
+PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class TechnoVENumberDescription(NumberEntityDescription):
-    native_max_value_fn: Callable[[TechnoVE], float]
-    native_value_fn: Callable[[TechnoVE], float]
+    native_max_value_fn: Callable[[TechnoVEStation], float]
+    native_value_fn: Callable[[TechnoVEStation], float]
     set_value_fn: Callable[[TechnoVEDataUpdateCoordinator, float], Coroutine[Any, Any, None]]
 
 async def _set_max_current(coordinator: TechnoVEDataUpdateCoordinator, value: float) -> None: ...

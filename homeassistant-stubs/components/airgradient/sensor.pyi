@@ -1,5 +1,5 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
-from .const import PM_STANDARD as PM_STANDARD, PM_STANDARD_REVERSE as PM_STANDARD_REVERSE
+from .const import PM_STANDARD as PM_STANDARD, PM_STANDARD_REVERSE as PM_STANDARD_REVERSE, supports_config as supports_config
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity
 from _typeshed import Incomplete
@@ -8,7 +8,7 @@ from airgradient.models import Measures as Measures
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfDensity as UnitOfDensity, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfDensity as UnitOfDensity, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
@@ -22,6 +22,7 @@ class AirGradientMeasurementSensorEntityDescription(SensorEntityDescription):
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientConfigSensorEntityDescription(SensorEntityDescription):
+    config_key: str
     value_fn: Callable[[Config], StateType]
 
 MEASUREMENT_SENSOR_TYPES: tuple[AirGradientMeasurementSensorEntityDescription, ...]

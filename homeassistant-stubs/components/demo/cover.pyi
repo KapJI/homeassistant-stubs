@@ -20,6 +20,8 @@ class DemoCover(CoverEntity):
     _position: Incomplete
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
+    _attr_supported_speeds: Incomplete
+    _attr_translation_key: Incomplete
     _set_position: int | None
     _set_tilt_position: int | None
     _tilt_position: Incomplete
@@ -31,7 +33,7 @@ class DemoCover(CoverEntity):
     _is_closing: bool
     _closed: bool
     _attr_device_info: Incomplete
-    def __init__(self, hass: HomeAssistant, unique_id: str, device_name: str, position: int | None = None, tilt_position: int | None = None, device_class: CoverDeviceClass | None = None, supported_features: CoverEntityFeature | None = None) -> None: ...
+    def __init__(self, hass: HomeAssistant, unique_id: str, device_name: str, position: int | None = None, tilt_position: int | None = None, device_class: CoverDeviceClass | None = None, supported_features: CoverEntityFeature | None = None, supported_speeds: list[str] | None = None, translation_key: str | None = None) -> None: ...
     @property
     @override
     def unique_id(self) -> str: ...

@@ -1,7 +1,7 @@
 import voluptuous as vol
-from .const import CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_DEFAULT_ENTITY_ID as CONF_DEFAULT_ENTITY_ID, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONF_VALUE as CONF_VALUE, ClimateConf as ClimateConf, ColorTempModes as ColorTempModes, CoverConf as CoverConf, FanConf as FanConf, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS, NumberConf as NumberConf, SceneConf as SceneConf
+from .const import CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_DEFAULT_ENTITY_ID as CONF_DEFAULT_ENTITY_ID, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_KNX_EXPOSE as CONF_KNX_EXPOSE, CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, CONF_VALUE as CONF_VALUE, ClimateConf as ClimateConf, ColorTempModes as ColorTempModes, CoverConf as CoverConf, FanConf as FanConf, FanZeroMode as FanZeroMode, KNX_ADDRESS as KNX_ADDRESS, NumberConf as NumberConf, SceneConf as SceneConf, SelectConf as SelectConf, UI_DEVICE_ID_PREFIX as UI_DEVICE_ID_PREFIX
 from .dpt import get_supported_dpts as get_supported_dpts
-from .validation import backwards_compatible_xknx_climate_enum_member as backwards_compatible_xknx_climate_enum_member, dpt_base_type_validator as dpt_base_type_validator, ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_validator as sync_state_validator, validate_number_attributes as validate_number_attributes, validate_sensor_attributes as validate_sensor_attributes
+from .validation import backwards_compatible_xknx_climate_enum_member as backwards_compatible_xknx_climate_enum_member, dpt_base_type_validator as dpt_base_type_validator, ga_list_validator as ga_list_validator, ga_validator as ga_validator, numeric_type_validator as numeric_type_validator, sensor_type_validator as sensor_type_validator, string_type_validator as string_type_validator, sync_state_no_false_validator as sync_state_no_false_validator, sync_state_validator as sync_state_validator, validate_number_attributes as validate_number_attributes, validate_sensor_attributes as validate_sensor_attributes
 from _typeshed import Incomplete
 from abc import ABC
 from collections import OrderedDict
@@ -9,8 +9,9 @@ from homeassistant.components.climate import FAN_OFF as FAN_OFF, HVACMode as HVA
 from homeassistant.components.number import NumberMode as NumberMode
 from homeassistant.components.sensor import STATE_CLASSES_SCHEMA as STATE_CLASSES_SCHEMA
 from homeassistant.components.text import TextMode as TextMode
-from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TYPE as CONF_TYPE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform
+from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_EVENT as CONF_EVENT, CONF_ID as CONF_ID, CONF_MODE as CONF_MODE, CONF_NAME as CONF_NAME, CONF_PAYLOAD as CONF_PAYLOAD, CONF_TYPE as CONF_TYPE, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform
 from homeassistant.helpers.entity import ENTITY_CATEGORIES_SCHEMA as ENTITY_CATEGORIES_SCHEMA
+from homeassistant.util import slugify as slugify
 from typing import ClassVar, Final
 
 def _number_limit_sub_validator(config: dict) -> dict: ...
@@ -23,12 +24,15 @@ class EventSchema:
     KNX_EVENT_FILTER_SCHEMA: Incomplete
     SCHEMA: Incomplete
 
+def _unique_id_duplicate_validator(entities: list[dict]) -> list[dict]: ...
+
 class KNXPlatformSchema(ABC):
     PLATFORM: ClassVar[Platform | str]
     ENTITY_SCHEMA: ClassVar[vol.Schema | vol.All | vol.Any]
     @classmethod
     def platform_node(cls) -> dict[vol.Optional, vol.All]: ...
 
+def _device_id(value: str) -> str: ...
 def _entity_base_schema(platform: Platform) -> vol.Schema: ...
 
 class BinarySensorSchema(KNXPlatformSchema):
@@ -106,6 +110,7 @@ class ExposeSchema(KNXPlatformSchema):
     CONF_KNX_EXPOSE_ATTRIBUTE: str
     CONF_KNX_EXPOSE_BINARY: str
     CONF_KNX_EXPOSE_COOLDOWN: str
+    CONF_KNX_EXPOSE_SEND_ON_INIT: str
     CONF_KNX_EXPOSE_PERIODIC_SEND: str
     CONF_KNX_EXPOSE_DEFAULT: str
     CONF_TIME: str
@@ -173,8 +178,6 @@ class SceneSchema(KNXPlatformSchema):
 
 class SelectSchema(KNXPlatformSchema):
     PLATFORM: Incomplete
-    CONF_OPTION: str
-    CONF_OPTIONS: str
     ENTITY_SCHEMA: Incomplete
 
 class SensorSchema(KNXPlatformSchema):

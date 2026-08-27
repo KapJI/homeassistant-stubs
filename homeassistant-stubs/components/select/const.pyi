@@ -1,6 +1,7 @@
 from enum import StrEnum
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 
 class SelectEntityCapabilityAttribute(StrEnum):
     OPTIONS = 'options'

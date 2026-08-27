@@ -1,17 +1,13 @@
-import asyncio
 from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, VacuumEntityCapabilityAttribute as VacuumEntityCapabilityAttribute, VacuumEntityFeature as VacuumEntityFeature, VacuumEntityStateAttribute as VacuumEntityStateAttribute
 from .websocket import async_register_websocket_handlers as async_register_websocket_handlers
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
-from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
-from homeassistant.helpers.icon import icon_for_battery_level as icon_for_battery_level
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property
 from typing import Any, final, override
@@ -21,7 +17,6 @@ ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
-ATTR_BATTERY_ICON: str
 ATTR_CLEANED_AREA: str
 ATTR_FAN_SPEED: str
 ATTR_FAN_SPEED_LIST: str
@@ -39,7 +34,6 @@ SERVICE_PAUSE: str
 SERVICE_STOP: str
 DEFAULT_NAME: str
 ISSUE_SEGMENTS_CHANGED: str
-_BATTERY_DEPRECATION_IGNORED_PLATFORMS: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
@@ -53,35 +47,15 @@ STATE_VACUUM_CACHED_PROPERTIES_WITH_ATTR_: Incomplete
 class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES_WITH_ATTR_):
     entity_description: StateVacuumEntityDescription
     _entity_component_unrecorded_attributes: Incomplete
-    _attr_battery_icon: str
-    _attr_battery_level: int | None
     _attr_fan_speed: str | None
     _attr_fan_speed_list: list[str]
     _attr_activity: VacuumActivity | None
     _attr_supported_features: VacuumEntityFeature
     _segments_not_configured_issue_created: bool
     _segments_changed_last_seen: list[dict[str, Any]] | None
-    __vacuum_legacy_battery_level: bool
-    __vacuum_legacy_battery_icon: bool
-    __vacuum_legacy_battery_feature: bool
-    @override
-    def __init_subclass__(cls, **kwargs: Any) -> None: ...
-    @override
-    def __setattr__(self, name: str, value: Any) -> None: ...
-    @callback
-    @override
-    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
     @callback
     @override
     def async_registry_entry_updated(self) -> None: ...
-    @callback
-    def _report_deprecated_battery_properties(self, property: str) -> None: ...
-    @callback
-    def _report_deprecated_battery_feature(self) -> None: ...
-    @cached_property
-    def battery_level(self) -> int | None: ...
-    @property
-    def battery_icon(self) -> str: ...
     @property
     @override
     def capability_attributes(self) -> dict[str, Any] | None: ...

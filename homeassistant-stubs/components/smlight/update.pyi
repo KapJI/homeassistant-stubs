@@ -1,11 +1,11 @@
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, ZWAVE_TYPES as ZWAVE_TYPES
+from .const import DOMAIN as DOMAIN, ZWAVE_TYPES as ZWAVE_TYPES
 from .coordinator import SmConfigEntry as SmConfigEntry, SmFirmwareUpdateCoordinator as SmFirmwareUpdateCoordinator, SmFwData as SmFwData
 from .entity import SmEntity as SmEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.update import UpdateDeviceClass as UpdateDeviceClass, UpdateEntity as UpdateEntity, UpdateEntityDescription as UpdateEntityDescription, UpdateEntityFeature as UpdateEntityFeature
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import CONF_HOST as CONF_HOST, EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

@@ -2,8 +2,9 @@ from . import StateVacuumEntity as StateVacuumEntity
 from enum import IntFlag, StrEnum
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.util.hass_dict import HassKey as HassKey
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[StateVacuumEntity]]
 
 class VacuumActivity(StrEnum):
@@ -27,7 +28,6 @@ class VacuumEntityFeature(IntFlag):
     STOP = 8
     RETURN_HOME = 16
     FAN_SPEED = 32
-    BATTERY = 64
     STATUS = 128
     SEND_COMMAND = 256
     LOCATE = 512

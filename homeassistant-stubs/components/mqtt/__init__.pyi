@@ -9,7 +9,7 @@ from homeassistant.components import websocket_api
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import SERVICE_RELOAD as SERVICE_RELOAD
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.device_registry import DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry
 from homeassistant.helpers.typing import ConfigType
 from homeassistant.setup import SetupPhases as SetupPhases
 from homeassistant.util.async_ import create_eager_task as create_eager_task
@@ -27,4 +27,4 @@ type ConnectionStatusCallback = Callable[[bool], None]
 @callback
 def async_subscribe_connection_status(hass: HomeAssistant, connection_status_callback: ConnectionStatusCallback) -> Callable[[], None]: ...
 def is_connected(hass: HomeAssistant) -> bool: ...
-async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: DeviceEntry) -> bool: ...
+async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: AnyDeviceEntry) -> bool: ...

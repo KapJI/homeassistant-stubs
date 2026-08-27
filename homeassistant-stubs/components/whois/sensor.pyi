@@ -11,7 +11,7 @@ from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import override
-from whois import Domain as Domain
+from whoisdomain import Domain as Domain
 
 @dataclass(frozen=True, kw_only=True)
 class WhoisSensorEntityDescription(SensorEntityDescription):
@@ -37,4 +37,4 @@ class WhoisSensorEntity(CoordinatorEntity[WhoisCoordinator], SensorEntity):
     def native_value(self) -> datetime | int | str | None: ...
     @property
     @override
-    def extra_state_attributes(self) -> dict[str, int | float | None] | None: ...
+    def extra_state_attributes(self) -> dict[str, str] | None: ...

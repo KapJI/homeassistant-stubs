@@ -7,7 +7,7 @@ from google_drive_api.api import AbstractAuth
 from homeassistant.components.backup import AgentBackup as AgentBackup, suggested_filename as suggested_filename
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from typing import Any, override
 

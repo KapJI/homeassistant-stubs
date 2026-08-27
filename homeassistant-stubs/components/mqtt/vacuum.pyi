@@ -7,7 +7,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from .util import valid_publish_topic as valid_publish_topic
 from _typeshed import Incomplete
 from homeassistant.components import vacuum as vacuum
-from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, Segment as Segment, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature
+from homeassistant.components.vacuum import ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, Segment as Segment, StateVacuumEntity as StateVacuumEntity, VacuumActivity as VacuumActivity, VacuumEntityFeature as VacuumEntityFeature, VacuumEntityStateAttribute as VacuumEntityStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, STATE_IDLE as STATE_IDLE, STATE_PAUSED as STATE_PAUSED
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

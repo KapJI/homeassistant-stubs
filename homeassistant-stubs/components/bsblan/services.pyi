@@ -5,11 +5,10 @@ from .helpers import async_sync_device_time as async_sync_device_time
 from _typeshed import Incomplete
 from bsblan import DaySchedule
 from datetime import time
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import device_registry as dr, service as service
 from typing import Any, Final
 
 LOGGER: Incomplete

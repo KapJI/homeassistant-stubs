@@ -1,7 +1,7 @@
 from .base import BaseTemplateExtension as BaseTemplateExtension, TemplateFunction as TemplateFunction
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_PERSONS as ATTR_PERSONS, EntityStateAttribute as EntityStateAttribute, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_PERSONS as ATTR_PERSONS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength
 from homeassistant.core import State as State, valid_entity_id as valid_entity_id
 from homeassistant.helpers.template import TemplateEnvironment as TemplateEnvironment
 from homeassistant.helpers.template.states import AllStates as AllStates, StateAttrTranslated as StateAttrTranslated, StateTranslated as StateTranslated, _collect_state as _collect_state, _get_state as _get_state, _resolve_state as _resolve_state

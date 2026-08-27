@@ -26,7 +26,7 @@ class MjpegCamera(Camera):
     _password: Incomplete
     _mjpeg_url: Incomplete
     _still_image_url: Incomplete
-    _auth: Incomplete
+    _auth_headers: dict[str, str] | None
     _verify_ssl: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete

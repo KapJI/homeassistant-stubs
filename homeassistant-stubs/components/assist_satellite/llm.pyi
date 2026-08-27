@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from homeassistant.components.llm import LLMTools as LLMTools
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import intent as intent

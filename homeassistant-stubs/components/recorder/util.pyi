@@ -9,6 +9,7 @@ from contextlib import contextmanager
 from datetime import date, datetime
 from homeassistant.const import WEEKDAYS as WEEKDAYS
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.generated.recorder_database_versions import SUPPORTED_DATABASE_VERSIONS as SUPPORTED_DATABASE_VERSIONS
 from homeassistant.helpers.recorder import DATA_INSTANCE as DATA_INSTANCE, get_instance as get_instance, session_scope as session_scope
 from sqlalchemy.engine import Result as Result, Row as Row
 from sqlalchemy.engine.interfaces import DBAPIConnection as DBAPIConnection
@@ -17,7 +18,7 @@ from sqlalchemy.orm.query import Query as Query
 from sqlalchemy.orm.session import Session as Session
 from sqlalchemy.sql.lambdas import StatementLambdaElement as StatementLambdaElement
 from sqlite3.dbapi2 import Cursor as SQLiteCursor
-from typing import Any, Concatenate, NoReturn
+from typing import Any, Concatenate, NamedTuple, NoReturn
 
 _LOGGER: Incomplete
 RETRIES: int
@@ -42,6 +43,18 @@ MARIADB_WITH_FIXED_IN_QUERIES_108: Incomplete
 MIN_VERSION_MYSQL: Incomplete
 MIN_VERSION_PGSQL: Incomplete
 MIN_VERSION_SQLITE: Incomplete
+UPCOMING_MIN_VERSION_PGSQL: Incomplete
+
+class _LTSVersionSupport(NamedTuple):
+    supported_series: frozenset[tuple[int, int]]
+    latest_non_lts_series: tuple[int, int]
+    breaks_in_ha_version: str
+
+def _parse_db_series(cycle: str) -> tuple[int, int]: ...
+def _lts_support(engine: str, breaks_in_ha_version: str) -> _LTSVersionSupport: ...
+
+SUPPORTED_MARIA_DB_LTS: Incomplete
+SUPPORTED_MYSQL_LTS: Incomplete
 MAX_RESTART_TIME: Incomplete
 RETRYABLE_MYSQL_ERRORS: Incomplete
 FIRST_POSSIBLE_SUNDAY: int
@@ -61,6 +74,14 @@ def execute_on_connection(dbapi_connection: DBAPIConnection, statement: str) -> 
 def query_on_connection(dbapi_connection: DBAPIConnection, statement: str) -> Any: ...
 def _fail_unsupported_dialect(dialect_name: str) -> NoReturn: ...
 def _raise_if_version_unsupported(server_version: str, dialect_name: str, minimum_version: str) -> NoReturn: ...
+@callback
+def _async_delete_issue_deprecated_version(hass: HomeAssistant, issue_id: str) -> None: ...
+@callback
+def _async_create_issue_deprecated_version(hass: HomeAssistant, server_version: AwesomeVersion, database_engine: str, min_version: AwesomeVersion, breaks_in_ha_version: str) -> None: ...
+@callback
+def _async_create_issue_not_supported_lts(hass: HomeAssistant, server_version: AwesomeVersion, database_engine: str, lts_versions: str, breaks_in_ha_version: str) -> None: ...
+def _check_deprecated_version(hass: HomeAssistant, server_version: AwesomeVersion, database_engine: str, upcoming_min_version: tuple[AwesomeVersion, str]) -> None: ...
+def _check_lts_version(hass: HomeAssistant, server_version: AwesomeVersion, database_engine: str, lts_support: _LTSVersionSupport) -> None: ...
 def _extract_version_from_server_response_or_raise(server_response: str) -> AwesomeVersion: ...
 def _extract_version_from_server_response(server_response: str) -> AwesomeVersion | None: ...
 def _datetime_or_none(value: str) -> datetime | None: ...

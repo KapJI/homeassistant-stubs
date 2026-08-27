@@ -2,10 +2,10 @@ from .const import ATTR_KEY as ATTR_KEY, ATTR_VALUE as ATTR_VALUE, CONF_SLEEP_PE
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry
 from .utils import get_device_entry_gen as get_device_entry_gen
 from _typeshed import Incomplete
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.helpers.service import async_get_device_and_config_entry as async_get_device_and_config_entry
 from homeassistant.util.json import JsonValueType as JsonValueType
 from typing import Any
 

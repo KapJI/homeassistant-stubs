@@ -1,0 +1,29 @@
+from . import BesenConfigEntry as BesenConfigEntry
+from .const import DOMAIN as DOMAIN
+from _typeshed import Incomplete
+from besen.client import BesenClient as BesenClient
+from besen.models import BesenData
+from collections.abc import Awaitable, Callable as Callable
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
+from typing import override
+
+_LOGGER: Incomplete
+
+class BesenCoordinator(DataUpdateCoordinator[BesenData]):
+    client: Incomplete
+    _remove_listener: Callable[[], None] | None
+    _client_stopped: bool
+    def __init__(self, hass: HomeAssistant, config_entry: BesenConfigEntry, client: BesenClient) -> None: ...
+    async def async_start(self) -> None: ...
+    @override
+    async def async_shutdown(self) -> None: ...
+    @override
+    async def _async_update_data(self) -> BesenData: ...
+    @callback
+    def _handle_client_update(self, data: BesenData) -> None: ...
+    async def async_start_charging(self) -> None: ...
+    async def async_stop_charging(self) -> None: ...
+    async def _async_run_command(self, command: Awaitable[None]) -> None: ...
+    async def _async_stop_client(self) -> None: ...

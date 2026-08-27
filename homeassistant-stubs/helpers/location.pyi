@@ -2,9 +2,15 @@ from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
+from typing import NamedTuple
 
 _LOGGER: Incomplete
 
+class Coordinates(NamedTuple):
+    latitude: float
+    longitude: float
+
+def get_state_coordinates(state: State) -> Coordinates | None: ...
 def has_location(state: State) -> bool: ...
 def closest(latitude: float, longitude: float, states: Iterable[State]) -> State | None: ...
 def find_coordinates(hass: HomeAssistant, name: str, recursion_history: list | None = None) -> str | None: ...

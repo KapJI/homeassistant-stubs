@@ -2,7 +2,7 @@ import asyncio
 import dataclasses
 import time
 from . import device_registry as dr, entity_registry as er
-from .device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
+from .device_registry import ChildDeviceInfo as ChildDeviceInfo, DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from .entity_platform import EntityPlatform as EntityPlatform, PlatformData as PlatformData
 from .event import async_track_device_registry_updated_event as async_track_device_registry_updated_event, async_track_entity_registry_updated_event as async_track_entity_registry_updated_event
 from .frame import report_non_thread_safe_operation as report_non_thread_safe_operation, report_usage as report_usage
@@ -109,7 +109,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     parallel_updates: asyncio.Semaphore | None
     registry_entry: er.RegistryEntry | None
     _removed_from_registry: bool
-    device_entry: dr.DeviceEntry | None
+    device_entry: dr.AnyDeviceEntry | None
     _cached_friendly_name: tuple[str | None, str | None] | None
     _on_remove: list[CALLBACK_TYPE] | None
     _unsub_device_updates: CALLBACK_TYPE | None
@@ -129,7 +129,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     _attr_available: bool
     _attr_capability_attributes: dict[str, Any] | None
     _attr_device_class: str | None
-    _attr_device_info: DeviceInfo | None
+    _attr_device_info: DeviceInfo | ChildDeviceInfo | None
     _attr_entity_category: EntityCategory | None
     _attr_has_entity_name: bool
     _attr_entity_picture: str | None
@@ -181,7 +181,7 @@ class Entity(cached_properties=CACHED_PROPERTIES_WITH_ATTR_, metaclass=ABCCached
     @cached_property
     def extra_state_attributes(self) -> Mapping[str, Any] | None: ...
     @cached_property
-    def device_info(self) -> DeviceInfo | None: ...
+    def device_info(self) -> DeviceInfo | ChildDeviceInfo | None: ...
     @cached_property
     def device_class(self) -> str | None: ...
     @cached_property

@@ -1,5 +1,5 @@
 from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
-from .const import DOMAIN as DOMAIN, SwitchbotCloudDeviceLockState as SwitchbotCloudDeviceLockState
+from .const import DOMAIN as DOMAIN
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete

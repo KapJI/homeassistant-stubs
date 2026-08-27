@@ -1,6 +1,6 @@
 import abc
 import voluptuous as vol
-from .const import DOMAIN as DOMAIN, ELEVATION_ASTRONOMICAL as ELEVATION_ASTRONOMICAL, ELEVATION_CIVIL as ELEVATION_CIVIL, ELEVATION_HORIZON as ELEVATION_HORIZON, ELEVATION_NAUTICAL as ELEVATION_NAUTICAL, STATE_ATTR_ELEVATION as STATE_ATTR_ELEVATION
+from .const import DOMAIN as DOMAIN, ELEVATION_ASTRONOMICAL as ELEVATION_ASTRONOMICAL, ELEVATION_BLUE_HOUR_HIGH as ELEVATION_BLUE_HOUR_HIGH, ELEVATION_BLUE_HOUR_LOW as ELEVATION_BLUE_HOUR_LOW, ELEVATION_CIVIL as ELEVATION_CIVIL, ELEVATION_GOLDEN_HOUR_HIGH as ELEVATION_GOLDEN_HOUR_HIGH, ELEVATION_GOLDEN_HOUR_LOW as ELEVATION_GOLDEN_HOUR_LOW, ELEVATION_HORIZON as ELEVATION_HORIZON, ELEVATION_NAUTICAL as ELEVATION_NAUTICAL, STATE_ATTR_ELEVATION as STATE_ATTR_ELEVATION
 from _typeshed import Incomplete
 from datetime import timedelta
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, CONF_TYPE as CONF_TYPE, DEGREE as DEGREE, SUN_EVENT_SUNRISE as SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET as SUN_EVENT_SUNSET
@@ -10,8 +10,15 @@ from homeassistant.helpers.condition import ATTR_BEHAVIOR as ATTR_BEHAVIOR, BEHA
 from homeassistant.helpers.selector import NumericThresholdMode as NumericThresholdMode, NumericThresholdSelector as NumericThresholdSelector, NumericThresholdSelectorConfig as NumericThresholdSelectorConfig
 from homeassistant.helpers.sun import get_astral_event_date as get_astral_event_date, get_astral_observer as get_astral_observer, is_up as is_up
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, Unpack, override
+from typing import Any, Final, Literal, Unpack, override
 
+_SUN_EVENT_SOLAR_NOON: Final[str]
+_SUN_EVENT_SOLAR_MIDNIGHT: Final[str]
+CONF_PERIOD: str
+_PERIOD_ANY: str
+_PERIOD_MORNING: str
+_PERIOD_EVENING: str
+_PERIODS: Incomplete
 _OPTIONS_SCHEMA_DICT: dict[vol.Marker, Any]
 _CONDITION_SCHEMA: Incomplete
 
@@ -85,6 +92,37 @@ class _MorningTwilightCondition(_TwilightCondition):
 
 class _EveningTwilightCondition(_TwilightCondition):
     _rising: bool
+
+_PERIOD_CONDITION_SCHEMA: Incomplete
+
+class _GoldenBlueHourCondition(Condition):
+    _low: float
+    _high: float
+    @classmethod
+    @override
+    async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
+    _period: Incomplete
+    def __init__(self, hass: HomeAssistant, config: ConditionConfig) -> None: ...
+    @override
+    def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
+
+class _GoldenHourCondition(_GoldenBlueHourCondition):
+    _low = ELEVATION_GOLDEN_HOUR_LOW
+    _high = ELEVATION_GOLDEN_HOUR_HIGH
+
+class _BlueHourCondition(_GoldenBlueHourCondition):
+    _low = ELEVATION_BLUE_HOUR_LOW
+    _high = ELEVATION_BLUE_HOUR_HIGH
+
+def _elevation_at_last_solar_extreme(hass: HomeAssistant, event: Literal['noon', 'midnight']) -> float: ...
+
+class _MidnightSunCondition(_SunStateCondition):
+    @override
+    def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
+
+class _PolarNightCondition(_SunStateCondition):
+    @override
+    def _async_check(self, **kwargs: Unpack[ConditionCheckParams]) -> bool: ...
 
 _ELEVATION_CONDITION_SCHEMA: Incomplete
 

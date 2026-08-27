@@ -6,7 +6,7 @@ from collections.abc import Callable as Callable, Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry as AnyDeviceEntry, DeviceEntry as DeviceEntry
 from mysensors import BaseAsyncGateway as BaseAsyncGateway
 
 _LOGGER: Incomplete
@@ -14,6 +14,6 @@ DATA_HASS_CONFIG: str
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
-async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: DeviceEntry) -> bool: ...
+async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: ConfigEntry, device_entry: AnyDeviceEntry) -> bool: ...
 @callback
 def setup_mysensors_platform(hass: HomeAssistant, domain: Platform, discovery_info: DiscoveryInfo, device_class: type[MySensorsChildEntity] | Mapping[SensorType, type[MySensorsChildEntity]], device_args: tuple | None = None, async_add_entities: Callable | None = None) -> list[MySensorsChildEntity] | None: ...

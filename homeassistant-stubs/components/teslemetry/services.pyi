@@ -6,7 +6,7 @@ from _typeshed import Incomplete
 from homeassistant.const import ATTR_ID as ATTR_ID, ATTR_LOCATION as ATTR_LOCATION, ATTR_NAME as ATTR_NAME, ATTR_TIME as ATTR_TIME, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import device_registry as dr, service as service
 
 _LOGGER: Incomplete
 ATTR_GPS: str
@@ -41,8 +41,7 @@ SERVICE_REMOVE_CHARGE_SCHEDULE: str
 SERVICE_ADD_PRECONDITION_SCHEDULE: str
 SERVICE_REMOVE_PRECONDITION_SCHEDULE: str
 
-def async_get_device_for_service_call(hass: HomeAssistant, call: ServiceCall) -> dr.DeviceEntry: ...
-def async_get_config_for_device(hass: HomeAssistant, device_entry: dr.DeviceEntry) -> TeslemetryConfigEntry: ...
+def async_get_device_and_config_for_service_call(hass: HomeAssistant, call: ServiceCall) -> tuple[dr.DeviceEntry, TeslemetryConfigEntry]: ...
 def async_get_vehicle_for_entry(hass: HomeAssistant, device: dr.DeviceEntry, config: TeslemetryConfigEntry) -> TeslemetryVehicleData: ...
 def async_get_energy_site_for_entry(hass: HomeAssistant, device: dr.DeviceEntry, config: TeslemetryConfigEntry) -> TeslemetryEnergyData: ...
 @callback

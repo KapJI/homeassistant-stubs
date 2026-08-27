@@ -5,7 +5,6 @@ from .diagnostics import async_redact_auth_data as async_redact_auth_data
 from .entities import AlexaEntity as AlexaEntity, ENTITY_ADAPTERS as ENTITY_ADAPTERS
 from .errors import AlexaInvalidEndpointError as AlexaInvalidEndpointError, NoTokenAvailable as NoTokenAvailable, RequireRelink as RequireRelink
 from _typeshed import Incomplete
-from homeassistant.components import event as event
 from homeassistant.const import EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession

@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .timers import async_device_supports_timers as async_device_supports_timers
 from _typeshed import Incomplete
 from homeassistant.components.homeassistant import async_should_expose as async_should_expose

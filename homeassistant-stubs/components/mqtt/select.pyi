@@ -7,7 +7,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import select as select
-from homeassistant.components.select import SelectEntity as SelectEntity
+from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityCapabilityAttribute as SelectEntityCapabilityAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_OPTIONS as CONF_OPTIONS, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

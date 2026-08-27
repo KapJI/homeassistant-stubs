@@ -3,6 +3,7 @@ from .const import ATTR_ATTACHMENTS as ATTR_ATTACHMENTS, ATTR_CONTENT_ID as ATTR
 from .helpers import SmtpClient as SmtpClient, _build_html_msg as _build_html_msg, _build_multipart_msg as _build_multipart_msg, _build_text_msg as _build_text_msg, _resolve_media as _resolve_media
 from .issue import async_deprecate_yaml_issue as async_deprecate_yaml_issue, deprecated_notify_action_call as deprecated_notify_action_call
 from _typeshed import Incomplete
+from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from homeassistant.components.notify import ATTR_DATA as ATTR_DATA, ATTR_TARGET as ATTR_TARGET, ATTR_TITLE as ATTR_TITLE, ATTR_TITLE_DEFAULT as ATTR_TITLE_DEFAULT, BaseNotificationService as BaseNotificationService, NotifyEntity as NotifyEntity, NotifyEntityFeature as NotifyEntityFeature
@@ -40,7 +41,7 @@ class MailNotifyEntity(NotifyEntity):
     @override
     def send_message(self, message: str, title: str | None = None) -> None: ...
     async def smtp_send_message(self, message: str, title: str | None = None, **kwargs: Any) -> None: ...
-    def _send_email(self, msg: MIMEMultipart | MIMEText) -> None: ...
+    def _send_email(self, msg: EmailMessage) -> None: ...
 
 class MailNotificationService(SmtpClient, BaseNotificationService):
     recipients: Incomplete

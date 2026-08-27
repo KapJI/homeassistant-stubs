@@ -1,8 +1,8 @@
 from .const import ALWAYS_CONTINUOUS_DOMAINS as ALWAYS_CONTINUOUS_DOMAINS, AUTOMATION_EVENTS as AUTOMATION_EVENTS, BUILT_IN_EVENTS as BUILT_IN_EVENTS, DOMAIN as DOMAIN, SENSOR_DOMAIN as SENSOR_DOMAIN
 from .models import LogbookConfig as LogbookConfig
 from collections.abc import Callable as Callable, Collection, Mapping
-from homeassistant.components.sensor import ATTR_STATE_CLASS as ATTR_STATE_CLASS, NON_NUMERIC_DEVICE_CLASSES as NON_NUMERIC_DEVICE_CLASSES
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED
+from homeassistant.components.sensor import NON_NUMERIC_DEVICE_CLASSES as NON_NUMERIC_DEVICE_CLASSES, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute
+from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_DOMAIN as ATTR_DOMAIN, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SERVICE_DATA as ATTR_SERVICE_DATA, EVENT_CALL_SERVICE as EVENT_CALL_SERVICE, EVENT_LOGBOOK_ENTRY as EVENT_LOGBOOK_ENTRY, EVENT_STATE_CHANGED as EVENT_STATE_CHANGED, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, is_callback as is_callback, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event

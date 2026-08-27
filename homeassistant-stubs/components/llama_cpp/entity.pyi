@@ -10,6 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.entity import Entity as Entity
+from homeassistant.helpers.json import json_dumps as json_dumps
 from openai import AsyncOpenAI as AsyncOpenAI
 from openai._streaming import AsyncStream
 from openai.types.chat import ChatCompletionChunk, ChatCompletionContentPartParam as ChatCompletionContentPartParam, ChatCompletionFunctionToolParam, ChatCompletionMessage as ChatCompletionMessage, ChatCompletionMessageParam

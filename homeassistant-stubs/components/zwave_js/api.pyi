@@ -1,5 +1,5 @@
 from .config_validation import BITMASK_SCHEMA as BITMASK_SCHEMA
-from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_METHOD_NAME as ATTR_METHOD_NAME, ATTR_PARAMETERS as ATTR_PARAMETERS, ATTR_WAIT_FOR_RESULT as ATTR_WAIT_FOR_RESULT, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, LOGGER as LOGGER, USER_AGENT as USER_AGENT
+from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_METHOD_NAME as ATTR_METHOD_NAME, ATTR_PARAMETERS as ATTR_PARAMETERS, ATTR_WAIT_FOR_RESULT as ATTR_WAIT_FOR_RESULT, CONF_DATA_COLLECTION_OPTED_IN as CONF_DATA_COLLECTION_OPTED_IN, DOMAIN as DOMAIN, EVENT_DEVICE_ADDED_TO_REGISTRY as EVENT_DEVICE_ADDED_TO_REGISTRY, EVENT_VALUE_UPDATED as EVENT_VALUE_UPDATED, LOGGER as LOGGER, USER_AGENT as USER_AGENT
 from .helpers import CannotConnect as CannotConnect, async_enable_statistics as async_enable_statistics, async_get_config_entry_from_node as async_get_config_entry_from_node, async_get_node_from_device_id as async_get_node_from_device_id, async_get_provisioning_entry_from_device_id as async_get_provisioning_entry_from_device_id, async_get_version_info as async_get_version_info, async_wait_for_driver_ready_event as async_wait_for_driver_ready_event, get_device_id as get_device_id
 from .models import ZwaveJSConfigEntry as ZwaveJSConfigEntry
 from _typeshed import Incomplete
@@ -24,6 +24,8 @@ from zwave_js_server.model.endpoint import Endpoint as Endpoint
 from zwave_js_server.model.log_message import LogMessage as LogMessage
 from zwave_js_server.model.node import Node as Node, NodeStatistics as NodeStatistics
 from zwave_js_server.model.node.firmware import NodeFirmwareUpdateProgress as NodeFirmwareUpdateProgress, NodeFirmwareUpdateResult as NodeFirmwareUpdateResult
+from zwave_js_server.model.statistics import RouteStatistics as RouteStatistics
+from zwave_js_server.model.value import Value as Value
 
 DATA_UNSUBSCRIBE: str
 ID: str
@@ -239,6 +241,10 @@ async def websocket_get_config_parameters(hass: HomeAssistant, connection: Activ
 @async_handle_failed_command
 @async_get_node
 async def websocket_set_raw_config_parameter(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_get_node
+async def websocket_subscribe_config_parameter_updates(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
 @websocket_api.require_admin
 @websocket_api.async_response
 @async_handle_failed_command

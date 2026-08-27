@@ -1,13 +1,17 @@
-import voluptuous as vol
+import probatio
 from .entity_store_schema import ENTITY_STORE_DATA_SCHEMA as ENTITY_STORE_DATA_SCHEMA
 from _typeshed import Incomplete
-from homeassistant.helpers.typing import VolSchemaType as VolSchemaType
-from typing import Literal, TypedDict
+from collections.abc import Callable as Callable
+from typing import Any, Literal, TypedDict
 
 class _ErrorDescription(TypedDict):
-    path: list[str] | None
+    path: list[str]
     message: str
     code: str | None
+    translation_key: str | None
+    placeholders: dict[str, Any]
+    context: dict[str, Any]
+    secret: bool
 
 class EntityStoreValidationError(TypedDict):
     success: Literal[False]
@@ -18,8 +22,8 @@ class EntityStoreValidationSuccess(TypedDict):
     success: Literal[True]
     entity_id: str | None
 
-def parse_invalid(exc: vol.Invalid) -> _ErrorDescription: ...
-def validate_config_store_data(schema: VolSchemaType, entity_data: dict) -> dict: ...
+def parse_invalid(exc: probatio.Invalid) -> _ErrorDescription: ...
+def validate_config_store_data(schema: Callable[[dict], dict], entity_data: dict) -> dict: ...
 def validate_entity_data(entity_data: dict) -> dict: ...
 
 class EntityStoreValidationException(Exception):

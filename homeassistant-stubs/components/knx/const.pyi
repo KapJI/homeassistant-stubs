@@ -12,6 +12,7 @@ from xknx.telegram import Telegram
 
 DOMAIN: Final[str]
 KNX_MODULE_KEY: HassKey[KNXModule]
+UI_DEVICE_ID_PREFIX: Final[str]
 KNX_ADDRESS: Final[str]
 CONF_INVERT: Final[str]
 CONF_KNX_EXPOSE: Final[str]
@@ -154,3 +155,11 @@ class NumberConf:
 
 class SceneConf:
     SCENE_NUMBER: Final[str]
+
+class SelectConf:
+    OPTIONS: Final[str]
+    OPTION: Final[str]
+    OPTIONS_SOURCE: Final[str]
+    GA_ENUM: Final[str]
+    GA_CUSTOM: Final[str]
+    CUSTOM_OPTIONS: Final[str]

@@ -8,7 +8,7 @@ from .storage import Store as Store
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from datetime import datetime
-from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
+from homeassistant.const import EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State, callback as callback, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, UnsupportedStorageVersionError as UnsupportedStorageVersionError
 from homeassistant.util.hass_dict import HassKey as HassKey

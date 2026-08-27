@@ -4,6 +4,7 @@ from .entity import LaMetricEntity as LaMetricEntity
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers import service as service
 from typing import Any, Concatenate
 
 def lametric_exception_handler[_LaMetricEntityT: LaMetricEntity, **_P](func: Callable[Concatenate[_LaMetricEntityT, _P], Coroutine[Any, Any, Any]]) -> Callable[Concatenate[_LaMetricEntityT, _P], Coroutine[Any, Any, None]]: ...

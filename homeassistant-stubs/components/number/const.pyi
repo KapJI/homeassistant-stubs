@@ -11,7 +11,7 @@ ATTR_STEP: str
 DEFAULT_MIN_VALUE: float
 DEFAULT_MAX_VALUE: float
 DEFAULT_STEP: float
-DOMAIN: str
+DOMAIN: Final[str]
 SERVICE_SET_VALUE: str
 
 class NumberEntityCapabilityAttribute(StrEnum):

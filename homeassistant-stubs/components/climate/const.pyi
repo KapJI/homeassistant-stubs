@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
 from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
+from typing import Final
 
 class HVACMode(StrEnum):
     OFF = 'off'
@@ -75,7 +76,7 @@ DEFAULT_MIN_TEMP: int
 DEFAULT_MAX_TEMP: int
 DEFAULT_MIN_HUMIDITY: int
 DEFAULT_MAX_HUMIDITY: int
-DOMAIN: str
+DOMAIN: Final[str]
 INTENT_SET_TEMPERATURE: str
 SERVICE_SET_FAN_MODE: str
 SERVICE_SET_PRESET_MODE: str

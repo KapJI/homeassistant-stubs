@@ -1,8 +1,8 @@
-from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_ALLOW_EA as CONF_ALLOW_EA, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, PLATFORMS as PLATFORMS
+from .const import AUTH_RETRIES as AUTH_RETRIES, CONF_ALLOW_EA as CONF_ALLOW_EA, DEFAULT_BRAND as DEFAULT_BRAND, DEVICES_THAT_ADOPT as DEVICES_THAT_ADOPT, DOMAIN as DOMAIN, MIN_REQUIRED_PROTECT_V as MIN_REQUIRED_PROTECT_V, PLATFORMS as PLATFORMS, PUBLIC_ONLY_PLATFORMS as PUBLIC_ONLY_PLATFORMS
 from .data import ProtectData as ProtectData, UFPConfigEntry as UFPConfigEntry
-from .migrate import async_migrate_data as async_migrate_data
+from .migrate import async_deprecate_sense_setting_mirrors as async_deprecate_sense_setting_mirrors, async_migrate_data as async_migrate_data
 from .services import async_setup_services as async_setup_services
-from .utils import _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_create_api_client as async_create_api_client, async_get_devices as async_get_devices
+from .utils import _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_create_api_client as async_create_api_client, async_create_session_client as async_create_session_client, async_get_devices as async_get_devices
 from .views import SnapshotProxyView as SnapshotProxyView, ThumbnailProxyView as ThumbnailProxyView, VideoEventProxyView as VideoEventProxyView, VideoProxyView as VideoProxyView
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
@@ -12,7 +12,10 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
 from homeassistant.helpers.typing import ConfigType as ConfigType
+from typing import NoReturn
+from uiprotect import ProtectApiClient as ProtectApiClient
 from uiprotect.data import Bootstrap as Bootstrap
+from uiprotect.exceptions import NotAuthorized
 from uiprotect.test_util.anonymize import anonymize_data as anonymize_data
 
 _LOGGER: Incomplete
@@ -21,8 +24,10 @@ CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...
+def _raise_buffered_public_auth_error(data_service: ProtectData, err: NotAuthorized) -> NoReturn: ...
+async def _async_setup_public_only_entry(hass: HomeAssistant, entry: UFPConfigEntry, data_service: ProtectData) -> None: ...
 async def _async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, data_service: ProtectData, bootstrap: Bootstrap) -> None: ...
 async def async_unload_entry(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...
 async def async_remove_entry(hass: HomeAssistant, entry: UFPConfigEntry) -> None: ...
-async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: UFPConfigEntry, device_entry: dr.DeviceEntry) -> bool: ...
+async def async_remove_config_entry_device(hass: HomeAssistant, config_entry: UFPConfigEntry, device_entry: dr.AnyDeviceEntry) -> bool: ...
 async def async_migrate_entry(hass: HomeAssistant, entry: UFPConfigEntry) -> bool: ...

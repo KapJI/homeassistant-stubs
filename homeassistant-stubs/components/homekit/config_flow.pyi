@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components import device_automation as device_automation
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_IMPORT as SOURCE_IMPORT
-from homeassistant.const import ATTR_FRIENDLY_NAME as ATTR_FRIENDLY_NAME, CONF_DEVICES as CONF_DEVICES, CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE
+from homeassistant.const import CONF_DEVICES as CONF_DEVICES, CONF_DOMAINS as CONF_DOMAINS, CONF_ENTITIES as CONF_ENTITIES, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_TYPE as CONF_TYPE, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import entity_registry as er, selector as selector
 from homeassistant.loader import async_get_integrations as async_get_integrations

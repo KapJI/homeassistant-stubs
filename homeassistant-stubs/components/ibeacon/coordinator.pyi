@@ -6,7 +6,7 @@ from homeassistant.components import bluetooth as bluetooth
 from homeassistant.components.bluetooth.match import BluetoothCallbackMatcher as BluetoothCallbackMatcher
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.device_registry import DeviceRegistry as DeviceRegistry
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
 from ibeacon_ble import iBeaconAdvertisement as iBeaconAdvertisement
@@ -42,7 +42,7 @@ class IBeaconCoordinator:
     _major_minor_by_uuid: dict[str, set[tuple[int, int]]]
     _allow_nameless_uuids: Incomplete
     _ignored_nameless_by_uuid: dict[str, set[str]]
-    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, registry: DeviceRegistry) -> None: ...
+    def __init__(self, hass: HomeAssistant, entry: ConfigEntry, registry: dr.DeviceRegistry) -> None: ...
     @callback
     def async_device_id_seen(self, device_id: str) -> bool: ...
     @callback

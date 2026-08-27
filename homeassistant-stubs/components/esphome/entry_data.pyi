@@ -12,25 +12,34 @@ from homeassistant.components.assist_satellite import AssistSatelliteConfigurati
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import Platform as Platform
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import discovery_flow as discovery_flow
+from homeassistant.helpers import discovery_flow as discovery_flow, entity_registry as er
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.service_info.esphome import ESPHomeServiceInfo as ESPHomeServiceInfo
 from homeassistant.helpers.storage import Store as Store
 from typing import Any, Final, TypedDict
+from weakref import WeakKeyDictionary
 
 type ESPHomeConfigEntry = ConfigEntry[RuntimeEntryData]
 type EntityStateKey = tuple[type[EntityState], int, int]
 type EntityInfoKey = tuple[type[EntityInfo], int, int]
 type DeviceEntityKey = tuple[int, int]
 INFO_TO_COMPONENT_TYPE: Final[Incomplete]
+STATE_TYPE_TO_COMPONENT_TYPE: Final[dict[type[EntityState], str]]
+COMPONENT_TYPE_TO_STATE_TYPE: Final[dict[str, type[EntityState]]]
 _SENTINEL: Incomplete
 SAVE_DELAY: int
 _LOGGER: Incomplete
 INFO_TYPE_TO_PLATFORM: dict[type[EntityInfo], Platform]
 
+@callback
+def async_migrate_unique_id(ent_reg: er.EntityRegistry, platform_domain: str, old_unique_id: str, new_unique_id: str) -> None: ...
+
 class StoreData(TypedDict, total=False):
     device_info: dict[str, Any]
     services: list[dict[str, Any]]
     api_version: dict[str, Any]
+    states: dict[str, list[dict[str, Any]]]
+    expected_disconnect: bool
 
 class ESPHomeStorage(Store[StoreData]): ...
 
@@ -40,7 +49,7 @@ class RuntimeEntryData:
     title: str
     client: APIClient
     store: ESPHomeStorage
-    state: defaultdict[type[EntityState], dict[int, EntityState]] = field(default_factory=Incomplete)
+    state: defaultdict[type[EntityState], dict[DeviceEntityKey, EntityState]] = field(default_factory=Incomplete)
     stale_state: set[EntityStateKey] = field(default_factory=set)
     info: dict[type[EntityInfo], dict[DeviceEntityKey, EntityInfo]] = field(default_factory=dict)
     services: dict[int, UserService] = field(default_factory=dict)
@@ -59,12 +68,13 @@ class RuntimeEntryData:
     first_connect_done: asyncio.Event = field(default_factory=asyncio.Event)
     _storage_contents: StoreData | None = ...
     _pending_storage: Callable[[], StoreData] | None = ...
+    _cleaned_up: bool = ...
     assist_pipeline_update_callbacks: list[CALLBACK_TYPE] = field(default_factory=list)
     assist_pipeline_state: bool = ...
     entity_info_callbacks: dict[type[EntityInfo], list[Callable[[list[EntityInfo]], None]]] = field(default_factory=dict)
     entity_info_key_updated_callbacks: dict[EntityInfoKey, list[Callable[[EntityInfo], None]]] = field(default_factory=dict)
     original_options: dict[str, Any] = field(default_factory=dict)
-    media_player_formats: dict[str, list[MediaPlayerSupportedFormat]] = field(default_factory=Incomplete)
+    media_player_formats: WeakKeyDictionary[Entity, list[MediaPlayerSupportedFormat]] = field(default_factory=WeakKeyDictionary)
     assist_satellite_config_update_callbacks: list[Callable[[AssistSatelliteConfiguration], None]] = field(default_factory=list)
     assist_satellite_set_wake_words_callbacks: list[Callable[[list[str]], None]] = field(default_factory=list)
     assist_satellite_wake_words: dict[int, str] = field(default_factory=dict)
@@ -86,6 +96,8 @@ class RuntimeEntryData:
     def async_remove_entities(self, hass: HomeAssistant, static_infos: Iterable[EntityInfo], mac: str) -> None: ...
     @callback
     def async_update_entity_infos(self, static_infos: Iterable[EntityInfo]) -> None: ...
+    @callback
+    def async_update_entity_keys(self, info_type: type[EntityInfo], rekeys: Iterable[tuple[EntityInfo, EntityInfo]]) -> None: ...
     async def _ensure_platforms_loaded(self, hass: HomeAssistant, entry: ESPHomeConfigEntry, platforms: set[Platform]) -> None: ...
     async def async_update_static_infos(self, hass: HomeAssistant, entry: ESPHomeConfigEntry, infos: list[EntityInfo], mac: str) -> None: ...
     @callback
@@ -95,10 +107,16 @@ class RuntimeEntryData:
     @callback
     def async_subscribe_state_update(self, device_id: int, state_type: type[EntityState], state_key: int, entity_callback: CALLBACK_TYPE) -> CALLBACK_TYPE: ...
     @callback
+    def async_mark_states_stale(self) -> None: ...
+    @callback
     def async_update_state(self, state: EntityState) -> None: ...
     @callback
     def async_update_device_state(self) -> None: ...
-    async def async_load_from_store(self) -> tuple[list[EntityInfo], list[UserService]]: ...
+    @property
+    def has_deep_sleep(self) -> bool: ...
+    async def async_load_from_store(self, *, restore_states: bool) -> tuple[list[EntityInfo], list[UserService]]: ...
+    @callback
+    def async_record_disconnect(self, expected_disconnect: bool) -> None: ...
     def async_save_to_store(self) -> None: ...
     async def async_cleanup(self) -> None: ...
     @callback

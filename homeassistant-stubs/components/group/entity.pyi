@@ -4,8 +4,8 @@ from .registry import GroupIntegrationRegistry as GroupIntegrationRegistry, Sing
 from _typeshed import Incomplete
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Collection, Mapping
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_GROUP_ENTITIES as ATTR_GROUP_ENTITIES, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityCapabilityAttribute as EntityCapabilityAttribute, EntityStateAttribute as EntityStateAttribute, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers import start as start
 from homeassistant.helpers.entity import Entity as Entity, async_generate_entity_id as async_generate_entity_id
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
@@ -62,7 +62,7 @@ class Group(Entity):
     @callback
     def async_create_group_entity(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...
     @staticmethod
-    async def async_create_group(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None) -> Group: ...
+    async def async_create_group(hass: HomeAssistant, name: str, *, created_by_service: bool, entity_ids: Collection[str] | None, icon: str | None, mode: bool | None, object_id: str | None, order: int | None, context: Context | None) -> Group: ...
     def set_name(self, value: str) -> None: ...
     @property
     @override

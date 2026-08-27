@@ -3,11 +3,21 @@ from .errors import UnsupportedProperty as UnsupportedProperty
 from .resources import AlexaCapabilityResource as AlexaCapabilityResource, AlexaGlobalCatalog as AlexaGlobalCatalog, AlexaModeResource as AlexaModeResource, AlexaPresetResource as AlexaPresetResource, AlexaSemantics as AlexaSemantics
 from _typeshed import Incomplete
 from collections.abc import Generator
-from homeassistant.components import button as button, climate as climate, cover as cover, fan as fan, humidifier as humidifier, image_processing as image_processing, input_button as input_button, input_number as input_number, light as light, media_player as media_player, number as number, remote as remote, timer as timer, vacuum as vacuum, valve as valve, water_heater as water_heater
-from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
-from homeassistant.components.climate import HVACMode as HVACMode
+from homeassistant.components import climate as climate, cover as cover, fan as fan, humidifier as humidifier, input_number as input_number, media_player as media_player, number as number, remote as remote, vacuum as vacuum, valve as valve, water_heater as water_heater
+from homeassistant.components.alarm_control_panel import AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelEntityStateAttribute as AlarmControlPanelEntityStateAttribute, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
+from homeassistant.components.climate import ClimateEntityCapabilityAttribute as ClimateEntityCapabilityAttribute, ClimateEntityStateAttribute as ClimateEntityStateAttribute, HVACMode as HVACMode
+from homeassistant.components.cover import CoverEntityStateAttribute as CoverEntityStateAttribute
+from homeassistant.components.fan import FanEntityCapabilityAttribute as FanEntityCapabilityAttribute, FanEntityStateAttribute as FanEntityStateAttribute
+from homeassistant.components.humidifier import HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute, HumidifierEntityStateAttribute as HumidifierEntityStateAttribute
+from homeassistant.components.light import LightEntityStateAttribute as LightEntityStateAttribute
 from homeassistant.components.lock import LockState as LockState
-from homeassistant.const import ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, PERCENTAGE as PERCENTAGE, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume
+from homeassistant.components.media_player import MediaPlayerEntityCapabilityAttribute as MediaPlayerEntityCapabilityAttribute, MediaPlayerEntityStateAttribute as MediaPlayerEntityStateAttribute
+from homeassistant.components.number import NumberEntityCapabilityAttribute as NumberEntityCapabilityAttribute
+from homeassistant.components.remote import RemoteEntityStateAttribute as RemoteEntityStateAttribute
+from homeassistant.components.vacuum import VacuumEntityCapabilityAttribute as VacuumEntityCapabilityAttribute, VacuumEntityStateAttribute as VacuumEntityStateAttribute
+from homeassistant.components.valve import ValveEntityStateAttribute as ValveEntityStateAttribute
+from homeassistant.components.water_heater import WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute, WaterHeaterStateAttribute as WaterHeaterStateAttribute
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, PERCENTAGE as PERCENTAGE, STATE_IDLE as STATE_IDLE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, STATE_PAUSED as STATE_PAUSED, STATE_PLAYING as STATE_PLAYING, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant, State as State
 from typing import Any, override
 

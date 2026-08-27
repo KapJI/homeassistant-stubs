@@ -5,7 +5,7 @@ from .util import compose_default_network_name as compose_default_network_name, 
 from _typeshed import Incomplete
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager
 from homeassistant.components.thread import async_get_preferred_dataset as async_get_preferred_dataset
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_HASSIO as SOURCE_HASSIO
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_HASSIO as SOURCE_HASSIO
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -29,5 +29,7 @@ class OTBRConfigFlow(ConfigFlow, domain=DOMAIN):
     async def _connect_and_configure_router(self, otbr_url: str) -> bytes: ...
     @override
     async def async_step_user(self, user_input: dict[str, str] | None = None) -> ConfigFlowResult: ...
+    @callback
+    def _async_find_legacy_entry_by_host(self, host: str) -> ConfigEntry | None: ...
     @override
     async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...

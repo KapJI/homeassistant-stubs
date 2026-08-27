@@ -4,7 +4,7 @@ from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import override
-from whois import Domain
+from whoisdomain import Domain
 
 type WhoisConfigEntry = ConfigEntry[WhoisCoordinator]
 class WhoisCoordinator(DataUpdateCoordinator[Domain | None]):

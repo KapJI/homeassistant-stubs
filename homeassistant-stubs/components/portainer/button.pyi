@@ -24,6 +24,7 @@ class PortainerEndpointButtonDescription(ButtonEntityDescription):
 @dataclass(frozen=True, kw_only=True)
 class PortainerContainerButtonDescription(ButtonEntityDescription):
     press_action: Callable[[Portainer, int, str], Coroutine[Any, Any, DockerContainer | None]]
+    available_fn: Callable[[PortainerContainerData], bool]
 
 ENDPOINT_BUTTONS: tuple[PortainerEndpointButtonDescription, ...]
 CONTAINER_BUTTONS: tuple[PortainerContainerButtonDescription, ...]
@@ -44,5 +45,8 @@ class PortainerEndpointButton(PortainerEndpointEntity, PortainerBaseButton):
 
 class PortainerContainerButton(PortainerContainerEntity, PortainerBaseButton):
     entity_description: PortainerContainerButtonDescription
+    @property
+    @override
+    def available(self) -> bool: ...
     @override
     async def _async_press_call(self) -> None: ...

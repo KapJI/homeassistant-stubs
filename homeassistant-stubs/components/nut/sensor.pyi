@@ -1,3 +1,4 @@
+from . import outlet_numbers_from_status as outlet_numbers_from_status
 from .const import KEY_STATUS as KEY_STATUS, KEY_STATUS_DISPLAY as KEY_STATUS_DISPLAY, STATE_TYPES as STATE_TYPES
 from .coordinator import NutConfigEntry as NutConfigEntry
 from .entity import NUTBaseEntity as NUTBaseEntity

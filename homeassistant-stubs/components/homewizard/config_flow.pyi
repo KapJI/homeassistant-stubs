@@ -2,7 +2,7 @@ from .const import CONF_PRODUCT_NAME as CONF_PRODUCT_NAME, CONF_PRODUCT_TYPE as 
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components import onboarding as onboarding
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_USER as SOURCE_USER
 from homeassistant.const import CONF_IP_ADDRESS as CONF_IP_ADDRESS, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow

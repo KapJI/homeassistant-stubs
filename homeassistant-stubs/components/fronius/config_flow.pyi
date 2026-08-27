@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN, FroniusConfigEntryData as FroniusConfigEntryData
+from .const import CONF_MODBUS_PORT as CONF_MODBUS_PORT, DEFAULT_MODBUS_PORT as DEFAULT_MODBUS_PORT, DOMAIN as DOMAIN, FroniusConfigEntryData as FroniusConfigEntryData
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST
@@ -10,12 +10,14 @@ from typing import Any, Final, override
 
 _LOGGER: Final[Incomplete]
 DHCP_REQUEST_DELAY: Final[int]
+MODBUS_PORT_SELECTOR: Final[Incomplete]
 
 def create_title(info: FroniusConfigEntryData) -> str: ...
-async def validate_host(hass: HomeAssistant, host: str) -> tuple[str, FroniusConfigEntryData]: ...
+async def validate_host(hass: HomeAssistant, host: str, modbus_port: int = ...) -> tuple[str, FroniusConfigEntryData]: ...
 
 class FroniusConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     info: FroniusConfigEntryData
     def __init__(self) -> None: ...
     @override

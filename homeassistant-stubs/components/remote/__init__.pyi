@@ -10,10 +10,10 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, final, override
+from typing import Any, Final, final, override
 
 _LOGGER: Incomplete
-DOMAIN: str
+DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[RemoteEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete

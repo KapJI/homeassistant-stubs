@@ -8,6 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 
+POWER_SLEEP: int
 COMMANDS: list[str]
 RENAMED_COMMANDS: dict[str, str]
 ON_STATUS: Incomplete

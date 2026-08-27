@@ -1,7 +1,7 @@
 from . import MusicAssistantConfigEntry as MusicAssistantConfigEntry
 from .const import ATTR_ACTIVE as ATTR_ACTIVE, ATTR_ACTIVE_QUEUE as ATTR_ACTIVE_QUEUE, ATTR_CURRENT_INDEX as ATTR_CURRENT_INDEX, ATTR_CURRENT_ITEM as ATTR_CURRENT_ITEM, ATTR_ELAPSED_TIME as ATTR_ELAPSED_TIME, ATTR_ITEMS as ATTR_ITEMS, ATTR_MASS_PLAYER_TYPE as ATTR_MASS_PLAYER_TYPE, ATTR_NEXT_ITEM as ATTR_NEXT_ITEM, ATTR_QUEUE_ID as ATTR_QUEUE_ID, ATTR_RADIO_MODE as ATTR_RADIO_MODE, ATTR_REPEAT_MODE as ATTR_REPEAT_MODE, ATTR_SHUFFLE_ENABLED as ATTR_SHUFFLE_ENABLED, DOMAIN as DOMAIN
 from .entity import MusicAssistantEntity as MusicAssistantEntity
-from .helpers import async_resolve_mass_username as async_resolve_mass_username, catch_musicassistant_error as catch_musicassistant_error
+from .helpers import catch_musicassistant_error as catch_musicassistant_error, catch_user_not_found as catch_user_not_found
 from .media_browser import async_browse_media as async_browse_media, async_search_media as async_search_media
 from .schemas import QUEUE_DETAILS_SCHEMA as QUEUE_DETAILS_SCHEMA, queue_item_dict_from_mass_item as queue_item_dict_from_mass_item
 from _typeshed import Incomplete
@@ -33,7 +33,6 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     _attr_translation_key: str
     _attr_icon: Incomplete
     _attr_device_class: Incomplete
-    _prev_time: float
     _source_list_mapping: dict[str, str]
     _sound_mode_list_mapping: dict[str, str]
     def __init__(self, mass: MusicAssistantClient, player_id: str) -> None: ...
@@ -128,17 +127,17 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     async def async_search_media(self, query: SearchMediaQuery) -> SearchMedia: ...
     _attr_media_image_url: Incomplete
     def _update_media_image_url(self, player: Player, queue: PlayerQueue | None) -> None: ...
-    _attr_media_artist: Incomplete
-    _attr_media_album_artist: Incomplete
-    _attr_media_album_name: Incomplete
-    _attr_media_title: Incomplete
-    _attr_media_content_id: Incomplete
-    _attr_media_duration: Incomplete
-    _attr_media_position: Incomplete
-    _attr_media_position_updated_at: Incomplete
     _attr_app_id: Incomplete
     _attr_shuffle: Incomplete
     _attr_repeat: Incomplete
+    _attr_media_content_id: Incomplete
+    _attr_media_title: Incomplete
+    _attr_media_artist: Incomplete
+    _attr_media_album_name: Incomplete
+    _attr_media_album_artist: Incomplete
+    _attr_media_duration: Incomplete
+    _attr_media_position: Incomplete
+    _attr_media_position_updated_at: Incomplete
     def _update_media_attributes(self, player: Player, queue: PlayerQueue | None) -> None: ...
     def _convert_queueoption_to_media_player_enqueue(self, queue_option: MediaPlayerEnqueue | QueueOption | None) -> QueueOption | None: ...
     _attr_supported_features: Incomplete

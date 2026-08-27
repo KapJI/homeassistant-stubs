@@ -4,7 +4,7 @@ from .util import convert_to_float as convert_to_float, density_to_air_quality a
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
-from homeassistant.const import ATTR_DEVICE_CLASS as ATTR_DEVICE_CLASS, ATTR_UNIT_OF_MEASUREMENT as ATTR_UNIT_OF_MEASUREMENT, STATE_HOME as STATE_HOME, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityStateAttribute as EntityStateAttribute, STATE_HOME as STATE_HOME, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import State as State, callback as callback
 from pyhap.service import Service as Service
 from typing import Any, NamedTuple, override

@@ -1,4 +1,5 @@
 from . import OmadaConfigEntry as OmadaConfigEntry
+from .const import DOMAIN as DOMAIN
 from .coordinator import OmadaFirmwareUpdateCoordinator as OmadaFirmwareUpdateCoordinator
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity
 from _typeshed import Incomplete

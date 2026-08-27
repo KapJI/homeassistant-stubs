@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN, WMO_TO_HA_CONDITION_MAP as WMO_TO_HA_CONDITION_MAP
 from .coordinator import OpenMeteoConfigEntry as OpenMeteoConfigEntry
 from _typeshed import Incomplete
-from homeassistant.components.weather import ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_NATIVE_PRECIPITATION as ATTR_FORECAST_NATIVE_PRECIPITATION, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_TEMP_LOW as ATTR_FORECAST_NATIVE_TEMP_LOW, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, Forecast as Forecast, SingleCoordinatorWeatherEntity as SingleCoordinatorWeatherEntity, WeatherEntityFeature as WeatherEntityFeature
-from homeassistant.const import UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
+from homeassistant.components.weather import ATTR_FORECAST_CLOUD_COVERAGE as ATTR_FORECAST_CLOUD_COVERAGE, ATTR_FORECAST_CONDITION as ATTR_FORECAST_CONDITION, ATTR_FORECAST_HUMIDITY as ATTR_FORECAST_HUMIDITY, ATTR_FORECAST_NATIVE_APPARENT_TEMP as ATTR_FORECAST_NATIVE_APPARENT_TEMP, ATTR_FORECAST_NATIVE_DEW_POINT as ATTR_FORECAST_NATIVE_DEW_POINT, ATTR_FORECAST_NATIVE_PRECIPITATION as ATTR_FORECAST_NATIVE_PRECIPITATION, ATTR_FORECAST_NATIVE_PRESSURE as ATTR_FORECAST_NATIVE_PRESSURE, ATTR_FORECAST_NATIVE_TEMP as ATTR_FORECAST_NATIVE_TEMP, ATTR_FORECAST_NATIVE_TEMP_LOW as ATTR_FORECAST_NATIVE_TEMP_LOW, ATTR_FORECAST_NATIVE_WIND_GUST_SPEED as ATTR_FORECAST_NATIVE_WIND_GUST_SPEED, ATTR_FORECAST_NATIVE_WIND_SPEED as ATTR_FORECAST_NATIVE_WIND_SPEED, ATTR_FORECAST_WIND_BEARING as ATTR_FORECAST_WIND_BEARING, Forecast as Forecast, SingleCoordinatorWeatherEntity as SingleCoordinatorWeatherEntity, WeatherEntityFeature as WeatherEntityFeature
+from homeassistant.const import UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -16,6 +16,7 @@ class OpenMeteoWeatherEntity(SingleCoordinatorWeatherEntity[DataUpdateCoordinato
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_native_precipitation_unit: Incomplete
+    _attr_native_pressure_unit: Incomplete
     _attr_native_temperature_unit: Incomplete
     _attr_native_wind_speed_unit: Incomplete
     _attr_supported_features: Incomplete

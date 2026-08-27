@@ -1,4 +1,4 @@
-from . import ScriptIntentHandler as ScriptIntentHandler
+from . import DOMAIN as DOMAIN, ScriptIntentHandler as ScriptIntentHandler
 from homeassistant.components.homeassistant import async_should_expose as async_should_expose
 from homeassistant.components.llm import LLMTools as LLMTools
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

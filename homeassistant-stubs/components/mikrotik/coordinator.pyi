@@ -1,5 +1,5 @@
 import librouteros
-from .const import ARP as ARP, ATTR_ROUTERBOARD_FIRMWARE as ATTR_ROUTERBOARD_FIRMWARE, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CAPSMAN as CAPSMAN, CONF_ARP_PING as CONF_ARP_PING, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_FORCE_DHCP as CONF_FORCE_DHCP, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DHCP as DHCP, DOMAIN as DOMAIN, HEALTH as HEALTH, IDENTITY as IDENTITY, IS_CAPSMAN as IS_CAPSMAN, IS_WIFI as IS_WIFI, IS_WIFIWAVE2 as IS_WIFIWAVE2, IS_WIRELESS as IS_WIRELESS, LOGGER as LOGGER, MIKROTIK_SERVICES as MIKROTIK_SERVICES, NAME as NAME, RESOURCE as RESOURCE, ROUTERBOARD as ROUTERBOARD, UPDATE as UPDATE, WIFI as WIFI, WIFIWAVE2 as WIFIWAVE2, WIRELESS as WIRELESS
+from .const import ARP as ARP, ATTR_ROUTERBOARD_FIRMWARE as ATTR_ROUTERBOARD_FIRMWARE, ATTR_SERIAL_NUMBER as ATTR_SERIAL_NUMBER, CAPSMAN as CAPSMAN, CONF_ARP_PING as CONF_ARP_PING, CONF_DETECTION_TIME as CONF_DETECTION_TIME, CONF_FORCE_DHCP as CONF_FORCE_DHCP, DEFAULT_DETECTION_TIME as DEFAULT_DETECTION_TIME, DHCP as DHCP, DOMAIN as DOMAIN, HEALTH as HEALTH, IDENTITY as IDENTITY, INTERFACE as INTERFACE, IS_CAPSMAN as IS_CAPSMAN, IS_WIFI as IS_WIFI, IS_WIFIWAVE2 as IS_WIFIWAVE2, IS_WIRELESS as IS_WIRELESS, LOGGER as LOGGER, MIKROTIK_SERVICES as MIKROTIK_SERVICES, NAME as NAME, PING as PING, POE as POE, RESOURCE as RESOURCE, ROUTERBOARD as ROUTERBOARD, UPDATE as UPDATE, WIFI as WIFI, WIFIWAVE2 as WIFIWAVE2, WIRELESS as WIRELESS
 from .device import Device as Device
 from .errors import CannotConnect as CannotConnect, LoginError as LoginError
 from .utils import calculate_uptime as calculate_uptime, mikrotik_config_entry_errors as mikrotik_config_entry_errors, percentage as percentage
@@ -12,6 +12,8 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from typing import Any, override
 
 type MikrotikConfigEntry = ConfigEntry[MikrotikDataUpdateCoordinator]
+CONNECTION_ERRORS: Incomplete
+
 class MikrotikData:
     hass: Incomplete
     config_entry: Incomplete
@@ -29,10 +31,12 @@ class MikrotikData:
     serial_number: str
     sensors: dict[str, Any]
     system: dict[str, Any]
+    interfaces: list[dict[str, Any]]
     def __init__(self, hass: HomeAssistant, config_entry: ConfigEntry, api: librouteros.Api) -> None: ...
     def _get_system_details(self, during_setup: bool = False) -> None: ...
     def _get_health_details(self) -> None: ...
     def _get_resource_details(self) -> None: ...
+    def _get_interfaces_details(self) -> None: ...
     @staticmethod
     def load_mac(devices: list[dict[str, Any]]) -> dict[str, dict[str, Any]]: ...
     @property

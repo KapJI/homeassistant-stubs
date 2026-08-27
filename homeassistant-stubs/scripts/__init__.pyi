@@ -1,5 +1,4 @@
 from collections.abc import Sequence
-from homeassistant import runner as runner
 from homeassistant.bootstrap import async_mount_local_lib_path as async_mount_local_lib_path
 from homeassistant.config import get_default_config_dir as get_default_config_dir
 from homeassistant.requirements import pip_kwargs as pip_kwargs

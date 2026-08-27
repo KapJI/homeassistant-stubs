@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from homeassistant.components import http, websocket_api
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.device_registry import DeviceEntry
+from homeassistant.helpers import device_registry as dr
 from typing import Any, Protocol
 
 __all__ = ['REDACTED', 'async_redact_data', 'device_entry_as_dict', 'entity_entry_as_dict']
@@ -15,7 +15,7 @@ __all__ = ['REDACTED', 'async_redact_data', 'device_entry_as_dict', 'entity_entr
 @dataclass(slots=True)
 class DiagnosticsPlatformData:
     config_entry_diagnostics: Callable[[HomeAssistant, ConfigEntry], Coroutine[Any, Any, Mapping[str, Any]]] | None
-    device_diagnostics: Callable[[HomeAssistant, ConfigEntry, DeviceEntry], Coroutine[Any, Any, Mapping[str, Any]]] | None
+    device_diagnostics: Callable[[HomeAssistant, ConfigEntry, dr.AnyDeviceEntry], Coroutine[Any, Any, Mapping[str, Any]]] | None
 
 @dataclass(slots=True)
 class DiagnosticsData:
@@ -23,7 +23,7 @@ class DiagnosticsData:
 
 class DiagnosticsProtocol(Protocol):
     async def async_get_config_entry_diagnostics(self, hass: HomeAssistant, config_entry: ConfigEntry) -> Mapping[str, Any]: ...
-    async def async_get_device_diagnostics(self, hass: HomeAssistant, config_entry: ConfigEntry, device: DeviceEntry) -> Mapping[str, Any]: ...
+    async def async_get_device_diagnostics(self, hass: HomeAssistant, config_entry: ConfigEntry, device: dr.AnyDeviceEntry) -> Mapping[str, Any]: ...
 
 class DownloadDiagnosticsView(http.HomeAssistantView):
     url: str

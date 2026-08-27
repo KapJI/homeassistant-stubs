@@ -7,7 +7,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EVENT_HOMEASSISTANT_START as EVENT_HOMEASSISTANT_START, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Context as Context, CoreState as CoreState, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, State as State, callback as callback
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry as AnyDeviceEntry
 from homeassistant.helpers.entity import CONTEXT_RECENT_TIME_SECONDS as CONTEXT_RECENT_TIME_SECONDS
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later as async_call_later, async_track_state_change_event as async_track_state_change_event, async_track_time_interval as async_track_time_interval
@@ -28,7 +28,7 @@ PLATFORM_SCHEMA: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 async def async_setup_platform(hass: HomeAssistant, config: ConfigType, async_add_entities: AddEntitiesCallback, discovery_info: DiscoveryInfoType | None = None) -> None: ...
-async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback | AddConfigEntryEntitiesCallback, device: DeviceEntry | None = None) -> None: ...
+async def _async_setup_config(hass: HomeAssistant, config: Mapping[str, Any], unique_id: str | None, async_add_entities: AddEntitiesCallback | AddConfigEntryEntitiesCallback, device: AnyDeviceEntry | None = None) -> None: ...
 
 class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_should_poll: bool
@@ -65,7 +65,7 @@ class GenericThermostat(ClimateEntity, RestoreEntity):
     _attr_preset_modes: Incomplete
     _presets: Incomplete
     _presets_inv: Incomplete
-    def __init__(self, *, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, max_cycle_duration: timedelta | None, cycle_cooldown: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None, device: DeviceEntry | None = None) -> None: ...
+    def __init__(self, *, name: str, heater_entity_id: str, sensor_entity_id: str, min_temp: float | None, max_temp: float | None, target_temp: float | None, ac_mode: bool | None, min_cycle_duration: timedelta | None, max_cycle_duration: timedelta | None, cycle_cooldown: timedelta | None, cold_tolerance: float, hot_tolerance: float, keep_alive: timedelta | None, initial_hvac_mode: HVACMode | None, presets: dict[str, float], precision: float | None, target_temperature_step: float | None, unit: UnitOfTemperature, unique_id: str | None, device: AnyDeviceEntry | None = None) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     @property

@@ -1,15 +1,19 @@
-from .const import CONF_APP_NAME as CONF_APP_NAME
+from .const import CONF_APP_NAME as CONF_APP_NAME, DOMAIN as DOMAIN
 from .entity import AndroidTVRemoteBaseEntity as AndroidTVRemoteBaseEntity
 from .helpers import AndroidTVRemoteConfigEntry as AndroidTVRemoteConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import ATTR_ACTIVITY as ATTR_ACTIVITY, ATTR_DELAY_SECS as ATTR_DELAY_SECS, ATTR_HOLD_SECS as ATTR_HOLD_SECS, ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, DEFAULT_DELAY_SECS as DEFAULT_DELAY_SECS, DEFAULT_HOLD_SECS as DEFAULT_HOLD_SECS, DEFAULT_NUM_REPEATS as DEFAULT_NUM_REPEATS, RemoteEntity as RemoteEntity, RemoteEntityFeature as RemoteEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, override
+from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
+PREFIX_SEPARATOR: Final[str]
+VALID_PREFIXES: Final[frozenset[str]]
 
+def _parse_command(single_command: str) -> tuple[str, str | None]: ...
 async def async_setup_entry(hass: HomeAssistant, config_entry: AndroidTVRemoteConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class AndroidTVRemoteEntity(AndroidTVRemoteBaseEntity, RemoteEntity):

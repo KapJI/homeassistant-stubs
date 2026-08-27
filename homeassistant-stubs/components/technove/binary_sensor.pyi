@@ -10,6 +10,8 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from technove import Station as TechnoVEStation
 from typing import override
 
+PARALLEL_UPDATES: int
+
 @dataclass(frozen=True, kw_only=True)
 class TechnoVEBinarySensorDescription(BinarySensorEntityDescription):
     value_fn: Callable[[TechnoVEStation], bool | None]

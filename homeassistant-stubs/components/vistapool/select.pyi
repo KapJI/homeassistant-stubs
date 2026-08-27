@@ -20,7 +20,6 @@ _PUMP_SPEED_OPTIONS: Incomplete
 class VistapoolSelectEntityDescription(SelectEntityDescription):
     value_path: str
     exists_path: str | tuple[str, ...] | None = ...
-    translation_placeholders: dict[str, str] | None = ...
 
 SELECT_DESCRIPTIONS: tuple[VistapoolSelectEntityDescription, ...]
 
@@ -31,7 +30,6 @@ def _to_index(raw: Any) -> int | None: ...
 class VistapoolSelect(VistapoolEntity, SelectEntity):
     entity_description: VistapoolSelectEntityDescription
     _attr_unique_id: Incomplete
-    _attr_translation_placeholders: Incomplete
     def __init__(self, coordinator: VistapoolDataUpdateCoordinator, description: VistapoolSelectEntityDescription) -> None: ...
     @property
     @override

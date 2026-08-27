@@ -1,6 +1,7 @@
 from enum import IntFlag, StrEnum
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 
 class ValveEntityStateAttribute(StrEnum):
     IS_CLOSED = 'is_closed'

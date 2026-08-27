@@ -7,7 +7,7 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[AITaskEntity]]
 DATA_PREFERENCES: HassKey[AITaskPreferences]
 DATA_MEDIA_SOURCE: HassKey[local_source.LocalSource]

@@ -12,6 +12,7 @@ class KNXExposeStoreOptionModel(TypedDict):
     attribute: NotRequired[str]
     cooldown: NotRequired[float]
     default: NotRequired[Any]
+    send_on_init: NotRequired[bool]
     periodic_send: NotRequired[float]
     respond_to_read: NotRequired[bool]
     value_template: NotRequired[str]

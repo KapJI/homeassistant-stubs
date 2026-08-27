@@ -20,7 +20,7 @@ class NtfyBaseEntity(Entity):
 
 class NtfyCommonBaseEntity(CoordinatorEntity[BaseDataUpdateCoordinator]):
     _attr_has_entity_name: bool
+    _attr_device_info: DeviceInfo | None
     entity_description: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, coordinator: BaseDataUpdateCoordinator, description: EntityDescription) -> None: ...

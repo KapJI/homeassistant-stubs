@@ -1,4 +1,5 @@
 from . import OmadaConfigEntry as OmadaConfigEntry
+from .const import DOMAIN as DOMAIN
 from .controller import OmadaGatewayCoordinator as OmadaGatewayCoordinator, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
 from .coordinator import OmadaCoordinator as OmadaCoordinator
 from .entity import OmadaDeviceEntity as OmadaDeviceEntity, get_switch_port_base_name as get_switch_port_base_name
@@ -8,6 +9,7 @@ from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tplink_omada_client import OmadaSiteClient as OmadaSiteClient

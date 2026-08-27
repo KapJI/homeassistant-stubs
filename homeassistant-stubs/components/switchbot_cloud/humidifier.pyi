@@ -1,5 +1,5 @@
 from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
-from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, HUMIDITY_LEVELS as HUMIDITY_LEVELS, Humidifier2Mode as Humidifier2Mode
+from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, HUMIDITY_LEVELS as HUMIDITY_LEVELS
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.humidifier import HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_NORMAL as MODE_NORMAL

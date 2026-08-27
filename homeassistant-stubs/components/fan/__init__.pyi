@@ -11,10 +11,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from propcache.api import cached_property
-from typing import Any, final, override
+from typing import Any, Final, final, override
 
 _LOGGER: Incomplete
-DOMAIN: str
+DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[FanEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete

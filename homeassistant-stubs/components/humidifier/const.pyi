@@ -1,4 +1,5 @@
 from enum import IntFlag, StrEnum
+from typing import Final
 
 MODE_NORMAL: str
 MODE_ECO: str
@@ -25,7 +26,7 @@ ATTR_MIN_HUMIDITY: str
 ATTR_TARGET_HUMIDITY_STEP: str
 DEFAULT_MIN_HUMIDITY: int
 DEFAULT_MAX_HUMIDITY: int
-DOMAIN: str
+DOMAIN: Final[str]
 SERVICE_SET_MODE: str
 SERVICE_SET_HUMIDITY: str
 

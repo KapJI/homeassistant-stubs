@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import ActronAirSystemCoordinator as ActronAirSystemCoordinator
 from _typeshed import Incomplete
-from actron_neo_api import ActronAirZone as ActronAirZone
+from actron_neo_api import ActronAirPeripheral as ActronAirPeripheral, ActronAirZone as ActronAirZone
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -27,3 +27,15 @@ class ActronAirZoneEntity(ActronAirEntity):
     _zone_identifier: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: ActronAirSystemCoordinator, zone: ActronAirZone) -> None: ...
+    @property
+    def _zone(self) -> ActronAirZone: ...
+
+class ActronAirPeripheralEntity(ActronAirEntity):
+    _peripheral_serial: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, coordinator: ActronAirSystemCoordinator, peripheral: ActronAirPeripheral) -> None: ...
+    @property
+    @override
+    def available(self) -> bool: ...
+    @property
+    def _peripheral(self) -> ActronAirPeripheral: ...

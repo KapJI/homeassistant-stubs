@@ -3,11 +3,10 @@ from .const import ATTR_ALARM_DURATION as ATTR_ALARM_DURATION, ATTR_ALARM_VOLUME
 from .typing import SystemType as SystemType
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
-from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
-from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service, verify_domain_control as verify_domain_control
+from homeassistant.helpers.service import async_get_device_and_config_entry as async_get_device_and_config_entry, async_register_admin_service as async_register_admin_service, verify_domain_control as verify_domain_control
 from typing import Any
 
 ATTR_PIN_LABEL: str

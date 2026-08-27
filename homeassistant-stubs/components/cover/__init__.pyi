@@ -1,5 +1,5 @@
 from .condition import make_cover_is_closed_condition as make_cover_is_closed_condition, make_cover_is_open_condition as make_cover_is_open_condition
-from .const import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_IS_CLOSED as ATTR_IS_CLOSED, ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN, INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
+from .const import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_IS_CLOSED as ATTR_IS_CLOSED, ATTR_POSITION as ATTR_POSITION, ATTR_SPEED as ATTR_SPEED, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntityCapabilityAttribute as CoverEntityCapabilityAttribute, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN, INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from .trigger import make_cover_closed_trigger as make_cover_closed_trigger, make_cover_opened_trigger as make_cover_opened_trigger
 from _typeshed import Incomplete
 from collections.abc import Callable
@@ -7,7 +7,7 @@ from homeassistant.helpers.entity import Entity, EntityDescription
 from propcache.api import cached_property
 from typing import Any, final, override
 
-__all__ = ['ATTR_CURRENT_POSITION', 'ATTR_CURRENT_TILT_POSITION', 'ATTR_IS_CLOSED', 'ATTR_POSITION', 'ATTR_TILT_POSITION', 'DEVICE_CLASSES', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'INTENT_CLOSE_COVER', 'INTENT_OPEN_COVER', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'CoverDeviceClass', 'CoverEntity', 'CoverEntityDescription', 'CoverEntityFeature', 'CoverEntityStateAttribute', 'CoverState', 'make_cover_closed_trigger', 'make_cover_is_closed_condition', 'make_cover_is_open_condition', 'make_cover_opened_trigger']
+__all__ = ['ATTR_CURRENT_POSITION', 'ATTR_CURRENT_TILT_POSITION', 'ATTR_IS_CLOSED', 'ATTR_POSITION', 'ATTR_SPEED', 'ATTR_TILT_POSITION', 'DEVICE_CLASSES', 'DEVICE_CLASSES_SCHEMA', 'DOMAIN', 'INTENT_CLOSE_COVER', 'INTENT_OPEN_COVER', 'PLATFORM_SCHEMA', 'PLATFORM_SCHEMA_BASE', 'CoverDeviceClass', 'CoverEntity', 'CoverEntityCapabilityAttribute', 'CoverEntityDescription', 'CoverEntityFeature', 'CoverEntityStateAttribute', 'CoverState', 'make_cover_closed_trigger', 'make_cover_is_closed_condition', 'make_cover_is_open_condition', 'make_cover_opened_trigger']
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -27,7 +27,9 @@ class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     _attr_is_opening: bool | None
     _attr_state: None
     _attr_supported_features: CoverEntityFeature | None
+    _attr_supported_speeds: list[str] | None
     _cover_is_last_toggle_direction_open: bool
+    _entity_component_unrecorded_attributes: Incomplete
     @cached_property
     def current_cover_position(self) -> int | None: ...
     @cached_property
@@ -52,6 +54,19 @@ class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     def is_closing(self) -> bool | None: ...
     @cached_property
     def is_closed(self) -> bool | None: ...
+    @cached_property
+    def supported_speeds(self) -> list[str] | None: ...
+    @property
+    @override
+    def capability_attributes(self) -> dict[str, Any] | None: ...
+    @final
+    def _valid_speed_or_raise(self, speed: str, supported: list[str]) -> None: ...
+    @final
+    async def async_handle_open_cover(self, **kwargs: Any) -> None: ...
+    @final
+    async def async_handle_close_cover(self, **kwargs: Any) -> None: ...
+    @final
+    async def async_handle_set_cover_position(self, **kwargs: Any) -> None: ...
     def open_cover(self, **kwargs: Any) -> None: ...
     async def async_open_cover(self, **kwargs: Any) -> None: ...
     def close_cover(self, **kwargs: Any) -> None: ...

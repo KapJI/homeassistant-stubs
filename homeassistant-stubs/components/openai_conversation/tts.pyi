@@ -13,6 +13,7 @@ from propcache.api import cached_property
 from typing import Any, override
 
 _LOGGER: Incomplete
+PARALLEL_UPDATES: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: OpenAIConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

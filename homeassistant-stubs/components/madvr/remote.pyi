@@ -1,9 +1,11 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import MadVRConfigEntry as MadVRConfigEntry, MadVRCoordinator as MadVRCoordinator
 from .entity import MadVREntity as MadVREntity
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.components.remote import RemoteEntity as RemoteEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
 

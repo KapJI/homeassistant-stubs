@@ -4,20 +4,22 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from lunatone_rest_api_client import DALIBroadcast as DALIBroadcast, Device, Devices as Devices, Info as Info, Sensor, Sensors as Sensors
-from lunatone_rest_api_client.models import InfoData
+from lunatone_rest_api_client import DALIBroadcast as DALIBroadcast, DALIScan as DALIScan, Device, Devices as Devices, Info as Info, Sensor, Sensors as Sensors
+from lunatone_rest_api_client.models import InfoData, ScanData
 from typing import override
 
 _LOGGER: Incomplete
-DEFAULT_INFO_SCAN_INTERVAL: Incomplete
-DEFAULT_DEVICES_SCAN_INTERVAL: Incomplete
-DEFAULT_SENSORS_SCAN_INTERVAL: Incomplete
+DEFAULT_INFO_UPDATE_INTERVAL: Incomplete
+DEFAULT_DEVICES_UPDATE_INTERVAL: Incomplete
+DEFAULT_SENSORS_UPDATE_INTERVAL: Incomplete
+DEFAULT_SCAN_UPDATE_INTERVAL: Incomplete
 
 @dataclass
 class LunatoneData:
     coordinator_info: LunatoneInfoDataUpdateCoordinator
     coordinator_devices: LunatoneDevicesDataUpdateCoordinator
     coordinator_sensors: LunatoneSensorsDataUpdateCoordinator
+    coordinator_scan: LunatoneScanDataUpdateCoordinator
     dali_line_broadcasts: list[DALIBroadcast]
 type LunatoneConfigEntry = ConfigEntry[LunatoneData]
 
@@ -41,3 +43,11 @@ class LunatoneSensorsDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Senso
     def __init__(self, hass: HomeAssistant, config_entry: LunatoneConfigEntry, sensors_api: Sensors) -> None: ...
     @override
     async def _async_update_data(self) -> dict[int, Sensor]: ...
+
+class LunatoneScanDataUpdateCoordinator(DataUpdateCoordinator[ScanData]):
+    config_entry: LunatoneConfigEntry
+    dali_scan_api: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: LunatoneConfigEntry, dali_scan_api: DALIScan) -> None: ...
+    update_interval: Incomplete
+    @override
+    async def _async_update_data(self) -> ScanData: ...

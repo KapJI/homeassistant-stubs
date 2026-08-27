@@ -1,4 +1,5 @@
-from .models import SerialDevice as SerialDevice, USBDevice as USBDevice
+from .consumers import async_get_serial_port_consumers as async_get_serial_port_consumers
+from .models import SerialDevice as SerialDevice, SerialPortConsumer as SerialPortConsumer, USBDevice as USBDevice
 from .utils import scan_serial_ports as scan_serial_ports, usb_device_from_path as usb_device_from_path, usb_device_matches_matcher as usb_device_matches_matcher, usb_service_info_from_device as usb_service_info_from_device, usb_unique_id_from_service_info as usb_unique_id_from_service_info
 from _typeshed import Incomplete
 from collections.abc import Callable, Coroutine, Sequence
@@ -8,7 +9,7 @@ from homeassistant.helpers.debounce import Debouncer
 from homeassistant.loader import USBMatcher
 from typing import Any, overload
 
-__all__ = ['SerialDevice', 'USBCallbackMatcher', 'USBDevice', 'async_register_port_event_callback', 'async_register_scan_request_callback', 'async_register_serial_port_scanner', 'async_scan_serial_ports', 'scan_serial_ports', 'usb_device_from_path', 'usb_device_matches_matcher', 'usb_service_info_from_device', 'usb_unique_id_from_service_info']
+__all__ = ['SerialDevice', 'SerialPortConsumer', 'USBCallbackMatcher', 'USBDevice', 'async_get_serial_port_consumers', 'async_register_port_event_callback', 'async_register_scan_request_callback', 'async_register_serial_port_scanner', 'async_scan_serial_ports', 'scan_serial_ports', 'usb_device_from_path', 'usb_device_matches_matcher', 'usb_service_info_from_device', 'usb_unique_id_from_service_info']
 
 PORT_EVENT_CALLBACK_TYPE = Callable[[set[USBDevice], set[USBDevice]], None]
 SERIAL_PORT_SCANNER_TYPE = Callable[[HomeAssistant], Sequence[USBDevice | SerialDevice]]

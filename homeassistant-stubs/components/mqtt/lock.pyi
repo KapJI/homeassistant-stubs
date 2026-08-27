@@ -9,7 +9,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import lock as lock
-from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
+from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature, LockEntityStateAttribute as LockEntityStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

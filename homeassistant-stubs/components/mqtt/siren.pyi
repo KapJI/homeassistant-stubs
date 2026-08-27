@@ -7,7 +7,7 @@ from .schemas import MQTT_ENTITY_COMMON_SCHEMA as MQTT_ENTITY_COMMON_SCHEMA
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import siren as siren
-from homeassistant.components.siren import ATTR_AVAILABLE_TONES as ATTR_AVAILABLE_TONES, ATTR_DURATION as ATTR_DURATION, ATTR_TONE as ATTR_TONE, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL, SirenEntity as SirenEntity, SirenEntityFeature as SirenEntityFeature, SirenTurnOnServiceParameters as SirenTurnOnServiceParameters, TURN_ON_SCHEMA as TURN_ON_SCHEMA, process_turn_on_params as process_turn_on_params
+from homeassistant.components.siren import ATTR_DURATION as ATTR_DURATION, ATTR_TONE as ATTR_TONE, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL, SirenEntity as SirenEntity, SirenEntityCapabilityAttribute as SirenEntityCapabilityAttribute, SirenEntityFeature as SirenEntityFeature, SirenTurnOnServiceParameters as SirenTurnOnServiceParameters, TURN_ON_SCHEMA as TURN_ON_SCHEMA, process_turn_on_params as process_turn_on_params
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

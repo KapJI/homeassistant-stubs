@@ -8,7 +8,7 @@ from .util import valid_publish_topic as valid_publish_topic, valid_subscribe_to
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components import fan as fan
-from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
+from homeassistant.components.fan import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PRESET_MODE as ATTR_PRESET_MODE, FanEntity as FanEntity, FanEntityCapabilityAttribute as FanEntityCapabilityAttribute, FanEntityFeature as FanEntityFeature, FanEntityStateAttribute as FanEntityStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_STATE as CONF_STATE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

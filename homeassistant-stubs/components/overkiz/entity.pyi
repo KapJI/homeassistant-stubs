@@ -11,11 +11,11 @@ from typing import override
 class OverkizEntity(CoordinatorEntity[OverkizDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _attr_name: str | None
+    _attr_device_info: DeviceInfo | None
     device_url: Incomplete
     executor: Incomplete
     _attr_assumed_state: Incomplete
     _attr_unique_id: Incomplete
-    _attr_device_info: Incomplete
     def __init__(self, device_url: str, coordinator: OverkizDataUpdateCoordinator) -> None: ...
     @property
     @override

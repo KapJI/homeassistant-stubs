@@ -15,7 +15,7 @@ class BTHomeEventEntity(EventEntity):
     _attr_has_entity_name: bool
     _update_signal: Incomplete
     entity_description: Incomplete
-    _attr_name: Incomplete
+    _attr_translation_placeholders: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, address: str, event_class: str, event: BTHomeBleEvent | None) -> None: ...

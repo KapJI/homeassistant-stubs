@@ -1,6 +1,7 @@
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
 from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
+from typing import Final
 
 CONTENT_AUTH_EXPIRY_TIME: Incomplete
 ATTR_APP_ID: str
@@ -36,7 +37,7 @@ ATTR_MEDIA_VOLUME_LEVEL: str
 ATTR_MEDIA_VOLUME_MUTED: str
 ATTR_SOUND_MODE: str
 ATTR_SOUND_MODE_LIST: str
-DOMAIN: str
+DOMAIN: Final[str]
 INTENT_MEDIA_PAUSE: str
 INTENT_MEDIA_UNPAUSE: str
 INTENT_MEDIA_NEXT: str

@@ -16,6 +16,7 @@ POLLING_INTERVAL: Incomplete
 BODY_POLLING_INTERVAL: Incomplete
 DEVICE_POLLING_INTERVAL: Incomplete
 DEFAULT_PAGE_SIZE: int
+SLEEP_PAGE_SIZE: int
 
 @dataclass
 class GoogleHealthActivityData:

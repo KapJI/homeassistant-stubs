@@ -1,12 +1,13 @@
 from .common import setup_home_connect_entry as setup_home_connect_entry
-from .const import BSH_POWER_ON as BSH_POWER_ON, BSH_POWER_STANDBY as BSH_POWER_STANDBY, DOMAIN as DOMAIN
+from .const import BSH_POWER_ON as BSH_POWER_ON, BSH_POWER_STANDBY as BSH_POWER_STANDBY, DOMAIN as DOMAIN, UNIT_MAP as UNIT_MAP
 from .coordinator import HomeConnectApplianceCoordinator as HomeConnectApplianceCoordinator, HomeConnectConfigEntry as HomeConnectConfigEntry
 from .entity import HomeConnectEntity as HomeConnectEntity
 from .utils import get_dict_from_home_connect_error as get_dict_from_home_connect_error
 from _typeshed import Incomplete
 from aiohomeconnect.model import ProgramKey
+from aiohomeconnect.model.program import ProgramDefinitionConstraints as ProgramDefinitionConstraints
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityDescription as ClimateEntityDescription, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, HVACMode as HVACMode
-from homeassistant.const import UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -26,7 +27,6 @@ def _get_entities_for_appliance(appliance_coordinator: HomeConnectApplianceCoord
 async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class HomeConnectAirConditioningEntity(HomeConnectEntity, ClimateEntity):
-    _attr_temperature_unit: Incomplete
     def __init__(self, coordinator: HomeConnectApplianceCoordinator) -> None: ...
     @property
     @override
@@ -34,6 +34,22 @@ class HomeConnectAirConditioningEntity(HomeConnectEntity, ClimateEntity):
     @property
     @override
     def preset_modes(self) -> list[str] | None: ...
+    @property
+    @override
+    def target_temperature(self) -> float | None: ...
+    @property
+    @override
+    def temperature_unit(self) -> str: ...
+    def _get_temperature_constraints(self) -> ProgramDefinitionConstraints | None: ...
+    @property
+    @override
+    def min_temp(self) -> float: ...
+    @property
+    @override
+    def max_temp(self) -> float: ...
+    @property
+    @override
+    def target_temperature_step(self) -> float | None: ...
     @property
     @override
     def supported_features(self) -> ClimateEntityFeature: ...
@@ -60,5 +76,7 @@ class HomeConnectAirConditioningEntity(HomeConnectEntity, ClimateEntity):
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...
     @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
+    @override
+    async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...

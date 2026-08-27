@@ -1,6 +1,7 @@
 from enum import StrEnum
+from typing import Final
 
-DOMAIN: str
+DOMAIN: Final[str]
 ATTR_EVENT_TYPE: str
 ATTR_EVENT_TYPES: str
 ATTR_MULTI_PRESS_COUNT: str

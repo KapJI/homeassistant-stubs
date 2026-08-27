@@ -4,8 +4,8 @@ from .const import ATTR_KEY_NAME as ATTR_KEY_NAME, CHAR_ACTIVE as CHAR_ACTIVE, C
 from .util import cleanup_name_for_homekit as cleanup_name_for_homekit
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
-from homeassistant.components.remote import ATTR_ACTIVITY as ATTR_ACTIVITY, ATTR_ACTIVITY_LIST as ATTR_ACTIVITY_LIST, ATTR_CURRENT_ACTIVITY as ATTR_CURRENT_ACTIVITY, RemoteEntityFeature as RemoteEntityFeature
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_SUPPORTED_FEATURES as ATTR_SUPPORTED_FEATURES, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
+from homeassistant.components.remote import ATTR_ACTIVITY as ATTR_ACTIVITY, RemoteEntityFeature as RemoteEntityFeature, RemoteEntityStateAttribute as RemoteEntityStateAttribute
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, EntityStateAttribute as EntityStateAttribute, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import State as State, callback as callback
 from typing import Any, override
 

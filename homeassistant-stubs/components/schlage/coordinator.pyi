@@ -14,20 +14,16 @@ from typing import override
 class LockData:
     lock: Lock
     logs: list[LockLog]
-
-@dataclass
-class SchlageData:
-    locks: dict[str, LockData]
 type SchlageConfigEntry = ConfigEntry[SchlageDataUpdateCoordinator]
 
-class SchlageDataUpdateCoordinator(DataUpdateCoordinator[SchlageData]):
+class SchlageDataUpdateCoordinator(DataUpdateCoordinator[dict[str, LockData]]):
     config_entry: SchlageConfigEntry
     data: Incomplete
     api: Incomplete
     new_locks_callbacks: list[Callable[[dict[str, LockData]], None]]
     def __init__(self, hass: HomeAssistant, config_entry: SchlageConfigEntry, username: str, api: Schlage) -> None: ...
     @override
-    async def _async_update_data(self) -> SchlageData: ...
+    async def _async_update_data(self) -> dict[str, LockData]: ...
     def _get_lock_data(self, lock: Lock) -> LockData: ...
     @callback
     def _add_remove_locks(self) -> None: ...

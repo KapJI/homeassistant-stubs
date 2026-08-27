@@ -1,15 +1,16 @@
-from .const import DOMAIN as DOMAIN
+from .const import DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectNVREntity as ProtectNVREntity
-from .utils import async_ufp_instance_command as async_ufp_instance_command
+from .utils import _async_unifi_mac_from_hass as _async_unifi_mac_from_hass, async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
-from uiprotect.data import NVR as NVR, NvrArmModeStatus
+from uiprotect.data import NVR, NvrArmModeStatus
 
 PARALLEL_UPDATES: int
 _UIPROTECT_TO_HA: dict[NvrArmModeStatus, AlarmControlPanelState]
@@ -22,6 +23,10 @@ class ProtectNVRAlarmControlPanel(ProtectNVREntity, AlarmControlPanelEntity):
     _attr_translation_key: str
     _state_attrs: Incomplete
     def __init__(self, data: ProtectData, device: NVR) -> None: ...
+    _attr_device_info: Incomplete
+    @callback
+    @override
+    def _async_set_device_info(self) -> None: ...
     _attr_available: bool
     _attr_alarm_state: Incomplete
     @callback

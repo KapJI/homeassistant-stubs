@@ -2,9 +2,10 @@ from . import VeluxConfigEntry as VeluxConfigEntry
 from .entity import VeluxEntity as VeluxEntity, wrap_pyvlx_call_exceptions as wrap_pyvlx_call_exceptions
 from _typeshed import Incomplete
 from enum import StrEnum
-from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
+from homeassistant.components.cover import ATTR_POSITION as ATTR_POSITION, ATTR_SPEED as ATTR_SPEED, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pyvlx.const import Velocity
 from pyvlx.opening_device import Blind, DualRollerShutter, OpeningDevice, Position
 from typing import Any, override
 
@@ -14,7 +15,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: VeluxConfigEntry,
 
 class VeluxCover(VeluxEntity, CoverEntity):
     node: OpeningDevice
+    _attr_translation_key: str
     _attr_supported_features: Incomplete
+    _attr_supported_speeds: Incomplete
+    def _velocity_from_speed(self, speed: str | None) -> Velocity | None: ...
     _attr_device_class: Incomplete
     def __init__(self, hass: HomeAssistant, node: OpeningDevice, config_entry_id: str) -> None: ...
     @property

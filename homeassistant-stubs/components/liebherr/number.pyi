@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.number import DEFAULT_MAX_VALUE as DEFAULT_MAX_VALUE, DEFAULT_MIN_VALUE as DEFAULT_MIN_VALUE, NumberDeviceClass as NumberDeviceClass, NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyliebherrhomeapi import TemperatureControl as TemperatureControl
@@ -23,6 +24,7 @@ class LiebherrNumberEntityDescription(NumberEntityDescription):
 
 NUMBER_TYPES: tuple[LiebherrNumberEntityDescription, ...]
 
+def _temperature_step(control: TemperatureControl) -> float: ...
 def _create_number_entities(coordinators: list[LiebherrCoordinator]) -> list[LiebherrNumber]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: LiebherrConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -43,6 +45,9 @@ class LiebherrNumber(LiebherrZoneEntity, NumberEntity):
     @property
     @override
     def native_max_value(self) -> float: ...
+    @property
+    @override
+    def native_step(self) -> float: ...
     @property
     @override
     def available(self) -> bool: ...

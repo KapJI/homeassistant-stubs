@@ -13,6 +13,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.helpers.update_coordinator import UpdateFailed as UpdateFailed
 from simplipy import API
+from simplipy.device.camera import Camera as Camera
 from simplipy.system import SystemNotification as SystemNotification
 from simplipy.websocket import WebsocketEvent as WebsocketEvent
 from typing import Any
@@ -36,6 +37,8 @@ CONFIG_SCHEMA: Incomplete
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 @callback
 def _async_register_base_station(hass: HomeAssistant, entry: ConfigEntry, system: SystemType) -> None: ...
+@callback
+def _async_register_camera(hass: HomeAssistant, entry: ConfigEntry, system: SystemType, camera: Camera) -> None: ...
 @callback
 def _async_standardize_config_entry(hass: HomeAssistant, entry: ConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: SimpliSafeConfigEntry) -> bool: ...

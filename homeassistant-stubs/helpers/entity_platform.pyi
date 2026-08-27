@@ -11,7 +11,7 @@ from collections.abc import Awaitable, Callable as Callable, Iterable, Mapping
 from contextvars import ContextVar
 from datetime import timedelta
 from homeassistant import config_entries as config_entries
-from homeassistant.const import ATTR_RESTORED as ATTR_RESTORED, DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED
+from homeassistant.const import DEVICE_DEFAULT_NAME as DEVICE_DEFAULT_NAME, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, CoreState as CoreState, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, SupportsResponse as SupportsResponse, callback as callback, split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady
 from homeassistant.generated import languages as languages

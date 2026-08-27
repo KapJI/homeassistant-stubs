@@ -3,7 +3,7 @@ from .coordinator import EnergieleserConfigEntry as EnergieleserConfigEntry, Ene
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from energieleser import GasleserDevice, StromleserOneDevice, WaermeleserDevice, WasserleserDevice
+from energieleser import GasleserDevice, GasleserPulseDevice, StromleserOneDevice, WaermeleserDevice, WasserleserDevice
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_HOST as CONF_HOST, EntityCategory as EntityCategory, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfEnergy as UnitOfEnergy, UnitOfPower as UnitOfPower, UnitOfTemperature as UnitOfTemperature, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -14,6 +14,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from typing import override
 
 PARALLEL_UPDATES: int
+type AnyGasleserDevice = GasleserDevice | GasleserPulseDevice
 
 @dataclass(frozen=True, kw_only=True)
 class StromleserSensorEntityDescription(SensorEntityDescription):
@@ -23,8 +24,8 @@ class StromleserSensorEntityDescription(SensorEntityDescription):
 
 @dataclass(frozen=True, kw_only=True)
 class GasleserSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[GasleserDevice], StateType]
-    present_fn: Callable[[GasleserDevice], bool] = ...
+    value_fn: Callable[[AnyGasleserDevice], StateType]
+    present_fn: Callable[[AnyGasleserDevice], bool] = ...
 
 @dataclass(frozen=True, kw_only=True)
 class WasserleserSensorEntityDescription(SensorEntityDescription):

@@ -1,3 +1,4 @@
+from . import outlet_numbers_from_status as outlet_numbers_from_status
 from .coordinator import NutConfigEntry as NutConfigEntry
 from .entity import NUTBaseEntity as NUTBaseEntity
 from _typeshed import Incomplete

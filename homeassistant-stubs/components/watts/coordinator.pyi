@@ -1,8 +1,7 @@
 from . import WattsVisionRuntimeData as WattsVisionRuntimeData
-from .const import DISCOVERY_INTERVAL_MINUTES as DISCOVERY_INTERVAL_MINUTES, DOMAIN as DOMAIN, FAST_POLLING_INTERVAL_SECONDS as FAST_POLLING_INTERVAL_SECONDS, UPDATE_INTERVAL_SECONDS as UPDATE_INTERVAL_SECONDS
+from .const import DISCOVERY_INTERVAL_SECONDS as DISCOVERY_INTERVAL_SECONDS, DOMAIN as DOMAIN, FAST_POLLING_INTERVAL_SECONDS as FAST_POLLING_INTERVAL_SECONDS, UPDATE_INTERVAL_SECONDS as UPDATE_INTERVAL_SECONDS
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
@@ -20,7 +19,7 @@ class WattsVisionDeviceData:
 
 class WattsVisionHubCoordinator(DataUpdateCoordinator[dict[str, Device]]):
     client: Incomplete
-    last_discovery: datetime | None
+    last_discovery: float | None
     previous_devices: set[str]
     def __init__(self, hass: HomeAssistant, client: WattsVisionClient, config_entry: WattsVisionConfigEntry) -> None: ...
     @override
@@ -33,7 +32,7 @@ class WattsVisionDeviceCoordinator(DataUpdateCoordinator[WattsVisionDeviceData])
     client: Incomplete
     device_id: Incomplete
     hub_coordinator: Incomplete
-    fast_polling_until: datetime | None
+    fast_polling_until: float | None
     unsubscribe_hub_listener: Incomplete
     def __init__(self, hass: HomeAssistant, client: WattsVisionClient, config_entry: WattsVisionConfigEntry, hub_coordinator: WattsVisionHubCoordinator, device_id: str) -> None: ...
     data: Incomplete
@@ -42,4 +41,4 @@ class WattsVisionDeviceCoordinator(DataUpdateCoordinator[WattsVisionDeviceData])
     update_interval: Incomplete
     @override
     async def _async_update_data(self) -> WattsVisionDeviceData: ...
-    def trigger_fast_polling(self, duration: int = 60) -> None: ...
+    def trigger_fast_polling(self, duration_seconds: int = 60) -> None: ...

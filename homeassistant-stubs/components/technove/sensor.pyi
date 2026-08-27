@@ -11,6 +11,7 @@ from homeassistant.helpers.typing import StateType as StateType
 from technove import Station as TechnoVEStation
 from typing import override
 
+PARALLEL_UPDATES: int
 STATUS_TYPE: Incomplete
 
 @dataclass(frozen=True, kw_only=True)

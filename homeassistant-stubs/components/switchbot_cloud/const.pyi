@@ -1,6 +1,5 @@
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from enum import Enum
 from homeassistant.const import Platform as Platform
 from typing import Final
 
@@ -21,39 +20,12 @@ AFTER_COMMAND_REFRESH: int
 COVER_ENTITY_AFTER_COMMAND_REFRESH: int
 SMART_RADIATOR_THERMOSTAT_AFTER_COMMAND_REFRESH: int
 HUMIDITY_LEVELS: Incomplete
-
-class AirPurifierMode(Enum):
-    NORMAL = 1
-    AUTO = 2
-    SLEEP = 3
-    PET = 4
-    @classmethod
-    def get_modes(cls) -> list[str]: ...
-
-class Humidifier2Mode(Enum):
-    HIGH = 1
-    MEDIUM = 2
-    LOW = 3
-    QUIET = 4
-    TARGET_HUMIDITY = 5
-    SLEEP = 6
-    AUTO = 7
-    DRYING_FILTER = 8
-    @classmethod
-    def get_modes(cls) -> list[str]: ...
-
-class SwitchbotCloudDeviceLockState(Enum):
-    LOCKED = 'locked'
-    UNLOCKED = 'unlocked'
-    LOCKING = 'locking'
-    UNLOCKING = 'unlocking'
-    JAMMED = 'jammed'
-    LATCH_BOLT_LOCKED = 'latchBoltLocked'
-    HALF_LOCKED = 'halfLocked'
-    @classmethod
-    def get_states(cls) -> list[SwitchbotCloudDeviceLockState]: ...
-    @classmethod
-    def get_values(cls) -> list[str]: ...
+NIGHT_LIGHT_ON: str
+NIGHT_LIGHT_OFF: str
+NIGHT_LIGHT_BRIGHT: str
+NIGHT_LIGHT_SOFT: str
+STANDING_FAN_NIGHT_LIGHT_PARAMETERS_MAP: Incomplete
+BATTERY_CIRCULATOR_FAN_2_PRO_NIGHT_LIGHT_PARAMETERS_MAP: Incomplete
 
 @dataclass(frozen=True)
 class SwitchbotCloudDeviceConfig:

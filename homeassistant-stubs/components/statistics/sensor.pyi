@@ -9,7 +9,7 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EntityStateAttribute as EntityStateAttribute, PERCENTAGE as PERCENTAGE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, EventStateReportedData as EventStateReportedData, HomeAssistant as HomeAssistant, State as State, callback as callback, split_entity_id as split_entity_id
 from homeassistant.helpers.device import async_entity_id_to_device as async_entity_id_to_device
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry as AnyDeviceEntry
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, AddEntitiesCallback as AddEntitiesCallback
 from homeassistant.helpers.event import async_track_point_in_utc_time as async_track_point_in_utc_time, async_track_state_change_event as async_track_state_change_event, async_track_state_report_event as async_track_state_report_event
 from homeassistant.helpers.reload import async_setup_reload_service as async_setup_reload_service
@@ -135,7 +135,7 @@ class StatisticsSensor(SensorEntity):
     _state_characteristic_fn: Callable[[deque[bool | float], deque[float], int], float | int | datetime | None]
     _update_listener: CALLBACK_TYPE | None
     _preview_callback: Callable[[str, Mapping[str, Any]], None] | None
-    def __init__(self, *, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, samples_keep_last: bool, precision: int, percentile: int, device: DeviceEntry | None = None) -> None: ...
+    def __init__(self, *, source_entity_id: str, name: str, unique_id: str | None, state_characteristic: str, samples_max_buffer_size: int | None, samples_max_age: timedelta | None, samples_keep_last: bool, precision: int, percentile: int, device: AnyDeviceEntry | None = None) -> None: ...
     async def async_start_preview(self, preview_callback: Callable[[str, Mapping[str, Any]], None]) -> CALLBACK_TYPE: ...
     def _async_handle_new_state(self, reported_state: State, timestamp: float) -> None: ...
     @callback

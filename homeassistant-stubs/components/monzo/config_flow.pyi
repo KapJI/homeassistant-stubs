@@ -3,8 +3,9 @@ import logging
 from .api import MonzoAPI as MonzoAPI
 from .const import DOMAIN as DOMAIN
 from collections.abc import Mapping
+from homeassistant.components.webhook import async_generate_id as async_generate_id
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
-from homeassistant.const import CONF_TOKEN as CONF_TOKEN
+from homeassistant.const import CONF_TOKEN as CONF_TOKEN, CONF_WEBHOOK_ID as CONF_WEBHOOK_ID
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from typing import Any, override

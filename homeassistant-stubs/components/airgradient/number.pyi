@@ -1,5 +1,5 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, supports_config as supports_config
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity, exception_handler as exception_handler
 from _typeshed import Incomplete
@@ -16,7 +16,8 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class AirGradientNumberEntityDescription(NumberEntityDescription):
-    value_fn: Callable[[Config], int]
+    config_key: str
+    value_fn: Callable[[Config], int | None]
     set_value_fn: Callable[[AirGradientClient, int], Awaitable[None]]
 
 DISPLAY_BRIGHTNESS: Incomplete

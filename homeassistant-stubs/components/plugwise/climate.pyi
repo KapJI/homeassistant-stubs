@@ -15,7 +15,7 @@ from typing import Any, override
 ERROR_NO_SCHEDULE: str
 PARALLEL_UPDATES: int
 
-def _check_for_schedule(active: bool, last_active: str | None) -> None: ...
+def _check_for_schedule(active: bool, last_active: str) -> None: ...
 
 @dataclass
 class PlugwiseClimateExtraStoredData(ExtraStoredData):
@@ -35,7 +35,7 @@ class PlugwiseClimateEntity(PlugwiseEntity, ClimateEntity, RestoreEntity):
     _attr_unique_id: Incomplete
     _api: Incomplete
     _gateway_data: Incomplete
-    _last_active_schedule: str | None
+    _last_active_schedule: Incomplete
     _location: Incomplete
     _previous_action_mode: Incomplete
     _attr_supported_features: Incomplete

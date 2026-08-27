@@ -1,7 +1,7 @@
 import abc
 import asyncio
 import dataclasses
-from . import group as group
+from . import device_registry as dr, group as group
 from .deprecation import deprecated_class as deprecated_class
 from .event import async_track_state_change_event as async_track_state_change_event
 from .typing import ConfigType as ConfigType
@@ -50,6 +50,8 @@ class SelectedEntities:
     referenced_areas: set[str] = dataclasses.field(default_factory=set)
     def log_missing(self, missing_entities: set[str], logger: Logger) -> None: ...
 
+@callback
+def _resolve_referenced_devices(dev_reg: dr.DeviceRegistry, device_ids: set[str], selected: SelectedEntities) -> None: ...
 def async_extract_referenced_entity_ids(hass: HomeAssistant, target_selection: TargetSelection, expand_group: bool = True, *, primary_entities_only: bool = True) -> SelectedEntities: ...
 
 class TargetEntityChangeTracker(abc.ABC, metaclass=abc.ABCMeta):

@@ -4,7 +4,7 @@ from .const import AITaskEntityFeature as AITaskEntityFeature, DATA_COMPONENT as
 from dataclasses import dataclass
 from homeassistant.components import camera as camera, conversation as conversation, image as image, media_source as media_source
 from homeassistant.components.http.auth import async_sign_path as async_sign_path
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, callback as callback
+from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.chat_session import ChatSession as ChatSession, async_get_chat_session as async_get_chat_session
@@ -14,8 +14,8 @@ from typing import Any, override
 
 def _save_camera_snapshot(image_data: camera.Image | image.Image) -> Path: ...
 async def _resolve_attachments(hass: HomeAssistant, session: ChatSession, attachments: list[dict] | None = None) -> list[conversation.Attachment]: ...
-async def async_generate_data(hass: HomeAssistant, *, task_name: str, entity_id: str | None = None, instructions: str, structure: vol.Schema | None = None, attachments: list[dict] | None = None, llm_api: llm.API | None = None) -> GenDataTaskResult: ...
-async def async_generate_image(hass: HomeAssistant, *, task_name: str, entity_id: str | None = None, instructions: str, attachments: list[dict] | None = None) -> ServiceResponse: ...
+async def async_generate_data(hass: HomeAssistant, *, task_name: str, entity_id: str | None = None, instructions: str, structure: vol.Schema | None = None, attachments: list[dict] | None = None, llm_api: llm.API | None = None, context: Context | None = None) -> GenDataTaskResult: ...
+async def async_generate_image(hass: HomeAssistant, *, task_name: str, entity_id: str | None = None, instructions: str, attachments: list[dict] | None = None, context: Context | None = None) -> ServiceResponse: ...
 
 @dataclass(slots=True)
 class GenDataTask:

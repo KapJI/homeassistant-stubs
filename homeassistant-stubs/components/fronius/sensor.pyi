@@ -1,6 +1,6 @@
 from . import FroniusConfigEntry as FroniusConfigEntry
 from .const import DOMAIN as DOMAIN, INVERTER_ERROR_CODES as INVERTER_ERROR_CODES, InverterStatusCodeOption as InverterStatusCodeOption, MeterLocationCodeOption as MeterLocationCodeOption, OhmPilotStateCodeOption as OhmPilotStateCodeOption, SOLAR_NET_DISCOVERY_NEW as SOLAR_NET_DISCOVERY_NEW, get_inverter_status_message as get_inverter_status_message, get_meter_location_description as get_meter_location_description, get_ohmpilot_state_message as get_ohmpilot_state_message
-from .coordinator import FroniusCoordinatorBase as FroniusCoordinatorBase, FroniusInverterUpdateCoordinator as FroniusInverterUpdateCoordinator, FroniusLoggerUpdateCoordinator as FroniusLoggerUpdateCoordinator, FroniusMeterUpdateCoordinator as FroniusMeterUpdateCoordinator, FroniusOhmpilotUpdateCoordinator as FroniusOhmpilotUpdateCoordinator, FroniusPowerFlowUpdateCoordinator as FroniusPowerFlowUpdateCoordinator, FroniusStorageUpdateCoordinator as FroniusStorageUpdateCoordinator
+from .coordinator import FroniusCoordinatorBase as FroniusCoordinatorBase, FroniusInverterUpdateCoordinator as FroniusInverterUpdateCoordinator, FroniusLoggerUpdateCoordinator as FroniusLoggerUpdateCoordinator, FroniusMeterUpdateCoordinator as FroniusMeterUpdateCoordinator, FroniusModbusInverterUpdateCoordinator as FroniusModbusInverterUpdateCoordinator, FroniusOhmpilotUpdateCoordinator as FroniusOhmpilotUpdateCoordinator, FroniusPowerFlowUpdateCoordinator as FroniusPowerFlowUpdateCoordinator, FroniusStorageUpdateCoordinator as FroniusStorageUpdateCoordinator
 from .entity import FroniusEntity as FroniusEntity, FroniusEntityDescription as FroniusEntityDescription
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -26,6 +26,10 @@ class FroniusSensorEntityDescription(FroniusEntityDescription, SensorEntityDescr
     value_fn: Callable[[StateType], StateType] | None = ...
 
 INVERTER_ENTITY_DESCRIPTIONS: list[FroniusSensorEntityDescription]
+
+def _modbus_mppt_descriptions(mppt_no: int) -> list[FroniusSensorEntityDescription]: ...
+
+MODBUS_INVERTER_ENTITY_DESCRIPTIONS: list[FroniusSensorEntityDescription]
 LOGGER_ENTITY_DESCRIPTIONS: list[FroniusSensorEntityDescription]
 METER_ENTITY_DESCRIPTIONS: list[FroniusSensorEntityDescription]
 OHMPILOT_ENTITY_DESCRIPTIONS: list[FroniusSensorEntityDescription]
@@ -45,6 +49,11 @@ class InverterSensor(_FroniusSensorEntity):
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: FroniusInverterUpdateCoordinator, description: FroniusSensorEntityDescription, solar_net_id: str) -> None: ...
+
+class ModbusInverterSensor(_FroniusSensorEntity):
+    _attr_device_info: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: FroniusModbusInverterUpdateCoordinator, description: FroniusSensorEntityDescription, solar_net_id: str) -> None: ...
 
 class LoggerSensor(_FroniusSensorEntity):
     _attr_device_info: Incomplete

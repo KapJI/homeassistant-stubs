@@ -1,5 +1,5 @@
 from . import AirGradientConfigEntry as AirGradientConfigEntry
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, supports_action as supports_action
 from .coordinator import AirGradientCoordinator as AirGradientCoordinator
 from .entity import AirGradientEntity as AirGradientEntity, exception_handler as exception_handler
 from _typeshed import Incomplete

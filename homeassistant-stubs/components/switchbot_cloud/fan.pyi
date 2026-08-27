@@ -1,5 +1,5 @@
 from . import SwitchbotCloudConfigEntry as SwitchbotCloudConfigEntry
-from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH, AirPurifierMode as AirPurifierMode
+from .const import AFTER_COMMAND_REFRESH as AFTER_COMMAND_REFRESH
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature

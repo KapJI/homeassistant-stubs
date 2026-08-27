@@ -19,6 +19,7 @@ from typing import override
 class PrusaLinkSensorEntityDescription[T: (PrinterStatus, LegacyPrinterStatus, JobInfo, PrinterInfo)](SensorEntityDescription, PrusaLinkEntityDescription):
     value_fn: Callable[[T], datetime | StateType]
 
+JOB_IN_PROGRESS_STATES: Incomplete
 SENSORS: dict[str, tuple[PrusaLinkSensorEntityDescription, ...]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: PrusaLinkConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

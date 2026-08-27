@@ -1,3 +1,4 @@
+import httpx
 import voluptuous as vol
 from .auth import AuthenticateHeader as AuthenticateHeader
 from .const import DOMAIN as DOMAIN
@@ -12,6 +13,7 @@ from homeassistant.helpers import llm as llm
 from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from homeassistant.util.json import JsonObjectType as JsonObjectType
+from homeassistant.util.ssl import SSLCipherList as SSLCipherList, SSL_ALPN_HTTP11 as SSL_ALPN_HTTP11, client_context as client_context
 from mcp.client.session import ClientSession
 from typing import override
 
@@ -20,6 +22,7 @@ UPDATE_INTERVAL: Incomplete
 TIMEOUT: int
 type TokenManager = Callable[[], Awaitable[str]]
 
+def _create_sse_httpx_client(headers: dict[str, str] | None = None, timeout: httpx.Timeout | None = None, auth: httpx.Auth | None = None) -> httpx.AsyncClient: ...
 @asynccontextmanager
 async def mcp_client(hass: HomeAssistant, url: str, token_manager: TokenManager | None = None) -> AsyncGenerator[ClientSession]: ...
 

@@ -1,4 +1,4 @@
-from .const import API_TEMPERATURE_STEP as API_TEMPERATURE_STEP, TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
+from .const import TEMP_UNIT_LIB_TO_HASS as TEMP_UNIT_LIB_TO_HASS
 from .coordinator import AirzoneConfigEntry as AirzoneConfigEntry, AirzoneUpdateCoordinator as AirzoneUpdateCoordinator
 from .entity import AirzoneZoneEntity as AirzoneZoneEntity
 from _typeshed import Incomplete

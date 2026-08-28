@@ -13,13 +13,14 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send as async_disp
 from homeassistant.helpers.httpx_client import get_async_client as get_async_client
 from homeassistant.util import raise_if_invalid_filename as raise_if_invalid_filename, raise_if_invalid_path as raise_if_invalid_path
 from homeassistant.util.json import JsonValueType as JsonValueType
-from telegram import Bot, CallbackQuery as CallbackQuery, File as File, InputMedia as InputMedia, InputPollOption as InputPollOption, Message, Update as Update, User as User
+from telegram import Bot, CallbackQuery as CallbackQuery, File as File, InputMedia as InputMedia, InputPollOption as InputPollOption, Message, Update, User as User
 from telegram.ext import CallbackContext as CallbackContext
 from types import MappingProxyType
 from typing import Any
 
 _FILE_TYPES: Incomplete
 _LOGGER: Incomplete
+ALLOWED_UPDATES: Incomplete
 type TelegramBotConfigEntry = ConfigEntry[TelegramNotificationService]
 _RETRY_DELAY: int
 

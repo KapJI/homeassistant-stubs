@@ -2,11 +2,12 @@ from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudConfig
 from .const import CLIMATE_PRESET_SCHEDULE as CLIMATE_PRESET_SCHEDULE, SMART_RADIATOR_THERMOSTAT_AFTER_COMMAND_REFRESH as SMART_RADIATOR_THERMOSTAT_AFTER_COMMAND_REFRESH
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
-from homeassistant.components.climate import ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, ClimateEntityStateAttribute as ClimateEntityStateAttribute, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
+from homeassistant.components.climate import ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_TEMPERATURE as ATTR_TEMPERATURE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, ClimateEntityStateAttribute as ClimateEntityStateAttribute, HVACMode as HVACMode, PRESET_BOOST as PRESET_BOOST, PRESET_COMFORT as PRESET_COMFORT, PRESET_ECO as PRESET_ECO, PRESET_HOME as PRESET_HOME, PRESET_NONE as PRESET_NONE
 from homeassistant.const import PRECISION_TENTHS as PRECISION_TENTHS, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from switchbot_api import Device as Device, Remote as Remote, SmartRadiatorThermostatMode, SwitchBotAPI as SwitchBotAPI
 from typing import Any, override
 
@@ -26,13 +27,13 @@ class SwitchBotCloudAirConditioner(SwitchBotCloudEntity, ClimateEntity, RestoreE
     _attr_hvac_modes: Incomplete
     _attr_hvac_mode: Incomplete
     _attr_temperature_unit: Incomplete
-    _attr_target_temperature: int
+    _attr_target_temperature: float
     _attr_target_temperature_step: int
     _attr_precision: int
     _attr_name: Incomplete
     @override
     async def async_added_to_hass(self) -> None: ...
-    def _get_mode(self, hvac_mode: HVACMode | None) -> int: ...
+    def _get_mode(self, hvac_mode: HVACMode) -> int: ...
     async def _do_send_command(self, hvac_mode: HVACMode | None = None, fan_mode: str | None = None, temperature: float | None = None) -> None: ...
     @override
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None: ...

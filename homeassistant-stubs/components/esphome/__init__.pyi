@@ -3,7 +3,7 @@ from .const import CONF_BLUETOOTH_MAC_ADDRESS as CONF_BLUETOOTH_MAC_ADDRESS, CON
 from .domain_data import DomainData as DomainData
 from .encryption_key_storage import async_get_encryption_key_storage as async_get_encryption_key_storage
 from .entry_data import ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData
-from .manager import DEVICE_CONFLICT_ISSUE_FORMAT as DEVICE_CONFLICT_ISSUE_FORMAT, ESPHomeManager as ESPHomeManager, async_create_api_client as async_create_api_client, cleanup_instance as cleanup_instance
+from .manager import DEVICE_CONFLICT_ISSUE_FORMAT as DEVICE_CONFLICT_ISSUE_FORMAT, ESPHomeManager as ESPHomeManager, async_create_api_client as async_create_api_client, async_get_manufacturer_model as async_get_manufacturer_model, cleanup_instance as cleanup_instance
 from _typeshed import Incomplete
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.components.bluetooth import async_remove_scanner as async_remove_scanner

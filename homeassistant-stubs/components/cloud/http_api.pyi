@@ -1,7 +1,7 @@
 from .client import CloudClient as CloudClient
 from .const import DATA_CLOUD as DATA_CLOUD, DATA_CLOUD_LOG_HANDLER as DATA_CLOUD_LOG_HANDLER, DATA_PENDING_AUTO_LOGIN as DATA_PENDING_AUTO_LOGIN, DOMAIN as DOMAIN, EVENT_CLOUD_EVENT as EVENT_CLOUD_EVENT, LOGIN_MFA_TIMEOUT as LOGIN_MFA_TIMEOUT, ONBOARDING_ITEMS as ONBOARDING_ITEMS, PREF_ALEXA_REPORT_STATE as PREF_ALEXA_REPORT_STATE, PREF_DISABLE_2FA as PREF_DISABLE_2FA, PREF_ENABLE_ALEXA as PREF_ENABLE_ALEXA, PREF_ENABLE_CLOUD_ICE_SERVERS as PREF_ENABLE_CLOUD_ICE_SERVERS, PREF_ENABLE_GOOGLE as PREF_ENABLE_GOOGLE, PREF_GOOGLE_REPORT_STATE as PREF_GOOGLE_REPORT_STATE, PREF_GOOGLE_SECURE_DEVICES_PIN as PREF_GOOGLE_SECURE_DEVICES_PIN, PREF_REMOTE_ALLOW_REMOTE_ENABLE as PREF_REMOTE_ALLOW_REMOTE_ENABLE, PREF_TTS_DEFAULT_VOICE as PREF_TTS_DEFAULT_VOICE, REQUEST_TIMEOUT as REQUEST_TIMEOUT, VOICE_STYLE_SEPERATOR as VOICE_STYLE_SEPERATOR
 from .google_config import CLOUD_GOOGLE as CLOUD_GOOGLE
-from .models import PendingAutoLogin as PendingAutoLogin, auto_login_failure_key as auto_login_failure_key
+from .models import auto_login_failure_key as auto_login_failure_key
 from .repairs import async_manage_legacy_subscription_issue as async_manage_legacy_subscription_issue
 from .subscription import async_subscription_info as async_subscription_info
 from _typeshed import Incomplete

@@ -14,9 +14,12 @@ from typing import override
 
 type AsyncSetupDeviceEntitiesCallback = Callable[[dict[str, EheimDigitalDevice]], None]
 type EheimDigitalConfigEntry = ConfigEntry[EheimDigitalUpdateCoordinator]
+MAIN_DEVICE_TIMEOUT: int
+
 class EheimDigitalUpdateCoordinator(DataUpdateCoordinator[dict[str, EheimDigitalDevice]]):
     config_entry: EheimDigitalConfigEntry
     main_device_added_event: Incomplete
+    main_device_complete_event: Incomplete
     hub: Incomplete
     known_devices: set[str]
     incomplete_devices: set[str]
@@ -24,6 +27,7 @@ class EheimDigitalUpdateCoordinator(DataUpdateCoordinator[dict[str, EheimDigital
     def __init__(self, hass: HomeAssistant, config_entry: EheimDigitalConfigEntry) -> None: ...
     def add_platform_callback(self, async_setup_device_entities: AsyncSetupDeviceEntitiesCallback) -> None: ...
     async def _async_device_found(self, device_address: str, device_type: EheimDeviceType) -> None: ...
+    def _async_check_main_device_complete(self) -> None: ...
     async def _async_receive_callback(self) -> None: ...
     @override
     async def _async_setup(self) -> None: ...

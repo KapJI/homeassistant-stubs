@@ -1,9 +1,8 @@
 import asyncio
 from .client import CloudClient as CloudClient
 from .helpers import FixedSizeQueueLogHandler as FixedSizeQueueLogHandler
-from .models import PendingAutoLogin as PendingAutoLogin
 from _typeshed import Incomplete
-from hass_nabucasa import Cloud as Cloud
+from hass_nabucasa import AutoLoginController as AutoLoginController, Cloud as Cloud
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Any
@@ -12,7 +11,7 @@ DOMAIN: str
 DATA_CLOUD: HassKey[Cloud[CloudClient]]
 DATA_PLATFORMS_SETUP: HassKey[dict[str, asyncio.Event]]
 DATA_CLOUD_LOG_HANDLER: HassKey[FixedSizeQueueLogHandler]
-DATA_PENDING_AUTO_LOGIN: HassKey[PendingAutoLogin | None]
+DATA_PENDING_AUTO_LOGIN: HassKey[AutoLoginController | None]
 EVENT_CLOUD_EVENT: str
 REQUEST_TIMEOUT: int
 PREVIEW_FEATURE_STT_V2: str

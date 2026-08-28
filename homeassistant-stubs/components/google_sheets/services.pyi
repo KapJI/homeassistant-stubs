@@ -1,6 +1,7 @@
 from . import GoogleSheetsConfigEntry as GoogleSheetsConfigEntry
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
+from gspread import Spreadsheet as Spreadsheet, Worksheet as Worksheet
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_TOKEN as CONF_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -18,6 +19,7 @@ SERVICE_GET_SHEET: str
 SHEET_SERVICE_SCHEMA: Incomplete
 get_SHEET_SERVICE_SCHEMA: Incomplete
 
+def _get_worksheet(sheet: Spreadsheet, name: str | None) -> Worksheet: ...
 def _append_to_sheet(call: ServiceCall, entry: GoogleSheetsConfigEntry) -> None: ...
 def _get_from_sheet(call: ServiceCall, entry: GoogleSheetsConfigEntry) -> JsonObjectType: ...
 async def _async_append_to_sheet(call: ServiceCall) -> None: ...

@@ -1,4 +1,4 @@
-from .bot import BaseTelegramBot as BaseTelegramBot, TelegramBotConfigEntry as TelegramBotConfigEntry
+from .bot import ALLOWED_UPDATES as ALLOWED_UPDATES, BaseTelegramBot as BaseTelegramBot, TelegramBotConfigEntry as TelegramBotConfigEntry
 from .helpers import get_base_url as get_base_url
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant

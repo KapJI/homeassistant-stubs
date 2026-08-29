@@ -36,6 +36,8 @@ class SwitchBotCloudFan(SwitchBotCloudEntity, FanEntity):
     @override
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
 
+_AIR_PURIFIER_PRESET_MODES: Incomplete
+
 class SwitchBotAirPurifierEntity(SwitchBotCloudEntity, FanEntity):
     _api: SwitchBotAPI
     _attr_supported_features: Incomplete

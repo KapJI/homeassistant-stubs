@@ -20,6 +20,7 @@ FAN_MODE_MAP: Incomplete
 FAN_MODE_MAP_REVERSE: Incomplete
 PRESET_NATURAL_WIND: str
 PRESET_SLEEP_WIND: str
+PERCENT_CURRENT_AUTO_QUIRK: int
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: MatterConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 

@@ -4,7 +4,7 @@ from .storage.config_store import PlatformControllerBase as PlatformControllerBa
 from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, CONF_DEVICE as CONF_DEVICE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID, EntityCategory as EntityCategory
+from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, CONF_DEVICE as CONF_DEVICE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity

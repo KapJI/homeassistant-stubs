@@ -1,18 +1,23 @@
-from .const import CONF_KNX_KNXKEY_PASSWORD as CONF_KNX_KNXKEY_PASSWORD, DOMAIN as DOMAIN, KNXConfigEntryData as KNXConfigEntryData, REPAIR_ISSUE_DATA_SECURE_GROUP_KEY as REPAIR_ISSUE_DATA_SECURE_GROUP_KEY, REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR as REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR, SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM as SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM
+from .const import CONF_KNX_KNXKEY_PASSWORD as CONF_KNX_KNXKEY_PASSWORD, DOMAIN as DOMAIN, KNXConfigEntryData as KNXConfigEntryData, REPAIR_ISSUE_DATA_SECURE_GROUP_KEY as REPAIR_ISSUE_DATA_SECURE_GROUP_KEY, REPAIR_ISSUE_ENTITY_VALIDATION_ERROR as REPAIR_ISSUE_ENTITY_VALIDATION_ERROR, REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR as REPAIR_ISSUE_TELEGRAM_BACKEND_ERROR, SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM as SIGNAL_KNX_DATA_SECURE_ISSUE_TELEGRAM
 from .knx_module import KNXModule as KNXModule
 from .storage.keyring import DEFAULT_KNX_KEYRING_FILENAME as DEFAULT_KNX_KEYRING_FILENAME, save_uploaded_knxkeys_file as save_uploaded_knxkeys_file
 from .telegrams import TelegramDict as TelegramDict
+from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.components.repairs import RepairsFlow as RepairsFlow, RepairsFlowResult as RepairsFlowResult
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import selector as selector
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from typing import Any, Final
 from xknx.telegram import Telegram as Telegram
 
+_LOGGER: Incomplete
 CONF_KEYRING_FILE: Final[str]
 
 async def async_create_fix_flow(hass: HomeAssistant, issue_id: str, data: dict[str, str | int | float | None] | None) -> RepairsFlow: ...
+@callback
+def async_create_entity_validation_issue(hass: HomeAssistant, platform: Platform, unique_ids: list[str]) -> None: ...
 @callback
 def data_secure_group_key_issue_dispatcher(knx_module: KNXModule) -> Callable[[], None]: ...
 @callback

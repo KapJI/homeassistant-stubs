@@ -15,8 +15,11 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PeblarSelectEntityDescription(SelectEntityDescription):
+    options_fn: Callable[[PeblarUserConfiguration], list[str]] | None = ...
     current_fn: Callable[[PeblarUserConfiguration], str | None]
     select_fn: Callable[[Peblar, str], Awaitable[Any]]
+
+def _smart_charging_options(configuration: PeblarUserConfiguration) -> list[str]: ...
 
 DESCRIPTIONS: Incomplete
 
@@ -24,6 +27,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: PeblarConfigEntry, async
 
 class PeblarSelectEntity(PeblarEntity[PeblarUserConfigurationDataUpdateCoordinator], SelectEntity):
     entity_description: PeblarSelectEntityDescription
+    @property
+    @override
+    def options(self) -> list[str]: ...
     @property
     @override
     def current_option(self) -> str | None: ...

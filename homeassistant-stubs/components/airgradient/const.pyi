@@ -32,6 +32,7 @@ class ModelCapabilities:
 
 COMMON_LEGACY_CONFIG: Incomplete
 GO_CONFIG: Incomplete
+OUTDOOR_CAPABILITIES: Incomplete
 MODEL_CAPABILITIES: tuple[tuple[str, ModelCapabilities], ...]
 
 def get_model_capabilities(model: str) -> ModelCapabilities | None: ...

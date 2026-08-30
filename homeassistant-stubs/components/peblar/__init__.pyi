@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarDataUpdateCoordinator as PeblarDataUpdateCoordinator, PeblarRuntimeData as PeblarRuntimeData, PeblarUserConfigurationDataUpdateCoordinator as PeblarUserConfigurationDataUpdateCoordinator, PeblarVersionDataUpdateCoordinator as PeblarVersionDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, Platform as Platform

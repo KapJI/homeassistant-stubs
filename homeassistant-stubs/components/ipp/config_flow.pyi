@@ -1,4 +1,4 @@
-from .const import CONF_BASE_PATH as CONF_BASE_PATH, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN
+from .const import CONF_BASE_PATH as CONF_BASE_PATH, CONF_SERIAL as CONF_SERIAL, DOMAIN as DOMAIN, REQUEST_TIMEOUT as REQUEST_TIMEOUT
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_UUID as CONF_UUID, CONF_VERIFY_SSL as CONF_VERIFY_SSL

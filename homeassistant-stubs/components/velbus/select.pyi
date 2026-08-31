@@ -17,7 +17,6 @@ class VelbusSelect(VelbusEntity, SelectEntity):
     _attr_entity_category: Incomplete
     _attr_translation_key: str
     _attr_options: Incomplete
-    _attr_unique_id: Incomplete
     def __init__(self, channel: SelectedProgram) -> None: ...
     @api_call
     @override

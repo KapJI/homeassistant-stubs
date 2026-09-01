@@ -23,7 +23,9 @@ from typing import Any, override
 SUPPORTED_FEATURES_BASE: Incomplete
 QUEUE_OPTION_MAP: Incomplete
 REPEAT_MODE_MAPPING_TO_HA: Incomplete
+MASS_ICON_TO_MDI: Mapping[str, str]
 
+def _get_mdi_icon(icon: str) -> str: ...
 async def async_setup_entry(hass: HomeAssistant, entry: MusicAssistantConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):

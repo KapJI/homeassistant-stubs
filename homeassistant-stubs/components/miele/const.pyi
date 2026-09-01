@@ -326,6 +326,7 @@ class WashingMachineProgramId(MieleEnum, missing_to_none=True):
     table_linen: int
     outerwear: int
     pillows: int
+    towels: int
     cool_air: int
     warm_air: int
     rinse_out_lint: int
@@ -370,7 +371,7 @@ class DishWasherProgramId(MieleEnum, missing_to_none=True):
     pasta_paela: int
     tall_items: Incomplete
     glasses_warm: int
-    quick_intense: int
+    quick_intense: Incomplete
     normal: Incomplete
     pre_wash: int
     pot_rests_and_filters: int

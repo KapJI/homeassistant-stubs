@@ -6,7 +6,6 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pythonxbox.api.client import XboxLiveClient as XboxLiveClient
 from pythonxbox.api.provider.catalog.models import AlternateIdType, Product as Product

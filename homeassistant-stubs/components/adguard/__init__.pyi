@@ -4,7 +4,7 @@ from adguardhome import AdGuardHome
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -22,5 +22,7 @@ class AdGuardData:
     version: str
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+@callback
+def _async_migrate_device_identifiers(hass: HomeAssistant, entry: AdGuardConfigEntry) -> None: ...
 async def async_setup_entry(hass: HomeAssistant, entry: AdGuardConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: AdGuardConfigEntry) -> bool: ...

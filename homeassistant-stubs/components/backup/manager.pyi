@@ -6,7 +6,7 @@ from .config import BackupConfig as BackupConfig, CreateBackupParametersDict as 
 from .const import BUF_SIZE as BUF_SIZE, DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN, EXCLUDE_DATABASE_FROM_BACKUP as EXCLUDE_DATABASE_FROM_BACKUP, EXCLUDE_FROM_BACKUP as EXCLUDE_FROM_BACKUP, LOGGER as LOGGER, SECURETAR_CREATE_VERSION as SECURETAR_CREATE_VERSION
 from .models import AddonInfo as AddonInfo, AgentBackup as AgentBackup, BackupError as BackupError, BackupManagerError as BackupManagerError, BackupNotFound as BackupNotFound, BackupReaderWriterError as BackupReaderWriterError, BaseBackup as BaseBackup, Folder as Folder, InvalidBackupFilename as InvalidBackupFilename
 from .store import BackupStore as BackupStore
-from .util import DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, make_backup_dir as make_backup_dir, read_backup as read_backup, validate_password as validate_password, validate_password_stream as validate_password_stream
+from .util import DecryptedBackupStreamer as DecryptedBackupStreamer, EncryptedBackupStreamer as EncryptedBackupStreamer, iter_upload_chunks as iter_upload_chunks, make_backup_dir as make_backup_dir, read_backup as read_backup, receive_file as receive_file, validate_password as validate_password, validate_password_stream as validate_password_stream
 from _typeshed import Incomplete
 from collections.abc import AsyncIterator, Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -268,6 +268,7 @@ class CoreBackupReaderWriter(BackupReaderWriter):
     async def async_create_backup(self, *, agent_ids: list[str], backup_name: str, extra_metadata: dict[str, bool | str], include_addons: list[str] | None, include_all_addons: bool, include_database: bool, include_folders: list[Folder] | None, include_homeassistant: bool, on_progress: Callable[[CreateBackupEvent], None], password: str | None) -> tuple[NewBackup, asyncio.Task[WrittenBackup]]: ...
     async def _async_create_backup(self, *, agent_ids: list[str], backup_id: str, backup_name: str, date_str: str, extra_metadata: dict[str, bool | str], include_database: bool, on_progress: Callable[[CreateBackupEvent], None], password: str | None) -> WrittenBackup: ...
     def _mkdir_and_generate_backup_contents(self, backup_data: dict[str, Any], database_included: bool, password: str | None, tar_file_path: Path | None) -> tuple[Path, int]: ...
+    async def _receive_and_move_backup(self, *, agent_ids: list[str], stream: AsyncIterator[bytes], temp_file: Path) -> tuple[AgentBackup, Path]: ...
     @override
     async def async_receive_backup(self, *, agent_ids: list[str], stream: AsyncIterator[bytes], suggested_filename: str) -> WrittenBackup: ...
     @override

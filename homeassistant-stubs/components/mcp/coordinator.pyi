@@ -15,6 +15,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as Da
 from homeassistant.util.json import JsonObjectType as JsonObjectType
 from homeassistant.util.ssl import SSLCipherList as SSLCipherList, SSL_ALPN_HTTP11 as SSL_ALPN_HTTP11, client_context as client_context
 from mcp.client.session import ClientSession
+from mcp.types import InitializeResult as InitializeResult
 from typing import override
 
 _LOGGER: Incomplete
@@ -24,7 +25,7 @@ type TokenManager = Callable[[], Awaitable[str]]
 
 def _create_sse_httpx_client(headers: dict[str, str] | None = None, timeout: httpx.Timeout | None = None, auth: httpx.Auth | None = None) -> httpx.AsyncClient: ...
 @asynccontextmanager
-async def mcp_client(hass: HomeAssistant, url: str, token_manager: TokenManager | None = None) -> AsyncGenerator[ClientSession]: ...
+async def mcp_client(hass: HomeAssistant, url: str, token_manager: TokenManager | None = None) -> AsyncGenerator[tuple[ClientSession, InitializeResult]]: ...
 
 class ModelContextProtocolTool(llm.Tool):
     name: Incomplete

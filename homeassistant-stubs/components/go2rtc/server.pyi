@@ -19,6 +19,10 @@ _API_ALLOW_PATHS: Incomplete
 _UI_APP_MODULES: Incomplete
 _UI_API_ALLOW_PATHS: Incomplete
 _LOG_LEVEL_MAP: Incomplete
+_URL_USERINFO: Incomplete
+_URL_CREDENTIAL_QUERY: Incomplete
+
+def _redact_url_credentials(msg: str) -> str: ...
 
 class Go2RTCServerStartError(HomeAssistantError):
     _message: str

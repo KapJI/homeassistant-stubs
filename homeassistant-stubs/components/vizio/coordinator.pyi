@@ -41,7 +41,7 @@ class VizioDeviceData:
 class VizioDeviceCoordinator(DataUpdateCoordinator[VizioDeviceData]):
     config_entry: VizioConfigEntry
     device: Incomplete
-    _use_state_extended: bool
+    _use_state_extended: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: VizioConfigEntry, device: Vizio) -> None: ...
     @override
     async def _async_setup(self) -> None: ...

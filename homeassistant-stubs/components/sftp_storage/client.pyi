@@ -9,6 +9,8 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from types import TracebackType
 from typing import Self
 
+class SFTPConnectionError(BackupAgentError): ...
+
 def get_client_options(cfg: SFTPConfigEntryData) -> SSHClientConnectionOptions: ...
 
 class AsyncFileIterator:

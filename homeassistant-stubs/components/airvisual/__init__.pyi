@@ -9,6 +9,7 @@ from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_COUNTRY as CO
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import aiohttp_client as aiohttp_client
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue
+from homeassistant.helpers.redact import partial_redact as partial_redact
 from typing import Any
 
 DOMAIN_AIRVISUAL_PRO: str

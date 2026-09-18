@@ -3,7 +3,7 @@ from .const import DEFAULT_AREAS as DEFAULT_AREAS, DOMAIN as DOMAIN, STEPS as ST
 from _typeshed import Incomplete
 from aiohttp import web as web
 from homeassistant.auth.const import GROUP_ID_ADMIN as GROUP_ID_ADMIN
-from homeassistant.auth.providers.homeassistant import HassAuthProvider as HassAuthProvider
+from homeassistant.auth.providers.homeassistant import HassAuthProvider as HassAuthProvider, InvalidUsername as InvalidUsername
 from homeassistant.components import person as person
 from homeassistant.components.auth import indieauth as indieauth
 from homeassistant.components.http import KEY_HASS as KEY_HASS, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID

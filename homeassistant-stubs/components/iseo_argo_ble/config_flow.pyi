@@ -10,8 +10,10 @@ from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict,
 from typing import Any, override
 
 _LOGGER: Incomplete
+_ISEO_OUI: str
 
 def _generate_identity() -> ec.EllipticCurvePrivateKey: ...
+def _is_iseo_lock(info: BluetoothServiceInfoBleak) -> bool: ...
 def _discover_locks(hass: HomeAssistant) -> list[BluetoothServiceInfoBleak]: ...
 
 class IseoConfigFlow(ConfigFlow, domain=DOMAIN):

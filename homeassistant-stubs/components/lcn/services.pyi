@@ -5,6 +5,7 @@ from enum import StrEnum
 from homeassistant.const import CONF_BRIGHTNESS as CONF_BRIGHTNESS, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_STATE as CONF_STATE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.helpers.service import async_get_device_and_config_entry as async_get_device_and_config_entry
 from pypck.device import DeviceConnection as DeviceConnection
 from typing import override
 

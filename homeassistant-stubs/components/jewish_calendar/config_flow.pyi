@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_CANDLE_LIGHT_MINUTES as CONF_CANDLE_LIGHT_MINUTES, CONF_DAILY_EVENTS as CONF_DAILY_EVENTS, CONF_DIASPORA as CONF_DIASPORA, CONF_HAVDALAH_OFFSET_MINUTES as CONF_HAVDALAH_OFFSET_MINUTES, CONF_LEARNING_SCHEDULE as CONF_LEARNING_SCHEDULE, CONF_YEARLY_EVENTS as CONF_YEARLY_EVENTS, DEFAULT_CALENDAR_EVENTS as DEFAULT_CALENDAR_EVENTS, DEFAULT_CANDLE_LIGHT as DEFAULT_CANDLE_LIGHT, DEFAULT_DIASPORA as DEFAULT_DIASPORA, DEFAULT_HAVDALAH_OFFSET_MINUTES as DEFAULT_HAVDALAH_OFFSET_MINUTES, DEFAULT_LANGUAGE as DEFAULT_LANGUAGE, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, DailyCalendarEventType as DailyCalendarEventType, LearningScheduleEventType as LearningScheduleEventType, YearlyCalendarEventType as YearlyCalendarEventType
 from .entity import JewishCalendarConfigEntry as JewishCalendarConfigEntry
 from _typeshed import Incomplete
@@ -11,7 +11,7 @@ from typing import Any, override
 OPTIONS_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
-async def _get_data_schema(hass: HomeAssistant) -> vol.Schema: ...
+async def _get_data_schema(hass: HomeAssistant) -> probatio.Schema: ...
 
 class JewishCalendarConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

@@ -1,8 +1,9 @@
 import abc
-from .const import CHILD_CALLBACK as CHILD_CALLBACK, DOMAIN as DOMAIN, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK, PLATFORM_TYPES as PLATFORM_TYPES, UPDATE_DELAY as UPDATE_DELAY
+from .const import CHILD_CALLBACK as CHILD_CALLBACK, DOMAIN as DOMAIN, DevId as DevId, GatewayId as GatewayId, NODE_CALLBACK as NODE_CALLBACK, UPDATE_DELAY as UPDATE_DELAY
+from .models import MySensorsConfigEntry as MySensorsConfigEntry
 from _typeshed import Incomplete
 from abc import abstractmethod
-from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DEVICE as CONF_DEVICE, Platform as Platform, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
+from homeassistant.const import ATTR_BATTERY_LEVEL as ATTR_BATTERY_LEVEL, CONF_DEVICE as CONF_DEVICE, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.debounce import Debouncer as Debouncer
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
@@ -18,15 +19,15 @@ ATTR_DESCRIPTION: str
 ATTR_DEVICE: str
 ATTR_NODE_ID: str
 ATTR_HEARTBEAT: str
-MYSENSORS_PLATFORM_DEVICES: str
 
 class MySensorNodeEntity(Entity, metaclass=abc.ABCMeta):
     hass: HomeAssistant
+    config_entry: Incomplete
     gateway_id: GatewayId
     gateway: BaseAsyncGateway
     node_id: int
     _debouncer: Debouncer | None
-    def __init__(self, gateway_id: GatewayId, gateway: BaseAsyncGateway, node_id: int) -> None: ...
+    def __init__(self, config_entry: MySensorsConfigEntry, node_id: int) -> None: ...
     @property
     def _node(self) -> Sensor: ...
     @property
@@ -48,15 +49,13 @@ class MySensorNodeEntity(Entity, metaclass=abc.ABCMeta):
     @override
     async def async_added_to_hass(self) -> None: ...
 
-def get_mysensors_devices(hass: HomeAssistant, domain: Platform) -> dict[DevId, MySensorsChildEntity]: ...
-
 class MySensorsChildEntity(MySensorNodeEntity):
     _attr_should_poll: bool
     child_id: int
     value_type: int
     child_type: Incomplete
     _values: dict[int, Any]
-    def __init__(self, gateway_id: GatewayId, gateway: BaseAsyncGateway, node_id: int, child_id: int, value_type: int) -> None: ...
+    def __init__(self, config_entry: MySensorsConfigEntry, node_id: int, child_id: int, value_type: int) -> None: ...
     @property
     def dev_id(self) -> DevId: ...
     @property
@@ -67,8 +66,6 @@ class MySensorsChildEntity(MySensorNodeEntity):
     @property
     @override
     def name(self) -> str: ...
-    @override
-    async def async_will_remove_from_hass(self) -> None: ...
     @property
     @override
     def available(self) -> bool: ...

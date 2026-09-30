@@ -5,13 +5,20 @@ from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowR
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any, Protocol, override
 
-class RepairsFlowResult(data_entry_flow.FlowResult[data_entry_flow.FlowContext, str], total=False):
+class RepairsFlowContext(data_entry_flow.FlowContext, total=False):
+    issue_id: str
+
+class RepairsFlowResult(data_entry_flow.FlowResult[RepairsFlowContext, str], total=False):
     next_flow: tuple[FlowType, str]
     result: ConfigEntry | None
 
-class RepairsFlow(data_entry_flow.FlowHandler[data_entry_flow.FlowContext, RepairsFlowResult, str]):
-    issue_id: str
+class RepairsFlow(data_entry_flow.FlowHandler[RepairsFlowContext, RepairsFlowResult, str]):
     data: dict[str, str | int | float | None] | None
+    _issue_id: str
+    @property
+    def issue_id(self) -> str: ...
+    @issue_id.setter
+    def issue_id(self, issue_id: str) -> None: ...
     @override
     @callback
     def async_create_entry(self, *, title: str | None = None, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None, next_flow: tuple[FlowType, str] | None = None) -> RepairsFlowResult: ...

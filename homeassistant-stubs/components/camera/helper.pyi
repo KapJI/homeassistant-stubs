@@ -1,6 +1,8 @@
 from . import Camera as Camera
-from .const import DATA_COMPONENT as DATA_COMPONENT
+from .const import CameraEntityFeature as CameraEntityFeature, DATA_COMPONENT as DATA_COMPONENT
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 
 def get_camera_from_entity_id(hass: HomeAssistant, entity_id: str) -> Camera: ...
+async def async_get_stream_image(camera: Camera, width: int | None = None, height: int | None = None, wait_for_next_keyframe: bool = False) -> bytes | None: ...
+async def async_stream_endpoint_url(hass: HomeAssistant, camera: Camera, fmt: str) -> str: ...

@@ -10,10 +10,12 @@ from homeassistant.const import EntityCategory as EntityCategory, Platform as Pl
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import Any, Literal, override
-from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicDeviceModel as PublicDeviceModel, PublicRelayOutput as PublicRelayOutput, Relay as Relay, RelayOutputState
+from uiprotect.data import Camera, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicDeviceModel as PublicDeviceModel, PublicRelayOutput as PublicRelayOutput, Relay, RelayOutputState
+from uiprotect.data.public_devices import PublicCamera as PublicCamera
 
 ATTR_PREV_MIC: str
 ATTR_PREV_RECORD: str
@@ -22,7 +24,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class ProtectSwitchEntityDescription(ProtectSettableKeysMixin[T], SwitchEntityDescription): ...
 
-async def _set_highfps(obj: Camera, value: bool) -> None: ...
+async def _set_highfps(obj: PublicCamera, value: bool) -> None: ...
 async def _set_hdr(obj: Camera, value: bool) -> None: ...
 
 CAMERA_SWITCHES: tuple[ProtectSwitchEntityDescription, ...]

@@ -1,6 +1,6 @@
 from .coordinator import ComelitSerialBridge as ComelitSerialBridge
 from _typeshed import Incomplete
-from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
+from aiocomelit import ComelitDeviceObject as ComelitDeviceObject
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 
 class ComelitBridgeBaseEntity(CoordinatorEntity[ComelitSerialBridge]):
@@ -8,4 +8,4 @@ class ComelitBridgeBaseEntity(CoordinatorEntity[ComelitSerialBridge]):
     _device: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...
+    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitDeviceObject, config_entry_entry_id: str) -> None: ...

@@ -1,4 +1,5 @@
 from .const import CONF_COMMAND_TIMEOUT as CONF_COMMAND_TIMEOUT, CONF_JSON_ATTRIBUTES as CONF_JSON_ATTRIBUTES, CONF_JSON_ATTRIBUTES_PATH as CONF_JSON_ATTRIBUTES_PATH, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DOMAIN as DOMAIN
+from .utils import async_prune_shell_template_issues as async_prune_shell_template_issues, build_shell_template_issue_id as build_shell_template_issue_id
 from _typeshed import Incomplete
 from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS
 from homeassistant.const import CONF_COMMAND as CONF_COMMAND, CONF_COMMAND_CLOSE as CONF_COMMAND_CLOSE, CONF_COMMAND_OFF as CONF_COMMAND_OFF, CONF_COMMAND_ON as CONF_COMMAND_ON, CONF_COMMAND_OPEN as CONF_COMMAND_OPEN, CONF_COMMAND_STATE as CONF_COMMAND_STATE, CONF_COMMAND_STOP as CONF_COMMAND_STOP, CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_ICON as CONF_ICON, CONF_NAME as CONF_NAME, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_SCAN_INTERVAL as CONF_SCAN_INTERVAL, CONF_UNIQUE_ID as CONF_UNIQUE_ID, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform, SERVICE_RELOAD as SERVICE_RELOAD
@@ -27,4 +28,5 @@ COMBINED_SCHEMA: Incomplete
 CONFIG_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
+def _shell_template_issue_ids(command_line_config: list[dict[str, dict[str, Any]]]) -> set[str]: ...
 async def async_load_platforms(hass: HomeAssistant, command_line_config: list[dict[str, dict[str, Any]]], config: ConfigType) -> None: ...

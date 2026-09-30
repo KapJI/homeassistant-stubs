@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .bridge import AsusWrtBridge as AsusWrtBridge
 from .const import CONF_DNSMASQ as CONF_DNSMASQ, CONF_INTERFACE as CONF_INTERFACE, CONF_MORE_OPTIONS as CONF_MORE_OPTIONS, CONF_REQUIRE_IP as CONF_REQUIRE_IP, CONF_SSH_KEY as CONF_SSH_KEY, CONF_TRACK_UNKNOWN as CONF_TRACK_UNKNOWN, DEFAULT_DNSMASQ as DEFAULT_DNSMASQ, DEFAULT_INTERFACE as DEFAULT_INTERFACE, DEFAULT_TRACK_UNKNOWN as DEFAULT_TRACK_UNKNOWN, DOMAIN as DOMAIN, MODE_AP as MODE_AP, MODE_ROUTER as MODE_ROUTER, PROTOCOL_HTTP as PROTOCOL_HTTP, PROTOCOL_HTTPS as PROTOCOL_HTTPS, PROTOCOL_SSH as PROTOCOL_SSH, PROTOCOL_TELNET as PROTOCOL_TELNET
 from _typeshed import Incomplete
@@ -19,7 +19,7 @@ _LOGGER: Incomplete
 LEGACY_SCHEMA: Incomplete
 OPTIONS_SCHEMA: Incomplete
 
-async def get_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def get_options_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
 
 OPTIONS_FLOW: Incomplete
 

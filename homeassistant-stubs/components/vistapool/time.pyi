@@ -20,6 +20,7 @@ _SECONDS_PER_MINUTE: int
 @dataclass(frozen=True, kw_only=True)
 class VistapoolTimeEntityDescription(TimeEntityDescription):
     value_path: str
+    presence_path: str | None = ...
 
 TIME_DESCRIPTIONS: tuple[VistapoolTimeEntityDescription, ...]
 

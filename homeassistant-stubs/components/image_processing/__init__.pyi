@@ -1,26 +1,17 @@
-from .const import ImageProcessingEntityStateAttribute as ImageProcessingEntityStateAttribute
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, ImageProcessingDeviceClass as ImageProcessingDeviceClass, ImageProcessingEntityStateAttribute as ImageProcessingEntityStateAttribute, SERVICE_SCAN as SERVICE_SCAN
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from enum import StrEnum
 from homeassistant.components.camera import async_get_image as async_get_image
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_NAME as ATTR_NAME, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME, CONF_SOURCE as CONF_SOURCE
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.config_validation import make_entity_service_schema as make_entity_service_schema
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Final, TypedDict, final, override
 
 _LOGGER: Incomplete
-DOMAIN: Final[str]
 SCAN_INTERVAL: Incomplete
-
-class ImageProcessingDeviceClass(StrEnum):
-    ALPR = 'alpr'
-    FACE = 'face'
-    OCR = 'ocr'
-
-SERVICE_SCAN: str
 EVENT_DETECT_FACE: str
 ATTR_AGE: str
 ATTR_CONFIDENCE: Final[str]

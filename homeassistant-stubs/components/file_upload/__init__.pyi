@@ -1,6 +1,6 @@
 import asyncio
 from _typeshed import Incomplete
-from aiohttp import web
+from aiohttp import BodyPartReader, web
 from collections.abc import Generator
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -34,6 +34,8 @@ class FileUploadData:
     def has_file(self, file_id: str) -> bool: ...
     def file_dir(self, file_id: str) -> Path: ...
     def file_path(self, file_id: str) -> Path: ...
+
+async def _receive_file_field(hass: HomeAssistant, file_field_reader: BodyPartReader, file_path: Path) -> None: ...
 
 class FileUploadView(HomeAssistantView):
     url: str

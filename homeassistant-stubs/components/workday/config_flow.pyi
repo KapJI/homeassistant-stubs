@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import ALLOWED_DAYS as ALLOWED_DAYS, CONF_ADD_HOLIDAYS as CONF_ADD_HOLIDAYS, CONF_CATEGORY as CONF_CATEGORY, CONF_EXCLUDES as CONF_EXCLUDES, CONF_OFFSET as CONF_OFFSET, CONF_PROVINCE as CONF_PROVINCE, CONF_REMOVE_HOLIDAYS as CONF_REMOVE_HOLIDAYS, CONF_WORKDAYS as CONF_WORKDAYS, DEFAULT_EXCLUDES as DEFAULT_EXCLUDES, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_OFFSET as DEFAULT_OFFSET, DEFAULT_WORKDAYS as DEFAULT_WORKDAYS, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
@@ -9,7 +9,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.selector import CountrySelector as CountrySelector, CountrySelectorConfig as CountrySelectorConfig, LanguageSelector as LanguageSelector, LanguageSelectorConfig as LanguageSelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from typing import Any, override
 
-def add_province_and_language_to_schema(schema: vol.Schema, country: str | None) -> vol.Schema: ...
+def add_province_and_language_to_schema(schema: probatio.Schema, country: str | None) -> probatio.Schema: ...
 def _is_valid_date_range(check_date: str, error: type[HomeAssistantError]) -> bool: ...
 def validate_custom_dates(user_input: dict[str, Any]) -> None: ...
 

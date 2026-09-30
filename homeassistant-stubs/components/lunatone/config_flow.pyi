@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import DOMAIN as DOMAIN
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_URL as CONF_URL
@@ -6,7 +6,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
 from typing import Any, Final, override
 
-DATA_SCHEMA: Final[vol.Schema]
+DATA_SCHEMA: Final[probatio.Schema]
 
 class LunatoneConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

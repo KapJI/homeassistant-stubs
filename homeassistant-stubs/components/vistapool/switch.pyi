@@ -4,7 +4,7 @@ from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCo
 from .entity import VistapoolEntity as VistapoolEntity
 from _typeshed import Incomplete
 from dataclasses import dataclass
-from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
+from homeassistant.components.switch import SwitchDeviceClass as SwitchDeviceClass, SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -25,6 +25,7 @@ def _build_switch_entities(coordinator: VistapoolDataUpdateCoordinator) -> list[
 async def async_setup_entry(hass: HomeAssistant, entry: VistapoolConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VistapoolSwitch(VistapoolEntity, SwitchEntity):
+    _attr_device_class: Incomplete
     entity_description: VistapoolSwitchEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: VistapoolDataUpdateCoordinator, description: VistapoolSwitchEntityDescription) -> None: ...

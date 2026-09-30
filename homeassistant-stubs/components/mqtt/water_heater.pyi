@@ -9,11 +9,11 @@ from _typeshed import Incomplete
 from homeassistant.components import water_heater as water_heater
 from homeassistant.components.water_heater import ATTR_OPERATION_MODE as ATTR_OPERATION_MODE, DEFAULT_MIN_TEMP as DEFAULT_MIN_TEMP, STATE_ECO as STATE_ECO, STATE_ELECTRIC as STATE_ELECTRIC, STATE_GAS as STATE_GAS, STATE_HEAT_PUMP as STATE_HEAT_PUMP, STATE_HIGH_DEMAND as STATE_HIGH_DEMAND, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature, WaterHeaterStateAttribute as WaterHeaterStateAttribute
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, CONF_NAME as CONF_NAME, CONF_OPTIMISTIC as CONF_OPTIMISTIC, CONF_PAYLOAD_OFF as CONF_PAYLOAD_OFF, CONF_PAYLOAD_ON as CONF_PAYLOAD_ON, CONF_TEMPERATURE_UNIT as CONF_TEMPERATURE_UNIT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, PRECISION_HALVES as PRECISION_HALVES, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, STATE_OFF as STATE_OFF, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import ConfigType as ConfigType, VolSchemaType as VolSchemaType
+from homeassistant.helpers.typing import ConfigType as ConfigType, UNDEFINED as UNDEFINED, VolSchemaType as VolSchemaType
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from typing import Any, override
 
@@ -56,6 +56,8 @@ class MqttWaterHeater(MqttTemperatureControlEntity, WaterHeaterEntity):
     def _setup_from_config(self, config: ConfigType) -> None: ...
     @callback
     def _handle_current_mode_received(self, msg: ReceiveMessage) -> None: ...
+    @callback
+    def _handle_target_temperature_received(self, msg: ReceiveMessage) -> None: ...
     @callback
     @override
     def _prepare_subscribe_topics(self) -> None: ...

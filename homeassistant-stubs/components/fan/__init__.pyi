@@ -1,6 +1,6 @@
-from .const import FanEntityCapabilityAttribute as FanEntityCapabilityAttribute, FanEntityStateAttribute as FanEntityStateAttribute
+from .const import ATTR_DIRECTION as ATTR_DIRECTION, ATTR_OSCILLATING as ATTR_OSCILLATING, ATTR_PERCENTAGE as ATTR_PERCENTAGE, ATTR_PERCENTAGE_STEP as ATTR_PERCENTAGE_STEP, ATTR_PRESET_MODE as ATTR_PRESET_MODE, ATTR_PRESET_MODES as ATTR_PRESET_MODES, DATA_COMPONENT as DATA_COMPONENT, DIRECTION_FORWARD as DIRECTION_FORWARD, DIRECTION_REVERSE as DIRECTION_REVERSE, DOMAIN as DOMAIN, FanEntityCapabilityAttribute as FanEntityCapabilityAttribute, FanEntityFeature as FanEntityFeature, FanEntityStateAttribute as FanEntityStateAttribute, SERVICE_DECREASE_SPEED as SERVICE_DECREASE_SPEED, SERVICE_INCREASE_SPEED as SERVICE_INCREASE_SPEED, SERVICE_OSCILLATE as SERVICE_OSCILLATE, SERVICE_SET_DIRECTION as SERVICE_SET_DIRECTION, SERVICE_SET_PERCENTAGE as SERVICE_SET_PERCENTAGE, SERVICE_SET_PRESET_MODE as SERVICE_SET_PRESET_MODE
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -8,41 +8,15 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.percentage import percentage_to_ranged_value as percentage_to_ranged_value, ranged_value_to_percentage as ranged_value_to_percentage
 from propcache.api import cached_property
-from typing import Any, Final, final, override
+from typing import Any, final, override
 
 _LOGGER: Incomplete
-DOMAIN: Final[str]
-DATA_COMPONENT: HassKey[EntityComponent[FanEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
-
-class FanEntityFeature(IntFlag):
-    SET_SPEED = 1
-    OSCILLATE = 2
-    DIRECTION = 4
-    PRESET_MODE = 8
-    TURN_OFF = 16
-    TURN_ON = 32
-
-SERVICE_INCREASE_SPEED: str
-SERVICE_DECREASE_SPEED: str
-SERVICE_OSCILLATE: str
-SERVICE_SET_DIRECTION: str
-SERVICE_SET_PERCENTAGE: str
-SERVICE_SET_PRESET_MODE: str
-DIRECTION_FORWARD: str
-DIRECTION_REVERSE: str
-ATTR_PERCENTAGE: str
-ATTR_PERCENTAGE_STEP: str
-ATTR_OSCILLATING: str
-ATTR_DIRECTION: str
-ATTR_PRESET_MODE: str
-ATTR_PRESET_MODES: str
 
 class NotValidPresetModeError(ServiceValidationError):
     def __init__(self, *args: object, translation_placeholders: dict[str, str] | None = None) -> None: ...

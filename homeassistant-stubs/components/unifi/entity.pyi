@@ -1,6 +1,7 @@
 import abc
 import aiounifi
 from .const import ATTR_MANUFACTURER as ATTR_MANUFACTURER, DOMAIN as DOMAIN
+from .coordinator import UnifiDataUpdateCoordinator as UnifiDataUpdateCoordinator
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from abc import abstractmethod
@@ -46,6 +47,7 @@ class UnifiEntityDescription[HandlerT: APIHandler, ItemT: ApiItem](EntityDescrip
 
 class UnifiEntity[HandlerT: APIHandler, ItemT: ApiItem](Entity, metaclass=abc.ABCMeta):
     entity_description: UnifiEntityDescription[HandlerT, ItemT]
+    coordinator: UnifiDataUpdateCoordinator[HandlerT]
     _attr_unique_id: str
     _obj_id: Incomplete
     hub: Incomplete
@@ -60,12 +62,17 @@ class UnifiEntity[HandlerT: APIHandler, ItemT: ApiItem](Entity, metaclass=abc.AB
     @override
     async def async_added_to_hass(self) -> None: ...
     @callback
+    def _async_coordinator_updated(self) -> None: ...
+    @callback
+    def _async_process_update(self, event: ItemEvent = ...) -> None: ...
+    @callback
     def async_signalling_callback(self, event: ItemEvent, obj_id: str) -> None: ...
     @callback
     def async_signal_reachable_callback(self) -> None: ...
     async def async_signal_options_updated(self) -> None: ...
     async def remove_item(self, keys: set) -> None: ...
     async def async_update(self) -> None: ...
+    async def async_refresh_after_control(self) -> None: ...
     @callback
     def async_initiate_state(self) -> None: ...
     @callback

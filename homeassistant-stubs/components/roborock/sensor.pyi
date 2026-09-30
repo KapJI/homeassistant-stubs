@@ -1,4 +1,5 @@
 import datetime
+from .const import DOMAIN as DOMAIN
 from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinatorType as RoborockCoordinatorType, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator, RoborockDataUpdateCoordinatorA01 as RoborockDataUpdateCoordinatorA01, RoborockWashingMachineUpdateCoordinator as RoborockWashingMachineUpdateCoordinator, RoborockWetDryVacUpdateCoordinator as RoborockWetDryVacUpdateCoordinator
 from .entity import RoborockCoordinatedEntityA01 as RoborockCoordinatedEntityA01, RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1, RoborockEntity as RoborockEntity
 from .models import DeviceState as DeviceState
@@ -6,7 +7,7 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform, UnitOfArea as UnitOfArea, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -50,7 +51,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: RoborockConfigEnt
 
 class RoborockSensorEntity(RoborockCoordinatedEntityV1, SensorEntity):
     entity_description: RoborockSensorDescription
-    def __init__(self, coordinator: RoborockDataUpdateCoordinator, description: RoborockSensorDescription) -> None: ...
+    def __init__(self, unique_id: str, coordinator: RoborockDataUpdateCoordinator, description: RoborockSensorDescription) -> None: ...
     @property
     @override
     def native_value(self) -> StateType | datetime.datetime: ...

@@ -1,49 +1,22 @@
-from .const import RemoteEntityStateAttribute as RemoteEntityStateAttribute
+from .const import ATTR_ACTIVITY as ATTR_ACTIVITY, ATTR_ACTIVITY_LIST as ATTR_ACTIVITY_LIST, ATTR_ALTERNATIVE as ATTR_ALTERNATIVE, ATTR_COMMAND_TYPE as ATTR_COMMAND_TYPE, ATTR_CURRENT_ACTIVITY as ATTR_CURRENT_ACTIVITY, ATTR_DELAY_SECS as ATTR_DELAY_SECS, ATTR_DEVICE as ATTR_DEVICE, ATTR_HOLD_SECS as ATTR_HOLD_SECS, ATTR_NUM_REPEATS as ATTR_NUM_REPEATS, ATTR_TIMEOUT as ATTR_TIMEOUT, DATA_COMPONENT as DATA_COMPONENT, DEFAULT_DELAY_SECS as DEFAULT_DELAY_SECS, DEFAULT_HOLD_SECS as DEFAULT_HOLD_SECS, DEFAULT_NUM_REPEATS as DEFAULT_NUM_REPEATS, DOMAIN as DOMAIN, RemoteEntityFeature as RemoteEntityFeature, RemoteEntityStateAttribute as RemoteEntityStateAttribute, SERVICE_DELETE_COMMAND as SERVICE_DELETE_COMMAND, SERVICE_LEARN_COMMAND as SERVICE_LEARN_COMMAND, SERVICE_SEND_COMMAND as SERVICE_SEND_COMMAND, SERVICE_SYNC as SERVICE_SYNC
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from collections.abc import Iterable
-from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
-from typing import Any, Final, final, override
+from typing import Any, final, override
 
 _LOGGER: Incomplete
-DOMAIN: Final[str]
-DATA_COMPONENT: HassKey[EntityComponent[RemoteEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
-ATTR_ACTIVITY: str
-ATTR_ACTIVITY_LIST: str
-ATTR_CURRENT_ACTIVITY: str
-ATTR_COMMAND_TYPE: str
-ATTR_DEVICE: str
-ATTR_NUM_REPEATS: str
-ATTR_DELAY_SECS: str
-ATTR_HOLD_SECS: str
-ATTR_ALTERNATIVE: str
-ATTR_TIMEOUT: str
 MIN_TIME_BETWEEN_SCANS: Incomplete
-SERVICE_SEND_COMMAND: str
-SERVICE_LEARN_COMMAND: str
-SERVICE_DELETE_COMMAND: str
-SERVICE_SYNC: str
-DEFAULT_NUM_REPEATS: int
-DEFAULT_DELAY_SECS: float
-DEFAULT_HOLD_SECS: int
-
-class RemoteEntityFeature(IntFlag):
-    LEARN_COMMAND = 1
-    DELETE_COMMAND = 2
-    ACTIVITY = 4
-
-REMOTE_SERVICE_ACTIVITY_SCHEMA: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

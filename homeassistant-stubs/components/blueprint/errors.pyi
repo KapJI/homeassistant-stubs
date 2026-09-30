@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
@@ -17,7 +17,7 @@ class FailedToLoad(BlueprintWithNameException):
 
 class InvalidBlueprint(BlueprintWithNameException):
     blueprint_data: Incomplete
-    def __init__(self, domain: str | None, blueprint_name: str | None, blueprint_data: Any, msg_or_exc: str | vol.Invalid) -> None: ...
+    def __init__(self, domain: str | None, blueprint_name: str | None, blueprint_data: Any, msg_or_exc: str | probatio.Invalid) -> None: ...
 
 class InvalidBlueprintInputs(BlueprintException):
     def __init__(self, domain: str, msg: str) -> None: ...

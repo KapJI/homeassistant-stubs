@@ -1,6 +1,5 @@
-from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateEntityFeature as UpdateEntityFeature, UpdateEntityStateAttribute as UpdateEntityStateAttribute
+from .const import ATTR_BACKUP as ATTR_BACKUP, ATTR_INSTALLED_VERSION as ATTR_INSTALLED_VERSION, ATTR_LATEST_VERSION as ATTR_LATEST_VERSION, ATTR_VERSION as ATTR_VERSION, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, DOMAIN as DOMAIN, SERVICE_INSTALL as SERVICE_INSTALL, SERVICE_SKIP as SERVICE_SKIP, UpdateDeviceClass as UpdateDeviceClass, UpdateEntityFeature as UpdateEntityFeature, UpdateEntityStateAttribute as UpdateEntityStateAttribute
 from _typeshed import Incomplete
-from enum import StrEnum
 from homeassistant.components import websocket_api
 from homeassistant.const import EntityCategory
 from homeassistant.helpers.entity import ABCCachedProperties, EntityDescription
@@ -12,11 +11,6 @@ __all__ = ['ATTR_BACKUP', 'ATTR_INSTALLED_VERSION', 'ATTR_LATEST_VERSION', 'ATTR
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-
-class UpdateDeviceClass(StrEnum):
-    FIRMWARE = 'firmware'
-
-DEVICE_CLASSES_SCHEMA: Incomplete
 
 class UpdateEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: UpdateDeviceClass | None = ...

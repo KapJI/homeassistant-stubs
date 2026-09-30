@@ -1,3 +1,4 @@
+from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.typing import StateType as StateType
@@ -6,8 +7,14 @@ from typing import Final, NamedTuple, TypedDict
 DOMAIN: Final[str]
 CONF_MODBUS_PORT: Final[str]
 DEFAULT_MODBUS_PORT: Final[int]
+CONF_AUTO_REVERT_POWER_LIMIT: Final[str]
+AUTO_REVERT_SECONDS: Final[int]
+HEARTBEAT_INTERVAL: Final[Incomplete]
 type SolarNetId = str
-SOLAR_NET_DISCOVERY_NEW: Final[str]
+_SOLAR_NET_DISCOVERY_NEW: Final[str]
+
+def discovery_signal(entry_id: str) -> str: ...
+
 SOLAR_NET_ID_POWER_FLOW: SolarNetId
 SOLAR_NET_ID_SYSTEM: SolarNetId
 SOLAR_NET_RESCAN_TIMER: Final[int]
@@ -16,6 +23,7 @@ class FroniusConfigEntryData(TypedDict):
     host: str
     is_logger: bool
     modbus_port: int
+    auto_revert_power_limit: bool
 
 class FroniusDeviceInfo(NamedTuple):
     device_info: DeviceInfo

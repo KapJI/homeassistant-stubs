@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_OEM as CONF_OEM, DEFAULT_OEM as DEFAULT_OEM, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -13,7 +13,7 @@ _LOGGER: Incomplete
 OEM_OPTIONS: Incomplete
 STEP_REAUTH_DATA_SCHEMA: Incomplete
 
-def _data_schema(default_oem: int = ...) -> vol.Schema: ...
+def _data_schema(default_oem: int = ...) -> probatio.Schema: ...
 def _entry_data(user_input: Mapping[str, Any]) -> dict[str, Any]: ...
 def _unique_id(account_id: str, oem: int) -> str: ...
 

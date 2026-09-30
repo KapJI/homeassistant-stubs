@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.dt import utcnow as utcnow
-from linkplay.bridge import LinkPlayBridge as LinkPlayBridge
+from linkplay.bridge import LinkPlayBridge as LinkPlayBridge, LinkPlayPlayer as LinkPlayPlayer
 from linkplay.consts import EqualizerMode, LoopMode, PlayingMode, PlayingStatus
 from linkplay.controller import LinkPlayController as LinkPlayController
 from typing import Any, override
@@ -89,6 +89,8 @@ class LinkPlayMediaPlayerEntity(LinkPlayBaseEntity, MediaPlayerEntity):
     @property
     @override
     def group_members(self) -> list[str]: ...
+    @property
+    def _active_player(self) -> LinkPlayPlayer: ...
     @property
     @override
     def media_image_url(self) -> str | None: ...

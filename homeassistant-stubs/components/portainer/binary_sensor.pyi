@@ -14,6 +14,7 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class PortainerContainerBinarySensorEntityDescription(BinarySensorEntityDescription):
     state_fn: Callable[[PortainerContainerData], bool | None]
+    supported_fn: Callable[[PortainerContainerData], bool]
 
 @dataclass(frozen=True, kw_only=True)
 class PortainerEndpointBinarySensorEntityDescription(BinarySensorEntityDescription):

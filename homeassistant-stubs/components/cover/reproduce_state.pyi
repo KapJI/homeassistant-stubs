@@ -1,4 +1,5 @@
-from . import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN
+from . import ATTR_POSITION as ATTR_POSITION, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Coroutine, Iterable
 from functools import partial

@@ -2,11 +2,10 @@ from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID
 from .coordinator import TradfriConfigEntry as TradfriConfigEntry, TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from .entity import TradfriBaseEntity as TradfriBaseEntity
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ColorMode as ColorMode, LightEntity as LightEntity, LightEntityFeature as LightEntityFeature, filter_supported_color_modes as filter_supported_color_modes
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pytradfri.command import Command as Command
+from pytradfri.api.aiocoap_api import APIRequestProtocol as APIRequestProtocol
 from typing import Any, override
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: TradfriConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -22,7 +21,7 @@ class TradfriLight(TradfriBaseEntity, LightEntity):
     _attr_supported_color_modes: Incomplete
     _attr_max_color_temp_kelvin: Incomplete
     _attr_min_color_temp_kelvin: Incomplete
-    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str) -> None: ...
+    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: APIRequestProtocol, gateway_id: str) -> None: ...
     @override
     def _refresh(self) -> None: ...
     @property

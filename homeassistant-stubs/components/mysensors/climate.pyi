@@ -1,9 +1,9 @@
 from . import setup_mysensors_platform as setup_mysensors_platform
 from .const import DiscoveryInfo as DiscoveryInfo, MYSENSORS_DISCOVERY as MYSENSORS_DISCOVERY
 from .entity import MySensorsChildEntity as MySensorsChildEntity
+from .models import MySensorsConfigEntry as MySensorsConfigEntry
 from _typeshed import Incomplete
 from homeassistant.components.climate import ATTR_TARGET_TEMP_HIGH as ATTR_TARGET_TEMP_HIGH, ATTR_TARGET_TEMP_LOW as ATTR_TARGET_TEMP_LOW, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACMode as HVACMode
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, Platform as Platform, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
@@ -16,7 +16,7 @@ DICT_MYS_TO_HA: Incomplete
 FAN_LIST: Incomplete
 OPERATION_LIST: Incomplete
 
-async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
+async def async_setup_entry(hass: HomeAssistant, config_entry: MySensorsConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class MySensorsHVAC(MySensorsChildEntity, ClimateEntity):
     _attr_hvac_modes = OPERATION_LIST

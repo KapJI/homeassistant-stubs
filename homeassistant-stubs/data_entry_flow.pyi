@@ -1,6 +1,6 @@
 import abc
 import asyncio
-import voluptuous as vol
+import probatio
 from .core import HomeAssistant as HomeAssistant, callback as callback
 from .exceptions import HomeAssistantError as HomeAssistantError
 from .helpers.deprecation import deprecated_function as deprecated_function
@@ -40,7 +40,7 @@ class UnknownHandler(FlowError): ...
 class UnknownFlow(FlowError): ...
 class UnknownStep(FlowError): ...
 
-class InvalidData(vol.Invalid):
+class InvalidData(probatio.Invalid):
     schema_errors: Incomplete
     def __init__(self, message: str, path: list[Hashable] | None, error_message: str | None, schema_errors: dict[str, Any], **kwargs: Any) -> None: ...
 
@@ -55,7 +55,7 @@ class FlowContext(TypedDict, total=False):
 
 class FlowResult(TypedDict, Generic[_FlowContextT, _HandlerT], total=False):
     context: _FlowContextT
-    data_schema: vol.Schema | None
+    data_schema: probatio.Schema | None
     data: Mapping[str, Any]
     description_placeholders: Mapping[str, str] | None
     description: str | None
@@ -77,7 +77,7 @@ class FlowResult(TypedDict, Generic[_FlowContextT, _HandlerT], total=False):
     type: FlowResultType
     url: str
 
-def _map_error_to_schema_errors(schema_errors: dict[str, Any], error: vol.Invalid, data_schema: vol.Schema) -> None: ...
+def _map_error_to_schema_errors(schema_errors: dict[str, Any], error: probatio.Invalid, data_schema: probatio.Schema) -> None: ...
 
 class FlowManager(abc.ABC, Generic[_FlowContextT, _FlowResultT, _HandlerT], metaclass=abc.ABCMeta):
     _flow_result: type[_FlowResultT]
@@ -139,9 +139,9 @@ class FlowHandler(Generic[_FlowContextT, _FlowResultT, _HandlerT]):
     def source(self) -> str | None: ...
     @property
     def show_advanced_options(self) -> bool: ...
-    def add_suggested_values_to_schema(self, data_schema: vol.Schema, suggested_values: Mapping[str, Any] | None) -> vol.Schema: ...
+    def add_suggested_values_to_schema(self, data_schema: probatio.Schema, suggested_values: Mapping[str, Any] | None) -> probatio.Schema: ...
     @callback
-    def async_show_form(self, *, step_id: str | None = None, data_schema: vol.Schema | None = None, errors: dict[str, str] | None = None, description_placeholders: Mapping[str, str] | None = None, last_step: bool | None = None, preview: str | None = None) -> _FlowResultT: ...
+    def async_show_form(self, *, step_id: str | None = None, data_schema: probatio.Schema | None = None, errors: dict[str, str] | None = None, description_placeholders: Mapping[str, str] | None = None, last_step: bool | None = None, preview: str | None = None) -> _FlowResultT: ...
     @callback
     def async_create_entry(self, *, title: str | None = None, data: Mapping[str, Any], description: str | None = None, description_placeholders: Mapping[str, str] | None = None) -> _FlowResultT: ...
     @callback
@@ -178,5 +178,5 @@ class section:
     CONFIG_SCHEMA: Incomplete
     schema: Incomplete
     options: SectionConfig
-    def __init__(self, schema: vol.Schema, options: SectionConfig | None = None) -> None: ...
+    def __init__(self, schema: probatio.Schema, options: SectionConfig | None = None) -> None: ...
     def __call__(self, value: Any) -> Any: ...

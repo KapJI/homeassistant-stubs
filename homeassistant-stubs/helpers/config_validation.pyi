@@ -1,6 +1,6 @@
+import probatio
 import re
 import threading
-import voluptuous as vol
 from . import template as template_helper
 from .frame import get_integration_logger as get_integration_logger
 from .typing import VolDictType as VolDictType, VolSchemaType as VolSchemaType
@@ -17,7 +17,7 @@ from homeassistant.generated.countries import COUNTRIES as COUNTRIES
 from homeassistant.generated.languages import LANGUAGES as LANGUAGES
 from homeassistant.util import raise_if_invalid_path as raise_if_invalid_path
 from homeassistant.util.yaml.objects import NodeStrClass as NodeStrClass
-from typing import Any, overload
+from typing import Any
 
 TIME_PERIOD_ERROR: str
 
@@ -52,8 +52,10 @@ sun_event: Incomplete
 port: Incomplete
 
 def path(value: Any) -> str: ...
-def has_at_least_one_key(*keys: Any) -> Callable[[dict], dict]: ...
-def has_at_most_one_key(*keys: Any) -> Callable[[dict], dict]: ...
+
+has_at_least_one_key: Incomplete
+has_at_most_one_key: Incomplete
+
 def boolean(value: Any) -> bool: ...
 def whitespace(value: Any) -> str: ...
 @not_async_friendly
@@ -64,12 +66,9 @@ def is_regex(value: Any) -> re.Pattern[Any]: ...
 def isfile(value: Any) -> str: ...
 @not_async_friendly
 def isdir(value: Any) -> str: ...
-@overload
-def ensure_list(value: None) -> list[Any]: ...
-@overload
-def ensure_list[_T](value: list[_T]) -> list[_T]: ...
-@overload
-def ensure_list[_T](value: list[_T] | _T) -> list[_T]: ...
+
+ensure_list: Incomplete
+
 def entity_id(value: Any) -> str: ...
 def strict_entity_id(value: Any) -> str: ...
 def entity_id_or_uuid(value: Any) -> str: ...
@@ -83,7 +82,7 @@ comp_entity_ids_or_uuids: Incomplete
 def domain_key(config_key: Any) -> str: ...
 def entity_domain(domain: str | list[str]) -> Callable[[Any], str]: ...
 def entities_domain(domain: str | list[str]) -> Callable[[str | list], list[str]]: ...
-def enum(enumClass: type[Enum]) -> vol.All: ...
+def enum(enumClass: type[Enum]) -> probatio.All: ...
 def icon(value: Any) -> str: ...
 
 _COLOR_HEX: Incomplete
@@ -188,6 +187,7 @@ SERVICE_SCHEMA: Incomplete
 NUMERIC_STATE_THRESHOLD_SCHEMA: Incomplete
 CONDITION_BASE_SCHEMA: VolDictType
 NUMERIC_STATE_CONDITION_SCHEMA: Incomplete
+INPUT_ENTITY_ID: Incomplete
 STATE_CONDITION_BASE_SCHEMA: Incomplete
 STATE_CONDITION_STATE_SCHEMA: Incomplete
 STATE_CONDITION_ATTRIBUTE_SCHEMA: Incomplete
@@ -214,10 +214,10 @@ BUILT_IN_CONDITIONS: ValueSchemas
 
 def _base_condition_validator(value: Any) -> Any: ...
 
-CONDITION_SCHEMA: vol.Schema
+CONDITION_SCHEMA: probatio.Schema
 CONDITIONS_SCHEMA: Incomplete
 dynamic_template_condition_action: Incomplete
-CONDITION_ACTION_SCHEMA: vol.Schema
+CONDITION_ACTION_SCHEMA: probatio.Schema
 
 def _trigger_pre_validator(value: Any | None) -> Any: ...
 

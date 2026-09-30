@@ -1,4 +1,4 @@
-from . import DOMAIN as DOMAIN, LockEntityFeature as LockEntityFeature
+from .const import DOMAIN as DOMAIN, LockEntityFeature as LockEntityFeature
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import async_validate_entity_schema as async_validate_entity_schema
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK

@@ -3,13 +3,15 @@ from .entity import TeslemetryRootEntity as TeslemetryRootEntity, TeslemetryVehi
 from .helpers import handle_vehicle_command as handle_vehicle_command
 from .models import TeslemetryVehicleData as TeslemetryVehicleData
 from _typeshed import Incomplete
+from dataclasses import dataclass
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverEntityFeature as CoverEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData, RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
-from typing import Any, override
+from typing import Any, Self, override
 
 OPEN: int
 CLOSED: int
@@ -24,7 +26,7 @@ class CoverRestoreEntity(RestoreEntity, CoverEntity):
     async def async_added_to_hass(self) -> None: ...
 
 class TeslemetryWindowEntity(TeslemetryRootEntity, CoverEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
@@ -41,6 +43,17 @@ class TeslemetryVehiclePollingWindowEntity(TeslemetryVehiclePollingEntity, Tesle
     @override
     def _async_update_attrs(self) -> None: ...
 
+@dataclass
+class TeslemetryWindowsExtraStoredData(ExtraStoredData):
+    fd: bool | None
+    fp: bool | None
+    rd: bool | None
+    rp: bool | None
+    @override
+    def as_dict(self) -> dict[str, Any]: ...
+    @classmethod
+    def from_dict(cls, restored: dict[str, Any]) -> Self: ...
+
 class TeslemetryStreamingWindowEntity(TeslemetryVehicleStreamEntity, TeslemetryWindowEntity, CoverRestoreEntity):
     fd: bool | None
     fp: bool | None
@@ -52,10 +65,13 @@ class TeslemetryStreamingWindowEntity(TeslemetryVehicleStreamEntity, TeslemetryW
     def __init__(self, data: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
+    @property
+    @override
+    def extra_restore_state_data(self) -> TeslemetryWindowsExtraStoredData: ...
     def _handle_stream_update(self, data: dict[str, Any]) -> None: ...
 
 class TeslemetryChargePortEntity(TeslemetryRootEntity, CoverEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
@@ -82,7 +98,7 @@ class TeslemetryStreamingChargePortEntity(TeslemetryVehicleStreamEntity, Tesleme
     def _async_value_from_stream(self, value: bool | None) -> None: ...
 
 class TeslemetryFrontTrunkEntity(TeslemetryRootEntity, CoverEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
@@ -107,7 +123,7 @@ class TeslemetryStreamingFrontTrunkEntity(TeslemetryVehicleStreamEntity, Tesleme
     def _async_value_from_stream(self, value: bool | None) -> None: ...
 
 class TeslemetryRearTrunkEntity(TeslemetryRootEntity, CoverEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool
@@ -134,7 +150,7 @@ class TeslemetryStreamingRearTrunkEntity(TeslemetryVehicleStreamEntity, Teslemet
     def _async_value_from_stream(self, value: bool | None) -> None: ...
 
 class TeslemetrySunroofEntity(TeslemetryVehiclePollingEntity, CoverEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_entity_registry_enabled_default: bool
@@ -152,7 +168,7 @@ class TeslemetrySunroofEntity(TeslemetryVehiclePollingEntity, CoverEntity):
     async def async_stop_cover(self, **kwargs: Any) -> None: ...
 
 class TeslemetryTonneauEntity(TeslemetryRootEntity, CoverEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_supported_features: Incomplete
     _attr_is_closed: bool

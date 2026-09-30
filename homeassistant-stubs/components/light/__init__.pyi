@@ -1,74 +1,25 @@
 import dataclasses
-from .const import COLOR_MODES_BRIGHTNESS as COLOR_MODES_BRIGHTNESS, COLOR_MODES_COLOR as COLOR_MODES_COLOR, ColorMode as ColorMode, DATA_COMPONENT as DATA_COMPONENT, DATA_PROFILES as DATA_PROFILES, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, DOMAIN as DOMAIN, LightEntityCapabilityAttribute as LightEntityCapabilityAttribute, LightEntityFeature as LightEntityFeature, LightEntityStateAttribute as LightEntityStateAttribute, SCAN_INTERVAL as SCAN_INTERVAL, VALID_COLOR_MODES as VALID_COLOR_MODES
+from .const import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_BRIGHTNESS_STEP as ATTR_BRIGHTNESS_STEP, ATTR_BRIGHTNESS_STEP_PCT as ATTR_BRIGHTNESS_STEP_PCT, ATTR_COLOR_MODE as ATTR_COLOR_MODE, ATTR_COLOR_NAME as ATTR_COLOR_NAME, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_EFFECT as ATTR_EFFECT, ATTR_EFFECT_LIST as ATTR_EFFECT_LIST, ATTR_FLASH as ATTR_FLASH, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_MAX_COLOR_TEMP_KELVIN as ATTR_MAX_COLOR_TEMP_KELVIN, ATTR_MIN_COLOR_TEMP_KELVIN as ATTR_MIN_COLOR_TEMP_KELVIN, ATTR_PROFILE as ATTR_PROFILE, ATTR_RGBWW_COLOR as ATTR_RGBWW_COLOR, ATTR_RGBW_COLOR as ATTR_RGBW_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_SUPPORTED_COLOR_MODES as ATTR_SUPPORTED_COLOR_MODES, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_WHITE as ATTR_WHITE, ATTR_XY_COLOR as ATTR_XY_COLOR, COLOR_GROUP as COLOR_GROUP, COLOR_MODES_BRIGHTNESS as COLOR_MODES_BRIGHTNESS, COLOR_MODES_COLOR as COLOR_MODES_COLOR, ColorMode as ColorMode, DATA_COMPONENT as DATA_COMPONENT, DATA_PROFILES as DATA_PROFILES, DEFAULT_MAX_KELVIN as DEFAULT_MAX_KELVIN, DEFAULT_MIN_KELVIN as DEFAULT_MIN_KELVIN, DOMAIN as DOMAIN, EFFECT_COLORLOOP as EFFECT_COLORLOOP, EFFECT_OFF as EFFECT_OFF, EFFECT_RANDOM as EFFECT_RANDOM, EFFECT_WHITE as EFFECT_WHITE, FLASH_LONG as FLASH_LONG, FLASH_SHORT as FLASH_SHORT, LIGHT_PROFILES_FILE as LIGHT_PROFILES_FILE, LIGHT_TURN_OFF_SCHEMA as LIGHT_TURN_OFF_SCHEMA, LIGHT_TURN_ON_SCHEMA as LIGHT_TURN_ON_SCHEMA, LightEntityCapabilityAttribute as LightEntityCapabilityAttribute, LightEntityFeature as LightEntityFeature, LightEntityStateAttribute as LightEntityStateAttribute, SCAN_INTERVAL as SCAN_INTERVAL, VALID_BRIGHTNESS as VALID_BRIGHTNESS, VALID_BRIGHTNESS_PCT as VALID_BRIGHTNESS_PCT, VALID_BRIGHTNESS_STEP as VALID_BRIGHTNESS_STEP, VALID_BRIGHTNESS_STEP_PCT as VALID_BRIGHTNESS_STEP_PCT, VALID_COLOR_MODES as VALID_COLOR_MODES, VALID_FLASH as VALID_FLASH, VALID_TRANSITION as VALID_TRANSITION
+from .helper import brightness_supported as brightness_supported, color_supported as color_supported, color_temp_supported as color_temp_supported, filter_supported_color_modes as filter_supported_color_modes, filter_turn_off_params as filter_turn_off_params, filter_turn_on_params as filter_turn_on_params, get_supported_color_modes as get_supported_color_modes, preprocess_turn_on_alternatives as preprocess_turn_on_alternatives, process_turn_off_params as process_turn_off_params, process_turn_on_params as process_turn_on_params, valid_supported_color_modes as valid_supported_color_modes
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from collections.abc import Iterable
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.frame import ReportBehavior as ReportBehavior, report_usage as report_usage
-from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property
 from typing import Any, Self, final, override
 
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-ATTR_COLOR_MODE: str
-ATTR_SUPPORTED_COLOR_MODES: str
-
-def filter_supported_color_modes(color_modes: Iterable[ColorMode]) -> set[ColorMode]: ...
-def valid_supported_color_modes(color_modes: Iterable[ColorMode]) -> set[ColorMode]: ...
-def brightness_supported(color_modes: Iterable[ColorMode | str] | None) -> bool: ...
-def color_supported(color_modes: Iterable[ColorMode | str] | None) -> bool: ...
-def color_temp_supported(color_modes: Iterable[ColorMode | str] | None) -> bool: ...
-def get_supported_color_modes(hass: HomeAssistant, entity_id: str) -> set[str] | None: ...
-
-ATTR_TRANSITION: str
-ATTR_RGB_COLOR: str
-ATTR_RGBW_COLOR: str
-ATTR_RGBWW_COLOR: str
-ATTR_XY_COLOR: str
-ATTR_HS_COLOR: str
-ATTR_COLOR_TEMP_KELVIN: str
-ATTR_MIN_COLOR_TEMP_KELVIN: str
-ATTR_MAX_COLOR_TEMP_KELVIN: str
-ATTR_COLOR_NAME: str
-ATTR_WHITE: str
-ATTR_BRIGHTNESS: str
-ATTR_BRIGHTNESS_PCT: str
-ATTR_BRIGHTNESS_STEP: str
-ATTR_BRIGHTNESS_STEP_PCT: str
-ATTR_PROFILE: str
-ATTR_FLASH: str
-FLASH_SHORT: str
-FLASH_LONG: str
-ATTR_EFFECT_LIST: str
-ATTR_EFFECT: str
-EFFECT_COLORLOOP: str
-EFFECT_OFF: str
-EFFECT_RANDOM: str
-EFFECT_WHITE: str
-COLOR_GROUP: str
-LIGHT_PROFILES_FILE: str
-VALID_TRANSITION: Incomplete
-VALID_BRIGHTNESS: Incomplete
-VALID_BRIGHTNESS_PCT: Incomplete
-VALID_BRIGHTNESS_STEP: Incomplete
-VALID_BRIGHTNESS_STEP_PCT: Incomplete
-VALID_FLASH: Incomplete
-LIGHT_TURN_ON_SCHEMA: VolDictType
-LIGHT_TURN_OFF_SCHEMA: VolDictType
 _LOGGER: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
-def preprocess_turn_on_alternatives(hass: HomeAssistant, params: dict[str, Any]) -> None: ...
-def filter_turn_off_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
-def process_turn_off_params(hass: HomeAssistant, light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
-def filter_turn_on_params(light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
-def process_turn_on_params(hass: HomeAssistant, light: LightEntity, params: dict[str, Any]) -> dict[str, Any]: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

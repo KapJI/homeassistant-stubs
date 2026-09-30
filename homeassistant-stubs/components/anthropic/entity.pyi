@@ -1,9 +1,10 @@
-import voluptuous as vol
+import json
+import probatio
 from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_CODE_EXECUTION as CONF_CODE_EXECUTION, CONF_MAX_TOKENS as CONF_MAX_TOKENS, CONF_PROMPT_CACHING as CONF_PROMPT_CACHING, CONF_THINKING_BUDGET as CONF_THINKING_BUDGET, CONF_THINKING_EFFORT as CONF_THINKING_EFFORT, CONF_TOOL_SEARCH as CONF_TOOL_SEARCH, CONF_WEB_FETCH as CONF_WEB_FETCH, CONF_WEB_FETCH_MAX_USES as CONF_WEB_FETCH_MAX_USES, CONF_WEB_SEARCH as CONF_WEB_SEARCH, CONF_WEB_SEARCH_CITY as CONF_WEB_SEARCH_CITY, CONF_WEB_SEARCH_COUNTRY as CONF_WEB_SEARCH_COUNTRY, CONF_WEB_SEARCH_MAX_USES as CONF_WEB_SEARCH_MAX_USES, CONF_WEB_SEARCH_REGION as CONF_WEB_SEARCH_REGION, CONF_WEB_SEARCH_TIMEZONE as CONF_WEB_SEARCH_TIMEZONE, CONF_WEB_SEARCH_USER_LOCATION as CONF_WEB_SEARCH_USER_LOCATION, DEFAULT as DEFAULT, DOMAIN as DOMAIN, LOGGER as LOGGER, MIN_THINKING_BUDGET as MIN_THINKING_BUDGET, PromptCaching as PromptCaching
 from .coordinator import AnthropicConfigEntry as AnthropicConfigEntry, AnthropicCoordinator as AnthropicCoordinator
 from _typeshed import Incomplete
 from anthropic import AsyncStream as AsyncStream
-from anthropic.types import CodeExecutionToolResultBlockContent as CodeExecutionToolResultBlockContent, Container as Container, ContentBlock as ContentBlock, ContentBlockParam as ContentBlockParam, DocumentBlockParam, ImageBlockParam, Message as Message, MessageDeltaUsage as MessageDeltaUsage, MessageParam, MessageStreamEvent as MessageStreamEvent, ModelInfo as ModelInfo, RawContentBlockDelta as RawContentBlockDelta, ServerToolUseBlockParam, TextCitation as TextCitation, TextCitationParam, ToolParam, ToolUnionParam as ToolUnionParam, ToolUseBlockParam, Usage as Usage, WebSearchToolResultBlockContent as WebSearchToolResultBlockContent
+from anthropic.types import CodeExecutionToolResultBlockContent as CodeExecutionToolResultBlockContent, Container as Container, ContentBlock as ContentBlock, ContentBlockParam as ContentBlockParam, DocumentBlockParam, ImageBlockParam, Message as Message, MessageDeltaUsage as MessageDeltaUsage, MessageParam, MessageStreamEvent as MessageStreamEvent, ModelInfo as ModelInfo, RawContentBlockDelta as RawContentBlockDelta, ServerToolUseBlockParam, StopReason as StopReason, TextCitation as TextCitation, TextCitationParam, ToolParam, ToolUseBlockParam, Usage as Usage, WebSearchToolResultBlockContent as WebSearchToolResultBlockContent
 from anthropic.types.bash_code_execution_tool_result_block import Content as BashCodeExecutionToolResultBlockContent
 from anthropic.types.message_create_params import MessageCreateParamsStreaming
 from anthropic.types.raw_message_delta_event import Delta as Delta
@@ -21,7 +22,6 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.json import json_dumps as json_dumps
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
-from homeassistant.util import slugify as slugify
 from homeassistant.util.json import JsonArrayType as JsonArrayType, JsonObjectType as JsonObjectType
 from pathlib import Path
 from typing import Any, Literal
@@ -54,7 +54,8 @@ def _convert_content(chat_content: Iterable[conversation.Content]) -> tuple[list
 class AnthropicDeltaStream:
     _chat_log: conversation.ChatLog
     _stream: AsyncStream[MessageStreamEvent]
-    _output_tool: str | None
+    stop_reason: StopReason | None
+    tool_args_error: json.JSONDecodeError | None
     _buffer: deque[conversation.AssistantContentDeltaDict | conversation.ToolResultContentDeltaDict]
     _stream_iterator: AsyncIterator[MessageStreamEvent] | None
     _current_tool_block: ToolUseBlockParam | ServerToolUseBlockParam | None
@@ -62,7 +63,7 @@ class AnthropicDeltaStream:
     _content_details: Incomplete
     _input_usage: Usage | None
     _first_block: bool
-    def __init__(self, chat_log: conversation.ChatLog, stream: AsyncStream[MessageStreamEvent], output_tool: str | None = None) -> None: ...
+    def __init__(self, chat_log: conversation.ChatLog, stream: AsyncStream[MessageStreamEvent]) -> None: ...
     def __aiter__(self) -> AsyncIterator[conversation.AssistantContentDeltaDict | conversation.ToolResultContentDeltaDict]: ...
     async def __anext__(self) -> conversation.AssistantContentDeltaDict | conversation.ToolResultContentDeltaDict: ...
     def on_message_stream_event(self, event: MessageStreamEvent) -> None: ...
@@ -93,7 +94,7 @@ class AnthropicBaseLLMEntity(CoordinatorEntity[AnthropicCoordinator]):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry: AnthropicConfigEntry, subentry: ConfigSubentry) -> None: ...
-    async def _get_model_args(self, chat_log: conversation.ChatLog, structure_name: str | None = None, structure: vol.Schema | None = None) -> tuple[MessageCreateParamsStreaming, str | None]: ...
-    async def _async_handle_chat_log(self, chat_log: conversation.ChatLog, structure_name: str | None = None, structure: vol.Schema | None = None, max_iterations: int = ...) -> None: ...
+    async def _get_model_args(self, chat_log: conversation.ChatLog, structure: probatio.Schema | None = None) -> MessageCreateParamsStreaming: ...
+    async def _async_handle_chat_log(self, chat_log: conversation.ChatLog, structure: probatio.Schema | None = None, max_iterations: int = ...) -> None: ...
 
 async def async_prepare_files_for_prompt(hass: HomeAssistant, model_info: ModelInfo, files: list[tuple[Path, str | None]]) -> Iterable[ImageBlockParam | DocumentBlockParam]: ...

@@ -6,6 +6,7 @@ CONF_INFRARED_RECEIVER_ENTITY_ID: str
 CONF_DEVICE_TYPE: str
 
 class LEDIrDeviceType(StrEnum):
+    GENERIC_10_KEY = 'generic_10_key'
     GENERIC_13_KEY = 'generic_13_key'
     GENERIC_24_KEY = 'generic_24_key'
     GENERIC_40_KEY = 'generic_40_key'

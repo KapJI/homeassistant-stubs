@@ -1,7 +1,8 @@
 from . import OmadaConfigEntry as OmadaConfigEntry
+from .config_flow import CONF_SITE as CONF_SITE
 from .const import OmadaDeviceStatus as OmadaDeviceStatus
-from .coordinator import OmadaDevicesCoordinator as OmadaDevicesCoordinator, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
-from .entity import OmadaDeviceEntity as OmadaDeviceEntity, get_switch_port_base_name as get_switch_port_base_name
+from .coordinator import OmadaControllerStatusCoordinator as OmadaControllerStatusCoordinator, OmadaDevicesCoordinator as OmadaDevicesCoordinator, OmadaSwitchPortCoordinator as OmadaSwitchPortCoordinator
+from .entity import OmadaControllerEntity as OmadaControllerEntity, OmadaDeviceEntity as OmadaDeviceEntity, get_switch_port_base_name as get_switch_port_base_name
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -27,6 +28,15 @@ class OmadaDeviceSensorEntityDescription(SensorEntityDescription):
     update_func: Callable[[OmadaListDevice], StateType]
 
 OMADA_DEVICE_SENSORS: list[OmadaDeviceSensorEntityDescription]
+
+class OmadaControllerStatusSensor(OmadaControllerEntity, SensorEntity):
+    _attr_translation_key: str
+    _attr_device_class: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_options: Incomplete
+    _attr_native_value: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: OmadaControllerStatusCoordinator) -> None: ...
 
 class OmadaDeviceSensor(OmadaDeviceEntity[OmadaDevicesCoordinator], SensorEntity):
     entity_description: OmadaDeviceSensorEntityDescription

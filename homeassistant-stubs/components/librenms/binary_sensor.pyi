@@ -1,4 +1,4 @@
-from .coordinator import LibrenmsConfigEntry as LibrenmsConfigEntry, LibrenmsDataUpdateCoordinator as LibrenmsDataUpdateCoordinator
+from .coordinator import LibrenmsCentralDataUpdateCoordinator as LibrenmsCentralDataUpdateCoordinator, LibrenmsConfigEntry as LibrenmsConfigEntry
 from .entity import LibrenmsDeviceEntity as LibrenmsDeviceEntity
 from _typeshed import Incomplete
 from aiolibrenms.devices.models import LibrenmsDeviceInfo as LibrenmsDeviceInfo
@@ -24,7 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: LibrenmsConfigEntry, asy
 class LibrenmsDeviceBinarySensorEntity(LibrenmsDeviceEntity, BinarySensorEntity):
     entity_description: LibrenmsDeviceBinarySensorEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: LibrenmsDataUpdateCoordinator, description: LibrenmsDeviceBinarySensorEntityDescription, device_id: int) -> None: ...
+    def __init__(self, coordinator: LibrenmsCentralDataUpdateCoordinator, description: LibrenmsDeviceBinarySensorEntityDescription, device_id: int) -> None: ...
     @property
     @override
     def is_on(self) -> bool: ...

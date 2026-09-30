@@ -6,14 +6,16 @@ from aioimmich.assets.models import AssetType, ImmichAsset as ImmichAsset
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery
 from homeassistant.components.media_source import BrowseMediaSource as BrowseMediaSource, MediaSource as MediaSource, MediaSourceItem as MediaSourceItem, PlayMedia as PlayMedia, Unresolvable as Unresolvable
-from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.aiohttp_client import ChunkAsyncStreamIterator as ChunkAsyncStreamIterator
 from typing import TypedDict, override
 
 LOGGER: Incomplete
 
 async def async_get_media_source(hass: HomeAssistant) -> MediaSource: ...
+@callback
+def _async_get_loaded_entry(hass: HomeAssistant, unique_id: str) -> ImmichConfigEntry: ...
 
 class ImmichMediaSourceIdentifier:
     unique_id: Incomplete

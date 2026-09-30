@@ -5,8 +5,8 @@ from homeassistant.components.number import NumberDeviceClass as NumberDeviceCla
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from typing import Any, override
-from victron_mqtt import Device as VictronVenusDevice, MetricType, WritableMetric as VictronVenusWritableMetric
+from typing import override
+from victron_mqtt import Device as VictronVenusDevice, MetricType, MetricValue as MetricValue, WritableMetric as VictronVenusWritableMetric
 
 PARALLEL_UPDATES: int
 METRIC_TYPE_TO_DEVICE_CLASS: dict[MetricType, NumberDeviceClass]
@@ -25,6 +25,6 @@ class VictronNumber(VictronBaseEntity, NumberEntity):
     def native_unit_of_measurement(self) -> str | None: ...
     @callback
     @override
-    def _on_update_cb(self, value: Any) -> None: ...
+    def _on_update_cb(self, value: MetricValue) -> None: ...
     @override
     async def async_set_native_value(self, value: float) -> None: ...

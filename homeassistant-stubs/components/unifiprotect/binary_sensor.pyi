@@ -1,23 +1,23 @@
 import dataclasses
+from .const import DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
+from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectFobEntity as ProtectFobEntity, ProtectIsOnEntity as ProtectIsOnEntity, ProtectNVREntity as ProtectNVREntity, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
 from _typeshed import Incomplete
-from collections.abc import Sequence
+from collections.abc import Callable as Callable, Sequence
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass, BinarySensorEntity as BinarySensorEntity, BinarySensorEntityDescription as BinarySensorEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from typing import override
-from uiprotect.data import ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, Sensor as Sensor
+from uiprotect.data import Fob, ModelType, NVR as NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, PublicRelayInput as PublicRelayInput, Relay as Relay, RelayInputState, Sensor as Sensor
 from uiprotect.data.nvr import UOSDisk as UOSDisk
-from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
+from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel, PublicSensor
 
 _KEY_DOOR: str
 PARALLEL_UPDATES: int
-
-def _async_motion_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
-def _async_contact_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
-def _async_leak_sensor_enabled_public(obj: PublicDeviceModel) -> bool: ...
+_RELAY_INPUT_STATE_MAP: dict[RelayInputState, bool]
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectBinaryEntityDescription(ProtectEntityDescription, BinarySensorEntityDescription): ...
@@ -39,7 +39,7 @@ class ProtectDeviceBinarySensor(ProtectIsOnEntity, ProtectDeviceEntity, BinarySe
     entity_description: ProtectBinaryEntityDescription
 
 class MountableProtectDeviceBinarySensor(ProtectDeviceBinarySensor):
-    device: Sensor
+    device: Sensor | PublicSensor
     _state_attrs: Incomplete
     _attr_device_class: Incomplete
     @callback
@@ -71,10 +71,54 @@ class ProtectEventBinarySensor(EventEntityMixin, BinarySensorEntity):
     @override
     def _async_update_device_from_protect(self, device: ProtectDeviceType) -> None: ...
 
+class ProtectRelayInputBinarySensor(BinarySensorEntity):
+    _attr_has_entity_name: bool
+    _attr_attribution = DEFAULT_ATTRIBUTION
+    _attr_should_poll: bool
+    _attr_translation_key: str
+    data: Incomplete
+    _relay_id: Incomplete
+    _relay_mac: Incomplete
+    _input_id: Incomplete
+    _attr_unique_id: Incomplete
+    _attr_translation_placeholders: Incomplete
+    _attr_device_info: Incomplete
+    def __init__(self, data: ProtectData, relay: Relay, relay_input: PublicRelayInput) -> None: ...
+    @property
+    def _relay(self) -> Relay | None: ...
+    _attr_available: bool
+    _attr_is_on: Incomplete
+    @callback
+    def _update_from_relay(self, relay: Relay) -> None: ...
+    @callback
+    def _async_updated(self, _obj: PublicDeviceModel | None) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
+
 MODEL_DESCRIPTIONS_WITH_CLASS: Incomplete
 
+@callback
+def _async_model_entities(data: ProtectData, *, ufp_device: ProtectAdoptableDeviceModel | None = None, public_device: PublicDeviceModel | None = None) -> list[BaseProtectEntity]: ...
 @callback
 def _async_event_entities(data: ProtectData, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[ProtectDeviceEntity]: ...
 @callback
 def _async_nvr_entities(data: ProtectData) -> list[BaseProtectEntity]: ...
+def _fob_battery_low(fob: Fob) -> bool | None: ...
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class ProtectFobBinaryEntityDescription(BinarySensorEntityDescription):
+    value_fn: Callable[[Fob], bool | None]
+
+FOB_BINARY_SENSORS: tuple[ProtectFobBinaryEntityDescription, ...]
+
+class ProtectFobBinarySensor(ProtectFobEntity, BinarySensorEntity):
+    entity_description: ProtectFobBinaryEntityDescription
+    _fob_state_attrs: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, data: ProtectData, fob: Fob, description: ProtectFobBinaryEntityDescription) -> None: ...
+    _attr_is_on: Incomplete
+    @callback
+    @override
+    def _async_update_from_fob(self, fob: Fob) -> None: ...
+
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

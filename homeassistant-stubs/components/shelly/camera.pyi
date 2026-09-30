@@ -1,3 +1,4 @@
+from .const import DOMAIN as DOMAIN
 from .coordinator import ShellyConfigEntry as ShellyConfigEntry, ShellyRpcCoordinator as ShellyRpcCoordinator
 from .entity import RpcEntityDescription as RpcEntityDescription, ShellyRpcAttributeEntity as ShellyRpcAttributeEntity, async_setup_entry_rpc as async_setup_entry_rpc
 from .utils import get_host as get_host
@@ -6,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.camera import Camera as Camera, CameraEntityDescription as CameraEntityDescription, CameraEntityFeature as CameraEntityFeature
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Final, override
 
@@ -40,5 +42,4 @@ class ShellyCameraEntity(ShellyRpcAttributeEntity, Camera):
     @override
     async def stream_source(self) -> str | None: ...
     @override
-    @property
-    def use_stream_for_stills(self) -> bool: ...
+    async def async_camera_image(self, width: int | None = None, height: int | None = None) -> bytes | None: ...

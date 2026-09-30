@@ -1,8 +1,9 @@
 from .const import CONF_DEFAULT_ENTITY_ID as CONF_DEFAULT_ENTITY_ID, DOMAIN as DOMAIN
 from .knx_module import KNXModule as KNXModule
 from .storage.config_store import PlatformControllerBase as PlatformControllerBase
-from .storage.const import CONF_DEVICE_INFO as CONF_DEVICE_INFO
+from .storage.entity_store_schema import BaseEntityConfig as BaseEntityConfig, KnxEntityData as KnxEntityData
 from _typeshed import Incomplete
+from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.const import ATTR_ASSUMED_STATE as ATTR_ASSUMED_STATE, CONF_DEVICE as CONF_DEVICE, CONF_ENTITY_CATEGORY as CONF_ENTITY_CATEGORY, CONF_ID as CONF_ID, CONF_NAME as CONF_NAME, CONF_UNIQUE_ID as CONF_UNIQUE_ID
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -31,11 +32,11 @@ class KnxUiEntityPlatformController(PlatformControllerBase):
     _knx_module: Incomplete
     _entity_platform: Incomplete
     _entity_class: Incomplete
-    def __init__(self, knx_module: KNXModule, entity_platform: EntityPlatform, entity_class: type[KnxUiEntity]) -> None: ...
+    def __init__(self, knx_module: KNXModule, entity_platform: EntityPlatform, entity_class: Callable[[KNXModule, str, KnxEntityData[Any]], KnxUiEntity]) -> None: ...
     @override
-    async def create_entity(self, unique_id: str, config: dict[str, Any]) -> None: ...
+    async def create_entity(self, unique_id: str, config: KnxEntityData[Any]) -> None: ...
     @override
-    async def update_entity(self, entity_entry: RegistryEntry, config: dict[str, Any]) -> None: ...
+    async def update_entity(self, entity_entry: RegistryEntry, config: KnxEntityData[Any]) -> None: ...
 
 class _KnxEntityBase(Entity):
     _unrecorded_attributes: Incomplete
@@ -70,4 +71,4 @@ class KnxUiEntity(_KnxEntityBase):
     _attr_unique_id: Incomplete
     _attr_entity_category: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, knx_module: KNXModule, unique_id: str, entity_config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, entity_config: BaseEntityConfig) -> None: ...

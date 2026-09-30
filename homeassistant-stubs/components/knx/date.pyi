@@ -1,8 +1,7 @@
-from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_DATE as CONF_GA_DATE
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import DateKnxConfig as DateKnxConfig, KnxEntityData as KnxEntityData
 from datetime import date as dt_date
 from homeassistant import config_entries as config_entries
 from homeassistant.components.date import DateEntity as DateEntity
@@ -11,7 +10,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from typing import Any, override
+from typing import override
 from xknx.devices import DateDevice as XknxDateDevice
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: config_entries.ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
@@ -32,4 +31,4 @@ class KnxYamlDate(_KNXDate, KnxYamlEntity):
 
 class KnxUiDate(_KNXDate, KnxUiEntity):
     _device: XknxDateDevice
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[DateKnxConfig]) -> None: ...

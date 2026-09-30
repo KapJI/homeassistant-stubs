@@ -1,15 +1,17 @@
 from . import TeslemetryConfigEntry as TeslemetryConfigEntry
 from .entity import TeslemetryEnergyInfoEntity as TeslemetryEnergyInfoEntity, TeslemetryRootEntity as TeslemetryRootEntity, TeslemetryVehiclePollingEntity as TeslemetryVehiclePollingEntity, TeslemetryVehicleStreamEntity as TeslemetryVehicleStreamEntity
-from .helpers import handle_command as handle_command, handle_vehicle_command as handle_vehicle_command
+from .helpers import async_remove_stale_vehicle_entities as async_remove_stale_vehicle_entities, handle_command as handle_command, handle_vehicle_command as handle_vehicle_command
 from .models import TeslemetryEnergyData as TeslemetryEnergyData, TeslemetryVehicleData as TeslemetryVehicleData
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity as SelectEntity, SelectEntityDescription as SelectEntityDescription
+from homeassistant.const import Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStreamVehicle as TeslemetryStreamVehicle
 from typing import Any, override
@@ -23,7 +25,7 @@ LEVEL: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class TeslemetrySelectEntityDescription(SelectEntityDescription):
-    select_fn: Callable[[Vehicle, int], Awaitable[Any]]
+    select_fn: Callable[[Vehicle | VehicleRouter, int], Awaitable[Any]]
     supported_fn: Callable[[dict], bool] = ...
     streaming_listener: Callable[[TeslemetryStreamVehicle, Callable[[int | None], None]], Callable[[], None]] | None = ...
     options: list[str]
@@ -33,7 +35,7 @@ VEHICLE_DESCRIPTIONS: tuple[TeslemetrySelectEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetrySelectEntity(TeslemetryRootEntity, SelectEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     entity_description: TeslemetrySelectEntityDescription
     _climate: bool
     _attr_current_option: Incomplete
@@ -58,7 +60,7 @@ class TeslemetryStreamingSelectEntity(TeslemetryVehicleStreamEntity, TeslemetryS
     async def async_added_to_hass(self) -> None: ...
     def _value_callback(self, value: int | None) -> None: ...
     _climate: Incomplete
-    def _climate_callback(self, value: bool | None) -> None: ...
+    def _climate_callback(self, value: str | None) -> None: ...
 
 class TeslemetryOperationSelectEntity(TeslemetryEnergyInfoEntity, SelectEntity):
     _attr_options: list[str]

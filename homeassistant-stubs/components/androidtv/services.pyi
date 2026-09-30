@@ -1,6 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.helpers import service as service
 
 ATTR_ADB_RESPONSE: str

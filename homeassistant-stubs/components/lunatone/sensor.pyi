@@ -1,8 +1,8 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import LunatoneConfigEntry as LunatoneConfigEntry, LunatoneSensorsDataUpdateCoordinator as LunatoneSensorsDataUpdateCoordinator
+from .coordinator import LunatoneConfigEntry as LunatoneConfigEntry, LunatoneInfoDataUpdateCoordinator as LunatoneInfoDataUpdateCoordinator, LunatoneSensorsDataUpdateCoordinator as LunatoneSensorsDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import LIGHT_LUX as LIGHT_LUX, UnitOfPressure as UnitOfPressure, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature
+from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, UnitOfPressure as UnitOfPressure, UnitOfRatio as UnitOfRatio, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -10,6 +10,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity as Coordi
 from lunatone_rest_api_client import Sensor as Sensor
 from typing import Final, override
 
+DALI_LINE_STATUS_SENSOR_MAPPING: dict[str, str]
 PARALLEL_UPDATES: int
 SENSOR_TYPES: Final[dict[str, SensorEntityDescription]]
 
@@ -32,3 +33,19 @@ class LunatoneSensor(CoordinatorEntity[LunatoneSensorsDataUpdateCoordinator], Se
     @property
     @override
     def native_value(self) -> float | None: ...
+
+class LunatoneDALILineStatusSensor(CoordinatorEntity[LunatoneInfoDataUpdateCoordinator], SensorEntity):
+    _attr_device_class: Incomplete
+    _attr_entity_category: Incomplete
+    _attr_has_entity_name: bool
+    _attr_options: Incomplete
+    _attr_state_class: Incomplete
+    _attr_translation_key: str
+    _config_entry_unique_id: Incomplete
+    _line_id: Incomplete
+    _attr_device_info: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: LunatoneInfoDataUpdateCoordinator, line_id: str, config_entry_unique_id: str) -> None: ...
+    @property
+    @override
+    def native_value(self) -> str: ...

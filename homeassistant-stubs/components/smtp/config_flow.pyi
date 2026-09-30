@@ -1,13 +1,13 @@
 from . import SmtpConfigEntry as SmtpConfigEntry
-from .const import CONF_ENCRYPTION as CONF_ENCRYPTION, CONF_OLD_RECIPIENT as CONF_OLD_RECIPIENT, CONF_SENDER_NAME as CONF_SENDER_NAME, CONF_SERVER as CONF_SERVER, DEFAULT_ENCRYPTION as DEFAULT_ENCRYPTION, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DOMAIN as DOMAIN, ENCRYPTION_OPTIONS as ENCRYPTION_OPTIONS, SECTION_OPTIONS as SECTION_OPTIONS, SUBENTRY_TYPE_RECIPIENT as SUBENTRY_TYPE_RECIPIENT
+from .const import CONF_ENCRYPTION as CONF_ENCRYPTION, CONF_OLD_RECIPIENT as CONF_OLD_RECIPIENT, CONF_REPLY_TO as CONF_REPLY_TO, CONF_REPLY_TO_NAME as CONF_REPLY_TO_NAME, CONF_SENDER_NAME as CONF_SENDER_NAME, CONF_SERVER as CONF_SERVER, DEFAULT_ENCRYPTION as DEFAULT_ENCRYPTION, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_TIMEOUT as DEFAULT_TIMEOUT, DOMAIN as DOMAIN, ENCRYPTION_OPTIONS as ENCRYPTION_OPTIONS, SECTION_OPTIONS as SECTION_OPTIONS, SUBENTRY_TYPE_RECIPIENT as SUBENTRY_TYPE_RECIPIENT
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant import data_entry_flow as data_entry_flow
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryData as ConfigSubentryData, ConfigSubentryFlow as ConfigSubentryFlow, FlowType as FlowType, OptionsFlow as OptionsFlow, SOURCE_USER as SOURCE_USER, SubentryFlowContext as SubentryFlowContext, SubentryFlowResult as SubentryFlowResult
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_RECIPIENT as CONF_RECIPIENT, CONF_SENDER as CONF_SENDER, CONF_TIMEOUT as CONF_TIMEOUT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, UnitOfTime as UnitOfTime
-from homeassistant.core import callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.selector import NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
-from homeassistant.util.ssl import create_client_context as create_client_context
+from homeassistant.util.ssl import client_context as client_context, client_context_no_verify as client_context_no_verify
 from typing import Any, override
 
 _LOGGER: Incomplete
@@ -33,7 +33,7 @@ class MailConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_import(self, import_info: dict[str, Any]) -> ConfigFlowResult: ...
 
-def validate_input(user_input: dict[str, Any], options: dict[str, Any]) -> dict[str, str]: ...
+async def validate_input(hass: HomeAssistant, user_input: dict[str, Any], options: dict[str, Any]) -> dict[str, str]: ...
 
 class RecipientSubentryFlowHandler(ConfigSubentryFlow):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> SubentryFlowResult: ...

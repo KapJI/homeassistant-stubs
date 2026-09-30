@@ -1,5 +1,5 @@
 from .const import SUPPORT_PTZ_SPEED as SUPPORT_PTZ_SPEED
-from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkChannelEntityDescription as ReolinkChannelEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
+from .entity import ReolinkChannelCoordinatorEntity as ReolinkChannelCoordinatorEntity, ReolinkEntityDescription as ReolinkEntityDescription, ReolinkHostCoordinatorEntity as ReolinkHostCoordinatorEntity, ReolinkHostEntityDescription as ReolinkHostEntityDescription
 from .util import ReolinkConfigEntry as ReolinkConfigEntry, ReolinkData as ReolinkData, raise_translated_error as raise_translated_error
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -14,9 +14,10 @@ from typing import Any, override
 PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
-class ReolinkButtonEntityDescription(ButtonEntityDescription, ReolinkChannelEntityDescription):
-    enabled_default: Callable[[Host, int], bool] | None = ...
-    method: Callable[[Host, int], Any]
+class ReolinkButtonEntityDescription(ButtonEntityDescription, ReolinkEntityDescription):
+    supported: Callable[[Host, int, int | None], bool] = ...
+    enabled_default: Callable[[Host, int, int | None], bool] | None = ...
+    method: Callable[[Host, int, int | None], Any]
     ptz_cmd: str | None = ...
 
 @dataclass(frozen=True, kw_only=True)
@@ -32,7 +33,7 @@ class ReolinkButtonEntity(ReolinkChannelCoordinatorEntity, ButtonEntity):
     entity_description: ReolinkButtonEntityDescription
     _attr_entity_registry_enabled_default: Incomplete
     _attr_supported_features: Incomplete
-    def __init__(self, reolink_data: ReolinkData, channel: int, entity_description: ReolinkButtonEntityDescription) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, channel: int, sub_channel: int | None, entity_description: ReolinkButtonEntityDescription) -> None: ...
     @raise_translated_error
     @override
     async def async_press(self) -> None: ...

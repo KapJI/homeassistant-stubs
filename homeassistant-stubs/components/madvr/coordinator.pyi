@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator
-from madvr.madvr import Madvr as Madvr
+from pymadvr.madvr import Madvr as Madvr
 from typing import Any
 
 _LOGGER: Incomplete

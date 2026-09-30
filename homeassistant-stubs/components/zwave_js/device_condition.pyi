@@ -1,8 +1,8 @@
-import voluptuous as vol
+import probatio
 from .config_validation import COMMAND_CLASS_SCHEMA as COMMAND_CLASS_SCHEMA, VALUE_SCHEMA as VALUE_SCHEMA
-from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN
-from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, CONF_VALUE_ID as CONF_VALUE_ID, NODE_STATUSES as NODE_STATUSES, async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation, generate_config_parameter_subtype as generate_config_parameter_subtype
-from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, check_type_schema_map as check_type_schema_map, get_value_state_schema as get_value_state_schema, get_zwave_value_from_config as get_zwave_value_from_config, remove_keys_with_empty_values as remove_keys_with_empty_values
+from .const import ATTR_COMMAND_CLASS as ATTR_COMMAND_CLASS, ATTR_ENDPOINT as ATTR_ENDPOINT, ATTR_PROPERTY as ATTR_PROPERTY, ATTR_PROPERTY_KEY as ATTR_PROPERTY_KEY, ATTR_VALUE as ATTR_VALUE, DOMAIN as DOMAIN, NODE_STATUSES as NODE_STATUSES
+from .device_automation_helpers import CONF_SUBTYPE as CONF_SUBTYPE, CONF_VALUE_ID as CONF_VALUE_ID, async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation, generate_config_parameter_subtype as generate_config_parameter_subtype
+from .helpers import async_get_node_from_device_id as async_get_node_from_device_id, check_type_schema_map as check_type_schema_map, get_value_state_schema as get_value_state_schema, get_zwave_value_from_config as get_zwave_value_from_config, node_status_matches as node_status_matches, remove_keys_with_empty_values as remove_keys_with_empty_values, value_matches_state as value_matches_state
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_TYPE as CONF_TYPE
@@ -27,4 +27,4 @@ async def async_validate_condition_config(hass: HomeAssistant, config: ConfigTyp
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 @callback
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...
-async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
+async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, probatio.Schema]: ...

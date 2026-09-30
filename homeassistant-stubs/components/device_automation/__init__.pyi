@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .action import DeviceAutomationActionProtocol as DeviceAutomationActionProtocol
 from .condition import DeviceAutomationConditionProtocol as DeviceAutomationConditionProtocol
 from .const import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON, CONF_TURNED_OFF as CONF_TURNED_OFF, CONF_TURNED_ON as CONF_TURNED_ON
@@ -22,7 +22,7 @@ from typing import Any, Literal, overload
 type DeviceAutomationPlatformType = ModuleType | DeviceAutomationTriggerProtocol | DeviceAutomationConditionProtocol | DeviceAutomationActionProtocol
 DOMAIN: str
 CONFIG_SCHEMA: Incomplete
-DEVICE_TRIGGER_BASE_SCHEMA: vol.Schema
+DEVICE_TRIGGER_BASE_SCHEMA: probatio.Schema
 
 @dataclass
 class DeviceAutomationDetails:

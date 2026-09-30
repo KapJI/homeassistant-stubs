@@ -5,9 +5,10 @@ from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass, field
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfSpeed as UnitOfSpeed
+from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfSpeed as UnitOfSpeed
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from pajgps_api.models.sensordata import SensorData as SensorData
 from pajgps_api.models.trackpoint import TrackPoint as TrackPoint
 from typing import override
 
@@ -15,7 +16,8 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PajGpsSensorEntityDescription(SensorEntityDescription):
-    value_fn: Callable[[TrackPoint], int | None]
+    trackpoint_value_fn: Callable[[TrackPoint], int | None] | None = ...
+    sensor_data_value_fn: Callable[[SensorData], int | None] | None = ...
     supported_fn: Callable[[Device], bool] = field(default=Incomplete)
 
 SENSOR_DESCRIPTIONS: tuple[PajGpsSensorEntityDescription, ...]
@@ -29,3 +31,6 @@ class PajGpsSensor(PajGpsEntity, SensorEntity):
     @property
     @override
     def native_value(self) -> int | None: ...
+    @property
+    @override
+    def available(self) -> bool: ...

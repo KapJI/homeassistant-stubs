@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from homeassistant.components.button import ButtonEntity as ButtonEntity, ButtonEntityDescription as ButtonEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from typing import Any, override
 
@@ -21,7 +22,7 @@ DESCRIPTIONS: tuple[TeslemetryButtonEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetryButtonEntity(TeslemetryVehicleStreamEntity, ButtonEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     entity_description: TeslemetryButtonEntityDescription
     def __init__(self, data: TeslemetryVehicleData, description: TeslemetryButtonEntityDescription) -> None: ...
     def _async_update_attrs(self) -> None: ...

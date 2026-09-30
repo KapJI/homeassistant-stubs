@@ -5,7 +5,7 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume
+from homeassistant.const import CURRENCY_EURO as CURRENCY_EURO, PERCENTAGE as PERCENTAGE, UnitOfEnergy as UnitOfEnergy, UnitOfVolume as UnitOfVolume
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.device_registry import DeviceEntryType as DeviceEntryType, DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback

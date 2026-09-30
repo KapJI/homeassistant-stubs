@@ -1,10 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from .const import BOX_NODE_ID as BOX_NODE_ID, DOMAIN as DOMAIN
 from .coordinator import DucoConfigEntry as DucoConfigEntry, DucoCoordinator as DucoCoordinator
 from .entity import DucoEntity as DucoEntity
 from _typeshed import Incomplete
 from duco_connectivity.models import Node as Node, VentilationState
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import percentage_to_ordered_list_item as percentage_to_ordered_list_item

@@ -1,4 +1,4 @@
-from . import Camera as Camera, _async_stream_endpoint_url as _async_stream_endpoint_url
+from . import Camera as Camera, async_stream_endpoint_url as async_stream_endpoint_url
 from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, StreamType as StreamType
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, MediaClass as MediaClass

@@ -1,5 +1,4 @@
 from . import device_registry as device_registry, entity_registry as entity_registry, selector as selector, template as template
-from .deprecation import deprecated_hass_argument as deprecated_hass_argument
 from .entity import Entity as Entity
 from .selector import TargetSelector as TargetSelector
 from .typing import ConfigType as ConfigType, TemplateVarsType as TemplateVarsType, VolDictType as VolDictType, VolSchemaType as VolSchemaType
@@ -17,7 +16,7 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.yaml import load_yaml_dict as load_yaml_dict
 from homeassistant.util.yaml.loader import JSON_TYPE as JSON_TYPE
 from types import ModuleType
-from typing import Any, TypedDict
+from typing import Any, Literal, TypedDict, overload
 
 CONF_SERVICE_ENTITY_ID: str
 _LOGGER: Incomplete
@@ -97,5 +96,9 @@ def async_register_batched_platform_entity_service[_EntityT: Entity](hass: HomeA
 def async_get_config_entry(hass: HomeAssistant, domain: str, entry_id: str | None) -> ConfigEntry: ...
 @callback
 def _async_get_single_loaded_config_entry(hass: HomeAssistant, domain: str) -> ConfigEntry: ...
-@callback
-def async_get_device_and_config_entry(hass: HomeAssistant, domain: str, device_id: str) -> tuple[device_registry.DeviceEntry, ConfigEntry]: ...
+@overload
+def async_get_device_and_config_entry(hass: HomeAssistant, domain: str, device_id: str, *, include_child_devices: Literal[False], include_main_devices: bool = True) -> tuple[device_registry.DeviceEntry, ConfigEntry]: ...
+@overload
+def async_get_device_and_config_entry(hass: HomeAssistant, domain: str, device_id: str, *, include_child_devices: Literal[True] = True, include_main_devices: Literal[False]) -> tuple[device_registry.ChildDeviceEntry, ConfigEntry]: ...
+@overload
+def async_get_device_and_config_entry(hass: HomeAssistant, domain: str, device_id: str, *, include_child_devices: Literal[True] = True, include_main_devices: Literal[True] = True) -> tuple[device_registry.AnyDeviceEntry, ConfigEntry]: ...

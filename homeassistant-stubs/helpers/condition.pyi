@@ -1,6 +1,6 @@
 import abc
 import logging
-import voluptuous as vol
+import probatio
 from . import selector as selector
 from .automation import DomainSpec as DomainSpec, ThresholdConfig as ThresholdConfig, filter_by_domain_specs as filter_by_domain_specs, get_absolute_description_key as get_absolute_description_key, get_relative_description_key as get_relative_description_key, move_options_fields_to_top_level as move_options_fields_to_top_level
 from .integration_platform import async_process_integration_platforms as async_process_integration_platforms
@@ -32,7 +32,6 @@ _LOGGER: Incomplete
 HISTORY_PRIMING_TIMEOUT: int
 MAX_HISTORY_PRIMING_LOOKBACK: Incomplete
 _PLATFORM_ALIASES: dict[str | None, str | None]
-INPUT_ENTITY_ID: Incomplete
 CONDITION_DESCRIPTION_CACHE: HassKey[dict[str, dict[str, Any] | None]]
 CONDITION_PLATFORM_SUBSCRIPTIONS: HassKey[list[Callable[[set[str]], Coroutine[Any, Any, None]]]]
 CONDITIONS: HassKey[dict[str, str]]
@@ -112,7 +111,7 @@ class _HistoryPrimingManager:
 class EntityConditionBase(Condition, metaclass=abc.ABCMeta):
     _domain_specs: Mapping[str, DomainSpec]
     _excluded_states: Final[frozenset[str]]
-    _schema: vol.Schema
+    _schema: probatio.Schema
     _primary_entities_only: ClassVar[bool]
     @override
     @classmethod
@@ -176,7 +175,7 @@ class EntityNumericalConditionBase(EntityConditionBase):
     def is_valid_state(self, entity_state: State) -> bool: ...
 
 def make_entity_numerical_condition(domain_specs: Mapping[str, DomainSpec] | str, valid_unit: str | UndefinedType | None = ..., *, primary_entities_only: bool = True) -> type[EntityNumericalConditionBase]: ...
-def _make_numerical_condition_with_unit_schema(unit_converter: type[BaseUnitConverter]) -> vol.Schema: ...
+def _make_numerical_condition_with_unit_schema(unit_converter: type[BaseUnitConverter]) -> probatio.Schema: ...
 
 class EntityNumericalConditionWithUnitBase(EntityNumericalConditionBase):
     _base_unit: str | None

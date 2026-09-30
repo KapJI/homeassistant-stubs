@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from typing import Any, override
 
@@ -21,7 +22,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetryUpdateEntity(TeslemetryRootEntity, UpdateEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_supported_features: Incomplete
     _attr_in_progress: bool
     @override

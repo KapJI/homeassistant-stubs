@@ -117,10 +117,13 @@ class TimeSMAFilter(Filter, SensorEntity):
     _time_window: Incomplete
     last_leak: FilterState | None
     queue: Incomplete
+    _queue_sum: float
     def __init__(self, *, window_size: timedelta, entity: str, type: str, precision: int = ...) -> None: ...
     def _leak(self, left_boundary: datetime) -> None: ...
     @override
     def _filter_state(self, new_state: FilterState) -> FilterState: ...
+    @staticmethod
+    def _weighted(state: FilterState, until: FilterState) -> float: ...
 
 class ThrottleFilter(Filter, SensorEntity):
     _only_numbers: bool

@@ -4,7 +4,7 @@ from .util import get_name_key as get_name_key, get_supported_entities as get_su
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from deebot_client.capabilities import CapabilityMap, CapabilitySetTypes
+from deebot_client.capabilities import CapabilityMap, CapabilitySet, CapabilitySetTypes
 from deebot_client.command import CommandWithMessageHandling as CommandWithMessageHandling
 from deebot_client.device import Device as Device
 from deebot_client.events.base import Event as Event
@@ -37,9 +37,10 @@ class EcovacsSelectEntity[EventT: Event](EcovacsDescriptionEntity[CapabilitySetT
 
 class EcovacsActiveMapSelectEntity(EcovacsEntity[CapabilityMap], SelectEntity):
     entity_description: Incomplete
+    _major: Incomplete
     _option_to_id: dict[str, str]
     _id_to_option: dict[str, str]
-    def __init__(self, device: Device, capability: CapabilityMap, **kwargs: Any) -> None: ...
+    def __init__(self, device: Device, capability: CapabilityMap, major: CapabilitySet[MajorMapEvent, [str]], **kwargs: Any) -> None: ...
     _attr_current_option: Incomplete
     _attr_options: Incomplete
     def _handle_on_cached_map(self, event: CachedMapInfoEvent) -> None: ...

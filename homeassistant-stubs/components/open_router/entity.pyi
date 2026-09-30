@@ -1,6 +1,7 @@
-import voluptuous as vol
+import probatio
 from . import OpenRouterConfigEntry as OpenRouterConfigEntry
 from .const import CONF_WEB_SEARCH as CONF_WEB_SEARCH, DOMAIN as DOMAIN, LOGGER as LOGGER
+from .schema import adjust_schema as adjust_schema
 from _typeshed import Incomplete
 from collections.abc import AsyncGenerator, Callable as Callable
 from homeassistant.components import conversation as conversation
@@ -11,6 +12,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import llm as llm
 from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.json import json_dumps as json_dumps
+from homeassistant.util import slugify as slugify
 from openai.types.chat import ChatCompletionContentPartImageParam as ChatCompletionContentPartImageParam, ChatCompletionFunctionToolParam, ChatCompletionMessage as ChatCompletionMessage, ChatCompletionMessageParam as ChatCompletionMessageParam
 from openai.types.shared_params.response_format_json_schema import JSONSchema as JSONSchema
 from pathlib import Path
@@ -18,8 +20,7 @@ from typing import Any
 
 MAX_TOOL_ITERATIONS: int
 
-def _adjust_schema(schema: dict[str, Any]) -> None: ...
-def _format_structured_output(name: str, schema: vol.Schema, llm_api: llm.APIInstance | None) -> JSONSchema: ...
+def _format_structured_output(name: str, schema: probatio.Schema, llm_api: llm.APIInstance | None) -> JSONSchema: ...
 def _format_tool(tool: llm.Tool, custom_serializer: Callable[[Any], Any] | None) -> ChatCompletionFunctionToolParam: ...
 def _convert_content_to_chat_message(content: conversation.Content) -> ChatCompletionMessageParam | None: ...
 def _decode_tool_arguments(arguments: str) -> Any: ...
@@ -34,4 +35,4 @@ class OpenRouterEntity(Entity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, entry: OpenRouterConfigEntry, subentry: ConfigSubentry) -> None: ...
-    async def _async_handle_chat_log(self, chat_log: conversation.ChatLog, structure_name: str | None = None, structure: vol.Schema | None = None) -> None: ...
+    async def _async_handle_chat_log(self, chat_log: conversation.ChatLog, structure_name: str | None = None, structure: probatio.Schema | None = None) -> None: ...

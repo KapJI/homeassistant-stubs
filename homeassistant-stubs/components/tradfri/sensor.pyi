@@ -8,7 +8,7 @@ from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceCla
 from homeassistant.const import Platform as Platform, UnitOfDensity as UnitOfDensity, UnitOfRatio as UnitOfRatio, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pytradfri.command import Command as Command
+from pytradfri.api.aiocoap_api import APIRequestProtocol as APIRequestProtocol
 from pytradfri.device import Device as Device
 from typing import Any, override
 
@@ -29,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: TradfriConfigEntr
 class TradfriSensor(TradfriBaseEntity, SensorEntity):
     entity_description: TradfriSensorEntityDescription
     _attr_unique_id: Incomplete
-    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str, description: TradfriSensorEntityDescription) -> None: ...
+    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: APIRequestProtocol, gateway_id: str, description: TradfriSensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @override
     def _refresh(self) -> None: ...

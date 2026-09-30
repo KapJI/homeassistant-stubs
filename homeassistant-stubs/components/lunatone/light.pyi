@@ -22,11 +22,12 @@ class LunatoneLight(CoordinatorEntity[LunatoneDevicesDataUpdateCoordinator], Lig
     _attr_should_poll: bool
     _attr_min_color_temp_kelvin: int
     _attr_max_color_temp_kelvin: int
+    _line_id: Incomplete
     _device_id: Incomplete
     _config_entry_unique_id: Incomplete
     _device: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, coordinator: LunatoneDevicesDataUpdateCoordinator, device_id: int, config_entry_unique_id: str) -> None: ...
+    def __init__(self, coordinator: LunatoneDevicesDataUpdateCoordinator, line_id: int, device_id: int, config_entry_unique_id: str) -> None: ...
     @property
     @override
     def device_info(self) -> DeviceInfo: ...
@@ -62,21 +63,27 @@ class LunatoneLight(CoordinatorEntity[LunatoneDevicesDataUpdateCoordinator], Lig
     @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
 
-class LunatoneLineBroadcastLight(CoordinatorEntity[LunatoneInfoDataUpdateCoordinator], LightEntity):
+class LunatoneLineBroadcastLight(CoordinatorEntity[LunatoneDevicesDataUpdateCoordinator], LightEntity):
     BRIGHTNESS_SCALE: Incomplete
-    _attr_assumed_state: bool
     _attr_color_mode: Incomplete
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_supported_color_modes: Incomplete
-    _coordinator_devices: Incomplete
+    _coordinator_info: Incomplete
     _broadcast: Incomplete
-    _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, coordinator_info: LunatoneInfoDataUpdateCoordinator, coordinator_devices: LunatoneDevicesDataUpdateCoordinator, broadcast: DALIBroadcast, config_entry_unique_id: str) -> None: ...
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator_devices: LunatoneDevicesDataUpdateCoordinator, coordinator_info: LunatoneInfoDataUpdateCoordinator, broadcast: DALIBroadcast, config_entry_unique_id: str) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _handle_info_update(self) -> None: ...
     @property
     @override
     def available(self) -> bool: ...
+    @property
+    @override
+    def is_on(self) -> bool: ...
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
     @override

@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import ACCESS_TOKEN_LOGIN_URL as ACCESS_TOKEN_LOGIN_URL, CONF_MANUAL_TOKEN as CONF_MANUAL_TOKEN, DOMAIN as DOMAIN, INVALID_AUTH_ERRORS as INVALID_AUTH_ERRORS, OPTION_DIAGNOSTICS_INCLUDE_FIXTURES as OPTION_DIAGNOSTICS_INCLUDE_FIXTURES, OPTION_DIAGNOSTICS_INCLUDE_FIXTURES_DEFAULT_VALUE as OPTION_DIAGNOSTICS_INCLUDE_FIXTURES_DEFAULT_VALUE, OPTION_DISABLE_KEEP_ALIVE as OPTION_DISABLE_KEEP_ALIVE, OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE as OPTION_DISABLE_KEEP_ALIVE_DEFAULT_VALUE
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry
 from _typeshed import Incomplete
@@ -36,7 +36,7 @@ class EnphaseConfigFlow(ConfigFlow, domain=DOMAIN):
     @override
     def async_get_options_flow(config_entry: EnphaseConfigEntry) -> EnvoyOptionsFlowHandler: ...
     @callback
-    def _async_generate_schema(self) -> vol.Schema: ...
+    def _async_generate_schema(self) -> probatio.Schema: ...
     @callback
     def _async_current_hosts(self) -> set[str]: ...
     @override

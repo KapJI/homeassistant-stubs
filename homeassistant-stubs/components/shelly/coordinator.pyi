@@ -1,12 +1,13 @@
 import asyncio
 from .bluetooth import async_connect_scanner as async_connect_scanner
-from .const import ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLEScannerMode as BLEScannerMode, COIOT_UNCONFIGURED_ISSUE_ID as COIOT_UNCONFIGURED_ISSUE_ID, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, LOGGER as LOGGER, MAX_PUSH_UPDATE_FAILURES as MAX_PUSH_UPDATE_FAILURES, MODELS_SUPPORTING_LIGHT_EFFECTS as MODELS_SUPPORTING_LIGHT_EFFECTS, OTA_BEGIN as OTA_BEGIN, OTA_ERROR as OTA_ERROR, OTA_PROGRESS as OTA_PROGRESS, OTA_SUCCESS as OTA_SUCCESS, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, RPC_SENSORS_POLLING_INTERVAL as RPC_SENSORS_POLLING_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
+from .const import ATTR_CHANNEL as ATTR_CHANNEL, ATTR_CLICK_TYPE as ATTR_CLICK_TYPE, ATTR_DEVICE as ATTR_DEVICE, ATTR_GENERATION as ATTR_GENERATION, BATTERY_DEVICES_WITH_PERMANENT_CONNECTION as BATTERY_DEVICES_WITH_PERMANENT_CONNECTION, BLEScannerMode as BLEScannerMode, COIOT_UNCONFIGURED_ISSUE_ID as COIOT_UNCONFIGURED_ISSUE_ID, CONF_BLE_SCANNER_MODE as CONF_BLE_SCANNER_MODE, CONF_SLEEP_PERIOD as CONF_SLEEP_PERIOD, DOMAIN as DOMAIN, DUAL_MODE_LIGHT_MODELS as DUAL_MODE_LIGHT_MODELS, ENTRY_RELOAD_COOLDOWN as ENTRY_RELOAD_COOLDOWN, EVENT_SHELLY_CLICK as EVENT_SHELLY_CLICK, INPUTS_EVENTS_DICT as INPUTS_EVENTS_DICT, LOGGER as LOGGER, MAX_PUSH_UPDATE_FAILURES as MAX_PUSH_UPDATE_FAILURES, MODELS_SUPPORTING_LIGHT_EFFECTS as MODELS_SUPPORTING_LIGHT_EFFECTS, OTA_BEGIN as OTA_BEGIN, OTA_ERROR as OTA_ERROR, OTA_PROGRESS as OTA_PROGRESS, OTA_REBOOT_TIMEOUT as OTA_REBOOT_TIMEOUT, OTA_SUCCESS as OTA_SUCCESS, PUSH_UPDATE_ISSUE_ID as PUSH_UPDATE_ISSUE_ID, REST_SENSORS_UPDATE_INTERVAL as REST_SENSORS_UPDATE_INTERVAL, RPC_INPUTS_EVENTS_TYPES as RPC_INPUTS_EVENTS_TYPES, RPC_RECONNECT_INTERVAL as RPC_RECONNECT_INTERVAL, RPC_SENSORS_POLLING_INTERVAL as RPC_SENSORS_POLLING_INTERVAL, SHBTN_MODELS as SHBTN_MODELS, UPDATE_PERIOD_MULTIPLIER as UPDATE_PERIOD_MULTIPLIER
 from .utils import async_create_issue_unsupported_firmware as async_create_issue_unsupported_firmware, async_manage_coiot_issues_task as async_manage_coiot_issues_task, get_block_device_sleep_period as get_block_device_sleep_period, get_device_entry_gen as get_device_entry_gen, get_host as get_host, get_http_port as get_http_port, get_rpc_device_wakeup_period as get_rpc_device_wakeup_period, get_rpc_ws_url as get_rpc_ws_url, get_shelly_model_name as get_shelly_model_name, is_rpc_ble_scanner_supported as is_rpc_ble_scanner_supported, update_device_fw_info as update_device_fw_info
 from _typeshed import Incomplete
 from aioshelly.block_device import BlockDevice, BlockUpdateType
 from aioshelly.rpc_device import RpcDevice, RpcUpdateType
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
+from datetime import datetime
 from homeassistant.components.bluetooth import async_remove_scanner as async_remove_scanner
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, CONF_HOST as CONF_HOST, CONF_MODEL as CONF_MODEL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, Platform as Platform
@@ -91,6 +92,7 @@ class ShellyRpcCoordinator(ShellyCoordinatorBase[RpcDevice]):
     _connection_lock: Incomplete
     _event_listeners: list[Callable[[dict[str, Any]], None]]
     _ota_event_listeners: list[Callable[[dict[str, Any]], None]]
+    _ota_reboot_deadline: datetime | None
     _input_event_listeners: list[Callable[[dict[str, Any]], None]]
     _connect_task: asyncio.Task | None
     def __init__(self, hass: HomeAssistant, entry: ShellyConfigEntry, device: RpcDevice) -> None: ...
@@ -105,7 +107,6 @@ class ShellyRpcCoordinator(ShellyCoordinatorBase[RpcDevice]):
     def async_subscribe_input_events(self, input_event_callback: Callable[[dict[str, Any]], None]) -> CALLBACK_TYPE: ...
     @callback
     def async_subscribe_events(self, event_callback: Callable[[dict[str, Any]], None]) -> CALLBACK_TYPE: ...
-    async def _async_update_listener(self, hass: HomeAssistant, entry: ShellyConfigEntry) -> None: ...
     @callback
     def _async_device_event_handler(self, event_data: dict[str, Any]) -> None: ...
     @override

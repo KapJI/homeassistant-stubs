@@ -7,6 +7,7 @@ from homeassistant.helpers.llm import ActionTool as ActionTool, LLMContext as LL
 
 class ScriptTool(ActionTool):
     name: Incomplete
+    title: Incomplete
     description: Incomplete
     def __init__(self, hass: HomeAssistant, script_entity_id: str) -> None: ...
 

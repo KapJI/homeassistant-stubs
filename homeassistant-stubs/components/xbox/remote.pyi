@@ -8,11 +8,12 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pythonxbox.api.provider.smartglass import SmartglassProvider as SmartglassProvider
+from pythonxbox.api.provider.smartglass.models import CommandResponse as CommandResponse
 from typing import Any, Concatenate, override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
-MAP_COMMAND: dict[str, Callable[[SmartglassProvider], Callable]]
+MAP_COMMAND: dict[str, Callable[[SmartglassProvider], Callable[[str], Coroutine[Any, Any, CommandResponse]]]]
 
 async def async_setup_entry(hass: HomeAssistant, entry: XboxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 def exception_handler[**_P, _R](func: Callable[Concatenate[XboxRemote, _P], Awaitable[_R]]) -> Callable[Concatenate[XboxRemote, _P], Coroutine[Any, Any, _R]]: ...

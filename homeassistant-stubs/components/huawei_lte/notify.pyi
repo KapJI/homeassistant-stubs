@@ -1,8 +1,10 @@
 from . import HuaweiLteConfigEntry as HuaweiLteConfigEntry, Router as Router
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.notify import ATTR_TARGET as ATTR_TARGET, BaseNotificationService as BaseNotificationService
 from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, CONF_RECIPIENT as CONF_RECIPIENT
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.typing import ConfigType as ConfigType, DiscoveryInfoType as DiscoveryInfoType
 from typing import Any, override
 

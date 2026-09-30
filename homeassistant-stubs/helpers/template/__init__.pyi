@@ -15,6 +15,7 @@ from homeassistant.helpers.typing import TemplateVarsType as TemplateVarsType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
 from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.json import JSON_DECODE_EXCEPTIONS as JSON_DECODE_EXCEPTIONS, json_loads as json_loads
+from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict
 from homeassistant.util.thread import ThreadWithException as ThreadWithException
 from jinja2.sandbox import ImmutableSandboxedEnvironment
 from lru import LRU
@@ -57,6 +58,11 @@ RESULT_WRAPPERS: dict[type, type]
 
 def _parse_result(render_result: str) -> Any: ...
 def _cached_parse_result(render_result: str) -> Any: ...
+
+_FINALIZE_DICT_TYPES: Incomplete
+_FINALIZE_CONTAINER_TYPES: Incomplete
+
+def _finalize_output(value: Any, _nested: bool = False) -> Any: ...
 
 class Template:
     __slots__: Incomplete

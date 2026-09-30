@@ -1,8 +1,9 @@
-import voluptuous as vol
+import probatio
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Mapping, Sequence
 from enum import StrEnum
 from functools import cache
+from homeassistant.components.sensor import SensorStateClass as SensorStateClass
 from homeassistant.const import CONF_MODE as CONF_MODE, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, Platform as Platform
 from homeassistant.core import split_entity_id as split_entity_id, valid_entity_id as valid_entity_id
 from homeassistant.generated.countries import COUNTRIES as COUNTRIES
@@ -31,7 +32,8 @@ def _entity_feature_flag(domain: str, enum_name: str, feature_name: str) -> int:
 def _validate_supported_feature(supported_feature: str) -> int: ...
 def _validate_supported_features(supported_features: list[str]) -> int: ...
 def _validate_selector_reorder_config(config: Any) -> Any: ...
-def make_selector_config_schema(schema_dict: dict | None = None) -> vol.Schema: ...
+def _validate_media_selector_config(config: Any) -> Any: ...
+def make_selector_config_schema(schema_dict: dict | None = None) -> probatio.Schema: ...
 
 class BaseSelectorConfig(TypedDict, total=False):
     read_only: bool
@@ -117,8 +119,8 @@ class AttributeSelectorConfig(BaseSelectorConfig, total=False):
 
 class AttributeSelector(Selector[AttributeSelectorConfig]):
     selector_type: str
-    allowed_context_keys: Incomplete
     CONFIG_SCHEMA: Incomplete
+    allowed_context_keys: Incomplete
     def __init__(self, config: AttributeSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
@@ -200,7 +202,7 @@ class ColorTempSelector(Selector[ColorTempSelectorConfig]):
     selector_type: str
     CONFIG_SCHEMA: Incomplete
     def __init__(self, config: ColorTempSelectorConfig | None = None) -> None: ...
-    def __call__(self, data: Any) -> int: ...
+    def __call__(self, data: Any) -> float: ...
 
 class ConditionSelectorConfig(BaseSelectorConfig): ...
 
@@ -378,14 +380,15 @@ class LocationSelector(Selector[LocationSelectorConfig]):
 class MediaSelectorConfig(BaseSelectorConfig, total=False):
     accept: list[str]
     multiple: bool
+    image_upload: bool
 
 class MediaSelector(Selector[MediaSelectorConfig]):
     selector_type: str
-    allowed_context_keys: Incomplete
     CONFIG_SCHEMA: Incomplete
     DATA_SCHEMA: Incomplete
+    allowed_context_keys: Incomplete
     def __init__(self, config: MediaSelectorConfig | None = None) -> None: ...
-    def __call__(self, data: Any) -> dict[str, str] | list[dict[str, str]]: ...
+    def __call__(self, data: Any) -> dict[str, Any] | list[dict[str, Any]]: ...
 
 class NumberSelectorConfig(BaseSelectorConfig, total=False):
     min: float
@@ -449,6 +452,7 @@ class NumericThresholdSelector(Selector[NumericThresholdSelectorConfig]):
     def __call__(self, data: Any) -> Any: ...
 
 class ObjectSelectorField(TypedDict, total=False):
+    default: Any
     label: str
     required: bool
     selector: Required[Selector | dict[str, Any]]
@@ -518,6 +522,18 @@ class SerialPortSelector(Selector[SerialPortSelectorConfig]):
     def __init__(self, config: SerialPortSelectorConfig | None = None) -> None: ...
     def __call__(self, data: Any) -> str: ...
 
+class StateClassSelectorConfig(BaseSelectorConfig, total=False):
+    multiple: bool
+    state_classes: Sequence[str | SensorStateClass]
+
+class StateClassSelector(Selector[StateClassSelectorConfig]):
+    selector_type: str
+    @staticmethod
+    def _valid_state_classes(options: list[str]) -> list[str]: ...
+    CONFIG_SCHEMA: Incomplete
+    def __init__(self, config: StateClassSelectorConfig | None = None) -> None: ...
+    def __call__(self, data: Any) -> Any: ...
+
 class StateSelectorConfig(BaseSelectorConfig, total=False):
     entity_id: str
     hide_states: list[str]
@@ -526,8 +542,8 @@ class StateSelectorConfig(BaseSelectorConfig, total=False):
 
 class StateSelector(Selector[StateSelectorConfig]):
     selector_type: str
-    allowed_context_keys: Incomplete
     CONFIG_SCHEMA: Incomplete
+    allowed_context_keys: Incomplete
     def __init__(self, config: StateSelectorConfig) -> None: ...
     def __call__(self, data: Any) -> str | list[str]: ...
 

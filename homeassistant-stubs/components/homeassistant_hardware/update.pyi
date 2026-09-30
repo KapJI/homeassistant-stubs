@@ -1,6 +1,6 @@
 from .coordinator import FirmwareUpdateCoordinator as FirmwareUpdateCoordinator
 from .helpers import async_register_firmware_info_callback as async_register_firmware_info_callback
-from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware, async_get_raspberry_pi_firmware_info as async_get_raspberry_pi_firmware_info, async_update_raspberry_pi_firmware as async_update_raspberry_pi_firmware, humanize_rpi_firmware_version as humanize_rpi_firmware_version, rpi_firmware_release_url as rpi_firmware_release_url
+from .util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, FlasherType as FlasherType, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware, async_get_flasher_cls as async_get_flasher_cls, async_get_raspberry_pi_firmware_info as async_get_raspberry_pi_firmware_info, async_update_raspberry_pi_firmware as async_update_raspberry_pi_firmware, humanize_rpi_firmware_version as humanize_rpi_firmware_version, rpi_firmware_release_url as rpi_firmware_release_url
 from _typeshed import Incomplete
 from aiohasupervisor.models import RaspberryPiFirmwareInfo as RaspberryPiFirmwareInfo
 from collections.abc import Callable
@@ -13,7 +13,6 @@ from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.restore_state import ExtraStoredData as ExtraStoredData
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from typing import Any, override
-from universal_silabs_flasher.flasher import DeviceSpecificFlasher as DeviceSpecificFlasher
 
 _LOGGER: Incomplete
 type FirmwareChangeCallbackType = Callable[[ApplicationType | None, ApplicationType | None], None]
@@ -38,7 +37,7 @@ class BaseFirmwareUpdateEntity(CoordinatorEntity[FirmwareUpdateCoordinator], Upd
     entity_description: FirmwareUpdateEntityDescription
     _attr_supported_features: Incomplete
     _attr_has_entity_name: bool
-    _flasher_cls: type[DeviceSpecificFlasher]
+    _flasher_type: FlasherType
     _current_device: Incomplete
     _config_entry: Incomplete
     _current_firmware_info: FirmwareInfo | None

@@ -16,6 +16,7 @@ PARALLEL_UPDATES: int
 class HotSpringSensorEntityDescription(SensorEntityDescription):
     exists_fn: Callable[[Spa], bool] = ...
     value_fn: Callable[[Spa], StateType]
+    unit_fn: Callable[[Spa], str | None] | None = ...
 
 SENSORS: tuple[HotSpringSensorEntityDescription, ...]
 
@@ -24,6 +25,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: HotSpringConfigEntry, as
 class HotSpringSensorEntity(HotSpringEntity, SensorEntity):
     entity_description: HotSpringSensorEntityDescription
     def __init__(self, coordinator: HotSpringDataUpdateCoordinator, description: HotSpringSensorEntityDescription) -> None: ...
+    @property
+    @override
+    def native_unit_of_measurement(self) -> str | None: ...
     @property
     @override
     def native_value(self) -> StateType: ...

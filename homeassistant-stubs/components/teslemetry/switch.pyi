@@ -11,6 +11,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import StateType as StateType
 from tesla_fleet_api.const import Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStreamVehicle as TeslemetryStreamVehicle
 from typing import Any, override
@@ -20,8 +21,8 @@ PARALLEL_UPDATES: int
 @dataclass(frozen=True, kw_only=True)
 class TeslemetrySwitchEntityDescription(SwitchEntityDescription):
     polling: bool = ...
-    on_func: Callable[[Vehicle], Awaitable[dict[str, Any]]]
-    off_func: Callable[[Vehicle], Awaitable[dict[str, Any]]]
+    on_func: Callable[[Vehicle | VehicleRouter], Awaitable[dict[str, Any]]]
+    off_func: Callable[[Vehicle | VehicleRouter], Awaitable[dict[str, Any]]]
     scopes: list[Scope]
     value_func: Callable[[StateType], bool] = ...
     streaming_listener: Callable[[TeslemetryStreamVehicle, Callable[[bool | None], None]], Callable[[], None]]
@@ -33,7 +34,7 @@ VEHICLE_DESCRIPTIONS: tuple[TeslemetrySwitchEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetryVehicleSwitchEntity(TeslemetryRootEntity, SwitchEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     entity_description: TeslemetrySwitchEntityDescription
     _attr_is_on: bool

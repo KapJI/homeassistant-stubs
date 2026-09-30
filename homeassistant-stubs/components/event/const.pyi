@@ -22,3 +22,8 @@ class ButtonEventType(StrEnum):
     LONG_PRESS_END = 'long_press_end'
     MULTI_PRESS_ONGOING = 'multi_press_ongoing'
     MULTI_PRESS_END = 'multi_press_end'
+
+class EventDeviceClass(StrEnum):
+    DOORBELL = 'doorbell'
+    BUTTON = 'button'
+    MOTION = 'motion'

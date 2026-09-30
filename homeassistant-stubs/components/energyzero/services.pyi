@@ -14,9 +14,13 @@ ATTR_CONFIG_ENTRY: Final[str]
 ATTR_START: Final[str]
 ATTR_END: Final[str]
 ATTR_INCL_VAT: Final[str]
+ATTR_PRICE_TYPE: Final[str]
+ATTR_INTERVAL: Final[str]
+ENERGY_INTERVALS: Incomplete
 GAS_SERVICE_NAME: Final[str]
 ENERGY_SERVICE_NAME: Final[str]
 SERVICE_SCHEMA: Final[Incomplete]
+ENERGY_SERVICE_SCHEMA: Final[Incomplete]
 
 class ServicePriceType(Enum):
     ENERGY = 'energy'

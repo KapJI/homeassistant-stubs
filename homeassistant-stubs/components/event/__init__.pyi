@@ -1,8 +1,7 @@
-from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, ATTR_MULTI_PRESS_COUNT as ATTR_MULTI_PRESS_COUNT, ButtonEventType as ButtonEventType, DOMAIN as DOMAIN, DoorbellEventType as DoorbellEventType, EventEntityCapabilityAttribute as EventEntityCapabilityAttribute, EventEntityStateAttribute as EventEntityStateAttribute
+from .const import ATTR_EVENT_TYPE as ATTR_EVENT_TYPE, ATTR_EVENT_TYPES as ATTR_EVENT_TYPES, ATTR_MULTI_PRESS_COUNT as ATTR_MULTI_PRESS_COUNT, ButtonEventType as ButtonEventType, DOMAIN as DOMAIN, DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntityCapabilityAttribute as EventEntityCapabilityAttribute, EventEntityStateAttribute as EventEntityStateAttribute
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from datetime import datetime
-from enum import StrEnum
 from homeassistant.helpers.entity import EntityDescription
 from homeassistant.helpers.restore_state import ExtraStoredData, RestoreEntity
 from propcache.api import cached_property
@@ -12,11 +11,6 @@ __all__ = ['ATTR_EVENT_TYPE', 'ATTR_EVENT_TYPES', 'ATTR_MULTI_PRESS_COUNT', 'DOM
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-
-class EventDeviceClass(StrEnum):
-    DOORBELL = 'doorbell'
-    BUTTON = 'button'
-    MOTION = 'motion'
 
 class EventEntityDescription(EntityDescription, frozen_or_thawed=True):
     device_class: EventDeviceClass | None = ...

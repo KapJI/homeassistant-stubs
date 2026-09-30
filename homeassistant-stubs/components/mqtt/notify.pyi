@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .config import DEFAULT_RETAIN as DEFAULT_RETAIN, MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_RETAIN as CONF_RETAIN
 from .entity import MqttEntity as MqttEntity, async_setup_entity_entry_helper as async_setup_entity_entry_helper
@@ -27,7 +27,7 @@ class MqttNotify(MqttEntity, NotifyEntity):
     _entity_id_format: Incomplete
     @staticmethod
     @override
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> probatio.Schema: ...
     _command_template: Incomplete
     @override
     def _setup_from_config(self, config: ConfigType) -> None: ...

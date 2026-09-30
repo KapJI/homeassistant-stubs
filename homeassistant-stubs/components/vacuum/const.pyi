@@ -5,6 +5,17 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+ATTR_FAN_SPEED: Final[str]
+ATTR_PARAMS: Final[str]
+SERVICE_CLEAN_AREA: Final[str]
+SERVICE_CLEAN_SPOT: Final[str]
+SERVICE_LOCATE: Final[str]
+SERVICE_PAUSE: Final[str]
+SERVICE_RETURN_TO_BASE: Final[str]
+SERVICE_SEND_COMMAND: Final[str]
+SERVICE_SET_FAN_SPEED: Final[str]
+SERVICE_START: Final[str]
+SERVICE_STOP: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[StateVacuumEntity]]
 
 class VacuumActivity(StrEnum):

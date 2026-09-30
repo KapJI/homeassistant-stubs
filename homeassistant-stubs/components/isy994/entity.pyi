@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, EVENT_ISY994_CONTROL as EVENT_ISY994_CONTROL
 from _typeshed import Incomplete
 from homeassistant.const import STATE_OFF as STATE_OFF, STATE_ON as STATE_ON
 from homeassistant.core import callback as callback

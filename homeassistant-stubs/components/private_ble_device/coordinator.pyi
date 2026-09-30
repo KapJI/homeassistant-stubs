@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import PRIVATE_BLE_DEVICE_DATA as PRIVATE_BLE_DEVICE_DATA
 from _typeshed import Incomplete
 from collections.abc import Callable
 from cryptography.hazmat.primitives.ciphers import Cipher as Cipher

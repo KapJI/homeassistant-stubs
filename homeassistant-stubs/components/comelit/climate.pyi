@@ -3,7 +3,7 @@ from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerial
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from .utils import bridge_api_call as bridge_api_call, cleanup_stale_entity as cleanup_stale_entity, load_api_data as load_api_data
 from _typeshed import Incomplete
-from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
+from aiocomelit import ComelitDeviceObject as ComelitDeviceObject
 from enum import StrEnum
 from homeassistant.components.climate import ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, HVACAction as HVACAction, HVACMode as HVACMode, UnitOfTemperature as UnitOfTemperature
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS
@@ -48,7 +48,7 @@ class ComelitClimateEntity(ComelitBridgeBaseEntity, ClimateEntity):
     _attr_temperature_unit: Incomplete
     _attr_name: Incomplete
     _attr_translation_key: str
-    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...
+    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitDeviceObject, config_entry_entry_id: str) -> None: ...
     _attr_preset_mode: Incomplete
     _attr_current_temperature: Incomplete
     _attr_hvac_action: Incomplete

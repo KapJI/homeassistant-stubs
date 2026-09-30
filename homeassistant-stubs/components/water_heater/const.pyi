@@ -1,8 +1,17 @@
-from enum import StrEnum
+from . import WaterHeaterEntity as WaterHeaterEntity
+from enum import IntFlag, StrEnum
 from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+ATTR_AWAY_MODE: Final[str]
+ATTR_OPERATION_MODE: Final[str]
+SERVICE_SET_AWAY_MODE: Final[str]
+SERVICE_SET_OPERATION_MODE: Final[str]
+SERVICE_SET_TEMPERATURE: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[WaterHeaterEntity]]
 
 class WaterHeaterCapabilityAttribute(StrEnum):
     MIN_TEMP = 'min_temp'
@@ -25,3 +34,9 @@ STATE_PERFORMANCE: str
 STATE_HIGH_DEMAND: str
 STATE_HEAT_PUMP: str
 STATE_GAS: str
+
+class WaterHeaterEntityFeature(IntFlag):
+    TARGET_TEMPERATURE = 1
+    OPERATION_MODE = 2
+    AWAY_MODE = 4
+    ON_OFF = 8

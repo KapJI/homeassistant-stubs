@@ -5,6 +5,8 @@ from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import date, datetime, time
 from hdate import HDateInfo, Zmanim as Zmanim
+from hdate.translator import TranslatorMixin as TranslatorMixin
+from hdate.zmanim import Zman as Zman
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -20,6 +22,8 @@ type JewishCalendarEventType = DailyCalendarEventType | LearningScheduleEventTyp
 class JewishCalendarCalendarEntityDescription(CalendarEntityDescription):
     value_fn: Callable[[JewishCalendarEventType, date, HDateInfo, Zmanim], list[CalendarEvent] | CalendarEvent | None]
 
+def _all_day_event(target_date: date, item: TranslatorMixin) -> CalendarEvent: ...
+def _timed_event(zman: Zman) -> CalendarEvent: ...
 def _create_daily_event(event_type: JewishCalendarEventType, target_date: date, info: HDateInfo, zmanim: Zmanim) -> CalendarEvent | None: ...
 def _create_yearly_event(event_type: JewishCalendarEventType, target_date: date, info: HDateInfo, zmanim: Zmanim) -> list[CalendarEvent] | CalendarEvent | None: ...
 def _create_learning_event(event_type: JewishCalendarEventType, target_date: date, info: HDateInfo, zmanim: Zmanim) -> CalendarEvent | None: ...

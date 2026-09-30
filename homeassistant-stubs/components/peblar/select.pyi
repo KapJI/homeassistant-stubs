@@ -1,4 +1,4 @@
-from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarUserConfigurationDataUpdateCoordinator as PeblarUserConfigurationDataUpdateCoordinator
+from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarRuntimeData as PeblarRuntimeData, PeblarUserConfigurationDataUpdateCoordinator as PeblarUserConfigurationDataUpdateCoordinator
 from .entity import PeblarEntity as PeblarEntity
 from .helpers import peblar_exception_handler as peblar_exception_handler
 from _typeshed import Incomplete
@@ -15,6 +15,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PeblarSelectEntityDescription(SelectEntityDescription):
+    has_fn: Callable[[PeblarRuntimeData], bool] = ...
     options_fn: Callable[[PeblarUserConfiguration], list[str]] | None = ...
     current_fn: Callable[[PeblarUserConfiguration], str | None]
     select_fn: Callable[[Peblar, str], Awaitable[Any]]

@@ -1,5 +1,5 @@
 import abc
-import voluptuous as vol
+import probatio
 from .const import DOMAIN as DOMAIN, ELEVATION_ASTRONOMICAL as ELEVATION_ASTRONOMICAL, ELEVATION_BLUE_HOUR_HIGH as ELEVATION_BLUE_HOUR_HIGH, ELEVATION_BLUE_HOUR_LOW as ELEVATION_BLUE_HOUR_LOW, ELEVATION_CIVIL as ELEVATION_CIVIL, ELEVATION_GOLDEN_HOUR_HIGH as ELEVATION_GOLDEN_HOUR_HIGH, ELEVATION_GOLDEN_HOUR_LOW as ELEVATION_GOLDEN_HOUR_LOW, ELEVATION_HORIZON as ELEVATION_HORIZON, ELEVATION_NAUTICAL as ELEVATION_NAUTICAL, STATE_ATTR_ELEVATION as STATE_ATTR_ELEVATION
 from _typeshed import Incomplete
 from datetime import timedelta
@@ -19,7 +19,7 @@ _PERIOD_ANY: str
 _PERIOD_MORNING: str
 _PERIOD_EVENING: str
 _PERIODS: Incomplete
-_OPTIONS_SCHEMA_DICT: dict[vol.Marker, Any]
+_OPTIONS_SCHEMA_DICT: dict[probatio.Marker, Any]
 _CONDITION_SCHEMA: Incomplete
 
 def sun(hass: HomeAssistant, before: str | None = None, after: str | None = None, before_offset: timedelta | None = None, after_offset: timedelta | None = None) -> bool: ...

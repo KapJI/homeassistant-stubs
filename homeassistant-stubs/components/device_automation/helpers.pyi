@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import DeviceAutomationType as DeviceAutomationType, async_get_device_automation_platform as async_get_device_automation_platform
 from .exceptions import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig
 from _typeshed import Incomplete
@@ -11,4 +11,4 @@ STATIC_VALIDATOR: Incomplete
 ENTITY_PLATFORMS: Incomplete
 
 def _resolve_device_id(hass: HomeAssistant, device_id: str, domain: str) -> str: ...
-async def async_validate_device_automation_config(hass: HomeAssistant, config: ConfigType, automation_schema: vol.Schema, automation_type: DeviceAutomationType) -> ConfigType: ...
+async def async_validate_device_automation_config(hass: HomeAssistant, config: ConfigType, automation_schema: probatio.Schema, automation_type: DeviceAutomationType) -> ConfigType: ...

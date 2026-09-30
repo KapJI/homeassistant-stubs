@@ -2,6 +2,8 @@ from . import indieauth as indieauth, login_flow as login_flow, mfa_setup_flow a
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Callable
+from dataclasses import dataclass
+from datetime import datetime
 from homeassistant.auth import InvalidAuthError as InvalidAuthError
 from homeassistant.auth.models import Credentials as Credentials, RefreshToken as RefreshToken, TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN as TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN, User as User
 from homeassistant.components import websocket_api as websocket_api
@@ -15,11 +17,21 @@ from homeassistant.helpers.config_entry_oauth2_flow import OAuth2AuthorizeCallba
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from multidict import MultiDictProxy
-from typing import Any
+from typing import Any, Protocol
 
 DOMAIN: str
-type StoreResultType = Callable[[str, Credentials], str]
-type RetrieveResultType = Callable[[str, str], Credentials | None]
+
+@dataclass(slots=True)
+class AuthCodeEntry:
+    created: datetime
+    credentials: Credentials
+    code_challenge: str | None = ...
+    code_challenge_method: str | None = ...
+
+class StoreResultType(Protocol):
+    def __call__(self, client_id: str, result: Credentials, code_challenge: str | None = None, code_challenge_method: str | None = None) -> str: ...
+type RetrieveResultType = Callable[[str, str], AuthCodeEntry | None]
+
 DATA_STORE: HassKey[StoreResultType]
 CONFIG_SCHEMA: Incomplete
 DELETE_CURRENT_TOKEN_DELAY: int
@@ -33,6 +45,10 @@ class RevokeTokenView(HomeAssistantView):
     requires_auth: bool
     cors_allowed: bool
     async def post(self, request: web.Request) -> web.Response: ...
+
+_CODE_VERIFIER_RE: Incomplete
+
+def _verify_code_verifier(code_verifier: str, code_challenge: str) -> bool: ...
 
 class TokenView(HomeAssistantView):
     url: str

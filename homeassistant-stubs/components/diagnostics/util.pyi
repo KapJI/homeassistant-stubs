@@ -3,7 +3,7 @@ from .const import REDACTED as REDACTED
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
 from homeassistant.core import callback as callback
-from homeassistant.helpers.device_registry import DeviceEntry as DeviceEntry
+from homeassistant.helpers.device_registry import AnyDeviceEntry as AnyDeviceEntry
 from homeassistant.helpers.entity_registry import RegistryEntry as RegistryEntry
 from typing import Any, overload
 
@@ -16,7 +16,7 @@ _INTERNAL_DEVICE_ENTRY_ATTRIBUTES: Incomplete
 
 def _device_entry_filter(a: attr.Attribute, _: Any) -> bool: ...
 @callback
-def device_entry_as_dict(entry: DeviceEntry) -> dict[str, Any]: ...
+def device_entry_as_dict(entry: AnyDeviceEntry) -> dict[str, Any]: ...
 def _entity_entry_filter(a: attr.Attribute, _: Any) -> bool: ...
 @callback
 def entity_entry_as_dict(entry: RegistryEntry) -> dict[str, Any]: ...

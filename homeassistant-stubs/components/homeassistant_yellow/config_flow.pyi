@@ -6,12 +6,11 @@ from abc import ABC, abstractmethod
 from homeassistant.components.hassio import SupervisorError as SupervisorError, YellowOptions as YellowOptions, get_supervisor_client as get_supervisor_client
 from homeassistant.components.homeassistant_hardware.firmware_config_flow import BaseFirmwareConfigFlow as BaseFirmwareConfigFlow, BaseFirmwareOptionsFlow as BaseFirmwareOptionsFlow
 from homeassistant.components.homeassistant_hardware.silabs_multiprotocol_addon import OptionsFlowHandler as MultiprotocolOptionsFlowHandler, SerialPortSettings as MultiprotocolSerialPortSettings
-from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, probe_silabs_firmware_info as probe_silabs_firmware_info
+from homeassistant.components.homeassistant_hardware.util import ApplicationType as ApplicationType, FirmwareInfo as FirmwareInfo, FlasherType as FlasherType, async_get_flasher_cls as async_get_flasher_cls, probe_silabs_firmware_info as probe_silabs_firmware_info
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryBaseFlow as ConfigEntryBaseFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_HARDWARE as SOURCE_HARDWARE
 from homeassistant.core import HomeAssistant as HomeAssistant, async_get_hass as async_get_hass, callback as callback
 from homeassistant.helpers import discovery_flow as discovery_flow, selector as selector
 from typing import Any, Protocol, final, override
-from universal_silabs_flasher.flasher import YellowFlasher
 
 _LOGGER: Incomplete
 STEP_HW_SETTINGS_SCHEMA: Incomplete
@@ -21,7 +20,7 @@ class FirmwareInstallFlowProtocol(Protocol):
 
 class YellowFirmwareMixin(ConfigEntryBaseFlow, FirmwareInstallFlowProtocol, metaclass=abc.ABCMeta):
     ZIGBEE_BAUDRATE: int
-    _flasher_cls = YellowFlasher
+    _flasher_type: Incomplete
     async def async_step_install_zigbee_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_install_thread_firmware(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
@@ -72,7 +71,7 @@ class HomeAssistantYellowMultiPanOptionsFlowHandler(BaseHomeAssistantYellowOptio
     def _zigbee_firmware_type(self) -> str: ...
     @property
     @override
-    def _flasher_cls(self) -> type: ...
+    def _flasher_type(self) -> FlasherType: ...
     @override
     async def async_step_flashing_complete(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 

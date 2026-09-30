@@ -8,6 +8,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFai
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pajgps_api.models.device import Device as Device
+from pajgps_api.models.sensordata import SensorData as SensorData
 from pajgps_api.models.trackpoint import TrackPoint as TrackPoint
 from typing import override
 
@@ -18,11 +19,13 @@ type PajGpsConfigEntry = ConfigEntry[PajGpsCoordinator]
 class PajGpsData:
     devices: dict[int, Device]
     positions: dict[int, TrackPoint]
+    sensor_data: dict[int, SensorData]
 
 class PajGpsCoordinator(DataUpdateCoordinator[PajGpsData]):
     config_entry: PajGpsConfigEntry
     _email: str
     _user_id: int | None
+    _voltage_data_failures: set[int]
     api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: PajGpsConfigEntry) -> None: ...
     @property

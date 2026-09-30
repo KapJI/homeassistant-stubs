@@ -1,9 +1,10 @@
-from .const import SERVICE_DISABLE as SERVICE_DISABLE, SERVICE_DISABLE_ATTR_DURATION as SERVICE_DISABLE_ATTR_DURATION
+from .const import DOMAIN as DOMAIN, SERVICE_DISABLE as SERVICE_DISABLE, SERVICE_DISABLE_ATTR_DURATION as SERVICE_DISABLE_ATTR_DURATION
 from .coordinator import PiHoleConfigEntry as PiHoleConfigEntry
 from .entity import PiHoleEntity as PiHoleEntity
 from _typeshed import Incomplete
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override

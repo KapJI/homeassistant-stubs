@@ -2,6 +2,7 @@ from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform
 from typing import Final, Literal, TypedDict
 
+MQTT_DOMAIN: Final[str]
 ATTR_DEVICES: Final[str]
 ATTR_GATEWAY_ID: Final[str]
 ATTR_NODE_ID: Final[str]
@@ -18,9 +19,6 @@ CONF_GATEWAY_TYPE_SERIAL: ConfGatewayType
 CONF_GATEWAY_TYPE_TCP: ConfGatewayType
 CONF_GATEWAY_TYPE_MQTT: ConfGatewayType
 DOMAIN: Final[str]
-MYSENSORS_GATEWAY_START_TASK: str
-MYSENSORS_GATEWAYS: Final[str]
-MYSENSORS_DISCOVERED_NODES: Final[str]
 PLATFORM: Final[str]
 SCHEMA: Final[str]
 CHILD_CALLBACK: str

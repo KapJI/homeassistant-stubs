@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import DEFAULT_PORT as DEFAULT_PORT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from aiovlc.client import Client
@@ -12,7 +12,7 @@ from typing import Any, override
 
 _LOGGER: Incomplete
 
-def user_form_schema(user_input: dict[str, Any] | None) -> vol.Schema: ...
+def user_form_schema(user_input: dict[str, Any] | None) -> probatio.Schema: ...
 
 STEP_REAUTH_DATA_SCHEMA: Incomplete
 

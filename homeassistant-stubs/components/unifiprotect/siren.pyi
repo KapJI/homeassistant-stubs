@@ -2,15 +2,14 @@ from .const import DEFAULT_ATTRIBUTION as DEFAULT_ATTRIBUTION, DEFAULT_BRAND as 
 from .data import ProtectData as ProtectData, UFPConfigEntry as UFPConfigEntry
 from .utils import async_ufp_instance_command as async_ufp_instance_command
 from _typeshed import Incomplete
-from datetime import datetime
 from homeassistant.components.siren import ATTR_DURATION as ATTR_DURATION, ATTR_VOLUME_LEVEL as ATTR_VOLUME_LEVEL, SirenEntity as SirenEntity, SirenEntityFeature as SirenEntityFeature
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.helpers.event import async_call_later as async_call_later
 from typing import Any, override
-from uiprotect.data import PublicDeviceModel as PublicDeviceModel, Siren as Siren
+from uiprotect.data import PublicDeviceModel as PublicDeviceModel, Siren
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -29,7 +28,6 @@ class ProtectSiren(SirenEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     _siren_mac: Incomplete
-    _cancel_scheduled_off: CALLBACK_TYPE | None
     def __init__(self, data: ProtectData, siren: Siren) -> None: ...
     @property
     def _siren(self) -> Siren | None: ...
@@ -39,12 +37,8 @@ class ProtectSiren(SirenEntity):
     def _update_from_siren(self, siren: Siren) -> None: ...
     @callback
     def _async_updated(self, _obj: PublicDeviceModel | None) -> None: ...
-    @callback
-    def _async_scheduled_off(self, _now: datetime) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
-    @callback
-    def _cancel_off_timer(self) -> None: ...
     @async_ufp_instance_command
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...

@@ -4,6 +4,7 @@ from ..entity import UnifiEntity as UnifiEntity, UnifiEntityDescription as Unifi
 from .hub import UnifiHub as UnifiHub
 from _typeshed import Incomplete
 from aiounifi.interfaces.api_handlers import APIHandler as APIHandler
+from aiounifi.models.api import ApiItem as ApiItem
 from aiounifi.models.client import Client as Client
 from collections.abc import Callable as Callable, Coroutine, Sequence
 from datetime import datetime
@@ -18,15 +19,15 @@ CHECK_HEARTBEAT_INTERVAL: Incomplete
 
 class UnifiEntityLoader:
     hub: Incomplete
-    api_updaters: Incomplete
+    _startup_only_api_updaters: Incomplete
     wireless_clients: Incomplete
-    _polling_coordinators: dict[int, UnifiDataUpdateCoordinator]
+    _data_coordinators: dict[int, UnifiDataUpdateCoordinator[Any]]
+    _data_coordinator_aliases: dict[int, int]
     platforms: list[tuple[AddEntitiesCallback, type[UnifiEntity], tuple[UnifiEntityDescription, ...], bool]]
     known_objects: set[tuple[str, str]]
     def __init__(self, hub: UnifiHub) -> None: ...
     async def initialize(self) -> None: ...
     async def _refresh_data(self, updaters: Sequence[Callable[[], Coroutine[Any, Any, None]]]) -> None: ...
-    async def _refresh_api_data(self) -> None: ...
     @callback
     def _restore_inactive_clients(self) -> None: ...
     @callback
@@ -40,6 +41,6 @@ class UnifiEntityLoader:
     @callback
     def _should_add_entity(self, description: UnifiEntityDescription, obj_id: str) -> bool: ...
     @callback
-    def get_data_update_coordinator(self, handler: APIHandler) -> UnifiDataUpdateCoordinator | None: ...
+    def get_data_update_coordinator[HandlerT: APIHandler[ApiItem]](self, handler: HandlerT) -> UnifiDataUpdateCoordinator[HandlerT]: ...
     @callback
     def _load_entities(self, unifi_platform_entity: type[UnifiEntity], descriptions: tuple[UnifiEntityDescription, ...], async_add_entities: AddEntitiesCallback) -> None: ...

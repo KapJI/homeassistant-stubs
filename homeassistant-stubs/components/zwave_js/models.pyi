@@ -1,3 +1,4 @@
+import asyncio
 from . import DriverEvents as DriverEvents
 from awesomeversion import AwesomeVersion
 from collections.abc import Iterable
@@ -17,6 +18,7 @@ class ZwaveJSData:
     client: ZwaveClient
     driver_events: DriverEvents
     old_server_log_level: LogLevel | None = ...
+    network_neighbors_lock: asyncio.Lock = field(default_factory=asyncio.Lock)
 type ZwaveJSConfigEntry = ConfigEntry[ZwaveJSData]
 
 @dataclass

@@ -1,7 +1,7 @@
 import evohomeasync2 as ec2
 from .const import CONF_LOCATION_IDX as CONF_LOCATION_IDX, DOMAIN as DOMAIN, EVOHOME_DATA as EVOHOME_DATA, SCAN_INTERVAL_DEFAULT as SCAN_INTERVAL_DEFAULT, SCAN_INTERVAL_MINIMUM as SCAN_INTERVAL_MINIMUM
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
-from .services import setup_service_functions as setup_service_functions
+from .services import async_setup_services as async_setup_services
 from .storage import TokenManager as TokenManager
 from _typeshed import Incomplete
 from dataclasses import dataclass

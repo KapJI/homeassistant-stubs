@@ -1,4 +1,4 @@
-from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarUserConfigurationDataUpdateCoordinator as PeblarUserConfigurationDataUpdateCoordinator
+from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarRuntimeData as PeblarRuntimeData, PeblarUserConfigurationDataUpdateCoordinator as PeblarUserConfigurationDataUpdateCoordinator
 from .entity import PeblarEntity as PeblarEntity
 from .helpers import peblar_exception_handler as peblar_exception_handler
 from _typeshed import Incomplete
@@ -15,6 +15,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PeblarButtonEntityDescription(ButtonEntityDescription):
+    has_fn: Callable[[PeblarRuntimeData], bool] = ...
     press_fn: Callable[[Peblar], Awaitable[Any]]
 
 DESCRIPTIONS: Incomplete

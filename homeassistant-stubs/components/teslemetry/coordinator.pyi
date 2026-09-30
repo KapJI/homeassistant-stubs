@@ -1,12 +1,14 @@
 from . import TeslemetryConfigEntry as TeslemetryConfigEntry
-from .const import DOMAIN as DOMAIN, ENERGY_HISTORY_FIELDS as ENERGY_HISTORY_FIELDS, LOGGER as LOGGER
+from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
 from .helpers import async_update_device_sw_version as async_update_device_sw_version, flatten as flatten
 from _typeshed import Incomplete
+from datetime import tzinfo
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from tesla_fleet_api.exceptions import TeslaFleetError
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Teslemetry as Teslemetry, Vehicle as Vehicle
+from teslemetry_stream.const import EnergyTotalsEvent as EnergyTotalsEvent
 from typing import Any, override
 
 RETRY_EXCEPTIONS: Incomplete
@@ -15,8 +17,8 @@ def _get_retry_after(e: TeslaFleetError) -> float: ...
 
 VEHICLE_INTERVAL: Incomplete
 VEHICLE_WAIT: Incomplete
-ENERGY_HISTORY_INTERVAL: Incomplete
 METADATA_INTERVAL: Incomplete
+PERIOD_START: str
 TARIFF_SKIP_KEYS: Incomplete
 INSUFFICIENT_CREDITS_RETRY_AFTER: Incomplete
 ENDPOINTS: Incomplete
@@ -66,8 +68,11 @@ class TeslemetryEnergySiteInfoCoordinator(DataUpdateCoordinator[dict[str, Any]])
 
 class TeslemetryEnergyHistoryCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     config_entry: TeslemetryConfigEntry
-    api: Incomplete
+    site_id: Incomplete
+    time_zone: tzinfo | None
     data: Incomplete
-    def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, api: EnergySite) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: TeslemetryConfigEntry, site_id: int) -> None: ...
+    async def async_set_time_zone(self, name: str | None) -> None: ...
     @override
     async def _async_update_data(self) -> dict[str, Any]: ...
+    def handle_stream_update(self, event: EnergyTotalsEvent) -> None: ...

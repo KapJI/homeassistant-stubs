@@ -28,11 +28,14 @@ CONF_PAUSE_COMMAND_TOPIC: str
 CONF_PAUSE_COMMAND_TEMPLATE: str
 CONF_START_MOWING_COMMAND_TOPIC: str
 CONF_START_MOWING_COMMAND_TEMPLATE: str
+CONF_STOP_COMMAND_TOPIC: str
+CONF_STOP_COMMAND_TEMPLATE: str
 DEFAULT_NAME: str
 MQTT_LAWN_MOWER_ATTRIBUTES_BLOCKED: frozenset[str]
 FEATURE_DOCK: str
 FEATURE_PAUSE: str
 FEATURE_START_MOWING: str
+FEATURE_STOP: str
 PLATFORM_SCHEMA_MODERN: Incomplete
 DISCOVERY_SCHEMA: Incomplete
 
@@ -67,3 +70,5 @@ class MqttLawnMower(MqttEntity, LawnMowerEntity, RestoreEntity):
     async def async_dock(self) -> None: ...
     @override
     async def async_pause(self) -> None: ...
+    @override
+    async def async_stop(self) -> None: ...

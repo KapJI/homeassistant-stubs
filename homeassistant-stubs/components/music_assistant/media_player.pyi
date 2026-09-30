@@ -6,9 +6,9 @@ from .media_browser import async_browse_media as async_browse_media, async_searc
 from .schemas import QUEUE_DETAILS_SCHEMA as QUEUE_DETAILS_SCHEMA, queue_item_dict_from_mass_item as queue_item_dict_from_mass_item
 from _typeshed import Incomplete
 from collections.abc import Mapping
-from homeassistant.components import media_source as media_source
+from homeassistant.components import media_source as media_source, tts as tts
 from homeassistant.components.media_player import ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, RepeatMode as RepeatMode, SearchMedia as SearchMedia, SearchMediaQuery as SearchMediaQuery, async_process_play_media_url as async_process_play_media_url
-from homeassistant.const import ATTR_NAME as ATTR_NAME, Platform as Platform, STATE_OFF as STATE_OFF
+from homeassistant.const import ATTR_NAME as ATTR_NAME, Platform as Platform, STATE_OFF as STATE_OFF, STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceResponse as ServiceResponse
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -118,7 +118,7 @@ class MusicAssistantPlayer(MusicAssistantEntity, MediaPlayerEntity):
     @catch_musicassistant_error
     async def _async_handle_play_media(self, media_id: list[str], artist: str | None = None, album: str | None = None, enqueue: MediaPlayerEnqueue | QueueOption | None = None, radio_mode: bool | None = None, media_type: str | None = None, username: str | None = None) -> None: ...
     @catch_musicassistant_error
-    async def _async_handle_play_announcement(self, url: str, use_pre_announce: bool | None = None, pre_announce_url: str | None = None, announce_volume: int | None = None) -> None: ...
+    async def _async_handle_play_announcement(self, url: str | None = None, message: str | None = None, tts_entity_id: str | None = None, use_pre_announce: bool | None = None, pre_announce_url: str | None = None, announce_volume: int | None = None) -> None: ...
     @catch_musicassistant_error
     async def _async_handle_transfer_queue(self, source_player: str | None = None, auto_play: bool | None = None) -> None: ...
     @catch_musicassistant_error

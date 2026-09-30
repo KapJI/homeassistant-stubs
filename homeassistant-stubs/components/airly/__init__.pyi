@@ -1,4 +1,4 @@
-from .const import CONF_USE_NEAREST as CONF_USE_NEAREST, DOMAIN as DOMAIN, MIN_UPDATE_INTERVAL as MIN_UPDATE_INTERVAL
+from .const import CONF_USE_NEAREST as CONF_USE_NEAREST, DOMAIN as DOMAIN
 from .coordinator import AirlyConfigEntry as AirlyConfigEntry, AirlyDataUpdateCoordinator as AirlyDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LATITUDE as CONF_LATITUDE, CONF_LONGITUDE as CONF_LONGITUDE, Platform as Platform

@@ -1,5 +1,5 @@
-from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinatorType as RoborockCoordinatorType, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
-from .entity import RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
+from .coordinator import RoborockB01Q10UpdateCoordinator as RoborockB01Q10UpdateCoordinator, RoborockB01Q7UpdateCoordinator as RoborockB01Q7UpdateCoordinator, RoborockConfigEntry as RoborockConfigEntry, RoborockCoordinatorType as RoborockCoordinatorType, RoborockDataUpdateCoordinator as RoborockDataUpdateCoordinator
+from .entity import RoborockCoordinatedEntityB01Q10 as RoborockCoordinatedEntityB01Q10, RoborockCoordinatedEntityB01Q7 as RoborockCoordinatedEntityB01Q7, RoborockCoordinatedEntityV1 as RoborockCoordinatedEntityV1
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.components.image import ImageEntity as ImageEntity
@@ -51,5 +51,21 @@ class RoborockMapQ10(RoborockCoordinatedEntityB01Q10, ImageEntity):
     _attr_image_last_updated: Incomplete
     @callback
     def _handle_map_update(self) -> None: ...
+    @override
+    async def async_image(self) -> bytes | None: ...
+
+class RoborockMapQ7(RoborockCoordinatedEntityB01Q7, ImageEntity):
+    _attr_content_type: str
+    _attr_entity_category: Incomplete
+    _attr_translation_key: str
+    _map_content_trait: Incomplete
+    _cached_map: bytes | None
+    _attr_image_last_updated: Incomplete
+    def __init__(self, coordinator: RoborockB01Q7UpdateCoordinator) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    @override
+    def _handle_coordinator_update(self) -> None: ...
     @override
     async def async_image(self) -> bytes | None: ...

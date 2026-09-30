@@ -1,16 +1,15 @@
-from .const import DOMAIN as DOMAIN, LawnMowerActivity as LawnMowerActivity, LawnMowerEntityFeature as LawnMowerEntityFeature, SERVICE_DOCK as SERVICE_DOCK, SERVICE_PAUSE as SERVICE_PAUSE, SERVICE_START_MOWING as SERVICE_START_MOWING
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, LawnMowerActivity as LawnMowerActivity, LawnMowerEntityFeature as LawnMowerEntityFeature, SERVICE_DOCK as SERVICE_DOCK, SERVICE_PAUSE as SERVICE_PAUSE, SERVICE_START_MOWING as SERVICE_START_MOWING, SERVICE_STOP as SERVICE_STOP
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import final, override
 
 _LOGGER: Incomplete
-DATA_COMPONENT: HassKey[EntityComponent[LawnMowerEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -43,3 +42,5 @@ class LawnMowerEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     async def async_dock(self) -> None: ...
     def pause(self) -> None: ...
     async def async_pause(self) -> None: ...
+    def stop(self) -> None: ...
+    async def async_stop(self) -> None: ...

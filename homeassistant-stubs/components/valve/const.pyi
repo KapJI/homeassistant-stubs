@@ -1,7 +1,13 @@
+from .entity import ValveEntity as ValveEntity
+from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[ValveEntity]]
+ATTR_POSITION: str
 
 class ValveEntityStateAttribute(StrEnum):
     IS_CLOSED = 'is_closed'
@@ -22,3 +28,5 @@ class ValveState(StrEnum):
     CLOSING = 'closing'
     CLOSED = 'closed'
     OPEN = 'open'
+
+DEVICE_CLASSES_SCHEMA: Incomplete

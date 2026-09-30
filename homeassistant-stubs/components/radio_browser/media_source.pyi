@@ -10,6 +10,7 @@ from radios import RadioBrowser as RadioBrowser, Station as Station
 from typing import override
 
 CODEC_TO_MIMETYPE: Incomplete
+MAX_SEARCH_RESULTS: int
 
 async def async_get_media_source(hass: HomeAssistant) -> RadioMediaSource: ...
 

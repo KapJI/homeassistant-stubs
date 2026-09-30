@@ -2,7 +2,8 @@ from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, FanConf
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import FanSchema as FanSchema
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_OSCILLATION as CONF_GA_OSCILLATION, CONF_GA_SPEED as CONF_GA_SPEED, CONF_GA_STEP as CONF_GA_STEP, CONF_GA_SWITCH as CONF_GA_SWITCH, CONF_SPEED as CONF_SPEED
+from .storage.const import CONF_GA_OSCILLATION as CONF_GA_OSCILLATION, CONF_GA_SPEED as CONF_GA_SPEED, CONF_GA_STEP as CONF_GA_STEP, CONF_GA_SWITCH as CONF_GA_SWITCH, CONF_SPEED as CONF_SPEED
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData
 from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -59,4 +60,4 @@ class KnxYamlFan(_KnxFan, KnxYamlEntity):
 class KnxUiFan(_KnxFan, KnxUiEntity):
     _device: XknxFan
     _step_range: tuple[int, int] | None
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[Any]) -> None: ...

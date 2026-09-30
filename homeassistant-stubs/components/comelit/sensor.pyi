@@ -3,7 +3,7 @@ from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerial
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from .utils import new_device_listener as new_device_listener
 from _typeshed import Incomplete
-from aiocomelit.api import ComelitSerialBridgeObject as ComelitSerialBridgeObject, ComelitVedoZoneObject
+from aiocomelit.api import ComelitDeviceObject as ComelitDeviceObject, ComelitVedoZoneObject
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription
 from homeassistant.const import UnitOfPower as UnitOfPower
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -21,7 +21,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ComelitConfigEntr
 class ComelitBridgeSensorEntity(ComelitBridgeBaseEntity, SensorEntity):
     _attr_name: Incomplete
     entity_description: Incomplete
-    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str, description: SensorEntityDescription) -> None: ...
+    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitDeviceObject, config_entry_entry_id: str, description: SensorEntityDescription) -> None: ...
     @property
     @override
     def native_value(self) -> StateType: ...

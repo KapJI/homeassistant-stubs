@@ -1,29 +1,20 @@
-from .const import ATTR_ACTION as ATTR_ACTION, ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, ATTR_TARGET_HUMIDITY_STEP as ATTR_TARGET_HUMIDITY_STEP, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute, HumidifierEntityFeature as HumidifierEntityFeature, HumidifierEntityStateAttribute as HumidifierEntityStateAttribute, MODE_AUTO as MODE_AUTO, MODE_AWAY as MODE_AWAY, MODE_BABY as MODE_BABY, MODE_BOOST as MODE_BOOST, MODE_COMFORT as MODE_COMFORT, MODE_ECO as MODE_ECO, MODE_HOME as MODE_HOME, MODE_NORMAL as MODE_NORMAL, MODE_SLEEP as MODE_SLEEP, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE
+from .const import ATTR_ACTION as ATTR_ACTION, ATTR_AVAILABLE_MODES as ATTR_AVAILABLE_MODES, ATTR_CURRENT_HUMIDITY as ATTR_CURRENT_HUMIDITY, ATTR_HUMIDITY as ATTR_HUMIDITY, ATTR_MAX_HUMIDITY as ATTR_MAX_HUMIDITY, ATTR_MIN_HUMIDITY as ATTR_MIN_HUMIDITY, ATTR_TARGET_HUMIDITY_STEP as ATTR_TARGET_HUMIDITY_STEP, DATA_COMPONENT as DATA_COMPONENT, DEFAULT_MAX_HUMIDITY as DEFAULT_MAX_HUMIDITY, DEFAULT_MIN_HUMIDITY as DEFAULT_MIN_HUMIDITY, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, DOMAIN as DOMAIN, HumidifierAction as HumidifierAction, HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute, HumidifierEntityFeature as HumidifierEntityFeature, HumidifierEntityStateAttribute as HumidifierEntityStateAttribute, MODE_AUTO as MODE_AUTO, MODE_AWAY as MODE_AWAY, MODE_BABY as MODE_BABY, MODE_BOOST as MODE_BOOST, MODE_COMFORT as MODE_COMFORT, MODE_ECO as MODE_ECO, MODE_HOME as MODE_HOME, MODE_NORMAL as MODE_NORMAL, MODE_SLEEP as MODE_SLEEP, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_MODE as ATTR_MODE, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity import ToggleEntity as ToggleEntity, ToggleEntityDescription as ToggleEntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any, final, override
 
 _LOGGER: Incomplete
-DATA_COMPONENT: HassKey[EntityComponent[HumidifierEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
-
-class HumidifierDeviceClass(StrEnum):
-    HUMIDIFIER = 'humidifier'
-    DEHUMIDIFIER = 'dehumidifier'
-
-DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
 
 def is_on(hass: HomeAssistant, entity_id: str) -> bool: ...
@@ -82,5 +73,3 @@ class HumidifierEntity(ToggleEntity, cached_properties=CACHED_PROPERTIES_WITH_AT
     @cached_property
     @override
     def supported_features(self) -> HumidifierEntityFeature: ...
-
-async def async_service_humidity_set(entity: HumidifierEntity, service_call: ServiceCall) -> None: ...

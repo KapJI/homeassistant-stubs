@@ -5,6 +5,7 @@ from typing import Final
 
 ATTR_CACHE: str
 ATTR_LANGUAGE: str
+ATTR_MEDIA_PLAYER_ENTITY_ID: str
 ATTR_MESSAGE: str
 ATTR_OPTIONS: str
 CONF_CACHE: str
@@ -18,4 +19,5 @@ DOMAIN: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[TextToSpeechEntity]]
 DATA_TTS_MANAGER: HassKey[SpeechManager]
 MEDIA_SOURCE_STREAM_PATH: str
+SERVICE_CLEAR_CACHE: str
 type TtsAudioType = tuple[str | None, bytes | None]

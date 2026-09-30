@@ -1,0 +1,56 @@
+import asyncio
+from .const import DATA_LISTENER_REGISTRY as DATA_LISTENER_REGISTRY, DOMAIN as DOMAIN, MODEL_NAME as MODEL_NAME
+from _typeshed import Incomplete
+from bitvis_protobuf.listener import SharedListener
+from bitvis_protobuf.parse import PayloadDiagnostic as PayloadDiagnostic, PayloadSample
+from dataclasses import dataclass
+from datetime import datetime
+from homeassistant.config_entries import ConfigEntry as ConfigEntry
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.exceptions import ConfigEntryError as ConfigEntryError
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
+from homeassistant.util.variance import ignore_variance as ignore_variance
+from typing import override
+
+_LOGGER: Incomplete
+type BitvisConfigEntry = ConfigEntry[BitvisDataUpdateCoordinator]
+
+def _uptime_to_boot_time(uptime_s: int) -> datetime: ...
+
+@dataclass(kw_only=True)
+class BitvisData:
+    sample: PayloadSample | None = ...
+    diagnostic: PayloadDiagnostic | None = ...
+    boot_time: datetime | None = ...
+
+class BitvisListenerRegistry:
+    _listeners: dict[int, SharedListener]
+    _locks: dict[int, asyncio.Lock]
+    def __init__(self) -> None: ...
+    async def async_get_or_create(self, port: int) -> SharedListener: ...
+    async def async_remove_if_unused(self, port: int) -> None: ...
+    def get(self, port: int) -> SharedListener | None: ...
+    def has_listener(self, port: int) -> bool: ...
+
+def async_get_listener_registry(hass: HomeAssistant) -> BitvisListenerRegistry: ...
+
+class BitvisDataUpdateCoordinator(DataUpdateCoordinator[BitvisData]):
+    config_entry: BitvisConfigEntry
+    port: Incomplete
+    mac_address: Incomplete
+    _filter: Incomplete
+    _registered: bool
+    _stable_boot_time: Incomplete
+    data: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: BitvisConfigEntry, port: int, mac_address: str) -> None: ...
+    @override
+    async def _async_setup(self) -> None: ...
+    async def async_stop(self) -> None: ...
+    @callback
+    def _handle_payload(self, payload: PayloadSample | PayloadDiagnostic, addr: tuple[str, int]) -> None: ...
+    @callback
+    def _handle_sample(self, payload: PayloadSample) -> None: ...
+    @callback
+    def _handle_diagnostic(self, payload: PayloadDiagnostic) -> None: ...
+    @override
+    async def _async_update_data(self) -> BitvisData: ...

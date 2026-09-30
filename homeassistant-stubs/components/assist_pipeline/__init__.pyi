@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, EVENT_RECORDING as EVENT_RECORDING, OPTION_PREFERRED as OPTION_PREFERRED, SAMPLES_PER_CHUNK as SAMPLES_PER_CHUNK, SAMPLE_CHANNELS as SAMPLE_CHANNELS, SAMPLE_RATE as SAMPLE_RATE, SAMPLE_WIDTH as SAMPLE_WIDTH
 from .error import PipelineNotFound as PipelineNotFound
-from .pipeline import AudioSettings as AudioSettings, Pipeline as Pipeline, PipelineEvent as PipelineEvent, PipelineEventCallback, PipelineEventType as PipelineEventType, PipelineStage, WakeWordSettings as WakeWordSettings, async_create_default_pipeline as async_create_default_pipeline, async_get_pipelines as async_get_pipelines, async_update_pipeline as async_update_pipeline
+from .models import AudioSettings as AudioSettings, Pipeline as Pipeline, PipelineEvent as PipelineEvent, PipelineEventCallback, PipelineEventType as PipelineEventType, PipelineStage, WakeWordSettings as WakeWordSettings
+from .pipeline import async_create_default_pipeline as async_create_default_pipeline, async_get_pipelines as async_get_pipelines, async_update_pipeline as async_update_pipeline
 from .select import AssistPipelineSelect as AssistPipelineSelect, VadSensitivitySelect as VadSensitivitySelect
 from .vad import VadSensitivity as VadSensitivity
 from collections.abc import AsyncIterable

@@ -1,10 +1,10 @@
-from .const import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN, TEMPERATURE_UNIT_MAP as TEMPERATURE_UNIT_MAP
 from .entry_data import DeviceEntityKey as DeviceEntityKey, ESPHomeConfigEntry as ESPHomeConfigEntry, RuntimeEntryData as RuntimeEntryData, async_migrate_unique_id as async_migrate_unique_id
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from _typeshed import Incomplete
-from aioesphomeapi import DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState
+from aioesphomeapi import ClimateInfo as ClimateInfo, DeviceInfo as EsphomeDeviceInfo, EntityCategory as EsphomeEntityCategory, EntityInfo, EntityState, WaterHeaterInfo as WaterHeaterInfo
 from collections.abc import Awaitable, Callable as Callable, Coroutine
-from homeassistant.const import EntityCategory as EntityCategory
+from homeassistant.const import EntityCategory as EntityCategory, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import device_registry as dr, entity_platform as entity_platform
@@ -14,6 +14,8 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEnti
 from typing import Any, Concatenate, Generic, TypeVar, override
 
 _LOGGER: Incomplete
+
+def get_temperature_unit(static_info: ClimateInfo | WaterHeaterInfo) -> UnitOfTemperature: ...
 _InfoT = TypeVar('_InfoT', bound=EntityInfo)
 _EntityT = TypeVar('_EntityT', bound='EsphomeEntity[Any,Any]')
 _StateT = TypeVar('_StateT', bound=EntityState)

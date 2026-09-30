@@ -14,6 +14,7 @@ from typing import override
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
+_CONTINUOUS_VENTILATION_STATES: Incomplete
 
 @dataclass(frozen=True, kw_only=True)
 class DucoSensorEntityDescription(SensorEntityDescription):

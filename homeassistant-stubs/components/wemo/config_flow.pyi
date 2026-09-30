@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import DOMAIN as DOMAIN
 from .coordinator import Options as Options, OptionsValidationError as OptionsValidationError
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
@@ -18,4 +18,4 @@ class WemoFlow(DiscoveryFlowHandler, domain=DOMAIN):
 class WemoOptionsFlow(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
 
-def _schema_for_options(options: Options) -> vol.Schema: ...
+def _schema_for_options(options: Options) -> probatio.Schema: ...

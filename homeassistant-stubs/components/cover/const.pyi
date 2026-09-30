@@ -1,7 +1,12 @@
+from . import CoverEntity as CoverEntity
+from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[CoverEntity]]
 ATTR_CURRENT_POSITION: str
 ATTR_CURRENT_TILT_POSITION: str
 ATTR_IS_CLOSED: str
@@ -48,3 +53,5 @@ class CoverDeviceClass(StrEnum):
     SHADE = 'shade'
     SHUTTER = 'shutter'
     WINDOW = 'window'
+
+DEVICE_CLASSES_SCHEMA: Incomplete

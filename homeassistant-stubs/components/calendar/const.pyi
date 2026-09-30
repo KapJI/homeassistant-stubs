@@ -6,6 +6,8 @@ from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+CREATE_EVENT_SERVICE: Final[str]
+SERVICE_GET_EVENTS: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[CalendarEntity]]
 
 class CalendarEntityStateAttribute(StrEnum):
@@ -21,6 +23,10 @@ class CalendarEntityFeature(IntFlag):
     DELETE_EVENT = 2
     UPDATE_EVENT = 4
 
+class CalendarEventStatus(StrEnum):
+    CONFIRMED = 'confirmed'
+    TENTATIVE = 'tentative'
+
 EVENT_UID: str
 EVENT_START: str
 EVENT_END: str
@@ -30,6 +36,7 @@ EVENT_LOCATION: str
 EVENT_RECURRENCE_ID: str
 EVENT_RECURRENCE_RANGE: str
 EVENT_RRULE: str
+EVENT_STATUS: str
 EVENT_START_DATE: str
 EVENT_END_DATE: str
 EVENT_START_DATETIME: str

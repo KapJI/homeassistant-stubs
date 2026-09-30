@@ -1,3 +1,4 @@
+from .const import LOGGER as LOGGER
 from .entity import MatterEntity as MatterEntity, MatterEntityDescription as MatterEntityDescription
 from .helpers import MatterConfigEntry as MatterConfigEntry
 from .models import MatterDiscoverySchema as MatterDiscoverySchema

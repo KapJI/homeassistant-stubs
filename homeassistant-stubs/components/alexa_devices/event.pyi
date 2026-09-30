@@ -1,7 +1,7 @@
 from .const import LOGGER as LOGGER
 from .coordinator import AmazonConfigEntry as AmazonConfigEntry, AmazonDevicesCoordinator as AmazonDevicesCoordinator
 from .entity import AmazonEntity as AmazonEntity
-from .utils import async_remove_entity_from_virtual_group as async_remove_entity_from_virtual_group
+from .utils import async_remove_entities as async_remove_entities
 from _typeshed import Incomplete
 from homeassistant.components.event import EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

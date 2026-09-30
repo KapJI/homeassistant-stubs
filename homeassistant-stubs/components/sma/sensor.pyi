@@ -26,9 +26,6 @@ class SMAsensor(CoordinatorEntity[SMADataUpdateCoordinator], SensorEntity):
     def __init__(self, coordinator: SMADataUpdateCoordinator, description: SensorEntityDescription | None, pysma_sensor: Sensor, entry: SMAConfigEntry) -> None: ...
     @property
     @override
-    def name(self) -> str: ...
-    @property
-    @override
     def available(self) -> bool: ...
     @property
     @override

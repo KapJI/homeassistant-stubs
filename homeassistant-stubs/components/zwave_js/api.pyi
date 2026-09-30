@@ -11,7 +11,6 @@ from homeassistant.components.websocket_api import ActiveConnection as ActiveCon
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from typing import Any, Concatenate, Literal
@@ -27,10 +26,12 @@ from zwave_js_server.model.node.firmware import NodeFirmwareUpdateProgress as No
 from zwave_js_server.model.statistics import RouteStatistics as RouteStatistics
 from zwave_js_server.model.value import Value as Value
 
+_LOGGER: Incomplete
 DATA_UNSUBSCRIBE: str
 ID: str
 ENTRY_ID: str
 ERR_NOT_LOADED: str
+ERR_RF_TOGGLE_FAILED: str
 NODE_ID: str
 DEVICE_ID: str
 COMMAND_CLASS_ID: str
@@ -100,6 +101,11 @@ async def websocket_subscribe_node_status(hass: HomeAssistant, connection: Activ
 @websocket_api.async_response
 @async_get_node
 async def websocket_node_status(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
+@websocket_api.require_admin
+@websocket_api.async_response
+@async_handle_failed_command
+@async_get_entry
+async def websocket_network_neighbors(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], entry: ZwaveJSConfigEntry, client: Client, driver: Driver) -> None: ...
 @websocket_api.async_response
 @async_get_node
 async def websocket_node_metadata(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any], node: Node) -> None: ...
@@ -305,8 +311,6 @@ async def websocket_is_any_ota_firmware_update_in_progress(hass: HomeAssistant, 
 class FirmwareUploadView(HomeAssistantView):
     url: str
     name: str
-    _dev_reg: Incomplete
-    def __init__(self, dev_reg: dr.DeviceRegistry) -> None: ...
     @require_admin
     async def post(self, request: web.Request, device_id: str) -> web.Response: ...
 

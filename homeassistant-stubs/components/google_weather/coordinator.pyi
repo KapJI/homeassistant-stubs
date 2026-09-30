@@ -12,6 +12,7 @@ from homeassistant.helpers.update_coordinator import TimestampDataUpdateCoordina
 from typing import TypeVar, override
 
 _LOGGER: Incomplete
+HOURLY_FORECAST_HOURS: int
 T = TypeVar('T', bound=CurrentConditionsResponse | DailyForecastResponse | HourlyForecastResponse | None)
 
 @dataclass

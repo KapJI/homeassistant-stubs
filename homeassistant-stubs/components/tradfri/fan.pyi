@@ -2,11 +2,10 @@ from .const import CONF_GATEWAY_ID as CONF_GATEWAY_ID
 from .coordinator import TradfriConfigEntry as TradfriConfigEntry, TradfriDeviceDataUpdateCoordinator as TradfriDeviceDataUpdateCoordinator
 from .entity import TradfriBaseEntity as TradfriBaseEntity
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from homeassistant.components.fan import FanEntity as FanEntity, FanEntityFeature as FanEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from pytradfri.command import Command as Command
+from pytradfri.api.aiocoap_api import APIRequestProtocol as APIRequestProtocol
 from typing import Any, override
 
 ATTR_AUTO: str
@@ -23,7 +22,7 @@ class TradfriAirPurifierFan(TradfriBaseEntity, FanEntity):
     _attr_speed_count = ATTR_MAX_FAN_STEPS
     _device_control: Incomplete
     _device_data: Incomplete
-    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: Callable[[Command | list[Command]], Any], gateway_id: str) -> None: ...
+    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, api: APIRequestProtocol, gateway_id: str) -> None: ...
     @override
     def _refresh(self) -> None: ...
     @property

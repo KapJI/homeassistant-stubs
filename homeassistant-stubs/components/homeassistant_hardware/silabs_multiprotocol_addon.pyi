@@ -2,7 +2,7 @@ import abc
 import asyncio
 import dataclasses
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SILABS_MULTIPROTOCOL_ADDON_SLUG as SILABS_MULTIPROTOCOL_ADDON_SLUG
-from .util import ApplicationType as ApplicationType, WaitingAddonManager as WaitingAddonManager, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware
+from .util import ApplicationType as ApplicationType, FlasherType as FlasherType, WaitingAddonManager as WaitingAddonManager, async_firmware_flashing_context as async_firmware_flashing_context, async_flash_silabs_firmware as async_flash_silabs_firmware, async_get_flasher_cls as async_get_flasher_cls
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from homeassistant.components.hassio import AddonError as AddonError, AddonInfo as AddonInfo, AddonManager as AddonManager, AddonState as AddonState, hostname_from_addon_slug as hostname_from_addon_slug
@@ -88,7 +88,7 @@ class OptionsFlowHandler(OptionsFlow, ABC, metaclass=abc.ABCMeta):
     def _zigbee_firmware_type(self) -> str: ...
     @property
     @abstractmethod
-    def _flasher_cls(self) -> type: ...
+    def _flasher_type(self) -> FlasherType: ...
     @property
     def flow_manager(self) -> OptionsFlowManager: ...
     async def _async_get_addon_info(self, addon_manager: AddonManager) -> AddonInfo: ...

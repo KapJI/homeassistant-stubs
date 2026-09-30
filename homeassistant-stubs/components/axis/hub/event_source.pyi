@@ -1,12 +1,13 @@
 import axis
 from _typeshed import Incomplete
 from axis.stream_manager import Signal
-from homeassistant.components import mqtt as mqtt
 from homeassistant.components.mqtt import ReceiveMessage as ReceiveMessage
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.setup import async_when_setup as async_when_setup
+
+MQTT_DOMAIN: str
 
 class AxisEventSource:
     hass: Incomplete

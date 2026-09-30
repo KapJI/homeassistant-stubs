@@ -1,5 +1,5 @@
 import datetime
-from .const import DOMAIN as DOMAIN
+from .const import DAILY_ENERGY_UPPER_LIMIT as DAILY_ENERGY_UPPER_LIMIT, DOMAIN as DOMAIN
 from .coordinator import EnphaseConfigEntry as EnphaseConfigEntry, EnphaseUpdateCoordinator as EnphaseUpdateCoordinator
 from .entity import EnvoyACBAggregateEntity as EnvoyACBAggregateEntity, EnvoyACBBatteryEntity as EnvoyACBBatteryEntity, EnvoyBaseEntity as EnvoyBaseEntity
 from _typeshed import Incomplete
@@ -30,6 +30,7 @@ INVERTER_SENSORS: Incomplete
 class EnvoyProductionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoySystemProduction], int]
     on_phase: str | None = ...
+    upper_limit: int | None = ...
 
 PRODUCTION_SENSORS: Incomplete
 PRODUCTION_PHASE_SENSORS: Incomplete
@@ -38,6 +39,7 @@ PRODUCTION_PHASE_SENSORS: Incomplete
 class EnvoyConsumptionSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[EnvoySystemConsumption], int]
     on_phase: str | None = ...
+    upper_limit: int | None = ...
 
 CONSUMPTION_SENSORS: Incomplete
 CONSUMPTION_PHASE_SENSORS: Incomplete
@@ -128,6 +130,7 @@ class EnvoySystemSensorEntity(EnvoySensorBaseEntity):
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, coordinator: EnphaseUpdateCoordinator, description: SensorEntityDescription) -> None: ...
+    def _apply_upper_limit(self, value: int, upper_limit: int | None) -> int | None: ...
 
 class EnvoyProductionEntity(EnvoySystemSensorEntity):
     entity_description: EnvoyProductionSensorEntityDescription

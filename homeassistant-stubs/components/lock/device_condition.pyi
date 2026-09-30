@@ -1,4 +1,5 @@
-from . import DOMAIN as DOMAIN, LockState as LockState
+from . import LockState as LockState
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback

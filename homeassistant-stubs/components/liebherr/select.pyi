@@ -15,6 +15,8 @@ from typing import Any, override
 PARALLEL_UPDATES: int
 type SelectControl = IceMakerControl | HydroBreezeControl | BioFreshPlusControl
 
+def _replace_mode(control: SelectControl, mode: StrEnum) -> SelectControl: ...
+
 @dataclass(frozen=True, kw_only=True)
 class LiebherrSelectEntityDescription(SelectEntityDescription):
     control_type: type[SelectControl]

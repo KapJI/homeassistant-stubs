@@ -15,11 +15,16 @@ from typing import Any, override
 PARALLEL_UPDATES: int
 _PUMP_MODE_OPTIONS: Incomplete
 _PUMP_SPEED_OPTIONS: Incomplete
+_LIGHT_FREQUENCIES: Incomplete
+_LIGHT_MODE_PATH: str
+_LIGHT_STATUS_PATH: str
+_LIGHT_MODE_UPDATES: dict[str, dict[str, int]]
 
 @dataclass(frozen=True, kw_only=True)
 class VistapoolSelectEntityDescription(SelectEntityDescription):
     value_path: str
-    exists_path: str | tuple[str, ...] | None = ...
+    presence_path: str | None = ...
+    value_map: dict[str, int] | None = ...
 
 SELECT_DESCRIPTIONS: tuple[VistapoolSelectEntityDescription, ...]
 
@@ -31,6 +36,18 @@ class VistapoolSelect(VistapoolEntity, SelectEntity):
     entity_description: VistapoolSelectEntityDescription
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: VistapoolDataUpdateCoordinator, description: VistapoolSelectEntityDescription) -> None: ...
+    @property
+    @override
+    def current_option(self) -> str | None: ...
+    @override
+    async def async_select_option(self, option: str) -> None: ...
+
+class VistapoolLightModeSelect(VistapoolEntity, SelectEntity):
+    _attr_translation_key: str
+    _attr_entity_category: Incomplete
+    _attr_options: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, coordinator: VistapoolDataUpdateCoordinator) -> None: ...
     @property
     @override
     def current_option(self) -> str | None: ...

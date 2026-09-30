@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import DeviceAutomationType as DeviceAutomationType, async_get_device_automation_platform as async_get_device_automation_platform
 from .helpers import async_validate_device_automation_config as async_validate_device_automation_config
 from homeassistant.const import CONF_DOMAIN as CONF_DOMAIN, CONF_OPTIONS as CONF_OPTIONS
@@ -8,10 +8,10 @@ from homeassistant.helpers.typing import ConfigType as ConfigType, TemplateVarsT
 from typing import Any, Protocol, override
 
 class DeviceAutomationConditionProtocol(Protocol):
-    CONDITION_SCHEMA: vol.Schema
+    CONDITION_SCHEMA: probatio.Schema
     async def async_validate_condition_config(self, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
     def async_condition_from_config(self, hass: HomeAssistant, config: ConfigType) -> ConditionCheckerType: ...
-    async def async_get_condition_capabilities(self, hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
+    async def async_get_condition_capabilities(self, hass: HomeAssistant, config: ConfigType) -> dict[str, probatio.Schema]: ...
     async def async_get_conditions(self, hass: HomeAssistant, device_id: str) -> list[dict[str, Any]]: ...
 
 class DeviceCondition(Condition):

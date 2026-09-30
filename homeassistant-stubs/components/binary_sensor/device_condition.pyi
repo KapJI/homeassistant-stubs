@@ -1,5 +1,5 @@
-import voluptuous as vol
-from . import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
+import probatio
+from .const import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import CONF_IS_OFF as CONF_IS_OFF, CONF_IS_ON as CONF_IS_ON
 from homeassistant.const import CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_STATE as CONF_STATE, CONF_TYPE as CONF_TYPE
@@ -21,6 +21,8 @@ CONF_IS_CONNECTED: str
 CONF_IS_NOT_CONNECTED: str
 CONF_IS_GAS: str
 CONF_IS_NO_GAS: str
+CONF_IS_GLASS_BREAK: str
+CONF_IS_NO_GLASS_BREAK: str
 CONF_IS_HOT: str
 CONF_IS_NOT_HOT: str
 CONF_IS_LIGHT: str
@@ -67,4 +69,4 @@ CONDITION_SCHEMA: Incomplete
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 @callback
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...
-async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
+async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, probatio.Schema]: ...

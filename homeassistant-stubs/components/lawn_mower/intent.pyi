@@ -1,4 +1,5 @@
-from . import DOMAIN as DOMAIN, LawnMowerEntityFeature as LawnMowerEntityFeature, SERVICE_DOCK as SERVICE_DOCK, SERVICE_START_MOWING as SERVICE_START_MOWING
+from . import LawnMowerEntityFeature as LawnMowerEntityFeature, SERVICE_DOCK as SERVICE_DOCK, SERVICE_START_MOWING as SERVICE_START_MOWING
+from .const import DOMAIN as DOMAIN
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers import intent as intent
 

@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import subscription as subscription
 from .config import MQTT_RW_SCHEMA as MQTT_RW_SCHEMA
 from .const import CONF_COMMAND_TEMPLATE as CONF_COMMAND_TEMPLATE, CONF_COMMAND_TOPIC as CONF_COMMAND_TOPIC, CONF_STATE_OFF as CONF_STATE_OFF, CONF_STATE_ON as CONF_STATE_ON, CONF_STATE_TOPIC as CONF_STATE_TOPIC, DEFAULT_PAYLOAD_OFF as DEFAULT_PAYLOAD_OFF, DEFAULT_PAYLOAD_ON as DEFAULT_PAYLOAD_ON, PAYLOAD_NONE as PAYLOAD_NONE
@@ -34,7 +34,7 @@ class MqttSwitch(MqttEntity, SwitchEntity, RestoreEntity):
     _value_template: Callable[[ReceivePayloadType], ReceivePayloadType]
     @staticmethod
     @override
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> probatio.Schema: ...
     _attr_device_class: Incomplete
     _attr_assumed_state: Incomplete
     @override

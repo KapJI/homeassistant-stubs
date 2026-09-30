@@ -1,5 +1,5 @@
-from . import ATTR_HUMIDITY as ATTR_HUMIDITY, DOMAIN as DOMAIN, HumidifierEntityFeature as HumidifierEntityFeature, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE, SERVICE_TURN_ON as SERVICE_TURN_ON
-from .const import HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute
+from . import ATTR_HUMIDITY as ATTR_HUMIDITY, HumidifierEntityFeature as HumidifierEntityFeature, SERVICE_SET_HUMIDITY as SERVICE_SET_HUMIDITY, SERVICE_SET_MODE as SERVICE_SET_MODE, SERVICE_TURN_ON as SERVICE_TURN_ON
+from .const import DOMAIN as DOMAIN, HumidifierEntityCapabilityAttribute as HumidifierEntityCapabilityAttribute
 from _typeshed import Incomplete
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, STATE_OFF as STATE_OFF
 from homeassistant.core import HomeAssistant as HomeAssistant

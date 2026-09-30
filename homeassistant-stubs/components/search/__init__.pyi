@@ -41,8 +41,9 @@ class Searcher:
     _device_registry: Incomplete
     _entity_registry: Incomplete
     _entity_sources: Incomplete
+    _include_disabled_entities: Incomplete
     results: defaultdict[ItemType, set[str]]
-    def __init__(self, hass: HomeAssistant, entity_sources: dict[str, EntityInfo]) -> None: ...
+    def __init__(self, hass: HomeAssistant, entity_sources: dict[str, EntityInfo], *, include_disabled_entities: bool = False) -> None: ...
     @callback
     def async_search(self, item_type: ItemType, item_id: str) -> dict[str, set[str]]: ...
     @callback

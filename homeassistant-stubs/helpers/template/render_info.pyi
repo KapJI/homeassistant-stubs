@@ -17,6 +17,7 @@ def _false(entity_id: str) -> bool: ...
 class RenderInfo:
     __slots__: Incomplete
     template: Incomplete
+    collecting: bool
     filter_lifecycle: Callable[[str], bool]
     filter: Callable[[str], bool]
     _result: str | None

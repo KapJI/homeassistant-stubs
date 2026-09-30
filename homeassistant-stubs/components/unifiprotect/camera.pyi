@@ -1,4 +1,4 @@
-from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DEFAULT_BRAND as DEFAULT_BRAND, DOMAIN as DOMAIN
+from .const import ATTR_BITRATE as ATTR_BITRATE, ATTR_CHANNEL_ID as ATTR_CHANNEL_ID, ATTR_FPS as ATTR_FPS, ATTR_HEIGHT as ATTR_HEIGHT, ATTR_WIDTH as ATTR_WIDTH, DOMAIN as DOMAIN
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
 from .entity import ProtectDeviceEntity as ProtectDeviceEntity
 from .utils import async_ufp_instance_command as async_ufp_instance_command, get_camera_base_name as get_camera_base_name
@@ -7,7 +7,6 @@ from homeassistant.components.camera import Camera as Camera, CameraEntityFeatur
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import entity_platform as entity_platform
-from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity
@@ -47,10 +46,6 @@ class ProtectCamera(ProtectDeviceEntity, Camera):
     _stream_source: Incomplete
     @callback
     def _async_set_stream_source(self) -> None: ...
-    _attr_device_info: Incomplete
-    @callback
-    @override
-    def _async_set_device_info(self) -> None: ...
     _attr_motion_detection_enabled: Incomplete
     _attr_is_recording: Incomplete
     _attr_available: Incomplete

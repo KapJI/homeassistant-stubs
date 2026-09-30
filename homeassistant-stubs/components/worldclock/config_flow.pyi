@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_TIME_FORMAT as CONF_TIME_FORMAT, DEFAULT_TIME_STR_FORMAT as DEFAULT_TIME_STR_FORMAT, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -10,7 +10,7 @@ from typing import Any, override
 TIME_STR_OPTIONS: Incomplete
 
 async def validate_duplicate(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
-async def get_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def get_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
 
 DATA_SCHEMA_OPTIONS: Incomplete
 CONFIG_FLOW: Incomplete

@@ -1,7 +1,11 @@
-from enum import StrEnum
+from . import LockEntity as LockEntity
+from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[LockEntity]]
 
 class LockEntityStateAttribute(StrEnum):
     CHANGED_BY = 'changed_by'
@@ -15,3 +19,6 @@ class LockState(StrEnum):
     UNLOCKING = 'unlocking'
     LOCKED = 'locked'
     UNLOCKED = 'unlocked'
+
+class LockEntityFeature(IntFlag):
+    OPEN = 1

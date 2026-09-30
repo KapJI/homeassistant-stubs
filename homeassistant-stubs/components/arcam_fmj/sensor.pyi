@@ -1,7 +1,7 @@
 from .coordinator import ArcamFmjConfigEntry as ArcamFmjConfigEntry
 from .entity import ArcamFmjEntity as ArcamFmjEntity
 from _typeshed import Incomplete
-from arcam.fmj import IntOrTypeEnum as IntOrTypeEnum
+from arcam.fmj.models import IntOrTypeEnum as IntOrTypeEnum
 from arcam.fmj.state import State as State
 from collections.abc import Callable as Callable
 from dataclasses import dataclass

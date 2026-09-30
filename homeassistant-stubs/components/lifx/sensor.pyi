@@ -8,21 +8,17 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
 
-SCAN_INTERVAL: Incomplete
+PARALLEL_UPDATES: int
 RSSI_SENSOR: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, entry: LIFXConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LIFXRssiSensor(LIFXEntity, SensorEntity):
-    entity_description: Incomplete
-    _attr_unique_id: Incomplete
     _attr_native_unit_of_measurement: Incomplete
     def __init__(self, coordinator: LIFXUpdateCoordinator, description: SensorEntityDescription) -> None: ...
-    @callback
-    @override
-    def _handle_coordinator_update(self) -> None: ...
     _attr_native_value: Incomplete
     @callback
+    @override
     def _async_update_attrs(self) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...

@@ -1,15 +1,14 @@
 from .const import LOGGER as LOGGER
 from _typeshed import Incomplete
-from collections.abc import Callable as Callable
 from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from pytradfri import Gateway as Gateway
-from pytradfri.api.aiocoap_api import APIFactory as APIFactory
-from pytradfri.command import Command as Command
+from pytradfri.api.aiocoap_api import APIFactory as APIFactory, APIRequestProtocol as APIRequestProtocol
 from pytradfri.device import Device
-from typing import Any, override
+from pytradfri.resource import ApiResource as ApiResource
+from typing import override
 
 SCAN_INTERVAL: int
 type TradfriConfigEntry = ConfigEntry[TradfriData]
@@ -18,7 +17,7 @@ type TradfriConfigEntry = ConfigEntry[TradfriData]
 class TradfriData:
     factory: APIFactory
     gateway: Gateway
-    api: Callable[[Command | list[Command]], Any]
+    api: APIRequestProtocol
     coordinator_list: list[TradfriDeviceDataUpdateCoordinator] = field(default_factory=list)
 
 class TradfriDeviceDataUpdateCoordinator(DataUpdateCoordinator[Device]):
@@ -26,11 +25,11 @@ class TradfriDeviceDataUpdateCoordinator(DataUpdateCoordinator[Device]):
     api: Incomplete
     device: Incomplete
     _exception: Exception | None
-    def __init__(self, hass: HomeAssistant, config_entry: TradfriConfigEntry, api: Callable[[Command | list[Command]], Any], device: Device) -> None: ...
+    def __init__(self, hass: HomeAssistant, config_entry: TradfriConfigEntry, api: APIRequestProtocol, device: Device) -> None: ...
     last_update_success: bool
     async def set_hub_available(self, available: bool) -> None: ...
     @callback
-    def _observe_update(self, device: Device) -> None: ...
+    def _observe_update(self, device: ApiResource) -> None: ...
     @callback
     def _exception_callback(self, exc: Exception) -> None: ...
     update_interval: Incomplete

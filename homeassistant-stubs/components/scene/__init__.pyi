@@ -1,3 +1,5 @@
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_TRANSITION as ATTR_TRANSITION
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -7,11 +9,8 @@ from homeassistant.helpers.entity_component import EntityComponent as EntityComp
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.async_ import run_callback_threadsafe as run_callback_threadsafe
-from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Any, Final, final, override
 
-DOMAIN: Final[str]
-DATA_COMPONENT: HassKey[EntityComponent[BaseScene]]
 STATES: Final[str]
 
 def _hass_domain_validator(config: dict[str, Any]) -> dict[str, Any]: ...

@@ -1,7 +1,8 @@
-from .const import CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_VALUE as CONF_VALUE, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import CONF_PAYLOAD_LENGTH as CONF_PAYLOAD_LENGTH, CONF_VALUE as CONF_VALUE, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
-from .storage.const import CONF_DATA as CONF_DATA, CONF_ENTITY as CONF_ENTITY, CONF_GA_SEND as CONF_GA_SEND
+from .storage.const import CONF_DATA as CONF_DATA, CONF_GA_SEND as CONF_GA_SEND
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData
 from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -29,4 +30,4 @@ class KnxYamlButton(_KnxButton, KnxYamlEntity):
 class KnxUiButton(_KnxButton, KnxUiEntity):
     _device: XknxRawValue | XknxExposeSensor
     _payload: Incomplete
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[Any]) -> None: ...

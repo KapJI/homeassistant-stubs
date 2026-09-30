@@ -3,13 +3,13 @@ from .coordinator import VistapoolDataUpdateCoordinator as VistapoolDataUpdateCo
 from _typeshed import Incomplete
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from typing import override
 
 class VistapoolEntity(CoordinatorEntity[VistapoolDataUpdateCoordinator]):
     _attr_has_entity_name: bool
     _attr_device_info: Incomplete
     def __init__(self, coordinator: VistapoolDataUpdateCoordinator) -> None: ...
     @property
-    def pool_id(self) -> str: ...
-    @property
-    def pool_name(self) -> str: ...
+    @override
+    def available(self) -> bool: ...
     def build_unique_id(self, suffix: str) -> str: ...

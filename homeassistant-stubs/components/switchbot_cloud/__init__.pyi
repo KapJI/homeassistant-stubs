@@ -1,6 +1,6 @@
 from .const import CONF_CLOUDHOOK_URL as CONF_CLOUDHOOK_URL, DEVICE_SUPPORT_MAP as DEVICE_SUPPORT_MAP, DOMAIN as DOMAIN, ENTRY_TITLE as ENTRY_TITLE
 from .coordinator import SwitchBotCoordinator as SwitchBotCoordinator
-from .service import async_register_services as async_register_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from aiohttp import web as web
 from collections.abc import Awaitable, Callable as Callable

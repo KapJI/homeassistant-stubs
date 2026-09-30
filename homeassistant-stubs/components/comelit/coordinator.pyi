@@ -2,7 +2,8 @@ import abc
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, ObjectClassType as ObjectClassType, SCAN_INTERVAL as SCAN_INTERVAL
 from _typeshed import Incomplete
 from abc import abstractmethod
-from aiocomelit.api import ComelitCommonApi as ComelitCommonApi, ComelitVedoApi, ComeliteSerialBridgeApi
+from aiocomelit import ComelitVedoApi, ComeliteSerialBridgeApi
+from aiocomelit.api import ComelitHttpApi as ComelitHttpApi
 from aiohttp import ClientSession as ClientSession
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -18,7 +19,7 @@ T = TypeVar('T', bound=dict[str, Mapping[int, ObjectClassType]])
 class ComelitBaseCoordinator(DataUpdateCoordinator[T], metaclass=abc.ABCMeta):
     _hw_version: str
     config_entry: ComelitConfigEntry
-    api: ComelitCommonApi
+    api: ComelitHttpApi
     _device: Incomplete
     _host: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ComelitConfigEntry, device: str, host: str) -> None: ...

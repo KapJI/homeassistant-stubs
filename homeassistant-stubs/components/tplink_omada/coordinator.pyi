@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from tplink_omada_client import OmadaSiteClient as OmadaSiteClient, OmadaSwitchPortDetails
+from tplink_omada_client import OmadaClient as OmadaClient, OmadaControllerStatus, OmadaControllerUpdateInfo, OmadaSiteClient as OmadaSiteClient, OmadaSwitchPortDetails
 from tplink_omada_client.clients import OmadaWirelessClient
 from tplink_omada_client.devices import OmadaFirmwareUpdate as OmadaFirmwareUpdate, OmadaGateway, OmadaListDevice, OmadaSwitch as OmadaSwitch
 from typing import NamedTuple, override
@@ -13,6 +13,8 @@ POLL_SWITCH_PORT: int
 POLL_GATEWAY: int
 POLL_CLIENTS: int
 POLL_DEVICES: int
+POLL_CONTROLLER: int
+POLL_CONTROLLER_UPDATE: int
 POLL_UPGRADE: int
 
 class OmadaCoordinator[_T](DataUpdateCoordinator[dict[str, _T]]):
@@ -22,6 +24,20 @@ class OmadaCoordinator[_T](DataUpdateCoordinator[dict[str, _T]]):
     @override
     async def _async_update_data(self) -> dict[str, _T]: ...
     async def poll_update(self) -> dict[str, _T]: ...
+
+class OmadaControllerStatusCoordinator(DataUpdateCoordinator[OmadaControllerStatus]):
+    config_entry: OmadaConfigEntry
+    omada_client: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: OmadaConfigEntry, omada_client: OmadaClient) -> None: ...
+    @override
+    async def _async_update_data(self) -> OmadaControllerStatus: ...
+
+class OmadaControllerUpdateCoordinator(DataUpdateCoordinator[OmadaControllerUpdateInfo]):
+    config_entry: OmadaConfigEntry
+    omada_client: Incomplete
+    def __init__(self, hass: HomeAssistant, config_entry: OmadaConfigEntry, omada_client: OmadaClient) -> None: ...
+    @override
+    async def _async_update_data(self) -> OmadaControllerUpdateInfo: ...
 
 class OmadaSwitchPortCoordinator(OmadaCoordinator[OmadaSwitchPortDetails]):
     _network_switch: Incomplete

@@ -1,8 +1,8 @@
 import abc
 from . import PortainerConfigEntry as PortainerConfigEntry
 from .const import DOMAIN as DOMAIN
-from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData
-from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerEndpointEntity as PortainerEndpointEntity
+from .coordinator import PortainerContainerData as PortainerContainerData, PortainerCoordinator as PortainerCoordinator, PortainerCoordinatorData as PortainerCoordinatorData, PortainerStackData as PortainerStackData
+from .entity import PortainerContainerEntity as PortainerContainerEntity, PortainerEndpointEntity as PortainerEndpointEntity, PortainerStackEntity as PortainerStackEntity
 from abc import abstractmethod
 from collections.abc import Callable as Callable, Coroutine
 from dataclasses import dataclass
@@ -13,6 +13,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from pyportainer import Portainer as Portainer
 from pyportainer.models.docker import DockerContainer as DockerContainer
+from pyportainer.models.stacks import Stack as Stack
 from typing import Any, override
 
 PARALLEL_UPDATES: int
@@ -26,8 +27,13 @@ class PortainerContainerButtonDescription(ButtonEntityDescription):
     press_action: Callable[[Portainer, int, str], Coroutine[Any, Any, DockerContainer | None]]
     available_fn: Callable[[PortainerContainerData], bool]
 
+@dataclass(frozen=True, kw_only=True)
+class PortainerStackButtonDescription(ButtonEntityDescription):
+    press_action: Callable[[Portainer, int, int], Coroutine[Any, Any, Stack]]
+
 ENDPOINT_BUTTONS: tuple[PortainerEndpointButtonDescription, ...]
 CONTAINER_BUTTONS: tuple[PortainerContainerButtonDescription, ...]
+STACK_BUTTONS: tuple[PortainerStackButtonDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: PortainerConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -48,5 +54,10 @@ class PortainerContainerButton(PortainerContainerEntity, PortainerBaseButton):
     @property
     @override
     def available(self) -> bool: ...
+    @override
+    async def _async_press_call(self) -> None: ...
+
+class PortainerStackButton(PortainerStackEntity, PortainerBaseButton):
+    entity_description: PortainerStackButtonDescription
     @override
     async def _async_press_call(self) -> None: ...

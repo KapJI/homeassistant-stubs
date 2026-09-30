@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_API_SECRET as CONF_API_SECRET, CONF_TRACKER_INTERFACES as CONF_TRACKER_INTERFACES, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
@@ -11,7 +11,7 @@ from typing import Any, override
 _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 
-def tracker_interfaces_schema(interfaces: list[str], selected: list[str] | None = None) -> vol.Schema: ...
+def tracker_interfaces_schema(interfaces: list[str], selected: list[str] | None = None) -> probatio.Schema: ...
 
 class OPNsenseConfigFlow(ConfigFlow, domain=DOMAIN):
     available_interfaces: list[str] | None

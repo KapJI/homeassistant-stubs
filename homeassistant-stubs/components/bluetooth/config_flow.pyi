@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_ADAPTER as CONF_ADAPTER, CONF_DETAILS as CONF_DETAILS, CONF_MODE as CONF_MODE, CONF_PASSIVE as CONF_PASSIVE, CONF_SOURCE_CONFIG_ENTRY_ID as CONF_SOURCE_CONFIG_ENTRY_ID, CONF_SOURCE_DEVICE_ID as CONF_SOURCE_DEVICE_ID, CONF_SOURCE_DOMAIN as CONF_SOURCE_DOMAIN, CONF_SOURCE_MODEL as CONF_SOURCE_MODEL, DOMAIN as DOMAIN
 from .util import adapter_title as adapter_title, resolve_scanning_mode as resolve_scanning_mode
 from _typeshed import Incomplete
@@ -14,7 +14,7 @@ from typing import Any, override
 
 _MODE_SELECTOR: Incomplete
 
-async def _options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def _options_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
 async def _validate_options(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
 
 OPTIONS_FLOW: Incomplete

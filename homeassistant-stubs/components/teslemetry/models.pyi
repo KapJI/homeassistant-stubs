@@ -4,6 +4,8 @@ from dataclasses import dataclass, field
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from tesla_fleet_api.const import Scope as Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
+from tesla_fleet_api.tesla import EnergySiteRouter as EnergySiteRouter
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStream as TeslemetryStream, TeslemetryStreamVehicle as TeslemetryStreamVehicle
 
@@ -17,7 +19,7 @@ class TeslemetryData:
 
 @dataclass
 class TeslemetryVehicleData:
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     config_entry: ConfigEntry
     coordinator: TeslemetryVehicleDataCoordinator
     poll: bool
@@ -30,9 +32,11 @@ class TeslemetryVehicleData:
 
 @dataclass
 class TeslemetryEnergyData:
-    api: EnergySite
+    api: EnergySite | EnergySiteRouter
     live_coordinator: TeslemetryEnergySiteLiveCoordinator | None
     info_coordinator: TeslemetryEnergySiteInfoCoordinator
     history_coordinator: TeslemetryEnergyHistoryCoordinator | None
     id: int
     device: DeviceInfo
+    can_local_control: bool
+    subentry_id: str | None

@@ -3,9 +3,9 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.entity import Entity as Entity
-from infrared_protocols.codes.generic.led import Generic13KeyCode, Generic24KeyCode, Generic40KeyCode, Generic44KeyCode
+from infrared_protocols.codes.generic.led import BaseGenericLEDCode as BaseGenericLEDCode
 
-CODES: dict[LEDIrDeviceType, type[Generic24KeyCode | Generic13KeyCode | Generic40KeyCode | Generic44KeyCode]]
+CODES: dict[LEDIrDeviceType, type[BaseGenericLEDCode]]
 
 class LEDIrBaseEntity(Entity):
     _attr_has_entity_name: bool

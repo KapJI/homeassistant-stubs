@@ -1,5 +1,6 @@
-import voluptuous as vol
-from . import DOMAIN as DOMAIN, SensorDeviceClass as SensorDeviceClass, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute
+import probatio
+from . import SensorDeviceClass as SensorDeviceClass, SensorEntityCapabilityAttribute as SensorEntityCapabilityAttribute
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import InvalidDeviceAutomationConfig as InvalidDeviceAutomationConfig, async_get_entity_registry_entry_or_raise as async_get_entity_registry_entry_or_raise
 from homeassistant.const import CONF_ABOVE as CONF_ABOVE, CONF_BELOW as CONF_BELOW, CONF_CONDITION as CONF_CONDITION, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE
@@ -73,4 +74,4 @@ CONDITION_SCHEMA: Incomplete
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 @callback
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...
-async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
+async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, probatio.Schema]: ...

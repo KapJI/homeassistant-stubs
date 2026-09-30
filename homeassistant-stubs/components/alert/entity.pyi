@@ -29,8 +29,11 @@ class AlertEntity(Entity):
     _ack: bool
     _cancel: Callable[[], None] | None
     _send_done_message: bool
+    _watched_entity_id: Incomplete
     entity_id: Incomplete
     def __init__(self, hass: HomeAssistant, entity_id: str, name: str, watched_entity_id: str, state: str, repeat: list[float], skip_first: bool, message_template: Template | None, done_message_template: Template | None, notifiers: list[str], can_ack: bool, title_template: Template | None, data: dict[Any, Any]) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
     @property
     @override
     def state(self) -> str: ...

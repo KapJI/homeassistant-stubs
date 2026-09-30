@@ -1,8 +1,7 @@
-from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_TEXT as CONF_GA_TEXT
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData, TextKnxConfig as TextKnxConfig
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.text import TextEntity as TextEntity, TextMode as TextMode
@@ -40,4 +39,4 @@ class KnxUiText(_KnxText, KnxUiEntity):
     _device: XknxNotification
     _attr_mode: Incomplete
     _attr_native_max_length: Incomplete
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[TextKnxConfig]) -> None: ...

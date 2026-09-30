@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import const as const, messages as messages
 from .http import WebSocketAdapter as WebSocketAdapter
 from .messages import error_message as error_message, event_message as event_message, message_to_json_bytes as message_to_json_bytes, result_message as result_message
@@ -31,7 +31,7 @@ class ActiveConnection:
     last_id: int
     can_coalesce: bool
     supported_features: dict[str, float]
-    handlers: dict[str, tuple[MessageHandler, vol.Schema | Literal[False]]]
+    handlers: dict[str, tuple[MessageHandler, probatio.Schema | Literal[False]]]
     binary_handlers: list[BinaryHandler | None]
     def __init__(self, logger: WebSocketAdapter, hass: HomeAssistant, send_message: Callable[[bytes | str | dict[str, Any]], None], user: User, refresh_token: RefreshToken | None, remote: str | None) -> None: ...
     @override

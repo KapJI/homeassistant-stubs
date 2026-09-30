@@ -61,6 +61,7 @@ class Zone(collection.CollectionEntity):
     _attrs: dict | None
     _remove_listener: Callable[[], None] | None
     _persons_in_zone: set[str]
+    _device_trackers_in_zone: set[str]
     def __init__(self, config: ConfigType) -> None: ...
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
@@ -78,7 +79,11 @@ class Zone(collection.CollectionEntity):
     @override
     async def async_update_config(self, config: ConfigType) -> None: ...
     @callback
+    def _update_tracked_in_zone(self, tracked_in_zone: set[str], evt: Event[EventStateChangedData]) -> None: ...
+    @callback
     def _person_state_change_listener(self, evt: Event[EventStateChangedData]) -> None: ...
+    @callback
+    def _device_tracker_state_change_listener(self, evt: Event[EventStateChangedData]) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
     _attr_extra_state_attributes: Incomplete

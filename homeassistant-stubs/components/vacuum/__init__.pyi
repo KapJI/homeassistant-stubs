@@ -1,11 +1,11 @@
-from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, VacuumActivity as VacuumActivity, VacuumEntityCapabilityAttribute as VacuumEntityCapabilityAttribute, VacuumEntityFeature as VacuumEntityFeature, VacuumEntityStateAttribute as VacuumEntityStateAttribute
+from .const import ATTR_FAN_SPEED as ATTR_FAN_SPEED, ATTR_PARAMS as ATTR_PARAMS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, SERVICE_CLEAN_AREA as SERVICE_CLEAN_AREA, SERVICE_CLEAN_SPOT as SERVICE_CLEAN_SPOT, SERVICE_LOCATE as SERVICE_LOCATE, SERVICE_PAUSE as SERVICE_PAUSE, SERVICE_RETURN_TO_BASE as SERVICE_RETURN_TO_BASE, SERVICE_SEND_COMMAND as SERVICE_SEND_COMMAND, SERVICE_SET_FAN_SPEED as SERVICE_SET_FAN_SPEED, SERVICE_START as SERVICE_START, SERVICE_STOP as SERVICE_STOP, VacuumActivity as VacuumActivity, VacuumEntityCapabilityAttribute as VacuumEntityCapabilityAttribute, VacuumEntityFeature as VacuumEntityFeature, VacuumEntityStateAttribute as VacuumEntityStateAttribute
+from .services import async_setup_services as async_setup_services
 from .websocket import async_register_websocket_handlers as async_register_websocket_handlers
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_COMMAND as ATTR_COMMAND, SERVICE_TOGGLE as SERVICE_TOGGLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_ON as STATE_ON
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -18,20 +18,9 @@ PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 ATTR_CLEANED_AREA: str
-ATTR_FAN_SPEED: str
 ATTR_FAN_SPEED_LIST: str
-ATTR_PARAMS: str
 ATTR_STATUS: str
-SERVICE_CLEAN_SPOT: str
-SERVICE_CLEAN_AREA: str
-SERVICE_LOCATE: str
-SERVICE_RETURN_TO_BASE: str
-SERVICE_SEND_COMMAND: str
-SERVICE_SET_FAN_SPEED: str
 SERVICE_START_PAUSE: str
-SERVICE_START: str
-SERVICE_PAUSE: str
-SERVICE_STOP: str
 DEFAULT_NAME: str
 ISSUE_SEGMENTS_CHANGED: str
 
@@ -85,9 +74,6 @@ class StateVacuumEntity(Entity, cached_properties=STATE_VACUUM_CACHED_PROPERTIES
     @final
     @property
     def last_seen_segments(self) -> list[Segment] | None: ...
-    @final
-    @staticmethod
-    async def async_internal_clean_area(entities: list[StateVacuumEntity], call: ServiceCall) -> None: ...
     def clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
     async def async_clean_segments(self, segment_ids: list[str], **kwargs: Any) -> None: ...
     @callback

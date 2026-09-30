@@ -1,22 +1,25 @@
 from . import TeslemetryConfigEntry as TeslemetryConfigEntry
 from .const import ENERGY_HISTORY_FIELDS as ENERGY_HISTORY_FIELDS
+from .coordinator import PERIOD_START as PERIOD_START
 from .entity import TeslemetryEnergyHistoryEntity as TeslemetryEnergyHistoryEntity, TeslemetryEnergyInfoEntity as TeslemetryEnergyInfoEntity, TeslemetryEnergyLiveEntity as TeslemetryEnergyLiveEntity, TeslemetryVehiclePollingEntity as TeslemetryVehiclePollingEntity, TeslemetryVehicleStreamEntity as TeslemetryVehicleStreamEntity, TeslemetryWallConnectorEntity as TeslemetryWallConnectorEntity
+from .helpers import async_remove_stale_vehicle_entities as async_remove_stale_vehicle_entities
 from .models import TeslemetryEnergyData as TeslemetryEnergyData, TeslemetryVehicleData as TeslemetryVehicleData
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from datetime import datetime
 from homeassistant.components.sensor import RestoreSensor as RestoreSensor, SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
-from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
+from homeassistant.const import DEGREE as DEGREE, EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfLength as UnitOfLength, UnitOfPower as UnitOfPower, UnitOfPressure as UnitOfPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType as StateType
+from homeassistant.util.unit_conversion import PressureConverter as PressureConverter
 from homeassistant.util.variance import ignore_variance as ignore_variance
 from teslemetry_stream import TeslemetryStream as TeslemetryStream, TeslemetryStreamVehicle as TeslemetryStreamVehicle
-from typing import Any, override
+from teslemetry_stream.const import CreditsEvent as CreditsEvent
+from typing import override
 
 PARALLEL_UPDATES: int
-ATM_TO_BAR: float
 DRIVER_ASSIST_HW4: str
 BMS_STATES: Incomplete
 CHARGE_STATES: Incomplete
@@ -44,6 +47,7 @@ class TeslemetryVehicleSensorEntityDescription(SensorEntityDescription):
     streaming_listener: Callable[[TeslemetryStreamVehicle, Callable[[StateType], None]], Callable[[], None]] | None = ...
     streaming_firmware: str = ...
     requires_hw4: bool = ...
+    requires_location_scope: bool = ...
 
 VEHICLE_DESCRIPTIONS: tuple[TeslemetryVehicleSensorEntityDescription, ...]
 
@@ -133,6 +137,7 @@ class TeslemetryEnergyHistorySensorEntity(TeslemetryEnergyHistoryEntity, SensorE
     entity_description: SensorEntityDescription
     def __init__(self, data: TeslemetryEnergyData, description: SensorEntityDescription) -> None: ...
     _attr_native_value: Incomplete
+    _attr_last_reset: Incomplete
     @override
     def _async_update_attrs(self) -> None: ...
 
@@ -161,4 +166,4 @@ class TeslemetryCreditQuotaSensor(RestoreSensor):
     _attr_native_value: Incomplete
     @override
     async def async_added_to_hass(self) -> None: ...
-    def _async_update(self, credits: dict[str, Any]) -> None: ...
+    def _async_update(self, credits: CreditsEvent) -> None: ...

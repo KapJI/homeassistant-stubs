@@ -121,6 +121,7 @@ class FanZeroMode(StrEnum):
     AUTO = FAN_AUTO
 
 SUPPORTED_PLATFORMS_YAML: Final[Incomplete]
+PLATFORMS_WITHOUT_CONFIG_CATEGORY: Final[Incomplete]
 SUPPORTED_PLATFORMS_UI: Final[Incomplete]
 CONTROLLER_MODES: Final[Incomplete]
 CURRENT_HVAC_ACTIONS: Final[Incomplete]

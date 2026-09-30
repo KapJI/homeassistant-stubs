@@ -4,8 +4,8 @@ from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumW
 from homeassistant.util.signal_type import SignalType as SignalType
 from typing import Final
 
-LOGGER: Final[Incomplete]
 DOMAIN: Final[str]
+LOGGER: Final[Incomplete]
 ENTITY_ID_FORMAT: Final[Incomplete]
 PLATFORM_TYPE_LEGACY: Final[str]
 PLATFORM_TYPE_ENTITY: Final[str]

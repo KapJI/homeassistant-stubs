@@ -1,10 +1,11 @@
+from .const import DEFAULT_TIMEOUT as DEFAULT_TIMEOUT
 from .coordinator import GlancesConfigEntry as GlancesConfigEntry, GlancesDataUpdateCoordinator as GlancesDataUpdateCoordinator
 from _typeshed import Incomplete
 from glances_api import Glances
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_SSL as CONF_SSL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryError as ConfigEntryError, ConfigEntryNotReady as ConfigEntryNotReady, HomeAssistantError as HomeAssistantError
-from homeassistant.helpers.httpx_client import get_async_client as get_async_client
+from homeassistant.helpers.httpx_client import create_async_httpx_client as create_async_httpx_client
 from typing import Any
 
 PLATFORMS: Incomplete

@@ -1043,6 +1043,8 @@ class CoffeeSystemProgramId(MieleEnum, missing_to_none=True):
     espresso_macchiato: Incomplete
     cafe_au_lait: Incomplete
     caffe_latte: Incomplete
+    caffe_americano: int
+    long_black: int
     flat_white: Incomplete
     very_hot_water: Incomplete
     hot_water: Incomplete
@@ -1054,6 +1056,7 @@ class CoffeeSystemProgramId(MieleEnum, missing_to_none=True):
     green_tea: Incomplete
     white_tea: Incomplete
     japanese_tea: Incomplete
+    chai_latte: int
     coffee_pot: int
     barista_assistant: int
     appliance_settings: Incomplete

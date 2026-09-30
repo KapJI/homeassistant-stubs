@@ -1,10 +1,9 @@
-from .const import ATTR_SOURCE as ATTR_SOURCE, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import ATTR_SOURCE as ATTR_SOURCE, CONF_SYNC_STATE as CONF_SYNC_STATE, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .dpt import get_supported_dpts as get_supported_dpts
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, _KnxEntityBase as _KnxEntityBase, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import SensorSchema as SensorSchema
-from .storage.const import CONF_ALWAYS_CALLBACK as CONF_ALWAYS_CALLBACK, CONF_ENTITY as CONF_ENTITY, CONF_GA_SENSOR as CONF_GA_SENSOR
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData, SensorKnxConfig as SensorKnxConfig
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
@@ -16,7 +15,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback, async_get_current_platform as async_get_current_platform
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
 from homeassistant.util.enum import try_parse_enum as try_parse_enum
-from typing import Any, override
+from typing import override
 from xknx.core.connection_state import XknxConnectionState
 from xknx.devices import Device as XknxDevice, Sensor as XknxSensor
 
@@ -58,7 +57,7 @@ class KnxUiSensor(_KnxSensor, KnxUiEntity):
     _attr_native_unit_of_measurement: Incomplete
     _attr_force_update: Incomplete
     _attr_extra_state_attributes: Incomplete
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[SensorKnxConfig]) -> None: ...
 
 class KNXSystemSensor(SensorEntity):
     _attr_has_entity_name: bool

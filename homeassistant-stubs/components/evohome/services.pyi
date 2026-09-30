@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import DOMAIN as DOMAIN, EvoService as EvoService, REFRESH_BREAKS_IN_HA_VERSION as REFRESH_BREAKS_IN_HA_VERSION, RESET_BREAKS_IN_HA_VERSION as RESET_BREAKS_IN_HA_VERSION, SERVICE_BREAKS_IN_HA_VERSION as SERVICE_BREAKS_IN_HA_VERSION
 from .coordinator import EvoDataUpdateCoordinator as EvoDataUpdateCoordinator
 from .helpers import async_create_deprecation_issue_once as async_create_deprecation_issue_once
@@ -13,13 +13,13 @@ from typing import Any, Final
 
 def _as_snake_case(mode: str) -> str: ...
 
-SET_SYSTEM_MODE_SCHEMA: Final[dict[str | vol.Marker, Any]]
-SET_ZONE_OVERRIDE_SCHEMA: Final[dict[str | vol.Marker, Any]]
-SET_DHW_OVERRIDE_SCHEMA: Final[dict[str | vol.Marker, Any]]
+SET_SYSTEM_MODE_SCHEMA: Final[dict[str | probatio.Marker, Any]]
+SET_ZONE_OVERRIDE_SCHEMA: Final[dict[str | probatio.Marker, Any]]
+SET_DHW_OVERRIDE_SCHEMA: Final[dict[str | probatio.Marker, Any]]
 
 def _register_zone_entity_services(hass: HomeAssistant) -> None: ...
 def _resolve_ctl_unique_id(hass: HomeAssistant, call: ServiceCall, tcs_id: str) -> str: ...
 def _register_dhw_entity_services(hass: HomeAssistant) -> None: ...
 def _validate_set_system_mode_params(tcs: ControlSystem, data: dict[str, Any]) -> None: ...
 @callback
-def setup_service_functions(hass: HomeAssistant, coordinator: EvoDataUpdateCoordinator) -> None: ...
+def async_setup_services(hass: HomeAssistant, coordinator: EvoDataUpdateCoordinator) -> None: ...

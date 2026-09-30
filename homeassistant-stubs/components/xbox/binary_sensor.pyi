@@ -1,5 +1,5 @@
 from .coordinator import XboxConfigEntry as XboxConfigEntry
-from .entity import XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, profile_pic as profile_pic
+from .entity import XboxBaseEntity as XboxBaseEntity, XboxBaseEntityDescription as XboxBaseEntityDescription, check_deprecated_entity as check_deprecated_entity, profile_pic as profile_pic
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from enum import StrEnum

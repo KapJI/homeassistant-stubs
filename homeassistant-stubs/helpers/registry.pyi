@@ -3,11 +3,17 @@ from .storage import Store as Store
 from abc import ABC, abstractmethod
 from collections import UserDict, defaultdict
 from collections.abc import Mapping as Mapping, Sequence as Sequence, ValuesView
+from enum import StrEnum
 from homeassistant.core import CoreState as CoreState, HomeAssistant as HomeAssistant, callback as callback
 from typing import Any, Literal, override
 
 SAVE_DELAY: int
 SAVE_DELAY_LONG: int
+
+class NextNamePart(StrEnum):
+    AREA = 'area'
+    DEVICE = 'device'
+    PARENT_DEVICE = 'parent_device'
 type RegistryIndexType = defaultdict[str, dict[str, Literal[True]]]
 
 class BaseRegistryItems[_DataT](UserDict[str, _DataT], ABC, metaclass=abc.ABCMeta):

@@ -1,9 +1,10 @@
-from .const import DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN
+from .const import DEFAULT_URL as DEFAULT_URL, DEFAULT_USERNAME as DEFAULT_USERNAME, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
-from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_USERNAME as CONF_USERNAME
-from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_UDN as ATTR_UPNP_UDN, SsdpServiceInfo as SsdpServiceInfo
+from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PASSWORD, CONF_URL as CONF_URL, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
+from homeassistant.helpers.selector import TextSelector as TextSelector, TextSelectorConfig as TextSelectorConfig, TextSelectorType as TextSelectorType
+from homeassistant.helpers.service_info.ssdp import ATTR_UPNP_FRIENDLY_NAME as ATTR_UPNP_FRIENDLY_NAME, ATTR_UPNP_PRESENTATION_URL as ATTR_UPNP_PRESENTATION_URL, ATTR_UPNP_UDN as ATTR_UPNP_UDN, SsdpServiceInfo as SsdpServiceInfo
 from typing import Any, Self, override
 
 DATA_SCHEMA_USER: Incomplete
@@ -15,14 +16,18 @@ RESULT_SUCCESS: str
 
 class FritzboxConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int
+    MINOR_VERSION: int
     _name: str
-    _host: str | None
+    _url: str | None
     _password: str | None
     _username: str | None
+    _verify_ssl: bool
     def __init__(self) -> None: ...
     def _get_entry(self, name: str) -> ConfigFlowResult: ...
     async def async_try_connect(self) -> str: ...
     def _try_connect(self) -> str: ...
+    async def async_has_smarthome_capabilities(self) -> bool | None: ...
+    def _has_smarthome_capabilities(self) -> bool | None: ...
     @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @override

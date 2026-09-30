@@ -7,10 +7,11 @@ from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import override
-from uiprotect.data import Camera as Camera, Chime, Light, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
-from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
+from uiprotect.data import Camera as Camera, Chime, ModelType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel
+from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel, PublicLight as PublicLight
 
 _LOGGER: Incomplete
 PARALLEL_UPDATES: int
@@ -21,8 +22,7 @@ class ProtectNumberEntityDescription(ProtectSettableKeysMixin[T], NumberEntityDe
     ufp_min: int | float
     ufp_step: int | float
 
-def _get_pir_duration_public(obj: PublicDeviceModel) -> int | None: ...
-async def _set_pir_duration(obj: Light, value: float) -> None: ...
+async def _set_pir_duration(obj: PublicLight, value: float) -> None: ...
 def _get_chime_duration(obj: Camera) -> int: ...
 async def _set_chime_volume(obj: Chime, value: float) -> None: ...
 
@@ -37,13 +37,12 @@ def _async_all_chime_ring_volume_entities(data: ProtectData, chime: Chime | None
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class ProtectNumbers(ProtectDeviceEntity, NumberEntity):
-    device: Camera | Light
     entity_description: ProtectNumberEntityDescription
     _state_attrs: Incomplete
     _attr_native_max_value: Incomplete
     _attr_native_min_value: Incomplete
     _attr_native_step: Incomplete
-    def __init__(self, data: ProtectData, device: Camera | Light, description: ProtectNumberEntityDescription) -> None: ...
+    def __init__(self, data: ProtectData, device: ProtectDeviceType, description: ProtectNumberEntityDescription) -> None: ...
     _attr_native_value: Incomplete
     @callback
     @override

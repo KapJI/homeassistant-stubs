@@ -1,13 +1,14 @@
 from .const import CONF_DEVICE_TYPE as CONF_DEVICE_TYPE, CONF_HVAC_MODES as CONF_HVAC_MODES, CONF_INFRARED_ENTITY_ID as CONF_INFRARED_ENTITY_ID, CONF_INFRARED_RECEIVER_ENTITY_ID as CONF_INFRARED_RECEIVER_ENTITY_ID, LGDeviceType as LGDeviceType
 from .entity import LgIrEntity as LgIrEntity
 from _typeshed import Incomplete
-from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_HVAC_MODE as ATTR_HVAC_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode
+from homeassistant.components.climate import ATTR_FAN_MODE as ATTR_FAN_MODE, ATTR_HVAC_MODE as ATTR_HVAC_MODE, ATTR_SWING_HORIZONTAL_MODE as ATTR_SWING_HORIZONTAL_MODE, ATTR_SWING_MODE as ATTR_SWING_MODE, ClimateEntity as ClimateEntity, ClimateEntityFeature as ClimateEntityFeature, FAN_AUTO as FAN_AUTO, FAN_HIGH as FAN_HIGH, FAN_LOW as FAN_LOW, FAN_MEDIUM as FAN_MEDIUM, HVACMode as HVACMode, SWING_OFF as SWING_OFF
 from homeassistant.components.infrared import InfraredEmitterConsumerEntity as InfraredEmitterConsumerEntity, InfraredReceivedSignal as InfraredReceivedSignal, InfraredReceiverConsumerEntity as InfraredReceiverConsumerEntity
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, STATE_UNAVAILABLE as STATE_UNAVAILABLE, STATE_UNKNOWN as STATE_UNKNOWN, UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from infrared_protocols.codes.lg.ac import LGACCode
 from infrared_protocols.commands.lg_ac import LgAcCommand, LgAcFanSpeed, LgAcMode
 from typing import Any, override
 
@@ -20,6 +21,24 @@ _LIB_FAN_TO_HA: dict[LgAcFanSpeed, str]
 _HA_MODE_TO_LIB: dict[HVACMode, LgAcMode]
 _LIB_MODE_TO_HA: dict[LgAcMode, HVACMode]
 _TEMPERATURE_MODES: Incomplete
+SWING_LOWEST: str
+SWING_LOW: str
+SWING_MIDDLE_LOW: str
+SWING_MIDDLE_HIGH: str
+SWING_HIGH: str
+SWING_HIGHEST: str
+SWING_OSCILLATE: str
+SWING_LEFT: str
+SWING_MIDDLE_LEFT: str
+SWING_MIDDLE: str
+SWING_MIDDLE_RIGHT: str
+SWING_RIGHT: str
+SWING_LEFT_HALF: str
+SWING_RIGHT_HALF: str
+_HA_SWING_TO_LIB: dict[str, LGACCode]
+_LIB_SWING_TO_HA: dict[LGACCode, str]
+_HA_SWING_H_TO_LIB: dict[str, LGACCode]
+_LIB_SWING_H_TO_HA: dict[LGACCode, str]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -33,11 +52,15 @@ class LgAcClimateEntity(LgIrEntity, InfraredEmitterConsumerEntity, ClimateEntity
     _attr_assumed_state: bool
     _attr_translation_key: str
     _attr_fan_modes: Incomplete
+    _attr_swing_modes: Incomplete
+    _attr_swing_horizontal_modes: Incomplete
     _infrared_emitter_entity_id: Incomplete
     _attr_hvac_modes: Incomplete
     _attr_hvac_mode: Incomplete
     _attr_target_temperature: Incomplete
     _attr_fan_mode: Incomplete
+    _attr_swing_mode: Incomplete
+    _attr_swing_horizontal_mode: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, entry: ConfigEntry, emitter_entity_id: str) -> None: ...
     @override
@@ -48,6 +71,10 @@ class LgAcClimateEntity(LgIrEntity, InfraredEmitterConsumerEntity, ClimateEntity
     async def async_set_temperature(self, **kwargs: Any) -> None: ...
     @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
+    @override
+    async def async_set_swing_mode(self, swing_mode: str) -> None: ...
+    @override
+    async def async_set_swing_horizontal_mode(self, swing_horizontal_mode: str) -> None: ...
     def _build_command(self, mode: LgAcMode, temp: int, fan_mode: str) -> LgAcCommand: ...
 
 class LgAcClimateWithReceiver(LgAcClimateEntity, InfraredReceiverConsumerEntity):
@@ -59,3 +86,7 @@ class LgAcClimateWithReceiver(LgAcClimateEntity, InfraredReceiverConsumerEntity)
     @override
     @callback
     def _handle_signal(self, signal: InfraredReceivedSignal) -> None: ...
+    _attr_swing_mode: Incomplete
+    _attr_swing_horizontal_mode: Incomplete
+    @callback
+    def _handle_fixed_signal(self, signal: InfraredReceivedSignal) -> None: ...

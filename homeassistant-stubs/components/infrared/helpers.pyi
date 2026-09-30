@@ -19,6 +19,9 @@ async def async_send_command(hass: HomeAssistant, entity_id_or_uuid: str, comman
 def async_subscribe_receiver(hass: HomeAssistant, entity_id_or_uuid: str, signal_callback: Callable[[InfraredReceivedSignal], None]) -> CALLBACK_TYPE: ...
 
 class InfraredConsumerEntity(Entity):
+    _infrared_availability: dict[str, bool]
+    @override
+    async def async_added_to_hass(self) -> None: ...
     _attr_available: Incomplete
     @callback
     def _async_track_availability(self, infrared_entity_id: str) -> CALLBACK_TYPE: ...

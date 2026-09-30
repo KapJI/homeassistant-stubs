@@ -1,6 +1,8 @@
 from .domain_data import DomainData as DomainData
 from _typeshed import Incomplete
+from aioesphomeapi import TemperatureUnit
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode
+from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
@@ -25,3 +27,4 @@ DEFAULT_URL: Incomplete
 NO_WAKE_WORD: Final[str]
 WAKE_WORDS_DIR_NAME: str
 WAKE_WORDS_API_PATH: str
+TEMPERATURE_UNIT_MAP: dict[TemperatureUnit, UnitOfTemperature]

@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_DEVICE_DETAILS as CONF_DEVICE_DETAILS, DEFAULT_HOST as DEFAULT_HOST, DEFAULT_USERNAME as DEFAULT_USERNAME, DEVICE_TYPE as DEVICE_TYPE, DEVICE_URL as DEVICE_URL, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import VodafoneConfigEntry as VodafoneConfigEntry
 from .utils import async_client_session as async_client_session
@@ -10,7 +10,7 @@ from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PASSWORD as CONF_PA
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from typing import Any, override
 
-def user_form_schema(user_input: dict[str, Any] | None) -> vol.Schema: ...
+def user_form_schema(user_input: dict[str, Any] | None) -> probatio.Schema: ...
 
 STEP_REAUTH_DATA_SCHEMA: Incomplete
 

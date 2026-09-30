@@ -1,9 +1,9 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_ADDITIONAL_OPTIONS as CONF_ADDITIONAL_OPTIONS, CONF_COLUMN_NAME as CONF_COLUMN_NAME, CONF_QUERY as CONF_QUERY, DOMAIN as DOMAIN
 from .util import EmptyQueryError as EmptyQueryError, InvalidSqlQuery as InvalidSqlQuery, MultipleQueryError as MultipleQueryError, NotSelectQueryError as NotSelectQueryError, UnknownQueryTypeError as UnknownQueryTypeError, check_and_render_sql_query as check_and_render_sql_query, resolve_db_url as resolve_db_url
 from _typeshed import Incomplete
 from homeassistant.components.recorder import CONF_DB_URL as CONF_DB_URL, get_instance as get_instance
-from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS, SensorStateClass as SensorStateClass
+from homeassistant.components.sensor import CONF_STATE_CLASS as CONF_STATE_CLASS
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload
 from homeassistant.const import CONF_DEVICE_CLASS as CONF_DEVICE_CLASS, CONF_NAME as CONF_NAME, CONF_UNIT_OF_MEASUREMENT as CONF_UNIT_OF_MEASUREMENT, CONF_VALUE_TEMPLATE as CONF_VALUE_TEMPLATE, Platform as Platform
 from homeassistant.core import async_get_hass as async_get_hass, callback as callback
@@ -15,8 +15,8 @@ from sqlalchemy.orm import Session as Session
 from typing import Any, override
 
 _LOGGER: Incomplete
-OPTIONS_SCHEMA: vol.Schema
-CONFIG_SCHEMA: vol.Schema
+OPTIONS_SCHEMA: probatio.Schema
+CONFIG_SCHEMA: probatio.Schema
 
 def validate_sql_select(value: str) -> str: ...
 def validate_db_connection(db_url: str) -> bool: ...

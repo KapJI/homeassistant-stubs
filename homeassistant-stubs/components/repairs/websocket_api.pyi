@@ -1,5 +1,6 @@
 from .const import DOMAIN as DOMAIN
 from .issue_handler import RepairsFlowManager as RepairsFlowManager
+from .models import RepairsFlowResult as RepairsFlowResult
 from aiohttp import web as web
 from collections.abc import Callable as Callable
 from homeassistant import data_entry_flow as data_entry_flow
@@ -20,17 +21,17 @@ def ws_get_issue_data(hass: HomeAssistant, connection: websocket_api.ActiveConne
 def ws_ignore_issue(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 @callback
 def ws_list_issues(hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
-def _prepare_repairs_flow_result_json(result: data_entry_flow.FlowResult, prepare_result_json: Callable[[data_entry_flow.FlowResult], dict[str, Any]]) -> dict[str, Any]: ...
+def _prepare_repairs_flow_result_json(result: RepairsFlowResult, prepare_result_json: Callable[[RepairsFlowResult], dict[str, Any]]) -> dict[str, Any]: ...
 
-class RepairsFlowIndexView(FlowManagerIndexView[RepairsFlowManager]):
+class RepairsFlowIndexView(FlowManagerIndexView[RepairsFlowManager, RepairsFlowResult]):
     url: str
     name: str
     @override
     async def post(self, request: web.Request, data: dict[str, Any]) -> web.Response: ...
     @override
-    def _prepare_result_json(self, result: data_entry_flow.FlowResult) -> dict[str, Any]: ...
+    def _prepare_result_json(self, result: RepairsFlowResult) -> dict[str, Any]: ...
 
-class RepairsFlowResourceView(FlowManagerResourceView[RepairsFlowManager]):
+class RepairsFlowResourceView(FlowManagerResourceView[RepairsFlowManager, RepairsFlowResult]):
     url: str
     name: str
     @override
@@ -38,4 +39,4 @@ class RepairsFlowResourceView(FlowManagerResourceView[RepairsFlowManager]):
     @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...
     @override
-    def _prepare_result_json(self, result: data_entry_flow.FlowResult) -> dict[str, Any]: ...
+    def _prepare_result_json(self, result: RepairsFlowResult) -> dict[str, Any]: ...

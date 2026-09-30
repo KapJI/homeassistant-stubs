@@ -13,6 +13,7 @@ from typing import override
 
 PARALLEL_UPDATES: int
 STATUS_MAP: dict[int, str]
+STATUS_OPTIONS: list[str]
 
 @dataclass(frozen=True, kw_only=True)
 class QubeSensorEntityDescription(SensorEntityDescription):

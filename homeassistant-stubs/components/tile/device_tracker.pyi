@@ -4,7 +4,6 @@ from _typeshed import Incomplete
 from homeassistant.components.device_tracker import TrackerEntity as TrackerEntity
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
-from homeassistant.util.dt import as_utc as as_utc
 from typing import override
 
 _LOGGER: Incomplete

@@ -10,6 +10,8 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.typing import StateType as StateType
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
 from tesla_fleet_api.const import Scope as Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
+from tesla_fleet_api.tesla import EnergySiteRouter as EnergySiteRouter
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Vehicle as Vehicle
 from typing import Any, override
 
@@ -38,7 +40,7 @@ class TeslemetryPollingEntity(TeslemetryRootEntity, CoordinatorEntity[Teslemetry
 
 class TeslemetryVehiclePollingEntity(TeslemetryPollingEntity, metaclass=abc.ABCMeta):
     _last_update: int
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     vehicle: TeslemetryVehicleData
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
@@ -49,13 +51,13 @@ class TeslemetryVehiclePollingEntity(TeslemetryPollingEntity, metaclass=abc.ABCM
     def _value(self) -> Any | None: ...
 
 class TeslemetryEnergyLiveEntity(TeslemetryPollingEntity, metaclass=abc.ABCMeta):
-    api: EnergySite
+    api: EnergySite | EnergySiteRouter
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, data: TeslemetryEnergyData, key: str) -> None: ...
 
 class TeslemetryEnergyInfoEntity(TeslemetryPollingEntity, metaclass=abc.ABCMeta):
-    api: EnergySite
+    api: EnergySite | EnergySiteRouter
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
     def __init__(self, data: TeslemetryEnergyData, key: str) -> None: ...
@@ -68,7 +70,7 @@ class TeslemetryEnergyHistoryEntity(TeslemetryPollingEntity, metaclass=abc.ABCMe
 
 class TeslemetryWallConnectorEntity(TeslemetryPollingEntity, metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
-    api: EnergySite
+    api: EnergySite | EnergySiteRouter
     din: Incomplete
     _attr_unique_id: Incomplete
     _attr_device_info: Incomplete
@@ -80,7 +82,7 @@ class TeslemetryWallConnectorEntity(TeslemetryPollingEntity, metaclass=abc.ABCMe
     def exists(self) -> bool: ...
 
 class TeslemetryVehicleStreamEntity(TeslemetryRootEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     vehicle: Incomplete
     stream: Incomplete
     vin: Incomplete

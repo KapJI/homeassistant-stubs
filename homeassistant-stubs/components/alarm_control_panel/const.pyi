@@ -1,7 +1,11 @@
+from . import AlarmControlPanelEntity as AlarmControlPanelEntity
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[AlarmControlPanelEntity]]
 ATTR_CHANGED_BY: Final[str]
 ATTR_CODE_ARM_REQUIRED: Final[str]
 

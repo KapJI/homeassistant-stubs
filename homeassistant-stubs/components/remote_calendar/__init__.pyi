@@ -1,4 +1,3 @@
-from .const import DOMAIN as DOMAIN
 from .coordinator import RemoteCalendarConfigEntry as RemoteCalendarConfigEntry, RemoteCalendarDataUpdateCoordinator as RemoteCalendarDataUpdateCoordinator
 from _typeshed import Incomplete
 from homeassistant.const import Platform as Platform

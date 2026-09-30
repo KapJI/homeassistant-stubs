@@ -1,4 +1,4 @@
-from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarData as PeblarData, PeblarDataUpdateCoordinator as PeblarDataUpdateCoordinator
+from .coordinator import PeblarConfigEntry as PeblarConfigEntry, PeblarData as PeblarData, PeblarDataUpdateCoordinator as PeblarDataUpdateCoordinator, PeblarRuntimeData as PeblarRuntimeData
 from .entity import PeblarEntity as PeblarEntity
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
@@ -13,6 +13,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class PeblarBinarySensorEntityDescription(BinarySensorEntityDescription):
+    has_fn: Callable[[PeblarRuntimeData], bool] = ...
     is_on_fn: Callable[[PeblarData], bool]
 
 DESCRIPTIONS: Incomplete

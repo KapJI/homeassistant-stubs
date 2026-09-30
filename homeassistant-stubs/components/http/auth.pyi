@@ -1,5 +1,5 @@
 from .auth_util import async_user_not_allowed_do_auth as async_user_not_allowed_do_auth
-from .const import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER, is_supervisor_unix_socket_request as is_supervisor_unix_socket_request
+from .const import DATA_SUPERVISOR_USER as DATA_SUPERVISOR_USER, KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS_REFRESH_TOKEN_ID as KEY_HASS_REFRESH_TOKEN_ID, KEY_HASS_USER as KEY_HASS_USER, is_supervisor_unix_socket_request as is_supervisor_unix_socket_request
 from _typeshed import Incomplete
 from aiohttp.web import Application as Application, Request as Request, StreamResponse as StreamResponse
 from collections.abc import Callable as Callable
@@ -7,7 +7,6 @@ from datetime import timedelta
 from homeassistant.auth import jwt_wrapper as jwt_wrapper
 from homeassistant.auth.const import GROUP_ID_READ_ONLY as GROUP_ID_READ_ONLY
 from homeassistant.components import websocket_api as websocket_api
-from homeassistant.const import HASSIO_USER_NAME as HASSIO_USER_NAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.http import current_request as current_request
 from homeassistant.helpers.json import json_bytes as json_bytes

@@ -1,4 +1,4 @@
-from .pipeline import PipelineStage as PipelineStage
+from .models import PipelineStage as PipelineStage
 from _typeshed import Incomplete
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 

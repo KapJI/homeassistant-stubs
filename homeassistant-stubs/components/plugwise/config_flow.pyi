@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import ANNA_WITH_ADAM as ANNA_WITH_ADAM, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_USERNAME as DEFAULT_USERNAME, DOMAIN as DOMAIN, FLOW_SMILE as FLOW_SMILE, FLOW_STRETCH as FLOW_STRETCH, SMILE as SMILE, SMILE_OPEN_THERM as SMILE_OPEN_THERM, SMILE_THERMO as SMILE_THERMO, STRETCH as STRETCH, STRETCH_USERNAME as STRETCH_USERNAME, UNKNOWN_SMILE as UNKNOWN_SMILE, ZEROCONF_MAP as ZEROCONF_MAP
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_USER as SOURCE_USER
@@ -12,7 +12,7 @@ from typing import Any, Self, override
 _LOGGER: Incomplete
 SMILE_RECONF_SCHEMA: Incomplete
 
-def smile_user_schema(discovery_info: ZeroconfServiceInfo | None) -> vol.Schema: ...
+def smile_user_schema(discovery_info: ZeroconfServiceInfo | None) -> probatio.Schema: ...
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> Smile: ...
 async def verify_connection(hass: HomeAssistant, user_input: dict[str, Any]) -> tuple[Smile | None, dict[str, str]]: ...
 

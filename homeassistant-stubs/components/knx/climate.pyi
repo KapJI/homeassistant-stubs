@@ -1,9 +1,9 @@
-from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, ClimateConf as ClimateConf, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, CONTROLLER_MODES as CONTROLLER_MODES, CURRENT_HVAC_ACTIONS as CURRENT_HVAC_ACTIONS, ClimateConf as ClimateConf, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, _KnxEntityBase as _KnxEntityBase, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import ClimateSchema as ClimateSchema
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_ACTIVE as CONF_GA_ACTIVE, CONF_GA_CONTROLLER_MODE as CONF_GA_CONTROLLER_MODE, CONF_GA_CONTROLLER_STATUS as CONF_GA_CONTROLLER_STATUS, CONF_GA_FAN_SPEED as CONF_GA_FAN_SPEED, CONF_GA_FAN_SWING as CONF_GA_FAN_SWING, CONF_GA_FAN_SWING_HORIZONTAL as CONF_GA_FAN_SWING_HORIZONTAL, CONF_GA_HEAT_COOL as CONF_GA_HEAT_COOL, CONF_GA_HUMIDITY_CURRENT as CONF_GA_HUMIDITY_CURRENT, CONF_GA_ON_OFF as CONF_GA_ON_OFF, CONF_GA_OPERATION_MODE as CONF_GA_OPERATION_MODE, CONF_GA_OP_MODE_COMFORT as CONF_GA_OP_MODE_COMFORT, CONF_GA_OP_MODE_ECO as CONF_GA_OP_MODE_ECO, CONF_GA_OP_MODE_PROTECTION as CONF_GA_OP_MODE_PROTECTION, CONF_GA_OP_MODE_STANDBY as CONF_GA_OP_MODE_STANDBY, CONF_GA_SETPOINT_SHIFT as CONF_GA_SETPOINT_SHIFT, CONF_GA_TEMPERATURE_CURRENT as CONF_GA_TEMPERATURE_CURRENT, CONF_GA_TEMPERATURE_TARGET as CONF_GA_TEMPERATURE_TARGET, CONF_GA_VALVE as CONF_GA_VALVE, CONF_IGNORE_AUTO_MODE as CONF_IGNORE_AUTO_MODE, CONF_TARGET_TEMPERATURE as CONF_TARGET_TEMPERATURE
-from .storage.entity_store_schema import ConfClimateFanSpeedMode as ConfClimateFanSpeedMode, ConfSetpointShiftMode as ConfSetpointShiftMode
+from .storage.const import CONF_GA_ACTIVE as CONF_GA_ACTIVE, CONF_GA_CONTROLLER_MODE as CONF_GA_CONTROLLER_MODE, CONF_GA_CONTROLLER_STATUS as CONF_GA_CONTROLLER_STATUS, CONF_GA_FAN_SPEED as CONF_GA_FAN_SPEED, CONF_GA_FAN_SWING as CONF_GA_FAN_SWING, CONF_GA_FAN_SWING_HORIZONTAL as CONF_GA_FAN_SWING_HORIZONTAL, CONF_GA_HEAT_COOL as CONF_GA_HEAT_COOL, CONF_GA_HUMIDITY_CURRENT as CONF_GA_HUMIDITY_CURRENT, CONF_GA_ON_OFF as CONF_GA_ON_OFF, CONF_GA_OPERATION_MODE as CONF_GA_OPERATION_MODE, CONF_GA_OP_MODE_COMFORT as CONF_GA_OP_MODE_COMFORT, CONF_GA_OP_MODE_ECO as CONF_GA_OP_MODE_ECO, CONF_GA_OP_MODE_PROTECTION as CONF_GA_OP_MODE_PROTECTION, CONF_GA_OP_MODE_STANDBY as CONF_GA_OP_MODE_STANDBY, CONF_GA_SETPOINT_SHIFT as CONF_GA_SETPOINT_SHIFT, CONF_GA_TEMPERATURE_CURRENT as CONF_GA_TEMPERATURE_CURRENT, CONF_GA_TEMPERATURE_TARGET as CONF_GA_TEMPERATURE_TARGET, CONF_GA_VALVE as CONF_GA_VALVE, CONF_IGNORE_AUTO_MODE as CONF_IGNORE_AUTO_MODE, CONF_TARGET_TEMPERATURE as CONF_TARGET_TEMPERATURE
+from .storage.entity_store_schema import ConfClimateFanSpeedMode as ConfClimateFanSpeedMode, ConfSetpointShiftMode as ConfSetpointShiftMode, KnxEntityData as KnxEntityData
 from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -74,7 +74,7 @@ class _KnxClimate(ClimateEntity, _KnxEntityBase):
     async def async_set_preset_mode(self, preset_mode: str) -> None: ...
     @property
     @override
-    def fan_mode(self) -> str: ...
+    def fan_mode(self) -> str | None: ...
     @override
     async def async_set_fan_mode(self, fan_mode: str) -> None: ...
     @override
@@ -106,4 +106,4 @@ class KnxYamlClimate(_KnxClimate, KnxYamlEntity):
 
 class KnxUiClimate(_KnxClimate, KnxUiEntity):
     _device: XknxClimate
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[Any]) -> None: ...

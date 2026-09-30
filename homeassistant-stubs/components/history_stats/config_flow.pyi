@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_DURATION as CONF_DURATION, CONF_END as CONF_END, CONF_MIN_STATE_DURATION as CONF_MIN_STATE_DURATION, CONF_PERIOD_KEYS as CONF_PERIOD_KEYS, CONF_START as CONF_START, CONF_TYPE_KEYS as CONF_TYPE_KEYS, CONF_TYPE_RATIO as CONF_TYPE_RATIO, CONF_TYPE_TIME as CONF_TYPE_TIME, DEFAULT_NAME as DEFAULT_NAME, DOMAIN as DOMAIN, SECTION_ADDITIONAL_SETTINGS as SECTION_ADDITIONAL_SETTINGS
 from .coordinator import HistoryStatsUpdateCoordinator as HistoryStatsUpdateCoordinator
 from .data import HistoryStats as HistoryStats
@@ -12,7 +12,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, callback as callb
 from homeassistant.data_entry_flow import section as section
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandler as SchemaCommonFlowHandler, SchemaConfigFlowHandler as SchemaConfigFlowHandler, SchemaFlowError as SchemaFlowError, SchemaFlowFormStep as SchemaFlowFormStep
-from homeassistant.helpers.selector import DurationSelector as DurationSelector, DurationSelectorConfig as DurationSelectorConfig, EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, StateSelector as StateSelector, StateSelectorConfig as StateSelectorConfig, TemplateSelector as TemplateSelector, TextSelector as TextSelector
+from homeassistant.helpers.selector import DurationSelector as DurationSelector, DurationSelectorConfig as DurationSelectorConfig, EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, StateClassSelector as StateClassSelector, StateClassSelectorConfig as StateClassSelectorConfig, StateSelector as StateSelector, StateSelectorConfig as StateSelectorConfig, TemplateSelector as TemplateSelector, TextSelector as TextSelector
 from homeassistant.helpers.template import Template as Template
 from typing import Any, override
 
@@ -21,9 +21,9 @@ async def validate_options(handler: SchemaCommonFlowHandler, user_input: dict[st
 
 DATA_SCHEMA_SETUP: Incomplete
 
-async def get_state_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
-async def get_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
-def _get_options_schema_with_entity_id(entity_id: str, type: str) -> vol.Schema: ...
+async def get_state_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
+async def get_options_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
+def _get_options_schema_with_entity_id(entity_id: str, type: str) -> probatio.Schema: ...
 
 CONFIG_FLOW: Incomplete
 OPTIONS_FLOW: Incomplete

@@ -1,96 +1,54 @@
-from .const import ATTR_THEME as ATTR_THEME, DOMAIN as DOMAIN
+from .const import ATTR_CHANGE as ATTR_CHANGE, ATTR_CLOUD_SATURATION_MAX as ATTR_CLOUD_SATURATION_MAX, ATTR_CLOUD_SATURATION_MIN as ATTR_CLOUD_SATURATION_MIN, ATTR_CYCLES as ATTR_CYCLES, ATTR_DIRECTION as ATTR_DIRECTION, ATTR_PALETTE as ATTR_PALETTE, ATTR_PERIOD as ATTR_PERIOD, ATTR_POWER_ON as ATTR_POWER_ON, ATTR_SATURATION_MAX as ATTR_SATURATION_MAX, ATTR_SATURATION_MIN as ATTR_SATURATION_MIN, ATTR_SKY_TYPE as ATTR_SKY_TYPE, ATTR_SPEED as ATTR_SPEED, ATTR_SPREAD as ATTR_SPREAD, ATTR_THEME as ATTR_THEME, DOMAIN as DOMAIN, SERVICE_EFFECT_COLORLOOP as SERVICE_EFFECT_COLORLOOP, SERVICE_EFFECT_FLAME as SERVICE_EFFECT_FLAME, SERVICE_EFFECT_MORPH as SERVICE_EFFECT_MORPH, SERVICE_EFFECT_MOVE as SERVICE_EFFECT_MOVE, SERVICE_EFFECT_PULSE as SERVICE_EFFECT_PULSE, SERVICE_EFFECT_SKY as SERVICE_EFFECT_SKY, SERVICE_EFFECT_STOP as SERVICE_EFFECT_STOP, SERVICE_PAINT_THEME as SERVICE_PAINT_THEME
 from .coordinator import LIFXUpdateCoordinator as LIFXUpdateCoordinator
-from .util import convert_8_to_16 as convert_8_to_16, find_hsbk as find_hsbk
+from .util import device_error as device_error, overwrites_existing_color as overwrites_existing_color, palette_fraction as palette_fraction, parse_hsbk_changes as parse_hsbk_changes, replace_hsbk as replace_hsbk
 from _typeshed import Incomplete
-from aiolifx.aiolifx import Light as Light
-from aiolifx_themes.themes import Theme
-from collections.abc import Callable as Callable
-from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_COLOR_NAME as ATTR_COLOR_NAME, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ATTR_RGB_COLOR as ATTR_RGB_COLOR, ATTR_TRANSITION as ATTR_TRANSITION, ATTR_XY_COLOR as ATTR_XY_COLOR, COLOR_GROUP as COLOR_GROUP, VALID_BRIGHTNESS as VALID_BRIGHTNESS, VALID_BRIGHTNESS_PCT as VALID_BRIGHTNESS_PCT
+from collections.abc import Callable as Callable, Mapping, Sequence
+from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_BRIGHTNESS_PCT as ATTR_BRIGHTNESS_PCT, ATTR_TRANSITION as ATTR_TRANSITION
 from homeassistant.const import ATTR_MODE as ATTR_MODE
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.helpers.target import TargetSelection as TargetSelection, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from lifx import Device as Device, FirmwareEffect, HSBK, Light, Theme
 from typing import Any
 
-SCAN_INTERVAL: Incomplete
-SERVICE_EFFECT_COLORLOOP: str
-SERVICE_EFFECT_FLAME: str
-SERVICE_EFFECT_MORPH: str
-SERVICE_EFFECT_MOVE: str
-SERVICE_EFFECT_PULSE: str
-SERVICE_EFFECT_SKY: str
-SERVICE_EFFECT_STOP: str
-SERVICE_PAINT_THEME: str
-ATTR_CHANGE: str
-ATTR_CLOUD_SATURATION_MIN: str
-ATTR_CLOUD_SATURATION_MAX: str
-ATTR_CYCLES: str
-ATTR_DIRECTION: str
-ATTR_PALETTE: str
-ATTR_PERIOD: str
-ATTR_POWER_OFF: str
-ATTR_POWER_ON: str
-ATTR_SATURATION_MAX: str
-ATTR_SATURATION_MIN: str
-ATTR_SKY_TYPE: str
-ATTR_SPEED: str
-ATTR_SPREAD: str
-EFFECT_FLAME: str
-EFFECT_MORPH: str
-EFFECT_MOVE: str
-EFFECT_OFF: str
-EFFECT_SKY: str
 EFFECT_FLAME_DEFAULT_SPEED: int
 EFFECT_MORPH_DEFAULT_SPEED: int
 EFFECT_MORPH_DEFAULT_THEME: str
 EFFECT_MOVE_DEFAULT_SPEED: int
 EFFECT_MOVE_DEFAULT_DIRECTION: str
-EFFECT_MOVE_DIRECTION_RIGHT: str
-EFFECT_MOVE_DIRECTION_LEFT: str
-EFFECT_MOVE_DIRECTIONS: Incomplete
+EFFECT_MOVE_DIRECTION: Incomplete
+EFFECT_PULSE_DEFAULT_MODE: str
 EFFECT_SKY_DEFAULT_SPEED: int
 EFFECT_SKY_DEFAULT_SKY_TYPE: str
 EFFECT_SKY_DEFAULT_CLOUD_SATURATION_MIN: int
 EFFECT_SKY_DEFAULT_CLOUD_SATURATION_MAX: int
-EFFECT_SKY_SKY_TYPES: Incomplete
+EFFECT_SKY_TYPE: Incomplete
 PAINT_THEME_DEFAULT_TRANSITION: int
-PULSE_MODE_BLINK: str
-PULSE_MODE_BREATHE: str
-PULSE_MODE_PING: str
-PULSE_MODE_SOLID: str
-PULSE_MODE_STROBE: str
-PULSE_MODES: Incomplete
-LIFX_EFFECT_SCHEMA: Incomplete
-LIFX_EFFECT_PULSE_SCHEMA: Incomplete
-LIFX_EFFECT_COLORLOOP_SCHEMA: Incomplete
-LIFX_EFFECT_STOP_SCHEMA: Incomplete
-LIFX_EFFECT_FLAME_SCHEMA: Incomplete
-HSBK_SCHEMA: Incomplete
-LIFX_EFFECT_MORPH_SCHEMA: Incomplete
-LIFX_EFFECT_MOVE_SCHEMA: Incomplete
-LIFX_EFFECT_SKY_SCHEMA: Incomplete
-LIFX_PAINT_THEME_SCHEMA: Incomplete
-SERVICES_SCHEMA: Incomplete
 
 class LIFXManager:
     hass: Incomplete
     effects_conductor: Incomplete
     entity_id_to_coordinator: dict[str, LIFXUpdateCoordinator]
     def __init__(self, hass: HomeAssistant) -> None: ...
-    @callback
-    def async_unload(self) -> None: ...
+    async def async_stop_effects(self, device: Device) -> None: ...
     @callback
     def async_register_entity(self, entity_id: str, coordinator: LIFXUpdateCoordinator) -> Callable[[], None]: ...
-    @callback
-    def async_setup(self) -> None: ...
     @staticmethod
-    def build_theme(theme_name: str = 'exciting', palette: list | None = None) -> Theme: ...
-    async def _start_effect_flame(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_paint_theme(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_effect_morph(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_effect_move(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_effect_pulse(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_effect_colorloop(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_effect_sky(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
-    async def _start_effect_stop(self, bulbs: list[Light], coordinators: list[LIFXUpdateCoordinator], **kwargs: Any) -> None: ...
+    def _build_palette(palette: list[tuple[float, float, float, int]] | None) -> list[HSBK]: ...
+    @classmethod
+    def build_theme(cls, theme_name: str = 'exciting', palette: list[tuple[float, float, float, int]] | None = None) -> Theme: ...
+    @staticmethod
+    async def hsbk_from_service_data(device: Light, service_data: Mapping[str, object]) -> HSBK | None: ...
+    @staticmethod
+    async def _async_power_on(devices: Sequence[Light], power_on: bool) -> None: ...
+    async def _start_matrix_effect(self, devices: list[Light], service: ServiceCall, effect: FirmwareEffect, **kwargs: Any) -> None: ...
+    async def _start_effect_flame(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_paint_theme(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_effect_morph(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_effect_move(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_effect_pulse(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_effect_colorloop(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_effect_sky(self, devices: list[Light], service: ServiceCall) -> None: ...
+    async def _start_effect_stop(self, devices: list[Light], _service: ServiceCall) -> None: ...
     _effect_dispatch: Incomplete
-    async def start_effect(self, entity_ids: set[str], service: str, **kwargs: Any) -> None: ...
+    _effect_requires: dict[str, tuple[type[Light], str]]
+    async def start_effect(self, entity_ids: set[str], service: ServiceCall, strict: bool = True) -> None: ...

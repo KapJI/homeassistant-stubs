@@ -1,6 +1,12 @@
+from . import HumidifierEntity as HumidifierEntity
+from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
+DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[HumidifierEntity]]
 MODE_NORMAL: str
 MODE_ECO: str
 MODE_AWAY: str
@@ -26,7 +32,6 @@ ATTR_MIN_HUMIDITY: str
 ATTR_TARGET_HUMIDITY_STEP: str
 DEFAULT_MIN_HUMIDITY: int
 DEFAULT_MAX_HUMIDITY: int
-DOMAIN: Final[str]
 SERVICE_SET_MODE: str
 SERVICE_SET_HUMIDITY: str
 
@@ -44,3 +49,9 @@ class HumidifierEntityStateAttribute(StrEnum):
 
 class HumidifierEntityFeature(IntFlag):
     MODES = 1
+
+class HumidifierDeviceClass(StrEnum):
+    HUMIDIFIER = 'humidifier'
+    DEHUMIDIFIER = 'dehumidifier'
+
+DEVICE_CLASSES_SCHEMA: Incomplete

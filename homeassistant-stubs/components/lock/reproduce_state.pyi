@@ -1,4 +1,5 @@
-from . import DOMAIN as DOMAIN, LockState as LockState
+from . import LockState as LockState
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from collections.abc import Iterable
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK

@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import DOMAIN as DOMAIN
 from .sensor import CONF_KEEP_LAST_SAMPLE as CONF_KEEP_LAST_SAMPLE, CONF_MAX_AGE as CONF_MAX_AGE, CONF_PERCENTILE as CONF_PERCENTILE, CONF_PRECISION as CONF_PRECISION, CONF_SAMPLES_MAX_BUFFER_SIZE as CONF_SAMPLES_MAX_BUFFER_SIZE, CONF_STATE_CHARACTERISTIC as CONF_STATE_CHARACTERISTIC, DEFAULT_NAME as DEFAULT_NAME, DEFAULT_PRECISION as DEFAULT_PRECISION, STATS_BINARY_SUPPORT as STATS_BINARY_SUPPORT, STATS_NUMERIC_SUPPORT as STATS_NUMERIC_SUPPORT, StatisticsSensor as StatisticsSensor
 from _typeshed import Incomplete
@@ -11,7 +11,7 @@ from homeassistant.helpers.schema_config_entry_flow import SchemaCommonFlowHandl
 from homeassistant.helpers.selector import BooleanSelector as BooleanSelector, DurationSelector as DurationSelector, DurationSelectorConfig as DurationSelectorConfig, EntitySelector as EntitySelector, EntitySelectorConfig as EntitySelectorConfig, NumberSelector as NumberSelector, NumberSelectorConfig as NumberSelectorConfig, NumberSelectorMode as NumberSelectorMode, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode, TextSelector as TextSelector
 from typing import Any, override
 
-async def get_state_characteristics(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def get_state_characteristics(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
 async def validate_options(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
 
 DATA_SCHEMA_SETUP: Incomplete

@@ -1,16 +1,19 @@
+from .const import DOMAIN as DOMAIN
 from .entity import EsphomeEntity as EsphomeEntity, convert_api_error_ha_error as convert_api_error_ha_error, esphome_float_state_property as esphome_float_state_property, esphome_state_property as esphome_state_property, platform_async_setup_entry as platform_async_setup_entry
 from .enum_mapper import EsphomeEnumMapper as EsphomeEnumMapper
 from .ffmpeg_proxy import async_create_proxy_url as async_create_proxy_url
 from _typeshed import Incomplete
 from aioesphomeapi import EntityInfo as EntityInfo, MediaPlayerEntityState, MediaPlayerInfo, MediaPlayerState as EspMediaPlayerState, MediaPlayerSupportedFormat as MediaPlayerSupportedFormat
 from homeassistant.components import media_source as media_source
-from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, async_process_play_media_url as async_process_play_media_url
+from homeassistant.components.media_player import ATTR_MEDIA_ANNOUNCE as ATTR_MEDIA_ANNOUNCE, ATTR_MEDIA_ENQUEUE as ATTR_MEDIA_ENQUEUE, ATTR_MEDIA_EXTRA as ATTR_MEDIA_EXTRA, BrowseMedia as BrowseMedia, MediaPlayerDeviceClass as MediaPlayerDeviceClass, MediaPlayerEnqueue as MediaPlayerEnqueue, MediaPlayerEntity as MediaPlayerEntity, MediaPlayerEntityFeature as MediaPlayerEntityFeature, MediaPlayerState as MediaPlayerState, MediaType as MediaType, RepeatMode as RepeatMode, async_process_play_media_url as async_process_play_media_url
 from homeassistant.core import callback as callback
+from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from typing import Any, override
 
 PARALLEL_UPDATES: int
 _LOGGER: Incomplete
 _STATES: EsphomeEnumMapper[EspMediaPlayerState, MediaPlayerState]
+_UNSUPPORTED_FEATURES: Incomplete
 _FEATURES: Incomplete
 ATTR_BYPASS_PROXY: str
 
@@ -45,6 +48,12 @@ class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState],
     async def async_set_volume_level(self, volume: float) -> None: ...
     @convert_api_error_ha_error
     @override
+    async def async_volume_up(self) -> None: ...
+    @convert_api_error_ha_error
+    @override
+    async def async_volume_down(self) -> None: ...
+    @convert_api_error_ha_error
+    @override
     async def async_media_pause(self) -> None: ...
     @convert_api_error_ha_error
     @override
@@ -52,6 +61,13 @@ class EsphomeMediaPlayer(EsphomeEntity[MediaPlayerInfo, MediaPlayerEntityState],
     @convert_api_error_ha_error
     @override
     async def async_media_stop(self) -> None: ...
+    @convert_api_error_ha_error
+    @override
+    async def async_clear_playlist(self) -> None: ...
+    _attr_repeat: Incomplete
+    @convert_api_error_ha_error
+    @override
+    async def async_set_repeat(self, repeat: RepeatMode) -> None: ...
     @convert_api_error_ha_error
     @override
     async def async_mute_volume(self, mute: bool) -> None: ...

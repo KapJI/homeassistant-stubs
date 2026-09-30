@@ -1,4 +1,4 @@
-from .json import json_bytes as json_bytes, json_fragment as json_fragment
+from .json import cached_json_fragment as cached_json_fragment, json_fragment as json_fragment
 from .normalized_name_base_registry import NormalizedNameBaseRegistryEntry as NormalizedNameBaseRegistryEntry, NormalizedNameBaseRegistryItems as NormalizedNameBaseRegistryItems, normalize_name as normalize_name
 from .registry import BaseRegistry as BaseRegistry, RegistryIndexType as RegistryIndexType
 from .singleton import singleton as singleton

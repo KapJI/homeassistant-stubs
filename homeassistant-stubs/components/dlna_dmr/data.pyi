@@ -1,5 +1,5 @@
 import asyncio
-from .const import DOMAIN as DOMAIN, LOGGER as LOGGER
+from .const import DOMAIN_DATA as DOMAIN_DATA, LOGGER as LOGGER
 from async_upnp_client.aiohttp import AiohttpNotifyServer
 from async_upnp_client.client import UpnpRequester as UpnpRequester
 from async_upnp_client.client_factory import UpnpFactory

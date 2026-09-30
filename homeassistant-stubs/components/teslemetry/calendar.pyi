@@ -1,7 +1,7 @@
 from . import TeslemetryConfigEntry as TeslemetryConfigEntry
 from .entity import TeslemetryEnergyInfoEntity as TeslemetryEnergyInfoEntity
 from _typeshed import Incomplete
-from datetime import datetime
+from datetime import datetime, tzinfo
 from homeassistant.components.calendar import CalendarEntity as CalendarEntity, CalendarEvent as CalendarEvent
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -16,10 +16,13 @@ def _parse_period_times(period_def: dict[str, Any], base_day: datetime) -> tuple
 def _build_event(key_base: str, season_name: str, period_name: str, price: float | None, start_time: datetime, end_time: datetime) -> CalendarEvent: ...
 
 class TeslemetryTariffSchedule(TeslemetryEnergyInfoEntity, CalendarEntity):
+    _time_zone: tzinfo
     key_base: str
     seasons: dict[str, dict[str, Any]]
     charges: dict[str, dict[str, Any]]
     def __init__(self, data: Any, key_base: str) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
     @property
     @override
     def event(self) -> CalendarEvent | None: ...

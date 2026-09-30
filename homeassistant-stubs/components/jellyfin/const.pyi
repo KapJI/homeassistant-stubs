@@ -39,5 +39,6 @@ USER_APP_NAME: Final[str]
 USER_AGENT: Final[Incomplete]
 CONTENT_TYPE_MAP: Incomplete
 MEDIA_CLASS_MAP: Incomplete
+SEARCH_ITEM_TYPE_MAP: dict[MediaClass, list[str]]
 PLATFORMS: Incomplete
 LOGGER: Incomplete

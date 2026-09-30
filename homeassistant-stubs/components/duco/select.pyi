@@ -1,6 +1,7 @@
 from .const import DOMAIN as DOMAIN, VENTILATION_CAPABLE_NODE_TYPES as VENTILATION_CAPABLE_NODE_TYPES
 from .coordinator import DucoConfigEntry as DucoConfigEntry, DucoCoordinator as DucoCoordinator
 from .entity import DucoEntity as DucoEntity
+from .helpers import remove_stale_node_ids as remove_stale_node_ids
 from _typeshed import Incomplete
 from duco_connectivity import ActionItem as ActionItem, Node as Node, NodeListActionItemList as NodeListActionItemList
 from homeassistant.components.select import SelectEntity as SelectEntity

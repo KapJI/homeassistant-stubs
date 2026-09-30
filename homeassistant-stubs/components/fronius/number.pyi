@@ -1,11 +1,13 @@
 from . import FroniusConfigEntry as FroniusConfigEntry
-from .coordinator import FroniusModbusSettingsUpdateCoordinator as FroniusModbusSettingsUpdateCoordinator
+from .const import discovery_signal as discovery_signal
+from .coordinator import FroniusCoordinatorBase as FroniusCoordinatorBase, FroniusModbusSettingsUpdateCoordinator as FroniusModbusSettingsUpdateCoordinator
 from .entity import FroniusEntity as FroniusEntity, FroniusEntityDescription as FroniusEntityDescription, ModbusComponentFn as ModbusComponentFn
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.components.number import NumberEntity as NumberEntity, NumberEntityDescription as NumberEntityDescription
 from homeassistant.const import EntityCategory as EntityCategory, PERCENTAGE as PERCENTAGE, Platform as Platform
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Final, override
 

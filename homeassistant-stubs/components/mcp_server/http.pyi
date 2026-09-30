@@ -1,4 +1,4 @@
-from .const import DOMAIN as DOMAIN
+from .const import CONF_ALL_LLM_APIS as CONF_ALL_LLM_APIS, CONF_REQUIRE_ADMIN as CONF_REQUIRE_ADMIN, DOMAIN as DOMAIN
 from .server import create_server as create_server
 from .session import Session as Session
 from .types import MCPServerConfigEntry as MCPServerConfigEntry
@@ -20,12 +20,15 @@ from mcp.shared.message import SessionMessage
 _LOGGER: Incomplete
 STREAMABLE_API: str
 TIMEOUT: int
+KNOWN_MCP_METHODS: frozenset[str]
 SSE_API: Incomplete
 MESSAGES_API: Incomplete
 
 @callback
 def async_register(hass: HomeAssistant) -> None: ...
 def async_get_config_entry(hass: HomeAssistant) -> MCPServerConfigEntry: ...
+def _entry_llm_api_ids(hass: HomeAssistant, entry: MCPServerConfigEntry) -> str | list[str]: ...
+def _validate_admin(request: web.Request, entry: MCPServerConfigEntry) -> None: ...
 
 @dataclass
 class Streams:

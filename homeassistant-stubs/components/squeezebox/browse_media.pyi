@@ -15,6 +15,7 @@ MEDIA_TYPE_TO_SQUEEZEBOX: dict[str | MediaType, str]
 SQUEEZEBOX_ID_BY_TYPE: dict[str | MediaType, str]
 CONTENT_TYPE_MEDIA_CLASS: dict[str | MediaType, dict[str, MediaClass | str]]
 CONTENT_TYPE_TO_CHILD_TYPE: dict[str | MediaType, str | MediaType | None]
+SEARCHABLE_TYPES: set[str | MediaType]
 
 @dataclass
 class BrowseData:

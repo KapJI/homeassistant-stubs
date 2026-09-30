@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import subscription as subscription
 from .config import MQTT_RO_SCHEMA as MQTT_RO_SCHEMA
 from .const import CONF_OFF_DELAY as CONF_OFF_DELAY, CONF_STATE_TOPIC as CONF_STATE_TOPIC, PAYLOAD_NONE as PAYLOAD_NONE
@@ -44,7 +44,7 @@ class MqttBinarySensor(MqttEntity, BinarySensorEntity, RestoreEntity):
     async def async_will_remove_from_hass(self) -> None: ...
     @staticmethod
     @override
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> probatio.Schema: ...
     _attr_force_update: Incomplete
     _attr_device_class: Incomplete
     _value_template: Incomplete

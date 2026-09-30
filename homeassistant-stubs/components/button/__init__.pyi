@@ -1,6 +1,6 @@
-from .const import DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
+from .const import ButtonDeviceClass as ButtonDeviceClass, DATA_COMPONENT as DATA_COMPONENT, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, DOMAIN as DOMAIN, SERVICE_PRESS as SERVICE_PRESS
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from enum import StrEnum
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import STATE_UNAVAILABLE as STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -8,24 +8,15 @@ from homeassistant.helpers.entity import EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from homeassistant.helpers.typing import ConfigType as ConfigType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import final, override
 
 _LOGGER: Incomplete
-DATA_COMPONENT: HassKey[EntityComponent[ButtonEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 MIN_TIME_BETWEEN_SCANS: Incomplete
-
-class ButtonDeviceClass(StrEnum):
-    IDENTIFY = 'identify'
-    RESTART = 'restart'
-    UPDATE = 'update'
-
-DEVICE_CLASSES_SCHEMA: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...

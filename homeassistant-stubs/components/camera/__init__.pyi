@@ -1,31 +1,28 @@
 import asyncio
 import collections
-from .const import CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraEntityStateAttribute as CameraEntityStateAttribute, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_RECORD as SERVICE_RECORD, StreamType as StreamType
-from .helper import get_camera_from_entity_id as get_camera_from_entity_id
+from .const import ATTR_FILENAME as ATTR_FILENAME, ATTR_FORMAT as ATTR_FORMAT, ATTR_MEDIA_PLAYER as ATTR_MEDIA_PLAYER, CAMERA_IMAGE_TIMEOUT as CAMERA_IMAGE_TIMEOUT, CAMERA_STREAM_SOURCE_TIMEOUT as CAMERA_STREAM_SOURCE_TIMEOUT, CONF_DURATION as CONF_DURATION, CONF_LOOKBACK as CONF_LOOKBACK, CameraEntityFeature as CameraEntityFeature, CameraEntityStateAttribute as CameraEntityStateAttribute, CameraState as CameraState, DATA_CAMERA_PREFS as DATA_CAMERA_PREFS, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, PREF_ORIENTATION as PREF_ORIENTATION, PREF_PRELOAD_STREAM as PREF_PRELOAD_STREAM, SERVICE_DISABLE_MOTION as SERVICE_DISABLE_MOTION, SERVICE_ENABLE_MOTION as SERVICE_ENABLE_MOTION, SERVICE_PLAY_STREAM as SERVICE_PLAY_STREAM, SERVICE_RECORD as SERVICE_RECORD, SERVICE_SNAPSHOT as SERVICE_SNAPSHOT, StreamType as StreamType
+from .helper import async_get_stream_image as async_get_stream_image, async_stream_endpoint_url as async_stream_endpoint_url, get_camera_from_entity_id as get_camera_from_entity_id
 from .img_util import TurboJPEGSingleton as TurboJPEGSingleton, scale_jpeg_camera_image as scale_jpeg_camera_image
 from .prefs import CameraPreferences as CameraPreferences, DynamicStreamSettings as DynamicStreamSettings, get_dynamic_camera_stream_settings as get_dynamic_camera_stream_settings
+from .services import async_setup_services as async_setup_services
 from .webrtc import CameraWebRTCProvider as CameraWebRTCProvider, WebRTCAnswer as WebRTCAnswer, WebRTCCandidate as WebRTCCandidate, WebRTCClientConfiguration as WebRTCClientConfiguration, WebRTCError as WebRTCError, WebRTCMessage as WebRTCMessage, WebRTCSendMessage as WebRTCSendMessage, async_get_supported_provider as async_get_supported_provider, async_register_webrtc_provider as async_register_webrtc_provider, async_register_ws as async_register_ws
 from _typeshed import Incomplete
 from aiohttp import web
 from collections.abc import Awaitable, Callable as Callable, Coroutine
 from dataclasses import dataclass
-from enum import IntFlag
 from homeassistant.components import websocket_api as websocket_api
 from homeassistant.components.http import HomeAssistantView as HomeAssistantView, KEY_AUTHENTICATED as KEY_AUTHENTICATED
-from homeassistant.components.media_player import ATTR_MEDIA_CONTENT_ID as ATTR_MEDIA_CONTENT_ID, ATTR_MEDIA_CONTENT_TYPE as ATTR_MEDIA_CONTENT_TYPE, SERVICE_PLAY_MEDIA as SERVICE_PLAY_MEDIA
-from homeassistant.components.stream import FORMAT_CONTENT_TYPE as FORMAT_CONTENT_TYPE, OUTPUT_FORMATS as OUTPUT_FORMATS, Orientation as Orientation, Stream as Stream, create_stream as create_stream
+from homeassistant.components.stream import OUTPUT_FORMATS as OUTPUT_FORMATS, Orientation as Orientation, Stream as Stream, create_stream as create_stream
 from homeassistant.components.web_rtc import async_get_ice_servers as async_get_ice_servers
 from homeassistant.components.websocket_api import ActiveConnection as ActiveConnection
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityStateAttribute as EntityStateAttribute, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
-from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
+from homeassistant.const import CONF_FILENAME as CONF_FILENAME, CONTENT_TYPE_MULTIPART as CONTENT_TYPE_MULTIPART, EVENT_HOMEASSISTANT_STARTED as EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP, EntityStateAttribute as EntityStateAttribute, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON
+from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.network import get_url as get_url
-from homeassistant.helpers.template import Template as Template
-from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from propcache.api import cached_property, under_cached_property
 from typing import Any, Final, final, override
 from webrtc_models import RTCIceCandidateInit as RTCIceCandidateInit
@@ -35,26 +32,11 @@ ENTITY_ID_FORMAT: Final[Incomplete]
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Final[Incomplete]
-SERVICE_ENABLE_MOTION: Final[str]
-SERVICE_DISABLE_MOTION: Final[str]
-SERVICE_SNAPSHOT: Final[str]
-SERVICE_PLAY_STREAM: Final[str]
-ATTR_FILENAME: Final[str]
-ATTR_MEDIA_PLAYER: Final[str]
-ATTR_FORMAT: Final[str]
-
-class CameraEntityFeature(IntFlag):
-    ON_OFF = 1
-    STREAM = 2
-
 DEFAULT_CONTENT_TYPE: Final[str]
 ENTITY_IMAGE_URL: Final[str]
 TOKEN_CHANGE_INTERVAL: Final[Incomplete]
 _RND: Final[Incomplete]
 MIN_STREAM_INTERVAL: Final[float]
-CAMERA_SERVICE_SNAPSHOT: VolDictType
-CAMERA_SERVICE_PLAY_STREAM: VolDictType
-CAMERA_SERVICE_RECORD: VolDictType
 
 class CameraEntityDescription(EntityDescription, frozen_or_thawed=True): ...
 
@@ -74,7 +56,6 @@ class CameraCapabilities:
 async def async_request_stream(hass: HomeAssistant, entity_id: str, fmt: str) -> str: ...
 async def _async_get_image(camera: Camera, timeout: int = 10, width: int | None = None, height: int | None = None) -> Image: ...
 async def async_get_image(hass: HomeAssistant, entity_id: str, timeout: int = 10, width: int | None = None, height: int | None = None) -> Image: ...
-async def _async_get_stream_image(camera: Camera, width: int | None = None, height: int | None = None, wait_for_next_keyframe: bool = False) -> bytes | None: ...
 async def async_get_stream_source(hass: HomeAssistant, entity_id: str) -> str | None: ...
 async def async_get_mjpeg_stream(hass: HomeAssistant, request: web.Request, entity_id: str) -> web.StreamResponse | None: ...
 async def async_get_still_stream(request: web.Request, image_cb: Callable[[], Awaitable[bytes | None]], content_type: str, interval: float) -> web.StreamResponse: ...
@@ -213,19 +194,3 @@ async def websocket_get_prefs(hass: HomeAssistant, connection: ActiveConnection,
 @websocket_api.require_admin
 @websocket_api.async_response
 async def websocket_update_prefs(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
-
-class _TemplateCameraEntity:
-    _camera: Incomplete
-    _entity_id: Incomplete
-    _hass: Incomplete
-    _service: Incomplete
-    def __init__(self, camera: Camera, service: str) -> None: ...
-    def _report_issue(self) -> None: ...
-    def __getattr__(self, name: str) -> Any: ...
-    @override
-    def __str__(self) -> str: ...
-
-async def async_handle_snapshot_service(camera: Camera, service_call: ServiceCall) -> None: ...
-async def async_handle_play_stream_service(camera: Camera, service_call: ServiceCall) -> None: ...
-async def _async_stream_endpoint_url(hass: HomeAssistant, camera: Camera, fmt: str) -> str: ...
-async def async_handle_record_service(camera: Camera, service_call: ServiceCall) -> None: ...

@@ -35,9 +35,9 @@ class ConfigManagerEntryResourceReloadView(HomeAssistantView):
     name: str
     async def post(self, request: web.Request, entry_id: str) -> web.Response: ...
 
-def _prepare_config_flow_result_json(result: data_entry_flow.FlowResult, prepare_result_json: Callable[[data_entry_flow.FlowResult], dict[str, Any]]) -> dict[str, Any]: ...
+def _prepare_config_flow_result_json(result: config_entries.ConfigFlowResult, prepare_result_json: Callable[[config_entries.ConfigFlowResult], dict[str, Any]]) -> dict[str, Any]: ...
 
-class ConfigManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigEntriesFlowManager]):
+class ConfigManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigEntriesFlowManager, config_entries.ConfigFlowResult]):
     url: str
     name: str
     async def get(self, request: web.Request) -> NoReturn: ...
@@ -48,9 +48,9 @@ class ConfigManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigEntri
     @override
     def get_context(self, data: dict[str, Any]) -> dict[str, Any]: ...
     @override
-    def _prepare_result_json(self, result: data_entry_flow.FlowResult) -> dict[str, Any]: ...
+    def _prepare_result_json(self, result: config_entries.ConfigFlowResult) -> dict[str, Any]: ...
 
-class ConfigManagerFlowResourceView(FlowManagerResourceView[config_entries.ConfigEntriesFlowManager]):
+class ConfigManagerFlowResourceView(FlowManagerResourceView[config_entries.ConfigEntriesFlowManager, config_entries.ConfigFlowResult]):
     url: str
     name: str
     @override
@@ -58,20 +58,20 @@ class ConfigManagerFlowResourceView(FlowManagerResourceView[config_entries.Confi
     @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...
     @override
-    def _prepare_result_json(self, result: data_entry_flow.FlowResult) -> dict[str, Any]: ...
+    def _prepare_result_json(self, result: config_entries.ConfigFlowResult) -> dict[str, Any]: ...
 
 class ConfigManagerAvailableFlowView(HomeAssistantView):
     url: str
     name: str
     async def get(self, request: web.Request) -> web.Response: ...
 
-class OptionManagerFlowIndexView(FlowManagerIndexView[config_entries.OptionsFlowManager]):
+class OptionManagerFlowIndexView(FlowManagerIndexView[config_entries.OptionsFlowManager, config_entries.ConfigFlowResult]):
     url: str
     name: str
     @override
     async def post(self, request: web.Request) -> web.Response: ...
 
-class OptionManagerFlowResourceView(FlowManagerResourceView[config_entries.OptionsFlowManager]):
+class OptionManagerFlowResourceView(FlowManagerResourceView[config_entries.OptionsFlowManager, config_entries.ConfigFlowResult]):
     url: str
     name: str
     @override
@@ -79,7 +79,7 @@ class OptionManagerFlowResourceView(FlowManagerResourceView[config_entries.Optio
     @override
     async def post(self, request: web.Request, flow_id: str) -> web.Response: ...
 
-class SubentryManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigSubentryFlowManager]):
+class SubentryManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigSubentryFlowManager, config_entries.SubentryFlowResult]):
     url: str
     name: str
     @override
@@ -87,7 +87,7 @@ class SubentryManagerFlowIndexView(FlowManagerIndexView[config_entries.ConfigSub
     @override
     def get_context(self, data: dict[str, Any]) -> dict[str, Any]: ...
 
-class SubentryManagerFlowResourceView(FlowManagerResourceView[config_entries.ConfigSubentryFlowManager]):
+class SubentryManagerFlowResourceView(FlowManagerResourceView[config_entries.ConfigSubentryFlowManager, config_entries.SubentryFlowResult]):
     url: str
     name: str
     @override

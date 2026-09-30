@@ -11,6 +11,7 @@ from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo as DhcpServi
 from typing import Any, override
 
 _LOGGER: Incomplete
+HOSTNAME_SERIAL: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 STEP_DISCOVERY_CONFIRM_DATA_SCHEMA: Incomplete
 

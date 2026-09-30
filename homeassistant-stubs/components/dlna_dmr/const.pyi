@@ -1,11 +1,14 @@
+from .data import DlnaDmrData as DlnaDmrData
 from _typeshed import Incomplete
 from async_upnp_client.profiles.dlna import PlayMode as _PlayMode
 from collections.abc import Mapping
 from homeassistant.components.media_player import MediaType as MediaType, RepeatMode as RepeatMode
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 LOGGER: Incomplete
 DOMAIN: Final[str]
+DOMAIN_DATA: HassKey[DlnaDmrData]
 CONF_LISTEN_PORT: Final[str]
 CONF_CALLBACK_URL_OVERRIDE: Final[str]
 CONF_POLL_AVAILABILITY: Final[str]

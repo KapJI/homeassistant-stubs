@@ -1,5 +1,5 @@
 from .data import ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectNVREntity as ProtectNVREntity, T as T, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
+from .entity import BaseProtectEntity as BaseProtectEntity, EventEntityMixin as EventEntityMixin, PermRequired as PermRequired, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEntityDescription as ProtectEntityDescription, ProtectEventMixin as ProtectEventMixin, ProtectFobEntity as ProtectFobEntity, ProtectNVREntity as ProtectNVREntity, T as T, async_all_device_entities as async_all_device_entities, async_remove_unsupported_sense_entities as async_remove_unsupported_sense_entities
 from .utils import async_get_light_motion_current_public as async_get_light_motion_current_public
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Sequence
@@ -8,9 +8,11 @@ from datetime import datetime
 from homeassistant.components.sensor import SensorDeviceClass as SensorDeviceClass, SensorEntity as SensorEntity, SensorEntityDescription as SensorEntityDescription, SensorStateClass as SensorStateClass
 from homeassistant.const import EntityCategory as EntityCategory, LIGHT_LUX as LIGHT_LUX, PERCENTAGE as PERCENTAGE, Platform as Platform, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfDataRate as UnitOfDataRate, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfInformation as UnitOfInformation, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
+from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from typing import Any, override
-from uiprotect.data import Camera, ModelType, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel, Sensor
+from uiprotect.data import Camera, Fob, ModelType, NVR, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectDeviceModel as ProtectDeviceModel, Sensor
 from uiprotect.data.public_devices import PublicDeviceModel as PublicDeviceModel
 
 _LOGGER: Incomplete
@@ -27,7 +29,6 @@ class ProtectSensorEntityDescription(ProtectEntityDescription[T], SensorEntityDe
 @dataclass(frozen=True, kw_only=True)
 class ProtectSensorEventEntityDescription(ProtectEventMixin[T], SensorEntityDescription): ...
 
-def _get_last_motion_public(obj: PublicDeviceModel) -> datetime | None: ...
 def _get_uptime(obj: ProtectDeviceModel) -> datetime | None: ...
 def _get_nvr_recording_capacity(obj: NVR) -> int: ...
 def _get_nvr_memory(obj: NVR) -> float | None: ...
@@ -45,6 +46,28 @@ CHIME_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 VIEWER_SENSORS: tuple[ProtectSensorEntityDescription, ...]
 _MODEL_DESCRIPTIONS: dict[ModelType, Sequence[ProtectEntityDescription]]
 
+def _fob_battery_level(fob: Fob) -> int | None: ...
+def _fob_signal_strength(fob: Fob) -> int | None: ...
+def _fob_status(fob: Fob) -> str | None: ...
+
+@dataclass(frozen=True, kw_only=True)
+class ProtectFobSensorEntityDescription(SensorEntityDescription):
+    value_fn: Callable[[Fob], int | str | None]
+
+FOB_SENSORS: tuple[ProtectFobSensorEntityDescription, ...]
+
+class ProtectFobSensor(ProtectFobEntity, SensorEntity):
+    entity_description: ProtectFobSensorEntityDescription
+    _fob_state_attrs: Incomplete
+    _attr_unique_id: Incomplete
+    def __init__(self, data: ProtectData, fob: Fob, description: ProtectFobSensorEntityDescription) -> None: ...
+    _attr_native_value: Incomplete
+    @callback
+    @override
+    def _async_update_from_fob(self, fob: Fob) -> None: ...
+
+@callback
+def _async_public_entities(data: ProtectData, device: PublicDeviceModel) -> list[Entity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 @callback
 def _async_event_entities(data: ProtectData, ufp_device: Camera | None = None) -> list[ProtectDeviceEntity]: ...

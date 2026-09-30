@@ -1,6 +1,6 @@
 from .common import NoMatchingShoppingListItem as NoMatchingShoppingListItem, ShoppingData as ShoppingData, ShoppingListConfigEntry as ShoppingListConfigEntry, _get_shopping_data as _get_shopping_data
 from .const import DOMAIN as DOMAIN
-from .services import async_register_services as async_register_services
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
 from aiohttp import web as web
 from homeassistant import config_entries as config_entries

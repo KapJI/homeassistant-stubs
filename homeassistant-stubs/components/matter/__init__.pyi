@@ -8,7 +8,6 @@ from .helpers import MatterConfigEntry as MatterConfigEntry, MatterEntryData as 
 from .models import MatterDeviceInfo as MatterDeviceInfo
 from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from functools import cache
 from homeassistant.components.hassio import AddonError as AddonError, AddonManager as AddonManager, AddonState as AddonState, SupervisorError as SupervisorError, get_supervisor_client as get_supervisor_client
 from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.const import CONF_URL as CONF_URL, EVENT_HOMEASSISTANT_STOP as EVENT_HOMEASSISTANT_STOP
@@ -28,7 +27,6 @@ BLE_PROXY_CONNECT_TIMEOUT: int
 CONFIG_SCHEMA: Incomplete
 
 @callback
-@cache
 def get_matter_device_info(hass: HomeAssistant, device_id: str) -> MatterDeviceInfo | None: ...
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: MatterConfigEntry) -> bool: ...

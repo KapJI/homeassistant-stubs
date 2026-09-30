@@ -5,10 +5,11 @@ from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, TodoItemS
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
-from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET
-from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
+from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_OPTIONS as CONF_OPTIONS, CONF_TARGET as CONF_TARGET, STATE_UNAVAILABLE as STATE_UNAVAILABLE
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, EventStateChangedData as EventStateChangedData, HomeAssistant as HomeAssistant, callback as callback, split_entity_id as split_entity_id
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.helpers.target import TargetEntityChangeTracker as TargetEntityChangeTracker, TargetSelection as TargetSelection
 from homeassistant.helpers.trigger import Trigger as Trigger, TriggerActionRunner as TriggerActionRunner, TriggerConfig as TriggerConfig, TriggerNotTriggeredReporter as TriggerNotTriggeredReporter
 from homeassistant.helpers.typing import ConfigType as ConfigType
@@ -29,11 +30,14 @@ class ItemChangeListener(TargetEntityChangeTracker):
     _entities_updated: Incomplete
     _pending_listener_task: asyncio.Task[None] | None
     _unsubscribe_listeners: list[CALLBACK_TYPE]
+    _state_change_unsub: CALLBACK_TYPE | None
     def __init__(self, hass: HomeAssistant, target_selection: TargetSelection, listener: Callable[[TodoItemChangeEvent], None], entities_updated: Callable[[set[str]], None]) -> None: ...
     @override
     @callback
     def _handle_entities_update(self, tracked_entities: set[str]) -> None: ...
     async def _start_listening(self, tracked_entities: set[str]) -> None: ...
+    @callback
+    def _async_todo_entity_state_changed(self, event: Event[EventStateChangedData]) -> None: ...
     @override
     @callback
     def _unsubscribe(self) -> None: ...

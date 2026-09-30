@@ -10,6 +10,8 @@ from homeassistant.const import PERCENTAGE as PERCENTAGE, PRECISION_WHOLE as PRE
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from tesla_fleet_api.const import Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
+from tesla_fleet_api.tesla import EnergySiteRouter as EnergySiteRouter
 from tesla_fleet_api.teslemetry import EnergySite as EnergySite, Vehicle as Vehicle
 from teslemetry_stream import TeslemetryStreamVehicle as TeslemetryStreamVehicle
 from typing import Any, override
@@ -18,7 +20,7 @@ PARALLEL_UPDATES: int
 
 @dataclass(frozen=True, kw_only=True)
 class TeslemetryNumberVehicleEntityDescription(NumberEntityDescription):
-    func: Callable[[Vehicle, int], Awaitable[Any]]
+    func: Callable[[Vehicle | VehicleRouter, int], Awaitable[Any]]
     min_key: str | None = ...
     max_key: str
     native_min_value: float
@@ -31,7 +33,7 @@ VEHICLE_DESCRIPTIONS: tuple[TeslemetryNumberVehicleEntityDescription, ...]
 
 @dataclass(frozen=True, kw_only=True)
 class TeslemetryNumberBatteryEntityDescription(NumberEntityDescription):
-    func: Callable[[EnergySite, float], Awaitable[Any]]
+    func: Callable[[EnergySite | EnergySiteRouter, float], Awaitable[Any]]
     requires: str | None = ...
     scopes: list[Scope]
 
@@ -40,7 +42,7 @@ ENERGY_INFO_DESCRIPTIONS: tuple[TeslemetryNumberBatteryEntityDescription, ...]
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetryVehicleNumberEntity(TeslemetryRootEntity, NumberEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     entity_description: TeslemetryNumberVehicleEntityDescription
     _attr_native_value: Incomplete
     @override

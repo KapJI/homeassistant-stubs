@@ -1,9 +1,14 @@
+from . import NumberEntity as NumberEntity
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.const import DEGREE as DEGREE, LIGHT_LUX as LIGHT_LUX, SIGNAL_STRENGTH_DECIBELS as SIGNAL_STRENGTH_DECIBELS, SIGNAL_STRENGTH_DECIBELS_MILLIWATT as SIGNAL_STRENGTH_DECIBELS_MILLIWATT, UnitOfApparentPower as UnitOfApparentPower, UnitOfArea as UnitOfArea, UnitOfBloodGlucoseConcentration as UnitOfBloodGlucoseConcentration, UnitOfConductivity as UnitOfConductivity, UnitOfDataRate as UnitOfDataRate, UnitOfDensity as UnitOfDensity, UnitOfElectricCurrent as UnitOfElectricCurrent, UnitOfElectricPotential as UnitOfElectricPotential, UnitOfEnergy as UnitOfEnergy, UnitOfEnergyDistance as UnitOfEnergyDistance, UnitOfFrequency as UnitOfFrequency, UnitOfInformation as UnitOfInformation, UnitOfIrradiance as UnitOfIrradiance, UnitOfLength as UnitOfLength, UnitOfMass as UnitOfMass, UnitOfPower as UnitOfPower, UnitOfPrecipitationDepth as UnitOfPrecipitationDepth, UnitOfPressure as UnitOfPressure, UnitOfRadiationConcentration as UnitOfRadiationConcentration, UnitOfRatio as UnitOfRatio, UnitOfReactiveEnergy as UnitOfReactiveEnergy, UnitOfReactivePower as UnitOfReactivePower, UnitOfSoundPressure as UnitOfSoundPressure, UnitOfSpeed as UnitOfSpeed, UnitOfTemperature as UnitOfTemperature, UnitOfTime as UnitOfTime, UnitOfVolume as UnitOfVolume, UnitOfVolumeFlowRate as UnitOfVolumeFlowRate, UnitOfVolumetricFlux as UnitOfVolumetricFlux
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from homeassistant.util.unit_conversion import ApparentPowerConverter as ApparentPowerConverter, AreaConverter as AreaConverter, BaseUnitConverter as BaseUnitConverter, BloodGlucoseConcentrationConverter as BloodGlucoseConcentrationConverter, CarbonMonoxideConcentrationConverter as CarbonMonoxideConcentrationConverter, ConductivityConverter as ConductivityConverter, DataRateConverter as DataRateConverter, DistanceConverter as DistanceConverter, DurationConverter as DurationConverter, ElectricCurrentConverter as ElectricCurrentConverter, ElectricPotentialConverter as ElectricPotentialConverter, EnergyConverter as EnergyConverter, EnergyDistanceConverter as EnergyDistanceConverter, FrequencyConverter as FrequencyConverter, InformationConverter as InformationConverter, MassConverter as MassConverter, MassVolumeConcentrationConverter as MassVolumeConcentrationConverter, NitrogenDioxideConcentrationConverter as NitrogenDioxideConcentrationConverter, NitrogenMonoxideConcentrationConverter as NitrogenMonoxideConcentrationConverter, OzoneConcentrationConverter as OzoneConcentrationConverter, PowerConverter as PowerConverter, PressureConverter as PressureConverter, RadiationConcentrationConverter as RadiationConcentrationConverter, ReactiveEnergyConverter as ReactiveEnergyConverter, ReactivePowerConverter as ReactivePowerConverter, SpeedConverter as SpeedConverter, SulphurDioxideConcentrationConverter as SulphurDioxideConcentrationConverter, TemperatureConverter as TemperatureConverter, TemperatureDeltaConverter as TemperatureDeltaConverter, UnitlessRatioConverter as UnitlessRatioConverter, VolumeConverter as VolumeConverter, VolumeFlowRateConverter as VolumeFlowRateConverter
 from typing import Final
 
+DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[NumberEntity]]
 ATTR_VALUE: str
 ATTR_MIN: str
 ATTR_MAX: str
@@ -11,7 +16,6 @@ ATTR_STEP: str
 DEFAULT_MIN_VALUE: float
 DEFAULT_MAX_VALUE: float
 DEFAULT_STEP: float
-DOMAIN: Final[str]
 SERVICE_SET_VALUE: str
 
 class NumberEntityCapabilityAttribute(StrEnum):

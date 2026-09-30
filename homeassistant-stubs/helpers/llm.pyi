@@ -1,6 +1,6 @@
 import abc
-import voluptuous as vol
-from . import intent as intent, selector as selector, service as service
+import probatio
+from . import frame as frame, intent as intent, selector as selector, service as service
 from .deprecation import deprecated_function as deprecated_function
 from .singleton import singleton as singleton
 from _typeshed import Incomplete
@@ -15,9 +15,10 @@ from homeassistant.util.json import JsonObjectType as JsonObjectType
 from homeassistant.util.ulid import ulid_now as ulid_now
 from typing import Any, override
 
-ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, vol.Schema]]]]
+ACTION_PARAMETERS_CACHE: HassKey[dict[str, dict[str, tuple[str | None, probatio.Schema]]]]
 APIS_CACHE: HassKey[dict[str, API]]
 LLM_API_ASSIST: str
+TOOL_INTEGRATION_BREAKS_IN_HA_VERSION: str
 DATE_TIME_PROMPT: str
 DEFAULT_INSTRUCTIONS_PROMPT: str
 
@@ -46,12 +47,27 @@ class ToolInput:
     id: str = dc_field(default_factory=Incomplete)
     external: bool = ...
 
+@dataclass(slots=True)
+class ToolResult:
+    data: JsonObjectType
+    error: bool = ...
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class ToolAnnotations:
+    read_only: bool = ...
+    destructive: bool = ...
+    idempotent: bool = ...
+    open_world: bool = ...
+
 class Tool(metaclass=abc.ABCMeta):
     name: str
+    title: str | None
     description: str | None
-    parameters: vol.Schema
+    parameters: probatio.Schema
+    annotations: ToolAnnotations
+    integration: str | None
     @abstractmethod
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> ToolResult | JsonObjectType: ...
     @override
     def __repr__(self) -> str: ...
 
@@ -62,7 +78,13 @@ class APIInstance:
     llm_context: LLMContext
     tools: list[Tool]
     custom_serializer: Callable[[Any], Any] | None = ...
-    async def async_call_tool(self, tool_input: ToolInput) -> JsonObjectType: ...
+    def __post_init__(self) -> None: ...
+    async def async_call_tool(self, tool_input: ToolInput) -> ToolResult: ...
+
+@callback
+def report_untagged_tool(tool: Tool, domain: str) -> None: ...
+def _tool_integration_domain(tool: Tool) -> str | None: ...
+def _integration_domain(module: str) -> str | None: ...
 
 @dataclass(slots=True, kw_only=True)
 class API(ABC, metaclass=abc.ABCMeta):
@@ -72,15 +94,21 @@ class API(ABC, metaclass=abc.ABCMeta):
     @abstractmethod
     async def async_get_api_instance(self, llm_context: LLMContext) -> APIInstance: ...
 
+@callback
+def async_get_match_preferences(hass: HomeAssistant, llm_context: LLMContext) -> intent.MatchTargetsPreferences: ...
+
 class IntentTool(Tool):
     name: Incomplete
+    title: Incomplete
+    integration: Incomplete
+    annotations: Incomplete
     intent_type: Incomplete
     description: Incomplete
     extra_slots: Incomplete
     parameters: Incomplete
-    def __init__(self, name: str, intent_handler: intent.IntentHandler) -> None: ...
+    def __init__(self, name: str, intent_handler: intent.IntentHandler, *, title: str | None = None, integration: str | None = None, annotations: ToolAnnotations = ...) -> None: ...
     @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> ToolResult: ...
 
 class IntentResponseDict(dict):
     original: Incomplete
@@ -89,12 +117,15 @@ class IntentResponseDict(dict):
 class NamespacedTool(Tool):
     namespace: Incomplete
     name: Incomplete
+    title: Incomplete
     description: Incomplete
     parameters: Incomplete
+    annotations: Incomplete
+    integration: Incomplete
     tool: Incomplete
     def __init__(self, namespace: str, tool: Tool) -> None: ...
     @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> ToolResult | JsonObjectType: ...
 
 class MergedAPI(API):
     llm_apis: Incomplete
@@ -104,12 +135,13 @@ class MergedAPI(API):
     def _custom_serializer(self, llm_apis: list[APIInstance]) -> Callable[[Any], Any] | None: ...
 
 def selector_serializer(schema: Any) -> Any: ...
-def _get_cached_action_parameters(hass: HomeAssistant, domain: str, action: str) -> tuple[str | None, vol.Schema]: ...
+def _get_cached_action_parameters(hass: HomeAssistant, domain: str, action: str) -> tuple[str | None, probatio.Schema]: ...
 
 class ActionTool(Tool):
     _domain: Incomplete
     _action: Incomplete
     name: Incomplete
+    integration: Incomplete
     def __init__(self, hass: HomeAssistant, domain: str, action: str) -> None: ...
     @override
-    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> JsonObjectType: ...
+    async def async_call(self, hass: HomeAssistant, tool_input: ToolInput, llm_context: LLMContext) -> ToolResult: ...

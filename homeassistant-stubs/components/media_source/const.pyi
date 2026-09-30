@@ -8,6 +8,7 @@ DOMAIN: str
 DATA_LOCAL_SOURCE: HassKey[MediaSource]
 DATA_MEDIA_SOURCE_PLATFORMS: HassKey[LazyIntegrationPlatforms[MediaSource]]
 MEDIA_MIME_TYPES: Incomplete
+DOWNLOAD_ONLY_MIME_TYPES: Incomplete
 MEDIA_CLASS_MAP: Incomplete
 URI_SCHEME: str
 URI_SCHEME_REGEX: Incomplete

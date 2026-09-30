@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_FROM_WINDOW as CONF_FROM_WINDOW, CONF_TO_WINDOW as CONF_TO_WINDOW, DEFAULT_FROM_WINDOW as DEFAULT_FROM_WINDOW, DEFAULT_TO_WINDOW as DEFAULT_TO_WINDOW, DOMAIN as DOMAIN
 from .coordinator import OpenUvConfigEntry as OpenUvConfigEntry
 from _typeshed import Incomplete
@@ -29,8 +29,8 @@ class OpenUvFlowHandler(ConfigFlow, domain=DOMAIN):
     _reauth_data: Mapping[str, Any]
     def __init__(self) -> None: ...
     @property
-    def step_user_schema(self) -> vol.Schema: ...
-    async def _async_verify(self, data: OpenUvData, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
+    def step_user_schema(self) -> probatio.Schema: ...
+    async def _async_verify(self, data: OpenUvData, error_step_id: str, error_schema: probatio.Schema) -> ConfigFlowResult: ...
     @staticmethod
     @callback
     @override

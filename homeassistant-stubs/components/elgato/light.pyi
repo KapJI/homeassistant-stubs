@@ -1,6 +1,6 @@
 from .coordinator import ElgatoConfigEntry as ElgatoConfigEntry, ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from .entity import ElgatoEntity as ElgatoEntity
-from .helpers import elgato_exception_handler as elgato_exception_handler
+from .helpers import color_temperature_range as color_temperature_range, elgato_device_action as elgato_device_action, supports_color as supports_color
 from _typeshed import Incomplete
 from homeassistant.components.light import ATTR_BRIGHTNESS as ATTR_BRIGHTNESS, ATTR_COLOR_TEMP_KELVIN as ATTR_COLOR_TEMP_KELVIN, ATTR_HS_COLOR as ATTR_HS_COLOR, ColorMode as ColorMode, LightEntity as LightEntity
 from homeassistant.core import HomeAssistant as HomeAssistant
@@ -13,8 +13,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ElgatoConfigEntry, async
 
 class ElgatoLight(ElgatoEntity, LightEntity):
     _attr_name: Incomplete
-    _attr_min_color_temp_kelvin: int
-    _attr_max_color_temp_kelvin: int
     _attr_supported_color_modes: Incomplete
     _attr_unique_id: Incomplete
     def __init__(self, coordinator: ElgatoDataUpdateCoordinator) -> None: ...
@@ -33,11 +31,11 @@ class ElgatoLight(ElgatoEntity, LightEntity):
     @property
     @override
     def is_on(self) -> bool: ...
-    @elgato_exception_handler
+    @elgato_device_action
     @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...
-    @elgato_exception_handler
+    @elgato_device_action
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
-    @elgato_exception_handler
+    @elgato_device_action
     async def async_identify(self) -> None: ...

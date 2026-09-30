@@ -1,5 +1,5 @@
 from .condition import make_cover_is_closed_condition as make_cover_is_closed_condition, make_cover_is_open_condition as make_cover_is_open_condition
-from .const import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_IS_CLOSED as ATTR_IS_CLOSED, ATTR_POSITION as ATTR_POSITION, ATTR_SPEED as ATTR_SPEED, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntityCapabilityAttribute as CoverEntityCapabilityAttribute, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DOMAIN as DOMAIN, INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
+from .const import ATTR_CURRENT_POSITION as ATTR_CURRENT_POSITION, ATTR_CURRENT_TILT_POSITION as ATTR_CURRENT_TILT_POSITION, ATTR_IS_CLOSED as ATTR_IS_CLOSED, ATTR_POSITION as ATTR_POSITION, ATTR_SPEED as ATTR_SPEED, ATTR_TILT_POSITION as ATTR_TILT_POSITION, CoverDeviceClass as CoverDeviceClass, CoverEntityCapabilityAttribute as CoverEntityCapabilityAttribute, CoverEntityFeature as CoverEntityFeature, CoverEntityStateAttribute as CoverEntityStateAttribute, CoverState as CoverState, DEVICE_CLASSES_SCHEMA as DEVICE_CLASSES_SCHEMA, DOMAIN as DOMAIN, INTENT_CLOSE_COVER as INTENT_CLOSE_COVER, INTENT_OPEN_COVER as INTENT_OPEN_COVER
 from .trigger import make_cover_closed_trigger as make_cover_closed_trigger, make_cover_opened_trigger as make_cover_opened_trigger
 from _typeshed import Incomplete
 from collections.abc import Callable
@@ -11,7 +11,6 @@ __all__ = ['ATTR_CURRENT_POSITION', 'ATTR_CURRENT_TILT_POSITION', 'ATTR_IS_CLOSE
 
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
-DEVICE_CLASSES_SCHEMA: Incomplete
 DEVICE_CLASSES: Incomplete
 
 class CoverEntityDescription(EntityDescription, frozen_or_thawed=True):

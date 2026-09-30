@@ -31,8 +31,10 @@ class KNXProject:
     devices: dict[str, Device]
     group_addresses: dict[str, GroupAddressInfo]
     info: ProjectInfo | None
+    _project: KNXProjectModel | None
     hass: Incomplete
     _store: Incomplete
+    _project_lock: Incomplete
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None: ...
     def initial_state(self) -> None: ...
     async def load_project(self, xknx: XKNX, data: KNXProjectModel | None = None) -> None: ...

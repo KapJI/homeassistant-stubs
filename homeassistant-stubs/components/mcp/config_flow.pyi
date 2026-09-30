@@ -2,7 +2,7 @@ import httpx
 from . import async_get_config_entry_implementation as async_get_config_entry_implementation
 from .application_credentials import authorization_server_context as authorization_server_context
 from .auth import AuthenticateHeader as AuthenticateHeader
-from .const import CONF_AUTHORIZATION_URL as CONF_AUTHORIZATION_URL, CONF_SCOPE as CONF_SCOPE, CONF_TOKEN_URL as CONF_TOKEN_URL, DOMAIN as DOMAIN
+from .const import CONF_AUTHORIZATION_URL as CONF_AUTHORIZATION_URL, CONF_SCOPE as CONF_SCOPE, CONF_SLUG as CONF_SLUG, CONF_TOKEN_URL as CONF_TOKEN_URL, DOMAIN as DOMAIN
 from .coordinator import TokenManager as TokenManager, mcp_client as mcp_client
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
@@ -11,8 +11,9 @@ from homeassistant.components.application_credentials import AuthorizationServer
 from homeassistant.config_entries import ConfigFlowResult as ConfigFlowResult, SOURCE_REAUTH as SOURCE_REAUTH
 from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN, CONF_TOKEN as CONF_TOKEN, CONF_URL as CONF_URL
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, UnknownImplementationError as UnknownImplementationError
 from homeassistant.helpers.config_entry_oauth2_flow import AbstractOAuth2FlowHandler as AbstractOAuth2FlowHandler, async_get_implementations as async_get_implementations
+from homeassistant.helpers.service_info.hassio import HassioServiceInfo as HassioServiceInfo
 from typing import Any, override
 from yarl import URL
 
@@ -44,9 +45,13 @@ class ModelContextProtocolConfigFlow(AbstractOAuth2FlowHandler, domain=DOMAIN):
     data: dict[str, Any]
     oauth_config: OAuthConfig | None
     auth_header: AuthenticateHeader | None
+    addon_name: str
     def __init__(self) -> None: ...
     @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    @override
+    async def async_step_hassio(self, discovery_info: HassioServiceInfo) -> ConfigFlowResult: ...
+    async def async_step_hassio_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     async def async_step_auth_discovery(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     def authorization_server(self) -> AuthorizationServer: ...
     @property

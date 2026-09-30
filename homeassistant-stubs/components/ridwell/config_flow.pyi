@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CALENDAR_TITLE_OPTIONS as CALENDAR_TITLE_OPTIONS, CONF_CALENDAR_TITLE as CONF_CALENDAR_TITLE, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import RidwellConfigEntry as RidwellConfigEntry
 from _typeshed import Incomplete
@@ -20,7 +20,7 @@ class RidwellConfigFlow(ConfigFlow, domain=DOMAIN):
     _password: str | None
     _username: str | None
     def __init__(self) -> None: ...
-    async def _async_validate(self, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
+    async def _async_validate(self, error_step_id: str, error_schema: probatio.Schema) -> ConfigFlowResult: ...
     @staticmethod
     @callback
     @override

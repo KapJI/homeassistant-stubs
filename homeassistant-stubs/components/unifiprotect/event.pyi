@@ -1,16 +1,17 @@
 import dataclasses
 from . import Bootstrap as Bootstrap
-from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_SMART_DETECT_TYPES as ATTR_SMART_DETECT_TYPES, EVENT_TYPE_FINGERPRINT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_IDENTIFIED, EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED, EVENT_TYPE_NFC_SCANNED as EVENT_TYPE_NFC_SCANNED, EVENT_TYPE_PACKAGE_DETECTED as EVENT_TYPE_PACKAGE_DETECTED, EVENT_TYPE_VEHICLE_DETECTED as EVENT_TYPE_VEHICLE_DETECTED, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS, VEHICLE_EVENT_DELAY_SECONDS as VEHICLE_EVENT_DELAY_SECONDS
+from .const import ATTR_EVENT_ID as ATTR_EVENT_ID, ATTR_EVENT_SOURCE as ATTR_EVENT_SOURCE, ATTR_SMART_DETECT_TYPES as ATTR_SMART_DETECT_TYPES, EVENT_TYPE_FINGERPRINT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_IDENTIFIED, EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED as EVENT_TYPE_FINGERPRINT_NOT_IDENTIFIED, EVENT_TYPE_NFC_SCANNED as EVENT_TYPE_NFC_SCANNED, EVENT_TYPE_PACKAGE_DETECTED as EVENT_TYPE_PACKAGE_DETECTED, EVENT_TYPE_VEHICLE_DETECTED as EVENT_TYPE_VEHICLE_DETECTED, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS, VEHICLE_EVENT_DELAY_SECONDS as VEHICLE_EVENT_DELAY_SECONDS
 from .data import EventType as EventType, ProtectAdoptableDeviceModel as ProtectAdoptableDeviceModel, ProtectData as ProtectData, ProtectDeviceType as ProtectDeviceType, UFPConfigEntry as UFPConfigEntry
-from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEventMixin as ProtectEventMixin
+from .entity import EventEntityMixin as EventEntityMixin, ProtectDeviceEntity as ProtectDeviceEntity, ProtectEventMixin as ProtectEventMixin, ProtectFobEntity as ProtectFobEntity, _async_capability_supported as _async_capability_supported
 from _typeshed import Incomplete
 from homeassistant.components.event import DoorbellEventType as DoorbellEventType, EventDeviceClass as EventDeviceClass, EventEntity as EventEntity, EventEntityDescription as EventEntityDescription
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_call_at as async_call_at
 from typing import Any, override
 from uiprotect import ProtectEvent as ProtectEvent
-from uiprotect.data import SmartDetectObjectType
+from uiprotect.data import Fob, PublicCamera, PublicDeviceModel as PublicDeviceModel, SmartDetectObjectType
 from uiprotect.data.nvr import Event as Event, EventDetectedThumbnail as EventDetectedThumbnail
 
 PARALLEL_UPDATES: int
@@ -24,18 +25,22 @@ class ProtectEventEntityDescription(ProtectEventMixin, EventEntityDescription):
     entity_class: type[ProtectDeviceEntity]
 
 _SMART_DETECT_EVENT_TYPES: Incomplete
+_VEHICLE_EVENT_TYPES: Incomplete
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class ProtectDetectionEventEntityDescription(ProtectEventEntityDescription):
     ufp_public_event_types: tuple[EventType, ...]
+    include_event_source: bool = ...
 
-class ProtectDevicePublicEventEntity(EventEntityMixin, ProtectDeviceEntity, EventEntity):
+class ProtectFireOnceMixin(EventEntity):
+    _fired: dict[str, frozenset[tuple[str, EventType]]] | None
+    @callback
+    def _fire_once(self, event: ProtectEvent, event_type: str, event_data: dict[str, Any]) -> None: ...
+
+class ProtectDevicePublicEventEntity(ProtectFireOnceMixin, EventEntityMixin, ProtectDeviceEntity, EventEntity):
     _ufp_uses_public: bool
     _ufp_requires_events_ws: bool
     entity_description: ProtectEventEntityDescription
-    _fired: dict[str, frozenset[str]] | None
-    @callback
-    def _fire_once(self, event: ProtectEvent, event_type: str, event_data: dict[str, Any]) -> None: ...
 
 class ProtectDeviceRingEventEntity(ProtectDevicePublicEventEntity):
     entity_description: ProtectEventEntityDescription
@@ -115,8 +120,23 @@ class ProtectDeviceMotionEventEntity(ProtectDeviceDetectionEventEntity):
     @override
     def _async_detection_event(self, event: ProtectEvent) -> None: ...
 
+_FOB_EVENT_TYPES: list[str]
+
+class ProtectFobButtonEventEntity(ProtectFireOnceMixin, ProtectFobEntity, EventEntity):
+    _attr_translation_key: str
+    _attr_event_types = _FOB_EVENT_TYPES
+    _ufp_requires_events_ws: bool
+    _attr_unique_id: Incomplete
+    def __init__(self, data: ProtectData, fob: Fob) -> None: ...
+    @override
+    async def async_added_to_hass(self) -> None: ...
+    @callback
+    def _async_button_event(self, event: ProtectEvent) -> None: ...
+
 EVENT_DESCRIPTIONS: tuple[ProtectEventEntityDescription, ...]
 
 @callback
 def _async_event_entities(data: ProtectData, ufp_device: ProtectAdoptableDeviceModel | None = None) -> list[ProtectDeviceEntity]: ...
+@callback
+def _async_public_event_entities(data: ProtectData, camera: PublicCamera) -> list[ProtectDeviceEntity]: ...
 async def async_setup_entry(hass: HomeAssistant, entry: UFPConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

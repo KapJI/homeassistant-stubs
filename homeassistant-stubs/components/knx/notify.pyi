@@ -1,8 +1,7 @@
-from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SEND as CONF_GA_SEND
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData, NotifyKnxConfig as NotifyKnxConfig
 from homeassistant import config_entries as config_entries
 from homeassistant.components.notify import NotifyEntity as NotifyEntity
 from homeassistant.const import CONF_NAME as CONF_NAME, CONF_TYPE as CONF_TYPE, Platform as Platform
@@ -25,4 +24,4 @@ class KnxYamlNotify(_KnxNotify, KnxYamlEntity):
 
 class KnxUiNotify(_KnxNotify, KnxUiEntity):
     _device: XknxNotification
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[NotifyKnxConfig]) -> None: ...

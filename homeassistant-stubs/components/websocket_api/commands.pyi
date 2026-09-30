@@ -16,7 +16,7 @@ from homeassistant.helpers.condition import async_validate_condition_config as a
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect
 from homeassistant.helpers.entityfilter import INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA as INCLUDE_EXCLUDE_BASE_FILTER_SCHEMA, convert_include_exclude_filter as convert_include_exclude_filter
 from homeassistant.helpers.event import TrackTemplate as TrackTemplate, TrackTemplateResult as TrackTemplateResult, async_track_template_result as async_track_template_result, async_track_time_interval as async_track_time_interval
-from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP, find_paths_unserializable_data as find_paths_unserializable_data, json_bytes as json_bytes, json_fragment as json_fragment
+from homeassistant.helpers.json import ExtendedJSONEncoder as ExtendedJSONEncoder, JSON_DUMP as JSON_DUMP, cached_json_bytes as cached_json_bytes, find_paths_unserializable_data as find_paths_unserializable_data, json_fragment as json_fragment
 from homeassistant.helpers.trigger import async_initialize_triggers as async_initialize_triggers, async_validate_trigger_config as async_validate_trigger_config
 from homeassistant.loader import IntegrationNotFound as IntegrationNotFound, async_get_integration as async_get_integration, async_get_integration_descriptions as async_get_integration_descriptions, async_get_integrations as async_get_integrations
 from homeassistant.setup import async_get_loaded_integrations as async_get_loaded_integrations, async_get_setup_timings as async_get_setup_timings, async_wait_component as async_wait_component
@@ -96,7 +96,6 @@ async def handle_subscribe_trigger(hass: HomeAssistant, connection: ActiveConnec
 @decorators.require_admin
 @decorators.async_response
 async def handle_test_condition(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
-@decorators.require_admin
 @decorators.async_response
 async def handle_subscribe_condition(hass: HomeAssistant, connection: ActiveConnection, msg: dict[str, Any]) -> None: ...
 @decorators.require_admin

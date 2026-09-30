@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from tesla_fleet_api.const import Scope
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from typing import override
 
@@ -20,7 +21,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetryMediaEntity(TeslemetryRootEntity, MediaPlayerEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_device_class: Incomplete
     _attr_volume_step = VOLUME_STEP
     _attr_volume_level: Incomplete
@@ -55,6 +56,7 @@ class TeslemetryVehiclePollingMediaEntity(TeslemetryVehiclePollingEntity, Teslem
 class TeslemetryStreamingMediaEntity(TeslemetryVehicleStreamEntity, TeslemetryMediaEntity, RestoreEntity):
     _attr_supported_features: Incomplete
     scoped: Incomplete
+    _playback_state: MediaPlayerState | None
     def __init__(self, data: TeslemetryVehicleData, scopes: list[Scope]) -> None: ...
     _attr_state: Incomplete
     _attr_volume_level: Incomplete

@@ -12,7 +12,7 @@ from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from homeassistant.components import zeroconf as zeroconf
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_ble_device_from_address as async_ble_device_from_address, async_clear_address_from_match_history as async_clear_address_from_match_history, async_discovered_service_info as async_discovered_service_info
-from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow, SOURCE_BLUETOOTH as SOURCE_BLUETOOTH, SOURCE_ZEROCONF as SOURCE_ZEROCONF
+from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlowWithReload as OptionsFlowWithReload, SOURCE_BLUETOOTH as SOURCE_BLUETOOTH, SOURCE_ZEROCONF as SOURCE_ZEROCONF
 from homeassistant.const import CONF_DEVICE as CONF_DEVICE, CONF_HOST as CONF_HOST, CONF_MAC as CONF_MAC, CONF_MODEL as CONF_MODEL, CONF_PASSWORD as CONF_PASSWORD, CONF_PORT as CONF_PORT, CONF_USERNAME as CONF_USERNAME, CONF_VERIFY_SSL as CONF_VERIFY_SSL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.data_entry_flow import AbortFlow as AbortFlow
@@ -20,6 +20,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession as asyn
 from homeassistant.helpers.device_registry import format_mac as format_mac
 from homeassistant.helpers.selector import SelectOptionDict as SelectOptionDict, SelectSelector as SelectSelector, SelectSelectorConfig as SelectSelectorConfig, SelectSelectorMode as SelectSelectorMode
 from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
+from homeassistant.util.network import is_ip_address as is_ip_address
 from typing import Any, Final, override
 
 CONFIG_SCHEMA: Final[Incomplete]
@@ -116,5 +117,5 @@ class ShellyConfigFlow(ConfigFlow, domain=DOMAIN):
     @override
     def async_supports_options_flow(cls, config_entry: ShellyConfigEntry) -> bool: ...
 
-class OptionsFlowHandler(OptionsFlow):
+class OptionsFlowHandler(OptionsFlowWithReload):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

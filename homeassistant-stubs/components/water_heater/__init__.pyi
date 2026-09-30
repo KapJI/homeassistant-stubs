@@ -1,55 +1,37 @@
-from .const import DOMAIN as DOMAIN, WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute, WaterHeaterStateAttribute as WaterHeaterStateAttribute
+from .const import ATTR_AWAY_MODE as ATTR_AWAY_MODE, ATTR_OPERATION_MODE as ATTR_OPERATION_MODE, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, SERVICE_SET_AWAY_MODE as SERVICE_SET_AWAY_MODE, SERVICE_SET_OPERATION_MODE as SERVICE_SET_OPERATION_MODE, SERVICE_SET_TEMPERATURE as SERVICE_SET_TEMPERATURE, WaterHeaterCapabilityAttribute as WaterHeaterCapabilityAttribute, WaterHeaterEntityFeature as WaterHeaterEntityFeature, WaterHeaterStateAttribute as WaterHeaterStateAttribute
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_TEMPERATURE as ATTR_TEMPERATURE, PRECISION_TENTHS as PRECISION_TENTHS, PRECISION_WHOLE as PRECISION_WHOLE, SERVICE_TURN_OFF as SERVICE_TURN_OFF, SERVICE_TURN_ON as SERVICE_TURN_ON, STATE_OFF as STATE_OFF, STATE_ON as STATE_ON, UnitOfTemperature as UnitOfTemperature
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
-from homeassistant.helpers.typing import ConfigType as ConfigType, VolDictType as VolDictType
-from homeassistant.util.hass_dict import HassKey as HassKey
+from homeassistant.helpers.typing import ConfigType as ConfigType
 from homeassistant.util.unit_conversion import TemperatureConverter as TemperatureConverter
 from propcache.api import cached_property
 from typing import Any, final, override
 
-DATA_COMPONENT: HassKey[EntityComponent[WaterHeaterEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
 SCAN_INTERVAL: Incomplete
 DEFAULT_MIN_TEMP: int
 DEFAULT_MAX_TEMP: int
-SERVICE_SET_AWAY_MODE: str
-SERVICE_SET_TEMPERATURE: str
-SERVICE_SET_OPERATION_MODE: str
 STATE_ECO: str
 STATE_ELECTRIC: str
 STATE_PERFORMANCE: str
 STATE_HIGH_DEMAND: str
 STATE_HEAT_PUMP: str
 STATE_GAS: str
-
-class WaterHeaterEntityFeature(IntFlag):
-    TARGET_TEMPERATURE = 1
-    OPERATION_MODE = 2
-    AWAY_MODE = 4
-    ON_OFF = 8
-
 ATTR_MAX_TEMP: str
 ATTR_MIN_TEMP: str
-ATTR_AWAY_MODE: str
-ATTR_OPERATION_MODE: str
 ATTR_OPERATION_LIST: str
 ATTR_TARGET_TEMP_HIGH: str
 ATTR_TARGET_TEMP_LOW: str
 ATTR_TARGET_TEMP_STEP: str
 ATTR_CURRENT_TEMPERATURE: str
-CONVERTIBLE_ATTRIBUTE: Incomplete
 _LOGGER: Incomplete
-SET_AWAY_MODE_SCHEMA: VolDictType
-SET_TEMPERATURE_SCHEMA: VolDictType
-SET_OPERATION_MODE_SCHEMA: VolDictType
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool: ...
@@ -128,6 +110,3 @@ class WaterHeaterEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
     @property
     @override
     def supported_features(self) -> WaterHeaterEntityFeature: ...
-
-async def async_service_away_mode(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...
-async def async_service_temperature_set(entity: WaterHeaterEntity, service: ServiceCall) -> None: ...

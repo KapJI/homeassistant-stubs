@@ -6,9 +6,11 @@ from homeassistant.const import ATTR_ICON as ATTR_ICON, ATTR_ID as ATTR_ID
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
-from typing import Any, override
+from typing import Any, Final, override
 
 type YouTubeConfigEntry = ConfigEntry[YouTubeDataUpdateCoordinator]
+_SHORTS_DETECTION_TIMEOUT: Final[int]
+
 def _build_video_dict(video: Any, is_short: bool) -> dict[str, Any]: ...
 
 class YouTubeDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
@@ -18,4 +20,4 @@ class YouTubeDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     def __init__(self, hass: HomeAssistant, config_entry: YouTubeConfigEntry, auth: AsyncConfigEntryAuth) -> None: ...
     @override
     async def _async_update_data(self) -> dict[str, Any]: ...
-    async def _get_is_short_flags(self, youtube: Any, videos: list[Any]) -> list[bool]: ...
+    async def _resolve_is_short(self, youtube: Any, video: Any) -> bool: ...

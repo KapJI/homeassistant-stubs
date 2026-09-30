@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import IndevoltCoordinator as IndevoltCoordinator
 from _typeshed import Incomplete
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
+from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.service import async_extract_config_entry_ids as async_extract_config_entry_ids
 from indevolt_api import IndevoltRealtimeAction
@@ -9,7 +9,8 @@ from typing import Final, Never
 
 RT_ACTION_SERVICE_SCHEMA: Final[Incomplete]
 
-async def async_setup_services(hass: HomeAssistant) -> None: ...
+@callback
+def async_setup_services(hass: HomeAssistant) -> None: ...
 async def _async_handle_realtime_action(hass: HomeAssistant, call: ServiceCall, action: IndevoltRealtimeAction) -> None: ...
 async def _async_get_coordinators_from_call(hass: HomeAssistant, call: ServiceCall) -> list[IndevoltCoordinator]: ...
 def _validate_realtime_action(coordinators: list[IndevoltCoordinator], action: IndevoltRealtimeAction, power: int, target_soc: int) -> None: ...

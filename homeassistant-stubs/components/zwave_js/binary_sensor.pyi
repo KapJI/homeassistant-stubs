@@ -16,6 +16,7 @@ from homeassistant.helpers.entity import Entity as Entity
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.issue_registry import IssueSeverity as IssueSeverity, async_create_issue as async_create_issue, async_delete_issue as async_delete_issue
 from homeassistant.helpers.start import async_at_started as async_at_started
+from homeassistant.helpers.typing import UNDEFINED as UNDEFINED
 from typing import override
 from zwave_js_server.const.command_class.notification import NotificationEvent as NotificationEvent
 from zwave_js_server.model.driver import Driver as Driver

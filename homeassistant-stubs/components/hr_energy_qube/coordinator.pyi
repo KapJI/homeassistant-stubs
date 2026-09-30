@@ -17,7 +17,10 @@ class QubeData:
     sg_ready_mode: str | None
 
 class QubeCoordinator(DataUpdateCoordinator[QubeData]):
+    sw_version: str | None
     client: Incomplete
     def __init__(self, hass: HomeAssistant, client: QubeClient, entry: ConfigEntry) -> None: ...
+    @override
+    async def _async_setup(self) -> None: ...
     @override
     async def _async_update_data(self) -> QubeData: ...

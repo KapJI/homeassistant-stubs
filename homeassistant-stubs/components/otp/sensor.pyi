@@ -1,3 +1,4 @@
+import asyncio
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.sensor import SensorEntity as SensorEntity
@@ -18,6 +19,7 @@ class TOTPSensor(SensorEntity):
     _attr_should_poll: bool
     _attr_native_value: StateType
     _next_expiration: float | None
+    _update_timer: asyncio.TimerHandle | None
     _attr_has_entity_name: bool
     _attr_name: Incomplete
     _attr_unique_id: Incomplete
@@ -26,5 +28,7 @@ class TOTPSensor(SensorEntity):
     def __init__(self, name: str, token: str, entry_id: str) -> None: ...
     @override
     async def async_added_to_hass(self) -> None: ...
+    @override
+    async def async_will_remove_from_hass(self) -> None: ...
     @callback
     def _call_loop(self) -> None: ...

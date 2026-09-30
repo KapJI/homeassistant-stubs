@@ -6,3 +6,4 @@ CONF_DEVICE_TYPE: str
 
 class SamsungDeviceType(StrEnum):
     TV = 'tv'
+    AC = 'ac'

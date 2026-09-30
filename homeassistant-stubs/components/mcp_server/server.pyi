@@ -13,6 +13,7 @@ SNAPSHOT_RESOURCE_URI: str
 SNAPSHOT_RESOURCE_URL: Incomplete
 SNAPSHOT_RESOURCE_MIME_TYPE: str
 LIVE_CONTEXT_TOOL_NAME: str
+META_DEVICE_ID: str
 
 def _has_live_context_tool(llm_api: llm.APIInstance) -> bool: ...
 def _format_tool(tool: llm.Tool, custom_serializer: Callable[[Any], Any] | None) -> types.Tool: ...

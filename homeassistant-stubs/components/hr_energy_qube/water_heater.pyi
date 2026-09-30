@@ -3,7 +3,7 @@ from .const import DOMAIN as DOMAIN
 from .coordinator import QubeCoordinator as QubeCoordinator
 from .entity import QubeEntity as QubeEntity
 from _typeshed import Incomplete
-from homeassistant.components.water_heater import STATE_HEAT_PUMP as STATE_HEAT_PUMP, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
+from homeassistant.components.water_heater import ATTR_TEMPERATURE as ATTR_TEMPERATURE, STATE_HEAT_PUMP as STATE_HEAT_PUMP, STATE_PERFORMANCE as STATE_PERFORMANCE, WaterHeaterEntity as WaterHeaterEntity, WaterHeaterEntityFeature as WaterHeaterEntityFeature
 from homeassistant.const import UnitOfTemperature as UnitOfTemperature
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError

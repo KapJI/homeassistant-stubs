@@ -1,8 +1,7 @@
-from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import ATTR_COUNTER as ATTR_COUNTER, ATTR_SOURCE as ATTR_SOURCE, CONF_CONTEXT_TIMEOUT as CONF_CONTEXT_TIMEOUT, CONF_IGNORE_INTERNAL_STATE as CONF_IGNORE_INTERNAL_STATE, CONF_INVERT as CONF_INVERT, CONF_RESET_AFTER as CONF_RESET_AFTER, CONF_STATE_ADDRESS as CONF_STATE_ADDRESS, CONF_SYNC_STATE as CONF_SYNC_STATE, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SENSOR as CONF_GA_SENSOR
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import BinarySensorKnxConfig as BinarySensorKnxConfig, KnxEntityData as KnxEntityData
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.binary_sensor import BinarySensorEntity as BinarySensorEntity
@@ -36,4 +35,4 @@ class KnxYamlBinarySensor(_KnxBinarySensor, KnxYamlEntity):
 class KnxUiBinarySensor(_KnxBinarySensor, KnxUiEntity):
     _device: XknxBinarySensor
     _attr_force_update: Incomplete
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[BinarySensorKnxConfig]) -> None: ...

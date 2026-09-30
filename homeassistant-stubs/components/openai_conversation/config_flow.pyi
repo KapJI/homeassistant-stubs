@@ -2,7 +2,7 @@ from .const import CONF_CHAT_MODEL as CONF_CHAT_MODEL, CONF_CODE_INTERPRETER as 
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.zone import ENTITY_ID_HOME as ENTITY_ID_HOME
-from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, SOURCE_REAUTH as SOURCE_REAUTH, SubentryFlowResult as SubentryFlowResult
+from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigEntryState as ConfigEntryState, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, ConfigSubentryFlow as ConfigSubentryFlow, SOURCE_REAUTH as SOURCE_REAUTH, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE, SubentryFlowResult as SubentryFlowResult
 from homeassistant.const import CONF_API_KEY as CONF_API_KEY, CONF_LLM_HASS_API as CONF_LLM_HASS_API, CONF_NAME as CONF_NAME, CONF_PROMPT as CONF_PROMPT, EntityStateAttribute as EntityStateAttribute
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import llm as llm
@@ -21,8 +21,10 @@ class OpenAIConfigFlow(ConfigFlow, domain=DOMAIN):
     MINOR_VERSION: int
     @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def _async_step_api_key(self, user_input: dict[str, Any] | None, step_id: str) -> ConfigFlowResult: ...
     async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
     async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @classmethod
     @callback
     @override

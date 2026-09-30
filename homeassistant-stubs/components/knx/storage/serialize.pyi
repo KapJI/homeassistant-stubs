@@ -1,5 +1,5 @@
 from .entity_store_schema import KNX_SCHEMA_FOR_PLATFORM as KNX_SCHEMA_FOR_PLATFORM
-from .knx_selector import AllSerializeFirst as AllSerializeFirst, GroupSelectSchema as GroupSelectSchema, KNXSelectorBase as KNXSelectorBase
+from .knx_selector import AllSerializeFirst as AllSerializeFirst, GroupSelectSchema as GroupSelectSchema, KNXSelectorBase as KNXSelectorBase, knx_selector_in as knx_selector_in
 from homeassistant.const import Platform as Platform
 from homeassistant.helpers import selector as selector
 from typing import Any

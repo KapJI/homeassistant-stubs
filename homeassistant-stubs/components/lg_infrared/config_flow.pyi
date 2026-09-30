@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_DEVICE_TYPE as CONF_DEVICE_TYPE, CONF_HVAC_MODES as CONF_HVAC_MODES, CONF_INFRARED_ENTITY_ID as CONF_INFRARED_ENTITY_ID, CONF_INFRARED_RECEIVER_ENTITY_ID as CONF_INFRARED_RECEIVER_ENTITY_ID, DOMAIN as DOMAIN, LGDeviceType as LGDeviceType
 from _typeshed import Incomplete
 from homeassistant.components.climate import HVACMode as HVACMode
@@ -13,7 +13,7 @@ _HVAC_MODE_OPTIONS: Incomplete
 _DEFAULT_HVAC_MODES: Incomplete
 
 @callback
-def _infrared_entity_schema(hass: HomeAssistant, *, emitter_required: bool) -> vol.Schema: ...
+def _infrared_entity_schema(hass: HomeAssistant, *, emitter_required: bool) -> probatio.Schema: ...
 
 class LgIrConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

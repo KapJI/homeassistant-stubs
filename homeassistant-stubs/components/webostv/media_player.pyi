@@ -39,6 +39,7 @@ class LgWebOSMediaPlayerEntity(WebOsTvEntity, RestoreEntity, MediaPlayerEntity):
     _attr_volume_level: Incomplete
     _attr_source: Incomplete
     _attr_source_list: Incomplete
+    _attr_app_id: Incomplete
     _attr_media_content_type: Incomplete
     _attr_media_title: Incomplete
     _attr_media_image_url: Incomplete

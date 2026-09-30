@@ -1,9 +1,8 @@
-from .const import CONF_INVERT as CONF_INVERT, CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_SYNC_STATE as CONF_SYNC_STATE, DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import CONF_RESPOND_TO_READ as CONF_RESPOND_TO_READ, CONF_SYNC_STATE as CONF_SYNC_STATE, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import SwitchSchema as SwitchSchema
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SWITCH as CONF_GA_SWITCH
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData, SwitchKnxConfig as SwitchKnxConfig
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
 from homeassistant.components.switch import SwitchEntity as SwitchEntity
@@ -36,4 +35,4 @@ class KnxYamlSwitch(_KnxSwitch, KnxYamlEntity):
 
 class KnxUiSwitch(_KnxSwitch, KnxUiEntity):
     _device: XknxSwitch
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[SwitchKnxConfig]) -> None: ...

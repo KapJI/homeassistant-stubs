@@ -13,7 +13,6 @@ from typing import Literal
 
 _LOGGER: Incomplete
 TIME_CATEGORIES: Incomplete
-RESULTS_TO_INCLUDE: int
 QUERY_YIELD_PER: int
 ALLOWED_DOMAINS: Incomplete
 

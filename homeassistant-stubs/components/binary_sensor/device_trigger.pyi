@@ -1,5 +1,5 @@
-import voluptuous as vol
-from . import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
+import probatio
+from .const import BinarySensorDeviceClass as BinarySensorDeviceClass, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import CONF_TURNED_OFF as CONF_TURNED_OFF, CONF_TURNED_ON as CONF_TURNED_ON, DEVICE_TRIGGER_BASE_SCHEMA as DEVICE_TRIGGER_BASE_SCHEMA
 from homeassistant.const import CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_FOR as CONF_FOR, CONF_TYPE as CONF_TYPE
@@ -21,6 +21,8 @@ CONF_CONNECTED: str
 CONF_NOT_CONNECTED: str
 CONF_GAS: str
 CONF_NO_GAS: str
+CONF_GLASS_BREAK: str
+CONF_NO_GLASS_BREAK: str
 CONF_HOT: str
 CONF_NOT_HOT: str
 CONF_LIGHT: str
@@ -66,4 +68,4 @@ TRIGGER_SCHEMA: Incomplete
 
 async def async_attach_trigger(hass: HomeAssistant, config: ConfigType, action: TriggerActionType, trigger_info: TriggerInfo) -> CALLBACK_TYPE: ...
 async def async_get_triggers(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
-async def async_get_trigger_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
+async def async_get_trigger_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, probatio.Schema]: ...

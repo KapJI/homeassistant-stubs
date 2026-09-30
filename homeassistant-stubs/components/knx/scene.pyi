@@ -1,9 +1,8 @@
-from .const import DOMAIN as DOMAIN, KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY, SceneConf as SceneConf
+from .const import KNX_ADDRESS as KNX_ADDRESS, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, _KnxEntityBase as _KnxEntityBase, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import SceneSchema as SceneSchema
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_SCENE as CONF_GA_SCENE
-from .storage.util import ConfigExtractor as ConfigExtractor
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData, SceneKnxConfig as SceneKnxConfig
 from homeassistant import config_entries as config_entries
 from homeassistant.components.scene import BaseScene as BaseScene
 from homeassistant.const import CONF_NAME as CONF_NAME, Platform as Platform
@@ -28,4 +27,4 @@ class KnxYamlScene(_KnxScene, KnxYamlEntity):
 
 class KnxUiScene(_KnxScene, KnxUiEntity):
     _device: XknxScene
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: ConfigType) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[SceneKnxConfig]) -> None: ...

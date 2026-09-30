@@ -17,6 +17,7 @@ PARALLEL_UPDATES: int
 class GatusSensorEntityDescription(SensorEntityDescription):
     value_fn: Callable[[GatusDataUpdateCoordinator, EndpointStatus], datetime | float | int | str | None]
 
+DNS_RCODE_MAP: Incomplete
 SENSOR_TYPES: tuple[GatusSensorEntityDescription, ...]
 
 async def async_setup_entry(hass: HomeAssistant, entry: GatusConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

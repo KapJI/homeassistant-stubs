@@ -1,4 +1,4 @@
-from . import TodoListEntity as TodoListEntity
+from .entity import TodoListEntity as TodoListEntity
 from enum import IntFlag, StrEnum
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.util.hass_dict import HassKey as HassKey

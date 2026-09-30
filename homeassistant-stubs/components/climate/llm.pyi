@@ -4,8 +4,9 @@ from homeassistant.components.homeassistant import async_should_expose as async_
 from homeassistant.components.llm import LLMTools as LLMTools
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers import intent as intent
-from homeassistant.helpers.llm import IntentTool as IntentTool, LLMContext as LLMContext, LLM_API_ASSIST as LLM_API_ASSIST, Tool as Tool
+from homeassistant.helpers.llm import IntentTool as IntentTool, LLMContext as LLMContext, LLM_API_ASSIST as LLM_API_ASSIST, Tool as Tool, ToolAnnotations as ToolAnnotations
 
+LLM_ANNOTATIONS: Incomplete
 LLM_INTENTS: Incomplete
 
 @callback

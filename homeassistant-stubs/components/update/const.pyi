@@ -1,7 +1,12 @@
+from . import UpdateEntity as UpdateEntity
+from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[UpdateEntity]]
 
 class UpdateEntityStateAttribute(StrEnum):
     AUTO_UPDATE = 'auto_update'
@@ -36,3 +41,8 @@ ATTR_SKIPPED_VERSION: Final[str]
 ATTR_TITLE: Final[str]
 ATTR_UPDATE_PERCENTAGE: Final[str]
 ATTR_VERSION: Final[str]
+
+class UpdateDeviceClass(StrEnum):
+    FIRMWARE = 'firmware'
+
+DEVICE_CLASSES_SCHEMA: Incomplete

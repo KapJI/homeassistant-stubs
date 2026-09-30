@@ -1,10 +1,10 @@
+from .api import AsyncConfigEntryAuth as AsyncConfigEntryAuth
 from .const import DOMAIN as DOMAIN, LOGGER as LOGGER, SCAN_INTERVAL as SCAN_INTERVAL, STATUS_PUSH_INTERVAL as STATUS_PUSH_INTERVAL
 from _typeshed import Incomplete
 from datetime import datetime
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
-from homeassistant.const import CONF_ACCESS_TOKEN as CONF_ACCESS_TOKEN
 from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady, OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError
+from homeassistant.exceptions import ConfigEntryAuthFailed as ConfigEntryAuthFailed, ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession as async_get_clientsession
 from homeassistant.helpers.config_entry_oauth2_flow import OAuth2Session as OAuth2Session
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
@@ -15,11 +15,9 @@ from yoto_api import YotoPlayer
 type YotoConfigEntry = ConfigEntry[YotoDataUpdateCoordinator]
 class YotoDataUpdateCoordinator(DataUpdateCoordinator[dict[str, YotoPlayer]]):
     config_entry: YotoConfigEntry
-    _session: Incomplete
     client: Incomplete
     _subscribed_players: set[str]
     def __init__(self, hass: HomeAssistant, entry: YotoConfigEntry, session: OAuth2Session) -> None: ...
-    def _sync_token(self) -> None: ...
     @override
     async def _async_setup(self) -> None: ...
     @override

@@ -1,4 +1,4 @@
-from . import ATTR_LANGUAGE as ATTR_LANGUAGE, ATTR_MEDIA_PLAYER_ENTITY_ID as ATTR_MEDIA_PLAYER_ENTITY_ID, ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN
+from .const import ATTR_LANGUAGE as ATTR_LANGUAGE, ATTR_MEDIA_PLAYER_ENTITY_ID as ATTR_MEDIA_PLAYER_ENTITY_ID, ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.notify import BaseNotificationService as BaseNotificationService
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_NAME as CONF_NAME

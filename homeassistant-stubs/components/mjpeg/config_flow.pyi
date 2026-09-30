@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_MJPEG_URL as CONF_MJPEG_URL, CONF_STILL_IMAGE_URL as CONF_STILL_IMAGE_URL, DOMAIN as DOMAIN, LOGGER as LOGGER
 from collections.abc import Mapping
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, OptionsFlow as OptionsFlow
@@ -8,7 +8,7 @@ from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from typing import Any, override
 
 @callback
-def async_get_schema(defaults: Mapping[str, Any], show_name: bool = False) -> vol.Schema: ...
+def async_get_schema(defaults: Mapping[str, Any], show_name: bool = False) -> probatio.Schema: ...
 def validate_url(url: str, username: str | None, password: str, verify_ssl: bool, authentication: str = ...) -> str: ...
 async def async_validate_input(hass: HomeAssistant, user_input: dict[str, Any]) -> tuple[dict[str, str], str]: ...
 

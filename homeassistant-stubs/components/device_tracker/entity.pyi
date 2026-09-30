@@ -1,4 +1,3 @@
-import asyncio
 from .const import ATTR_HOST_NAME as ATTR_HOST_NAME, ATTR_IN_ZONES as ATTR_IN_ZONES, ATTR_IP as ATTR_IP, ATTR_MAC as ATTR_MAC, ATTR_SOURCE_TYPE as ATTR_SOURCE_TYPE, ATTR_TRACKING_TYPE as ATTR_TRACKING_TYPE, CONF_ASSOCIATED_ZONE as CONF_ASSOCIATED_ZONE, CONNECTED_DEVICE_REGISTERED as CONNECTED_DEVICE_REGISTERED, DOMAIN as DOMAIN, DeviceTrackerEntityCapabilityAttribute as DeviceTrackerEntityCapabilityAttribute, DeviceTrackerEntityStateAttribute as DeviceTrackerEntityStateAttribute, LOGGER as LOGGER, ScannerEntityStateAttribute as ScannerEntityStateAttribute, SourceType as SourceType, TrackerEntityStateAttribute as TrackerEntityStateAttribute, TrackingType as TrackingType
 from _typeshed import Incomplete
 from homeassistant.components import zone as zone
@@ -8,7 +7,6 @@ from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, Event as Event, E
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo, EventDeviceRegistryUpdatedData as EventDeviceRegistryUpdatedData
 from homeassistant.helpers.dispatcher import async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
-from homeassistant.helpers.entity_platform import EntityPlatform as EntityPlatform
 from homeassistant.helpers.event import async_track_state_change_event as async_track_state_change_event
 from homeassistant.loader import async_suggest_report_issue as async_suggest_report_issue
 from homeassistant.util.hass_dict import HassKey as HassKey
@@ -139,9 +137,8 @@ class ScannerEntity(BaseScannerEntity, cached_properties=CACHED_SCANNER_PROPERTI
     @property
     @override
     def entity_registry_enabled_default(self) -> bool: ...
-    @callback
     @override
-    def add_to_platform_start(self, hass: HomeAssistant, platform: EntityPlatform, parallel_updates: asyncio.Semaphore | None) -> None: ...
+    async def async_prepare_to_add_to_hass(self) -> None: ...
     @callback
     def _async_mac_address_registered(self) -> bool: ...
     registry_entry: Incomplete

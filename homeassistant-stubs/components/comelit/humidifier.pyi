@@ -3,7 +3,7 @@ from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerial
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from .utils import bridge_api_call as bridge_api_call, cleanup_stale_entity as cleanup_stale_entity, load_api_data as load_api_data
 from _typeshed import Incomplete
-from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
+from aiocomelit import ComelitDeviceObject as ComelitDeviceObject
 from enum import StrEnum
 from homeassistant.components.humidifier import HumidifierAction as HumidifierAction, HumidifierDeviceClass as HumidifierDeviceClass, HumidifierEntity as HumidifierEntity, HumidifierEntityFeature as HumidifierEntityFeature, MODE_AUTO as MODE_AUTO, MODE_NORMAL as MODE_NORMAL
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -43,7 +43,7 @@ class ComelitHumidifierEntity(ComelitBridgeBaseEntity, HumidifierEntity):
     _active_mode: Incomplete
     _active_action: Incomplete
     _set_command: Incomplete
-    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str, active_mode: HumidifierComelitMode, active_action: HumidifierAction, set_command: HumidifierComelitCommand, device_class: HumidifierDeviceClass) -> None: ...
+    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitDeviceObject, config_entry_entry_id: str, active_mode: HumidifierComelitMode, active_action: HumidifierAction, set_command: HumidifierComelitCommand, device_class: HumidifierDeviceClass) -> None: ...
     _attr_action: Incomplete
     _attr_current_humidity: Incomplete
     _attr_is_on: Incomplete

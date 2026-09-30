@@ -1,4 +1,4 @@
-from .const import CONF_STATION_NUMBER as CONF_STATION_NUMBER, LOGGER as LOGGER
+from .const import CONF_STATION_NUMBER as CONF_STATION_NUMBER, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
 from aiowaqi import WAQIAirQuality, WAQIClient as WAQIClient
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigSubentry as ConfigSubentry

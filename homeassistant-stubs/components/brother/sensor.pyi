@@ -1,5 +1,5 @@
 from .const import DOMAIN as DOMAIN
-from .coordinator import BrotherConfigEntry as BrotherConfigEntry, BrotherDataUpdateCoordinator as BrotherDataUpdateCoordinator
+from .coordinator import BrotherConfigEntry as BrotherConfigEntry
 from .entity import BrotherPrinterEntity as BrotherPrinterEntity
 from _typeshed import Incomplete
 from brother import BrotherSensors as BrotherSensors
@@ -28,8 +28,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: BrotherConfigEntry, asyn
 
 class BrotherPrinterSensor(BrotherPrinterEntity, SensorEntity):
     entity_description: BrotherSensorEntityDescription
-    _attr_unique_id: Incomplete
-    def __init__(self, coordinator: BrotherDataUpdateCoordinator, description: BrotherSensorEntityDescription) -> None: ...
     @property
     @override
     def native_value(self) -> StateType | datetime: ...

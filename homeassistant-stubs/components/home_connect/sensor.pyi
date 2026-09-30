@@ -30,6 +30,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: HomeConnectConfigEntry, 
 
 class HomeConnectSensor(HomeConnectEntity, SensorEntity):
     entity_description: HomeConnectSensorEntityDescription
+    @property
+    @override
+    def available(self) -> bool: ...
     @override
     def update_native_value(self) -> None: ...
     _attr_native_value: Incomplete

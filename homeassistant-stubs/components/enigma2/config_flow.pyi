@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_DEEP_STANDBY as CONF_DEEP_STANDBY, CONF_SOURCE_BOUQUET as CONF_SOURCE_BOUQUET, CONF_USE_CHANNEL_ICON as CONF_USE_CHANNEL_ICON, DEFAULT_PORT as DEFAULT_PORT, DEFAULT_SSL as DEFAULT_SSL, DEFAULT_VERIFY_SSL as DEFAULT_VERIFY_SSL, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigEntry as ConfigEntry, ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_USER as SOURCE_USER
@@ -12,7 +12,7 @@ from typing import Any, override
 CONFIG_SCHEMA: Incomplete
 _LOGGER: Incomplete
 
-async def get_options_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def get_options_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
 
 OPTIONS_FLOW: Incomplete
 

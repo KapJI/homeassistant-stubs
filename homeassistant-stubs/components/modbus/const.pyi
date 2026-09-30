@@ -1,6 +1,8 @@
+from .modbus import ModbusHub as ModbusHub
 from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_BINARY_SENSORS as CONF_BINARY_SENSORS, CONF_COVERS as CONF_COVERS, CONF_LIGHTS as CONF_LIGHTS, CONF_SENSORS as CONF_SENSORS, CONF_SWITCHES as CONF_SWITCHES, Platform as Platform
+from homeassistant.util.hass_dict import HassKey as HassKey
 
 CONF_BAUDRATE: str
 CONF_BYTESIZE: str
@@ -125,9 +127,7 @@ CALL_TYPE_X_REGISTER_HOLDINGS: str
 SERVICE_WRITE_COIL: str
 SERVICE_WRITE_REGISTER: str
 SERVICE_STOP: str
-SERVICE_RESTART: str
 SIGNAL_STOP_ENTITY: str
-SIGNAL_START_ENTITY: str
 DEFAULT_HUB: str
 DEFAULT_SCAN_INTERVAL: int
 DEFAULT_SLAVE: int
@@ -137,6 +137,7 @@ DEFAULT_HVAC_ON_VALUE: int
 DEFAULT_HVAC_OFF_VALUE: int
 MODBUS_DOMAIN: str
 DOMAIN: str
+DATA_MODBUS_HUBS: HassKey[dict[str, ModbusHub]]
 ACTIVE_SCAN_INTERVAL: int
 PLATFORMS: Incomplete
 LIGHT_DEFAULT_MIN_KELVIN: int

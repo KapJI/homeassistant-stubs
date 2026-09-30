@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import condition as condition
 from .const import DOMAIN as DOMAIN
 from .helpers import get_in_zones_attribute as get_in_zones_attribute
@@ -20,7 +20,7 @@ _EVENT_DESCRIPTION: Incomplete
 
 def _state_has_zone_info(state: State) -> bool: ...
 
-_LEGACY_OPTIONS_SCHEMA: dict[vol.Marker, Any]
+_LEGACY_OPTIONS_SCHEMA: dict[probatio.Marker, Any]
 _LEGACY_TRIGGER_OPTIONS_SCHEMA: Incomplete
 _ZONE_TRIGGER_SCHEMA: Incomplete
 _DOMAIN_SPECS: dict[str, DomainSpec]

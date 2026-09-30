@@ -1,7 +1,7 @@
 import re
-from .const import DOMAIN as DOMAIN, LockEntityStateAttribute as LockEntityStateAttribute, LockState as LockState
+from .const import DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, LockEntityFeature as LockEntityFeature, LockEntityStateAttribute as LockEntityStateAttribute, LockState as LockState
+from .services import async_setup_services as async_setup_services
 from _typeshed import Incomplete
-from enum import IntFlag
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
 from homeassistant.const import ATTR_CODE as ATTR_CODE, ATTR_CODE_FORMAT as ATTR_CODE_FORMAT, SERVICE_LOCK as SERVICE_LOCK, SERVICE_OPEN as SERVICE_OPEN, SERVICE_UNLOCK as SERVICE_UNLOCK
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
@@ -9,12 +9,10 @@ from homeassistant.exceptions import ServiceValidationError as ServiceValidation
 from homeassistant.helpers.entity import Entity as Entity, EntityDescription as EntityDescription
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
 from homeassistant.helpers.typing import ConfigType as ConfigType, StateType as StateType
-from homeassistant.util.hass_dict import HassKey as HassKey
 from propcache.api import cached_property
 from typing import Any, final, override
 
 _LOGGER: Incomplete
-DATA_COMPONENT: HassKey[EntityComponent[LockEntity]]
 ENTITY_ID_FORMAT: Incomplete
 PLATFORM_SCHEMA: Incomplete
 PLATFORM_SCHEMA_BASE: Incomplete
@@ -22,11 +20,6 @@ SCAN_INTERVAL: Incomplete
 ATTR_CHANGED_BY: str
 CONF_DEFAULT_CODE: str
 MIN_TIME_BETWEEN_SCANS: Incomplete
-LOCK_SERVICE_SCHEMA: Incomplete
-
-class LockEntityFeature(IntFlag):
-    OPEN = 1
-
 PROP_TO_ATTR: Incomplete
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool: ...

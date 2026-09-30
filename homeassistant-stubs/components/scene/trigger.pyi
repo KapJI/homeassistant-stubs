@@ -1,4 +1,4 @@
-from . import DOMAIN as DOMAIN
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.automation import DomainSpec as DomainSpec

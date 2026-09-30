@@ -3,7 +3,7 @@ from .coordinator import NtfyConfigEntry as NtfyConfigEntry
 from .entity import NtfyBaseEntity as NtfyBaseEntity
 from .services import ACTIONS_MAP as ACTIONS_MAP, ATTR_ACTION as ATTR_ACTION, ATTR_ACTIONS as ATTR_ACTIONS, ATTR_ATTACH_FILE as ATTR_ATTACH_FILE, ATTR_FILENAME as ATTR_FILENAME, ATTR_SEQUENCE_ID as ATTR_SEQUENCE_ID
 from _typeshed import Incomplete
-from homeassistant.components import camera as camera, image as image
+from homeassistant.components import camera as camera, image as image, tts as tts
 from homeassistant.components.media_source import async_resolve_media as async_resolve_media
 from homeassistant.components.notify import NotifyEntity as NotifyEntity, NotifyEntityDescription as NotifyEntityDescription, NotifyEntityFeature as NotifyEntityFeature
 from homeassistant.core import HomeAssistant as HomeAssistant

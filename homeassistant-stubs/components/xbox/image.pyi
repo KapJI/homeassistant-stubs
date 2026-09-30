@@ -17,6 +17,12 @@ class XboxImage(StrEnum):
     NOW_PLAYING = 'now_playing'
     GAMERPIC = 'gamerpic'
     AVATAR = 'avatar'
+    POSTER = 'poster'
+    BRANDED_KEY_ART = 'branded_key_art'
+    TITLED_HERO_ART = 'titled_hero_art'
+    SUPER_HERO_ART = 'super_hero_art'
+    BOX_ART = 'box_art'
+    FEATURE_PROMOTIONAL_SQUARE_ART = 'feature_promotional_square_art'
 
 @dataclass(kw_only=True, frozen=True)
 class XboxImageEntityDescription(XboxBaseEntityDescription, ImageEntityDescription):

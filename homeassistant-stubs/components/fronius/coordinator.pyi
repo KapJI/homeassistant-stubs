@@ -1,7 +1,7 @@
 import abc
 from . import FroniusConfigEntry as FroniusConfigEntry, FroniusSolarNet as FroniusSolarNet
 from .binary_sensor import POWER_FLOW_BINARY_SENSOR_DESCRIPTIONS as POWER_FLOW_BINARY_SENSOR_DESCRIPTIONS
-from .const import DOMAIN as DOMAIN, FroniusDeviceInfo as FroniusDeviceInfo, SOLAR_NET_ID_POWER_FLOW as SOLAR_NET_ID_POWER_FLOW, SOLAR_NET_ID_SYSTEM as SOLAR_NET_ID_SYSTEM, SolarNetId as SolarNetId
+from .const import AUTO_REVERT_SECONDS as AUTO_REVERT_SECONDS, CONF_AUTO_REVERT_POWER_LIMIT as CONF_AUTO_REVERT_POWER_LIMIT, DOMAIN as DOMAIN, FroniusDeviceInfo as FroniusDeviceInfo, HEARTBEAT_INTERVAL as HEARTBEAT_INTERVAL, SOLAR_NET_ID_POWER_FLOW as SOLAR_NET_ID_POWER_FLOW, SOLAR_NET_ID_SYSTEM as SOLAR_NET_ID_SYSTEM, SolarNetId as SolarNetId
 from .entity import FroniusEntity as FroniusEntity, FroniusEntityDescription as FroniusEntityDescription, ModbusComponentFn as ModbusComponentFn
 from .number import MODBUS_NUMBER_ENTITY_DESCRIPTIONS as MODBUS_NUMBER_ENTITY_DESCRIPTIONS
 from .sensor import INVERTER_ENTITY_DESCRIPTIONS as INVERTER_ENTITY_DESCRIPTIONS, LOGGER_ENTITY_DESCRIPTIONS as LOGGER_ENTITY_DESCRIPTIONS, METER_ENTITY_DESCRIPTIONS as METER_ENTITY_DESCRIPTIONS, MODBUS_INVERTER_ENTITY_DESCRIPTIONS as MODBUS_INVERTER_ENTITY_DESCRIPTIONS, OHMPILOT_ENTITY_DESCRIPTIONS as OHMPILOT_ENTITY_DESCRIPTIONS, POWER_FLOW_ENTITY_DESCRIPTIONS as POWER_FLOW_ENTITY_DESCRIPTIONS, STORAGE_ENTITY_DESCRIPTIONS as STORAGE_ENTITY_DESCRIPTIONS
@@ -9,12 +9,13 @@ from .switch import MODBUS_SWITCH_ENTITY_DESCRIPTIONS as MODBUS_SWITCH_ENTITY_DE
 from _typeshed import Incomplete
 from abc import ABC, abstractmethod
 from collections.abc import Mapping, Sequence
-from datetime import timedelta
+from datetime import datetime, timedelta
 from fronius_modbus import FroniusModbusInverter as FroniusModbusInverter, Mppt as Mppt
 from homeassistant.const import Platform as Platform
-from homeassistant.core import callback as callback
+from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.entity_platform import AddEntitiesCallback as AddEntitiesCallback
+from homeassistant.helpers.event import async_call_later as async_call_later
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator as DataUpdateCoordinator, UpdateFailed as UpdateFailed
 from typing import Any, override
 
@@ -72,6 +73,23 @@ class FroniusModbusInverterUpdateCoordinator(FroniusModbusCoordinatorBase):
 class FroniusModbusSettingsUpdateCoordinator(FroniusModbusCoordinatorBase):
     default_interval: Incomplete
     valid_descriptions: Incomplete
+    _heartbeat_unsub: CALLBACK_TYPE | None
+    _heartbeat_stopped: bool
+    _device_lock: Incomplete
+    _revert_seconds: Incomplete
+    def __init__(self, *args: Any, **kwargs: Any) -> None: ...
+    async def async_start_heartbeat(self) -> None: ...
+    async def _async_send_heartbeat(self, _now: datetime | None = None) -> None: ...
+    @callback
+    def _async_update_heartbeat(self) -> None: ...
+    @callback
+    def _async_stop_heartbeat(self) -> None: ...
+    @callback
+    def _async_cancel_heartbeat(self) -> None: ...
+    async def _async_resend_power_limit(self) -> None: ...
+    @override
+    async def _async_update_data(self) -> dict[SolarNetId, Any]: ...
+    async def _async_clear_revert_period(self) -> None: ...
     @override
     async def _refresh_components(self) -> None: ...
     async def async_write(self, component_fn: ModbusComponentFn, field: str, value: float | bool, *, enable_field: str | None = None) -> None: ...

@@ -7,11 +7,12 @@ from collections.abc import Callable as Callable, Coroutine
 from homeassistant.core import callback as callback
 from homeassistant.helpers.device_registry import DeviceInfo as DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity as CoordinatorEntity
+from pytradfri.api.aiocoap_api import APIRequestProtocol as APIRequestProtocol
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
 from typing import Any, override
 
-def handle_error(func: Callable[[Command | list[Command]], Any]) -> Callable[[Command | list[Command]], Coroutine[Any, Any, None]]: ...
+def handle_error(func: APIRequestProtocol) -> Callable[[Command | list[Command]], Coroutine[Any, Any, None]]: ...
 
 class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], metaclass=abc.ABCMeta):
     _attr_has_entity_name: bool
@@ -21,7 +22,7 @@ class TradfriBaseEntity(CoordinatorEntity[TradfriDeviceDataUpdateCoordinator], m
     _api: Incomplete
     _attr_device_info: Incomplete
     _attr_unique_id: Incomplete
-    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, gateway_id: str, api: Callable[[Command | list[Command]], Any]) -> None: ...
+    def __init__(self, device_coordinator: TradfriDeviceDataUpdateCoordinator, gateway_id: str, api: APIRequestProtocol) -> None: ...
     @abstractmethod
     @callback
     def _refresh(self) -> None: ...

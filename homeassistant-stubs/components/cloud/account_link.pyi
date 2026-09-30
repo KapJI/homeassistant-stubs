@@ -1,7 +1,6 @@
 from .const import DATA_CLOUD as DATA_CLOUD, DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError, OAuth2TokenRequestTransientError as OAuth2TokenRequestTransientError
 from homeassistant.helpers import config_entry_oauth2_flow as config_entry_oauth2_flow, event as event
 from typing import Any, override
 
@@ -26,6 +25,9 @@ class CloudOAuth2Implementation(config_entry_oauth2_flow.AbstractOAuth2Implement
     @property
     @override
     def domain(self) -> str: ...
+    @property
+    @override
+    def service_domain(self) -> str: ...
     @override
     async def async_generate_authorize_url(self, flow_id: str) -> str: ...
     @override

@@ -16,11 +16,11 @@ SCAN_INTERVAL: Incomplete
 
 class RemoteCalendarDataUpdateCoordinator(DataUpdateCoordinator[Calendar]):
     config_entry: RemoteCalendarConfigEntry
-    ics: str
     _client: Incomplete
     _url: Incomplete
     _username: str | None
     _password: str | None
+    ics: str
     def __init__(self, hass: HomeAssistant, config_entry: RemoteCalendarConfigEntry) -> None: ...
     @override
     async def _async_update_data(self) -> Calendar: ...

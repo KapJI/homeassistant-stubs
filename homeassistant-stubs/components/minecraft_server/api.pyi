@@ -24,9 +24,9 @@ class MinecraftServerData:
     map_name: str | None = ...
 
 class MinecraftServerType(StrEnum):
-    BEDROCK_EDITION = 'Bedrock Edition'
-    JAVA_EDITION = 'Java Edition'
     LEGACY_JAVA_EDITION = 'Legacy Java Edition'
+    JAVA_EDITION = 'Java Edition'
+    BEDROCK_EDITION = 'Bedrock Edition'
 
 class MinecraftServerAddressError(Exception): ...
 class MinecraftServerConnectionError(Exception): ...

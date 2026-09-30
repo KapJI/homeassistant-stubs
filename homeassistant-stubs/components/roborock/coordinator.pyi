@@ -110,10 +110,18 @@ DYAD_REQUEST_PROTOCOLS: Incomplete
 
 class RoborockWetDryVacUpdateCoordinator(RoborockDataUpdateCoordinatorA01[RoborockDyadDataProtocol]):
     api: Incomplete
+    _unsub_update: Incomplete
     request_protocols: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: DyadApi) -> None: ...
     @override
     async def _async_update_data(self) -> dict[RoborockDyadDataProtocol, StateType]: ...
+    def _should_suppress_update_failure(self) -> bool: ...
+    data: Incomplete
+    last_update_success: bool
+    @callback
+    def _handle_update(self) -> None: ...
+    @override
+    async def async_shutdown(self) -> None: ...
 
 class RoborockDataUpdateCoordinatorB01(DataUpdateCoordinator[B01Props]):
     config_entry: RoborockConfigEntry
@@ -133,6 +141,7 @@ class RoborockB01Q7UpdateCoordinator(RoborockDataUpdateCoordinatorB01):
     def __init__(self, hass: HomeAssistant, config_entry: RoborockConfigEntry, device: RoborockDevice, api: Q7PropertiesApi) -> None: ...
     @override
     async def _async_update_data(self) -> B01Props: ...
+    async def async_refresh_q7_map(self) -> bool: ...
 
 class RoborockB01Q10UpdateCoordinator(DataUpdateCoordinator[None]):
     config_entry: RoborockConfigEntry

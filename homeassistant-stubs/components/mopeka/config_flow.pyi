@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_MEDIUM_TYPE as CONF_MEDIUM_TYPE, DEFAULT_MEDIUM_TYPE as DEFAULT_MEDIUM_TYPE, DOMAIN as DOMAIN, MediumType as MediumType
 from _typeshed import Incomplete
 from enum import Enum
@@ -14,7 +14,7 @@ def format_medium_type(medium_type: Enum) -> str: ...
 
 MEDIUM_TYPES_BY_NAME: Incomplete
 
-def async_generate_schema(medium_type: str | None = None) -> vol.Schema: ...
+def async_generate_schema(medium_type: str | None = None) -> probatio.Schema: ...
 
 class MopekaConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

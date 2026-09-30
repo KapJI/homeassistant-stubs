@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as Se
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import service as service
 from homeassistant.helpers.selector import ConfigEntrySelector as ConfigEntrySelector
-from homeassistant.util.json import JsonObjectType as JsonObjectType
+from homeassistant.util.json import JsonArrayType as JsonArrayType, JsonObjectType as JsonObjectType
 
 ADD_CREATED_COLUMN: str
 DATA: str

@@ -40,12 +40,13 @@ class PowerWallChargeSensor(PowerWallEntity, SensorEntity):
     _attr_state_class: Incomplete
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_device_class: Incomplete
+    _attr_suggested_display_precision: int
     @property
     @override
     def unique_id(self) -> str: ...
     @property
     @override
-    def native_value(self) -> int: ...
+    def native_value(self) -> float: ...
 
 class PowerWallEnergySensor(PowerWallEntity, SensorEntity):
     entity_description: PowerwallSensorEntityDescription[MeterResponse, float]

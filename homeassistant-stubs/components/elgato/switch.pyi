@@ -1,6 +1,6 @@
 from .coordinator import ElgatoConfigEntry as ElgatoConfigEntry, ElgatoData as ElgatoData, ElgatoDataUpdateCoordinator as ElgatoDataUpdateCoordinator
 from .entity import ElgatoEntity as ElgatoEntity
-from .helpers import elgato_exception_handler as elgato_exception_handler
+from .helpers import elgato_device_action as elgato_device_action
 from _typeshed import Incomplete
 from collections.abc import Awaitable, Callable as Callable
 from dataclasses import dataclass
@@ -30,9 +30,9 @@ class ElgatoSwitchEntity(ElgatoEntity, SwitchEntity):
     @property
     @override
     def is_on(self) -> bool | None: ...
-    @elgato_exception_handler
+    @elgato_device_action
     @override
     async def async_turn_on(self, **kwargs: Any) -> None: ...
-    @elgato_exception_handler
+    @elgato_device_action
     @override
     async def async_turn_off(self, **kwargs: Any) -> None: ...

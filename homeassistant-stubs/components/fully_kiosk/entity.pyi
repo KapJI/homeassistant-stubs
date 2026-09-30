@@ -1,7 +1,7 @@
 from .const import DOMAIN as DOMAIN
 from .coordinator import FullyKioskDataUpdateCoordinator as FullyKioskDataUpdateCoordinator
 from _typeshed import Incomplete
-from homeassistant.components import mqtt as mqtt
+from homeassistant.components.mqtt import ReceiveMessage as ReceiveMessage
 from homeassistant.const import ATTR_CONNECTIONS as ATTR_CONNECTIONS
 from homeassistant.core import CALLBACK_TYPE as CALLBACK_TYPE, callback as callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC as CONNECTION_NETWORK_MAC, DeviceInfo as DeviceInfo

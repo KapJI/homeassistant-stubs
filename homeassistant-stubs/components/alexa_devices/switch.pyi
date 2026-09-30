@@ -1,8 +1,7 @@
-from .coordinator import AmazonConfigEntry as AmazonConfigEntry, alexa_api_call as alexa_api_call
+from .coordinator import AmazonConfigEntry as AmazonConfigEntry, AmazonDevicesCoordinator as AmazonDevicesCoordinator, alexa_api_call as alexa_api_call
 from .entity import AmazonEntity as AmazonEntity
-from .utils import async_remove_entity_from_virtual_group as async_remove_entity_from_virtual_group, async_update_unique_id as async_update_unique_id
+from .utils import async_remove_entities as async_remove_entities, async_update_unique_id as async_update_unique_id
 from _typeshed import Incomplete
-from aioamazondevices.structures import AmazonDevice as AmazonDevice
 from collections.abc import Callable as Callable
 from dataclasses import dataclass
 from homeassistant.components.switch import SwitchEntity as SwitchEntity, SwitchEntityDescription as SwitchEntityDescription
@@ -12,17 +11,18 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from typing import Any, Final, override
 
 PARALLEL_UPDATES: int
-TYPE_SENSOR: str
-TYPE_COMMUNICATION: str
+
+def _communication_is_on(coordinator: AmazonDevicesCoordinator, serial_num: str, entity_description_key: str) -> bool: ...
+def _update_communication_state(coordinator: AmazonDevicesCoordinator, serial_num: str, entity_description_key: str, state: bool) -> None: ...
 
 @dataclass(frozen=True, kw_only=True)
 class AmazonSwitchEntityDescription(SwitchEntityDescription):
-    is_on_fn: Callable[[AmazonDevice], bool]
-    is_available_fn: Callable[[AmazonDevice, str], bool] = ...
+    is_on_fn: Callable[[AmazonDevicesCoordinator, str, str], bool]
+    is_available_fn: Callable[[AmazonDevicesCoordinator, str, str], bool]
     method: str
-    switch_type: str
+    update_state_fn: Callable[[AmazonDevicesCoordinator, str, str, bool], None]
 
-SENSOR_SWITCHES: Final[Incomplete]
+DND_SWITCH: Final[Incomplete]
 COMMUNICATION_SWITCHES: Final[Incomplete]
 
 async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...

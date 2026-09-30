@@ -2,10 +2,13 @@ from . import SwitchBotCoordinator as SwitchBotCoordinator, SwitchbotCloudConfig
 from .entity import SwitchBotCloudEntity as SwitchBotCloudEntity
 from _typeshed import Incomplete
 from homeassistant.components.lock import LockEntity as LockEntity, LockEntityFeature as LockEntityFeature
-from homeassistant.core import HomeAssistant as HomeAssistant
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from switchbot_api import Device as Device, Remote as Remote, SwitchBotAPI as SwitchBotAPI
 from typing import Any, override
+
+LOCK_STATES_BY_VALUE: Incomplete
+LOCKED_STATES: Incomplete
 
 async def async_setup_entry(hass: HomeAssistant, config: SwitchbotCloudConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
@@ -14,9 +17,14 @@ class SwitchBotCloudLock(SwitchBotCloudEntity, LockEntity):
     __model: Incomplete
     def __init__(self, api: SwitchBotAPI, device: Device | Remote, coordinator: SwitchBotCoordinator) -> None: ...
     _attr_is_locked: Incomplete
+    _attr_is_locking: Incomplete
+    _attr_is_unlocking: Incomplete
+    _attr_is_jammed: Incomplete
     _attr_supported_features: Incomplete
     @override
     def _set_attributes(self) -> None: ...
+    @callback
+    def _write_optimistic_state(self, *, is_locked: bool) -> None: ...
     @override
     async def async_lock(self, **kwargs: Any) -> None: ...
     @override

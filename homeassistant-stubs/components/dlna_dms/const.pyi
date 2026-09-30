@@ -1,11 +1,14 @@
+from .dms import DlnaDmsData as DlnaDmsData
 from _typeshed import Incomplete
 from collections.abc import Mapping
 from homeassistant.components.media_player import MediaClass as MediaClass
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 LOGGER: Incomplete
 DOMAIN: Final[str]
 DEFAULT_NAME: Final[str]
+DOMAIN_DATA: HassKey[DlnaDmsData]
 CONF_SOURCE_ID: Final[str]
 CONFIG_VERSION: Final[int]
 SOURCE_SEP: Final[str]

@@ -1,5 +1,5 @@
 import asyncio
-import voluptuous as vol
+import probatio
 from .addon import get_addon_manager as get_addon_manager
 from .const import ADDON_SLUG as ADDON_SLUG, CONF_INTEGRATION_CREATED_ADDON as CONF_INTEGRATION_CREATED_ADDON, CONF_USE_ADDON as CONF_USE_ADDON, DOMAIN as DOMAIN, LOGGER as LOGGER
 from _typeshed import Incomplete
@@ -22,7 +22,7 @@ DEFAULT_URL: str
 DEFAULT_TITLE: str
 ON_SUPERVISOR_SCHEMA: Incomplete
 
-def get_manual_schema(user_input: dict[str, Any]) -> vol.Schema: ...
+def get_manual_schema(user_input: dict[str, Any]) -> probatio.Schema: ...
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None: ...
 def build_ws_address(host: str, port: int) -> str: ...
 

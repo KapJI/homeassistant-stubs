@@ -3,6 +3,7 @@ from .coordinator import SynologyDSMConfigEntry as SynologyDSMConfigEntry
 from _typeshed import Incomplete
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
+from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
 
 LOGGER: Incomplete
 

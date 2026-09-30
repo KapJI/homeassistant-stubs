@@ -5,7 +5,7 @@ from datetime import date, datetime
 from easyenergy import Electricity as Electricity, Gas as Gas, PriceInterval as PriceInterval
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
 from homeassistant.helpers import selector as selector, service as service
 from typing import Final
 

@@ -12,11 +12,15 @@ from homeassistant.config_entries import ConfigEntryState as ConfigEntryState
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers.hassio import is_hassio as is_hassio
+from homeassistant.helpers.importlib import async_import_module as async_import_module
 from homeassistant.helpers.singleton import singleton as singleton
 from universal_silabs_flasher.const import ApplicationType as FlasherApplicationType
 from universal_silabs_flasher.flasher import BaseFlasher as BaseFlasher, DeviceSpecificFlasher as DeviceSpecificFlasher
 
 _LOGGER: Incomplete
+FLASHER_MODULE: str
+COMMON_MODULE: str
+FIRMWARE_MODULE: str
 ADDON_STATE_POLL_INTERVAL: int
 ADDON_INFO_POLL_TIMEOUT: Incomplete
 
@@ -36,6 +40,12 @@ class ApplicationType(StrEnum):
     def from_flasher_application_type(cls, app_type: FlasherApplicationType) -> ApplicationType: ...
     def as_flasher_application_type(self) -> FlasherApplicationType: ...
 
+class FlasherType(StrEnum):
+    YELLOW = 'YellowFlasher'
+    ZBT1 = 'Zbt1Flasher'
+    ZBT2 = 'Zbt2Flasher'
+
+async def async_get_flasher_cls(hass: HomeAssistant, flasher_type: FlasherType) -> type[DeviceSpecificFlasher]: ...
 @callback
 def get_otbr_addon_manager(hass: HomeAssistant) -> WaitingAddonManager: ...
 @callback
@@ -70,7 +80,7 @@ async def get_z2m_addon_firmware_info(hass: HomeAssistant, z2m_addon_manager: Ad
 async def guess_hardware_owners(hass: HomeAssistant, device_path: str) -> list[FirmwareInfo]: ...
 async def guess_firmware_info(hass: HomeAssistant, device_path: str) -> FirmwareInfo: ...
 async def probe_silabs_firmware_info(device: str, *, flasher_cls: type[BaseFlasher], application_probe_methods: Sequence[ApplicationType] | None = None) -> FirmwareInfo | None: ...
-async def probe_silabs_firmware_type(device: str, *, application_probe_methods: Sequence[tuple[ApplicationType, int]]) -> ApplicationType | None: ...
+async def probe_silabs_firmware_type(hass: HomeAssistant, device: str, *, application_probe_methods: Sequence[tuple[ApplicationType, int]]) -> ApplicationType | None: ...
 @asynccontextmanager
 async def async_firmware_flashing_context(hass: HomeAssistant, device: str, source_domain: str) -> AsyncGenerator[None]: ...
 async def async_flash_silabs_firmware(hass: HomeAssistant, device: str, fw_data: bytes, flasher_cls: type[DeviceSpecificFlasher], expected_installed_firmware_type: ApplicationType, progress_callback: Callable[[int, int], None] | None = None) -> FirmwareInfo: ...

@@ -1,11 +1,12 @@
 from .const import ATTR_MESSAGE as ATTR_MESSAGE, DOMAIN as DOMAIN, KEYRINGS_KEY_TYPE as KEYRINGS_KEY_TYPE, KEYRINGS_KEY_TYPE_ID_FINGERPRINT as KEYRINGS_KEY_TYPE_ID_FINGERPRINT, KEYRINGS_KEY_TYPE_ID_NFC as KEYRINGS_KEY_TYPE_ID_NFC, KEYRINGS_ULP_ID as KEYRINGS_ULP_ID, KEYRINGS_USER_FULL_NAME as KEYRINGS_USER_FULL_NAME, KEYRINGS_USER_STATUS as KEYRINGS_USER_STATUS
-from .data import async_ufp_instance_for_config_entry_ids as async_ufp_instance_for_config_entry_ids
+from .data import UFPConfigEntry as UFPConfigEntry
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable, Coroutine
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass as BinarySensorDeviceClass
 from homeassistant.const import ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_NAME as ATTR_NAME, Platform as Platform
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, ServiceValidationError as ServiceValidationError
+from homeassistant.helpers import service as service
 from homeassistant.helpers.target import TargetSelection as TargetSelection, async_extract_referenced_entity_ids as async_extract_referenced_entity_ids
 from homeassistant.util.json import JsonValueType as JsonValueType
 from homeassistant.util.read_only_dict import ReadOnlyDict as ReadOnlyDict

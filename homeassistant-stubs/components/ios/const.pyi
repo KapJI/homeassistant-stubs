@@ -1,6 +1,9 @@
 from _typeshed import Incomplete
+from homeassistant.util.hass_dict import HassKey as HassKey
+from typing import Any
 
 DOMAIN: str
+IOS_DATA: HassKey[dict[str, dict[str, Any]]]
 ATTR_BATTERY: str
 ATTR_BATTERY_LEVEL: str
 ATTR_BATTERY_STATE: str

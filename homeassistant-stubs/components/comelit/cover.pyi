@@ -3,7 +3,7 @@ from .coordinator import ComelitConfigEntry as ComelitConfigEntry, ComelitSerial
 from .entity import ComelitBridgeBaseEntity as ComelitBridgeBaseEntity
 from .utils import bridge_api_call as bridge_api_call, new_device_listener as new_device_listener
 from _typeshed import Incomplete
-from aiocomelit import ComelitSerialBridgeObject as ComelitSerialBridgeObject
+from aiocomelit import ComelitDeviceObject as ComelitDeviceObject
 from homeassistant.components.cover import CoverDeviceClass as CoverDeviceClass, CoverEntity as CoverEntity, CoverState as CoverState
 from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
@@ -18,7 +18,7 @@ class ComelitCoverEntity(ComelitBridgeBaseEntity, RestoreEntity, CoverEntity):
     _attr_device_class: Incomplete
     _attr_name: Incomplete
     _last_action: int | None
-    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitSerialBridgeObject, config_entry_entry_id: str) -> None: ...
+    def __init__(self, coordinator: ComelitSerialBridge, device: ComelitDeviceObject, config_entry_entry_id: str) -> None: ...
     def _current_action(self, action: str) -> bool: ...
     @property
     def device_status(self) -> int: ...

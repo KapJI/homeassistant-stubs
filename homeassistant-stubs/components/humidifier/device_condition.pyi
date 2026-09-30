@@ -1,5 +1,6 @@
-import voluptuous as vol
-from . import DOMAIN as DOMAIN, const as const
+import probatio
+from . import const as const
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from homeassistant.components.device_automation import async_get_entity_registry_entry_or_raise as async_get_entity_registry_entry_or_raise, toggle_entity as toggle_entity
 from homeassistant.const import ATTR_ENTITY_ID as ATTR_ENTITY_ID, ATTR_MODE as ATTR_MODE, CONF_CONDITION as CONF_CONDITION, CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_DOMAIN as CONF_DOMAIN, CONF_ENTITY_ID as CONF_ENTITY_ID, CONF_TYPE as CONF_TYPE
@@ -18,4 +19,4 @@ _STATE_ATTRIBUTE_TO_CONFIG_KEY: Incomplete
 async def async_get_conditions(hass: HomeAssistant, device_id: str) -> list[dict[str, str]]: ...
 @callback
 def async_condition_from_config(hass: HomeAssistant, config: ConfigType) -> condition.ConditionCheckerType: ...
-async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, vol.Schema]: ...
+async def async_get_condition_capabilities(hass: HomeAssistant, config: ConfigType) -> dict[str, probatio.Schema]: ...

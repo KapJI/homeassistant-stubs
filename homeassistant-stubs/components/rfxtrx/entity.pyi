@@ -9,8 +9,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_d
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
 from typing import override
 
-def _get_identifiers_from_device_tuple(device_tuple: DeviceTuple) -> set[tuple[str, str]]: ...
-
 class RfxtrxEntity(RestoreEntity):
     _attr_assumed_state: bool
     _attr_has_entity_name: bool

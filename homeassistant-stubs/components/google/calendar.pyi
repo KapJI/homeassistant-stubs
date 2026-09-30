@@ -8,7 +8,7 @@ from _typeshed import Incomplete
 from collections.abc import Mapping
 from datetime import datetime, timedelta
 from gcal_sync.model import Calendar as Calendar, Event, EventTypeEnum
-from homeassistant.components.calendar import CREATE_EVENT_SCHEMA as CREATE_EVENT_SCHEMA, CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEntityFeature as CalendarEntityFeature, CalendarEvent as CalendarEvent, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END as EVENT_END, EVENT_LOCATION as EVENT_LOCATION, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_SUMMARY as EVENT_SUMMARY, extract_offset as extract_offset, is_offset_reached as is_offset_reached
+from homeassistant.components.calendar import CREATE_EVENT_SCHEMA as CREATE_EVENT_SCHEMA, CalendarEntity as CalendarEntity, CalendarEntityDescription as CalendarEntityDescription, CalendarEntityFeature as CalendarEntityFeature, CalendarEvent as CalendarEvent, CalendarEventStatus as CalendarEventStatus, ENTITY_ID_FORMAT as ENTITY_ID_FORMAT, EVENT_DESCRIPTION as EVENT_DESCRIPTION, EVENT_END as EVENT_END, EVENT_LOCATION as EVENT_LOCATION, EVENT_RRULE as EVENT_RRULE, EVENT_START as EVENT_START, EVENT_SUMMARY as EVENT_SUMMARY, extract_offset as extract_offset, is_offset_reached as is_offset_reached
 from homeassistant.const import CONF_DEVICE_ID as CONF_DEVICE_ID, CONF_ENTITIES as CONF_ENTITIES, CONF_NAME as CONF_NAME, CONF_OFFSET as CONF_OFFSET
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, PlatformNotReady as PlatformNotReady

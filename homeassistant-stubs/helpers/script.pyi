@@ -1,6 +1,6 @@
 import asyncio
 import logging
-import voluptuous as vol
+import probatio
 from . import condition as condition, service as service, template as template
 from .condition import ConditionChecker as ConditionChecker, trace_condition_function as trace_condition_function
 from .dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send_internal as async_dispatcher_send_internal
@@ -40,6 +40,7 @@ _MAX_EXCEEDED_CHOICES: Incomplete
 DEFAULT_MAX_EXCEEDED: str
 ATTR_CUR: str
 ATTR_MAX: str
+CONFIGURATION_ERRORS: Incomplete
 DATA_SCRIPTS: HassKey[dict[int, ScriptData]]
 DATA_SCRIPT_BREAKPOINTS: HassKey[dict[str, dict[str, set[str]]]]
 DATA_NEW_SCRIPT_RUNS_NOT_ALLOWED: HassKey[None]
@@ -74,7 +75,7 @@ class trace_action:
     async def __aenter__(self) -> TraceElement: ...
     async def __aexit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: object) -> None: ...
 
-def make_script_schema(schema: Mapping[Any, Any], default_script_mode: str, extra: int = ...) -> vol.Schema: ...
+def make_script_schema(schema: Mapping[Any, Any], default_script_mode: str, extra: int = ...) -> probatio.Schema: ...
 
 STATIC_VALIDATION_ACTION_TYPES: Incomplete
 REPEAT_WARN_ITERATIONS: int

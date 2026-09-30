@@ -1,6 +1,5 @@
 from ..const import ATTR_EVENT as ATTR_EVENT, ATTR_EVENT_DATA as ATTR_EVENT_DATA, ATTR_EVENT_SOURCE as ATTR_EVENT_SOURCE, ATTR_NODE_ID as ATTR_NODE_ID, ATTR_PARTIAL_DICT_MATCH as ATTR_PARTIAL_DICT_MATCH, DOMAIN as DOMAIN
-from ..helpers import async_get_config_entry_from_node as async_get_config_entry_from_node, async_get_nodes_from_targets as async_get_nodes_from_targets, get_device_id as get_device_id, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry
-from .trigger_helpers import async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation
+from ..helpers import async_bypass_dynamic_config_validation as async_bypass_dynamic_config_validation, async_get_config_entry_from_node as async_get_config_entry_from_node, async_get_nodes_from_targets as async_get_nodes_from_targets, get_device_id as get_device_id, get_home_and_node_id_from_device_entry as get_home_and_node_id_from_device_entry
 from _typeshed import Incomplete
 from collections.abc import Callable as Callable
 from homeassistant.const import ATTR_CONFIG_ENTRY_ID as ATTR_CONFIG_ENTRY_ID, ATTR_DEVICE_ID as ATTR_DEVICE_ID, ATTR_ENTITY_ID as ATTR_ENTITY_ID, CONF_OPTIONS as CONF_OPTIONS
@@ -16,7 +15,7 @@ from zwave_js_server.model.driver import Driver as Driver
 RELATIVE_PLATFORM_TYPE: Incomplete
 PLATFORM_TYPE: Incomplete
 
-def validate_non_node_event_source(obj: dict) -> dict: ...
+def validate_event_source_targets(obj: dict) -> dict: ...
 def validate_event_name(obj: dict) -> dict: ...
 def validate_event_data(obj: dict) -> dict: ...
 

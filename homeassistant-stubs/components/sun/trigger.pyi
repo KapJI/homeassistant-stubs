@@ -1,5 +1,5 @@
 import astral
-import voluptuous as vol
+import probatio
 from .const import DOMAIN as DOMAIN, ELEVATION_ASTRONOMICAL as ELEVATION_ASTRONOMICAL, ELEVATION_BLUE_HOUR_HIGH as ELEVATION_BLUE_HOUR_HIGH, ELEVATION_BLUE_HOUR_LOW as ELEVATION_BLUE_HOUR_LOW, ELEVATION_CIVIL as ELEVATION_CIVIL, ELEVATION_GOLDEN_HOUR_HIGH as ELEVATION_GOLDEN_HOUR_HIGH, ELEVATION_GOLDEN_HOUR_LOW as ELEVATION_GOLDEN_HOUR_LOW, ELEVATION_HORIZON as ELEVATION_HORIZON, ELEVATION_NAUTICAL as ELEVATION_NAUTICAL, STATE_ATTR_ELEVATION as STATE_ATTR_ELEVATION
 from _typeshed import Incomplete
 from datetime import datetime, timedelta
@@ -28,7 +28,7 @@ _PERIODS: Incomplete
 CONF_OFFSET_TYPE: str
 OFFSET_TYPE_BEFORE: str
 OFFSET_TYPE_AFTER: str
-_OFFSET_OPTIONS: dict[vol.Marker, Any]
+_OFFSET_OPTIONS: dict[probatio.Marker, Any]
 _TWILIGHT_ELEVATIONS: Incomplete
 _SUN_ENTITY_ID: Incomplete
 _ELEVATION_DOMAIN_SPECS: Incomplete
@@ -51,7 +51,7 @@ _EVENT_TRIGGER_SCHEMA: Incomplete
 class SunEventTrigger(Trigger):
     _event: str
     _context: str | None
-    _schema: vol.Schema
+    _schema: probatio.Schema
     @override
     @classmethod
     async def async_validate_config(cls, hass: HomeAssistant, config: ConfigType) -> ConfigType: ...
@@ -156,7 +156,7 @@ class PolarNightEndedTrigger(_MidnightSunPolarNightTrigger):
     _context: str
     _target_above: bool
 
-_LEGACY_OPTIONS_SCHEMA_DICT: dict[vol.Marker, Any]
+_LEGACY_OPTIONS_SCHEMA_DICT: dict[probatio.Marker, Any]
 
 class LegacySunTrigger(SunEventTrigger):
     _schema: Incomplete

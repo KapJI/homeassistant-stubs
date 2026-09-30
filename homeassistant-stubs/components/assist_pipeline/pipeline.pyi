@@ -1,48 +1,43 @@
-import asyncio
-from .audio_enhancer import AudioEnhancer as AudioEnhancer, EnhancedAudioChunk as EnhancedAudioChunk, MicroVadSpeexEnhancer as MicroVadSpeexEnhancer
-from .const import ACKNOWLEDGE_PATH as ACKNOWLEDGE_PATH, BYTES_PER_CHUNK as BYTES_PER_CHUNK, CONF_DEBUG_RECORDING_DIR as CONF_DEBUG_RECORDING_DIR, DATA_CONFIG as DATA_CONFIG, DATA_LAST_WAKE_UP as DATA_LAST_WAKE_UP, DOMAIN as DOMAIN, MS_PER_CHUNK as MS_PER_CHUNK, SAMPLES_PER_CHUNK as SAMPLES_PER_CHUNK, SAMPLE_CHANNELS as SAMPLE_CHANNELS, SAMPLE_RATE as SAMPLE_RATE, SAMPLE_WIDTH as SAMPLE_WIDTH, WAKE_WORD_COOLDOWN as WAKE_WORD_COOLDOWN
-from .error import DuplicateWakeUpDetectedError as DuplicateWakeUpDetectedError, IntentRecognitionError as IntentRecognitionError, InvalidPipelineStagesError as InvalidPipelineStagesError, PipelineError as PipelineError, PipelineNotFound as PipelineNotFound, PipelineRunValidationError as PipelineRunValidationError, SpeechToTextError as SpeechToTextError, TextToSpeechError as TextToSpeechError, WakeWordDetectionAborted as WakeWordDetectionAborted, WakeWordDetectionError as WakeWordDetectionError, WakeWordTimeoutError as WakeWordTimeoutError
-from .vad import AudioBuffer as AudioBuffer, VoiceActivityTimeout as VoiceActivityTimeout, VoiceCommandSegmenter as VoiceCommandSegmenter, chunk_samples as chunk_samples
+from . import error as _error, models as _models, run as _run, runtime as _runtime
+from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
-from collections import deque
-from collections.abc import AsyncGenerator, AsyncIterable, Callable
-from dataclasses import dataclass, field
-from enum import StrEnum
-from hassil.recognize import RecognizeResult as RecognizeResult
-from homeassistant.components import conversation as conversation, media_player as media_player, stt as stt, tts as tts, wake_word as wake_word, websocket_api as websocket_api
-from homeassistant.const import EntityStateAttribute as EntityStateAttribute, MATCH_ALL as MATCH_ALL
-from homeassistant.core import Context as Context, HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-from homeassistant.helpers import chat_session as chat_session, intent as intent
-from homeassistant.helpers.collection import CHANGE_UPDATED as CHANGE_UPDATED, CollectionError as CollectionError, ItemNotFound as ItemNotFound, SerializedStorageCollection as SerializedStorageCollection, StorageCollection as StorageCollection, StorageCollectionWebsocket as StorageCollectionWebsocket
+from homeassistant.components import conversation as conversation, stt as stt, tts as tts, websocket_api as websocket_api
+from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
+from homeassistant.helpers.collection import CollectionError as CollectionError, ItemNotFound as ItemNotFound, SerializedStorageCollection as SerializedStorageCollection, StorageCollection as StorageCollection, StorageCollectionWebsocket as StorageCollectionWebsocket
 from homeassistant.helpers.singleton import singleton as singleton
 from homeassistant.helpers.storage import Store as Store
 from homeassistant.helpers.typing import UNDEFINED as UNDEFINED, UndefinedType as UndefinedType, VolDictType as VolDictType
-from homeassistant.util import ulid as ulid_util
-from homeassistant.util.hass_dict import HassKey as HassKey
-from homeassistant.util.limited_size_dict import LimitedSizeDict as LimitedSizeDict
-from pathlib import Path
-from queue import Queue
-from threading import Thread
 from typing import Any, override
 
+PipelineError = _error.PipelineError
+PipelineNotFound = _error.PipelineNotFound
+PIPELINE_STAGE_ORDER: Incomplete
+AudioSettings = _models.AudioSettings
+Pipeline = _models.Pipeline
+PipelineEvent = _models.PipelineEvent
+PipelineEventCallback: Incomplete
+PipelineEventType = _models.PipelineEventType
+PipelineStage = _models.PipelineStage
+WakeWordSettings = _models.WakeWordSettings
+STORED_PIPELINE_RUNS: Incomplete
+PipelineInput = _run.PipelineInput
+PipelineRun = _run.PipelineRun
+KEY_ASSIST_PIPELINE: Incomplete
+AssistDevice = _runtime.AssistDevice
+DeviceAudioQueue = _runtime.DeviceAudioQueue
+PipelineData = _runtime.PipelineData
+PipelineRunDebug = _runtime.PipelineRunDebug
+PipelineRuns = _runtime.PipelineRuns
 _LOGGER: Incomplete
 STORAGE_KEY: Incomplete
 STORAGE_VERSION: int
 STORAGE_VERSION_MINOR: int
 ENGINE_LANGUAGE_PAIRS: Incomplete
-KEY_ASSIST_PIPELINE: HassKey[PipelineData]
-KEY_PIPELINE_CONVERSATION_DATA: HassKey[dict[str, PipelineConversationData]]
-STREAM_RESPONSE_CHARS: int
 
 def validate_language(data: dict[str, Any]) -> Any: ...
 
 PIPELINE_FIELDS: VolDictType
-STORED_PIPELINE_RUNS: int
-SAVE_DELAY: int
 
-@callback
-def _async_local_fallback_intent_filter(result: RecognizeResult) -> bool: ...
 @callback
 def _async_resolve_default_pipeline_settings(hass: HomeAssistant, *, conversation_engine_id: str | None = None, stt_engine_id: str | None = None, tts_engine_id: str | None = None, pipeline_name: str) -> dict[str, str | None]: ...
 async def _async_create_default_pipeline(hass: HomeAssistant, pipeline_store: PipelineStorageCollection) -> Pipeline: ...
@@ -54,144 +49,6 @@ def async_get_pipeline(hass: HomeAssistant, pipeline_id: str | None = None) -> P
 @callback
 def async_get_pipelines(hass: HomeAssistant) -> list[Pipeline]: ...
 async def async_update_pipeline(hass: HomeAssistant, pipeline: Pipeline, *, conversation_engine: str | UndefinedType = ..., conversation_language: str | UndefinedType = ..., language: str | UndefinedType = ..., name: str | UndefinedType = ..., stt_engine: str | UndefinedType | None = ..., stt_language: str | UndefinedType | None = ..., tts_engine: str | UndefinedType | None = ..., tts_language: str | UndefinedType | None = ..., tts_voice: str | UndefinedType | None = ..., wake_word_entity: str | UndefinedType | None = ..., wake_word_id: str | UndefinedType | None = ..., prefer_local_intents: bool | UndefinedType = ...) -> None: ...
-
-class PipelineEventType(StrEnum):
-    RUN_START = 'run-start'
-    RUN_END = 'run-end'
-    WAKE_WORD_START = 'wake_word-start'
-    WAKE_WORD_END = 'wake_word-end'
-    STT_START = 'stt-start'
-    STT_VAD_START = 'stt-vad-start'
-    STT_VAD_END = 'stt-vad-end'
-    STT_END = 'stt-end'
-    INTENT_START = 'intent-start'
-    INTENT_PROGRESS = 'intent-progress'
-    INTENT_END = 'intent-end'
-    TTS_START = 'tts-start'
-    TTS_END = 'tts-end'
-    ERROR = 'error'
-
-@dataclass(frozen=True)
-class PipelineEvent:
-    type: PipelineEventType
-    data: dict[str, Any] | None = ...
-    timestamp: str = field(default_factory=Incomplete)
-type PipelineEventCallback = Callable[[PipelineEvent], None]
-
-@dataclass(frozen=True)
-class Pipeline:
-    conversation_engine: str
-    conversation_language: str
-    language: str
-    name: str
-    stt_engine: str | None
-    stt_language: str | None
-    tts_engine: str | None
-    tts_language: str | None
-    tts_voice: str | None
-    wake_word_entity: str | None
-    wake_word_id: str | None
-    prefer_local_intents: bool = ...
-    id: str = field(default_factory=ulid_util.ulid_now)
-    @classmethod
-    def from_json(cls, data: dict[str, Any]) -> Pipeline: ...
-    def to_json(self) -> dict[str, Any]: ...
-
-class PipelineStage(StrEnum):
-    WAKE_WORD = 'wake_word'
-    STT = 'stt'
-    INTENT = 'intent'
-    TTS = 'tts'
-    END = 'end'
-
-PIPELINE_STAGE_ORDER: Incomplete
-
-@dataclass(frozen=True)
-class WakeWordSettings:
-    timeout: float | None = ...
-    audio_seconds_to_buffer: float = ...
-
-@dataclass(frozen=True)
-class AudioSettings:
-    noise_suppression_level: int = ...
-    auto_gain_dbfs: int = ...
-    volume_multiplier: float = ...
-    is_vad_enabled: bool = ...
-    silence_seconds: float = ...
-    def __post_init__(self) -> None: ...
-    @property
-    def needs_processor(self) -> bool: ...
-
-@dataclass
-class PipelineRun:
-    hass: HomeAssistant
-    context: Context
-    pipeline: Pipeline
-    start_stage: PipelineStage
-    end_stage: PipelineStage
-    event_callback: PipelineEventCallback
-    language: str = ...
-    runner_data: Any | None = ...
-    intent_agent: conversation.AgentInfo | None = ...
-    tts_audio_output: str | dict[str, Any] | None = ...
-    wake_word_settings: WakeWordSettings | None = ...
-    audio_settings: AudioSettings = field(default_factory=AudioSettings)
-    id: str = field(default_factory=ulid_util.ulid_now)
-    stt_provider: stt.SpeechToTextEntity | stt.Provider = field(init=False, repr=False)
-    tts_stream: tts.ResultStream | None = field(init=False, default=None)
-    wake_word_entity_id: str | None = field(init=False, default=None, repr=False)
-    wake_word_entity: wake_word.WakeWordDetectionEntity = field(init=False, repr=False)
-    abort_wake_word_detection: bool = field(init=False, default=False)
-    debug_recording_thread: Thread | None = ...
-    debug_recording_queue: Queue[str | bytes | None] | None = ...
-    audio_enhancer: AudioEnhancer | None = ...
-    audio_chunking_buffer: AudioBuffer = field(default_factory=Incomplete)
-    _device_id: str | None = ...
-    _satellite_id: str | None = ...
-    _conversation_data: PipelineConversationData | None = ...
-    _intent_agent_only = ...
-    _streamed_response_text = ...
-    def __post_init__(self) -> None: ...
-    @override
-    def __eq__(self, other: object) -> bool: ...
-    @callback
-    def process_event(self, event: PipelineEvent) -> None: ...
-    def start(self, conversation_id: str, device_id: str | None, satellite_id: str | None) -> None: ...
-    async def end(self) -> None: ...
-    async def prepare_wake_word_detection(self) -> None: ...
-    async def wake_word_detection(self, stream: AsyncIterable[EnhancedAudioChunk], audio_chunks_for_stt: list[EnhancedAudioChunk]) -> wake_word.DetectionResult | None: ...
-    async def _wake_word_audio_stream(self, audio_stream: AsyncIterable[EnhancedAudioChunk], stt_audio_buffer: deque[EnhancedAudioChunk] | None, wake_word_vad: VoiceActivityTimeout | None, sample_rate: int = ..., sample_width: int = ...) -> AsyncIterable[tuple[bytes, int]]: ...
-    async def prepare_speech_to_text(self, metadata: stt.SpeechMetadata) -> None: ...
-    async def speech_to_text(self, metadata: stt.SpeechMetadata, stream: AsyncIterable[EnhancedAudioChunk]) -> str: ...
-    async def _speech_to_text_stream(self, audio_stream: AsyncIterable[EnhancedAudioChunk], stt_vad: VoiceCommandSegmenter | None, sample_rate: int = ..., sample_width: int = ...) -> AsyncGenerator[bytes]: ...
-    async def prepare_recognize_intent(self, session: chat_session.ChatSession) -> None: ...
-    async def recognize_intent(self, intent_input: str, conversation_id: str, conversation_extra_system_prompt: str | None) -> tuple[str, bool]: ...
-    def _get_all_targets_in_satellite_area(self, intent_response: intent.IntentResponse, satellite_id: str | None, device_id: str | None) -> bool: ...
-    async def prepare_text_to_speech(self) -> None: ...
-    async def text_to_speech(self, tts_input: str, override_media_path: Path | None = None) -> None: ...
-    def _capture_chunk(self, audio_bytes: bytes | None) -> None: ...
-    def _start_debug_recording_thread(self) -> None: ...
-    async def _stop_debug_recording_thread(self) -> None: ...
-    async def process_volume_only(self, audio_stream: AsyncIterable[bytes]) -> AsyncGenerator[EnhancedAudioChunk]: ...
-    async def process_enhance_audio(self, audio_stream: AsyncIterable[bytes]) -> AsyncGenerator[EnhancedAudioChunk]: ...
-
-def _multiply_volume(chunk: bytes, volume_multiplier: float) -> bytes: ...
-def _pipeline_debug_recording_thread_proc(run_recording_dir: Path, queue: Queue[str | bytes | None], message_timeout: float = 5) -> None: ...
-
-@dataclass(kw_only=True)
-class PipelineInput:
-    run: PipelineRun
-    session: chat_session.ChatSession
-    stt_metadata: stt.SpeechMetadata | None = ...
-    stt_stream: AsyncIterable[bytes] | None = ...
-    wake_word_phrase: str | None = ...
-    intent_input: str | None = ...
-    tts_input: str | None = ...
-    conversation_extra_system_prompt: str | None = ...
-    device_id: str | None = ...
-    satellite_id: str | None = ...
-    async def execute(self, validate: bool = False) -> None: ...
-    async def validate(self) -> None: ...
 
 class PipelinePreferred(CollectionError):
     item_id: Incomplete
@@ -240,47 +97,8 @@ class PipelineStorageCollectionWebsocket(StorageCollectionWebsocket[PipelineStor
     def ws_list_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict) -> None: ...
     async def ws_set_preferred_item(self, hass: HomeAssistant, connection: websocket_api.ActiveConnection, msg: dict[str, Any]) -> None: ...
 
-class PipelineRuns:
-    _pipeline_runs: dict[str, dict[str, PipelineRun]]
-    _pipeline_store: Incomplete
-    def __init__(self, pipeline_store: PipelineStorageCollection) -> None: ...
-    def add_run(self, pipeline_run: PipelineRun) -> None: ...
-    def remove_run(self, pipeline_run: PipelineRun) -> None: ...
-    async def _change_listener(self, change_type: str, item_id: str, change: dict) -> None: ...
-
-@dataclass(slots=True)
-class DeviceAudioQueue:
-    queue: asyncio.Queue[bytes | None]
-    id: str = field(default_factory=ulid_util.ulid_now)
-    overflow: bool = ...
-
-@dataclass(slots=True)
-class AssistDevice:
-    domain: str
-    unique_id_prefix: str
-
-class PipelineData:
-    pipeline_store: Incomplete
-    pipeline_debug: dict[str, LimitedSizeDict[str, PipelineRunDebug]]
-    pipeline_devices: dict[str, AssistDevice]
-    pipeline_runs: Incomplete
-    device_audio_queues: dict[str, DeviceAudioQueue]
-    def __init__(self, pipeline_store: PipelineStorageCollection) -> None: ...
-
-@dataclass(slots=True)
-class PipelineRunDebug:
-    events: list[PipelineEvent] = field(default_factory=list, init=False)
-    timestamp: str = field(default_factory=Incomplete, init=False)
-
 class PipelineStore(Store[SerializedPipelineStorageCollection]):
     @override
     async def _async_migrate_func(self, old_major_version: int, old_minor_version: int, old_data: SerializedPipelineStorageCollection) -> SerializedPipelineStorageCollection: ...
 
 async def async_setup_pipeline_store(hass: HomeAssistant) -> PipelineData: ...
-
-@dataclass
-class PipelineConversationData:
-    continue_conversation_agent: str | None = ...
-
-@callback
-def async_get_pipeline_conversation_data(hass: HomeAssistant, session: chat_session.ChatSession) -> PipelineConversationData: ...

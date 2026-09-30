@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from enum import StrEnum
 from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
+from homeassistant.helpers.service import async_get_device_and_config_entry as async_get_device_and_config_entry
 
 LOGGER: Incomplete
 

@@ -7,6 +7,7 @@ from homeassistant.core import Event as Event, HomeAssistant as HomeAssistant, c
 from homeassistant.exceptions import ConfigEntryNotReady as ConfigEntryNotReady
 from homeassistant.helpers.dispatcher import async_dispatcher_connect as async_dispatcher_connect, async_dispatcher_send as async_dispatcher_send
 from homeassistant.helpers.event import async_track_time_interval as async_track_time_interval
+from pytradfri.api.aiocoap_api import APIRequestProtocol as APIRequestProtocol
 from pytradfri.command import Command as Command
 from pytradfri.device import Device as Device
 

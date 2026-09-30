@@ -8,7 +8,7 @@ from homeassistant.const import CONF_FILENAME as CONF_FILENAME
 from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
 from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
 from homeassistant.helpers import collection as collection, storage as storage
-from homeassistant.helpers.json import json_bytes as json_bytes, json_fragment as json_fragment
+from homeassistant.helpers.json import cached_json_fragment as cached_json_fragment, json_fragment as json_fragment
 from homeassistant.util.yaml import Secrets as Secrets, load_yaml_dict as load_yaml_dict
 from typing import Any, override
 

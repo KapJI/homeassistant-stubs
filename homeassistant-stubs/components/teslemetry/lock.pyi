@@ -9,6 +9,7 @@ from homeassistant.core import HomeAssistant as HomeAssistant
 from homeassistant.exceptions import ServiceValidationError as ServiceValidationError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback as AddConfigEntryEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity as RestoreEntity
+from tesla_fleet_api.router import VehicleRouter as VehicleRouter
 from tesla_fleet_api.teslemetry import Vehicle as Vehicle
 from typing import Any, override
 
@@ -18,7 +19,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, entry: TeslemetryConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class TeslemetryVehicleLockEntity(TeslemetryRootEntity, LockEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     _attr_is_locked: bool
     @override
     async def async_lock(self, **kwargs: Any) -> None: ...
@@ -41,7 +42,7 @@ class TeslemetryStreamingVehicleLockEntity(TeslemetryVehicleStreamEntity, Teslem
     def _callback(self, value: bool | None) -> None: ...
 
 class TeslemetryCableLockEntity(TeslemetryRootEntity, LockEntity):
-    api: Vehicle
+    api: Vehicle | VehicleRouter
     @override
     async def async_lock(self, **kwargs: Any) -> None: ...
     _attr_is_locked: bool

@@ -1,11 +1,14 @@
 from aiohttp.web import Request as Request
+from homeassistant.auth.models import User as User
 from homeassistant.helpers.http import KEY_AUTHENTICATED as KEY_AUTHENTICATED, KEY_HASS as KEY_HASS
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
 DOMAIN: Final[str]
 KEY_HASS_USER: Final[str]
 KEY_HASS_REFRESH_TOKEN_ID: Final[str]
 KEY_SUPERVISOR_UNIX_SOCKET: Final[str]
+DATA_SUPERVISOR_USER: HassKey[User]
 CONF_SERVER_HOST: Final[str]
 CONF_SERVER_PORT: Final[str]
 CONF_BASE_URL: Final[str]

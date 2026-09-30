@@ -13,6 +13,7 @@ PARALLEL_UPDATES: int
 async def async_setup_entry(hass: HomeAssistant, config_entry: VictronGxConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class VictronButton(VictronBaseEntity, ButtonEntity):
+    _follow_metric_availability: bool
     @callback
     @override
     def _on_update_cb(self, _value: Any) -> None: ...

@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .entity import Entity as Entity
 from .template import Template as Template, TemplateStateFromEntityId as TemplateStateFromEntityId, _SENTINEL as _SENTINEL, render_complex as render_complex, result_as_boolean as result_as_boolean
 from .template.context import render_with_context as render_with_context
@@ -18,7 +18,7 @@ CONF_PICTURE: str
 CONF_TO_ATTRIBUTE: Incomplete
 TEMPLATE_ENTITY_BASE_SCHEMA: Incomplete
 
-def make_template_entity_base_schema(default_name: str) -> vol.Schema: ...
+def make_template_entity_base_schema(default_name: str) -> probatio.Schema: ...
 def log_triggered_template_error(entity_id: str, err: TemplateError, key: str | None = None, attribute: str | None = None) -> None: ...
 
 TEMPLATE_SENSOR_BASE_SCHEMA: Incomplete

@@ -4,7 +4,7 @@ from _typeshed import Incomplete
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult, SOURCE_RECONFIGURE as SOURCE_RECONFIGURE
 from homeassistant.const import CONF_HOST as CONF_HOST, CONF_PORT as CONF_PORT
 from homeassistant.core import HomeAssistant as HomeAssistant
-from madvr.madvr import Madvr
+from pymadvr.madvr import Madvr
 from typing import Any, override
 
 _LOGGER: Incomplete

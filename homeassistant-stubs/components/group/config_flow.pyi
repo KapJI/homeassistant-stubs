@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .binary_sensor import CONF_ALL as CONF_ALL, async_create_preview_binary_sensor as async_create_preview_binary_sensor
 from .button import async_create_preview_button as async_create_preview_button
 from .const import CONF_HIDE_MEMBERS as CONF_HIDE_MEMBERS, CONF_IGNORE_NON_NUMERIC as CONF_IGNORE_NON_NUMERIC, DOMAIN as DOMAIN
@@ -25,19 +25,19 @@ from typing import Any, override
 
 _STATISTIC_MEASURES: Incomplete
 
-async def basic_group_options_schema(domain: str | list[str], handler: SchemaCommonFlowHandler | None) -> vol.Schema: ...
-def basic_group_config_schema(domain: str | list[str]) -> vol.Schema: ...
-async def binary_sensor_options_schema(handler: SchemaCommonFlowHandler | None) -> vol.Schema: ...
+async def basic_group_options_schema(domain: str | list[str], handler: SchemaCommonFlowHandler | None) -> probatio.Schema: ...
+def basic_group_config_schema(domain: str | list[str]) -> probatio.Schema: ...
+async def binary_sensor_options_schema(handler: SchemaCommonFlowHandler | None) -> probatio.Schema: ...
 
 BINARY_SENSOR_CONFIG_SCHEMA: Incomplete
 SENSOR_CONFIG_EXTENDS: Incomplete
 SENSOR_OPTIONS: Incomplete
 
-async def sensor_options_schema(domain: str, handler: SchemaCommonFlowHandler | None) -> vol.Schema: ...
+async def sensor_options_schema(domain: str, handler: SchemaCommonFlowHandler | None) -> probatio.Schema: ...
 
 SENSOR_CONFIG_SCHEMA: Incomplete
 
-async def light_switch_options_schema(domain: str, handler: SchemaCommonFlowHandler | None) -> vol.Schema: ...
+async def light_switch_options_schema(domain: str, handler: SchemaCommonFlowHandler | None) -> probatio.Schema: ...
 
 LIGHT_CONFIG_SCHEMA: Incomplete
 SWITCH_CONFIG_SCHEMA: Incomplete
@@ -48,7 +48,7 @@ def set_group_type(group_type: str) -> Callable[[SchemaCommonFlowHandler, dict[s
 
 CONFIG_FLOW: Incomplete
 OPTIONS_FLOW: Incomplete
-PREVIEW_OPTIONS_SCHEMA: dict[str, vol.Schema]
+PREVIEW_OPTIONS_SCHEMA: dict[str, probatio.Schema]
 CREATE_PREVIEW_ENTITY: dict[str, Callable[[HomeAssistant, str, dict[str, Any]], GroupEntity | MediaPlayerGroup]]
 
 class GroupConfigFlowHandler(SchemaConfigFlowHandler, domain=DOMAIN):

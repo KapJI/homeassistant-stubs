@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_PROCESS as CONF_PROCESS, DOMAIN as DOMAIN
 from .util import get_all_running_processes as get_all_running_processes
 from _typeshed import Incomplete
@@ -9,7 +9,7 @@ from homeassistant.util import slugify as slugify
 from typing import Any, override
 
 async def validate_sensor_setup(handler: SchemaCommonFlowHandler, user_input: dict[str, Any]) -> dict[str, Any]: ...
-async def get_sensor_setup_schema(handler: SchemaCommonFlowHandler) -> vol.Schema: ...
+async def get_sensor_setup_schema(handler: SchemaCommonFlowHandler) -> probatio.Schema: ...
 async def get_suggested_value(handler: SchemaCommonFlowHandler) -> dict[str, Any]: ...
 
 CONFIG_FLOW: Incomplete

@@ -1,8 +1,9 @@
-from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, CoverConf as CoverConf, DOMAIN as DOMAIN, KNX_MODULE_KEY as KNX_MODULE_KEY
+from .const import CONF_SYNC_STATE as CONF_SYNC_STATE, CoverConf as CoverConf, KNX_MODULE_KEY as KNX_MODULE_KEY
 from .entity import KnxUiEntity as KnxUiEntity, KnxUiEntityPlatformController as KnxUiEntityPlatformController, KnxYamlEntity as KnxYamlEntity, build_yaml_unique_id as build_yaml_unique_id
 from .knx_module import KNXModule as KNXModule
 from .schema import CoverSchema as CoverSchema
-from .storage.const import CONF_ENTITY as CONF_ENTITY, CONF_GA_ANGLE as CONF_GA_ANGLE, CONF_GA_POSITION_SET as CONF_GA_POSITION_SET, CONF_GA_POSITION_STATE as CONF_GA_POSITION_STATE, CONF_GA_STEP as CONF_GA_STEP, CONF_GA_STOP as CONF_GA_STOP, CONF_GA_UP_DOWN as CONF_GA_UP_DOWN
+from .storage.const import CONF_GA_ANGLE as CONF_GA_ANGLE, CONF_GA_POSITION_SET as CONF_GA_POSITION_SET, CONF_GA_POSITION_STATE as CONF_GA_POSITION_STATE, CONF_GA_STEP as CONF_GA_STEP, CONF_GA_STOP as CONF_GA_STOP, CONF_GA_UP_DOWN as CONF_GA_UP_DOWN
+from .storage.entity_store_schema import KnxEntityData as KnxEntityData
 from .storage.util import ConfigExtractor as ConfigExtractor
 from _typeshed import Incomplete
 from homeassistant import config_entries as config_entries
@@ -69,4 +70,4 @@ def _create_ui_cover(xknx: XKNX, knx_config: ConfigType, name: str) -> XknxCover
 
 class KnxUiCover(_KnxCover, KnxUiEntity):
     _device: XknxCover
-    def __init__(self, knx_module: KNXModule, unique_id: str, config: dict[str, Any]) -> None: ...
+    def __init__(self, knx_module: KNXModule, unique_id: str, config: KnxEntityData[Any]) -> None: ...

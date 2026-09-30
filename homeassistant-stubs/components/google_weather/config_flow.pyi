@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_REFERRER as CONF_REFERRER, DOMAIN as DOMAIN, SECTION_API_KEY_OPTIONS as SECTION_API_KEY_OPTIONS
 from _typeshed import Incomplete
 from collections.abc import Mapping
@@ -15,7 +15,7 @@ _LOGGER: Incomplete
 STEP_USER_DATA_SCHEMA: Incomplete
 
 async def _validate_input(user_input: dict[str, Any], api: GoogleWeatherApi, errors: dict[str, str], description_placeholders: dict[str, str]) -> bool: ...
-def _get_location_schema(hass: HomeAssistant) -> vol.Schema: ...
+def _get_location_schema(hass: HomeAssistant) -> probatio.Schema: ...
 def _is_location_already_configured(hass: HomeAssistant, new_data: dict[str, float], epsilon: float = 0.0001, exclude_subentry_id: str | None = None) -> bool: ...
 
 class GoogleWeatherConfigFlow(ConfigFlow, domain=DOMAIN):

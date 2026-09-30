@@ -1,4 +1,4 @@
-from .const import DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN
+from .const import CONNECT_RETRIES as CONNECT_RETRIES, DEFAULT_SCAN_INTERVAL as DEFAULT_SCAN_INTERVAL, DOMAIN as DOMAIN, REOPEN_DELAYS as REOPEN_DELAYS
 from _typeshed import Incomplete
 from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry as ConfigEntry
@@ -11,10 +11,10 @@ _LOGGER: Incomplete
 
 @dataclass
 class BRouteData:
-    instantaneous_current_r_phase: float
-    instantaneous_current_t_phase: float
-    instantaneous_power: float
-    total_consumption: float
+    instantaneous_current_r_phase: float | None
+    instantaneous_current_t_phase: float | None
+    instantaneous_power: float | None
+    total_consumption: float | None
 type BRouteConfigEntry = ConfigEntry[BRouteUpdateCoordinator]
 
 @dataclass

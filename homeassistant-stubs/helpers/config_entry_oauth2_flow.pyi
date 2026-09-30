@@ -1,36 +1,24 @@
 import abc
 import logging
-from . import http as http
-from .aiohttp_client import async_get_clientsession as async_get_clientsession
-from .network import NoURLAvailableError as NoURLAvailableError
-from .service_info.dhcp import DhcpServiceInfo as DhcpServiceInfo
-from .service_info.ssdp import SsdpServiceInfo as SsdpServiceInfo
-from .service_info.zeroconf import ZeroconfServiceInfo as ZeroconfServiceInfo
+from . import http
+from .service_info.dhcp import DhcpServiceInfo
+from .service_info.ssdp import SsdpServiceInfo
+from .service_info.zeroconf import ZeroconfServiceInfo
 from _typeshed import Incomplete
 from abc import ABC, ABCMeta, abstractmethod
-from aiohttp import client as client, web
-from collections.abc import Awaitable, Callable as Callable, Mapping
-from habluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak
-from homeassistant import config_entries as config_entries
-from homeassistant.core import HomeAssistant as HomeAssistant, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError, OAuth2TokenRequestError as OAuth2TokenRequestError, OAuth2TokenRequestReauthError as OAuth2TokenRequestReauthError, OAuth2TokenRequestTransientError as OAuth2TokenRequestTransientError
-from homeassistant.loader import async_get_application_credentials as async_get_application_credentials
-from homeassistant.util.hass_dict import HassKey as HassKey
+from aiohttp import client, web
+from collections.abc import Awaitable, Callable, Mapping
+from habluetooth import BluetoothServiceInfoBleak
+from homeassistant import config_entries
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import ImplementationUnavailableError as ImplementationUnavailableError
 from typing import Any, override
 
-_LOGGER: Incomplete
-DATA_JWT_SECRET: str
-DATA_IMPLEMENTATIONS: HassKey[dict[str, dict[str, AbstractOAuth2Implementation]]]
-DATA_PROVIDERS: HassKey[dict[str, Callable[[HomeAssistant, str], Awaitable[list[AbstractOAuth2Implementation]]]]]
+__all__ = ['AUTH_CALLBACK_PATH', 'HEADER_FRONTEND_BASE', 'MY_AUTH_CALLBACK_PATH', 'AbstractOAuth2FlowHandler', 'AbstractOAuth2Implementation', 'ImplementationUnavailableError', 'LocalOAuth2Implementation', 'LocalOAuth2ImplementationWithPkce', 'OAuth2AuthorizeCallbackView', 'OAuth2Session', 'async_add_implementation_provider', 'async_get_config_entry_implementation', 'async_get_implementations', 'async_get_redirect_uri', 'async_oauth2_request', 'async_register_implementation']
+
 AUTH_CALLBACK_PATH: str
 HEADER_FRONTEND_BASE: str
 MY_AUTH_CALLBACK_PATH: str
-CLOCK_OUT_OF_SYNC_MAX_SEC: int
-OAUTH_AUTHORIZE_URL_TIMEOUT_SEC: int
-OAUTH_TOKEN_TIMEOUT_SEC: int
-_SHARED_ABORT_REASONS: Incomplete
-
-class ImplementationUnavailableError(HomeAssistantError): ...
 
 @callback
 def async_get_redirect_uri(hass: HomeAssistant) -> str: ...
@@ -46,6 +34,8 @@ class AbstractOAuth2Implementation(ABC, metaclass=abc.ABCMeta):
     async def async_generate_authorize_url(self, flow_id: str) -> str: ...
     @abstractmethod
     async def async_resolve_external_data(self, external_data: Any) -> dict: ...
+    @property
+    def service_domain(self) -> str: ...
     async def async_refresh_token(self, token: dict) -> dict: ...
     @abstractmethod
     async def _async_refresh_token(self, token: dict) -> dict: ...
@@ -155,7 +145,3 @@ class OAuth2Session:
     async def async_request(self, method: str, url: str, **kwargs: Any) -> client.ClientResponse: ...
 
 async def async_oauth2_request(hass: HomeAssistant, token: dict, method: str, url: str, **kwargs: Any) -> client.ClientResponse: ...
-@callback
-def _encode_jwt(hass: HomeAssistant, data: dict) -> str: ...
-@callback
-def _decode_jwt(hass: HomeAssistant, encoded: str) -> dict[str, Any] | None: ...

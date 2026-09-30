@@ -5,7 +5,7 @@ from homeassistant.components import bluetooth as bluetooth
 from homeassistant.components.bluetooth import BluetoothScanningMode as BluetoothScanningMode, BluetoothServiceInfo as BluetoothServiceInfo, async_discovered_service_info as async_discovered_service_info, async_process_advertisements as async_process_advertisements
 from homeassistant.config_entries import ConfigFlow as ConfigFlow, ConfigFlowResult as ConfigFlowResult
 from homeassistant.const import CONF_ADDRESS as CONF_ADDRESS, CONF_NAME as CONF_NAME, CONF_TOKEN as CONF_TOKEN
-from pysnooz.advertisement import SnoozAdvertisementData
+from pysnooz import SnoozAdvertisementData as SnoozAdvertisementData
 from typing import Any, override
 
 WAIT_FOR_PAIRING_TIMEOUT: int
@@ -14,6 +14,8 @@ WAIT_FOR_PAIRING_TIMEOUT: int
 class DiscoveredSnooz:
     info: BluetoothServiceInfo
     device: SnoozAdvertisementData
+    @property
+    def display_name(self) -> str: ...
 
 class SnoozConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION: int

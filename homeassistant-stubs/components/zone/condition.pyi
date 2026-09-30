@@ -1,5 +1,5 @@
 import abc
-import voluptuous as vol
+import probatio
 from . import in_zone as in_zone
 from .const import DOMAIN as DOMAIN
 from .helpers import get_in_zones_attribute as get_in_zones_attribute
@@ -14,7 +14,7 @@ from homeassistant.helpers.condition import ATTR_BEHAVIOR as ATTR_BEHAVIOR, BEHA
 from homeassistant.helpers.typing import ConfigType as ConfigType
 from typing import Any, Unpack, override
 
-_OPTIONS_SCHEMA_DICT: dict[vol.Marker, Any]
+_OPTIONS_SCHEMA_DICT: dict[probatio.Marker, Any]
 _CONDITION_SCHEMA: Incomplete
 
 def zone(hass: HomeAssistant, zone_ent: str | State | None, entity: str | State | None) -> bool: ...

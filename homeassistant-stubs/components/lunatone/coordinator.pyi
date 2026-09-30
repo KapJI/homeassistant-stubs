@@ -30,12 +30,12 @@ class LunatoneInfoDataUpdateCoordinator(DataUpdateCoordinator[InfoData]):
     @override
     async def _async_update_data(self) -> InfoData: ...
 
-class LunatoneDevicesDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Device]]):
+class LunatoneDevicesDataUpdateCoordinator(DataUpdateCoordinator[dict[int, dict[int, Device]]]):
     config_entry: LunatoneConfigEntry
     devices_api: Incomplete
     def __init__(self, hass: HomeAssistant, config_entry: LunatoneConfigEntry, devices_api: Devices) -> None: ...
     @override
-    async def _async_update_data(self) -> dict[int, Device]: ...
+    async def _async_update_data(self) -> dict[int, dict[int, Device]]: ...
 
 class LunatoneSensorsDataUpdateCoordinator(DataUpdateCoordinator[dict[int, Sensor]]):
     config_entry: LunatoneConfigEntry

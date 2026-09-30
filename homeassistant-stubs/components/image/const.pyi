@@ -8,5 +8,7 @@ class ImageEntityStateAttribute(StrEnum):
     ACCESS_TOKEN = 'access_token'
 
 DOMAIN: Final[str]
+ATTR_FILENAME: Final[str]
+SERVICE_SNAPSHOT: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[ImageEntity]]
 IMAGE_TIMEOUT: Final[int]

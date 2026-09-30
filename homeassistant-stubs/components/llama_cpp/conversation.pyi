@@ -1,5 +1,5 @@
 from . import LlamaCppConfigEntry as LlamaCppConfigEntry
-from .const import DOMAIN as DOMAIN
+from .const import CONF_STREAMING as CONF_STREAMING, DOMAIN as DOMAIN
 from .entity import LlamaCppBaseLLMEntity as LlamaCppBaseLLMEntity
 from _typeshed import Incomplete
 from homeassistant.components import conversation as conversation
@@ -12,6 +12,7 @@ from typing import Literal, override
 async def async_setup_entry(hass: HomeAssistant, config_entry: LlamaCppConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None: ...
 
 class LlamaCppConversationEntity(conversation.ConversationEntity, conversation.AbstractConversationAgent, LlamaCppBaseLLMEntity):
+    _attr_supports_streaming: Incomplete
     _attr_supported_features: Incomplete
     def __init__(self, entry: ConfigEntry, subentry: ConfigSubentry) -> None: ...
     @property

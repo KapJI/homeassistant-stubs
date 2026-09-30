@@ -2,6 +2,7 @@ from . import LightEntity as LightEntity, Profiles as Profiles
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
 from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.helpers.typing import VolDictType as VolDictType
 from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
@@ -49,3 +50,40 @@ COLOR_MODES_BRIGHTNESS: Incomplete
 COLOR_MODES_COLOR: Incomplete
 DEFAULT_MIN_KELVIN: int
 DEFAULT_MAX_KELVIN: int
+ATTR_COLOR_MODE: str
+ATTR_SUPPORTED_COLOR_MODES: str
+ATTR_TRANSITION: str
+ATTR_RGB_COLOR: str
+ATTR_RGBW_COLOR: str
+ATTR_RGBWW_COLOR: str
+ATTR_XY_COLOR: str
+ATTR_HS_COLOR: str
+ATTR_COLOR_TEMP_KELVIN: str
+ATTR_MIN_COLOR_TEMP_KELVIN: str
+ATTR_MAX_COLOR_TEMP_KELVIN: str
+ATTR_COLOR_NAME: str
+ATTR_WHITE: str
+ATTR_BRIGHTNESS: str
+ATTR_BRIGHTNESS_PCT: str
+ATTR_BRIGHTNESS_STEP: str
+ATTR_BRIGHTNESS_STEP_PCT: str
+ATTR_PROFILE: str
+ATTR_FLASH: str
+FLASH_SHORT: str
+FLASH_LONG: str
+ATTR_EFFECT_LIST: str
+ATTR_EFFECT: str
+EFFECT_COLORLOOP: str
+EFFECT_OFF: str
+EFFECT_RANDOM: str
+EFFECT_WHITE: str
+COLOR_GROUP: str
+LIGHT_PROFILES_FILE: str
+VALID_TRANSITION: Incomplete
+VALID_BRIGHTNESS: Incomplete
+VALID_BRIGHTNESS_PCT: Incomplete
+VALID_BRIGHTNESS_STEP: Incomplete
+VALID_BRIGHTNESS_STEP_PCT: Incomplete
+VALID_FLASH: Incomplete
+LIGHT_TURN_ON_SCHEMA: VolDictType
+LIGHT_TURN_OFF_SCHEMA: VolDictType

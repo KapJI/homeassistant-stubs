@@ -1,7 +1,8 @@
-import voluptuous as vol
+import probatio
 from .const import DOMAIN as DOMAIN
 from _typeshed import Incomplete
 from bleak.backends.device import BLEDevice as BLEDevice
+from collections.abc import Mapping
 from homeassistant import config_entries as config_entries
 from homeassistant.components import bluetooth as bluetooth
 from homeassistant.components.bluetooth import BluetoothServiceInfoBleak as BluetoothServiceInfoBleak, async_discovered_service_info as async_discovered_service_info
@@ -17,8 +18,9 @@ def _normalize_address(address: str) -> str: ...
 
 PIN_SCHEMA: Incomplete
 PIN_ONLY_SCHEMA: Incomplete
+REAUTH_SCHEMA: Incomplete
 
-def _user_schema(discoveries: dict[str, BluetoothServiceInfoBleak]) -> vol.Schema: ...
+def _user_schema(discoveries: dict[str, BluetoothServiceInfoBleak]) -> probatio.Schema: ...
 async def _async_validate_input(hass: HomeAssistant, *, address: str, pin: str, name: str | None) -> str: ...
 
 class BesenConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -32,3 +34,5 @@ class BesenConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_bluetooth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
     @override
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...
+    async def async_step_reauth(self, entry_data: Mapping[str, Any]) -> ConfigFlowResult: ...
+    async def async_step_reauth_confirm(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult: ...

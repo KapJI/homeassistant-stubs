@@ -54,10 +54,11 @@ class ReolinkHostCoordinatorEntity(CoordinatorEntity[ReolinkCoordinator]):
 
 class ReolinkChannelCoordinatorEntity(ReolinkHostCoordinatorEntity):
     _channel: Incomplete
+    _sub_channel: Incomplete
     _attr_unique_id: Incomplete
     _dev_id: Incomplete
     _attr_device_info: Incomplete
-    def __init__(self, reolink_data: ReolinkData, channel: int, coordinator: ReolinkCoordinator | None = None) -> None: ...
+    def __init__(self, reolink_data: ReolinkData, channel: int, sub_channel: int | None = None, coordinator: ReolinkCoordinator | None = None) -> None: ...
     @property
     @override
     def available(self) -> bool: ...

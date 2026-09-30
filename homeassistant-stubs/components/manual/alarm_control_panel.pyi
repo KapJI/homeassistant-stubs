@@ -1,5 +1,5 @@
 import datetime
-import voluptuous as vol
+import probatio
 from _typeshed import Incomplete
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity as AlarmControlPanelEntity, AlarmControlPanelEntityFeature as AlarmControlPanelEntityFeature, AlarmControlPanelState as AlarmControlPanelState, CodeFormat as CodeFormat
 from homeassistant.const import CONF_ARMING_TIME as CONF_ARMING_TIME, CONF_CODE as CONF_CODE, CONF_DELAY_TIME as CONF_DELAY_TIME, CONF_DISARM_AFTER_TRIGGER as CONF_DISARM_AFTER_TRIGGER, CONF_NAME as CONF_NAME, CONF_TRIGGER_TIME as CONF_TRIGGER_TIME, CONF_UNIQUE_ID as CONF_UNIQUE_ID
@@ -38,7 +38,7 @@ ATTR_PREVIOUS_STATE: str
 ATTR_NEXT_STATE: str
 
 def _state_validator(config: dict[AlarmControlPanelState | str, Any]) -> dict[str, Any]: ...
-def _state_schema(state: str) -> vol.Schema: ...
+def _state_schema(state: str) -> probatio.Schema: ...
 
 PLATFORM_SCHEMA: Incomplete
 

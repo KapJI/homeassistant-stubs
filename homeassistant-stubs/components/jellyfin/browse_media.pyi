@@ -1,5 +1,5 @@
 from .client_wrapper import get_artwork_url as get_artwork_url
-from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_TYPE_NONE as MEDIA_TYPE_NONE, SUPPORTED_COLLECTION_TYPES as SUPPORTED_COLLECTION_TYPES
+from .const import CONTENT_TYPE_MAP as CONTENT_TYPE_MAP, ITEM_TYPE_ARTIST as ITEM_TYPE_ARTIST, MEDIA_CLASS_MAP as MEDIA_CLASS_MAP, MEDIA_TYPE_NONE as MEDIA_TYPE_NONE, SEARCH_ITEM_TYPE_MAP as SEARCH_ITEM_TYPE_MAP, SUPPORTED_COLLECTION_TYPES as SUPPORTED_COLLECTION_TYPES
 from _typeshed import Incomplete
 from homeassistant.components.media_player import BrowseError as BrowseError, BrowseMedia as BrowseMedia, MediaClass as MediaClass, MediaType as MediaType, SearchMediaQuery as SearchMediaQuery
 from homeassistant.core import HomeAssistant as HomeAssistant

@@ -50,6 +50,7 @@ class WeatherEntityStateAttribute(StrEnum):
     PRECIPITATION_UNIT = 'precipitation_unit'
 
 DOMAIN: Final[str]
+SERVICE_GET_FORECASTS: Final[str]
 DATA_COMPONENT: HassKey[EntityComponent[WeatherEntity]]
 INTENT_GET_WEATHER: str
 VALID_UNITS_PRESSURE: set[str]

@@ -1,8 +1,13 @@
+from . import MediaPlayerEntity as MediaPlayerEntity
 from _typeshed import Incomplete
 from enum import IntFlag, StrEnum
 from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers as EnumWithDeprecatedMembers
+from homeassistant.helpers.entity_component import EntityComponent as EntityComponent
+from homeassistant.util.hass_dict import HassKey as HassKey
 from typing import Final
 
+DOMAIN: Final[str]
+DATA_COMPONENT: HassKey[EntityComponent[MediaPlayerEntity]]
 CONTENT_AUTH_EXPIRY_TIME: Incomplete
 ATTR_APP_ID: str
 ATTR_APP_NAME: str
@@ -37,7 +42,6 @@ ATTR_MEDIA_VOLUME_LEVEL: str
 ATTR_MEDIA_VOLUME_MUTED: str
 ATTR_SOUND_MODE: str
 ATTR_SOUND_MODE_LIST: str
-DOMAIN: Final[str]
 INTENT_MEDIA_PAUSE: str
 INTENT_MEDIA_UNPAUSE: str
 INTENT_MEDIA_NEXT: str
@@ -172,3 +176,20 @@ class MediaPlayerEntityFeature(IntFlag):
     MEDIA_ANNOUNCE = 1048576
     MEDIA_ENQUEUE = 2097152
     SEARCH_MEDIA = 4194304
+
+class MediaPlayerDeviceClass(StrEnum):
+    TV = 'tv'
+    SPEAKER = 'speaker'
+    RECEIVER = 'receiver'
+    PROJECTOR = 'projector'
+
+DEVICE_CLASSES_SCHEMA: Incomplete
+ATTR_MEDIA: str
+
+class MediaPlayerEnqueue(StrEnum):
+    ADD = 'add'
+    NEXT = 'next'
+    PLAY = 'play'
+    REPLACE = 'replace'
+
+MEDIA_PLAYER_PLAY_MEDIA_SCHEMA: Incomplete

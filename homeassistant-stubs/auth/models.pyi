@@ -15,6 +15,8 @@ TOKEN_TYPE_LONG_LIVED_ACCESS_TOKEN: str
 class AuthFlowContext(FlowContext, total=False):
     ip_address: IPv4Address | IPv6Address
     redirect_uri: str
+    code_challenge: str
+    code_challenge_method: str
 
 class AuthFlowResult(FlowResult[AuthFlowContext, tuple[str, str]], total=False):
     result: Credentials

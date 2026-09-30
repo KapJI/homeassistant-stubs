@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from . import subscription as subscription
 from .config import MQTT_BASE_SCHEMA as MQTT_BASE_SCHEMA
 from .const import CONF_TOPIC as CONF_TOPIC
@@ -35,7 +35,7 @@ class MqttCamera(MqttEntity, Camera):
     def __init__(self, hass: HomeAssistant, config: ConfigType, config_entry: ConfigEntry, discovery_data: DiscoveryInfoType | None) -> None: ...
     @staticmethod
     @override
-    def config_schema() -> vol.Schema: ...
+    def config_schema() -> probatio.Schema: ...
     @callback
     def _image_received(self, msg: ReceiveMessage) -> None: ...
     @callback

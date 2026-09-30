@@ -1,4 +1,4 @@
-import voluptuous as vol
+import probatio
 from .const import CONF_BALANCING_AUTHORITY as CONF_BALANCING_AUTHORITY, CONF_BALANCING_AUTHORITY_ABBREV as CONF_BALANCING_AUTHORITY_ABBREV, DOMAIN as DOMAIN, LOGGER as LOGGER
 from .coordinator import WattTimeConfigEntry as WattTimeConfigEntry
 from _typeshed import Incomplete
@@ -26,7 +26,7 @@ class WattTimeConfigFlow(ConfigFlow, domain=DOMAIN):
     _client: Client | None
     _data: dict[str, Any]
     def __init__(self) -> None: ...
-    async def _async_validate_credentials(self, username: str, password: str, error_step_id: str, error_schema: vol.Schema) -> ConfigFlowResult: ...
+    async def _async_validate_credentials(self, username: str, password: str, error_step_id: str, error_schema: probatio.Schema) -> ConfigFlowResult: ...
     @staticmethod
     @callback
     @override

@@ -1,4 +1,0 @@
-DOMAIN: str
-CONF_UNIT_ID: str
-DEFAULT_PORT: int
-DEFAULT_UNIT_ID: int

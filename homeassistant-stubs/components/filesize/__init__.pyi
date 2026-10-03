@@ -1,6 +1,0 @@
-from .const import PLATFORMS as PLATFORMS
-from .coordinator import FileSizeConfigEntry as FileSizeConfigEntry, FileSizeCoordinator as FileSizeCoordinator
-from homeassistant.core import HomeAssistant as HomeAssistant
-
-async def async_setup_entry(hass: HomeAssistant, entry: FileSizeConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: FileSizeConfigEntry) -> bool: ...

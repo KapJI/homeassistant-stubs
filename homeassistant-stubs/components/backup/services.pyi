@@ -1,9 +1,0 @@
-from .const import DATA_MANAGER as DATA_MANAGER, DOMAIN as DOMAIN
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-from homeassistant.helpers.hassio import is_hassio as is_hassio
-from homeassistant.helpers.service import async_register_admin_service as async_register_admin_service
-
-async def _async_handle_create_service(call: ServiceCall) -> None: ...
-async def _async_handle_create_automatic_service(call: ServiceCall) -> None: ...
-@callback
-def async_setup_services(hass: HomeAssistant) -> None: ...

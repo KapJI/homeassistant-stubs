@@ -1,2 +1,0 @@
-CONF_SERIAL: str
-DOMAIN: str

@@ -1,9 +1,0 @@
-from . import WeatherEntity as WeatherEntity
-from .const import DATA_COMPONENT as DATA_COMPONENT, SERVICE_GET_FORECASTS as SERVICE_GET_FORECASTS, WeatherEntityFeature as WeatherEntityFeature
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, ServiceResponse as ServiceResponse, SupportsResponse as SupportsResponse, callback as callback
-from homeassistant.exceptions import HomeAssistantError as HomeAssistantError
-
-def raise_unsupported_forecast(entity_id: str, forecast_type: str) -> None: ...
-async def _async_get_forecasts_service(weather: WeatherEntity, service_call: ServiceCall) -> ServiceResponse: ...
-@callback
-def async_setup_services(hass: HomeAssistant) -> None: ...

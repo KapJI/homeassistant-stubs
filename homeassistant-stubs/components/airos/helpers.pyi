@@ -1,3 +1,0 @@
-import ssl
-
-def build_legacy_context(*, verify_ssl: bool) -> ssl.SSLContext: ...

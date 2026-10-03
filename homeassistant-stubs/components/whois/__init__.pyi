@@ -1,6 +1,0 @@
-from .const import PLATFORMS as PLATFORMS
-from .coordinator import WhoisConfigEntry as WhoisConfigEntry, WhoisCoordinator as WhoisCoordinator
-from homeassistant.core import HomeAssistant as HomeAssistant
-
-async def async_setup_entry(hass: HomeAssistant, entry: WhoisConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: WhoisConfigEntry) -> bool: ...

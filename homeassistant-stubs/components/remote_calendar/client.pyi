@@ -1,3 +1,0 @@
-from httpx import AsyncClient as AsyncClient, Auth as Auth, Response as Response
-
-async def get_calendar(client: AsyncClient, url: str, username: str | None = None, password: str | None = None) -> Response: ...

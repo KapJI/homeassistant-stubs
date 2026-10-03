@@ -1,6 +1,0 @@
-from .const import PLATFORMS as PLATFORMS
-from .coordinator import PurpleAirConfigEntry as PurpleAirConfigEntry, PurpleAirDataUpdateCoordinator as PurpleAirDataUpdateCoordinator
-from homeassistant.core import HomeAssistant as HomeAssistant
-
-async def async_setup_entry(hass: HomeAssistant, entry: PurpleAirConfigEntry) -> bool: ...
-async def async_unload_entry(hass: HomeAssistant, entry: PurpleAirConfigEntry) -> bool: ...

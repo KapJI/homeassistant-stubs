@@ -1,8 +1,0 @@
-from . import ATTR_PERCENTAGE as ATTR_PERCENTAGE, SERVICE_TURN_ON as SERVICE_TURN_ON
-from .const import DOMAIN as DOMAIN
-from homeassistant.core import HomeAssistant as HomeAssistant
-from homeassistant.helpers import intent as intent
-
-INTENT_FAN_SET_SPEED: str
-
-async def async_setup_intents(hass: HomeAssistant) -> None: ...

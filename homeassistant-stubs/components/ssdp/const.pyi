@@ -1,3 +1,0 @@
-DOMAIN: str
-SSDP_SCANNER: str
-UPNP_SERVER: str

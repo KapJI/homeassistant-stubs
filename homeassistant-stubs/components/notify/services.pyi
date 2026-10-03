@@ -1,6 +1,0 @@
-from .const import ATTR_DATA as ATTR_DATA, ATTR_MESSAGE as ATTR_MESSAGE, ATTR_TITLE as ATTR_TITLE, DATA_COMPONENT as DATA_COMPONENT, DOMAIN as DOMAIN, NOTIFY_SERVICE_SCHEMA as NOTIFY_SERVICE_SCHEMA, SERVICE_PERSISTENT_NOTIFICATION as SERVICE_PERSISTENT_NOTIFICATION, SERVICE_SEND_MESSAGE as SERVICE_SEND_MESSAGE
-from homeassistant.core import HomeAssistant as HomeAssistant, ServiceCall as ServiceCall, callback as callback
-
-async def _async_persistent_notification(service: ServiceCall) -> None: ...
-@callback
-def async_setup_services(hass: HomeAssistant) -> None: ...

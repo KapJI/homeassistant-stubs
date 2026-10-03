@@ -1,3 +1,0 @@
-DOMAIN: str
-DEFAULT_NAME: str
-CONF_NEW_TOKEN: str

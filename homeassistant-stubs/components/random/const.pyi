@@ -1,3 +1,0 @@
-DOMAIN: str
-DEFAULT_MIN: int
-DEFAULT_MAX: int

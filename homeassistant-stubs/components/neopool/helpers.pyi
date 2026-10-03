@@ -1,3 +1,0 @@
-from homeassistant.core import HomeAssistant as HomeAssistant
-
-def prepare_device_time(hass: HomeAssistant) -> int: ...

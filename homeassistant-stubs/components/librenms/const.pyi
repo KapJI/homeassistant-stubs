@@ -1,2 +1,0 @@
-DOMAIN: str
-DEFAULT_VERIFY_SSL: bool

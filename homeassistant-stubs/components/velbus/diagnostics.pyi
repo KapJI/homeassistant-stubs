@@ -1,9 +1,0 @@
-from . import VelbusConfigEntry as VelbusConfigEntry
-from homeassistant.core import HomeAssistant as HomeAssistant
-from typing import Any
-from velbusaio.channels import Channel as VelbusChannel
-from velbusaio.module import Module as VelbusModule
-
-async def async_get_config_entry_diagnostics(hass: HomeAssistant, entry: VelbusConfigEntry) -> dict[str, Any]: ...
-async def _build_module_diagnostics_info(module: VelbusModule) -> dict[str, Any]: ...
-def _build_channels_diagnostics_info(channels: dict[str, VelbusChannel]) -> dict[str, Any]: ...
